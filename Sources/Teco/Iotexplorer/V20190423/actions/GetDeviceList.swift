@@ -139,7 +139,7 @@ extension Iotexplorer {
     /// 获取产品的设备列表
     ///
     /// 用于查询某个产品下的设备列表
-    @inlinable
+    @inlinable @discardableResult
     public func getDeviceListPaginated(_ input: GetDeviceListRequest, region: TCRegion? = nil, onResponse: @escaping (GetDeviceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getDeviceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Iotexplorer {
     /// 用于查询某个产品下的设备列表
     @inlinable
     public func getDeviceListPaginator(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResultSequence, responses: TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResultSequence(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResponseSequence(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
     }
 }

@@ -118,7 +118,7 @@ extension Nlp {
     /// 查询词库列表
     ///
     /// 返回属于当前用户的所有自定义词库列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDictsPaginated(_ input: DescribeDictsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDictsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDicts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Nlp {
     /// 返回属于当前用户的所有自定义词库列表。
     @inlinable
     public func describeDictsPaginator(_ input: DescribeDictsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResultSequence(input: input, region: region, command: self.describeDicts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResponseSequence(input: input, region: region, command: self.describeDicts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDicts, logger: logger, on: eventLoop)
     }
 }

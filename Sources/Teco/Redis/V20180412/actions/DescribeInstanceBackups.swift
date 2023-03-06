@@ -137,7 +137,7 @@ extension Redis {
     /// 查询Redis实例备份列表
     ///
     /// 查询 CRS 实例备份列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceBackupsPaginated(_ input: DescribeInstanceBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceBackups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Redis {
     /// 查询 CRS 实例备份列表
     @inlinable
     public func describeInstanceBackupsPaginator(_ input: DescribeInstanceBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceBackups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceBackups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceBackups, logger: logger, on: eventLoop)
     }
 }

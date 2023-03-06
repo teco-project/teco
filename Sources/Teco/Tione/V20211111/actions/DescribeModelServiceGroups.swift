@@ -128,7 +128,7 @@ extension Tione {
     }
 
     /// 列举在线推理服务组
-    @inlinable
+    @inlinable @discardableResult
     public func describeModelServiceGroupsPaginated(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModelServiceGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeModelServiceGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Tione {
     /// 列举在线推理服务组
     @inlinable
     public func describeModelServiceGroupsPaginator(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
     }
 }

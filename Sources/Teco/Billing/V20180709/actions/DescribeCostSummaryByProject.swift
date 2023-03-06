@@ -128,7 +128,7 @@ extension Billing {
     }
 
     /// 获取按项目汇总消耗详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeCostSummaryByProjectPaginated(_ input: DescribeCostSummaryByProjectRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCostSummaryByProjectResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCostSummaryByProject, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Billing {
     /// 获取按项目汇总消耗详情
     @inlinable
     public func describeCostSummaryByProjectPaginator(_ input: DescribeCostSummaryByProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCostSummaryByProjectRequest, DescribeCostSummaryByProjectResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCostSummaryByProjectRequest, DescribeCostSummaryByProjectResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCostSummaryByProjectRequest, DescribeCostSummaryByProjectResponse>.ResultSequence(input: input, region: region, command: self.describeCostSummaryByProject, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCostSummaryByProjectRequest, DescribeCostSummaryByProjectResponse>.ResponseSequence(input: input, region: region, command: self.describeCostSummaryByProject, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByProject, logger: logger, on: eventLoop)
     }
 }

@@ -274,7 +274,7 @@ extension Cpdp {
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
-    @inlinable
+    @inlinable @discardableResult
     public func queryTransferBatchPaginated(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, onResponse: @escaping (QueryTransferBatchResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryTransferBatch, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -284,8 +284,6 @@ extension Cpdp {
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
     public func queryTransferBatchPaginator(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResultSequence, responses: TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResultSequence(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResponseSequence(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
     }
 }

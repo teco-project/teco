@@ -126,7 +126,7 @@ extension Tdmq {
     }
 
     /// 查询cmq全量队列
-    @inlinable
+    @inlinable @discardableResult
     public func describeCmqQueuesPaginated(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCmqQueuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCmqQueues, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tdmq {
     /// 查询cmq全量队列
     @inlinable
     public func describeCmqQueuesPaginator(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResultSequence(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResponseSequence(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
     }
 }

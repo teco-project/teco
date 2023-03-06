@@ -131,7 +131,7 @@ extension Dc {
     /// 查询专用通道列表
     ///
     /// 用于查询专用通道列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDirectConnectTunnelsPaginated(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectTunnelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDirectConnectTunnels, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Dc {
     /// 用于查询专用通道列表。
     @inlinable
     public func describeDirectConnectTunnelsPaginator(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResultSequence(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResponseSequence(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
     }
 }

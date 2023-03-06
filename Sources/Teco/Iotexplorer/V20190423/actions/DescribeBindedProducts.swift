@@ -115,7 +115,7 @@ extension Iotexplorer {
     }
 
     /// 获取网关产品已经绑定的子产品
-    @inlinable
+    @inlinable @discardableResult
     public func describeBindedProductsPaginated(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindedProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBindedProducts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Iotexplorer {
     /// 获取网关产品已经绑定的子产品
     @inlinable
     public func describeBindedProductsPaginator(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResultSequence(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResponseSequence(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
     }
 }

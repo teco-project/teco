@@ -131,7 +131,7 @@ extension Vpc {
     /// 查询NAT网关SNAT转发规则
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNatGatewaySourceIpTranslationNatRulesPaginated(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatGatewaySourceIpTranslationNatRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNatGatewaySourceIpTranslationNatRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Vpc {
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
     @inlinable
     public func describeNatGatewaySourceIpTranslationNatRulesPaginator(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewaySourceIpTranslationNatRulesRequest, DescribeNatGatewaySourceIpTranslationNatRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewaySourceIpTranslationNatRulesRequest, DescribeNatGatewaySourceIpTranslationNatRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNatGatewaySourceIpTranslationNatRulesRequest, DescribeNatGatewaySourceIpTranslationNatRulesResponse>.ResultSequence(input: input, region: region, command: self.describeNatGatewaySourceIpTranslationNatRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNatGatewaySourceIpTranslationNatRulesRequest, DescribeNatGatewaySourceIpTranslationNatRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeNatGatewaySourceIpTranslationNatRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewaySourceIpTranslationNatRules, logger: logger, on: eventLoop)
     }
 }

@@ -141,7 +141,7 @@ extension Bmvpc {
     /// 查询黑石路由表条目
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
-    @inlinable
+    @inlinable @discardableResult
     public func describeRoutePoliciesPaginated(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRoutePoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRoutePolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Bmvpc {
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
     public func describeRoutePoliciesPaginator(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
     }
 }

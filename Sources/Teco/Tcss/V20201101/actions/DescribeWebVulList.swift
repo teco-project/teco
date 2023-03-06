@@ -134,7 +134,7 @@ extension Tcss {
     }
 
     /// 查询web应用漏洞列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeWebVulListPaginated(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWebVulList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询web应用漏洞列表
     @inlinable
     public func describeWebVulListPaginator(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResultSequence(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResponseSequence(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
     }
 }

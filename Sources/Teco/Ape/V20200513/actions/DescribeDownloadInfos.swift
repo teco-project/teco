@@ -141,7 +141,7 @@ extension Ape {
     /// 获取图片下载记录
     ///
     /// 获取用户图片下载记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeDownloadInfosPaginated(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDownloadInfosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDownloadInfos, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Ape {
     /// 获取用户图片下载记录
     @inlinable
     public func describeDownloadInfosPaginator(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDownloadInfosRequest, DescribeDownloadInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDownloadInfosRequest, DescribeDownloadInfosResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDownloadInfosRequest, DescribeDownloadInfosResponse>.ResultSequence(input: input, region: region, command: self.describeDownloadInfos, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDownloadInfosRequest, DescribeDownloadInfosResponse>.ResponseSequence(input: input, region: region, command: self.describeDownloadInfos, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDownloadInfos, logger: logger, on: eventLoop)
     }
 }

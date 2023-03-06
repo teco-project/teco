@@ -165,7 +165,7 @@ extension Tsf {
     }
 
     /// 业务日志搜索
-    @inlinable
+    @inlinable @discardableResult
     public func searchBusinessLogPaginated(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, onResponse: @escaping (SearchBusinessLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.searchBusinessLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -173,8 +173,6 @@ extension Tsf {
     /// 业务日志搜索
     @inlinable
     public func searchBusinessLogPaginator(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResultSequence, responses: TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResultSequence(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResponseSequence(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
     }
 }

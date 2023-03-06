@@ -140,7 +140,7 @@ extension Cvm {
     ///
     /// * 可以根据实例`ID`来查询实例的状态。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstancesStatusPaginated(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstancesStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     @inlinable
     public func describeInstancesStatusPaginator(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesStatusRequest, DescribeInstancesStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesStatusRequest, DescribeInstancesStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstancesStatusRequest, DescribeInstancesStatusResponse>.ResultSequence(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstancesStatusRequest, DescribeInstancesStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)
     }
 }

@@ -123,7 +123,7 @@ extension Cwp {
     /// 获取端口统计列表
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeOpenPortStatisticsPaginated(_ input: DescribeOpenPortStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOpenPortStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOpenPortStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Cwp {
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     @inlinable
     public func describeOpenPortStatisticsPaginator(_ input: DescribeOpenPortStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOpenPortStatisticsRequest, DescribeOpenPortStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOpenPortStatisticsRequest, DescribeOpenPortStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOpenPortStatisticsRequest, DescribeOpenPortStatisticsResponse>.ResultSequence(input: input, region: region, command: self.describeOpenPortStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOpenPortStatisticsRequest, DescribeOpenPortStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.describeOpenPortStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpenPortStatistics, logger: logger, on: eventLoop)
     }
 }

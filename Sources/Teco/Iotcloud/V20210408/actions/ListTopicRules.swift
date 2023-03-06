@@ -117,7 +117,7 @@ extension Iotcloud {
     /// 获取规则列表
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
-    @inlinable
+    @inlinable @discardableResult
     public func listTopicRulesPaginated(_ input: ListTopicRulesRequest, region: TCRegion? = nil, onResponse: @escaping (ListTopicRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listTopicRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -127,8 +127,6 @@ extension Iotcloud {
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
     public func listTopicRulesPaginator(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResultSequence, responses: TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResultSequence(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResponseSequence(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
     }
 }

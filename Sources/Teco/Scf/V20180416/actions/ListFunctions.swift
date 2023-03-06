@@ -150,7 +150,7 @@ extension Scf {
     /// 获取函数列表
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
-    @inlinable
+    @inlinable @discardableResult
     public func listFunctionsPaginated(_ input: ListFunctionsRequest, region: TCRegion? = nil, onResponse: @escaping (ListFunctionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listFunctions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Scf {
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
     public func listFunctionsPaginator(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResultSequence, responses: TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResultSequence(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResponseSequence(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
     }
 }

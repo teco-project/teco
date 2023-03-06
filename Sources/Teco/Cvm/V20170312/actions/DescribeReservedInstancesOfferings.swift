@@ -153,7 +153,7 @@ extension Cvm {
     /// 列出可购买的预留实例配置
     ///
     /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
-    @inlinable
+    @inlinable @discardableResult
     public func describeReservedInstancesOfferingsPaginated(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReservedInstancesOfferingsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReservedInstancesOfferings, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Cvm {
     /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
     @inlinable
     public func describeReservedInstancesOfferingsPaginator(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReservedInstancesOfferingsRequest, DescribeReservedInstancesOfferingsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReservedInstancesOfferingsRequest, DescribeReservedInstancesOfferingsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeReservedInstancesOfferingsRequest, DescribeReservedInstancesOfferingsResponse>.ResultSequence(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeReservedInstancesOfferingsRequest, DescribeReservedInstancesOfferingsResponse>.ResponseSequence(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)
     }
 }

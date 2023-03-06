@@ -148,7 +148,7 @@ extension Live {
     /// 获取禁推流列表。
     ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLiveForbidStreamListPaginated(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveForbidStreamListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLiveForbidStreamList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Live {
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
     public func describeLiveForbidStreamListPaginator(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveForbidStreamListRequest, DescribeLiveForbidStreamListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveForbidStreamListRequest, DescribeLiveForbidStreamListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLiveForbidStreamListRequest, DescribeLiveForbidStreamListResponse>.ResultSequence(input: input, region: region, command: self.describeLiveForbidStreamList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLiveForbidStreamListRequest, DescribeLiveForbidStreamListResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveForbidStreamList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveForbidStreamList, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Ms {
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
+    @inlinable @discardableResult
     public func describeShieldInstancesPaginated(_ input: DescribeShieldInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShieldInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeShieldInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -154,8 +154,6 @@ extension Ms {
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func describeShieldInstancesPaginator(_ input: DescribeShieldInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShieldInstancesRequest, DescribeShieldInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShieldInstancesRequest, DescribeShieldInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeShieldInstancesRequest, DescribeShieldInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeShieldInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeShieldInstancesRequest, DescribeShieldInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeShieldInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShieldInstances, logger: logger, on: eventLoop)
     }
 }

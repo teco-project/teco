@@ -175,7 +175,7 @@ extension Bmlb {
     }
 
     /// 获取黑石负载均衡实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeLoadBalancersPaginated(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLoadBalancers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -183,8 +183,6 @@ extension Bmlb {
     /// 获取黑石负载均衡实例列表
     @inlinable
     public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResultSequence(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResponseSequence(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
     }
 }

@@ -125,7 +125,7 @@ extension Redis {
     }
 
     /// 查询Tendis慢查询
-    @inlinable
+    @inlinable @discardableResult
     public func describeTendisSlowLogPaginated(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTendisSlowLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTendisSlowLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Redis {
     /// 查询Tendis慢查询
     @inlinable
     public func describeTendisSlowLogPaginator(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTendisSlowLogRequest, DescribeTendisSlowLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTendisSlowLogRequest, DescribeTendisSlowLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTendisSlowLogRequest, DescribeTendisSlowLogResponse>.ResultSequence(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTendisSlowLogRequest, DescribeTendisSlowLogResponse>.ResponseSequence(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)
     }
 }

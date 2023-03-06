@@ -135,7 +135,7 @@ extension Iotvideoindustry {
     ///
     /// 获取IPC设备下属通道
     /// 请使用DescribeChannels接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeIPCChannelsPaginated(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIPCChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIPCChannels, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -146,8 +146,6 @@ extension Iotvideoindustry {
     /// 请使用DescribeChannels接口
     @inlinable
     public func describeIPCChannelsPaginator(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
     }
 }

@@ -123,7 +123,7 @@ extension Yunjing {
     /// 获取进程统计列表
     ///
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProcessStatisticsPaginated(_ input: DescribeProcessStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProcessStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProcessStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Yunjing {
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
     @inlinable
     public func describeProcessStatisticsPaginator(_ input: DescribeProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResultSequence(input: input, region: region, command: self.describeProcessStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.describeProcessStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcessStatistics, logger: logger, on: eventLoop)
     }
 }

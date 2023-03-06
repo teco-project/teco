@@ -141,7 +141,7 @@ extension Vpc {
     /// 查询云联网关联实例列表
     ///
     /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCcnAttachedInstancesPaginated(_ input: DescribeCcnAttachedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnAttachedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCcnAttachedInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Vpc {
     /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
     @inlinable
     public func describeCcnAttachedInstancesPaginator(_ input: DescribeCcnAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcnAttachedInstancesRequest, DescribeCcnAttachedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcnAttachedInstancesRequest, DescribeCcnAttachedInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCcnAttachedInstancesRequest, DescribeCcnAttachedInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeCcnAttachedInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCcnAttachedInstancesRequest, DescribeCcnAttachedInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeCcnAttachedInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcnAttachedInstances, logger: logger, on: eventLoop)
     }
 }

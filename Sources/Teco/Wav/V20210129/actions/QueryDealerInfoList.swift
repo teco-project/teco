@@ -119,7 +119,7 @@ extension Wav {
     /// 查询经销商信息列表接口
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
-    @inlinable
+    @inlinable @discardableResult
     public func queryDealerInfoListPaginated(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryDealerInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryDealerInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Wav {
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     @inlinable
     public func queryDealerInfoListPaginator(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryDealerInfoListRequest, QueryDealerInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryDealerInfoListRequest, QueryDealerInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryDealerInfoListRequest, QueryDealerInfoListResponse>.ResultSequence(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryDealerInfoListRequest, QueryDealerInfoListResponse>.ResponseSequence(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)
     }
 }

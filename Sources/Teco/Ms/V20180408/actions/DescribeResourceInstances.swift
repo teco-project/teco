@@ -137,7 +137,7 @@ extension Ms {
     /// 获取用户的所有资源信息
     ///
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourceInstancesPaginated(_ input: DescribeResourceInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourceInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Ms {
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func describeResourceInstancesPaginator(_ input: DescribeResourceInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceInstancesRequest, DescribeResourceInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceInstancesRequest, DescribeResourceInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourceInstancesRequest, DescribeResourceInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeResourceInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourceInstancesRequest, DescribeResourceInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceInstances, logger: logger, on: eventLoop)
     }
 }

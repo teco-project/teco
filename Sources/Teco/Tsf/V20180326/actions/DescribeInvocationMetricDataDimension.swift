@@ -126,7 +126,7 @@ extension Tsf {
     }
 
     /// 查询维度
-    @inlinable
+    @inlinable @discardableResult
     public func describeInvocationMetricDataDimensionPaginated(_ input: DescribeInvocationMetricDataDimensionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInvocationMetricDataDimensionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInvocationMetricDataDimension, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tsf {
     /// 查询维度
     @inlinable
     public func describeInvocationMetricDataDimensionPaginator(_ input: DescribeInvocationMetricDataDimensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInvocationMetricDataDimensionRequest, DescribeInvocationMetricDataDimensionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInvocationMetricDataDimensionRequest, DescribeInvocationMetricDataDimensionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInvocationMetricDataDimensionRequest, DescribeInvocationMetricDataDimensionResponse>.ResultSequence(input: input, region: region, command: self.describeInvocationMetricDataDimension, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInvocationMetricDataDimensionRequest, DescribeInvocationMetricDataDimensionResponse>.ResponseSequence(input: input, region: region, command: self.describeInvocationMetricDataDimension, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocationMetricDataDimension, logger: logger, on: eventLoop)
     }
 }

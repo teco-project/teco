@@ -134,7 +134,7 @@ extension Vod {
     /// 获取任务流模板列表
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProcedureTemplatesPaginated(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProcedureTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProcedureTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 根据任务流模板名字，获取任务流模板详情列表。
     @inlinable
     public func describeProcedureTemplatesPaginator(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
     }
 }

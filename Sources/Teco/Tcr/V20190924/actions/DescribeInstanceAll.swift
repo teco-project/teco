@@ -122,7 +122,7 @@ extension Tcr {
     }
 
     /// 查询全部实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAllPaginated(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceAllResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceAll, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Tcr {
     /// 查询全部实例信息
     @inlinable
     public func describeInstanceAllPaginator(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
     }
 }

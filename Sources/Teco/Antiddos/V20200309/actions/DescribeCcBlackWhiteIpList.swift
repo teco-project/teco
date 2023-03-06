@@ -140,7 +140,7 @@ extension Antiddos {
     }
 
     /// 获取CC四层黑白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCcBlackWhiteIpListPaginated(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcBlackWhiteIpListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCcBlackWhiteIpList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Antiddos {
     /// 获取CC四层黑白名单列表
     @inlinable
     public func describeCcBlackWhiteIpListPaginator(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResultSequence(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResponseSequence(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
     }
 }

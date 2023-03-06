@@ -155,7 +155,7 @@ extension Scf {
     }
 
     /// 拉取函数异步事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func listAsyncEventsPaginated(_ input: ListAsyncEventsRequest, region: TCRegion? = nil, onResponse: @escaping (ListAsyncEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listAsyncEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Scf {
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEventsPaginator(_ input: ListAsyncEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResultSequence, responses: TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResultSequence(input: input, region: region, command: self.listAsyncEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResponseSequence(input: input, region: region, command: self.listAsyncEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listAsyncEvents, logger: logger, on: eventLoop)
     }
 }

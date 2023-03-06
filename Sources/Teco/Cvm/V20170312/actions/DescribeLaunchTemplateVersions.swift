@@ -142,7 +142,7 @@ extension Cvm {
     /// 查询实例模板版本信息
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLaunchTemplateVersionsPaginated(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLaunchTemplateVersionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLaunchTemplateVersions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Cvm {
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
     public func describeLaunchTemplateVersionsPaginator(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResultSequence(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResponseSequence(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
     }
 }

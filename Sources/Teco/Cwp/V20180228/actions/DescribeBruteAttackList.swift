@@ -133,7 +133,7 @@ extension Cwp {
     }
 
     /// 获取密码破解列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBruteAttackListPaginated(_ input: DescribeBruteAttackListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBruteAttackListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBruteAttackList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Cwp {
     /// 获取密码破解列表
     @inlinable
     public func describeBruteAttackListPaginator(_ input: DescribeBruteAttackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResultSequence(input: input, region: region, command: self.describeBruteAttackList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResponseSequence(input: input, region: region, command: self.describeBruteAttackList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBruteAttackList, logger: logger, on: eventLoop)
     }
 }

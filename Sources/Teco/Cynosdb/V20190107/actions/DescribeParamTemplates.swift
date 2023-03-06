@@ -162,7 +162,7 @@ extension Cynosdb {
     /// 查询参数模板信息
     ///
     /// 查询用户指定产品下的所有参数模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeParamTemplatesPaginated(_ input: DescribeParamTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeParamTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeParamTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -172,8 +172,6 @@ extension Cynosdb {
     /// 查询用户指定产品下的所有参数模板信息
     @inlinable
     public func describeParamTemplatesPaginator(_ input: DescribeParamTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeParamTemplatesRequest, DescribeParamTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeParamTemplatesRequest, DescribeParamTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeParamTemplatesRequest, DescribeParamTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeParamTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeParamTemplatesRequest, DescribeParamTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeParamTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeParamTemplates, logger: logger, on: eventLoop)
     }
 }

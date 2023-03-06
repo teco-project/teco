@@ -141,7 +141,7 @@ extension Ame {
     /// 获取分类内容下歌曲列表
     ///
     /// 该服务后续会停用，不再建议使用
-    @inlinable
+    @inlinable @discardableResult
     public func describeItemsPaginated(_ input: DescribeItemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeItemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeItems, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Ame {
     /// 该服务后续会停用，不再建议使用
     @inlinable
     public func describeItemsPaginator(_ input: DescribeItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeItemsRequest, DescribeItemsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeItemsRequest, DescribeItemsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeItemsRequest, DescribeItemsResponse>.ResultSequence(input: input, region: region, command: self.describeItems, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeItemsRequest, DescribeItemsResponse>.ResponseSequence(input: input, region: region, command: self.describeItems, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeItems, logger: logger, on: eventLoop)
     }
 }

@@ -127,7 +127,7 @@ extension Pts {
     }
 
     /// 查询告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func describeAlertChannelsPaginated(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlertChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAlertChannels, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Pts {
     /// 查询告警通知接收组
     @inlinable
     public func describeAlertChannelsPaginator(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
     }
 }

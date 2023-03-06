@@ -128,7 +128,7 @@ extension Vod {
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVodDomainsPaginated(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVodDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVodDomains, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Vod {
     /// 该接口用于查询点播域名信息列表。
     @inlinable
     public func describeVodDomainsPaginator(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResultSequence(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResponseSequence(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
     }
 }

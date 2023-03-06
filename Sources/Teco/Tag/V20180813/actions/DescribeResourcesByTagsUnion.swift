@@ -143,7 +143,7 @@ extension Tag {
     }
 
     /// 通过标签查询资源列表并集
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourcesByTagsUnionPaginated(_ input: DescribeResourcesByTagsUnionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourcesByTagsUnionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourcesByTagsUnion, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Tag {
     /// 通过标签查询资源列表并集
     @inlinable
     public func describeResourcesByTagsUnionPaginator(_ input: DescribeResourcesByTagsUnionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResultSequence(input: input, region: region, command: self.describeResourcesByTagsUnion, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResponseSequence(input: input, region: region, command: self.describeResourcesByTagsUnion, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourcesByTagsUnion, logger: logger, on: eventLoop)
     }
 }

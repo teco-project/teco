@@ -118,7 +118,7 @@ extension Domain {
     /// 我的域名列表
     ///
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDomainNameListPaginated(_ input: DescribeDomainNameListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainNameListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDomainNameList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Domain {
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
     @inlinable
     public func describeDomainNameListPaginator(_ input: DescribeDomainNameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResultSequence(input: input, region: region, command: self.describeDomainNameList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResponseSequence(input: input, region: region, command: self.describeDomainNameList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainNameList, logger: logger, on: eventLoop)
     }
 }

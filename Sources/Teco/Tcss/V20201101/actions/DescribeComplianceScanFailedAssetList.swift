@@ -132,7 +132,7 @@ extension Tcss {
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeComplianceScanFailedAssetListPaginated(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceScanFailedAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComplianceScanFailedAssetList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
     @inlinable
     public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResultSequence(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResponseSequence(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
     }
 }

@@ -150,7 +150,7 @@ extension Youmall {
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
-    @inlinable
+    @inlinable @discardableResult
     public func describePersonInfoPaginated(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePersonInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Youmall {
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
     public func describePersonInfoPaginator(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonInfoRequest, DescribePersonInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonInfoRequest, DescribePersonInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePersonInfoRequest, DescribePersonInfoResponse>.ResultSequence(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePersonInfoRequest, DescribePersonInfoResponse>.ResponseSequence(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)
     }
 }

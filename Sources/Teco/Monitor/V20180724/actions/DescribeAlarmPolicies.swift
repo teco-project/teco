@@ -236,7 +236,7 @@ extension Monitor {
     /// 查询告警策略列表（支持按实例等条件筛选）
     ///
     /// 查询告警策略列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAlarmPoliciesPaginated(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAlarmPolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -246,8 +246,6 @@ extension Monitor {
     /// 查询告警策略列表
     @inlinable
     public func describeAlarmPoliciesPaginator(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
     }
 }

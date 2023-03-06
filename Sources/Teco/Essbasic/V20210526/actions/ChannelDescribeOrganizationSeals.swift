@@ -138,7 +138,7 @@ extension Essbasic {
     ///
     /// 查询渠道子客企业电子印章，需要操作者具有管理印章权限
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
-    @inlinable
+    @inlinable @discardableResult
     public func channelDescribeOrganizationSealsPaginated(_ input: ChannelDescribeOrganizationSealsRequest, region: TCRegion? = nil, onResponse: @escaping (ChannelDescribeOrganizationSealsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.channelDescribeOrganizationSeals, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Essbasic {
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
     @inlinable
     public func channelDescribeOrganizationSealsPaginator(_ input: ChannelDescribeOrganizationSealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ChannelDescribeOrganizationSealsRequest, ChannelDescribeOrganizationSealsResponse>.ResultSequence, responses: TCClient.Paginator<ChannelDescribeOrganizationSealsRequest, ChannelDescribeOrganizationSealsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ChannelDescribeOrganizationSealsRequest, ChannelDescribeOrganizationSealsResponse>.ResultSequence(input: input, region: region, command: self.channelDescribeOrganizationSeals, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ChannelDescribeOrganizationSealsRequest, ChannelDescribeOrganizationSealsResponse>.ResponseSequence(input: input, region: region, command: self.channelDescribeOrganizationSeals, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.channelDescribeOrganizationSeals, logger: logger, on: eventLoop)
     }
 }

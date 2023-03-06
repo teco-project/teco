@@ -129,7 +129,7 @@ extension Monitor {
     /// 查询云监控产品列表
     ///
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProductListPaginated(_ input: DescribeProductListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProductList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Monitor {
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
     public func describeProductListPaginator(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductListRequest, DescribeProductListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductListRequest, DescribeProductListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProductListRequest, DescribeProductListResponse>.ResultSequence(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProductListRequest, DescribeProductListResponse>.ResponseSequence(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)
     }
 }

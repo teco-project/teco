@@ -132,7 +132,7 @@ extension Domain {
     /// 信息模板列表
     ///
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTemplateListPaginated(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplateListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTemplateList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Domain {
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
     @inlinable
     public func describeTemplateListPaginator(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTemplateListRequest, DescribeTemplateListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTemplateListRequest, DescribeTemplateListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTemplateListRequest, DescribeTemplateListResponse>.ResultSequence(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTemplateListRequest, DescribeTemplateListResponse>.ResponseSequence(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)
     }
 }

@@ -110,7 +110,7 @@ extension Dayu {
     }
 
     /// 获取调度域名列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSchedulingDomainListPaginated(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSchedulingDomainListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSchedulingDomainList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Dayu {
     /// 获取调度域名列表
     @inlinable
     public func describeSchedulingDomainListPaginator(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResultSequence(input: input, region: region, command: self.describeSchedulingDomainList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResponseSequence(input: input, region: region, command: self.describeSchedulingDomainList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSchedulingDomainList, logger: logger, on: eventLoop)
     }
 }

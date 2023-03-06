@@ -178,7 +178,7 @@ extension Live {
     /// 查询分省份分运营商播放汇总数据
     ///
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProIspPlaySumInfoListPaginated(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProIspPlaySumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProIspPlaySumInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -188,8 +188,6 @@ extension Live {
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoListPaginator(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProIspPlaySumInfoListRequest, DescribeProIspPlaySumInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProIspPlaySumInfoListRequest, DescribeProIspPlaySumInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProIspPlaySumInfoListRequest, DescribeProIspPlaySumInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeProIspPlaySumInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProIspPlaySumInfoListRequest, DescribeProIspPlaySumInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeProIspPlaySumInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProIspPlaySumInfoList, logger: logger, on: eventLoop)
     }
 }

@@ -159,7 +159,7 @@ extension Live {
     /// 回调事件查询
     ///
     /// 用于查询回调事件。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCallbackRecordsListPaginated(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCallbackRecordsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCallbackRecordsList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -169,8 +169,6 @@ extension Live {
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsListPaginator(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResultSequence(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResponseSequence(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
     }
 }

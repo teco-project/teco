@@ -160,7 +160,7 @@ extension Partners {
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
-    @inlinable
+    @inlinable @discardableResult
     public func describeAgentSelfPayDealsV2Paginated(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentSelfPayDealsV2Response, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAgentSelfPayDealsV2, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -170,8 +170,6 @@ extension Partners {
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
     public func describeAgentSelfPayDealsV2Paginator(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResultSequence, responses: TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResultSequence(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResponseSequence(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)
     }
 }

@@ -144,7 +144,7 @@ extension Cwp {
     }
 
     /// 获取Web站点列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetWebLocationListPaginated(_ input: DescribeAssetWebLocationListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetWebLocationListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetWebLocationList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Cwp {
     /// 获取Web站点列表
     @inlinable
     public func describeAssetWebLocationListPaginator(_ input: DescribeAssetWebLocationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebLocationListRequest, DescribeAssetWebLocationListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebLocationListRequest, DescribeAssetWebLocationListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetWebLocationListRequest, DescribeAssetWebLocationListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetWebLocationList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetWebLocationListRequest, DescribeAssetWebLocationListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetWebLocationList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebLocationList, logger: logger, on: eventLoop)
     }
 }

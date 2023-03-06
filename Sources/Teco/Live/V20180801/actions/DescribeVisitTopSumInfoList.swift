@@ -169,7 +169,7 @@ extension Live {
     /// 查询某时间段top n的域名或流id信息
     ///
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVisitTopSumInfoListPaginated(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVisitTopSumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVisitTopSumInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -179,8 +179,6 @@ extension Live {
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
     @inlinable
     public func describeVisitTopSumInfoListPaginator(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
     }
 }

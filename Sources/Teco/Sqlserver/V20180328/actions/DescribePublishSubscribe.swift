@@ -152,7 +152,7 @@ extension Sqlserver {
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describePublishSubscribePaginated(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublishSubscribeResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePublishSubscribe, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Sqlserver {
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
     public func describePublishSubscribePaginator(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResultSequence(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResponseSequence(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
     }
 }

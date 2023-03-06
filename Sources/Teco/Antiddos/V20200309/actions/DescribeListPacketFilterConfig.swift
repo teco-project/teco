@@ -115,7 +115,7 @@ extension Antiddos {
     }
 
     /// 获取DDoS防护的特征过滤规则列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeListPacketFilterConfigPaginated(_ input: DescribeListPacketFilterConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListPacketFilterConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeListPacketFilterConfig, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Antiddos {
     /// 获取DDoS防护的特征过滤规则列表
     @inlinable
     public func describeListPacketFilterConfigPaginator(_ input: DescribeListPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResultSequence(input: input, region: region, command: self.describeListPacketFilterConfig, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResponseSequence(input: input, region: region, command: self.describeListPacketFilterConfig, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListPacketFilterConfig, logger: logger, on: eventLoop)
     }
 }

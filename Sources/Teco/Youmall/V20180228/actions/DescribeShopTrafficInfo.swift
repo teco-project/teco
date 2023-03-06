@@ -153,7 +153,7 @@ extension Youmall {
     /// 获取每日客流人数
     ///
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
-    @inlinable
+    @inlinable @discardableResult
     public func describeShopTrafficInfoPaginated(_ input: DescribeShopTrafficInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShopTrafficInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeShopTrafficInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Youmall {
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
     @inlinable
     public func describeShopTrafficInfoPaginator(_ input: DescribeShopTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShopTrafficInfoRequest, DescribeShopTrafficInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShopTrafficInfoRequest, DescribeShopTrafficInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeShopTrafficInfoRequest, DescribeShopTrafficInfoResponse>.ResultSequence(input: input, region: region, command: self.describeShopTrafficInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeShopTrafficInfoRequest, DescribeShopTrafficInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeShopTrafficInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopTrafficInfo, logger: logger, on: eventLoop)
     }
 }

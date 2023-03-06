@@ -125,7 +125,7 @@ extension Oceanus {
     }
 
     /// 获取资源关联作业信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourceRelatedJobsPaginated(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceRelatedJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourceRelatedJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Oceanus {
     /// 获取资源关联作业信息
     @inlinable
     public func describeResourceRelatedJobsPaginator(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceRelatedJobsRequest, DescribeResourceRelatedJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceRelatedJobsRequest, DescribeResourceRelatedJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourceRelatedJobsRequest, DescribeResourceRelatedJobsResponse>.ResultSequence(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourceRelatedJobsRequest, DescribeResourceRelatedJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)
     }
 }

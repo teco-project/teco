@@ -130,7 +130,7 @@ extension Tione {
     }
 
     /// 查询Notebook实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeNotebookInstancesPaginated(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNotebookInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNotebookInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tione {
     /// 查询Notebook实例列表
     @inlinable
     public func describeNotebookInstancesPaginator(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeNotebookInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeNotebookInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookInstances, logger: logger, on: eventLoop)
     }
 }

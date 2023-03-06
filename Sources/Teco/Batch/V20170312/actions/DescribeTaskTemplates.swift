@@ -132,7 +132,7 @@ extension Batch {
     /// 获取任务模板
     ///
     /// 用于查询任务模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeTaskTemplatesPaginated(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTaskTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Batch {
     /// 用于查询任务模板信息
     @inlinable
     public func describeTaskTemplatesPaginator(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskTemplatesRequest, DescribeTaskTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskTemplatesRequest, DescribeTaskTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTaskTemplatesRequest, DescribeTaskTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeTaskTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTaskTemplatesRequest, DescribeTaskTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskTemplates, logger: logger, on: eventLoop)
     }
 }

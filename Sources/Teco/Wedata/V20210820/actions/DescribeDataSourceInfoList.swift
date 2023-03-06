@@ -143,7 +143,7 @@ extension Wedata {
     /// 获取数据源信息
     ///
     /// 获取数据源信息-数据源分页列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDataSourceInfoListPaginated(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDataSourceInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDataSourceInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Wedata {
     /// 获取数据源信息-数据源分页列表
     @inlinable
     public func describeDataSourceInfoListPaginator(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
     }
 }

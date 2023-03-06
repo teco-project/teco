@@ -136,7 +136,7 @@ extension Dlc {
     }
 
     /// 查询spark应用的运行任务实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSparkAppTasksPaginated(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSparkAppTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSparkAppTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Dlc {
     /// 查询spark应用的运行任务实例列表
     @inlinable
     public func describeSparkAppTasksPaginator(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResultSequence(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)
     }
 }

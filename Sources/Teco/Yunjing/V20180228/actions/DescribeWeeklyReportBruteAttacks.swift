@@ -127,7 +127,7 @@ extension Yunjing {
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWeeklyReportBruteAttacksPaginated(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWeeklyReportBruteAttacksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
     public func describeWeeklyReportBruteAttacksPaginator(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResultSequence(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResponseSequence(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, logger: logger, on: eventLoop)
     }
 }

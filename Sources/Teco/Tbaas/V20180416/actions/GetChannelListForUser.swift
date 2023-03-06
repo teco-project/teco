@@ -125,7 +125,7 @@ extension Tbaas {
     }
 
     /// 获取通道列表
-    @inlinable
+    @inlinable @discardableResult
     public func getChannelListForUserPaginated(_ input: GetChannelListForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetChannelListForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getChannelListForUser, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Tbaas {
     /// 获取通道列表
     @inlinable
     public func getChannelListForUserPaginator(_ input: GetChannelListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResultSequence(input: input, region: region, command: self.getChannelListForUser, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResponseSequence(input: input, region: region, command: self.getChannelListForUser, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getChannelListForUser, logger: logger, on: eventLoop)
     }
 }

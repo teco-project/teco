@@ -105,7 +105,7 @@ extension Iotvideo {
     }
 
     /// 查询套餐消耗记录列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePackageConsumeTasksPaginated(_ input: DescribePackageConsumeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePackageConsumeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePackageConsumeTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Iotvideo {
     /// 查询套餐消耗记录列表
     @inlinable
     public func describePackageConsumeTasksPaginator(_ input: DescribePackageConsumeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePackageConsumeTasksRequest, DescribePackageConsumeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePackageConsumeTasksRequest, DescribePackageConsumeTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePackageConsumeTasksRequest, DescribePackageConsumeTasksResponse>.ResultSequence(input: input, region: region, command: self.describePackageConsumeTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePackageConsumeTasksRequest, DescribePackageConsumeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePackageConsumeTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackageConsumeTasks, logger: logger, on: eventLoop)
     }
 }

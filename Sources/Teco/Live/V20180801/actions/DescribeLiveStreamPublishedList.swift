@@ -169,7 +169,7 @@ extension Live {
     ///
     /// 返回已经推过流的流列表。<br>
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLiveStreamPublishedListPaginated(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamPublishedListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLiveStreamPublishedList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -180,8 +180,6 @@ extension Live {
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedListPaginator(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResultSequence(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
     }
 }

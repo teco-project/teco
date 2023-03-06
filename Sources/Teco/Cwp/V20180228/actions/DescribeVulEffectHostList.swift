@@ -122,7 +122,7 @@ extension Cwp {
     }
 
     /// 漏洞影响主机列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulEffectHostListPaginated(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulEffectHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVulEffectHostList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Cwp {
     /// 漏洞影响主机列表
     @inlinable
     public func describeVulEffectHostListPaginator(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResultSequence(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResponseSequence(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
     }
 }

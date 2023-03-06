@@ -210,7 +210,7 @@ extension Bm {
     /// 查询物理机信息
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
-    @inlinable
+    @inlinable @discardableResult
     public func describeDevicesPaginated(_ input: DescribeDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDevices, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -220,8 +220,6 @@ extension Bm {
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
     public func describeDevicesPaginator(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
     }
 }

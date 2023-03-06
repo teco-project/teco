@@ -125,7 +125,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiUsagePlan）用于查询服务中 API 使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
-    @inlinable
+    @inlinable @discardableResult
     public func describeApiUsagePlanPaginated(_ input: DescribeApiUsagePlanRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiUsagePlanResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApiUsagePlan, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Apigateway {
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
     @inlinable
     public func describeApiUsagePlanPaginator(_ input: DescribeApiUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiUsagePlanRequest, DescribeApiUsagePlanResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiUsagePlanRequest, DescribeApiUsagePlanResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApiUsagePlanRequest, DescribeApiUsagePlanResponse>.ResultSequence(input: input, region: region, command: self.describeApiUsagePlan, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApiUsagePlanRequest, DescribeApiUsagePlanResponse>.ResponseSequence(input: input, region: region, command: self.describeApiUsagePlan, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiUsagePlan, logger: logger, on: eventLoop)
     }
 }

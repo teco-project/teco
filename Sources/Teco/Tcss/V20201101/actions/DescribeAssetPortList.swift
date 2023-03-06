@@ -128,7 +128,7 @@ extension Tcss {
     /// 查询端口占用列表
     ///
     /// 容器安全搜索查询端口占用列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetPortListPaginated(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetPortListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetPortList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tcss {
     /// 容器安全搜索查询端口占用列表
     @inlinable
     public func describeAssetPortListPaginator(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetPortListRequest, DescribeAssetPortListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetPortListRequest, DescribeAssetPortListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetPortListRequest, DescribeAssetPortListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetPortListRequest, DescribeAssetPortListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)
     }
 }

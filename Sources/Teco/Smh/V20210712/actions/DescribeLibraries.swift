@@ -122,7 +122,7 @@ extension Smh {
     /// 查询媒体库
     ///
     /// 查询 PaaS 服务媒体库列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeLibrariesPaginated(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLibrariesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLibraries, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Smh {
     /// 查询 PaaS 服务媒体库列表
     @inlinable
     public func describeLibrariesPaginator(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResultSequence(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResponseSequence(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
     }
 }

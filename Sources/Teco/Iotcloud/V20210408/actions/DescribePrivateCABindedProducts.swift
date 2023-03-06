@@ -101,7 +101,7 @@ extension Iotcloud {
     }
 
     /// 查询私有CA绑定的产品列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePrivateCABindedProductsPaginated(_ input: DescribePrivateCABindedProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivateCABindedProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrivateCABindedProducts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -109,8 +109,6 @@ extension Iotcloud {
     /// 查询私有CA绑定的产品列表
     @inlinable
     public func describePrivateCABindedProductsPaginator(_ input: DescribePrivateCABindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResultSequence(input: input, region: region, command: self.describePrivateCABindedProducts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResponseSequence(input: input, region: region, command: self.describePrivateCABindedProducts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateCABindedProducts, logger: logger, on: eventLoop)
     }
 }

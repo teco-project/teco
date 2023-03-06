@@ -114,7 +114,7 @@ extension Bma {
     }
 
     /// 查询仿冒链接
-    @inlinable
+    @inlinable @discardableResult
     public func describeBPFakeURLsPaginated(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBPFakeURLsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBPFakeURLs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -122,8 +122,6 @@ extension Bma {
     /// 查询仿冒链接
     @inlinable
     public func describeBPFakeURLsPaginator(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResultSequence(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResponseSequence(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
     }
 }

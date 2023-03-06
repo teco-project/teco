@@ -126,7 +126,7 @@ extension Tcss {
     }
 
     /// 查询集群网络策略列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeNetworkFirewallPolicyListPaginated(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallPolicyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallPolicyList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tcss {
     /// 查询集群网络策略列表
     @inlinable
     public func describeNetworkFirewallPolicyListPaginator(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResultSequence(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResponseSequence(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
     }
 }

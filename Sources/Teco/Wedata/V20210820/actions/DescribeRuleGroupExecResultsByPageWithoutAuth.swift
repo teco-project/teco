@@ -117,7 +117,7 @@ extension Wedata {
     }
 
     /// 规则组执行结果分页查询接口不带鉴权
-    @inlinable
+    @inlinable @discardableResult
     public func describeRuleGroupExecResultsByPageWithoutAuthPaginated(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleGroupExecResultsByPageWithoutAuthResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Wedata {
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
     public func describeRuleGroupExecResultsByPageWithoutAuthPaginator(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResultSequence(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResponseSequence(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
     }
 }

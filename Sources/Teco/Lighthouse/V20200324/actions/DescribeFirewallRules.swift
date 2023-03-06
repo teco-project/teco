@@ -126,7 +126,7 @@ extension Lighthouse {
     /// 查询防火墙规则
     ///
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
-    @inlinable
+    @inlinable @discardableResult
     public func describeFirewallRulesPaginated(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFirewallRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFirewallRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Lighthouse {
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
     @inlinable
     public func describeFirewallRulesPaginator(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResultSequence(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
     }
 }

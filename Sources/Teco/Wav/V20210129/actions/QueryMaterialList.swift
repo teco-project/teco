@@ -119,7 +119,7 @@ extension Wav {
     /// 获取企业素材列表接口
     ///
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
-    @inlinable
+    @inlinable @discardableResult
     public func queryMaterialListPaginated(_ input: QueryMaterialListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryMaterialListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryMaterialList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Wav {
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
     @inlinable
     public func queryMaterialListPaginator(_ input: QueryMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResultSequence, responses: TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResultSequence(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResponseSequence(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)
     }
 }

@@ -126,7 +126,7 @@ extension Clb {
     /// 获取目标组绑定的服务器
     ///
     /// 获取目标组绑定的服务器信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeTargetGroupInstancesPaginated(_ input: DescribeTargetGroupInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTargetGroupInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTargetGroupInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Clb {
     /// 获取目标组绑定的服务器信息
     @inlinable
     public func describeTargetGroupInstancesPaginator(_ input: DescribeTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeTargetGroupInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeTargetGroupInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroupInstances, logger: logger, on: eventLoop)
     }
 }

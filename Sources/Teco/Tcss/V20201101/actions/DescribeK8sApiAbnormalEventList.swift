@@ -130,7 +130,7 @@ extension Tcss {
     }
 
     /// 查询k8s api异常事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeK8sApiAbnormalEventListPaginated(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeK8sApiAbnormalEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalEventList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tcss {
     /// 查询k8s api异常事件列表
     @inlinable
     public func describeK8sApiAbnormalEventListPaginator(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResultSequence(input: input, region: region, command: self.describeK8sApiAbnormalEventList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeK8sApiAbnormalEventList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalEventList, logger: logger, on: eventLoop)
     }
 }

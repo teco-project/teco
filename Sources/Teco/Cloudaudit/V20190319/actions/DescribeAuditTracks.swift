@@ -105,7 +105,7 @@ extension Cloudaudit {
     }
 
     /// 查询云审计跟踪集列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuditTracksPaginated(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditTracksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuditTracks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Cloudaudit {
     /// 查询云审计跟踪集列表
     @inlinable
     public func describeAuditTracksPaginator(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditTracksRequest, DescribeAuditTracksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditTracksRequest, DescribeAuditTracksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuditTracksRequest, DescribeAuditTracksResponse>.ResultSequence(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuditTracksRequest, DescribeAuditTracksResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)
     }
 }

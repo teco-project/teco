@@ -493,7 +493,7 @@ extension Vod {
     /// <div id="maxResultsDesc">接口返回结果数限制：</div>
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
-    @inlinable
+    @inlinable @discardableResult
     public func searchMediaPaginated(_ input: SearchMediaRequest, region: TCRegion? = nil, onResponse: @escaping (SearchMediaResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.searchMedia, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -536,8 +536,6 @@ extension Vod {
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
     public func searchMediaPaginator(_ input: SearchMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchMediaRequest, SearchMediaResponse>.ResultSequence, responses: TCClient.Paginator<SearchMediaRequest, SearchMediaResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SearchMediaRequest, SearchMediaResponse>.ResultSequence(input: input, region: region, command: self.searchMedia, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SearchMediaRequest, SearchMediaResponse>.ResponseSequence(input: input, region: region, command: self.searchMedia, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMedia, logger: logger, on: eventLoop)
     }
 }

@@ -125,7 +125,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiKeysStatus）用于查询密钥列表。
     /// 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeApiKeysStatusPaginated(_ input: DescribeApiKeysStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiKeysStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApiKeysStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Apigateway {
     /// 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
     @inlinable
     public func describeApiKeysStatusPaginator(_ input: DescribeApiKeysStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiKeysStatusRequest, DescribeApiKeysStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiKeysStatusRequest, DescribeApiKeysStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApiKeysStatusRequest, DescribeApiKeysStatusResponse>.ResultSequence(input: input, region: region, command: self.describeApiKeysStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApiKeysStatusRequest, DescribeApiKeysStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeApiKeysStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiKeysStatus, logger: logger, on: eventLoop)
     }
 }

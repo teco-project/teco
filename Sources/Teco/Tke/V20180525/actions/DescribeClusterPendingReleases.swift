@@ -139,7 +139,7 @@ extension Tke {
     /// 查询集群安装中的应用列表
     ///
     /// 在应用市场中查询正在安装中的应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeClusterPendingReleasesPaginated(_ input: DescribeClusterPendingReleasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterPendingReleasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClusterPendingReleases, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Tke {
     /// 在应用市场中查询正在安装中的应用列表
     @inlinable
     public func describeClusterPendingReleasesPaginator(_ input: DescribeClusterPendingReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResultSequence(input: input, region: region, command: self.describeClusterPendingReleases, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterPendingReleases, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterPendingReleases, logger: logger, on: eventLoop)
     }
 }

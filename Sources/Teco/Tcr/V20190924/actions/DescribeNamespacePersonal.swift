@@ -106,7 +106,7 @@ extension Tcr {
     }
 
     /// 查询个人版命名空间信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeNamespacePersonalPaginated(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNamespacePersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNamespacePersonal, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -114,8 +114,6 @@ extension Tcr {
     /// 查询个人版命名空间信息
     @inlinable
     public func describeNamespacePersonalPaginator(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResultSequence(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
     }
 }

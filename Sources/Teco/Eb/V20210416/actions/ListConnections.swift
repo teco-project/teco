@@ -120,7 +120,7 @@ extension Eb {
     }
 
     /// 获取事件连接器列表
-    @inlinable
+    @inlinable @discardableResult
     public func listConnectionsPaginated(_ input: ListConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (ListConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listConnections, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Eb {
     /// 获取事件连接器列表
     @inlinable
     public func listConnectionsPaginator(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListConnectionsRequest, ListConnectionsResponse>.ResultSequence, responses: TCClient.Paginator<ListConnectionsRequest, ListConnectionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListConnectionsRequest, ListConnectionsResponse>.ResultSequence(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListConnectionsRequest, ListConnectionsResponse>.ResponseSequence(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)
     }
 }

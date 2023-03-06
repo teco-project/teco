@@ -123,7 +123,7 @@ extension Tcss {
     }
 
     /// 查询木马自动隔离样本列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVirusAutoIsolateSampleListPaginated(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVirusAutoIsolateSampleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Tcss {
     /// 查询木马自动隔离样本列表
     @inlinable
     public func describeVirusAutoIsolateSampleListPaginator(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVirusAutoIsolateSampleListRequest, DescribeVirusAutoIsolateSampleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVirusAutoIsolateSampleListRequest, DescribeVirusAutoIsolateSampleListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVirusAutoIsolateSampleListRequest, DescribeVirusAutoIsolateSampleListResponse>.ResultSequence(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVirusAutoIsolateSampleListRequest, DescribeVirusAutoIsolateSampleListResponse>.ResponseSequence(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)
     }
 }

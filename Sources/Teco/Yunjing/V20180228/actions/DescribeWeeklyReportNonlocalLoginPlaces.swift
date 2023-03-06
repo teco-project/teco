@@ -127,7 +127,7 @@ extension Yunjing {
     /// 获取专业周报异地登录数据
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWeeklyReportNonlocalLoginPlacesPaginated(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWeeklyReportNonlocalLoginPlacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
     @inlinable
     public func describeWeeklyReportNonlocalLoginPlacesPaginator(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportNonlocalLoginPlacesRequest, DescribeWeeklyReportNonlocalLoginPlacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportNonlocalLoginPlacesRequest, DescribeWeeklyReportNonlocalLoginPlacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWeeklyReportNonlocalLoginPlacesRequest, DescribeWeeklyReportNonlocalLoginPlacesResponse>.ResultSequence(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWeeklyReportNonlocalLoginPlacesRequest, DescribeWeeklyReportNonlocalLoginPlacesResponse>.ResponseSequence(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)
     }
 }

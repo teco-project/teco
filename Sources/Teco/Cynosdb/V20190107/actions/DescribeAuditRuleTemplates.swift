@@ -128,7 +128,7 @@ extension Cynosdb {
     /// 查询审计规则模版
     ///
     /// 查询审计规则模版信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuditRuleTemplatesPaginated(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditRuleTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuditRuleTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Cynosdb {
     /// 查询审计规则模版信息
     @inlinable
     public func describeAuditRuleTemplatesPaginator(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
     }
 }

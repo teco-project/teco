@@ -150,7 +150,7 @@ extension Live {
     /// - 使用前提
     /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
     /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
-    @inlinable
+    @inlinable @discardableResult
     public func describeRecordTaskPaginated(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRecordTask, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Live {
     /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
     @inlinable
     public func describeRecordTaskPaginator(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResultSequence(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
     }
 }

@@ -155,7 +155,7 @@ extension Dayu {
     }
 
     /// 获取高防IP专业版资源的DDoS攻击事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDDoSNetEvListPaginated(_ input: DescribeDDoSNetEvListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDDoSNetEvListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDDoSNetEvList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Dayu {
     /// 获取高防IP专业版资源的DDoS攻击事件列表
     @inlinable
     public func describeDDoSNetEvListPaginator(_ input: DescribeDDoSNetEvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDDoSNetEvListRequest, DescribeDDoSNetEvListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDDoSNetEvListRequest, DescribeDDoSNetEvListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDDoSNetEvListRequest, DescribeDDoSNetEvListResponse>.ResultSequence(input: input, region: region, command: self.describeDDoSNetEvList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDDoSNetEvListRequest, DescribeDDoSNetEvListResponse>.ResponseSequence(input: input, region: region, command: self.describeDDoSNetEvList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSNetEvList, logger: logger, on: eventLoop)
     }
 }

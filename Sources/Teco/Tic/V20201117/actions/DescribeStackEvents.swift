@@ -165,7 +165,7 @@ extension Tic {
     /// - 可以根据事件ID过滤感兴趣的事件
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
-    @inlinable
+    @inlinable @discardableResult
     public func describeStackEventsPaginated(_ input: DescribeStackEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStackEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeStackEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -179,8 +179,6 @@ extension Tic {
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
     public func describeStackEventsPaginator(_ input: DescribeStackEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStackEventsRequest, DescribeStackEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStackEventsRequest, DescribeStackEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeStackEventsRequest, DescribeStackEventsResponse>.ResultSequence(input: input, region: region, command: self.describeStackEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeStackEventsRequest, DescribeStackEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeStackEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStackEvents, logger: logger, on: eventLoop)
     }
 }

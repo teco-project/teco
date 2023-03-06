@@ -132,7 +132,7 @@ extension Iotexplorer {
     /// 获取网关可操作的子产品
     ///
     /// 用于获取网关可绑定或解绑的子产品
-    @inlinable
+    @inlinable @discardableResult
     public func describeGatewaySubProductsPaginated(_ input: DescribeGatewaySubProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewaySubProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGatewaySubProducts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Iotexplorer {
     /// 用于获取网关可绑定或解绑的子产品
     @inlinable
     public func describeGatewaySubProductsPaginator(_ input: DescribeGatewaySubProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewaySubProductsRequest, DescribeGatewaySubProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewaySubProductsRequest, DescribeGatewaySubProductsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGatewaySubProductsRequest, DescribeGatewaySubProductsResponse>.ResultSequence(input: input, region: region, command: self.describeGatewaySubProducts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGatewaySubProductsRequest, DescribeGatewaySubProductsResponse>.ResponseSequence(input: input, region: region, command: self.describeGatewaySubProducts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewaySubProducts, logger: logger, on: eventLoop)
     }
 }

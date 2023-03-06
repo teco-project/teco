@@ -122,7 +122,7 @@ extension Lighthouse {
     /// 查看实例流量包详情
     ///
     /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstancesTrafficPackagesPaginated(_ input: DescribeInstancesTrafficPackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesTrafficPackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstancesTrafficPackages, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Lighthouse {
     /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
     @inlinable
     public func describeInstancesTrafficPackagesPaginator(_ input: DescribeInstancesTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesTrafficPackagesRequest, DescribeInstancesTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesTrafficPackagesRequest, DescribeInstancesTrafficPackagesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstancesTrafficPackagesRequest, DescribeInstancesTrafficPackagesResponse>.ResultSequence(input: input, region: region, command: self.describeInstancesTrafficPackages, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstancesTrafficPackagesRequest, DescribeInstancesTrafficPackagesResponse>.ResponseSequence(input: input, region: region, command: self.describeInstancesTrafficPackages, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesTrafficPackages, logger: logger, on: eventLoop)
     }
 }

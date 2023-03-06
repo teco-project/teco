@@ -120,7 +120,7 @@ extension Tcaplusdb {
     }
 
     /// 查询回收站中的表详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeTablesInRecyclePaginated(_ input: DescribeTablesInRecycleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTablesInRecycleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTablesInRecycle, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcaplusdb {
     /// 查询回收站中的表详情
     @inlinable
     public func describeTablesInRecyclePaginator(_ input: DescribeTablesInRecycleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTablesInRecycleRequest, DescribeTablesInRecycleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTablesInRecycleRequest, DescribeTablesInRecycleResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTablesInRecycleRequest, DescribeTablesInRecycleResponse>.ResultSequence(input: input, region: region, command: self.describeTablesInRecycle, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTablesInRecycleRequest, DescribeTablesInRecycleResponse>.ResponseSequence(input: input, region: region, command: self.describeTablesInRecycle, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTablesInRecycle, logger: logger, on: eventLoop)
     }
 }

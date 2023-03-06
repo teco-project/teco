@@ -115,7 +115,7 @@ extension Iotvideo {
     }
 
     /// 查看AI模型资源包
-    @inlinable
+    @inlinable @discardableResult
     public func describeAIModelUsagePaginated(_ input: DescribeAIModelUsageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAIModelUsageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAIModelUsage, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Iotvideo {
     /// 查看AI模型资源包
     @inlinable
     public func describeAIModelUsagePaginator(_ input: DescribeAIModelUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAIModelUsageRequest, DescribeAIModelUsageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAIModelUsageRequest, DescribeAIModelUsageResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAIModelUsageRequest, DescribeAIModelUsageResponse>.ResultSequence(input: input, region: region, command: self.describeAIModelUsage, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAIModelUsageRequest, DescribeAIModelUsageResponse>.ResponseSequence(input: input, region: region, command: self.describeAIModelUsage, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIModelUsage, logger: logger, on: eventLoop)
     }
 }

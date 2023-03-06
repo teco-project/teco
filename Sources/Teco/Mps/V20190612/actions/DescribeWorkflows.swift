@@ -130,7 +130,7 @@ extension Mps {
     /// 获取工作流列表
     ///
     /// 根据工作流 ID，获取工作流详情列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkflowsPaginated(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWorkflowsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWorkflows, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Mps {
     /// 根据工作流 ID，获取工作流详情列表。
     @inlinable
     public func describeWorkflowsPaginator(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResultSequence(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResponseSequence(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
     }
 }

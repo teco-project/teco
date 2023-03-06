@@ -145,7 +145,7 @@ extension Tdmq {
     }
 
     /// 获取RocketMQ消费组列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeRocketMQGroupsPaginated(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRocketMQGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRocketMQGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Tdmq {
     /// 获取RocketMQ消费组列表
     @inlinable
     public func describeRocketMQGroupsPaginator(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRocketMQGroupsRequest, DescribeRocketMQGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRocketMQGroupsRequest, DescribeRocketMQGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRocketMQGroupsRequest, DescribeRocketMQGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRocketMQGroupsRequest, DescribeRocketMQGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)
     }
 }

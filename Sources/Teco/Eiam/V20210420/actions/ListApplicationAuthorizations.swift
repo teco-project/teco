@@ -134,7 +134,7 @@ extension Eiam {
     /// 应用授权关系列表信息
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
-    @inlinable
+    @inlinable @discardableResult
     public func listApplicationAuthorizationsPaginated(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, onResponse: @escaping (ListApplicationAuthorizationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listApplicationAuthorizations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Eiam {
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
     public func listApplicationAuthorizationsPaginator(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResultSequence, responses: TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResultSequence(input: input, region: region, command: self.listApplicationAuthorizations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResponseSequence(input: input, region: region, command: self.listApplicationAuthorizations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listApplicationAuthorizations, logger: logger, on: eventLoop)
     }
 }

@@ -133,7 +133,7 @@ extension Iotvideo {
     /// 查询固件版本信息列表
     ///
     /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeOtaVersionsPaginated(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOtaVersionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOtaVersions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Iotvideo {
     /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
     @inlinable
     public func describeOtaVersionsPaginator(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResultSequence(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResponseSequence(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
     }
 }

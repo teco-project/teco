@@ -135,7 +135,7 @@ extension Tione {
     }
 
     /// 模型列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeTrainingModelsPaginated(_ input: DescribeTrainingModelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrainingModelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTrainingModels, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Tione {
     /// 模型列表
     @inlinable
     public func describeTrainingModelsPaginator(_ input: DescribeTrainingModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResultSequence(input: input, region: region, command: self.describeTrainingModels, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResponseSequence(input: input, region: region, command: self.describeTrainingModels, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrainingModels, logger: logger, on: eventLoop)
     }
 }

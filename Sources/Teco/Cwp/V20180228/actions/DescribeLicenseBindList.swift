@@ -137,7 +137,7 @@ extension Cwp {
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeLicenseBindListPaginated(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLicenseBindListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLicenseBindList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Cwp {
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
     public func describeLicenseBindListPaginator(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResultSequence(input: input, region: region, command: self.describeLicenseBindList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResponseSequence(input: input, region: region, command: self.describeLicenseBindList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseBindList, logger: logger, on: eventLoop)
     }
 }

@@ -115,7 +115,7 @@ extension Cynosdb {
     }
 
     /// 查询项目安全组信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeProjectSecurityGroupsPaginated(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProjectSecurityGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProjectSecurityGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Cynosdb {
     /// 查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroupsPaginator(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
     }
 }

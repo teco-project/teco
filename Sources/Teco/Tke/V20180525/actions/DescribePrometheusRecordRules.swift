@@ -127,7 +127,7 @@ extension Tke {
     /// 获取聚合规则列表，包含关联集群内的资源
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusRecordRulesPaginated(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusRecordRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusRecordRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Tke {
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
     public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
     }
 }

@@ -123,7 +123,7 @@ extension Waf {
     /// 获取访问日志导出列表
     ///
     /// 本接口用于获取访问日志导出列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessExportsPaginated(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessExportsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccessExports, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Waf {
     /// 本接口用于获取访问日志导出列表
     @inlinable
     public func describeAccessExportsPaginator(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessExportsRequest, DescribeAccessExportsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessExportsRequest, DescribeAccessExportsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAccessExportsRequest, DescribeAccessExportsResponse>.ResultSequence(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAccessExportsRequest, DescribeAccessExportsResponse>.ResponseSequence(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)
     }
 }

@@ -118,7 +118,7 @@ extension Tci {
     }
 
     /// 拉取任务详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeImageTaskPaginated(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImageTask, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -126,8 +126,6 @@ extension Tci {
     /// 拉取任务详情
     @inlinable
     public func describeImageTaskPaginator(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResultSequence(input: input, region: region, command: self.describeImageTask, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeImageTask, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageTask, logger: logger, on: eventLoop)
     }
 }

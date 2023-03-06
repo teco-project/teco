@@ -152,7 +152,7 @@ extension Ivld {
     /// 请注意，本接口最多支持同时描述**50**个媒资文件
     ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeMediasPaginated(_ input: DescribeMediasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMediasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMedias, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -166,8 +166,6 @@ extension Ivld {
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMediasPaginator(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResultSequence(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResponseSequence(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
     }
 }

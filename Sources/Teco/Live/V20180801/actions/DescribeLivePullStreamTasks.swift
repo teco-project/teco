@@ -147,7 +147,7 @@ extension Live {
     ///
     /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
     /// 排序方式：默认按更新时间 倒序排列。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLivePullStreamTasksPaginated(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLivePullStreamTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLivePullStreamTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -158,8 +158,6 @@ extension Live {
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
     public func describeLivePullStreamTasksPaginator(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLivePullStreamTasksRequest, DescribeLivePullStreamTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLivePullStreamTasksRequest, DescribeLivePullStreamTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLivePullStreamTasksRequest, DescribeLivePullStreamTasksResponse>.ResultSequence(input: input, region: region, command: self.describeLivePullStreamTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLivePullStreamTasksRequest, DescribeLivePullStreamTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeLivePullStreamTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePullStreamTasks, logger: logger, on: eventLoop)
     }
 }

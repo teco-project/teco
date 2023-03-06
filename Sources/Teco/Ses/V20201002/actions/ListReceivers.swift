@@ -127,7 +127,7 @@ extension Ses {
     /// 查询收件人列表
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
-    @inlinable
+    @inlinable @discardableResult
     public func listReceiversPaginated(_ input: ListReceiversRequest, region: TCRegion? = nil, onResponse: @escaping (ListReceiversResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listReceivers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Ses {
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     @inlinable
     public func listReceiversPaginator(_ input: ListReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListReceiversRequest, ListReceiversResponse>.ResultSequence, responses: TCClient.Paginator<ListReceiversRequest, ListReceiversResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListReceiversRequest, ListReceiversResponse>.ResultSequence(input: input, region: region, command: self.listReceivers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListReceiversRequest, ListReceiversResponse>.ResponseSequence(input: input, region: region, command: self.listReceivers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listReceivers, logger: logger, on: eventLoop)
     }
 }

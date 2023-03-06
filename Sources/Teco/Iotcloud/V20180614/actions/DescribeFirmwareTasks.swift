@@ -122,7 +122,7 @@ extension Iotcloud {
     }
 
     /// 查询固件升级任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeFirmwareTasksPaginated(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFirmwareTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFirmwareTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Iotcloud {
     /// 查询固件升级任务列表
     @inlinable
     public func describeFirmwareTasksPaginator(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResultSequence(input: input, region: region, command: self.describeFirmwareTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeFirmwareTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirmwareTasks, logger: logger, on: eventLoop)
     }
 }

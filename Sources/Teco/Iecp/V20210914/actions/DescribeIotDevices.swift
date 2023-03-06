@@ -125,7 +125,7 @@ extension Iecp {
     }
 
     /// 获取设备列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeIotDevicesPaginated(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIotDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIotDevices, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Iecp {
     /// 获取设备列表信息
     @inlinable
     public func describeIotDevicesPaginator(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
     }
 }

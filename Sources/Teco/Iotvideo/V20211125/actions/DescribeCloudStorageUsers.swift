@@ -115,7 +115,7 @@ extension Iotvideo {
     }
 
     /// 拉取云存用户列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudStorageUsersPaginated(_ input: DescribeCloudStorageUsersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudStorageUsersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCloudStorageUsers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Iotvideo {
     /// 拉取云存用户列表
     @inlinable
     public func describeCloudStorageUsersPaginator(_ input: DescribeCloudStorageUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudStorageUsersRequest, DescribeCloudStorageUsersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudStorageUsersRequest, DescribeCloudStorageUsersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCloudStorageUsersRequest, DescribeCloudStorageUsersResponse>.ResultSequence(input: input, region: region, command: self.describeCloudStorageUsers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCloudStorageUsersRequest, DescribeCloudStorageUsersResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudStorageUsers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudStorageUsers, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时高危系统调用白名单列表
     ///
     /// 查询运行时高危系统调用白名单列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskSyscallWhiteListsPaginated(_ input: DescribeRiskSyscallWhiteListsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskSyscallWhiteListsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRiskSyscallWhiteLists, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时高危系统调用白名单列表信息
     @inlinable
     public func describeRiskSyscallWhiteListsPaginator(_ input: DescribeRiskSyscallWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskSyscallWhiteListsRequest, DescribeRiskSyscallWhiteListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskSyscallWhiteListsRequest, DescribeRiskSyscallWhiteListsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRiskSyscallWhiteListsRequest, DescribeRiskSyscallWhiteListsResponse>.ResultSequence(input: input, region: region, command: self.describeRiskSyscallWhiteLists, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRiskSyscallWhiteListsRequest, DescribeRiskSyscallWhiteListsResponse>.ResponseSequence(input: input, region: region, command: self.describeRiskSyscallWhiteLists, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskSyscallWhiteLists, logger: logger, on: eventLoop)
     }
 }

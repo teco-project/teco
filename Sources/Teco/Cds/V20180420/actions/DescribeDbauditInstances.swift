@@ -122,7 +122,7 @@ extension Cds {
     /// 获取数据安全审计实例列表
     ///
     /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDbauditInstancesPaginated(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDbauditInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDbauditInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Cds {
     /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
     @inlinable
     public func describeDbauditInstancesPaginator(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
     }
 }

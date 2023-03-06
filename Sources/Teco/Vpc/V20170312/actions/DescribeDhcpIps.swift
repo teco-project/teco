@@ -132,7 +132,7 @@ extension Vpc {
     /// 查询DhcpIp列表
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDhcpIpsPaginated(_ input: DescribeDhcpIpsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDhcpIpsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDhcpIps, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Vpc {
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     @inlinable
     public func describeDhcpIpsPaginator(_ input: DescribeDhcpIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDhcpIpsRequest, DescribeDhcpIpsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDhcpIpsRequest, DescribeDhcpIpsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDhcpIpsRequest, DescribeDhcpIpsResponse>.ResultSequence(input: input, region: region, command: self.describeDhcpIps, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDhcpIpsRequest, DescribeDhcpIpsResponse>.ResponseSequence(input: input, region: region, command: self.describeDhcpIps, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDhcpIps, logger: logger, on: eventLoop)
     }
 }

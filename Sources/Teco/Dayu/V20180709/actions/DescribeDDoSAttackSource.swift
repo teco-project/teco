@@ -138,7 +138,7 @@ extension Dayu {
     }
 
     /// 获取DDoS攻击源列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDDoSAttackSourcePaginated(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDDoSAttackSourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDDoSAttackSource, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -146,8 +146,6 @@ extension Dayu {
     /// 获取DDoS攻击源列表
     @inlinable
     public func describeDDoSAttackSourcePaginator(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResultSequence(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResponseSequence(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
     }
 }

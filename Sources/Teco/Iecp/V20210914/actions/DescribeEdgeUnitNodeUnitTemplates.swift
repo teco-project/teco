@@ -131,7 +131,7 @@ extension Iecp {
     }
 
     /// 查询边缘单元EdgeUnit模板列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeEdgeUnitNodeUnitTemplatesPaginated(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeUnitNodeUnitTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Iecp {
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
     public func describeEdgeUnitNodeUnitTemplatesPaginator(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
     }
 }

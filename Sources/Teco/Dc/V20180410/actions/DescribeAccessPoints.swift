@@ -112,7 +112,7 @@ extension Dc {
     }
 
     /// 查询物理专线接入点
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessPointsPaginated(_ input: DescribeAccessPointsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessPointsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccessPoints, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -120,8 +120,6 @@ extension Dc {
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPointsPaginator(_ input: DescribeAccessPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResultSequence(input: input, region: region, command: self.describeAccessPoints, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResponseSequence(input: input, region: region, command: self.describeAccessPoints, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessPoints, logger: logger, on: eventLoop)
     }
 }

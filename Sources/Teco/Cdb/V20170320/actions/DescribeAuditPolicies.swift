@@ -144,7 +144,7 @@ extension Cdb {
     /// 查询审计策略
     ///
     /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuditPoliciesPaginated(_ input: DescribeAuditPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuditPolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -154,8 +154,6 @@ extension Cdb {
     /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
     @inlinable
     public func describeAuditPoliciesPaginator(_ input: DescribeAuditPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditPoliciesRequest, DescribeAuditPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditPoliciesRequest, DescribeAuditPoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuditPoliciesRequest, DescribeAuditPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeAuditPolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuditPoliciesRequest, DescribeAuditPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditPolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditPolicies, logger: logger, on: eventLoop)
     }
 }

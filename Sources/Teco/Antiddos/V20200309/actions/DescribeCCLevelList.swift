@@ -127,7 +127,7 @@ extension Antiddos {
     /// 获取CC防护等级列表
     ///
     /// 获取边界防护CC防护等级列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCCLevelListPaginated(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCLevelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCCLevelList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Antiddos {
     /// 获取边界防护CC防护等级列表
     @inlinable
     public func describeCCLevelListPaginator(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResultSequence(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResponseSequence(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
     }
 }

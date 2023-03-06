@@ -110,7 +110,7 @@ extension Tdid {
     }
 
     /// 权威机构列表
-    @inlinable
+    @inlinable @discardableResult
     public func getAuthoritiesListPaginated(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, onResponse: @escaping (GetAuthoritiesListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getAuthoritiesList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Tdid {
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesListPaginator(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResultSequence, responses: TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResultSequence(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResponseSequence(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
     }
 }

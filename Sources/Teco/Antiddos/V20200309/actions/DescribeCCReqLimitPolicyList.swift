@@ -130,7 +130,7 @@ extension Antiddos {
     }
 
     /// 获取CC频率限制策略列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCCReqLimitPolicyListPaginated(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCReqLimitPolicyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCCReqLimitPolicyList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Antiddos {
     /// 获取CC频率限制策略列表
     @inlinable
     public func describeCCReqLimitPolicyListPaginator(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResultSequence(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResponseSequence(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
     }
 }

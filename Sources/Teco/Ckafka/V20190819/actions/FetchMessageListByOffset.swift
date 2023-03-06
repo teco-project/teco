@@ -111,7 +111,7 @@ extension Ckafka {
     }
 
     /// 根据位点查询消息列表
-    @inlinable
+    @inlinable @discardableResult
     public func fetchMessageListByOffsetPaginated(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, onResponse: @escaping (FetchMessageListByOffsetResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.fetchMessageListByOffset, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Ckafka {
     /// 根据位点查询消息列表
     @inlinable
     public func fetchMessageListByOffsetPaginator(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResultSequence, responses: TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResultSequence(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResponseSequence(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
     }
 }

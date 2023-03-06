@@ -121,7 +121,7 @@ extension Gaap {
     }
 
     /// 查询域名列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeGlobalDomainsPaginated(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGlobalDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGlobalDomains, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Gaap {
     /// 查询域名列表
     @inlinable
     public func describeGlobalDomainsPaginator(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResultSequence(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResponseSequence(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
     }
 }

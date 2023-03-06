@@ -134,7 +134,7 @@ extension Yunjing {
     /// 获取进程列表
     ///
     /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProcessesPaginated(_ input: DescribeProcessesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProcessesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProcesses, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Yunjing {
     /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
     @inlinable
     public func describeProcessesPaginator(_ input: DescribeProcessesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProcessesRequest, DescribeProcessesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProcessesRequest, DescribeProcessesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProcessesRequest, DescribeProcessesResponse>.ResultSequence(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProcessesRequest, DescribeProcessesResponse>.ResponseSequence(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)
     }
 }

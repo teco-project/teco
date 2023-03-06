@@ -129,7 +129,7 @@ extension Bmvpc {
     }
 
     /// 查询黑石私有网络关联资源
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpcResourcePaginated(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcResourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcResource, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Bmvpc {
     /// 查询黑石私有网络关联资源
     @inlinable
     public func describeVpcResourcePaginator(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResultSequence(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
     }
 }

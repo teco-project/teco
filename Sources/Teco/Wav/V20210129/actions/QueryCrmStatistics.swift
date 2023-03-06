@@ -134,7 +134,7 @@ extension Wav {
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
-    @inlinable
+    @inlinable @discardableResult
     public func queryCrmStatisticsPaginated(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (QueryCrmStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryCrmStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Wav {
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
     public func queryCrmStatisticsPaginator(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResultSequence(input: input, region: region, command: self.queryCrmStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.queryCrmStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCrmStatistics, logger: logger, on: eventLoop)
     }
 }

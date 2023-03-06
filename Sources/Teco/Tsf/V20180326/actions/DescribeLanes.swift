@@ -117,7 +117,7 @@ extension Tsf {
     }
 
     /// 查询泳道列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeLanesPaginated(_ input: DescribeLanesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLanesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLanes, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Tsf {
     /// 查询泳道列表
     @inlinable
     public func describeLanesPaginator(_ input: DescribeLanesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResultSequence(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResponseSequence(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
     }
 }

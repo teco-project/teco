@@ -134,7 +134,7 @@ extension Yunjing {
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeComponentsPaginated(_ input: DescribeComponentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComponentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComponents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Yunjing {
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
     @inlinable
     public func describeComponentsPaginator(_ input: DescribeComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResultSequence(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResponseSequence(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
     }
 }

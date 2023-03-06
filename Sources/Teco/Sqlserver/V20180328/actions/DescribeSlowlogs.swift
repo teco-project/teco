@@ -140,7 +140,7 @@ extension Sqlserver {
     /// 获取慢查询日志文件信息
     ///
     /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeSlowlogsPaginated(_ input: DescribeSlowlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSlowlogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Sqlserver {
     /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
     @inlinable
     public func describeSlowlogsPaginator(_ input: DescribeSlowlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSlowlogsRequest, DescribeSlowlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSlowlogsRequest, DescribeSlowlogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSlowlogsRequest, DescribeSlowlogsResponse>.ResultSequence(input: input, region: region, command: self.describeSlowlogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSlowlogsRequest, DescribeSlowlogsResponse>.ResponseSequence(input: input, region: region, command: self.describeSlowlogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowlogs, logger: logger, on: eventLoop)
     }
 }

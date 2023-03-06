@@ -128,7 +128,7 @@ extension Tcss {
     /// 安全合规查询某类资产的列表
     ///
     /// 查询某类资产的列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeComplianceAssetListPaginated(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComplianceAssetList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tcss {
     /// 查询某类资产的列表
     @inlinable
     public func describeComplianceAssetListPaginator(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResultSequence(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResponseSequence(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
     }
 }

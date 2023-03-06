@@ -127,7 +127,7 @@ extension Teo {
     /// 查询域名详细配置
     ///
     /// 用于查询域名配置信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeHostsSettingPaginated(_ input: DescribeHostsSettingRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostsSettingResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHostsSetting, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Teo {
     /// 用于查询域名配置信息
     @inlinable
     public func describeHostsSettingPaginator(_ input: DescribeHostsSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostsSettingRequest, DescribeHostsSettingResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostsSettingRequest, DescribeHostsSettingResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHostsSettingRequest, DescribeHostsSettingResponse>.ResultSequence(input: input, region: region, command: self.describeHostsSetting, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHostsSettingRequest, DescribeHostsSettingResponse>.ResponseSequence(input: input, region: region, command: self.describeHostsSetting, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostsSetting, logger: logger, on: eventLoop)
     }
 }

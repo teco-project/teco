@@ -146,7 +146,7 @@ extension Cwp {
     /// 漏洞列表
     ///
     /// 获取漏洞列表数据
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulListPaginated(_ input: DescribeVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVulList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -156,8 +156,6 @@ extension Cwp {
     /// 获取漏洞列表数据
     @inlinable
     public func describeVulListPaginator(_ input: DescribeVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResultSequence(input: input, region: region, command: self.describeVulList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResponseSequence(input: input, region: region, command: self.describeVulList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulList, logger: logger, on: eventLoop)
     }
 }

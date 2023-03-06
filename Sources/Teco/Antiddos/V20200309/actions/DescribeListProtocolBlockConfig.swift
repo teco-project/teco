@@ -115,7 +115,7 @@ extension Antiddos {
     }
 
     /// 获取DDoS防护的协议封禁配置列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeListProtocolBlockConfigPaginated(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListProtocolBlockConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeListProtocolBlockConfig, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Antiddos {
     /// 获取DDoS防护的协议封禁配置列表
     @inlinable
     public func describeListProtocolBlockConfigPaginator(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListProtocolBlockConfigRequest, DescribeListProtocolBlockConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListProtocolBlockConfigRequest, DescribeListProtocolBlockConfigResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeListProtocolBlockConfigRequest, DescribeListProtocolBlockConfigResponse>.ResultSequence(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeListProtocolBlockConfigRequest, DescribeListProtocolBlockConfigResponse>.ResponseSequence(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)
     }
 }

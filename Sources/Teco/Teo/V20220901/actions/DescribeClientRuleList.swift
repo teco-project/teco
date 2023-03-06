@@ -152,7 +152,7 @@ extension Teo {
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeClientRuleListPaginated(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClientRuleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClientRuleList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Teo {
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
     public func describeClientRuleListPaginator(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResultSequence(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResponseSequence(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
     }
 }

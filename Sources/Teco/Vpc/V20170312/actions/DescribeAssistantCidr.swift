@@ -129,7 +129,7 @@ extension Vpc {
     /// 查询辅助CIDR列表
     ///
     /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssistantCidrPaginated(_ input: DescribeAssistantCidrRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssistantCidrResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssistantCidr, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Vpc {
     /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
     @inlinable
     public func describeAssistantCidrPaginator(_ input: DescribeAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResultSequence(input: input, region: region, command: self.describeAssistantCidr, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResponseSequence(input: input, region: region, command: self.describeAssistantCidr, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssistantCidr, logger: logger, on: eventLoop)
     }
 }

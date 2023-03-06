@@ -145,7 +145,7 @@ extension Ccc {
     }
 
     /// 获取电话服务记录与录音
-    @inlinable
+    @inlinable @discardableResult
     public func describeTelCdrPaginated(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTelCdrResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTelCdr, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Ccc {
     /// 获取电话服务记录与录音
     @inlinable
     public func describeTelCdrPaginator(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResultSequence(input: input, region: region, command: self.describeTelCdr, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResponseSequence(input: input, region: region, command: self.describeTelCdr, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTelCdr, logger: logger, on: eventLoop)
     }
 }

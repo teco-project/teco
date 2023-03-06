@@ -154,7 +154,7 @@ extension Cfw {
     }
 
     /// 访问控制列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAcListsPaginated(_ input: DescribeAcListsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAcListsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAcLists, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Cfw {
     /// 访问控制列表
     @inlinable
     public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResultSequence(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResponseSequence(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
     }
 }

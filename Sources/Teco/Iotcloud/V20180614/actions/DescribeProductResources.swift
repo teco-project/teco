@@ -128,7 +128,7 @@ extension Iotcloud {
     /// 获取产品资源列表
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProductResourcesPaginated(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProductResources, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Iotcloud {
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
     public func describeProductResourcesPaginator(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
     }
 }

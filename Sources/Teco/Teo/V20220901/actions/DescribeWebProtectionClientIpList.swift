@@ -168,7 +168,7 @@ extension Teo {
     /// 查询CC防护攻击源IP信息列表
     ///
     /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWebProtectionClientIpListPaginated(_ input: DescribeWebProtectionClientIpListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebProtectionClientIpListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWebProtectionClientIpList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -178,8 +178,6 @@ extension Teo {
     /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
     @inlinable
     public func describeWebProtectionClientIpListPaginator(_ input: DescribeWebProtectionClientIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebProtectionClientIpListRequest, DescribeWebProtectionClientIpListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebProtectionClientIpListRequest, DescribeWebProtectionClientIpListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWebProtectionClientIpListRequest, DescribeWebProtectionClientIpListResponse>.ResultSequence(input: input, region: region, command: self.describeWebProtectionClientIpList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWebProtectionClientIpListRequest, DescribeWebProtectionClientIpListResponse>.ResponseSequence(input: input, region: region, command: self.describeWebProtectionClientIpList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebProtectionClientIpList, logger: logger, on: eventLoop)
     }
 }

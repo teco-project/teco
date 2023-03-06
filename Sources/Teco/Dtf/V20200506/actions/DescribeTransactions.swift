@@ -131,7 +131,7 @@ extension Dtf {
     }
 
     /// 查询主事务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeTransactionsPaginated(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTransactionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTransactions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Dtf {
     /// 查询主事务列表
     @inlinable
     public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResultSequence(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResponseSequence(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Eis {
     }
 
     /// 获取运行时部署的应用实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func listRuntimeDeployedInstancesMCPaginated(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, onResponse: @escaping (ListRuntimeDeployedInstancesMCResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Eis {
     /// 获取运行时部署的应用实例列表
     @inlinable
     public func listRuntimeDeployedInstancesMCPaginator(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResultSequence, responses: TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResultSequence(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResponseSequence(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
     }
 }

@@ -151,7 +151,7 @@ extension Cynosdb {
     /// 查询数据库审计日志
     ///
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuditLogsPaginated(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuditLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -161,8 +161,6 @@ extension Cynosdb {
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
     public func describeAuditLogsPaginator(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResultSequence(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
     }
 }

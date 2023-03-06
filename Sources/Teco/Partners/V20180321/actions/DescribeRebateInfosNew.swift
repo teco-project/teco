@@ -122,7 +122,7 @@ extension Partners {
     /// 查询代理商返佣信息V2
     ///
     /// 代理商可查询自己名下全部返佣信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeRebateInfosNewPaginated(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRebateInfosNewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRebateInfosNew, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Partners {
     /// 代理商可查询自己名下全部返佣信息
     @inlinable
     public func describeRebateInfosNewPaginator(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRebateInfosNewRequest, DescribeRebateInfosNewResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRebateInfosNewRequest, DescribeRebateInfosNewResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRebateInfosNewRequest, DescribeRebateInfosNewResponse>.ResultSequence(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRebateInfosNewRequest, DescribeRebateInfosNewResponse>.ResponseSequence(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)
     }
 }

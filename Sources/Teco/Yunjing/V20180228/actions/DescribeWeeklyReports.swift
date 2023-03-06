@@ -117,7 +117,7 @@ extension Yunjing {
     /// 获取周报列表
     ///
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWeeklyReportsPaginated(_ input: DescribeWeeklyReportsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWeeklyReportsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWeeklyReports, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -127,8 +127,6 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
     @inlinable
     public func describeWeeklyReportsPaginator(_ input: DescribeWeeklyReportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResultSequence(input: input, region: region, command: self.describeWeeklyReports, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResponseSequence(input: input, region: region, command: self.describeWeeklyReports, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReports, logger: logger, on: eventLoop)
     }
 }

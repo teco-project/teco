@@ -127,7 +127,7 @@ extension Vpc {
     /// 查询专线绑定NAT路由
     ///
     /// 查询专线绑定NAT的路由
-    @inlinable
+    @inlinable @discardableResult
     public func describeNatGatewayDirectConnectGatewayRoutePaginated(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatGatewayDirectConnectGatewayRouteResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Vpc {
     /// 查询专线绑定NAT的路由
     @inlinable
     public func describeNatGatewayDirectConnectGatewayRoutePaginator(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResultSequence(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResponseSequence(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
     }
 }

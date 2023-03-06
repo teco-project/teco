@@ -145,7 +145,7 @@ extension Tione {
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeBatchTasksPaginated(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBatchTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBatchTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Tione {
     /// 批量预测任务列表信息
     @inlinable
     public func describeBatchTasksPaginator(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResultSequence(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
     }
 }

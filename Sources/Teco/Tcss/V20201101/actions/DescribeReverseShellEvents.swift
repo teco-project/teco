@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时反弹shell列表
     ///
     /// 查询运行时反弹shell事件列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeReverseShellEventsPaginated(_ input: DescribeReverseShellEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReverseShellEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReverseShellEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时反弹shell事件列表信息
     @inlinable
     public func describeReverseShellEventsPaginator(_ input: DescribeReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResultSequence(input: input, region: region, command: self.describeReverseShellEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeReverseShellEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellEvents, logger: logger, on: eventLoop)
     }
 }

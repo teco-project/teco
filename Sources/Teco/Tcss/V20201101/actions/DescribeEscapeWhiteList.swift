@@ -123,7 +123,7 @@ extension Tcss {
     }
 
     /// 查询逃逸白名单
-    @inlinable
+    @inlinable @discardableResult
     public func describeEscapeWhiteListPaginated(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEscapeWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEscapeWhiteList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Tcss {
     /// 查询逃逸白名单
     @inlinable
     public func describeEscapeWhiteListPaginator(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
     }
 }

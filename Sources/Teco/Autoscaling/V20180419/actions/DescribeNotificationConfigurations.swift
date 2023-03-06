@@ -148,7 +148,7 @@ extension As {
     ///
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNotificationConfigurationsPaginated(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNotificationConfigurationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNotificationConfigurations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -161,8 +161,6 @@ extension As {
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
     public func describeNotificationConfigurationsPaginator(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResultSequence(input: input, region: region, command: self.describeNotificationConfigurations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResponseSequence(input: input, region: region, command: self.describeNotificationConfigurations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotificationConfigurations, logger: logger, on: eventLoop)
     }
 }

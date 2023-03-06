@@ -106,7 +106,7 @@ extension Apigateway {
     }
 
     /// 查询专享实例列表（新）
-    @inlinable
+    @inlinable @discardableResult
     public func describeExclusiveInstancesStatusPaginated(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExclusiveInstancesStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeExclusiveInstancesStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -114,8 +114,6 @@ extension Apigateway {
     /// 查询专享实例列表（新）
     @inlinable
     public func describeExclusiveInstancesStatusPaginator(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResultSequence(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
     }
 }

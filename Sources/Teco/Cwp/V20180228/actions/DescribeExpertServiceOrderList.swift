@@ -122,7 +122,7 @@ extension Cwp {
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeExpertServiceOrderListPaginated(_ input: DescribeExpertServiceOrderListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExpertServiceOrderListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeExpertServiceOrderList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Cwp {
     /// 专家服务-专家服务订单列表
     @inlinable
     public func describeExpertServiceOrderListPaginator(_ input: DescribeExpertServiceOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExpertServiceOrderListRequest, DescribeExpertServiceOrderListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExpertServiceOrderListRequest, DescribeExpertServiceOrderListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeExpertServiceOrderListRequest, DescribeExpertServiceOrderListResponse>.ResultSequence(input: input, region: region, command: self.describeExpertServiceOrderList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeExpertServiceOrderListRequest, DescribeExpertServiceOrderListResponse>.ResponseSequence(input: input, region: region, command: self.describeExpertServiceOrderList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExpertServiceOrderList, logger: logger, on: eventLoop)
     }
 }

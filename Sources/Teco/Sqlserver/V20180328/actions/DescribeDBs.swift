@@ -132,7 +132,7 @@ extension Sqlserver {
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBsPaginated(_ input: DescribeDBsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Sqlserver {
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
     public func describeDBsPaginator(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResultSequence(input: input, region: region, command: self.describeDBs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBs, logger: logger, on: eventLoop)
     }
 }

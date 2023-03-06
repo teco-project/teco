@@ -112,7 +112,7 @@ extension Ssa {
     }
 
     /// 云安全配置检查项列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSocCheckItemListPaginated(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocCheckItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSocCheckItemList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -120,8 +120,6 @@ extension Ssa {
     /// 云安全配置检查项列表
     @inlinable
     public func describeSocCheckItemListPaginator(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResultSequence(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResponseSequence(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
     }
 }

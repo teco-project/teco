@@ -153,7 +153,7 @@ extension As {
     ///
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAutoScalingGroupsPaginated(_ input: DescribeAutoScalingGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoScalingGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAutoScalingGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -166,8 +166,6 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
     public func describeAutoScalingGroupsPaginator(_ input: DescribeAutoScalingGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoScalingGroupsRequest, DescribeAutoScalingGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoScalingGroupsRequest, DescribeAutoScalingGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAutoScalingGroupsRequest, DescribeAutoScalingGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeAutoScalingGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAutoScalingGroupsRequest, DescribeAutoScalingGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoScalingGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoScalingGroups, logger: logger, on: eventLoop)
     }
 }

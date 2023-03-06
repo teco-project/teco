@@ -118,7 +118,7 @@ extension Domain {
     /// 批量操作日志列表
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBatchOperationLogsPaginated(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBatchOperationLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBatchOperationLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Domain {
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
     public func describeBatchOperationLogsPaginator(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResultSequence(input: input, region: region, command: self.describeBatchOperationLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeBatchOperationLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchOperationLogs, logger: logger, on: eventLoop)
     }
 }

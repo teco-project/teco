@@ -141,7 +141,7 @@ extension Cwp {
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBaselineEffectHostListPaginated(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineEffectHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBaselineEffectHostList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Cwp {
     /// 根据基线id查询基线影响主机列表
     @inlinable
     public func describeBaselineEffectHostListPaginator(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResultSequence(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResponseSequence(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
     }
 }

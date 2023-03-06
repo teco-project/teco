@@ -122,7 +122,7 @@ extension Ame {
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuthInfoPaginated(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuthInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuthInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Ame {
     /// 获取授权项目信息列表
     @inlinable
     public func describeAuthInfoPaginator(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResultSequence(input: input, region: region, command: self.describeAuthInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeAuthInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuthInfo, logger: logger, on: eventLoop)
     }
 }

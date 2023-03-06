@@ -165,7 +165,7 @@ extension Cvm {
     ///
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImages, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -178,8 +178,6 @@ extension Cvm {
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
     public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
     }
 }

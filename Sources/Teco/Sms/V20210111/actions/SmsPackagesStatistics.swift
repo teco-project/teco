@@ -137,7 +137,7 @@ extension Sms {
     /// 用户套餐包信息统计。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
+    @inlinable @discardableResult
     public func smsPackagesStatisticsPaginated(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (SmsPackagesStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.smsPackagesStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func smsPackagesStatisticsPaginator(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SmsPackagesStatisticsRequest, SmsPackagesStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<SmsPackagesStatisticsRequest, SmsPackagesStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SmsPackagesStatisticsRequest, SmsPackagesStatisticsResponse>.ResultSequence(input: input, region: region, command: self.smsPackagesStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SmsPackagesStatisticsRequest, SmsPackagesStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.smsPackagesStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.smsPackagesStatistics, logger: logger, on: eventLoop)
     }
 }

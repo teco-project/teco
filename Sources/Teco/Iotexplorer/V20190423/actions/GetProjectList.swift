@@ -144,7 +144,7 @@ extension Iotexplorer {
     /// 获取项目列表
     ///
     /// 提供查询用户所创建的项目列表查询功能。
-    @inlinable
+    @inlinable @discardableResult
     public func getProjectListPaginated(_ input: GetProjectListRequest, region: TCRegion? = nil, onResponse: @escaping (GetProjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getProjectList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -154,8 +154,6 @@ extension Iotexplorer {
     /// 提供查询用户所创建的项目列表查询功能。
     @inlinable
     public func getProjectListPaginator(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResultSequence, responses: TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResultSequence(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResponseSequence(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
     }
 }

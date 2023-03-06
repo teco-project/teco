@@ -126,7 +126,7 @@ extension Bda {
     /// 获取人员列表
     ///
     /// 获取指定人体库中的人员列表。
-    @inlinable
+    @inlinable @discardableResult
     public func getPersonListPaginated(_ input: GetPersonListRequest, region: TCRegion? = nil, onResponse: @escaping (GetPersonListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getPersonList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Bda {
     /// 获取指定人体库中的人员列表。
     @inlinable
     public func getPersonListPaginator(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetPersonListRequest, GetPersonListResponse>.ResultSequence, responses: TCClient.Paginator<GetPersonListRequest, GetPersonListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetPersonListRequest, GetPersonListResponse>.ResultSequence(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetPersonListRequest, GetPersonListResponse>.ResponseSequence(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)
     }
 }

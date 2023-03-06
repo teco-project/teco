@@ -122,7 +122,7 @@ extension Cdb {
     /// 查询数据备份文件列表
     ///
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBackupsPaginated(_ input: DescribeBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBackups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Cdb {
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
     @inlinable
     public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
     }
 }

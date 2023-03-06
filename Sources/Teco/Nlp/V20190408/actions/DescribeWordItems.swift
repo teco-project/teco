@@ -128,7 +128,7 @@ extension Nlp {
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWordItemsPaginated(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWordItemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWordItems, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Nlp {
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
     public func describeWordItemsPaginator(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResultSequence(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResponseSequence(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
     }
 }

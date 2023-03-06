@@ -115,7 +115,7 @@ extension Tdid {
     }
 
     /// 标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func getLabelListPaginated(_ input: GetLabelListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLabelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getLabelList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Tdid {
     /// 标签列表
     @inlinable
     public func getLabelListPaginator(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResultSequence, responses: TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResultSequence(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResponseSequence(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
     }
 }

@@ -131,7 +131,7 @@ extension Tdmq {
     }
 
     /// 获取amqp集群列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAMQPClustersPaginated(_ input: DescribeAMQPClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAMQPClusters, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Tdmq {
     /// 获取amqp集群列表
     @inlinable
     public func describeAMQPClustersPaginator(_ input: DescribeAMQPClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPClustersRequest, DescribeAMQPClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPClustersRequest, DescribeAMQPClustersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAMQPClustersRequest, DescribeAMQPClustersResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPClusters, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAMQPClustersRequest, DescribeAMQPClustersResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPClusters, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPClusters, logger: logger, on: eventLoop)
     }
 }

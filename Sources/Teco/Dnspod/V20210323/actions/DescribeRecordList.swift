@@ -167,7 +167,7 @@ extension Dnspod {
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeRecordListPaginated(_ input: DescribeRecordListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRecordList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -177,8 +177,6 @@ extension Dnspod {
     /// 获取某个域名下的解析记录列表
     @inlinable
     public func describeRecordListPaginator(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResultSequence(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResponseSequence(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
     }
 }

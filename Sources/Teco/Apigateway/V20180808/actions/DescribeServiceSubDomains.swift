@@ -124,7 +124,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
     /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeServiceSubDomainsPaginated(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceSubDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeServiceSubDomains, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Apigateway {
     /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
     @inlinable
     public func describeServiceSubDomainsPaginator(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceSubDomainsRequest, DescribeServiceSubDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceSubDomainsRequest, DescribeServiceSubDomainsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeServiceSubDomainsRequest, DescribeServiceSubDomainsResponse>.ResultSequence(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeServiceSubDomainsRequest, DescribeServiceSubDomainsResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)
     }
 }

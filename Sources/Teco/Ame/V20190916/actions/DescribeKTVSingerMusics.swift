@@ -122,7 +122,7 @@ extension Ame {
     /// 获取歌手下歌曲列表
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeKTVSingerMusicsPaginated(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVSingerMusicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeKTVSingerMusics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Ame {
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
     public func describeKTVSingerMusicsPaginator(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResultSequence(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
     }
 }

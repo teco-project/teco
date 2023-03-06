@@ -132,7 +132,7 @@ extension Wedata {
     }
 
     /// 查询任务告警规则列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeTaskAlarmRegulationsPaginated(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskAlarmRegulationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTaskAlarmRegulations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Wedata {
     /// 查询任务告警规则列表
     @inlinable
     public func describeTaskAlarmRegulationsPaginator(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResultSequence(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
     }
 }

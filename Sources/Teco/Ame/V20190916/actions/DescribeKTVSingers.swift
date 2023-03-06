@@ -143,7 +143,7 @@ extension Ame {
     /// 获取直播互动曲库歌手
     ///
     /// 根据过滤条件，返回匹配的歌手列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeKTVSingersPaginated(_ input: DescribeKTVSingersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVSingersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeKTVSingers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Ame {
     /// 根据过滤条件，返回匹配的歌手列表。
     @inlinable
     public func describeKTVSingersPaginator(_ input: DescribeKTVSingersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResultSequence(input: input, region: region, command: self.describeKTVSingers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVSingers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingers, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Cfw {
     }
 
     /// 获取安全组关联实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssociatedInstanceListPaginated(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssociatedInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssociatedInstanceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Cfw {
     /// 获取安全组关联实例列表
     @inlinable
     public func describeAssociatedInstanceListPaginator(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResultSequence(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
     }
 }

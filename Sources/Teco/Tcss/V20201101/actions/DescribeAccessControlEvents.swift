@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时访问控制事件列表
     ///
     /// 查询运行时访问控制事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessControlEventsPaginated(_ input: DescribeAccessControlEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessControlEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccessControlEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时访问控制事件列表
     @inlinable
     public func describeAccessControlEventsPaginator(_ input: DescribeAccessControlEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessControlEventsRequest, DescribeAccessControlEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessControlEventsRequest, DescribeAccessControlEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAccessControlEventsRequest, DescribeAccessControlEventsResponse>.ResultSequence(input: input, region: region, command: self.describeAccessControlEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAccessControlEventsRequest, DescribeAccessControlEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeAccessControlEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessControlEvents, logger: logger, on: eventLoop)
     }
 }

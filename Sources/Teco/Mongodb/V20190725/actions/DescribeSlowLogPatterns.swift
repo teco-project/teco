@@ -150,7 +150,7 @@ extension Mongodb {
     /// 获取慢日志统计信息
     ///
     /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSlowLogPatternsPaginated(_ input: DescribeSlowLogPatternsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogPatternsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSlowLogPatterns, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Mongodb {
     /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
     @inlinable
     public func describeSlowLogPatternsPaginator(_ input: DescribeSlowLogPatternsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSlowLogPatternsRequest, DescribeSlowLogPatternsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSlowLogPatternsRequest, DescribeSlowLogPatternsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSlowLogPatternsRequest, DescribeSlowLogPatternsResponse>.ResultSequence(input: input, region: region, command: self.describeSlowLogPatterns, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSlowLogPatternsRequest, DescribeSlowLogPatternsResponse>.ResponseSequence(input: input, region: region, command: self.describeSlowLogPatterns, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogPatterns, logger: logger, on: eventLoop)
     }
 }

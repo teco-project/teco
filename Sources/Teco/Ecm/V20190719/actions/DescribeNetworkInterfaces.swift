@@ -132,7 +132,7 @@ extension Ecm {
     }
 
     /// 查询弹性网卡列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeNetworkInterfacesPaginated(_ input: DescribeNetworkInterfacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkInterfacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNetworkInterfaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Ecm {
     /// 查询弹性网卡列表
     @inlinable
     public func describeNetworkInterfacesPaginator(_ input: DescribeNetworkInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResultSequence(input: input, region: region, command: self.describeNetworkInterfaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResponseSequence(input: input, region: region, command: self.describeNetworkInterfaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkInterfaces, logger: logger, on: eventLoop)
     }
 }

@@ -134,7 +134,7 @@ extension Vpc {
     /// 分页查询网络ACL五元组条目列表
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNetworkAclQuintupleEntriesPaginated(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkAclQuintupleEntriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vpc {
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     @inlinable
     public func describeNetworkAclQuintupleEntriesPaginator(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkAclQuintupleEntriesRequest, DescribeNetworkAclQuintupleEntriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkAclQuintupleEntriesRequest, DescribeNetworkAclQuintupleEntriesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNetworkAclQuintupleEntriesRequest, DescribeNetworkAclQuintupleEntriesResponse>.ResultSequence(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNetworkAclQuintupleEntriesRequest, DescribeNetworkAclQuintupleEntriesResponse>.ResponseSequence(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)
     }
 }

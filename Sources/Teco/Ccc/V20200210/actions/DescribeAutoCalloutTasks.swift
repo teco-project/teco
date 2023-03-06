@@ -110,7 +110,7 @@ extension Ccc {
     }
 
     /// 批量查询自动任务外呼
-    @inlinable
+    @inlinable @discardableResult
     public func describeAutoCalloutTasksPaginated(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoCalloutTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAutoCalloutTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Ccc {
     /// 批量查询自动任务外呼
     @inlinable
     public func describeAutoCalloutTasksPaginator(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResultSequence(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
     }
 }

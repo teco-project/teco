@@ -189,7 +189,7 @@ extension Billing {
     }
 
     /// 查询账单明细数据
-    @inlinable
+    @inlinable @discardableResult
     public func describeBillDetailPaginated(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBillDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBillDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -197,8 +197,6 @@ extension Billing {
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetailPaginator(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResultSequence(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)
     }
 }

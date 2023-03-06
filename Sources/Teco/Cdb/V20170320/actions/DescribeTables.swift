@@ -132,7 +132,7 @@ extension Cdb {
     /// 查询数据库表
     ///
     /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTablesPaginated(_ input: DescribeTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTables, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Cdb {
     /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
     @inlinable
     public func describeTablesPaginator(_ input: DescribeTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResultSequence(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
     }
 }

@@ -125,7 +125,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
     /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsagePlanSecretIdsPaginated(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlanSecretIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsagePlanSecretIds, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Apigateway {
     /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
     @inlinable
     public func describeUsagePlanSecretIdsPaginator(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResultSequence(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
     }
 }

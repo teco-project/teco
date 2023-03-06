@@ -122,7 +122,7 @@ extension Ame {
     /// 获取直播互动曲库推荐歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeKTVPlaylistDetailPaginated(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVPlaylistDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeKTVPlaylistDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Ame {
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
     @inlinable
     public func describeKTVPlaylistDetailPaginator(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVPlaylistDetailRequest, DescribeKTVPlaylistDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVPlaylistDetailRequest, DescribeKTVPlaylistDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeKTVPlaylistDetailRequest, DescribeKTVPlaylistDetailResponse>.ResultSequence(input: input, region: region, command: self.describeKTVPlaylistDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeKTVPlaylistDetailRequest, DescribeKTVPlaylistDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVPlaylistDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVPlaylistDetail, logger: logger, on: eventLoop)
     }
 }

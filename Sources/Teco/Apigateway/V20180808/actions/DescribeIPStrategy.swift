@@ -134,7 +134,7 @@ extension Apigateway {
     /// 查询IP策略详情
     ///
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
-    @inlinable
+    @inlinable @discardableResult
     public func describeIPStrategyPaginated(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIPStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIPStrategy, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Apigateway {
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
     @inlinable
     public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResultSequence(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResponseSequence(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
     }
 }

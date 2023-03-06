@@ -124,7 +124,7 @@ extension Cwp {
     /// 查询忽略检测项信息
     ///
     /// 查询已经忽略的检测项信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeIgnoreBaselineRulePaginated(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIgnoreBaselineRuleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIgnoreBaselineRule, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Cwp {
     /// 查询已经忽略的检测项信息
     @inlinable
     public func describeIgnoreBaselineRulePaginator(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResultSequence(input: input, region: region, command: self.describeIgnoreBaselineRule, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResponseSequence(input: input, region: region, command: self.describeIgnoreBaselineRule, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIgnoreBaselineRule, logger: logger, on: eventLoop)
     }
 }

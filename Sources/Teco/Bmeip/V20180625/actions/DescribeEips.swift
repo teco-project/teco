@@ -170,7 +170,7 @@ extension Bmeip {
     }
 
     /// 黑石EIP查询接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeEipsPaginated(_ input: DescribeEipsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEipsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEips, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -178,8 +178,6 @@ extension Bmeip {
     /// 黑石EIP查询接口
     @inlinable
     public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResultSequence(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResponseSequence(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
     }
 }

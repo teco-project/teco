@@ -135,7 +135,7 @@ extension Yunjing {
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeOpenPortsPaginated(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOpenPortsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOpenPorts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Yunjing {
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
     public func describeOpenPortsPaginator(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOpenPortsRequest, DescribeOpenPortsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOpenPortsRequest, DescribeOpenPortsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOpenPortsRequest, DescribeOpenPortsResponse>.ResultSequence(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOpenPortsRequest, DescribeOpenPortsResponse>.ResponseSequence(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)
     }
 }

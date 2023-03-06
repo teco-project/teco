@@ -150,7 +150,7 @@ extension Live {
     /// - 使用前提
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
-    @inlinable
+    @inlinable @discardableResult
     public func describeScreenshotTaskPaginated(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScreenshotTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScreenshotTask, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Live {
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
     public func describeScreenshotTaskPaginator(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScreenshotTaskRequest, DescribeScreenshotTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScreenshotTaskRequest, DescribeScreenshotTaskResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeScreenshotTaskRequest, DescribeScreenshotTaskResponse>.ResultSequence(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeScreenshotTaskRequest, DescribeScreenshotTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)
     }
 }

@@ -129,7 +129,7 @@ extension Apigateway {
     /// 查询Api绑定的应用列表
     ///
     /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeApiBindApiAppsStatusPaginated(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiBindApiAppsStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApiBindApiAppsStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Apigateway {
     /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
     @inlinable
     public func describeApiBindApiAppsStatusPaginator(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiBindApiAppsStatusRequest, DescribeApiBindApiAppsStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiBindApiAppsStatusRequest, DescribeApiBindApiAppsStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApiBindApiAppsStatusRequest, DescribeApiBindApiAppsStatusResponse>.ResultSequence(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApiBindApiAppsStatusRequest, DescribeApiBindApiAppsStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)
     }
 }

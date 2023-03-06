@@ -152,7 +152,7 @@ extension Sqlserver {
     /// 查询增量备份导入任务
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
-    @inlinable
+    @inlinable @discardableResult
     public func describeIncrementalMigrationPaginated(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIncrementalMigrationResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIncrementalMigration, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Sqlserver {
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     @inlinable
     public func describeIncrementalMigrationPaginator(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResultSequence(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResponseSequence(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
     }
 }

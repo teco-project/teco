@@ -128,7 +128,7 @@ extension Tcr {
     /// 获取满足输入搜索条件的个人版镜像仓库
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func describeRepositoryFilterPersonalPaginated(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRepositoryFilterPersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRepositoryFilterPersonal, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tcr {
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
     public func describeRepositoryFilterPersonalPaginator(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResultSequence(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
     }
 }

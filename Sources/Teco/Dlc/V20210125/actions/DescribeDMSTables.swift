@@ -162,7 +162,7 @@ extension Dlc {
     }
 
     /// DMS元数据获取表列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDMSTablesPaginated(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDMSTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDMSTables, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -170,8 +170,6 @@ extension Dlc {
     /// DMS元数据获取表列表
     @inlinable
     public func describeDMSTablesPaginator(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResultSequence(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
     }
 }

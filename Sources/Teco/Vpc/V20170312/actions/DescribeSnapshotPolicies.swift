@@ -129,7 +129,7 @@ extension Vpc {
     /// 查询快照策略
     ///
     /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSnapshotPoliciesPaginated(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSnapshotPolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Vpc {
     /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
     @inlinable
     public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
     }
 }

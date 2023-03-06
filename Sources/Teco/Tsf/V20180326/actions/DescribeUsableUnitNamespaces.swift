@@ -107,7 +107,7 @@ extension Tsf {
     }
 
     /// 查询可用于被导入的命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsableUnitNamespacesPaginated(_ input: DescribeUsableUnitNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsableUnitNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsableUnitNamespaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -115,8 +115,6 @@ extension Tsf {
     /// 查询可用于被导入的命名空间列表
     @inlinable
     public func describeUsableUnitNamespacesPaginator(_ input: DescribeUsableUnitNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsableUnitNamespacesRequest, DescribeUsableUnitNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsableUnitNamespacesRequest, DescribeUsableUnitNamespacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsableUnitNamespacesRequest, DescribeUsableUnitNamespacesResponse>.ResultSequence(input: input, region: region, command: self.describeUsableUnitNamespaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsableUnitNamespacesRequest, DescribeUsableUnitNamespacesResponse>.ResponseSequence(input: input, region: region, command: self.describeUsableUnitNamespaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsableUnitNamespaces, logger: logger, on: eventLoop)
     }
 }

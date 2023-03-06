@@ -115,7 +115,7 @@ extension Antiddos {
     }
 
     /// 获取CC清洗阈值列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCCThresholdListPaginated(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCThresholdListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCCThresholdList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Antiddos {
     /// 获取CC清洗阈值列表
     @inlinable
     public func describeCCThresholdListPaginator(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResultSequence(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResponseSequence(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
     }
 }

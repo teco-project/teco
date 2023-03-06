@@ -146,7 +146,7 @@ extension Teo {
     /// 下载四层离线日志
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
-    @inlinable
+    @inlinable @discardableResult
     public func downloadL4LogsPaginated(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, onResponse: @escaping (DownloadL4LogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.downloadL4Logs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -156,8 +156,6 @@ extension Teo {
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
     public func downloadL4LogsPaginator(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DownloadL4LogsRequest, DownloadL4LogsResponse>.ResultSequence, responses: TCClient.Paginator<DownloadL4LogsRequest, DownloadL4LogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DownloadL4LogsRequest, DownloadL4LogsResponse>.ResultSequence(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DownloadL4LogsRequest, DownloadL4LogsResponse>.ResponseSequence(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)
     }
 }

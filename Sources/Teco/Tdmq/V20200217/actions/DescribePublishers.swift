@@ -143,7 +143,7 @@ extension Tdmq {
     /// 获取生产者信息
     ///
     /// 获取生产者信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePublishersPaginated(_ input: DescribePublishersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublishersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePublishers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Tdmq {
     /// 获取生产者信息列表
     @inlinable
     public func describePublishersPaginator(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResultSequence(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResponseSequence(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)
     }
 }

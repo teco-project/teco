@@ -117,7 +117,7 @@ extension Tcb {
     }
 
     /// 查询版本历史
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudBaseRunVersionSnapshotPaginated(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseRunVersionSnapshotResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Tcb {
     /// 查询版本历史
     @inlinable
     public func describeCloudBaseRunVersionSnapshotPaginator(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResultSequence(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
     }
 }

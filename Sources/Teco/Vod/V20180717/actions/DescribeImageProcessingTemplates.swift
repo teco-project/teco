@@ -134,7 +134,7 @@ extension Vod {
     /// 获取图片即时处理模板列表
     ///
     /// 获取图片处理模板列表，支持根据条件，分页查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeImageProcessingTemplatesPaginated(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageProcessingTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImageProcessingTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 获取图片处理模板列表，支持根据条件，分页查询。
     @inlinable
     public func describeImageProcessingTemplatesPaginator(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
     }
 }

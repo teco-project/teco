@@ -127,7 +127,7 @@ extension Scf {
     /// 返回层列表
     ///
     /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
-    @inlinable
+    @inlinable @discardableResult
     public func listLayersPaginated(_ input: ListLayersRequest, region: TCRegion? = nil, onResponse: @escaping (ListLayersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listLayers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Scf {
     /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
     @inlinable
     public func listLayersPaginator(_ input: ListLayersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListLayersRequest, ListLayersResponse>.ResultSequence, responses: TCClient.Paginator<ListLayersRequest, ListLayersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListLayersRequest, ListLayersResponse>.ResultSequence(input: input, region: region, command: self.listLayers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListLayersRequest, ListLayersResponse>.ResponseSequence(input: input, region: region, command: self.listLayers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listLayers, logger: logger, on: eventLoop)
     }
 }

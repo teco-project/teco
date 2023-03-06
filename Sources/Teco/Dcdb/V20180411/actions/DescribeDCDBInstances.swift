@@ -203,7 +203,7 @@ extension Dcdb {
     ///
     /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDCDBInstancesPaginated(_ input: DescribeDCDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDCDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDCDBInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -214,8 +214,6 @@ extension Dcdb {
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
     @inlinable
     public func describeDCDBInstancesPaginator(_ input: DescribeDCDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDCDBInstancesRequest, DescribeDCDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDCDBInstancesRequest, DescribeDCDBInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDCDBInstancesRequest, DescribeDCDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDCDBInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDCDBInstancesRequest, DescribeDCDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDCDBInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBInstances, logger: logger, on: eventLoop)
     }
 }

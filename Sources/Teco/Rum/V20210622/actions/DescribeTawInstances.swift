@@ -152,7 +152,7 @@ extension Rum {
     /// 查询 RUM 业务系统信息
     ///
     /// 查询实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeTawInstancesPaginated(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTawInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTawInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Rum {
     /// 查询实例信息
     @inlinable
     public func describeTawInstancesPaginator(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
     }
 }

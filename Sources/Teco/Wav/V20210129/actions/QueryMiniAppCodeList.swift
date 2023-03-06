@@ -102,7 +102,7 @@ extension Wav {
     }
 
     /// 查询小程序码列表接口
-    @inlinable
+    @inlinable @discardableResult
     public func queryMiniAppCodeListPaginated(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryMiniAppCodeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryMiniAppCodeList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -110,8 +110,6 @@ extension Wav {
     /// 查询小程序码列表接口
     @inlinable
     public func queryMiniAppCodeListPaginator(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResultSequence, responses: TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResultSequence(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResponseSequence(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
     }
 }

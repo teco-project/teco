@@ -155,7 +155,7 @@ extension Cbs {
     ///
     /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAutoSnapshotPoliciesPaginated(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoSnapshotPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAutoSnapshotPolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -168,8 +168,6 @@ extension Cbs {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
     public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
     }
 }

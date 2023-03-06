@@ -134,7 +134,7 @@ extension Vod {
     /// 获取转自适应码流模板列表
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAdaptiveDynamicStreamingTemplatesPaginated(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAdaptiveDynamicStreamingTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
     public func describeAdaptiveDynamicStreamingTemplatesPaginator(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
     }
 }

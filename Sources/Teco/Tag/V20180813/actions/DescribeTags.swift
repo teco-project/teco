@@ -150,7 +150,7 @@ extension Tag {
     /// 查询标签列表
     ///
     /// 用于查询已建立的标签列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTagsPaginated(_ input: DescribeTagsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTags, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Tag {
     /// 用于查询已建立的标签列表。
     @inlinable
     public func describeTagsPaginator(_ input: DescribeTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagsRequest, DescribeTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagsRequest, DescribeTagsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTagsRequest, DescribeTagsResponse>.ResultSequence(input: input, region: region, command: self.describeTags, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTagsRequest, DescribeTagsResponse>.ResponseSequence(input: input, region: region, command: self.describeTags, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTags, logger: logger, on: eventLoop)
     }
 }

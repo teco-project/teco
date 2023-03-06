@@ -132,7 +132,7 @@ extension Cws {
     /// 查看漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulsPaginated(_ input: DescribeVulsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVuls, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Cws {
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
     public func describeVulsPaginator(_ input: DescribeVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulsRequest, DescribeVulsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulsRequest, DescribeVulsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulsRequest, DescribeVulsResponse>.ResultSequence(input: input, region: region, command: self.describeVuls, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulsRequest, DescribeVulsResponse>.ResponseSequence(input: input, region: region, command: self.describeVuls, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVuls, logger: logger, on: eventLoop)
     }
 }

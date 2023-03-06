@@ -121,7 +121,7 @@ extension Cdb {
     /// 获取实例绑定的标签
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTagsOfInstanceIdsPaginated(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagsOfInstanceIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTagsOfInstanceIds, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Cdb {
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
     public func describeTagsOfInstanceIdsPaginator(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResultSequence(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
     }
 }

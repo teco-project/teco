@@ -137,7 +137,7 @@ extension Tcss {
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeComplianceWhitelistItemListPaginated(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceWhitelistItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComplianceWhitelistItemList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Tcss {
     /// 查询白名单列表
     @inlinable
     public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResultSequence(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResponseSequence(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
     }
 }

@@ -112,7 +112,7 @@ extension Redis {
     }
 
     /// 查看实例子账号信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAccountPaginated(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceAccountResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceAccount, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -120,8 +120,6 @@ extension Redis {
     /// 查看实例子账号信息
     @inlinable
     public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
     }
 }

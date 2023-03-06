@@ -125,7 +125,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
     /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
-    @inlinable
+    @inlinable @discardableResult
     public func describeServiceReleaseVersionPaginated(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceReleaseVersionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeServiceReleaseVersion, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Apigateway {
     /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
     @inlinable
     public func describeServiceReleaseVersionPaginator(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceReleaseVersionRequest, DescribeServiceReleaseVersionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceReleaseVersionRequest, DescribeServiceReleaseVersionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeServiceReleaseVersionRequest, DescribeServiceReleaseVersionResponse>.ResultSequence(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeServiceReleaseVersionRequest, DescribeServiceReleaseVersionResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
     }
 }

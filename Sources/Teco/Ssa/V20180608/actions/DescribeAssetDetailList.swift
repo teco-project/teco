@@ -140,7 +140,7 @@ extension Ssa {
     /// 获取资产列表
     ///
     /// 资产条件查询
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetDetailListPaginated(_ input: DescribeAssetDetailListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetDetailListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetDetailList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Ssa {
     /// 资产条件查询
     @inlinable
     public func describeAssetDetailListPaginator(_ input: DescribeAssetDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetDetailListRequest, DescribeAssetDetailListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetDetailListRequest, DescribeAssetDetailListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetDetailListRequest, DescribeAssetDetailListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetDetailList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetDetailListRequest, DescribeAssetDetailListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetDetailList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDetailList, logger: logger, on: eventLoop)
     }
 }

@@ -105,7 +105,7 @@ extension Cwp {
     }
 
     /// 获取快速检索列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSearchTemplatesPaginated(_ input: DescribeSearchTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSearchTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSearchTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Cwp {
     /// 获取快速检索列表
     @inlinable
     public func describeSearchTemplatesPaginator(_ input: DescribeSearchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeSearchTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeSearchTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSearchTemplates, logger: logger, on: eventLoop)
     }
 }

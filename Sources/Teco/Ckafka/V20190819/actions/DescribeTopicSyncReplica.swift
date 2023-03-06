@@ -128,7 +128,7 @@ extension Ckafka {
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeTopicSyncReplicaPaginated(_ input: DescribeTopicSyncReplicaRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopicSyncReplicaResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTopicSyncReplica, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Ckafka {
     /// 获取Topic 副本详情信息
     @inlinable
     public func describeTopicSyncReplicaPaginator(_ input: DescribeTopicSyncReplicaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResultSequence(input: input, region: region, command: self.describeTopicSyncReplica, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResponseSequence(input: input, region: region, command: self.describeTopicSyncReplica, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicSyncReplica, logger: logger, on: eventLoop)
     }
 }

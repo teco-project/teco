@@ -142,7 +142,7 @@ extension Bmvpc {
     /// 查询子网列表
     ///
     /// 本接口（DescribeSubnets）用于查询黑石子网列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSubnetsPaginated(_ input: DescribeSubnetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubnetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSubnets, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Bmvpc {
     /// 本接口（DescribeSubnets）用于查询黑石子网列表。
     @inlinable
     public func describeSubnetsPaginator(_ input: DescribeSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubnetsRequest, DescribeSubnetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubnetsRequest, DescribeSubnetsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSubnetsRequest, DescribeSubnetsResponse>.ResultSequence(input: input, region: region, command: self.describeSubnets, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSubnetsRequest, DescribeSubnetsResponse>.ResponseSequence(input: input, region: region, command: self.describeSubnets, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnets, logger: logger, on: eventLoop)
     }
 }

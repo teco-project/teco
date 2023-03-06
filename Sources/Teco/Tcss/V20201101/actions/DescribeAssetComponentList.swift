@@ -127,7 +127,7 @@ extension Tcss {
     /// 查询容器组件列表
     ///
     /// 容器安全搜索查询容器组件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetComponentListPaginated(_ input: DescribeAssetComponentListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetComponentListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetComponentList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Tcss {
     /// 容器安全搜索查询容器组件列表
     @inlinable
     public func describeAssetComponentListPaginator(_ input: DescribeAssetComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetComponentListRequest, DescribeAssetComponentListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetComponentListRequest, DescribeAssetComponentListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetComponentListRequest, DescribeAssetComponentListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetComponentList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetComponentListRequest, DescribeAssetComponentListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetComponentList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetComponentList, logger: logger, on: eventLoop)
     }
 }

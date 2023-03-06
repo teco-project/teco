@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时异常进程策略列表
     ///
     /// 查询运行时异常进程策略列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAbnormalProcessRulesPaginated(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAbnormalProcessRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAbnormalProcessRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时异常进程策略列表信息
     @inlinable
     public func describeAbnormalProcessRulesPaginator(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResultSequence(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
     }
 }

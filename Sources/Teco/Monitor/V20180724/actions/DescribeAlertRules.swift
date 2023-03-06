@@ -145,7 +145,7 @@ extension Monitor {
     /// 报警规则查询
     ///
     /// Prometheus 报警规则查询接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeAlertRulesPaginated(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlertRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAlertRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Monitor {
     /// Prometheus 报警规则查询接口
     @inlinable
     public func describeAlertRulesPaginator(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlertRulesRequest, DescribeAlertRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlertRulesRequest, DescribeAlertRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAlertRulesRequest, DescribeAlertRulesResponse>.ResultSequence(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAlertRulesRequest, DescribeAlertRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)
     }
 }

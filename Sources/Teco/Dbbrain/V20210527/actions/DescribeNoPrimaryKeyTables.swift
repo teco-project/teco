@@ -149,7 +149,7 @@ extension Dbbrain {
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNoPrimaryKeyTablesPaginated(_ input: DescribeNoPrimaryKeyTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNoPrimaryKeyTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNoPrimaryKeyTables, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -159,8 +159,6 @@ extension Dbbrain {
     /// 查询实例无主键表。
     @inlinable
     public func describeNoPrimaryKeyTablesPaginator(_ input: DescribeNoPrimaryKeyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNoPrimaryKeyTablesRequest, DescribeNoPrimaryKeyTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNoPrimaryKeyTablesRequest, DescribeNoPrimaryKeyTablesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNoPrimaryKeyTablesRequest, DescribeNoPrimaryKeyTablesResponse>.ResultSequence(input: input, region: region, command: self.describeNoPrimaryKeyTables, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNoPrimaryKeyTablesRequest, DescribeNoPrimaryKeyTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeNoPrimaryKeyTables, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNoPrimaryKeyTables, logger: logger, on: eventLoop)
     }
 }

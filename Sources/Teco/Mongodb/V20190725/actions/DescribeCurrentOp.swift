@@ -158,7 +158,7 @@ extension Mongodb {
     /// 查询数据库实例当前正在执行的操作
     ///
     /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCurrentOpPaginated(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCurrentOpResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCurrentOp, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -168,8 +168,6 @@ extension Mongodb {
     /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
     @inlinable
     public func describeCurrentOpPaginator(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResultSequence(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResponseSequence(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
     }
 }

@@ -121,7 +121,7 @@ extension Iotexplorer {
     }
 
     /// 获取位置空间中围栏告警事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSpaceFenceEventListPaginated(_ input: DescribeSpaceFenceEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSpaceFenceEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSpaceFenceEventList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Iotexplorer {
     /// 获取位置空间中围栏告警事件列表
     @inlinable
     public func describeSpaceFenceEventListPaginator(_ input: DescribeSpaceFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResultSequence(input: input, region: region, command: self.describeSpaceFenceEventList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeSpaceFenceEventList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSpaceFenceEventList, logger: logger, on: eventLoop)
     }
 }

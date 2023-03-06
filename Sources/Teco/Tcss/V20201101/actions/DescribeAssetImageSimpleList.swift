@@ -133,7 +133,7 @@ extension Tcss {
     /// 查询镜像简略信息列表
     ///
     /// 容器安全搜索查询镜像简略信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageSimpleListPaginated(_ input: DescribeAssetImageSimpleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageSimpleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetImageSimpleList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Tcss {
     /// 容器安全搜索查询镜像简略信息列表
     @inlinable
     public func describeAssetImageSimpleListPaginator(_ input: DescribeAssetImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageSimpleListRequest, DescribeAssetImageSimpleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageSimpleListRequest, DescribeAssetImageSimpleListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetImageSimpleListRequest, DescribeAssetImageSimpleListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetImageSimpleList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetImageSimpleListRequest, DescribeAssetImageSimpleListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetImageSimpleList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageSimpleList, logger: logger, on: eventLoop)
     }
 }

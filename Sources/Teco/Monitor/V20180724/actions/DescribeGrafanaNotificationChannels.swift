@@ -116,7 +116,7 @@ extension Monitor {
     }
 
     /// 列出 Grafana 告警通道
-    @inlinable
+    @inlinable @discardableResult
     public func describeGrafanaNotificationChannelsPaginated(_ input: DescribeGrafanaNotificationChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGrafanaNotificationChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGrafanaNotificationChannels, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Monitor {
     /// 列出 Grafana 告警通道
     @inlinable
     public func describeGrafanaNotificationChannelsPaginator(_ input: DescribeGrafanaNotificationChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGrafanaNotificationChannelsRequest, DescribeGrafanaNotificationChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGrafanaNotificationChannelsRequest, DescribeGrafanaNotificationChannelsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGrafanaNotificationChannelsRequest, DescribeGrafanaNotificationChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeGrafanaNotificationChannels, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGrafanaNotificationChannelsRequest, DescribeGrafanaNotificationChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeGrafanaNotificationChannels, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGrafanaNotificationChannels, logger: logger, on: eventLoop)
     }
 }

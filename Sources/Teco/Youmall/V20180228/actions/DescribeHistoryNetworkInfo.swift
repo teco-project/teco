@@ -138,7 +138,7 @@ extension Youmall {
     /// 查询设备历史网络状态
     ///
     /// 返回当前门店历史网络状态数据
-    @inlinable
+    @inlinable @discardableResult
     public func describeHistoryNetworkInfoPaginated(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHistoryNetworkInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHistoryNetworkInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Youmall {
     /// 返回当前门店历史网络状态数据
     @inlinable
     public func describeHistoryNetworkInfoPaginator(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResultSequence(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
     }
 }

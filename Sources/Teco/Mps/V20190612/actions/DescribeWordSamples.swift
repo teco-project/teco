@@ -142,7 +142,7 @@ extension Mps {
     /// 获取关键词样本列表
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWordSamplesPaginated(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWordSamplesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWordSamples, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Mps {
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
     public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResultSequence(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResponseSequence(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
     }
 }

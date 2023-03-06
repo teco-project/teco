@@ -151,7 +151,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
     /// 请使用DescribeVideoListByChannel接口
-    @inlinable
+    @inlinable @discardableResult
     public func getVideoListByConPaginated(_ input: GetVideoListByConRequest, region: TCRegion? = nil, onResponse: @escaping (GetVideoListByConResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getVideoListByCon, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Iotvideoindustry {
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
     public func getVideoListByConPaginator(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResultSequence, responses: TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResultSequence(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResponseSequence(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
     }
 }

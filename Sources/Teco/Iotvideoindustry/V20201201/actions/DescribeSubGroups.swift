@@ -134,7 +134,7 @@ extension Iotvideoindustry {
     /// 查询子分组列表
     ///
     /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSubGroupsPaginated(_ input: DescribeSubGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSubGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Iotvideoindustry {
     /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
     @inlinable
     public func describeSubGroupsPaginator(_ input: DescribeSubGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubGroupsRequest, DescribeSubGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubGroupsRequest, DescribeSubGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSubGroupsRequest, DescribeSubGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeSubGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSubGroupsRequest, DescribeSubGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeSubGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubGroups, logger: logger, on: eventLoop)
     }
 }

@@ -226,7 +226,7 @@ extension Cdn {
     }
 
     /// 查询BOT会话记录列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeScdnBotRecordsPaginated(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScdnBotRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScdnBotRecords, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -234,8 +234,6 @@ extension Cdn {
     /// 查询BOT会话记录列表
     @inlinable
     public func describeScdnBotRecordsPaginator(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScdnBotRecordsRequest, DescribeScdnBotRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScdnBotRecordsRequest, DescribeScdnBotRecordsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeScdnBotRecordsRequest, DescribeScdnBotRecordsResponse>.ResultSequence(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeScdnBotRecordsRequest, DescribeScdnBotRecordsResponse>.ResponseSequence(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)
     }
 }

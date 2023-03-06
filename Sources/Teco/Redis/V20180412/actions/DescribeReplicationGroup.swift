@@ -127,7 +127,7 @@ extension Redis {
     /// 查询复制组
     ///
     /// 本接口（DescribeReplicationGroup）查询复制组。
-    @inlinable
+    @inlinable @discardableResult
     public func describeReplicationGroupPaginated(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReplicationGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReplicationGroup, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Redis {
     /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroupPaginator(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResultSequence(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResponseSequence(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
     }
 }

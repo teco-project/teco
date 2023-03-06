@@ -126,7 +126,7 @@ extension Faceid {
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
-    @inlinable
+    @inlinable @discardableResult
     public func getWeChatBillDetailsPaginated(_ input: GetWeChatBillDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (GetWeChatBillDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getWeChatBillDetails, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Faceid {
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
     public func getWeChatBillDetailsPaginator(_ input: GetWeChatBillDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetWeChatBillDetailsRequest, GetWeChatBillDetailsResponse>.ResultSequence, responses: TCClient.Paginator<GetWeChatBillDetailsRequest, GetWeChatBillDetailsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetWeChatBillDetailsRequest, GetWeChatBillDetailsResponse>.ResultSequence(input: input, region: region, command: self.getWeChatBillDetails, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetWeChatBillDetailsRequest, GetWeChatBillDetailsResponse>.ResponseSequence(input: input, region: region, command: self.getWeChatBillDetails, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getWeChatBillDetails, logger: logger, on: eventLoop)
     }
 }

@@ -130,7 +130,7 @@ extension Antiddos {
     }
 
     /// 获取CC防护的区域封禁配置列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCcGeoIPBlockConfigListPaginated(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcGeoIPBlockConfigListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Antiddos {
     /// 获取CC防护的区域封禁配置列表
     @inlinable
     public func describeCcGeoIPBlockConfigListPaginator(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcGeoIPBlockConfigListRequest, DescribeCcGeoIPBlockConfigListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcGeoIPBlockConfigListRequest, DescribeCcGeoIPBlockConfigListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCcGeoIPBlockConfigListRequest, DescribeCcGeoIPBlockConfigListResponse>.ResultSequence(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCcGeoIPBlockConfigListRequest, DescribeCcGeoIPBlockConfigListResponse>.ResponseSequence(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)
     }
 }

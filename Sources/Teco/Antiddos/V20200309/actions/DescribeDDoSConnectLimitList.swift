@@ -115,7 +115,7 @@ extension Antiddos {
     }
 
     /// 获取DDoS连接抑制配置列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDDoSConnectLimitListPaginated(_ input: DescribeDDoSConnectLimitListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDDoSConnectLimitListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDDoSConnectLimitList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Antiddos {
     /// 获取DDoS连接抑制配置列表
     @inlinable
     public func describeDDoSConnectLimitListPaginator(_ input: DescribeDDoSConnectLimitListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDDoSConnectLimitListRequest, DescribeDDoSConnectLimitListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDDoSConnectLimitListRequest, DescribeDDoSConnectLimitListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDDoSConnectLimitListRequest, DescribeDDoSConnectLimitListResponse>.ResultSequence(input: input, region: region, command: self.describeDDoSConnectLimitList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDDoSConnectLimitListRequest, DescribeDDoSConnectLimitListResponse>.ResponseSequence(input: input, region: region, command: self.describeDDoSConnectLimitList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSConnectLimitList, logger: logger, on: eventLoop)
     }
 }

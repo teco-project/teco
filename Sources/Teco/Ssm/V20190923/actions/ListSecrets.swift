@@ -161,7 +161,7 @@ extension Ssm {
     /// 获取凭据的详细信息列表
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
-    @inlinable
+    @inlinable @discardableResult
     public func listSecretsPaginated(_ input: ListSecretsRequest, region: TCRegion? = nil, onResponse: @escaping (ListSecretsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listSecrets, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -171,8 +171,6 @@ extension Ssm {
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
     public func listSecretsPaginator(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResultSequence, responses: TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResultSequence(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResponseSequence(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
     }
 }

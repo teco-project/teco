@@ -145,7 +145,7 @@ extension Bmeip {
     }
 
     /// 查询弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func describeEipAclsPaginated(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEipAclsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEipAcls, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Bmeip {
     /// 查询弹性公网IP ACL
     @inlinable
     public func describeEipAclsPaginator(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResultSequence(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResponseSequence(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
     }
 }

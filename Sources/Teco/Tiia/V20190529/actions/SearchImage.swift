@@ -219,7 +219,7 @@ extension Tiia {
     ///
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
-    @inlinable
+    @inlinable @discardableResult
     public func searchImagePaginated(_ input: SearchImageRequest, region: TCRegion? = nil, onResponse: @escaping (SearchImageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.searchImage, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -232,8 +232,6 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImagePaginator(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResultSequence, responses: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResultSequence(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResponseSequence(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
     }
 }

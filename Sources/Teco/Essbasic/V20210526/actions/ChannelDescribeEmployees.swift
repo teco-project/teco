@@ -144,7 +144,7 @@ extension Essbasic {
     /// 查询企业员工
     ///
     /// 查询企业员工列表
-    @inlinable
+    @inlinable @discardableResult
     public func channelDescribeEmployeesPaginated(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (ChannelDescribeEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.channelDescribeEmployees, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -154,8 +154,6 @@ extension Essbasic {
     /// 查询企业员工列表
     @inlinable
     public func channelDescribeEmployeesPaginator(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResultSequence, responses: TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResultSequence(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResponseSequence(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
     }
 }

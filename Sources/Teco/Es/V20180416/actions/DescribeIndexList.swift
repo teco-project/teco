@@ -147,7 +147,7 @@ extension Es {
     }
 
     /// 获取索引列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeIndexListPaginated(_ input: DescribeIndexListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIndexListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIndexList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Es {
     /// 获取索引列表
     @inlinable
     public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResultSequence(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResponseSequence(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
     }
 }

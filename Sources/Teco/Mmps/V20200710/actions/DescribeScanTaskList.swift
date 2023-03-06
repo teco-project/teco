@@ -158,7 +158,7 @@ extension Mmps {
     /// 获取隐私合规诊断任务列表
     ///
     /// 获取小程序隐私合规诊断任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeScanTaskListPaginated(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScanTaskList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -168,8 +168,6 @@ extension Mmps {
     /// 获取小程序隐私合规诊断任务列表
     @inlinable
     public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResultSequence(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResponseSequence(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
     }
 }

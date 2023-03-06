@@ -117,7 +117,7 @@ extension Wedata {
     }
 
     /// 分页查询质量规则
-    @inlinable
+    @inlinable @discardableResult
     public func describeRulesByPagePaginated(_ input: DescribeRulesByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRulesByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRulesByPage, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Wedata {
     /// 分页查询质量规则
     @inlinable
     public func describeRulesByPagePaginator(_ input: DescribeRulesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRulesByPageRequest, DescribeRulesByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRulesByPageRequest, DescribeRulesByPageResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRulesByPageRequest, DescribeRulesByPageResponse>.ResultSequence(input: input, region: region, command: self.describeRulesByPage, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRulesByPageRequest, DescribeRulesByPageResponse>.ResponseSequence(input: input, region: region, command: self.describeRulesByPage, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRulesByPage, logger: logger, on: eventLoop)
     }
 }

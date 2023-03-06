@@ -124,7 +124,7 @@ extension Tcbr {
     /// 查询云托管服务列表
     ///
     /// 查询云托管服务列表接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudRunServersPaginated(_ input: DescribeCloudRunServersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudRunServersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCloudRunServers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tcbr {
     /// 查询云托管服务列表接口
     @inlinable
     public func describeCloudRunServersPaginator(_ input: DescribeCloudRunServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResultSequence(input: input, region: region, command: self.describeCloudRunServers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudRunServers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudRunServers, logger: logger, on: eventLoop)
     }
 }

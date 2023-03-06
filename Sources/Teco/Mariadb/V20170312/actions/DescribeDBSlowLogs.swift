@@ -172,7 +172,7 @@ extension Mariadb {
     /// 查询慢查询日志列表
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBSlowLogsPaginated(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBSlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBSlowLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -182,8 +182,6 @@ extension Mariadb {
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
     public func describeDBSlowLogsPaginator(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResultSequence(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
     }
 }

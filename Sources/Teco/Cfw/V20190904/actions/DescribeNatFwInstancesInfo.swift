@@ -124,7 +124,7 @@ extension Cfw {
     /// 获取租户所有NAT实例卡片信息
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeNatFwInstancesInfoPaginated(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatFwInstancesInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNatFwInstancesInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Cfw {
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
     public func describeNatFwInstancesInfoPaginator(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResultSequence(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)
     }
 }

@@ -120,7 +120,7 @@ extension Scf {
     }
 
     /// 列出命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func listNamespacesPaginated(_ input: ListNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (ListNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listNamespaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Scf {
     /// 列出命名空间列表
     @inlinable
     public func listNamespacesPaginator(_ input: ListNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListNamespacesRequest, ListNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<ListNamespacesRequest, ListNamespacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListNamespacesRequest, ListNamespacesResponse>.ResultSequence(input: input, region: region, command: self.listNamespaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListNamespacesRequest, ListNamespacesResponse>.ResponseSequence(input: input, region: region, command: self.listNamespaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listNamespaces, logger: logger, on: eventLoop)
     }
 }

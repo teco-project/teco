@@ -121,7 +121,7 @@ extension Ckafka {
     }
 
     /// 枚举ACL
-    @inlinable
+    @inlinable @discardableResult
     public func describeACLPaginated(_ input: DescribeACLRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeACLResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeACL, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Ckafka {
     /// 枚举ACL
     @inlinable
     public func describeACLPaginator(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResultSequence, responses: TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResultSequence(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResponseSequence(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)
     }
 }

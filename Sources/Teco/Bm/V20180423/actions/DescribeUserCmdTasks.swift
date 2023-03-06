@@ -115,7 +115,7 @@ extension Bm {
     }
 
     /// 获取自定义脚本任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeUserCmdTasksPaginated(_ input: DescribeUserCmdTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserCmdTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUserCmdTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Bm {
     /// 获取自定义脚本任务列表
     @inlinable
     public func describeUserCmdTasksPaginator(_ input: DescribeUserCmdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserCmdTasksRequest, DescribeUserCmdTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserCmdTasksRequest, DescribeUserCmdTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUserCmdTasksRequest, DescribeUserCmdTasksResponse>.ResultSequence(input: input, region: region, command: self.describeUserCmdTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUserCmdTasksRequest, DescribeUserCmdTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeUserCmdTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmdTasks, logger: logger, on: eventLoop)
     }
 }

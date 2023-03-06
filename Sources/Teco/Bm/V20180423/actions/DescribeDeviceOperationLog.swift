@@ -140,7 +140,7 @@ extension Bm {
     /// 查询设备操作日志
     ///
     /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
-    @inlinable
+    @inlinable @discardableResult
     public func describeDeviceOperationLogPaginated(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceOperationLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDeviceOperationLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Bm {
     /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
     @inlinable
     public func describeDeviceOperationLogPaginator(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceOperationLogRequest, DescribeDeviceOperationLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceOperationLogRequest, DescribeDeviceOperationLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDeviceOperationLogRequest, DescribeDeviceOperationLogResponse>.ResultSequence(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDeviceOperationLogRequest, DescribeDeviceOperationLogResponse>.ResponseSequence(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)
     }
 }

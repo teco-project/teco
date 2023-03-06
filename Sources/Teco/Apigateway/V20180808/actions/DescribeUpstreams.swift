@@ -106,7 +106,7 @@ extension Apigateway {
     }
 
     /// 查询后端通道列表详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeUpstreamsPaginated(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUpstreamsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUpstreams, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -114,8 +114,6 @@ extension Apigateway {
     /// 查询后端通道列表详情
     @inlinable
     public func describeUpstreamsPaginator(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResultSequence(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResponseSequence(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
     }
 }

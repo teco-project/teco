@@ -122,7 +122,7 @@ extension Ape {
     /// 查询授权人列表
     ///
     /// 分页查询授权人列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuthUsersPaginated(_ input: DescribeAuthUsersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuthUsersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuthUsers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Ape {
     /// 分页查询授权人列表
     @inlinable
     public func describeAuthUsersPaginator(_ input: DescribeAuthUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResultSequence(input: input, region: region, command: self.describeAuthUsers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResponseSequence(input: input, region: region, command: self.describeAuthUsers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuthUsers, logger: logger, on: eventLoop)
     }
 }

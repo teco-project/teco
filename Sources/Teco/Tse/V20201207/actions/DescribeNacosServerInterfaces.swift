@@ -110,7 +110,7 @@ extension Tse {
     }
 
     /// 查询nacos服务接口列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeNacosServerInterfacesPaginated(_ input: DescribeNacosServerInterfacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNacosServerInterfacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNacosServerInterfaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Tse {
     /// 查询nacos服务接口列表
     @inlinable
     public func describeNacosServerInterfacesPaginator(_ input: DescribeNacosServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResultSequence(input: input, region: region, command: self.describeNacosServerInterfaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResponseSequence(input: input, region: region, command: self.describeNacosServerInterfaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNacosServerInterfaces, logger: logger, on: eventLoop)
     }
 }

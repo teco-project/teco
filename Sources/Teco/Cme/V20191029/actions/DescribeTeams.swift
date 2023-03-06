@@ -127,7 +127,7 @@ extension Cme {
     /// 获取团队信息
     ///
     /// 获取指定团队的信息，拉取团队信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTeamsPaginated(_ input: DescribeTeamsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTeamsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTeams, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Cme {
     /// 获取指定团队的信息，拉取团队信息列表。
     @inlinable
     public func describeTeamsPaginator(_ input: DescribeTeamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTeamsRequest, DescribeTeamsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTeamsRequest, DescribeTeamsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTeamsRequest, DescribeTeamsResponse>.ResultSequence(input: input, region: region, command: self.describeTeams, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTeamsRequest, DescribeTeamsResponse>.ResponseSequence(input: input, region: region, command: self.describeTeams, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTeams, logger: logger, on: eventLoop)
     }
 }

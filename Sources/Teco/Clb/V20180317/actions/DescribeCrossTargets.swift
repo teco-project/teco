@@ -126,7 +126,7 @@ extension Clb {
     /// 查询跨域2.0版本云联网后端子机和网卡信息
     ///
     /// 查询跨域2.0版本云联网后端子机和网卡信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCrossTargetsPaginated(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCrossTargetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCrossTargets, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Clb {
     /// 查询跨域2.0版本云联网后端子机和网卡信息。
     @inlinable
     public func describeCrossTargetsPaginator(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCrossTargetsRequest, DescribeCrossTargetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCrossTargetsRequest, DescribeCrossTargetsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCrossTargetsRequest, DescribeCrossTargetsResponse>.ResultSequence(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCrossTargetsRequest, DescribeCrossTargetsResponse>.ResponseSequence(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)
     }
 }

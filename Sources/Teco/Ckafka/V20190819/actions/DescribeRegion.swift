@@ -119,7 +119,7 @@ extension Ckafka {
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
-    @inlinable
+    @inlinable @discardableResult
     public func describeRegionPaginated(_ input: DescribeRegionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRegionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRegion, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Ckafka {
     /// 枚举地域,只支持广州地域
     @inlinable
     public func describeRegionPaginator(_ input: DescribeRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResultSequence(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResponseSequence(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
     }
 }

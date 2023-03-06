@@ -119,7 +119,7 @@ extension Wav {
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func queryActivityJoinListPaginated(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryActivityJoinListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryActivityJoinList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Wav {
     /// 根据游标拉取活动参与列表信息
     @inlinable
     public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResultSequence, responses: TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResultSequence(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResponseSequence(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
     }
 }

@@ -136,7 +136,7 @@ extension Monitor {
     }
 
     /// 获取条件模板列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeConditionsTemplateListPaginated(_ input: DescribeConditionsTemplateListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConditionsTemplateListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeConditionsTemplateList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Monitor {
     /// 获取条件模板列表
     @inlinable
     public func describeConditionsTemplateListPaginator(_ input: DescribeConditionsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResultSequence(input: input, region: region, command: self.describeConditionsTemplateList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResponseSequence(input: input, region: region, command: self.describeConditionsTemplateList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConditionsTemplateList, logger: logger, on: eventLoop)
     }
 }

@@ -147,7 +147,7 @@ extension Smh {
     /// 查询官方实例
     ///
     /// 查询官方云盘实例
-    @inlinable
+    @inlinable @discardableResult
     public func describeOfficialInstancesPaginated(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOfficialInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOfficialInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -157,8 +157,6 @@ extension Smh {
     /// 查询官方云盘实例
     @inlinable
     public func describeOfficialInstancesPaginator(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
     }
 }

@@ -118,7 +118,7 @@ extension Apigateway {
     /// 查询插件详情
     ///
     /// 展示插件详情，支持按照插件ID进行。
-    @inlinable
+    @inlinable @discardableResult
     public func describePluginPaginated(_ input: DescribePluginRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePluginResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePlugin, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Apigateway {
     /// 展示插件详情，支持按照插件ID进行。
     @inlinable
     public func describePluginPaginator(_ input: DescribePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResultSequence(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResponseSequence(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
     }
 }

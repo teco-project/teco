@@ -144,7 +144,7 @@ extension Cms {
     /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
     /// <br>
     /// 查询图片样本库，支持批量查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeFileSamplePaginated(_ input: DescribeFileSampleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileSampleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFileSample, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -156,8 +156,6 @@ extension Cms {
     /// 查询图片样本库，支持批量查询。
     @inlinable
     public func describeFileSamplePaginator(_ input: DescribeFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResultSequence(input: input, region: region, command: self.describeFileSample, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResponseSequence(input: input, region: region, command: self.describeFileSample, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileSample, logger: logger, on: eventLoop)
     }
 }

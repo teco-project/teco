@@ -111,7 +111,7 @@ extension Teo {
     }
 
     /// 查询默认证书列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDefaultCertificatesPaginated(_ input: DescribeDefaultCertificatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDefaultCertificatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDefaultCertificates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Teo {
     /// 查询默认证书列表
     @inlinable
     public func describeDefaultCertificatesPaginator(_ input: DescribeDefaultCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResultSequence(input: input, region: region, command: self.describeDefaultCertificates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResponseSequence(input: input, region: region, command: self.describeDefaultCertificates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDefaultCertificates, logger: logger, on: eventLoop)
     }
 }

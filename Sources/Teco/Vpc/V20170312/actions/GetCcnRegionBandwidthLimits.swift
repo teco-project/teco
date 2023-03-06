@@ -141,7 +141,7 @@ extension Vpc {
     /// 查询云联网相关地域带宽信息
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
-    @inlinable
+    @inlinable @discardableResult
     public func getCcnRegionBandwidthLimitsPaginated(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, onResponse: @escaping (GetCcnRegionBandwidthLimitsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getCcnRegionBandwidthLimits, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Vpc {
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     @inlinable
     public func getCcnRegionBandwidthLimitsPaginator(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetCcnRegionBandwidthLimitsRequest, GetCcnRegionBandwidthLimitsResponse>.ResultSequence, responses: TCClient.Paginator<GetCcnRegionBandwidthLimitsRequest, GetCcnRegionBandwidthLimitsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetCcnRegionBandwidthLimitsRequest, GetCcnRegionBandwidthLimitsResponse>.ResultSequence(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetCcnRegionBandwidthLimitsRequest, GetCcnRegionBandwidthLimitsResponse>.ResponseSequence(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)
     }
 }

@@ -145,7 +145,7 @@ extension Tbaas {
     }
 
     /// 获取最新交易列表
-    @inlinable
+    @inlinable @discardableResult
     public func getLatesdTransactionListPaginated(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLatesdTransactionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getLatesdTransactionList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Tbaas {
     /// 获取最新交易列表
     @inlinable
     public func getLatesdTransactionListPaginator(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetLatesdTransactionListRequest, GetLatesdTransactionListResponse>.ResultSequence, responses: TCClient.Paginator<GetLatesdTransactionListRequest, GetLatesdTransactionListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetLatesdTransactionListRequest, GetLatesdTransactionListResponse>.ResultSequence(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetLatesdTransactionListRequest, GetLatesdTransactionListResponse>.ResponseSequence(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
     }
 }

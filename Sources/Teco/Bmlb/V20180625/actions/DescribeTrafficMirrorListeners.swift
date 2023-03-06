@@ -157,7 +157,7 @@ extension Bmlb {
     /// 获取流量镜像的监听器列表信息
     ///
     /// 获取流量镜像的监听器列表信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTrafficMirrorListenersPaginated(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficMirrorListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTrafficMirrorListeners, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -167,8 +167,6 @@ extension Bmlb {
     /// 获取流量镜像的监听器列表信息。
     @inlinable
     public func describeTrafficMirrorListenersPaginator(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResultSequence(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResponseSequence(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
     }
 }

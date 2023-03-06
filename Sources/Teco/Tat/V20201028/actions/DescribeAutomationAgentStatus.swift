@@ -127,7 +127,7 @@ extension Tat {
     /// 查询客户端状态
     ///
     /// 此接口用于查询自动化助手客户端的状态。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAutomationAgentStatusPaginated(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutomationAgentStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAutomationAgentStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Tat {
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
     public func describeAutomationAgentStatusPaginator(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResultSequence(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
     }
 }

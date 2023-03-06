@@ -111,7 +111,7 @@ extension Cwp {
     }
 
     /// 获取阻断白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBanWhiteListPaginated(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBanWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBanWhiteList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Cwp {
     /// 获取阻断白名单列表
     @inlinable
     public func describeBanWhiteListPaginator(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
     }
 }

@@ -142,7 +142,7 @@ extension Trp {
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
-    @inlinable
+    @inlinable @discardableResult
     public func describeTraceDataListPaginated(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTraceDataListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTraceDataList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Trp {
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
     public func describeTraceDataListPaginator(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResultSequence(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResponseSequence(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
     }
 }

@@ -138,7 +138,7 @@ extension Tcss {
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskListPaginated(_ input: DescribeRiskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRiskList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Tcss {
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
     public func describeRiskListPaginator(_ input: DescribeRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResultSequence(input: input, region: region, command: self.describeRiskList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResponseSequence(input: input, region: region, command: self.describeRiskList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskList, logger: logger, on: eventLoop)
     }
 }

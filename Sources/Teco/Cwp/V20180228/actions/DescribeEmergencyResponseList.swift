@@ -134,7 +134,7 @@ extension Cwp {
     /// 应急响应列表
     ///
     /// 专家服务-应急响应列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeEmergencyResponseListPaginated(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEmergencyResponseListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEmergencyResponseList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Cwp {
     /// 专家服务-应急响应列表
     @inlinable
     public func describeEmergencyResponseListPaginator(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEmergencyResponseListRequest, DescribeEmergencyResponseListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEmergencyResponseListRequest, DescribeEmergencyResponseListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEmergencyResponseListRequest, DescribeEmergencyResponseListResponse>.ResultSequence(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEmergencyResponseListRequest, DescribeEmergencyResponseListResponse>.ResponseSequence(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)
     }
 }

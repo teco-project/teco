@@ -145,7 +145,7 @@ extension Cwp {
     }
 
     /// 查询资产管理数据库列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetDatabaseListPaginated(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetDatabaseListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetDatabaseList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Cwp {
     /// 查询资产管理数据库列表
     @inlinable
     public func describeAssetDatabaseListPaginator(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
     }
 }

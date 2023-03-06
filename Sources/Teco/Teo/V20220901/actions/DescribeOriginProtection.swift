@@ -109,7 +109,7 @@ extension Teo {
     }
 
     /// 查询源站防护信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeOriginProtectionPaginated(_ input: DescribeOriginProtectionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOriginProtectionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOriginProtection, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -117,8 +117,6 @@ extension Teo {
     /// 查询源站防护信息
     @inlinable
     public func describeOriginProtectionPaginator(_ input: DescribeOriginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResultSequence(input: input, region: region, command: self.describeOriginProtection, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResponseSequence(input: input, region: region, command: self.describeOriginProtection, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOriginProtection, logger: logger, on: eventLoop)
     }
 }

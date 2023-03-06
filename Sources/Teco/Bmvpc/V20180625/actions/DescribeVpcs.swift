@@ -129,7 +129,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpcsPaginated(_ input: DescribeVpcsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Bmvpc {
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
     @inlinable
     public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
     }
 }

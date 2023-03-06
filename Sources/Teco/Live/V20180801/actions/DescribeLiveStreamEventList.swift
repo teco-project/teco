@@ -211,7 +211,7 @@ extension Live {
     /// 注意：
     /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
     /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLiveStreamEventListPaginated(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLiveStreamEventList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -225,8 +225,6 @@ extension Live {
     /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
     @inlinable
     public func describeLiveStreamEventListPaginator(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveStreamEventListRequest, DescribeLiveStreamEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveStreamEventListRequest, DescribeLiveStreamEventListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLiveStreamEventListRequest, DescribeLiveStreamEventListResponse>.ResultSequence(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLiveStreamEventListRequest, DescribeLiveStreamEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)
     }
 }

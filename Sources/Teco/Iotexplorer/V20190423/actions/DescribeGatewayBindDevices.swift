@@ -124,7 +124,7 @@ extension Iotexplorer {
     }
 
     /// 获取网关绑定的子设备列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeGatewayBindDevicesPaginated(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayBindDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGatewayBindDevices, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Iotexplorer {
     /// 获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
     }
 }

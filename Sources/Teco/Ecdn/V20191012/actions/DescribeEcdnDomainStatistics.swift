@@ -177,7 +177,7 @@ extension Ecdn {
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func describeEcdnDomainStatisticsPaginated(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEcdnDomainStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEcdnDomainStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -189,8 +189,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatisticsPaginator(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEcdnDomainStatisticsRequest, DescribeEcdnDomainStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEcdnDomainStatisticsRequest, DescribeEcdnDomainStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEcdnDomainStatisticsRequest, DescribeEcdnDomainStatisticsResponse>.ResultSequence(input: input, region: region, command: self.describeEcdnDomainStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEcdnDomainStatisticsRequest, DescribeEcdnDomainStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.describeEcdnDomainStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEcdnDomainStatistics, logger: logger, on: eventLoop)
     }
 }

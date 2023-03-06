@@ -106,7 +106,7 @@ extension Tcr {
     }
 
     /// 查询个人收藏仓库
-    @inlinable
+    @inlinable @discardableResult
     public func describeFavorRepositoryPersonalPaginated(_ input: DescribeFavorRepositoryPersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFavorRepositoryPersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFavorRepositoryPersonal, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -114,8 +114,6 @@ extension Tcr {
     /// 查询个人收藏仓库
     @inlinable
     public func describeFavorRepositoryPersonalPaginator(_ input: DescribeFavorRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFavorRepositoryPersonalRequest, DescribeFavorRepositoryPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFavorRepositoryPersonalRequest, DescribeFavorRepositoryPersonalResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeFavorRepositoryPersonalRequest, DescribeFavorRepositoryPersonalResponse>.ResultSequence(input: input, region: region, command: self.describeFavorRepositoryPersonal, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeFavorRepositoryPersonalRequest, DescribeFavorRepositoryPersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeFavorRepositoryPersonal, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFavorRepositoryPersonal, logger: logger, on: eventLoop)
     }
 }

@@ -142,7 +142,7 @@ extension Ccc {
     /// 查询在线客服记录
     ///
     /// 获取包括全媒体和文本会话两种类型的服务记录。
-    @inlinable
+    @inlinable @discardableResult
     public func describeIMCdrsPaginated(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIMCdrsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIMCdrs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Ccc {
     /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrsPaginator(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIMCdrsRequest, DescribeIMCdrsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIMCdrsRequest, DescribeIMCdrsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIMCdrsRequest, DescribeIMCdrsResponse>.ResultSequence(input: input, region: region, command: self.describeIMCdrs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIMCdrsRequest, DescribeIMCdrsResponse>.ResponseSequence(input: input, region: region, command: self.describeIMCdrs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIMCdrs, logger: logger, on: eventLoop)
     }
 }

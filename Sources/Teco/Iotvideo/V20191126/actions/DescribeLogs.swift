@@ -149,7 +149,7 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLogsPaginated(_ input: DescribeLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Iotvideo {
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
     public func describeLogsPaginator(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResultSequence(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
     }
 }

@@ -124,7 +124,7 @@ extension Cwp {
     /// 用户基线策略列表查询
     ///
     /// 查询一个用户下的基线策略信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeBaselineStrategyListPaginated(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineStrategyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBaselineStrategyList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Cwp {
     /// 查询一个用户下的基线策略信息
     @inlinable
     public func describeBaselineStrategyListPaginator(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResultSequence(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResponseSequence(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
     }
 }

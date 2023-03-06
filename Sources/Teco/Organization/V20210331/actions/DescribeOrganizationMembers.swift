@@ -125,7 +125,7 @@ extension Organization {
     }
 
     /// 获取企业组织成员列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeOrganizationMembersPaginated(_ input: DescribeOrganizationMembersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationMembersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationMembers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Organization {
     /// 获取企业组织成员列表
     @inlinable
     public func describeOrganizationMembersPaginator(_ input: DescribeOrganizationMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationMembersRequest, DescribeOrganizationMembersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationMembersRequest, DescribeOrganizationMembersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOrganizationMembersRequest, DescribeOrganizationMembersResponse>.ResultSequence(input: input, region: region, command: self.describeOrganizationMembers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOrganizationMembersRequest, DescribeOrganizationMembersResponse>.ResponseSequence(input: input, region: region, command: self.describeOrganizationMembers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMembers, logger: logger, on: eventLoop)
     }
 }

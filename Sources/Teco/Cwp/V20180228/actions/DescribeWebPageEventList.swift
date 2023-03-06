@@ -123,7 +123,7 @@ extension Cwp {
     }
 
     /// 查询篡改事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeWebPageEventListPaginated(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebPageEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWebPageEventList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Cwp {
     /// 查询篡改事件列表
     @inlinable
     public func describeWebPageEventListPaginator(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResultSequence(input: input, region: region, command: self.describeWebPageEventList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeWebPageEventList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebPageEventList, logger: logger, on: eventLoop)
     }
 }

@@ -147,7 +147,7 @@ extension Iotvideoindustry {
     }
 
     /// 直播录像回放列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeLiveVideoListPaginated(_ input: DescribeLiveVideoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveVideoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLiveVideoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Iotvideoindustry {
     /// 直播录像回放列表
     @inlinable
     public func describeLiveVideoListPaginator(_ input: DescribeLiveVideoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveVideoListRequest, DescribeLiveVideoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveVideoListRequest, DescribeLiveVideoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLiveVideoListRequest, DescribeLiveVideoListResponse>.ResultSequence(input: input, region: region, command: self.describeLiveVideoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLiveVideoListRequest, DescribeLiveVideoListResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveVideoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveVideoList, logger: logger, on: eventLoop)
     }
 }

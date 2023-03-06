@@ -126,7 +126,7 @@ extension Ckafka {
     }
 
     /// 查询Datahub任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDatahubTasksPaginated(_ input: DescribeDatahubTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatahubTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDatahubTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Ckafka {
     /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasksPaginator(_ input: DescribeDatahubTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDatahubTasksRequest, DescribeDatahubTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDatahubTasksRequest, DescribeDatahubTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDatahubTasksRequest, DescribeDatahubTasksResponse>.ResultSequence(input: input, region: region, command: self.describeDatahubTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDatahubTasksRequest, DescribeDatahubTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeDatahubTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatahubTasks, logger: logger, on: eventLoop)
     }
 }

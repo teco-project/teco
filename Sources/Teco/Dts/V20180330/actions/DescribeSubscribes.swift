@@ -172,7 +172,7 @@ extension Dts {
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
-    @inlinable
+    @inlinable @discardableResult
     public func describeSubscribesPaginated(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubscribesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSubscribes, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -182,8 +182,6 @@ extension Dts {
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
     public func describeSubscribesPaginator(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResultSequence(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResponseSequence(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
     }
 }

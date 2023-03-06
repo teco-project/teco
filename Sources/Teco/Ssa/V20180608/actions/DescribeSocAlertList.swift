@@ -133,7 +133,7 @@ extension Ssa {
     /// 告警列表
     ///
     /// 拉取告警列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSocAlertListPaginated(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocAlertListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSocAlertList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Ssa {
     /// 拉取告警列表
     @inlinable
     public func describeSocAlertListPaginator(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResultSequence(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResponseSequence(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
     }
 }

@@ -172,7 +172,7 @@ extension Cpdp {
     /// 聚鑫-查询订单接口
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
-    @inlinable
+    @inlinable @discardableResult
     public func queryOrderPaginated(_ input: QueryOrderRequest, region: TCRegion? = nil, onResponse: @escaping (QueryOrderResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryOrder, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -182,8 +182,6 @@ extension Cpdp {
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
     public func queryOrderPaginator(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResultSequence, responses: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResultSequence(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResponseSequence(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
     }
 }

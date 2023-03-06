@@ -152,7 +152,7 @@ extension Tbaas {
     /// 查询区块列表
     ///
     /// 查看当前网络下的所有区块列表，分页展示
-    @inlinable
+    @inlinable @discardableResult
     public func getBlockListPaginated(_ input: GetBlockListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBlockListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getBlockList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Tbaas {
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
     public func getBlockListPaginator(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResultSequence, responses: TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResultSequence(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResponseSequence(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
     }
 }

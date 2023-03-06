@@ -120,7 +120,7 @@ extension Tcaplusdb {
     }
 
     /// 查询表描述文件详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeIdlFileInfosPaginated(_ input: DescribeIdlFileInfosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIdlFileInfosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIdlFileInfos, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcaplusdb {
     /// 查询表描述文件详情
     @inlinable
     public func describeIdlFileInfosPaginator(_ input: DescribeIdlFileInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResultSequence(input: input, region: region, command: self.describeIdlFileInfos, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResponseSequence(input: input, region: region, command: self.describeIdlFileInfos, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdlFileInfos, logger: logger, on: eventLoop)
     }
 }

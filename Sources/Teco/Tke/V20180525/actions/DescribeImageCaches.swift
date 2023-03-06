@@ -135,7 +135,7 @@ extension Tke {
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeImageCachesPaginated(_ input: DescribeImageCachesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageCachesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImageCaches, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Tke {
     /// 查询镜像缓存信息接口
     @inlinable
     public func describeImageCachesPaginator(_ input: DescribeImageCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageCachesRequest, DescribeImageCachesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageCachesRequest, DescribeImageCachesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImageCachesRequest, DescribeImageCachesResponse>.ResultSequence(input: input, region: region, command: self.describeImageCaches, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImageCachesRequest, DescribeImageCachesResponse>.ResponseSequence(input: input, region: region, command: self.describeImageCaches, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageCaches, logger: logger, on: eventLoop)
     }
 }

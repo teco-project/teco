@@ -134,7 +134,7 @@ extension Cdn {
     /// 查询SCDN安全防护IP白名单
     ///
     /// 查询在SCDN IP安全策略
-    @inlinable
+    @inlinable @discardableResult
     public func describeScdnIpStrategyPaginated(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScdnIpStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScdnIpStrategy, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Cdn {
     /// 查询在SCDN IP安全策略
     @inlinable
     public func describeScdnIpStrategyPaginator(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResultSequence(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResponseSequence(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
     }
 }

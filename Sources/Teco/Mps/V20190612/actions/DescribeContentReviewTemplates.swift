@@ -129,7 +129,7 @@ extension Mps {
     /// 获取智能审核模板列表
     ///
     /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
-    @inlinable
+    @inlinable @discardableResult
     public func describeContentReviewTemplatesPaginated(_ input: DescribeContentReviewTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeContentReviewTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeContentReviewTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Mps {
     /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
     @inlinable
     public func describeContentReviewTemplatesPaginator(_ input: DescribeContentReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
     }
 }

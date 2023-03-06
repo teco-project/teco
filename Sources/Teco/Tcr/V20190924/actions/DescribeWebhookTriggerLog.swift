@@ -120,7 +120,7 @@ extension Tcr {
     }
 
     /// 获取触发器日志
-    @inlinable
+    @inlinable @discardableResult
     public func describeWebhookTriggerLogPaginated(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebhookTriggerLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWebhookTriggerLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcr {
     /// 获取触发器日志
     @inlinable
     public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResultSequence(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResponseSequence(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
     }
 }

@@ -125,7 +125,7 @@ extension Cdc {
     }
 
     /// 查询专用集群订单列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeDedicatedClusterOrdersPaginated(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDedicatedClusterOrdersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDedicatedClusterOrders, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Cdc {
     /// 查询专用集群订单列表
     @inlinable
     public func describeDedicatedClusterOrdersPaginator(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResultSequence(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResponseSequence(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
     }
 }

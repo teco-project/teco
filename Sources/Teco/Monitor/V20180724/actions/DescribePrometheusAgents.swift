@@ -121,7 +121,7 @@ extension Monitor {
     }
 
     /// 列出 Prometheus CVM Agent
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusAgentsPaginated(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusAgentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusAgents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Monitor {
     /// 列出 Prometheus CVM Agent
     @inlinable
     public func describePrometheusAgentsPaginator(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)
     }
 }

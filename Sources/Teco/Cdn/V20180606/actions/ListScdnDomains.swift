@@ -124,7 +124,7 @@ extension Cdn {
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
-    @inlinable
+    @inlinable @discardableResult
     public func listScdnDomainsPaginated(_ input: ListScdnDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (ListScdnDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listScdnDomains, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Cdn {
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
     @inlinable
     public func listScdnDomainsPaginator(_ input: ListScdnDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListScdnDomainsRequest, ListScdnDomainsResponse>.ResultSequence, responses: TCClient.Paginator<ListScdnDomainsRequest, ListScdnDomainsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListScdnDomainsRequest, ListScdnDomainsResponse>.ResultSequence(input: input, region: region, command: self.listScdnDomains, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListScdnDomainsRequest, ListScdnDomainsResponse>.ResponseSequence(input: input, region: region, command: self.listScdnDomains, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listScdnDomains, logger: logger, on: eventLoop)
     }
 }

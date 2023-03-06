@@ -135,7 +135,7 @@ extension Tbaas {
     }
 
     /// 获取区块内的交易列表
-    @inlinable
+    @inlinable @discardableResult
     public func getBlockTransactionListForUserPaginated(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetBlockTransactionListForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getBlockTransactionListForUser, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Tbaas {
     /// 获取区块内的交易列表
     @inlinable
     public func getBlockTransactionListForUserPaginator(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBlockTransactionListForUserRequest, GetBlockTransactionListForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetBlockTransactionListForUserRequest, GetBlockTransactionListForUserResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetBlockTransactionListForUserRequest, GetBlockTransactionListForUserResponse>.ResultSequence(input: input, region: region, command: self.getBlockTransactionListForUser, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetBlockTransactionListForUserRequest, GetBlockTransactionListForUserResponse>.ResponseSequence(input: input, region: region, command: self.getBlockTransactionListForUser, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBlockTransactionListForUser, logger: logger, on: eventLoop)
     }
 }

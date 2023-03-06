@@ -142,7 +142,7 @@ extension Tdmq {
     /// 获取消费订阅列表
     ///
     /// 查询指定环境和主题下的订阅者列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSubscriptionsPaginated(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubscriptionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSubscriptions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Tdmq {
     /// 查询指定环境和主题下的订阅者列表
     @inlinable
     public func describeSubscriptionsPaginator(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubscriptionsRequest, DescribeSubscriptionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubscriptionsRequest, DescribeSubscriptionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSubscriptionsRequest, DescribeSubscriptionsResponse>.ResultSequence(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSubscriptionsRequest, DescribeSubscriptionsResponse>.ResponseSequence(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)
     }
 }

@@ -156,7 +156,7 @@ extension Tsf {
     /// 查询单元化网关API监控明细数据
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
-    @inlinable
+    @inlinable @discardableResult
     public func describeUnitApiUseDetailPaginated(_ input: DescribeUnitApiUseDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUnitApiUseDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUnitApiUseDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -166,8 +166,6 @@ extension Tsf {
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
     public func describeUnitApiUseDetailPaginator(_ input: DescribeUnitApiUseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResultSequence(input: input, region: region, command: self.describeUnitApiUseDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeUnitApiUseDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitApiUseDetail, logger: logger, on: eventLoop)
     }
 }

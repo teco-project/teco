@@ -137,7 +137,7 @@ extension Vpc {
     ///
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
-    @inlinable
+    @inlinable @discardableResult
     public func describeIp6TranslatorsPaginated(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIp6TranslatorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIp6Translators, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Vpc {
     /// 2. 支持过滤查询
     @inlinable
     public func describeIp6TranslatorsPaginator(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIp6TranslatorsRequest, DescribeIp6TranslatorsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIp6TranslatorsRequest, DescribeIp6TranslatorsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIp6TranslatorsRequest, DescribeIp6TranslatorsResponse>.ResultSequence(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIp6TranslatorsRequest, DescribeIp6TranslatorsResponse>.ResponseSequence(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)
     }
 }

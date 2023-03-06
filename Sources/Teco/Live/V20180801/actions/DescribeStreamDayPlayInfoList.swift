@@ -153,7 +153,7 @@ extension Live {
     /// 查询所有流的流量数据
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
-    @inlinable
+    @inlinable @discardableResult
     public func describeStreamDayPlayInfoListPaginated(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamDayPlayInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeStreamDayPlayInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -163,8 +163,6 @@ extension Live {
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoListPaginator(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStreamDayPlayInfoListRequest, DescribeStreamDayPlayInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStreamDayPlayInfoListRequest, DescribeStreamDayPlayInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeStreamDayPlayInfoListRequest, DescribeStreamDayPlayInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeStreamDayPlayInfoListRequest, DescribeStreamDayPlayInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)
     }
 }

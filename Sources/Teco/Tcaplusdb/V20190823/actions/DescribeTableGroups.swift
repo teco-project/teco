@@ -120,7 +120,7 @@ extension Tcaplusdb {
     }
 
     /// 查询表格组列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeTableGroupsPaginated(_ input: DescribeTableGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTableGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTableGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcaplusdb {
     /// 查询表格组列表
     @inlinable
     public func describeTableGroupsPaginator(_ input: DescribeTableGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeTableGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeTableGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTableGroups, logger: logger, on: eventLoop)
     }
 }

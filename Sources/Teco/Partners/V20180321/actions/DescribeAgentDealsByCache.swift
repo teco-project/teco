@@ -165,7 +165,7 @@ extension Partners {
     /// 代理商缓存订单查询接口（预付费）
     ///
     /// 供代理商拉取缓存的全量预付费客户订单
-    @inlinable
+    @inlinable @discardableResult
     public func describeAgentDealsByCachePaginated(_ input: DescribeAgentDealsByCacheRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentDealsByCacheResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAgentDealsByCache, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -175,8 +175,6 @@ extension Partners {
     /// 供代理商拉取缓存的全量预付费客户订单
     @inlinable
     public func describeAgentDealsByCachePaginator(_ input: DescribeAgentDealsByCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentDealsByCacheRequest, DescribeAgentDealsByCacheResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentDealsByCacheRequest, DescribeAgentDealsByCacheResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAgentDealsByCacheRequest, DescribeAgentDealsByCacheResponse>.ResultSequence(input: input, region: region, command: self.describeAgentDealsByCache, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAgentDealsByCacheRequest, DescribeAgentDealsByCacheResponse>.ResponseSequence(input: input, region: region, command: self.describeAgentDealsByCache, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentDealsByCache, logger: logger, on: eventLoop)
     }
 }

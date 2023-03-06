@@ -149,7 +149,7 @@ extension Cdb {
     /// 本接口(DescribeBackupTables)用于查询指定的数据库的备份数据表名 (已废弃)。
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBackupTablesPaginated(_ input: DescribeBackupTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBackupTables, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -161,8 +161,6 @@ extension Cdb {
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
     public func describeBackupTablesPaginator(_ input: DescribeBackupTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupTablesRequest, DescribeBackupTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupTablesRequest, DescribeBackupTablesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBackupTablesRequest, DescribeBackupTablesResponse>.ResultSequence(input: input, region: region, command: self.describeBackupTables, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBackupTablesRequest, DescribeBackupTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeBackupTables, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupTables, logger: logger, on: eventLoop)
     }
 }

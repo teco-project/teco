@@ -135,7 +135,7 @@ extension Monitor {
     }
 
     /// 获取已绑定对象列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBindingPolicyObjectListPaginated(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindingPolicyObjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBindingPolicyObjectList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Monitor {
     /// 获取已绑定对象列表
     @inlinable
     public func describeBindingPolicyObjectListPaginator(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResultSequence(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResponseSequence(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
     }
 }

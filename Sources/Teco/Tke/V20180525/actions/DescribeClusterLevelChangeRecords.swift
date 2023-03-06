@@ -120,7 +120,7 @@ extension Tke {
     }
 
     /// 查询集群变配记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeClusterLevelChangeRecordsPaginated(_ input: DescribeClusterLevelChangeRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterLevelChangeRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClusterLevelChangeRecords, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tke {
     /// 查询集群变配记录
     @inlinable
     public func describeClusterLevelChangeRecordsPaginator(_ input: DescribeClusterLevelChangeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResultSequence(input: input, region: region, command: self.describeClusterLevelChangeRecords, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterLevelChangeRecords, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterLevelChangeRecords, logger: logger, on: eventLoop)
     }
 }

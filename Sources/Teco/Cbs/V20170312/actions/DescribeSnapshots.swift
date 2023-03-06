@@ -157,7 +157,7 @@ extension Cbs {
     ///
     /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSnapshotsPaginated(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSnapshots, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -170,8 +170,6 @@ extension Cbs {
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
     @inlinable
     public func describeSnapshotsPaginator(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResultSequence(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResponseSequence(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
     }
 }

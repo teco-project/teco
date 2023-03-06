@@ -181,7 +181,7 @@ extension Scf {
     /// 获取函数运行日志
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
-    @inlinable
+    @inlinable @discardableResult
     public func getFunctionLogsPaginated(_ input: GetFunctionLogsRequest, region: TCRegion? = nil, onResponse: @escaping (GetFunctionLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getFunctionLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -191,8 +191,6 @@ extension Scf {
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     @inlinable
     public func getFunctionLogsPaginator(_ input: GetFunctionLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetFunctionLogsRequest, GetFunctionLogsResponse>.ResultSequence, responses: TCClient.Paginator<GetFunctionLogsRequest, GetFunctionLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetFunctionLogsRequest, GetFunctionLogsResponse>.ResultSequence(input: input, region: region, command: self.getFunctionLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetFunctionLogsRequest, GetFunctionLogsResponse>.ResponseSequence(input: input, region: region, command: self.getFunctionLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getFunctionLogs, logger: logger, on: eventLoop)
     }
 }

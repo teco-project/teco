@@ -130,7 +130,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
     /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsagePlanEnvironmentsPaginated(_ input: DescribeUsagePlanEnvironmentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlanEnvironmentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsagePlanEnvironments, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Apigateway {
     /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
     @inlinable
     public func describeUsagePlanEnvironmentsPaginator(_ input: DescribeUsagePlanEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsagePlanEnvironmentsRequest, DescribeUsagePlanEnvironmentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsagePlanEnvironmentsRequest, DescribeUsagePlanEnvironmentsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsagePlanEnvironmentsRequest, DescribeUsagePlanEnvironmentsResponse>.ResultSequence(input: input, region: region, command: self.describeUsagePlanEnvironments, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsagePlanEnvironmentsRequest, DescribeUsagePlanEnvironmentsResponse>.ResponseSequence(input: input, region: region, command: self.describeUsagePlanEnvironments, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlanEnvironments, logger: logger, on: eventLoop)
     }
 }

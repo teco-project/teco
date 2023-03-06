@@ -122,7 +122,7 @@ extension Youmall {
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func describePersonPaginated(_ input: DescribePersonRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePerson, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Youmall {
     /// 查询指定某一卖场的用户信息
     @inlinable
     public func describePersonPaginator(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResultSequence(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResponseSequence(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
     }
 }

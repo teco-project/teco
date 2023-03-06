@@ -120,7 +120,7 @@ extension Cwp {
     }
 
     /// 获取客户端异常事件
-    @inlinable
+    @inlinable @discardableResult
     public func describeClientExceptionPaginated(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClientExceptionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClientException, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Cwp {
     /// 获取客户端异常事件
     @inlinable
     public func describeClientExceptionPaginator(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientExceptionRequest, DescribeClientExceptionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientExceptionRequest, DescribeClientExceptionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeClientExceptionRequest, DescribeClientExceptionResponse>.ResultSequence(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeClientExceptionRequest, DescribeClientExceptionResponse>.ResponseSequence(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)
     }
 }

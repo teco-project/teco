@@ -121,7 +121,7 @@ extension Mna {
     /// 设备信息列表
     ///
     /// 获取设备信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func getDevicesPaginated(_ input: GetDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (GetDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getDevices, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Mna {
     /// 获取设备信息列表
     @inlinable
     public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResultSequence, responses: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResultSequence(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResponseSequence(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
     }
 }

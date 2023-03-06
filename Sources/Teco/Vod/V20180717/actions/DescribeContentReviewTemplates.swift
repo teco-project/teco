@@ -133,7 +133,7 @@ extension Vod {
     ///
     /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [获取审核模板列表](https://cloud.tencent.com/document/api/266/84389)。
     /// 根据音视频内容审核模板唯一标识，获取音视频内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置内容审核模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.AE.A1.E6.A0.B8.E6.A8.A1.E6.9D.BF)。
-    @inlinable
+    @inlinable @discardableResult
     public func describeContentReviewTemplatesPaginated(_ input: DescribeContentReviewTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeContentReviewTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeContentReviewTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 根据音视频内容审核模板唯一标识，获取音视频内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置内容审核模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.AE.A1.E6.A0.B8.E6.A8.A1.E6.9D.BF)。
     @inlinable
     public func describeContentReviewTemplatesPaginator(_ input: DescribeContentReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeContentReviewTemplatesRequest, DescribeContentReviewTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)
     }
 }

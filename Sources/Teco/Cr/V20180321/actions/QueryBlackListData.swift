@@ -139,7 +139,7 @@ extension Cr {
     }
 
     /// 查看黑名单数据列表
-    @inlinable
+    @inlinable @discardableResult
     public func queryBlackListDataPaginated(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, onResponse: @escaping (QueryBlackListDataResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryBlackListData, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Cr {
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListDataPaginator(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResultSequence, responses: TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResultSequence(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResponseSequence(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
     }
 }

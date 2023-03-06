@@ -156,7 +156,7 @@ extension Cdn {
     /// 日志下载链接查询
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCdnDomainLogsPaginated(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCdnDomainLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCdnDomainLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -166,8 +166,6 @@ extension Cdn {
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
     @inlinable
     public func describeCdnDomainLogsPaginator(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResultSequence(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
     }
 }

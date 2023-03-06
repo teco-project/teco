@@ -111,7 +111,7 @@ extension Privatedns {
     }
 
     /// 获取操作日志列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAuditLogPaginated(_ input: DescribeAuditLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAuditLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Privatedns {
     /// 获取操作日志列表
     @inlinable
     public func describeAuditLogPaginator(_ input: DescribeAuditLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditLogRequest, DescribeAuditLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditLogRequest, DescribeAuditLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAuditLogRequest, DescribeAuditLogResponse>.ResultSequence(input: input, region: region, command: self.describeAuditLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAuditLogRequest, DescribeAuditLogResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLog, logger: logger, on: eventLoop)
     }
 }

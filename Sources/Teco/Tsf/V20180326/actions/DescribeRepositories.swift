@@ -111,7 +111,7 @@ extension Tsf {
     }
 
     /// 查询仓库列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeRepositoriesPaginated(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRepositoriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRepositories, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Tsf {
     /// 查询仓库列表
     @inlinable
     public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResultSequence(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResponseSequence(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)
     }
 }

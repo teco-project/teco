@@ -178,7 +178,7 @@ extension Live {
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLivePackageInfoPaginated(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLivePackageInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLivePackageInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -188,8 +188,6 @@ extension Live {
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
     public func describeLivePackageInfoPaginator(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResultSequence(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
     }
 }

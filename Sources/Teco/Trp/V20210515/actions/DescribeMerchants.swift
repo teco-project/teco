@@ -122,7 +122,7 @@ extension Trp {
     }
 
     /// 查询商户列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeMerchantsPaginated(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMerchantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMerchants, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Trp {
     /// 查询商户列表
     @inlinable
     public func describeMerchantsPaginator(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResultSequence(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResponseSequence(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
     }
 }

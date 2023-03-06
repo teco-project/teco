@@ -134,7 +134,7 @@ extension Vod {
     /// 获取转动图模板列表
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAnimatedGraphicsTemplatesPaginated(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAnimatedGraphicsTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 查询转动图模板列表，支持根据条件，分页查询。
     @inlinable
     public func describeAnimatedGraphicsTemplatesPaginator(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAnimatedGraphicsTemplatesRequest, DescribeAnimatedGraphicsTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAnimatedGraphicsTemplatesRequest, DescribeAnimatedGraphicsTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAnimatedGraphicsTemplatesRequest, DescribeAnimatedGraphicsTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAnimatedGraphicsTemplatesRequest, DescribeAnimatedGraphicsTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)
     }
 }

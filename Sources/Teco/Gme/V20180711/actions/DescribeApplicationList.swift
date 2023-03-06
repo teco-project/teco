@@ -137,7 +137,7 @@ extension Gme {
     /// 查询某账号下的应用列表
     ///
     /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeApplicationListPaginated(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApplicationList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Gme {
     /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
     @inlinable
     public func describeApplicationListPaginator(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResultSequence(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResponseSequence(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)
     }
 }

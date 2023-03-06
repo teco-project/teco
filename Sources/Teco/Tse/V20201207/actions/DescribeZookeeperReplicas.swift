@@ -111,7 +111,7 @@ extension Tse {
     }
 
     /// 查询Zookeeper类型注册引擎实例副本信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeZookeeperReplicasPaginated(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZookeeperReplicasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeZookeeperReplicas, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Tse {
     /// 查询Zookeeper类型注册引擎实例副本信息
     @inlinable
     public func describeZookeeperReplicasPaginator(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResultSequence(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResponseSequence(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
     }
 }

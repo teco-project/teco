@@ -130,7 +130,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceEnvironmentReleaseHistory）用于查询服务环境的发布历史。
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
-    @inlinable
+    @inlinable @discardableResult
     public func describeServiceEnvironmentReleaseHistoryPaginated(_ input: DescribeServiceEnvironmentReleaseHistoryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceEnvironmentReleaseHistoryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeServiceEnvironmentReleaseHistory, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Apigateway {
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     @inlinable
     public func describeServiceEnvironmentReleaseHistoryPaginator(_ input: DescribeServiceEnvironmentReleaseHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceEnvironmentReleaseHistoryRequest, DescribeServiceEnvironmentReleaseHistoryResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceEnvironmentReleaseHistoryRequest, DescribeServiceEnvironmentReleaseHistoryResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeServiceEnvironmentReleaseHistoryRequest, DescribeServiceEnvironmentReleaseHistoryResponse>.ResultSequence(input: input, region: region, command: self.describeServiceEnvironmentReleaseHistory, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeServiceEnvironmentReleaseHistoryRequest, DescribeServiceEnvironmentReleaseHistoryResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceEnvironmentReleaseHistory, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceEnvironmentReleaseHistory, logger: logger, on: eventLoop)
     }
 }

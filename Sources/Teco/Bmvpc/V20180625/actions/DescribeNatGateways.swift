@@ -152,7 +152,7 @@ extension Bmvpc {
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
-    @inlinable
+    @inlinable @discardableResult
     public func describeNatGatewaysPaginated(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNatGateways, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -162,8 +162,6 @@ extension Bmvpc {
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
     public func describeNatGatewaysPaginator(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResultSequence(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResponseSequence(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
     }
 }

@@ -136,7 +136,7 @@ extension Yunjing {
     /// 网络攻击日志列表
     ///
     /// 按分页形式展示网络攻击日志列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAttackLogsPaginated(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAttackLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAttackLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -146,8 +146,6 @@ extension Yunjing {
     /// 按分页形式展示网络攻击日志列表
     @inlinable
     public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResultSequence(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
     }
 }

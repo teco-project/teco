@@ -135,7 +135,7 @@ extension Batch {
     /// 查看作业列表
     ///
     /// 用于查询若干个作业的概览信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeJobsPaginated(_ input: DescribeJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Batch {
     /// 用于查询若干个作业的概览信息
     @inlinable
     public func describeJobsPaginator(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResultSequence(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
     }
 }

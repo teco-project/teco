@@ -162,7 +162,7 @@ extension Monitor {
     }
 
     /// 获取基础告警列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBasicAlarmListPaginated(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBasicAlarmListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBasicAlarmList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -170,8 +170,6 @@ extension Monitor {
     /// 获取基础告警列表
     @inlinable
     public func describeBasicAlarmListPaginator(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResultSequence(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResponseSequence(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
     }
 }

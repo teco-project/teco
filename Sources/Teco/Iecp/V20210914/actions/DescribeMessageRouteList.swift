@@ -125,7 +125,7 @@ extension Iecp {
     }
 
     /// 获取消息路由列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeMessageRouteListPaginated(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMessageRouteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMessageRouteList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Iecp {
     /// 获取消息路由列表
     @inlinable
     public func describeMessageRouteListPaginator(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResultSequence(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResponseSequence(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
     }
 }

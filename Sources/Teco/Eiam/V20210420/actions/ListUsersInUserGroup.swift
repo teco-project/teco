@@ -127,7 +127,7 @@ extension Eiam {
     }
 
     /// 获取用户组中的用户列表
-    @inlinable
+    @inlinable @discardableResult
     public func listUsersInUserGroupPaginated(_ input: ListUsersInUserGroupRequest, region: TCRegion? = nil, onResponse: @escaping (ListUsersInUserGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listUsersInUserGroup, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Eiam {
     /// 获取用户组中的用户列表
     @inlinable
     public func listUsersInUserGroupPaginator(_ input: ListUsersInUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResultSequence, responses: TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResultSequence(input: input, region: region, command: self.listUsersInUserGroup, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResponseSequence(input: input, region: region, command: self.listUsersInUserGroup, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listUsersInUserGroup, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Vpc {
     /// 查询快照文件
     ///
     /// 本接口（DescribeSnapshotFiles）用于查询快照文件。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSnapshotFilesPaginated(_ input: DescribeSnapshotFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSnapshotFiles, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Vpc {
     /// 本接口（DescribeSnapshotFiles）用于查询快照文件。
     @inlinable
     public func describeSnapshotFilesPaginator(_ input: DescribeSnapshotFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResultSequence(input: input, region: region, command: self.describeSnapshotFiles, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResponseSequence(input: input, region: region, command: self.describeSnapshotFiles, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotFiles, logger: logger, on: eventLoop)
     }
 }

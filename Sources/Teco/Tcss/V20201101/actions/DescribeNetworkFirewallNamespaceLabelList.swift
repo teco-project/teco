@@ -126,7 +126,7 @@ extension Tcss {
     }
 
     /// 查询集群网络空间标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeNetworkFirewallNamespaceLabelListPaginated(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallNamespaceLabelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tcss {
     /// 查询集群网络空间标签列表
     @inlinable
     public func describeNetworkFirewallNamespaceLabelListPaginator(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResultSequence(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResponseSequence(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, logger: logger, on: eventLoop)
     }
 }

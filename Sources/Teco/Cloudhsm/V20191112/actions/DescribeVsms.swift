@@ -126,7 +126,7 @@ extension Cloudhsm {
     }
 
     /// 获取用户VSM列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVsmsPaginated(_ input: DescribeVsmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVsmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVsms, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Cloudhsm {
     /// 获取用户VSM列表
     @inlinable
     public func describeVsmsPaginator(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResultSequence(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResponseSequence(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
     }
 }

@@ -177,7 +177,7 @@ extension Mongodb {
     /// 查询云数据库实例列表
     ///
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -187,8 +187,6 @@ extension Mongodb {
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
     @inlinable
     public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
     }
 }

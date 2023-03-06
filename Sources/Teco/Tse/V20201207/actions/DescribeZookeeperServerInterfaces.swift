@@ -110,7 +110,7 @@ extension Tse {
     }
 
     /// 查询zookeeper服务接口列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeZookeeperServerInterfacesPaginated(_ input: DescribeZookeeperServerInterfacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZookeeperServerInterfacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeZookeeperServerInterfaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Tse {
     /// 查询zookeeper服务接口列表
     @inlinable
     public func describeZookeeperServerInterfacesPaginator(_ input: DescribeZookeeperServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZookeeperServerInterfacesRequest, DescribeZookeeperServerInterfacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZookeeperServerInterfacesRequest, DescribeZookeeperServerInterfacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeZookeeperServerInterfacesRequest, DescribeZookeeperServerInterfacesResponse>.ResultSequence(input: input, region: region, command: self.describeZookeeperServerInterfaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeZookeeperServerInterfacesRequest, DescribeZookeeperServerInterfacesResponse>.ResponseSequence(input: input, region: region, command: self.describeZookeeperServerInterfaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperServerInterfaces, logger: logger, on: eventLoop)
     }
 }

@@ -116,7 +116,7 @@ extension Tcss {
     }
 
     /// 查询漏洞防御插件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulDefencePluginPaginated(_ input: DescribeVulDefencePluginRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulDefencePluginResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVulDefencePlugin, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Tcss {
     /// 查询漏洞防御插件列表
     @inlinable
     public func describeVulDefencePluginPaginator(_ input: DescribeVulDefencePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResultSequence(input: input, region: region, command: self.describeVulDefencePlugin, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResponseSequence(input: input, region: region, command: self.describeVulDefencePlugin, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefencePlugin, logger: logger, on: eventLoop)
     }
 }

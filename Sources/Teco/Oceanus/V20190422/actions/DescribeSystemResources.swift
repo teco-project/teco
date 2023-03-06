@@ -125,7 +125,7 @@ extension Oceanus {
     }
 
     /// 描述系统资源接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeSystemResourcesPaginated(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSystemResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSystemResources, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Oceanus {
     /// 描述系统资源接口
     @inlinable
     public func describeSystemResourcesPaginator(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
     }
 }

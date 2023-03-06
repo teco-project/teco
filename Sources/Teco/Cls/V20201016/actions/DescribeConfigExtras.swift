@@ -123,7 +123,7 @@ extension Cls {
     /// 获取特殊采集配置
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
+    @inlinable @discardableResult
     public func describeConfigExtrasPaginated(_ input: DescribeConfigExtrasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigExtrasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeConfigExtras, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Cls {
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
     public func describeConfigExtrasPaginator(_ input: DescribeConfigExtrasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigExtrasRequest, DescribeConfigExtrasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigExtrasRequest, DescribeConfigExtrasResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeConfigExtrasRequest, DescribeConfigExtrasResponse>.ResultSequence(input: input, region: region, command: self.describeConfigExtras, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeConfigExtrasRequest, DescribeConfigExtrasResponse>.ResponseSequence(input: input, region: region, command: self.describeConfigExtras, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigExtras, logger: logger, on: eventLoop)
     }
 }

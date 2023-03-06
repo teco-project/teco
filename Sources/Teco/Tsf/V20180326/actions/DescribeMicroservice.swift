@@ -117,7 +117,7 @@ extension Tsf {
     }
 
     /// 查询微服务详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeMicroservicePaginated(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMicroserviceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMicroservice, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Tsf {
     /// 查询微服务详情
     @inlinable
     public func describeMicroservicePaginator(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMicroserviceRequest, DescribeMicroserviceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMicroserviceRequest, DescribeMicroserviceResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMicroserviceRequest, DescribeMicroserviceResponse>.ResultSequence(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMicroserviceRequest, DescribeMicroserviceResponse>.ResponseSequence(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)
     }
 }

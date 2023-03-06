@@ -167,7 +167,7 @@ extension Ecdn {
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePurgeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePurgeTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -179,8 +179,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
     }
 }

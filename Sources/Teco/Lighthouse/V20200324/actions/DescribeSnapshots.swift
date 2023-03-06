@@ -141,7 +141,7 @@ extension Lighthouse {
     /// 查看快照列表
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSnapshotsPaginated(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSnapshots, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Lighthouse {
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
     public func describeSnapshotsPaginator(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResultSequence(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResponseSequence(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
     }
 }

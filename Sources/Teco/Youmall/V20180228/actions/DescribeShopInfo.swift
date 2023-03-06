@@ -117,7 +117,7 @@ extension Youmall {
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeShopInfoPaginated(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShopInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeShopInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -127,8 +127,6 @@ extension Youmall {
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
     public func describeShopInfoPaginator(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResultSequence(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
     }
 }

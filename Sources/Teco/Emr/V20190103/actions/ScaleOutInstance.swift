@@ -259,7 +259,7 @@ extension Emr {
     /// 实例扩容
     ///
     /// 扩容节点
-    @inlinable
+    @inlinable @discardableResult
     public func scaleOutInstancePaginated(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, onResponse: @escaping (ScaleOutInstanceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.scaleOutInstance, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -269,8 +269,6 @@ extension Emr {
     /// 扩容节点
     @inlinable
     public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResultSequence, responses: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResultSequence(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResponseSequence(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
     }
 }

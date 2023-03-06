@@ -139,7 +139,7 @@ extension Cwp {
     }
 
     /// 查询Jar包列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetJarListPaginated(_ input: DescribeAssetJarListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetJarListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetJarList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Cwp {
     /// 查询Jar包列表
     @inlinable
     public func describeAssetJarListPaginator(_ input: DescribeAssetJarListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetJarList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetJarList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetJarList, logger: logger, on: eventLoop)
     }
 }

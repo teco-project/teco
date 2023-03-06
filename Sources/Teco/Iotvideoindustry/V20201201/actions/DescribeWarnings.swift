@@ -137,7 +137,7 @@ extension Iotvideoindustry {
     }
 
     /// 获取告警列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeWarningsPaginated(_ input: DescribeWarningsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWarningsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWarnings, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Iotvideoindustry {
     /// 获取告警列表
     @inlinable
     public func describeWarningsPaginator(_ input: DescribeWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResultSequence(input: input, region: region, command: self.describeWarnings, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResponseSequence(input: input, region: region, command: self.describeWarnings, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWarnings, logger: logger, on: eventLoop)
     }
 }

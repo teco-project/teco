@@ -140,7 +140,7 @@ extension Tic {
     ///
     /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
     /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
-    @inlinable
+    @inlinable @discardableResult
     public func describeStacksPaginated(_ input: DescribeStacksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStacksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeStacks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Tic {
     /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
     @inlinable
     public func describeStacksPaginator(_ input: DescribeStacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResultSequence(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResponseSequence(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
     }
 }

@@ -120,7 +120,7 @@ extension Tcr {
     }
 
     /// 查询版本保留执行任务
-    @inlinable
+    @inlinable @discardableResult
     public func describeTagRetentionExecutionTaskPaginated(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagRetentionExecutionTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTagRetentionExecutionTask, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcr {
     /// 查询版本保留执行任务
     @inlinable
     public func describeTagRetentionExecutionTaskPaginator(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResultSequence(input: input, region: region, command: self.describeTagRetentionExecutionTask, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeTagRetentionExecutionTask, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionExecutionTask, logger: logger, on: eventLoop)
     }
 }

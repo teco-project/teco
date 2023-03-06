@@ -116,7 +116,7 @@ extension Zj {
     }
 
     /// 获取彩信实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeMmsInstanceListPaginated(_ input: DescribeMmsInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMmsInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMmsInstanceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Zj {
     /// 获取彩信实例列表
     @inlinable
     public func describeMmsInstanceListPaginator(_ input: DescribeMmsInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResultSequence(input: input, region: region, command: self.describeMmsInstanceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResponseSequence(input: input, region: region, command: self.describeMmsInstanceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMmsInstanceList, logger: logger, on: eventLoop)
     }
 }

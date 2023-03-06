@@ -127,7 +127,7 @@ extension Mongodb {
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBBackupsPaginated(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBBackups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Mongodb {
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
     public func describeDBBackupsPaginator(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)
     }
 }

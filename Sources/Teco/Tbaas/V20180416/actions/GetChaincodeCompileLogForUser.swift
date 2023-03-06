@@ -140,7 +140,7 @@ extension Tbaas {
     }
 
     /// 获取合约编译日志
-    @inlinable
+    @inlinable @discardableResult
     public func getChaincodeCompileLogForUserPaginated(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetChaincodeCompileLogForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getChaincodeCompileLogForUser, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Tbaas {
     /// 获取合约编译日志
     @inlinable
     public func getChaincodeCompileLogForUserPaginator(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResultSequence(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResponseSequence(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
     }
 }

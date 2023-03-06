@@ -112,7 +112,7 @@ extension Anicloud {
     }
 
     /// 查询购买资源
-    @inlinable
+    @inlinable @discardableResult
     public func queryResourcePaginated(_ input: QueryResourceRequest, region: TCRegion? = nil, onResponse: @escaping (QueryResourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryResource, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -120,8 +120,6 @@ extension Anicloud {
     /// 查询购买资源
     @inlinable
     public func queryResourcePaginator(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResultSequence, responses: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResultSequence(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResponseSequence(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
     }
 }

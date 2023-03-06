@@ -144,7 +144,7 @@ extension Ecm {
     /// 查询VPC列表
     ///
     /// 查询私有网络列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpcsPaginated(_ input: DescribeVpcsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -154,8 +154,6 @@ extension Ecm {
     /// 查询私有网络列表
     @inlinable
     public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
     }
 }

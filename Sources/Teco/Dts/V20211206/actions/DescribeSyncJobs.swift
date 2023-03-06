@@ -152,7 +152,7 @@ extension Dts {
     }
 
     /// 查询同步任务信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeSyncJobsPaginated(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSyncJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSyncJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Dts {
     /// 查询同步任务信息
     @inlinable
     public func describeSyncJobsPaginator(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSyncJobsRequest, DescribeSyncJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSyncJobsRequest, DescribeSyncJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSyncJobsRequest, DescribeSyncJobsResponse>.ResultSequence(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSyncJobsRequest, DescribeSyncJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)
     }
 }

@@ -116,7 +116,7 @@ extension Kms {
     }
 
     /// 获取白盒密钥列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeWhiteBoxKeyDetailsPaginated(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWhiteBoxKeyDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWhiteBoxKeyDetails, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Kms {
     /// 获取白盒密钥列表
     @inlinable
     public func describeWhiteBoxKeyDetailsPaginator(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWhiteBoxKeyDetailsRequest, DescribeWhiteBoxKeyDetailsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWhiteBoxKeyDetailsRequest, DescribeWhiteBoxKeyDetailsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWhiteBoxKeyDetailsRequest, DescribeWhiteBoxKeyDetailsResponse>.ResultSequence(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWhiteBoxKeyDetailsRequest, DescribeWhiteBoxKeyDetailsResponse>.ResponseSequence(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)
     }
 }

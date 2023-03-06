@@ -119,7 +119,7 @@ extension Wav {
     /// 查询车系车型信息列表接口
     ///
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
-    @inlinable
+    @inlinable @discardableResult
     public func queryVehicleInfoListPaginated(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryVehicleInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryVehicleInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Wav {
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
     @inlinable
     public func queryVehicleInfoListPaginator(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryVehicleInfoListRequest, QueryVehicleInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryVehicleInfoListRequest, QueryVehicleInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryVehicleInfoListRequest, QueryVehicleInfoListResponse>.ResultSequence(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryVehicleInfoListRequest, QueryVehicleInfoListResponse>.ResponseSequence(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)
     }
 }

@@ -113,7 +113,7 @@ extension Tia {
     /// 列举Job
     ///
     /// 列举训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func listJobsPaginated(_ input: ListJobsRequest, region: TCRegion? = nil, onResponse: @escaping (ListJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Tia {
     /// 列举训练任务
     @inlinable
     public func listJobsPaginator(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResultSequence, responses: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResultSequence(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResponseSequence(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
     }
 }

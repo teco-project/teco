@@ -169,7 +169,7 @@ extension Vpc {
     /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
     /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
     /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
-    @inlinable
+    @inlinable @discardableResult
     public func describeGatewayFlowMonitorDetailPaginated(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayFlowMonitorDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -181,8 +181,6 @@ extension Vpc {
     /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
     @inlinable
     public func describeGatewayFlowMonitorDetailPaginator(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResultSequence(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
     }
 }

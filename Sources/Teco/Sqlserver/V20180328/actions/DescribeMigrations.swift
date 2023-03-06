@@ -137,7 +137,7 @@ extension Sqlserver {
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeMigrationsPaginated(_ input: DescribeMigrationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMigrationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMigrations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Sqlserver {
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
     public func describeMigrationsPaginator(_ input: DescribeMigrationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrationsRequest, DescribeMigrationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrationsRequest, DescribeMigrationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMigrationsRequest, DescribeMigrationsResponse>.ResultSequence(input: input, region: region, command: self.describeMigrations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMigrationsRequest, DescribeMigrationsResponse>.ResponseSequence(input: input, region: region, command: self.describeMigrations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrations, logger: logger, on: eventLoop)
     }
 }

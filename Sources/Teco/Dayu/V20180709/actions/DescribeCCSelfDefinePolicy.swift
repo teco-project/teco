@@ -115,7 +115,7 @@ extension Dayu {
     }
 
     /// 获取CC自定义策略
-    @inlinable
+    @inlinable @discardableResult
     public func describeCCSelfDefinePolicyPaginated(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCSelfDefinePolicyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCCSelfDefinePolicy, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Dayu {
     /// 获取CC自定义策略
     @inlinable
     public func describeCCSelfDefinePolicyPaginator(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResultSequence(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResponseSequence(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
     }
 }

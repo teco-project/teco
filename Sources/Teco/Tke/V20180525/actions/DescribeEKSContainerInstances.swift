@@ -135,7 +135,7 @@ extension Tke {
     }
 
     /// 查询容器实例
-    @inlinable
+    @inlinable @discardableResult
     public func describeEKSContainerInstancesPaginated(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEKSContainerInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEKSContainerInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Tke {
     /// 查询容器实例
     @inlinable
     public func describeEKSContainerInstancesPaginator(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
     }
 }

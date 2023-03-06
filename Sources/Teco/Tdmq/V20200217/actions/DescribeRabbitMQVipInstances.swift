@@ -122,7 +122,7 @@ extension Tdmq {
     /// 查询RabbitMQ专享实例列表
     ///
     /// 查询用户已购的RabbitMQ专享实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeRabbitMQVipInstancesPaginated(_ input: DescribeRabbitMQVipInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRabbitMQVipInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRabbitMQVipInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Tdmq {
     /// 查询用户已购的RabbitMQ专享实例列表
     @inlinable
     public func describeRabbitMQVipInstancesPaginator(_ input: DescribeRabbitMQVipInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRabbitMQVipInstancesRequest, DescribeRabbitMQVipInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRabbitMQVipInstancesRequest, DescribeRabbitMQVipInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRabbitMQVipInstancesRequest, DescribeRabbitMQVipInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeRabbitMQVipInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRabbitMQVipInstancesRequest, DescribeRabbitMQVipInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeRabbitMQVipInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRabbitMQVipInstances, logger: logger, on: eventLoop)
     }
 }

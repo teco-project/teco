@@ -138,7 +138,7 @@ extension Dcdb {
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSqlLogsPaginated(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSqlLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSqlLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Dcdb {
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
     public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResultSequence(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
     }
 }

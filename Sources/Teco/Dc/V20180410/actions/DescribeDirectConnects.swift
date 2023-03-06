@@ -132,7 +132,7 @@ extension Dc {
     /// 查询物理专线列表
     ///
     /// 查询物理专线列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDirectConnectsPaginated(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDirectConnects, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Dc {
     /// 查询物理专线列表。
     @inlinable
     public func describeDirectConnectsPaginator(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDirectConnectsRequest, DescribeDirectConnectsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDirectConnectsRequest, DescribeDirectConnectsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDirectConnectsRequest, DescribeDirectConnectsResponse>.ResultSequence(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDirectConnectsRequest, DescribeDirectConnectsResponse>.ResponseSequence(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)
     }
 }

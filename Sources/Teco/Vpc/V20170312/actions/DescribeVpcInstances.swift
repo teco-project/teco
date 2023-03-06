@@ -125,7 +125,7 @@ extension Vpc {
     /// 查询VPC下的云主机实例列表
     ///
     /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpcInstancesPaginated(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Vpc {
     /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
     public func describeVpcInstancesPaginator(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcInstancesRequest, DescribeVpcInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcInstancesRequest, DescribeVpcInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpcInstancesRequest, DescribeVpcInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeVpcInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpcInstancesRequest, DescribeVpcInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcInstances, logger: logger, on: eventLoop)
     }
 }

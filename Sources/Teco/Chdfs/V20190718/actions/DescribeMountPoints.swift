@@ -126,7 +126,7 @@ extension Chdfs {
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
-    @inlinable
+    @inlinable @discardableResult
     public func describeMountPointsPaginated(_ input: DescribeMountPointsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMountPointsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMountPoints, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Chdfs {
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPointsPaginator(_ input: DescribeMountPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMountPointsRequest, DescribeMountPointsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMountPointsRequest, DescribeMountPointsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMountPointsRequest, DescribeMountPointsResponse>.ResultSequence(input: input, region: region, command: self.describeMountPoints, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMountPointsRequest, DescribeMountPointsResponse>.ResponseSequence(input: input, region: region, command: self.describeMountPoints, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMountPoints, logger: logger, on: eventLoop)
     }
 }

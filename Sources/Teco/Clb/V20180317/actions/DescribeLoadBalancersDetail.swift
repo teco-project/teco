@@ -143,7 +143,7 @@ extension Clb {
     /// 查询负载均衡详细信息
     ///
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
-    @inlinable
+    @inlinable @discardableResult
     public func describeLoadBalancersDetailPaginated(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancersDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLoadBalancersDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Clb {
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
     @inlinable
     public func describeLoadBalancersDetailPaginator(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResultSequence(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
     }
 }

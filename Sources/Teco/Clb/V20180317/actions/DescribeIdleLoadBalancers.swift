@@ -123,7 +123,7 @@ extension Clb {
     /// 查询负载均衡闲置实例
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func describeIdleLoadBalancersPaginated(_ input: DescribeIdleLoadBalancersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIdleLoadBalancersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIdleLoadBalancers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Clb {
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
     public func describeIdleLoadBalancersPaginator(_ input: DescribeIdleLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIdleLoadBalancersRequest, DescribeIdleLoadBalancersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIdleLoadBalancersRequest, DescribeIdleLoadBalancersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIdleLoadBalancersRequest, DescribeIdleLoadBalancersResponse>.ResultSequence(input: input, region: region, command: self.describeIdleLoadBalancers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIdleLoadBalancersRequest, DescribeIdleLoadBalancersResponse>.ResponseSequence(input: input, region: region, command: self.describeIdleLoadBalancers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdleLoadBalancers, logger: logger, on: eventLoop)
     }
 }

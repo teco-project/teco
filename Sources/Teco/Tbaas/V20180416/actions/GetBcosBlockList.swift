@@ -137,7 +137,7 @@ extension Tbaas {
     /// 分页查询Bcos区块列表
     ///
     /// Bcos分页查询当前群组下的区块列表
-    @inlinable
+    @inlinable @discardableResult
     public func getBcosBlockListPaginated(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBcosBlockListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getBcosBlockList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Tbaas {
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
     public func getBcosBlockListPaginator(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBcosBlockListRequest, GetBcosBlockListResponse>.ResultSequence, responses: TCClient.Paginator<GetBcosBlockListRequest, GetBcosBlockListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetBcosBlockListRequest, GetBcosBlockListResponse>.ResultSequence(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetBcosBlockListRequest, GetBcosBlockListResponse>.ResponseSequence(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)
     }
 }

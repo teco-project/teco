@@ -122,7 +122,7 @@ extension Eiam {
     }
 
     /// 查询应用账号列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAppAccountPaginated(_ input: DescribeAppAccountRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAppAccountResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAppAccount, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Eiam {
     /// 查询应用账号列表
     @inlinable
     public func describeAppAccountPaginator(_ input: DescribeAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAppAccountRequest, DescribeAppAccountResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAppAccountRequest, DescribeAppAccountResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAppAccountRequest, DescribeAppAccountResponse>.ResultSequence(input: input, region: region, command: self.describeAppAccount, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAppAccountRequest, DescribeAppAccountResponse>.ResponseSequence(input: input, region: region, command: self.describeAppAccount, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAppAccount, logger: logger, on: eventLoop)
     }
 }

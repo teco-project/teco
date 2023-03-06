@@ -117,7 +117,7 @@ extension Tcss {
     }
 
     /// 查询k8sapi 异常规则中范围列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeK8sApiAbnormalRuleScopeListPaginated(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeK8sApiAbnormalRuleScopeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Tcss {
     /// 查询k8sapi 异常规则中范围列表
     @inlinable
     public func describeK8sApiAbnormalRuleScopeListPaginator(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeK8sApiAbnormalRuleScopeListRequest, DescribeK8sApiAbnormalRuleScopeListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeK8sApiAbnormalRuleScopeListRequest, DescribeK8sApiAbnormalRuleScopeListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeK8sApiAbnormalRuleScopeListRequest, DescribeK8sApiAbnormalRuleScopeListResponse>.ResultSequence(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeK8sApiAbnormalRuleScopeListRequest, DescribeK8sApiAbnormalRuleScopeListResponse>.ResponseSequence(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)
     }
 }

@@ -129,7 +129,7 @@ extension Billing {
     }
 
     /// 获取按地域汇总消耗详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeCostSummaryByRegionPaginated(_ input: DescribeCostSummaryByRegionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCostSummaryByRegionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCostSummaryByRegion, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Billing {
     /// 获取按地域汇总消耗详情
     @inlinable
     public func describeCostSummaryByRegionPaginator(_ input: DescribeCostSummaryByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCostSummaryByRegionRequest, DescribeCostSummaryByRegionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCostSummaryByRegionRequest, DescribeCostSummaryByRegionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCostSummaryByRegionRequest, DescribeCostSummaryByRegionResponse>.ResultSequence(input: input, region: region, command: self.describeCostSummaryByRegion, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCostSummaryByRegionRequest, DescribeCostSummaryByRegionResponse>.ResponseSequence(input: input, region: region, command: self.describeCostSummaryByRegion, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByRegion, logger: logger, on: eventLoop)
     }
 }

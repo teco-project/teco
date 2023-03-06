@@ -121,7 +121,7 @@ extension Tsf {
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
-    @inlinable
+    @inlinable @discardableResult
     public func describeGroupsWithPluginPaginated(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupsWithPluginResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGroupsWithPlugin, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Tsf {
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
     public func describeGroupsWithPluginPaginator(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResultSequence(input: input, region: region, command: self.describeGroupsWithPlugin, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupsWithPlugin, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupsWithPlugin, logger: logger, on: eventLoop)
     }
 }

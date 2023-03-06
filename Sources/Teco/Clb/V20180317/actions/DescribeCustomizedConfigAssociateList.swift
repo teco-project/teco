@@ -127,7 +127,7 @@ extension Clb {
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCustomizedConfigAssociateListPaginated(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomizedConfigAssociateListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCustomizedConfigAssociateList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Clb {
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
     public func describeCustomizedConfigAssociateListPaginator(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResultSequence(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResponseSequence(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
     }
 }

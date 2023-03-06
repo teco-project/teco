@@ -125,7 +125,7 @@ extension Ccc {
     }
 
     /// 获取技能组信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSkillGroupInfoListPaginated(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSkillGroupInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSkillGroupInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Ccc {
     /// 获取技能组信息列表
     @inlinable
     public func describeSkillGroupInfoListPaginator(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
     }
 }

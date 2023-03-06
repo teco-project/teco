@@ -124,7 +124,7 @@ extension Wav {
     /// 查询外部联系人SaaS使用明细数据接口
     ///
     /// 通过接口拉取SaaS内C端外部联系人在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
-    @inlinable
+    @inlinable @discardableResult
     public func queryCustomerEventDetailStatisticsPaginated(_ input: QueryCustomerEventDetailStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (QueryCustomerEventDetailStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryCustomerEventDetailStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Wav {
     /// 通过接口拉取SaaS内C端外部联系人在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
     public func queryCustomerEventDetailStatisticsPaginator(_ input: QueryCustomerEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryCustomerEventDetailStatisticsRequest, QueryCustomerEventDetailStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<QueryCustomerEventDetailStatisticsRequest, QueryCustomerEventDetailStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryCustomerEventDetailStatisticsRequest, QueryCustomerEventDetailStatisticsResponse>.ResultSequence(input: input, region: region, command: self.queryCustomerEventDetailStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryCustomerEventDetailStatisticsRequest, QueryCustomerEventDetailStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.queryCustomerEventDetailStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCustomerEventDetailStatistics, logger: logger, on: eventLoop)
     }
 }

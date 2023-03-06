@@ -134,7 +134,7 @@ extension Vod {
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeSnapshotByTimeOffsetTemplatesPaginated(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotByTimeOffsetTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Vod {
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
     public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
     }
 }

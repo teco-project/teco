@@ -175,7 +175,7 @@ extension Teo {
     /// 查询CC防护命中规则详情列表
     ///
     /// 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeWebProtectionHitRuleDetailPaginated(_ input: DescribeWebProtectionHitRuleDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebProtectionHitRuleDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWebProtectionHitRuleDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -185,8 +185,6 @@ extension Teo {
     /// 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
     @inlinable
     public func describeWebProtectionHitRuleDetailPaginator(_ input: DescribeWebProtectionHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebProtectionHitRuleDetailRequest, DescribeWebProtectionHitRuleDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebProtectionHitRuleDetailRequest, DescribeWebProtectionHitRuleDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWebProtectionHitRuleDetailRequest, DescribeWebProtectionHitRuleDetailResponse>.ResultSequence(input: input, region: region, command: self.describeWebProtectionHitRuleDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWebProtectionHitRuleDetailRequest, DescribeWebProtectionHitRuleDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeWebProtectionHitRuleDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebProtectionHitRuleDetail, logger: logger, on: eventLoop)
     }
 }

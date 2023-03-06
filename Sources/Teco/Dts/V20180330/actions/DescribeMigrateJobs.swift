@@ -148,7 +148,7 @@ extension Dts {
     ///
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
-    @inlinable
+    @inlinable @discardableResult
     public func describeMigrateJobsPaginated(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMigrateJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMigrateJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -159,8 +159,6 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func describeMigrateJobsPaginator(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResultSequence(input: input, region: region, command: self.describeMigrateJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeMigrateJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrateJobs, logger: logger, on: eventLoop)
     }
 }

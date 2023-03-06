@@ -118,7 +118,7 @@ extension Vpc {
     /// 查询VPN网关路由
     ///
     /// 查询路由型VPN网关的目的路由
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpnGatewayRoutesPaginated(_ input: DescribeVpnGatewayRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewayRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpnGatewayRoutes, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Vpc {
     /// 查询路由型VPN网关的目的路由
     @inlinable
     public func describeVpnGatewayRoutesPaginator(_ input: DescribeVpnGatewayRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnGatewayRoutesRequest, DescribeVpnGatewayRoutesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnGatewayRoutesRequest, DescribeVpnGatewayRoutesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpnGatewayRoutesRequest, DescribeVpnGatewayRoutesResponse>.ResultSequence(input: input, region: region, command: self.describeVpnGatewayRoutes, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpnGatewayRoutesRequest, DescribeVpnGatewayRoutesResponse>.ResponseSequence(input: input, region: region, command: self.describeVpnGatewayRoutes, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewayRoutes, logger: logger, on: eventLoop)
     }
 }

@@ -133,7 +133,7 @@ extension Cynosdb {
     /// 查询Binlog列表
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBinlogsPaginated(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBinlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBinlogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     @inlinable
     public func describeBinlogsPaginator(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBinlogsRequest, DescribeBinlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBinlogsRequest, DescribeBinlogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBinlogsRequest, DescribeBinlogsResponse>.ResultSequence(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBinlogsRequest, DescribeBinlogsResponse>.ResponseSequence(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)
     }
 }

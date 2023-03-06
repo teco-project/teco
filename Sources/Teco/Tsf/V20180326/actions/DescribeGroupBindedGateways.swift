@@ -111,7 +111,7 @@ extension Tsf {
     }
 
     /// 查询某个API分组已绑定的网关部署组信息列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeGroupBindedGatewaysPaginated(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupBindedGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGroupBindedGateways, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Tsf {
     /// 查询某个API分组已绑定的网关部署组信息列表
     @inlinable
     public func describeGroupBindedGatewaysPaginator(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResultSequence(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
     }
 }

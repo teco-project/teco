@@ -115,7 +115,7 @@ extension Privatedns {
     }
 
     /// 获取私有域解析账号的VPC列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccountVpcListPaginated(_ input: DescribeAccountVpcListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountVpcListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccountVpcList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Privatedns {
     /// 获取私有域解析账号的VPC列表
     @inlinable
     public func describeAccountVpcListPaginator(_ input: DescribeAccountVpcListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResultSequence(input: input, region: region, command: self.describeAccountVpcList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResponseSequence(input: input, region: region, command: self.describeAccountVpcList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccountVpcList, logger: logger, on: eventLoop)
     }
 }

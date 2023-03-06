@@ -143,7 +143,7 @@ extension Vpc {
     /// 查询CCN列表
     ///
     /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCcnsPaginated(_ input: DescribeCcnsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCcns, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Vpc {
     /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
     @inlinable
     public func describeCcnsPaginator(_ input: DescribeCcnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcnsRequest, DescribeCcnsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcnsRequest, DescribeCcnsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCcnsRequest, DescribeCcnsResponse>.ResultSequence(input: input, region: region, command: self.describeCcns, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCcnsRequest, DescribeCcnsResponse>.ResponseSequence(input: input, region: region, command: self.describeCcns, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcns, logger: logger, on: eventLoop)
     }
 }

@@ -130,7 +130,7 @@ extension Oceanus {
     }
 
     /// 描述资源配置接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourceConfigsPaginated(_ input: DescribeResourceConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourceConfigs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Oceanus {
     /// 描述资源配置接口
     @inlinable
     public func describeResourceConfigsPaginator(_ input: DescribeResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceConfigsRequest, DescribeResourceConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceConfigsRequest, DescribeResourceConfigsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourceConfigsRequest, DescribeResourceConfigsResponse>.ResultSequence(input: input, region: region, command: self.describeResourceConfigs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourceConfigsRequest, DescribeResourceConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceConfigs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceConfigs, logger: logger, on: eventLoop)
     }
 }

@@ -131,7 +131,7 @@ extension Tat {
     /// 查询执行活动
     ///
     /// 此接口用于查询执行活动详情。
-    @inlinable
+    @inlinable @discardableResult
     public func describeInvocationsPaginated(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInvocationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInvocations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Tat {
     /// 此接口用于查询执行活动详情。
     @inlinable
     public func describeInvocationsPaginator(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResultSequence(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResponseSequence(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
     }
 }

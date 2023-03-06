@@ -161,7 +161,7 @@ extension Solar {
     }
 
     /// 查询客户档案列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCustomersPaginated(_ input: DescribeCustomersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCustomers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -169,8 +169,6 @@ extension Solar {
     /// 查询客户档案列表
     @inlinable
     public func describeCustomersPaginator(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResultSequence(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResponseSequence(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
     }
 }

@@ -130,7 +130,7 @@ extension Vpc {
     /// 查询网络探测验证结果列表
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNetDetectStatesPaginated(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetDetectStatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNetDetectStates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Vpc {
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
     public func describeNetDetectStatesPaginator(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResultSequence(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResponseSequence(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
     }
 }

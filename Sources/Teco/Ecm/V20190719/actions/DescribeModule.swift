@@ -132,7 +132,7 @@ extension Ecm {
     }
 
     /// 获取模块列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeModulePaginated(_ input: DescribeModuleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModuleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeModule, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Ecm {
     /// 获取模块列表
     @inlinable
     public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResultSequence(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResponseSequence(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
     }
 }

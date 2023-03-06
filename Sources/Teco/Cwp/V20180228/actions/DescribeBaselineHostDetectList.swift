@@ -128,7 +128,7 @@ extension Cwp {
     }
 
     /// 获取基线检测主机列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBaselineHostDetectListPaginated(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineHostDetectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBaselineHostDetectList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Cwp {
     /// 获取基线检测主机列表
     @inlinable
     public func describeBaselineHostDetectListPaginator(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResultSequence(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResponseSequence(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
     }
 }

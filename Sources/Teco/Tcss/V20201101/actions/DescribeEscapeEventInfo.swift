@@ -132,7 +132,7 @@ extension Tcss {
     /// 查询容器逃逸事件列表
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeEscapeEventInfoPaginated(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEscapeEventInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEscapeEventInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
     public func describeEscapeEventInfoPaginator(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResultSequence(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
     }
 }

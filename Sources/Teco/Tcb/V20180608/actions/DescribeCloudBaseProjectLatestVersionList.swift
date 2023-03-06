@@ -132,7 +132,7 @@ extension Tcb {
     }
 
     /// 获取云开发项目列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudBaseProjectLatestVersionListPaginated(_ input: DescribeCloudBaseProjectLatestVersionListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseProjectLatestVersionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Tcb {
     /// 获取云开发项目列表
     @inlinable
     public func describeCloudBaseProjectLatestVersionListPaginator(_ input: DescribeCloudBaseProjectLatestVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudBaseProjectLatestVersionListRequest, DescribeCloudBaseProjectLatestVersionListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudBaseProjectLatestVersionListRequest, DescribeCloudBaseProjectLatestVersionListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCloudBaseProjectLatestVersionListRequest, DescribeCloudBaseProjectLatestVersionListResponse>.ResultSequence(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCloudBaseProjectLatestVersionListRequest, DescribeCloudBaseProjectLatestVersionListResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, logger: logger, on: eventLoop)
     }
 }

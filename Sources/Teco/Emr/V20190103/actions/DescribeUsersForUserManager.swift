@@ -139,7 +139,7 @@ extension Emr {
     ///
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsersForUserManagerPaginated(_ input: DescribeUsersForUserManagerRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsersForUserManagerResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsersForUserManager, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Emr {
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     @inlinable
     public func describeUsersForUserManagerPaginator(_ input: DescribeUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsersForUserManagerRequest, DescribeUsersForUserManagerResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsersForUserManagerRequest, DescribeUsersForUserManagerResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsersForUserManagerRequest, DescribeUsersForUserManagerResponse>.ResultSequence(input: input, region: region, command: self.describeUsersForUserManager, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsersForUserManagerRequest, DescribeUsersForUserManagerResponse>.ResponseSequence(input: input, region: region, command: self.describeUsersForUserManager, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsersForUserManager, logger: logger, on: eventLoop)
     }
 }

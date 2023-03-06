@@ -126,7 +126,7 @@ extension Bma {
     /// 查询监测列表
     ///
     /// 版权保护-查询监测列表接口
-    @inlinable
+    @inlinable @discardableResult
     public func describeCRMonitorsPaginated(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCRMonitorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCRMonitors, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Bma {
     /// 版权保护-查询监测列表接口
     @inlinable
     public func describeCRMonitorsPaginator(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResultSequence(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResponseSequence(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
     }
 }

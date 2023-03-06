@@ -148,7 +148,7 @@ extension Lighthouse {
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBundlesPaginated(_ input: DescribeBundlesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBundlesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBundles, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -158,8 +158,6 @@ extension Lighthouse {
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
     public func describeBundlesPaginator(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResultSequence(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResponseSequence(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
     }
 }

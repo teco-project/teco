@@ -123,7 +123,7 @@ extension Apigateway {
     /// 查询 API 接口列表
     ///
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeApisStatusPaginated(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApisStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApisStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Apigateway {
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     @inlinable
     public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResultSequence(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
     }
 }

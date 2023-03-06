@@ -137,7 +137,7 @@ extension Cfs {
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAutoSnapshotPoliciesPaginated(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoSnapshotPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAutoSnapshotPolicies, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Cfs {
     /// 查询文件系统快照定期策略列表信息
     @inlinable
     public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
     }
 }

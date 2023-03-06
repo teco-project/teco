@@ -131,7 +131,7 @@ extension Tcss {
     }
 
     /// 查询镜像自动授权任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeImageAutoAuthorizedTaskListPaginated(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageAutoAuthorizedTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Tcss {
     /// 查询镜像自动授权任务列表
     @inlinable
     public func describeImageAutoAuthorizedTaskListPaginator(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResultSequence(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResponseSequence(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, logger: logger, on: eventLoop)
     }
 }

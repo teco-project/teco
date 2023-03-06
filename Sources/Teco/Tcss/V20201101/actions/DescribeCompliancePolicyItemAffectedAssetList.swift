@@ -129,7 +129,7 @@ extension Tcss {
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCompliancePolicyItemAffectedAssetListPaginated(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCompliancePolicyItemAffectedAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Tcss {
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
     public func describeCompliancePolicyItemAffectedAssetListPaginator(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResultSequence(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResponseSequence(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
     }
 }

@@ -135,7 +135,7 @@ extension Tcss {
     /// 镜像绑定规则列表
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageBindRuleInfoPaginated(_ input: DescribeAssetImageBindRuleInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageBindRuleInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetImageBindRuleInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Tcss {
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
     @inlinable
     public func describeAssetImageBindRuleInfoPaginator(_ input: DescribeAssetImageBindRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResultSequence(input: input, region: region, command: self.describeAssetImageBindRuleInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetImageBindRuleInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageBindRuleInfo, logger: logger, on: eventLoop)
     }
 }

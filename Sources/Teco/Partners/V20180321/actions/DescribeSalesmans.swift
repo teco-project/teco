@@ -132,7 +132,7 @@ extension Partners {
     /// 代理商业务员查询接口
     ///
     /// 代理商查询名下业务员列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeSalesmansPaginated(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSalesmansResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSalesmans, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Partners {
     /// 代理商查询名下业务员列表信息
     @inlinable
     public func describeSalesmansPaginator(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResultSequence(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResponseSequence(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
     }
 }

@@ -135,7 +135,7 @@ extension Batch {
     /// 获取计算环境列表
     ///
     /// 用于查看计算环境列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeComputeEnvsPaginated(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComputeEnvsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComputeEnvs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Batch {
     /// 用于查看计算环境列表
     @inlinable
     public func describeComputeEnvsPaginator(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResultSequence(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResponseSequence(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
     }
 }

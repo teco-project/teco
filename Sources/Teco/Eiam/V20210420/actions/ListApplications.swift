@@ -134,7 +134,7 @@ extension Eiam {
     /// 获取应用列表信息
     ///
     /// 获取应用列表信息。
-    @inlinable
+    @inlinable @discardableResult
     public func listApplicationsPaginated(_ input: ListApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (ListApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listApplications, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Eiam {
     /// 获取应用列表信息。
     @inlinable
     public func listApplicationsPaginator(_ input: ListApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListApplicationsRequest, ListApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<ListApplicationsRequest, ListApplicationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListApplicationsRequest, ListApplicationsResponse>.ResultSequence(input: input, region: region, command: self.listApplications, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListApplicationsRequest, ListApplicationsResponse>.ResponseSequence(input: input, region: region, command: self.listApplications, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listApplications, logger: logger, on: eventLoop)
     }
 }

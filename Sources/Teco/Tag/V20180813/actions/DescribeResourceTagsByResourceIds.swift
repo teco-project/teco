@@ -145,7 +145,7 @@ extension Tag {
     /// 批量查看资源关联的标签
     ///
     /// 用于批量查询已有资源关联的标签键值对
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourceTagsByResourceIdsPaginated(_ input: DescribeResourceTagsByResourceIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceTagsByResourceIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourceTagsByResourceIds, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Tag {
     /// 用于批量查询已有资源关联的标签键值对
     @inlinable
     public func describeResourceTagsByResourceIdsPaginator(_ input: DescribeResourceTagsByResourceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTagsByResourceIdsRequest, DescribeResourceTagsByResourceIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTagsByResourceIdsRequest, DescribeResourceTagsByResourceIdsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourceTagsByResourceIdsRequest, DescribeResourceTagsByResourceIdsResponse>.ResultSequence(input: input, region: region, command: self.describeResourceTagsByResourceIds, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourceTagsByResourceIdsRequest, DescribeResourceTagsByResourceIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceTagsByResourceIds, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByResourceIds, logger: logger, on: eventLoop)
     }
 }

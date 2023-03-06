@@ -144,7 +144,7 @@ extension Cms {
     /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
     /// <br>
     /// 支持批量查询文本样本库。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTextSamplePaginated(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTextSampleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTextSample, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -156,8 +156,6 @@ extension Cms {
     /// 支持批量查询文本样本库。
     @inlinable
     public func describeTextSamplePaginator(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTextSampleRequest, DescribeTextSampleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTextSampleRequest, DescribeTextSampleResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTextSampleRequest, DescribeTextSampleResponse>.ResultSequence(input: input, region: region, command: self.describeTextSample, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTextSampleRequest, DescribeTextSampleResponse>.ResponseSequence(input: input, region: region, command: self.describeTextSample, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTextSample, logger: logger, on: eventLoop)
     }
 }

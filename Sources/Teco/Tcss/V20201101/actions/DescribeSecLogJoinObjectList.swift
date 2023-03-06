@@ -132,7 +132,7 @@ extension Tcss {
     }
 
     /// 查询安全日志接入对象列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSecLogJoinObjectListPaginated(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecLogJoinObjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSecLogJoinObjectList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -140,8 +140,6 @@ extension Tcss {
     /// 查询安全日志接入对象列表
     @inlinable
     public func describeSecLogJoinObjectListPaginator(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResultSequence(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResponseSequence(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
     }
 }

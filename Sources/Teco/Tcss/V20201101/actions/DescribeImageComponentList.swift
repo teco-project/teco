@@ -126,7 +126,7 @@ extension Tcss {
     }
 
     /// 查询本地镜像组件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeImageComponentListPaginated(_ input: DescribeImageComponentListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageComponentListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImageComponentList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Tcss {
     /// 查询本地镜像组件列表
     @inlinable
     public func describeImageComponentListPaginator(_ input: DescribeImageComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageComponentListRequest, DescribeImageComponentListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageComponentListRequest, DescribeImageComponentListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImageComponentListRequest, DescribeImageComponentListResponse>.ResultSequence(input: input, region: region, command: self.describeImageComponentList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImageComponentListRequest, DescribeImageComponentListResponse>.ResponseSequence(input: input, region: region, command: self.describeImageComponentList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageComponentList, logger: logger, on: eventLoop)
     }
 }

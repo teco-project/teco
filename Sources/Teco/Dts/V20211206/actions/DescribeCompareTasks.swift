@@ -134,7 +134,7 @@ extension Dts {
     /// 查询一致性校验任务列表
     ///
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCompareTasksPaginated(_ input: DescribeCompareTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCompareTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCompareTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Dts {
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
     public func describeCompareTasksPaginator(_ input: DescribeCompareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResultSequence(input: input, region: region, command: self.describeCompareTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeCompareTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompareTasks, logger: logger, on: eventLoop)
     }
 }

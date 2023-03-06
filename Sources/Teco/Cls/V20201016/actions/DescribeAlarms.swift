@@ -154,7 +154,7 @@ extension Cls {
     /// 获取告警策略列表
     ///
     /// 本接口用于获取告警策略列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAlarmsPaginated(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAlarms, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -164,8 +164,6 @@ extension Cls {
     /// 本接口用于获取告警策略列表。
     @inlinable
     public func describeAlarmsPaginator(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResultSequence(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResponseSequence(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
     }
 }

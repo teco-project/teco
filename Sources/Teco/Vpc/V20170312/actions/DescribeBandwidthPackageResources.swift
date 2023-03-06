@@ -129,7 +129,7 @@ extension Vpc {
     /// 查询共享带宽包内的资源
     ///
     /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBandwidthPackageResourcesPaginated(_ input: DescribeBandwidthPackageResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBandwidthPackageResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBandwidthPackageResources, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Vpc {
     /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
     @inlinable
     public func describeBandwidthPackageResourcesPaginator(_ input: DescribeBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBandwidthPackageResourcesRequest, DescribeBandwidthPackageResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBandwidthPackageResourcesRequest, DescribeBandwidthPackageResourcesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBandwidthPackageResourcesRequest, DescribeBandwidthPackageResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeBandwidthPackageResources, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBandwidthPackageResourcesRequest, DescribeBandwidthPackageResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeBandwidthPackageResources, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBandwidthPackageResources, logger: logger, on: eventLoop)
     }
 }

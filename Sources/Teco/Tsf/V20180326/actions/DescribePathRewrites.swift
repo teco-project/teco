@@ -111,7 +111,7 @@ extension Tsf {
     }
 
     /// 查询路径重写列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePathRewritesPaginated(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePathRewritesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePathRewrites, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Tsf {
     /// 查询路径重写列表
     @inlinable
     public func describePathRewritesPaginator(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResultSequence(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResponseSequence(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
     }
 }

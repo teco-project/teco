@@ -121,7 +121,7 @@ extension Cwp {
     }
 
     /// 获取本地提权事件列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePrivilegeEventsPaginated(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivilegeEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrivilegeEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Cwp {
     /// 获取本地提权事件列表
     @inlinable
     public func describePrivilegeEventsPaginator(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResultSequence(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResponseSequence(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
     }
 }

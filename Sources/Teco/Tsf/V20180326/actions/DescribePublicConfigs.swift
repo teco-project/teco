@@ -122,7 +122,7 @@ extension Tsf {
     }
 
     /// 查询公共配置项列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePublicConfigsPaginated(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublicConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePublicConfigs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Tsf {
     /// 查询公共配置项列表
     @inlinable
     public func describePublicConfigsPaginator(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResultSequence(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
     }
 }

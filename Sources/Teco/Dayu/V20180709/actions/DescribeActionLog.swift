@@ -133,7 +133,7 @@ extension Dayu {
     }
 
     /// 获取操作日志
-    @inlinable
+    @inlinable @discardableResult
     public func describeActionLogPaginated(_ input: DescribeActionLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeActionLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeActionLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Dayu {
     /// 获取操作日志
     @inlinable
     public func describeActionLogPaginator(_ input: DescribeActionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResultSequence(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResponseSequence(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
     }
 }

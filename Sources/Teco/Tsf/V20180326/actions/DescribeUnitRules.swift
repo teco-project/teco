@@ -112,7 +112,7 @@ extension Tsf {
     }
 
     /// 查询单元化规则列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeUnitRulesPaginated(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUnitRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUnitRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -120,8 +120,6 @@ extension Tsf {
     /// 查询单元化规则列表
     @inlinable
     public func describeUnitRulesPaginator(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUnitRulesRequest, DescribeUnitRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUnitRulesRequest, DescribeUnitRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUnitRulesRequest, DescribeUnitRulesResponse>.ResultSequence(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUnitRulesRequest, DescribeUnitRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)
     }
 }

@@ -129,7 +129,7 @@ extension Mps {
     /// 获取内容识别模板列表
     ///
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板
-    @inlinable
+    @inlinable @discardableResult
     public func describeAIRecognitionTemplatesPaginated(_ input: DescribeAIRecognitionTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAIRecognitionTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAIRecognitionTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Mps {
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板
     @inlinable
     public func describeAIRecognitionTemplatesPaginator(_ input: DescribeAIRecognitionTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAIRecognitionTemplatesRequest, DescribeAIRecognitionTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAIRecognitionTemplatesRequest, DescribeAIRecognitionTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAIRecognitionTemplatesRequest, DescribeAIRecognitionTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeAIRecognitionTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAIRecognitionTemplatesRequest, DescribeAIRecognitionTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeAIRecognitionTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIRecognitionTemplates, logger: logger, on: eventLoop)
     }
 }

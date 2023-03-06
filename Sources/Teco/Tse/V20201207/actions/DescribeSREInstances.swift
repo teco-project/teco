@@ -132,7 +132,7 @@ extension Tse {
     /// 查询引擎实例列表
     ///
     /// 用于查询引擎实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSREInstancesPaginated(_ input: DescribeSREInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSREInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSREInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tse {
     /// 用于查询引擎实例列表
     @inlinable
     public func describeSREInstancesPaginator(_ input: DescribeSREInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeSREInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeSREInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSREInstances, logger: logger, on: eventLoop)
     }
 }

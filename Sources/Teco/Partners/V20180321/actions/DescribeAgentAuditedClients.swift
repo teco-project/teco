@@ -160,7 +160,7 @@ extension Partners {
     }
 
     /// 查询已审核客户列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAgentAuditedClientsPaginated(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentAuditedClientsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAgentAuditedClients, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -168,8 +168,6 @@ extension Partners {
     /// 查询已审核客户列表
     @inlinable
     public func describeAgentAuditedClientsPaginator(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResultSequence(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResponseSequence(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
     }
 }

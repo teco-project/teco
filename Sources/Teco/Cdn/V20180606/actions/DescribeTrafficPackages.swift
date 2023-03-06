@@ -140,7 +140,7 @@ extension Cdn {
     /// 流量包查询
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
-    @inlinable
+    @inlinable @discardableResult
     public func describeTrafficPackagesPaginated(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficPackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTrafficPackages, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Cdn {
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
     public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
     }
 }

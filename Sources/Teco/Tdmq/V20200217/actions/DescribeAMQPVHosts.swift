@@ -132,7 +132,7 @@ extension Tdmq {
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPVHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tdmq {
     /// 获取Amqp Vhost 列表
     @inlinable
     public func describeAMQPVHostsPaginator(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
     }
 }

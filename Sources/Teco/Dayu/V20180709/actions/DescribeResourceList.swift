@@ -194,7 +194,7 @@ extension Dayu {
     }
 
     /// 获取资源列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeResourceListPaginated(_ input: DescribeResourceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeResourceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -202,8 +202,6 @@ extension Dayu {
     /// 获取资源列表
     @inlinable
     public func describeResourceListPaginator(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResultSequence(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
     }
 }

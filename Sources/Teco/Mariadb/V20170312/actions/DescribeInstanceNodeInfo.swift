@@ -122,7 +122,7 @@ extension Mariadb {
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceNodeInfoPaginated(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceNodeInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceNodeInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Mariadb {
     /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
     @inlinable
     public func describeInstanceNodeInfoPaginator(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceNodeInfoRequest, DescribeInstanceNodeInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceNodeInfoRequest, DescribeInstanceNodeInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInstanceNodeInfoRequest, DescribeInstanceNodeInfoResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInstanceNodeInfoRequest, DescribeInstanceNodeInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)
     }
 }

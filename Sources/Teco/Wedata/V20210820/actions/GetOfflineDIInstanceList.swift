@@ -115,7 +115,7 @@ extension Wedata {
     }
 
     /// 获取离线任务实例列表(新)
-    @inlinable
+    @inlinable @discardableResult
     public func getOfflineDIInstanceListPaginated(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (GetOfflineDIInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getOfflineDIInstanceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Wedata {
     /// 获取离线任务实例列表(新)
     @inlinable
     public func getOfflineDIInstanceListPaginator(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResultSequence(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResponseSequence(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
     }
 }

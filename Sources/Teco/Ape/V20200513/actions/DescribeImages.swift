@@ -149,7 +149,7 @@ extension Ape {
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImages, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -159,8 +159,6 @@ extension Ape {
     /// 根据关键字搜索图片列表
     @inlinable
     public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
     }
 }

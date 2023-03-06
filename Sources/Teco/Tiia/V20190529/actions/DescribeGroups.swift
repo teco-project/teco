@@ -132,7 +132,7 @@ extension Tiia {
     ///
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -145,8 +145,6 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
     }
 }

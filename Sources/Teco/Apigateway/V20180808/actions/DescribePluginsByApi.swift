@@ -128,7 +128,7 @@ extension Apigateway {
     /// API上已绑定的插件
     ///
     /// 展示API上已绑定的插件列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describePluginsByApiPaginated(_ input: DescribePluginsByApiRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePluginsByApiResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePluginsByApi, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Apigateway {
     /// 展示API上已绑定的插件列表。
     @inlinable
     public func describePluginsByApiPaginator(_ input: DescribePluginsByApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginsByApiRequest, DescribePluginsByApiResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginsByApiRequest, DescribePluginsByApiResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePluginsByApiRequest, DescribePluginsByApiResponse>.ResultSequence(input: input, region: region, command: self.describePluginsByApi, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePluginsByApiRequest, DescribePluginsByApiResponse>.ResponseSequence(input: input, region: region, command: self.describePluginsByApi, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePluginsByApi, logger: logger, on: eventLoop)
     }
 }

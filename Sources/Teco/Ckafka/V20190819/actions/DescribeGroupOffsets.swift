@@ -121,7 +121,7 @@ extension Ckafka {
     }
 
     /// 获取消费分组offset
-    @inlinable
+    @inlinable @discardableResult
     public func describeGroupOffsetsPaginated(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupOffsetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGroupOffsets, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Ckafka {
     /// 获取消费分组offset
     @inlinable
     public func describeGroupOffsetsPaginator(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResultSequence(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
     }
 }

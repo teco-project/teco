@@ -119,7 +119,7 @@ extension Chdfs {
     ///
     /// 通过权限组ID查看权限规则列表。
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessRulesPaginated(_ input: DescribeAccessRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccessRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Chdfs {
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeAccessRulesPaginator(_ input: DescribeAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessRulesRequest, DescribeAccessRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessRulesRequest, DescribeAccessRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAccessRulesRequest, DescribeAccessRulesResponse>.ResultSequence(input: input, region: region, command: self.describeAccessRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAccessRulesRequest, DescribeAccessRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeAccessRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessRules, logger: logger, on: eventLoop)
     }
 }

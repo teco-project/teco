@@ -117,7 +117,7 @@ extension Iecp {
     }
 
     /// 查询边缘单元列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeEdgeUnitsCloudPaginated(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeUnitsCloudResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEdgeUnitsCloud, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -125,8 +125,6 @@ extension Iecp {
     /// 查询边缘单元列表
     @inlinable
     public func describeEdgeUnitsCloudPaginator(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeUnitsCloud, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeUnitsCloud, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitsCloud, logger: logger, on: eventLoop)
     }
 }

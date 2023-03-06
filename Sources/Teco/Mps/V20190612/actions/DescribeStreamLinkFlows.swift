@@ -129,7 +129,7 @@ extension Mps {
     /// 批量查询媒体输入流
     ///
     /// 批量查询媒体输入流的配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeStreamLinkFlowsPaginated(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamLinkFlowsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeStreamLinkFlows, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Mps {
     /// 批量查询媒体输入流的配置信息。
     @inlinable
     public func describeStreamLinkFlowsPaginator(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResultSequence(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResponseSequence(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
     }
 }

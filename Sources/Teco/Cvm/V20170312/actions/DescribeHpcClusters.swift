@@ -120,7 +120,7 @@ extension Cvm {
     }
 
     /// 查询高性能集群信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeHpcClustersPaginated(_ input: DescribeHpcClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHpcClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHpcClusters, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Cvm {
     /// 查询高性能集群信息
     @inlinable
     public func describeHpcClustersPaginator(_ input: DescribeHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResultSequence(input: input, region: region, command: self.describeHpcClusters, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResponseSequence(input: input, region: region, command: self.describeHpcClusters, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHpcClusters, logger: logger, on: eventLoop)
     }
 }

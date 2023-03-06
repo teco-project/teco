@@ -126,7 +126,7 @@ extension Monitor {
     }
 
     /// 列出 Prometheus 抓取任务
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusScrapeJobsPaginated(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusScrapeJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusScrapeJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Monitor {
     /// 列出 Prometheus 抓取任务
     @inlinable
     public func describePrometheusScrapeJobsPaginator(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
     }
 }

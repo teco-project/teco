@@ -126,7 +126,7 @@ extension Tcss {
     /// 安全合规查询定时任务列表
     ///
     /// 查询合规检测的定时任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeCompliancePeriodTaskListPaginated(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCompliancePeriodTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCompliancePeriodTaskList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Tcss {
     /// 查询合规检测的定时任务列表
     @inlinable
     public func describeCompliancePeriodTaskListPaginator(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCompliancePeriodTaskListRequest, DescribeCompliancePeriodTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCompliancePeriodTaskListRequest, DescribeCompliancePeriodTaskListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCompliancePeriodTaskListRequest, DescribeCompliancePeriodTaskListResponse>.ResultSequence(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCompliancePeriodTaskListRequest, DescribeCompliancePeriodTaskListResponse>.ResponseSequence(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)
     }
 }

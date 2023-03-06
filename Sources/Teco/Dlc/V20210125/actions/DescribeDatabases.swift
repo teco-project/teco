@@ -137,7 +137,7 @@ extension Dlc {
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDatabasesPaginated(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatabasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDatabases, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Dlc {
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
     public func describeDatabasesPaginator(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResultSequence(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResponseSequence(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
     }
 }

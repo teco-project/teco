@@ -129,7 +129,7 @@ extension Yunjing {
     /// 获取异地登录事件
     ///
     /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
-    @inlinable
+    @inlinable @discardableResult
     public func describeNonlocalLoginPlacesPaginated(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNonlocalLoginPlacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNonlocalLoginPlaces, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Yunjing {
     /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
     @inlinable
     public func describeNonlocalLoginPlacesPaginator(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResultSequence(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResponseSequence(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
     }
 }

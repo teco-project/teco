@@ -127,7 +127,7 @@ extension Ccc {
     /// 查询运营商白名单号码申请
     ///
     /// 查询单状态
-    @inlinable
+    @inlinable @discardableResult
     public func describeCarrierPrivilegeNumberApplicantsPaginated(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCarrierPrivilegeNumberApplicantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Ccc {
     /// 查询单状态
     @inlinable
     public func describeCarrierPrivilegeNumberApplicantsPaginator(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResultSequence(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResponseSequence(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
     }
 }

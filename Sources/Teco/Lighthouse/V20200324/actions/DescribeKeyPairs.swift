@@ -134,7 +134,7 @@ extension Lighthouse {
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeKeyPairsPaginated(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKeyPairsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeKeyPairs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Lighthouse {
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
     public func describeKeyPairsPaginator(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResultSequence(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResponseSequence(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
     }
 }

@@ -122,7 +122,7 @@ extension Tsf {
     }
 
     /// 查询简单集群列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSimpleClustersPaginated(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSimpleClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSimpleClusters, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Tsf {
     /// 查询简单集群列表
     @inlinable
     public func describeSimpleClustersPaginator(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResultSequence(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResponseSequence(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
     }
 }

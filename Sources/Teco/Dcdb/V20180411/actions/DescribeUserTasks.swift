@@ -147,7 +147,7 @@ extension Dcdb {
     /// 拉取用户任务列表
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeUserTasksPaginated(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUserTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -157,8 +157,6 @@ extension Dcdb {
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
     public func describeUserTasksPaginator(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResultSequence(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
     }
 }

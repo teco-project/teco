@@ -139,7 +139,7 @@ extension Cloudaudit {
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
-    @inlinable
+    @inlinable @discardableResult
     public func lookUpEventsPaginated(_ input: LookUpEventsRequest, region: TCRegion? = nil, onResponse: @escaping (LookUpEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.lookUpEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Cloudaudit {
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
     public func lookUpEventsPaginator(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResultSequence, responses: TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResultSequence(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResponseSequence(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
     }
 }

@@ -105,7 +105,7 @@ extension Msp {
     }
 
     /// 获取迁移项目名称列表
-    @inlinable
+    @inlinable @discardableResult
     public func listMigrationProjectPaginated(_ input: ListMigrationProjectRequest, region: TCRegion? = nil, onResponse: @escaping (ListMigrationProjectResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listMigrationProject, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Msp {
     /// 获取迁移项目名称列表
     @inlinable
     public func listMigrationProjectPaginator(_ input: ListMigrationProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResultSequence, responses: TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResultSequence(input: input, region: region, command: self.listMigrationProject, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResponseSequence(input: input, region: region, command: self.listMigrationProject, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listMigrationProject, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Tke {
     }
 
     /// 获得节点升级当前的进度
-    @inlinable
+    @inlinable @discardableResult
     public func getUpgradeInstanceProgressPaginated(_ input: GetUpgradeInstanceProgressRequest, region: TCRegion? = nil, onResponse: @escaping (GetUpgradeInstanceProgressResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getUpgradeInstanceProgress, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Tke {
     /// 获得节点升级当前的进度
     @inlinable
     public func getUpgradeInstanceProgressPaginator(_ input: GetUpgradeInstanceProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetUpgradeInstanceProgressRequest, GetUpgradeInstanceProgressResponse>.ResultSequence, responses: TCClient.Paginator<GetUpgradeInstanceProgressRequest, GetUpgradeInstanceProgressResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetUpgradeInstanceProgressRequest, GetUpgradeInstanceProgressResponse>.ResultSequence(input: input, region: region, command: self.getUpgradeInstanceProgress, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetUpgradeInstanceProgressRequest, GetUpgradeInstanceProgressResponse>.ResponseSequence(input: input, region: region, command: self.getUpgradeInstanceProgress, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getUpgradeInstanceProgress, logger: logger, on: eventLoop)
     }
 }

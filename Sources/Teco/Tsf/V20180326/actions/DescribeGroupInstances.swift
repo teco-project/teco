@@ -122,7 +122,7 @@ extension Tsf {
     }
 
     /// 查询虚拟机部署组云主机列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeGroupInstancesPaginated(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeGroupInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Tsf {
     /// 查询虚拟机部署组云主机列表
     @inlinable
     public func describeGroupInstancesPaginator(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
     }
 }

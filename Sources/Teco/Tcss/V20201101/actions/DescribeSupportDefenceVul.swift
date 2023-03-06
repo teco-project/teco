@@ -123,7 +123,7 @@ extension Tcss {
     }
 
     /// 查询支持防御的漏洞列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSupportDefenceVulPaginated(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSupportDefenceVulResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSupportDefenceVul, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -131,8 +131,6 @@ extension Tcss {
     /// 查询支持防御的漏洞列表
     @inlinable
     public func describeSupportDefenceVulPaginator(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResultSequence(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResponseSequence(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
     }
 }

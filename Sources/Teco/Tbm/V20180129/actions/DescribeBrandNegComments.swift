@@ -140,7 +140,7 @@ extension Tbm {
     /// 获取品牌用户差评列表
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeBrandNegCommentsPaginated(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBrandNegCommentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBrandNegComments, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -150,8 +150,6 @@ extension Tbm {
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
     @inlinable
     public func describeBrandNegCommentsPaginator(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResultSequence(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResponseSequence(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
     }
 }

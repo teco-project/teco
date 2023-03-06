@@ -127,7 +127,7 @@ extension Iotvideoindustry {
     }
 
     /// 获取设备事件
-    @inlinable
+    @inlinable @discardableResult
     public func describeDeviceEventPaginated(_ input: DescribeDeviceEventRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceEventResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDeviceEvent, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Iotvideoindustry {
     /// 获取设备事件
     @inlinable
     public func describeDeviceEventPaginator(_ input: DescribeDeviceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResultSequence(input: input, region: region, command: self.describeDeviceEvent, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResponseSequence(input: input, region: region, command: self.describeDeviceEvent, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceEvent, logger: logger, on: eventLoop)
     }
 }

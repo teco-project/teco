@@ -143,7 +143,7 @@ extension Tcss {
     /// 安全合规查询上次任务的检测项的汇总信息列表
     ///
     /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
-    @inlinable
+    @inlinable @discardableResult
     public func describeComplianceTaskPolicyItemSummaryListPaginated(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceTaskPolicyItemSummaryListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -153,8 +153,6 @@ extension Tcss {
     /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
     @inlinable
     public func describeComplianceTaskPolicyItemSummaryListPaginator(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceTaskPolicyItemSummaryListRequest, DescribeComplianceTaskPolicyItemSummaryListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceTaskPolicyItemSummaryListRequest, DescribeComplianceTaskPolicyItemSummaryListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComplianceTaskPolicyItemSummaryListRequest, DescribeComplianceTaskPolicyItemSummaryListResponse>.ResultSequence(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComplianceTaskPolicyItemSummaryListRequest, DescribeComplianceTaskPolicyItemSummaryListResponse>.ResponseSequence(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)
     }
 }

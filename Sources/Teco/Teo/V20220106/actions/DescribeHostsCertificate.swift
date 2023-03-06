@@ -133,7 +133,7 @@ extension Teo {
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
-    @inlinable
+    @inlinable @discardableResult
     public func describeHostsCertificatePaginated(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostsCertificateResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHostsCertificate, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -143,8 +143,6 @@ extension Teo {
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeHostsCertificatePaginator(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostsCertificateRequest, DescribeHostsCertificateResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostsCertificateRequest, DescribeHostsCertificateResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHostsCertificateRequest, DescribeHostsCertificateResponse>.ResultSequence(input: input, region: region, command: self.describeHostsCertificate, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHostsCertificateRequest, DescribeHostsCertificateResponse>.ResponseSequence(input: input, region: region, command: self.describeHostsCertificate, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostsCertificate, logger: logger, on: eventLoop)
     }
 }

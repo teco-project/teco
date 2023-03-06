@@ -120,7 +120,7 @@ extension Antiddos {
     }
 
     /// 获取防护概览的ddos攻击事件
-    @inlinable
+    @inlinable @discardableResult
     public func describeOverviewDDoSEventListPaginated(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOverviewDDoSEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOverviewDDoSEventList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Antiddos {
     /// 获取防护概览的ddos攻击事件
     @inlinable
     public func describeOverviewDDoSEventListPaginator(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResultSequence(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
     }
 }

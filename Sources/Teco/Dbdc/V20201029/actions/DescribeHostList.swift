@@ -127,7 +127,7 @@ extension Dbdc {
     /// 查询主机列表
     ///
     /// 本接口用于查询主机列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeHostListPaginated(_ input: DescribeHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHostList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Dbdc {
     /// 本接口用于查询主机列表
     @inlinable
     public func describeHostListPaginator(_ input: DescribeHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResultSequence(input: input, region: region, command: self.describeHostList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResponseSequence(input: input, region: region, command: self.describeHostList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostList, logger: logger, on: eventLoop)
     }
 }

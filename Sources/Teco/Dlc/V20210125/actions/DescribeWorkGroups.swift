@@ -125,7 +125,7 @@ extension Dlc {
     }
 
     /// 获取工作组列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkGroupsPaginated(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWorkGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeWorkGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Dlc {
     /// 获取工作组列表
     @inlinable
     public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
     }
 }

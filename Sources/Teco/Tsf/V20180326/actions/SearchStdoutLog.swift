@@ -164,7 +164,7 @@ extension Tsf {
     }
 
     /// 标准输出日志搜索
-    @inlinable
+    @inlinable @discardableResult
     public func searchStdoutLogPaginated(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, onResponse: @escaping (SearchStdoutLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.searchStdoutLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -172,8 +172,6 @@ extension Tsf {
     /// 标准输出日志搜索
     @inlinable
     public func searchStdoutLogPaginator(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResultSequence, responses: TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResultSequence(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResponseSequence(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
     }
 }

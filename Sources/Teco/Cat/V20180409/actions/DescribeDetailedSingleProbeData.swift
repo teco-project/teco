@@ -199,7 +199,7 @@ extension Cat {
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
-    @inlinable
+    @inlinable @discardableResult
     public func describeDetailedSingleProbeDataPaginated(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDetailedSingleProbeDataResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDetailedSingleProbeData, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -209,8 +209,6 @@ extension Cat {
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
     public func describeDetailedSingleProbeDataPaginator(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResultSequence(input: input, region: region, command: self.describeDetailedSingleProbeData, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResponseSequence(input: input, region: region, command: self.describeDetailedSingleProbeData, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDetailedSingleProbeData, logger: logger, on: eventLoop)
     }
 }

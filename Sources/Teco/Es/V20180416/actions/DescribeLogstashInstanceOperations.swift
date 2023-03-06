@@ -132,7 +132,7 @@ extension Es {
     /// 查询Logstash实例操作记录
     ///
     /// 查询实例指定条件下的操作记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeLogstashInstanceOperationsPaginated(_ input: DescribeLogstashInstanceOperationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogstashInstanceOperationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLogstashInstanceOperations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Es {
     /// 查询实例指定条件下的操作记录
     @inlinable
     public func describeLogstashInstanceOperationsPaginator(_ input: DescribeLogstashInstanceOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogstashInstanceOperationsRequest, DescribeLogstashInstanceOperationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogstashInstanceOperationsRequest, DescribeLogstashInstanceOperationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeLogstashInstanceOperationsRequest, DescribeLogstashInstanceOperationsResponse>.ResultSequence(input: input, region: region, command: self.describeLogstashInstanceOperations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeLogstashInstanceOperationsRequest, DescribeLogstashInstanceOperationsResponse>.ResponseSequence(input: input, region: region, command: self.describeLogstashInstanceOperations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogstashInstanceOperations, logger: logger, on: eventLoop)
     }
 }

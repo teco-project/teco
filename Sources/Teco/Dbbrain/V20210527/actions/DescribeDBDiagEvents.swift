@@ -145,7 +145,7 @@ extension Dbbrain {
     /// 获取诊断事件列表
     ///
     /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBDiagEventsPaginated(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBDiagEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBDiagEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -155,8 +155,6 @@ extension Dbbrain {
     /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
     @inlinable
     public func describeDBDiagEventsPaginator(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBDiagEventsRequest, DescribeDBDiagEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBDiagEventsRequest, DescribeDBDiagEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBDiagEventsRequest, DescribeDBDiagEventsResponse>.ResultSequence(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBDiagEventsRequest, DescribeDBDiagEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)
     }
 }

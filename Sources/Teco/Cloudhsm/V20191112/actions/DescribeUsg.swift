@@ -123,7 +123,7 @@ extension Cloudhsm {
     /// 获取用户安全组列表
     ///
     /// 根据用户的AppId获取用户安全组列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsgPaginated(_ input: DescribeUsgRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsgResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsg, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Cloudhsm {
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
     public func describeUsgPaginator(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsgRequest, DescribeUsgResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsgRequest, DescribeUsgResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsgRequest, DescribeUsgResponse>.ResultSequence(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsgRequest, DescribeUsgResponse>.ResponseSequence(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)
     }
 }

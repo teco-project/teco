@@ -138,7 +138,7 @@ extension Gaap {
     /// 查询源站信息
     ///
     /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeRealServersPaginated(_ input: DescribeRealServersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRealServersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRealServers, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Gaap {
     /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
     @inlinable
     public func describeRealServersPaginator(_ input: DescribeRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResultSequence(input: input, region: region, command: self.describeRealServers, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResponseSequence(input: input, region: region, command: self.describeRealServers, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRealServers, logger: logger, on: eventLoop)
     }
 }

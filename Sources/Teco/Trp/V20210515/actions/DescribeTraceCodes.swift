@@ -122,7 +122,7 @@ extension Trp {
     }
 
     /// 查询二维码列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeTraceCodesPaginated(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTraceCodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTraceCodes, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -130,8 +130,6 @@ extension Trp {
     /// 查询二维码列表
     @inlinable
     public func describeTraceCodesPaginator(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTraceCodesRequest, DescribeTraceCodesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTraceCodesRequest, DescribeTraceCodesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTraceCodesRequest, DescribeTraceCodesResponse>.ResultSequence(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTraceCodesRequest, DescribeTraceCodesResponse>.ResponseSequence(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)
     }
 }

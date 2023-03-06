@@ -128,7 +128,7 @@ extension Tdmq {
     }
 
     /// 获取命名空间角色列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeEnvironmentRolesPaginated(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEnvironmentRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEnvironmentRoles, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -136,8 +136,6 @@ extension Tdmq {
     /// 获取命名空间角色列表
     @inlinable
     public func describeEnvironmentRolesPaginator(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResultSequence(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResponseSequence(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
     }
 }

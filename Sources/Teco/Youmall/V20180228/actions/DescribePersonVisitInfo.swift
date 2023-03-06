@@ -174,7 +174,7 @@ extension Youmall {
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
-    @inlinable
+    @inlinable @discardableResult
     public func describePersonVisitInfoPaginated(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonVisitInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePersonVisitInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -184,8 +184,6 @@ extension Youmall {
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
     @inlinable
     public func describePersonVisitInfoPaginator(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonVisitInfoRequest, DescribePersonVisitInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonVisitInfoRequest, DescribePersonVisitInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePersonVisitInfoRequest, DescribePersonVisitInfoResponse>.ResultSequence(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePersonVisitInfoRequest, DescribePersonVisitInfoResponse>.ResponseSequence(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)
     }
 }

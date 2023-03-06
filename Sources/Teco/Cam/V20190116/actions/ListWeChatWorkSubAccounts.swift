@@ -105,7 +105,7 @@ extension Cam {
     }
 
     /// 获取企业微信子用户列表
-    @inlinable
+    @inlinable @discardableResult
     public func listWeChatWorkSubAccountsPaginated(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (ListWeChatWorkSubAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listWeChatWorkSubAccounts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Cam {
     /// 获取企业微信子用户列表
     @inlinable
     public func listWeChatWorkSubAccountsPaginator(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResultSequence, responses: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResultSequence(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResponseSequence(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
     }
 }

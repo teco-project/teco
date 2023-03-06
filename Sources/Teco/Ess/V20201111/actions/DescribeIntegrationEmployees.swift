@@ -138,7 +138,7 @@ extension Ess {
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
-    @inlinable
+    @inlinable @discardableResult
     public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Ess {
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployeesPaginator(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIntegrationEmployeesRequest, DescribeIntegrationEmployeesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIntegrationEmployeesRequest, DescribeIntegrationEmployeesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeIntegrationEmployeesRequest, DescribeIntegrationEmployeesResponse>.ResultSequence(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeIntegrationEmployeesRequest, DescribeIntegrationEmployeesResponse>.ResponseSequence(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
     }
 }

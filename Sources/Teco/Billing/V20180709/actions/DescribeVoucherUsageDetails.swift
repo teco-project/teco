@@ -120,7 +120,7 @@ extension Billing {
     }
 
     /// 获取代金券使用记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeVoucherUsageDetailsPaginated(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVoucherUsageDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVoucherUsageDetails, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Billing {
     /// 获取代金券使用记录
     @inlinable
     public func describeVoucherUsageDetailsPaginator(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResultSequence(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResponseSequence(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
     }
 }

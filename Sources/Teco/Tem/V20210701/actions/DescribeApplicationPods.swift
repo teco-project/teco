@@ -129,7 +129,7 @@ extension Tem {
     }
 
     /// 获取应用实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeApplicationPodsPaginated(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationPodsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeApplicationPods, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -137,8 +137,6 @@ extension Tem {
     /// 获取应用实例列表
     @inlinable
     public func describeApplicationPodsPaginator(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResultSequence(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResponseSequence(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
     }
 }

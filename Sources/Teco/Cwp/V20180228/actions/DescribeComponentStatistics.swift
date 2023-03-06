@@ -123,7 +123,7 @@ extension Cwp {
     /// 获取组件统计列表
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
-    @inlinable
+    @inlinable @discardableResult
     public func describeComponentStatisticsPaginated(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComponentStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeComponentStatistics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Cwp {
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
     public func describeComponentStatisticsPaginator(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResultSequence(input: input, region: region, command: self.describeComponentStatistics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.describeComponentStatistics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComponentStatistics, logger: logger, on: eventLoop)
     }
 }

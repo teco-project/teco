@@ -116,7 +116,7 @@ extension Cloudhsm {
     }
 
     /// 查询子网列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeSubnetPaginated(_ input: DescribeSubnetRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubnetResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSubnet, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Cloudhsm {
     /// 查询子网列表
     @inlinable
     public func describeSubnetPaginator(_ input: DescribeSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResultSequence(input: input, region: region, command: self.describeSubnet, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResponseSequence(input: input, region: region, command: self.describeSubnet, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnet, logger: logger, on: eventLoop)
     }
 }

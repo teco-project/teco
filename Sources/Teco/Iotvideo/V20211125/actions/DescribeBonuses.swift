@@ -105,7 +105,7 @@ extension Iotvideo {
     }
 
     /// 查看运营活动资源包列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBonusesPaginated(_ input: DescribeBonusesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBonusesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBonuses, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -113,8 +113,6 @@ extension Iotvideo {
     /// 查看运营活动资源包列表
     @inlinable
     public func describeBonusesPaginator(_ input: DescribeBonusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBonusesRequest, DescribeBonusesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBonusesRequest, DescribeBonusesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBonusesRequest, DescribeBonusesResponse>.ResultSequence(input: input, region: region, command: self.describeBonuses, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBonusesRequest, DescribeBonusesResponse>.ResponseSequence(input: input, region: region, command: self.describeBonuses, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBonuses, logger: logger, on: eventLoop)
     }
 }

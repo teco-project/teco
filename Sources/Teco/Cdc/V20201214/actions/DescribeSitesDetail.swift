@@ -115,7 +115,7 @@ extension Cdc {
     }
 
     /// 查询站点详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeSitesDetailPaginated(_ input: DescribeSitesDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSitesDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSitesDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Cdc {
     /// 查询站点详情
     @inlinable
     public func describeSitesDetailPaginator(_ input: DescribeSitesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSitesDetailRequest, DescribeSitesDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSitesDetailRequest, DescribeSitesDetailResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeSitesDetailRequest, DescribeSitesDetailResponse>.ResultSequence(input: input, region: region, command: self.describeSitesDetail, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeSitesDetailRequest, DescribeSitesDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeSitesDetail, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSitesDetail, logger: logger, on: eventLoop)
     }
 }

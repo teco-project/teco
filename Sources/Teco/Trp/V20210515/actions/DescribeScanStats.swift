@@ -118,7 +118,7 @@ extension Trp {
     /// 查询扫码统计列表
     ///
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
-    @inlinable
+    @inlinable @discardableResult
     public func describeScanStatsPaginated(_ input: DescribeScanStatsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanStatsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScanStats, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Trp {
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
     @inlinable
     public func describeScanStatsPaginator(_ input: DescribeScanStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResultSequence(input: input, region: region, command: self.describeScanStats, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResponseSequence(input: input, region: region, command: self.describeScanStats, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanStats, logger: logger, on: eventLoop)
     }
 }

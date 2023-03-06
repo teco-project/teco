@@ -134,7 +134,7 @@ extension Yinsuda {
     /// 获取标签歌曲
     ///
     /// 通过标签过滤歌曲列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeKTVMusicsByTagPaginated(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVMusicsByTagResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeKTVMusicsByTag, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Yinsuda {
     /// 通过标签过滤歌曲列表。
     @inlinable
     public func describeKTVMusicsByTagPaginator(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResultSequence(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
     }
 }

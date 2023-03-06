@@ -107,7 +107,7 @@ extension Tsf {
     }
 
     /// 获取多个投递项配置
-    @inlinable
+    @inlinable @discardableResult
     public func describeDeliveryConfigsPaginated(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeliveryConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDeliveryConfigs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -115,8 +115,6 @@ extension Tsf {
     /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigsPaginator(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResultSequence(input: input, region: region, command: self.describeDeliveryConfigs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describeDeliveryConfigs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeliveryConfigs, logger: logger, on: eventLoop)
     }
 }

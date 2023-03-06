@@ -156,7 +156,7 @@ extension Gaap {
     /// 查询HTTPS监听器信息
     ///
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeHTTPSListenersPaginated(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHTTPSListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHTTPSListeners, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -166,8 +166,6 @@ extension Gaap {
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
     @inlinable
     public func describeHTTPSListenersPaginator(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResultSequence(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResponseSequence(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
     }
 }

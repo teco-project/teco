@@ -114,7 +114,7 @@ extension Wav {
     /// 查询会话存档列表接口
     ///
     /// 根据游标拉取会话存档列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func queryChatArchivingListPaginated(_ input: QueryChatArchivingListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryChatArchivingListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryChatArchivingList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Wav {
     /// 根据游标拉取会话存档列表信息
     @inlinable
     public func queryChatArchivingListPaginator(_ input: QueryChatArchivingListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResultSequence, responses: TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResultSequence(input: input, region: region, command: self.queryChatArchivingList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResponseSequence(input: input, region: region, command: self.queryChatArchivingList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryChatArchivingList, logger: logger, on: eventLoop)
     }
 }

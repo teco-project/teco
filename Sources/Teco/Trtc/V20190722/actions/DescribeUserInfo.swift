@@ -166,7 +166,7 @@ extension Trtc {
     /// **注意**：
     /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
-    @inlinable
+    @inlinable @discardableResult
     public func describeUserInfoPaginated(_ input: DescribeUserInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUserInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -179,8 +179,6 @@ extension Trtc {
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
     public func describeUserInfoPaginator(_ input: DescribeUserInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserInfoRequest, DescribeUserInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserInfoRequest, DescribeUserInfoResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUserInfoRequest, DescribeUserInfoResponse>.ResultSequence(input: input, region: region, command: self.describeUserInfo, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUserInfoRequest, DescribeUserInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeUserInfo, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserInfo, logger: logger, on: eventLoop)
     }
 }

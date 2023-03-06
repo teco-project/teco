@@ -132,7 +132,7 @@ extension Cdb {
     /// 查询数据库导入任务记录
     ///
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDBImportRecordsPaginated(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBImportRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBImportRecords, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Cdb {
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
     public func describeDBImportRecordsPaginator(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBImportRecordsRequest, DescribeDBImportRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBImportRecordsRequest, DescribeDBImportRecordsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDBImportRecordsRequest, DescribeDBImportRecordsResponse>.ResultSequence(input: input, region: region, command: self.describeDBImportRecords, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDBImportRecordsRequest, DescribeDBImportRecordsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBImportRecords, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBImportRecords, logger: logger, on: eventLoop)
     }
 }

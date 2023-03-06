@@ -124,7 +124,7 @@ extension Tcss {
     }
 
     /// 镜像仓库查询木马病毒列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageRegistryVirusListPaginated(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageRegistryVirusListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAssetImageRegistryVirusList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Tcss {
     /// 镜像仓库查询木马病毒列表
     @inlinable
     public func describeAssetImageRegistryVirusListPaginator(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
     }
 }

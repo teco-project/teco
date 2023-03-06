@@ -116,7 +116,7 @@ extension Yunjing {
     }
 
     /// 获取高危命令规则列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeBashRulesPaginated(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBashRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBashRules, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Yunjing {
     /// 获取高危命令规则列表
     @inlinable
     public func describeBashRulesPaginator(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResultSequence(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
     }
 }

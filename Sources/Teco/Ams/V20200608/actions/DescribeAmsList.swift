@@ -131,7 +131,7 @@ extension Ams {
     /// 获取音频审核明细数据
     ///
     /// 音频审核明细列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAmsListPaginated(_ input: DescribeAmsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAmsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAmsList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Ams {
     /// 音频审核明细列表
     @inlinable
     public func describeAmsListPaginator(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResultSequence(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResponseSequence(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
     }
 }

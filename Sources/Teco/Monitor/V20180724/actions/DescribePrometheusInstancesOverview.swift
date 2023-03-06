@@ -125,7 +125,7 @@ extension Monitor {
     /// 获取2.0实例列表
     ///
     /// 获取与云监控融合实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusInstancesOverviewPaginated(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesOverviewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstancesOverview, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -135,8 +135,6 @@ extension Monitor {
     /// 获取与云监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverviewPaginator(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
     }
 }

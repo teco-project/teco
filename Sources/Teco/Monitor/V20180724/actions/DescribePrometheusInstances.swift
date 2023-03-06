@@ -189,7 +189,7 @@ extension Monitor {
     /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
     /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
     /// </ul>
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusInstancesPaginated(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -203,8 +203,6 @@ extension Monitor {
     /// </ul>
     @inlinable
     public func describePrometheusInstancesPaginator(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
     }
 }

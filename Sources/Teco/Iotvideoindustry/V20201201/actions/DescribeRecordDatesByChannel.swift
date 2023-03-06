@@ -124,7 +124,7 @@ extension Iotvideoindustry {
     /// 获取设备录像日期列表
     ///
     /// 本接口(DescribeRecordDatesByChannel)用于查询设备含有录像文件的日期列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeRecordDatesByChannelPaginated(_ input: DescribeRecordDatesByChannelRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordDatesByChannelResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRecordDatesByChannel, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -134,8 +134,6 @@ extension Iotvideoindustry {
     /// 本接口(DescribeRecordDatesByChannel)用于查询设备含有录像文件的日期列表。
     @inlinable
     public func describeRecordDatesByChannelPaginator(_ input: DescribeRecordDatesByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordDatesByChannelRequest, DescribeRecordDatesByChannelResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordDatesByChannelRequest, DescribeRecordDatesByChannelResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRecordDatesByChannelRequest, DescribeRecordDatesByChannelResponse>.ResultSequence(input: input, region: region, command: self.describeRecordDatesByChannel, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRecordDatesByChannelRequest, DescribeRecordDatesByChannelResponse>.ResponseSequence(input: input, region: region, command: self.describeRecordDatesByChannel, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordDatesByChannel, logger: logger, on: eventLoop)
     }
 }

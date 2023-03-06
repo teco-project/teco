@@ -107,7 +107,7 @@ extension Iotvideoindustry {
     }
 
     /// 查看消息转发配置列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeMessageForwardsPaginated(_ input: DescribeMessageForwardsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMessageForwardsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeMessageForwards, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -115,8 +115,6 @@ extension Iotvideoindustry {
     /// 查看消息转发配置列表
     @inlinable
     public func describeMessageForwardsPaginator(_ input: DescribeMessageForwardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMessageForwardsRequest, DescribeMessageForwardsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMessageForwardsRequest, DescribeMessageForwardsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeMessageForwardsRequest, DescribeMessageForwardsResponse>.ResultSequence(input: input, region: region, command: self.describeMessageForwards, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeMessageForwardsRequest, DescribeMessageForwardsResponse>.ResponseSequence(input: input, region: region, command: self.describeMessageForwards, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMessageForwards, logger: logger, on: eventLoop)
     }
 }

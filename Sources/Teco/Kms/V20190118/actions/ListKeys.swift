@@ -128,7 +128,7 @@ extension Kms {
     /// 获取主密钥列表
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
-    @inlinable
+    @inlinable @discardableResult
     public func listKeysPaginated(_ input: ListKeysRequest, region: TCRegion? = nil, onResponse: @escaping (ListKeysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.listKeys, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Kms {
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
     public func listKeysPaginator(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResultSequence, responses: TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResultSequence(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResponseSequence(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
     }
 }

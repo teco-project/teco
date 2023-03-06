@@ -171,7 +171,7 @@ extension Cme {
     /// 搜索媒体
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
-    @inlinable
+    @inlinable @discardableResult
     public func searchMaterialPaginated(_ input: SearchMaterialRequest, region: TCRegion? = nil, onResponse: @escaping (SearchMaterialResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.searchMaterial, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -181,8 +181,6 @@ extension Cme {
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
     public func searchMaterialPaginator(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResultSequence, responses: TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResultSequence(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResponseSequence(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
     }
 }

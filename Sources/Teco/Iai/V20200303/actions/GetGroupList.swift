@@ -118,7 +118,7 @@ extension Iai {
     /// 获取人员库列表
     ///
     /// 获取人员库列表。
-    @inlinable
+    @inlinable @discardableResult
     public func getGroupListPaginated(_ input: GetGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (GetGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getGroupList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Iai {
     /// 获取人员库列表。
     @inlinable
     public func getGroupListPaginator(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResultSequence, responses: TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResultSequence(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResponseSequence(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
     }
 }

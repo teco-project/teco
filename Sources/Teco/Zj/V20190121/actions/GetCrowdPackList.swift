@@ -128,7 +128,7 @@ extension Zj {
     /// 获取人群包列表
     ///
     /// 获取人群包列表接口
-    @inlinable
+    @inlinable @discardableResult
     public func getCrowdPackListPaginated(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, onResponse: @escaping (GetCrowdPackListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getCrowdPackList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Zj {
     /// 获取人群包列表接口
     @inlinable
     public func getCrowdPackListPaginator(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResultSequence, responses: TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResultSequence(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResponseSequence(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
     }
 }

@@ -139,7 +139,7 @@ extension Wedata {
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeTableQualityDetailsPaginated(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTableQualityDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTableQualityDetails, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Wedata {
     /// 质量报告-查询表质量详情
     @inlinable
     public func describeTableQualityDetailsPaginator(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResultSequence(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResponseSequence(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
     }
 }

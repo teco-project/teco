@@ -128,7 +128,7 @@ extension Teo {
     /// 查询别称域名信息列表
     ///
     /// 查询别称域名信息列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeAliasDomainsPaginated(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAliasDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAliasDomains, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Teo {
     /// 查询别称域名信息列表。
     @inlinable
     public func describeAliasDomainsPaginator(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResultSequence(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResponseSequence(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
     }
 }

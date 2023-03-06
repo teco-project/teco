@@ -137,7 +137,7 @@ extension Bm {
     /// 查询设备位置信息
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeDevicePositionPaginated(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicePositionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDevicePosition, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Bm {
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     @inlinable
     public func describeDevicePositionPaginator(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDevicePositionRequest, DescribeDevicePositionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDevicePositionRequest, DescribeDevicePositionResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDevicePositionRequest, DescribeDevicePositionResponse>.ResultSequence(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDevicePositionRequest, DescribeDevicePositionResponse>.ResponseSequence(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)
     }
 }

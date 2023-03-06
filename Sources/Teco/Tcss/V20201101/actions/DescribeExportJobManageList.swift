@@ -124,7 +124,7 @@ extension Tcss {
     }
 
     /// 查询导出任务管理列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeExportJobManageListPaginated(_ input: DescribeExportJobManageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExportJobManageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeExportJobManageList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -132,8 +132,6 @@ extension Tcss {
     /// 查询导出任务管理列表
     @inlinable
     public func describeExportJobManageListPaginator(_ input: DescribeExportJobManageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResultSequence(input: input, region: region, command: self.describeExportJobManageList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResponseSequence(input: input, region: region, command: self.describeExportJobManageList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExportJobManageList, logger: logger, on: eventLoop)
     }
 }

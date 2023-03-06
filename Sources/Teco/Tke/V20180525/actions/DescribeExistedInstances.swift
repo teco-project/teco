@@ -148,7 +148,7 @@ extension Tke {
     /// 查询已经存在的节点
     ///
     /// 查询已经存在的节点，判断是否可以加入集群
-    @inlinable
+    @inlinable @discardableResult
     public func describeExistedInstancesPaginated(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExistedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeExistedInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -158,8 +158,6 @@ extension Tke {
     /// 查询已经存在的节点，判断是否可以加入集群
     @inlinable
     public func describeExistedInstancesPaginator(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExistedInstancesRequest, DescribeExistedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExistedInstancesRequest, DescribeExistedInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeExistedInstancesRequest, DescribeExistedInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeExistedInstancesRequest, DescribeExistedInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)
     }
 }

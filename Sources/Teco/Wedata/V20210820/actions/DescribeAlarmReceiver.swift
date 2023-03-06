@@ -141,7 +141,7 @@ extension Wedata {
     }
 
     /// 告警接收人详情
-    @inlinable
+    @inlinable @discardableResult
     public func describeAlarmReceiverPaginated(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmReceiverResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAlarmReceiver, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -149,8 +149,6 @@ extension Wedata {
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiverPaginator(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResultSequence(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResponseSequence(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
     }
 }

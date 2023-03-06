@@ -180,7 +180,7 @@ extension Antiddos {
     }
 
     /// 获取高防包资产实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeListBGPInstancesPaginated(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListBGPInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeListBGPInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -188,8 +188,6 @@ extension Antiddos {
     /// 获取高防包资产实例列表
     @inlinable
     public func describeListBGPInstancesPaginator(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
     }
 }

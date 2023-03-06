@@ -113,7 +113,7 @@ extension Cfg {
     /// 获取演练过程日志
     ///
     /// 获取演练过程中的所有日志
-    @inlinable
+    @inlinable @discardableResult
     public func describeTaskExecuteLogsPaginated(_ input: DescribeTaskExecuteLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskExecuteLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTaskExecuteLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Cfg {
     /// 获取演练过程中的所有日志
     @inlinable
     public func describeTaskExecuteLogsPaginator(_ input: DescribeTaskExecuteLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResultSequence(input: input, region: region, command: self.describeTaskExecuteLogs, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskExecuteLogs, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskExecuteLogs, logger: logger, on: eventLoop)
     }
 }

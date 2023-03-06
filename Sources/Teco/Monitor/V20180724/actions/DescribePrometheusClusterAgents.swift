@@ -110,7 +110,7 @@ extension Monitor {
     }
 
     /// 获取TMP实例关联集群列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePrometheusClusterAgentsPaginated(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusClusterAgentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusClusterAgents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Monitor {
     /// 获取TMP实例关联集群列表
     @inlinable
     public func describePrometheusClusterAgentsPaginator(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusClusterAgents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusClusterAgents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusClusterAgents, logger: logger, on: eventLoop)
     }
 }

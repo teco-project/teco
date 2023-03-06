@@ -142,7 +142,7 @@ extension Teo {
     /// 查询 DNS 记录列表
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
-    @inlinable
+    @inlinable @discardableResult
     public func describeDnsRecordsPaginated(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDnsRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDnsRecords, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -152,8 +152,6 @@ extension Teo {
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeDnsRecordsPaginator(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResultSequence(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResponseSequence(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
     }
 }

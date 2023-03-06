@@ -111,7 +111,7 @@ extension Tsf {
     }
 
     /// 获取部署组实例列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePodInstancesPaginated(_ input: DescribePodInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePodInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePodInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -119,8 +119,6 @@ extension Tsf {
     /// 获取部署组实例列表
     @inlinable
     public func describePodInstancesPaginator(_ input: DescribePodInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePodInstancesRequest, DescribePodInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePodInstancesRequest, DescribePodInstancesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePodInstancesRequest, DescribePodInstancesResponse>.ResultSequence(input: input, region: region, command: self.describePodInstances, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePodInstancesRequest, DescribePodInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describePodInstances, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePodInstances, logger: logger, on: eventLoop)
     }
 }

@@ -130,7 +130,7 @@ extension Tdmq {
     }
 
     /// 获取Amqp路由关系列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAMQPRouteRelationsPaginated(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPRouteRelationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAMQPRouteRelations, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -138,8 +138,6 @@ extension Tdmq {
     /// 获取Amqp路由关系列表
     @inlinable
     public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
     }
 }

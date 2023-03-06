@@ -150,7 +150,7 @@ extension Bmvpc {
     /// 查询VPN通道列表
     ///
     /// 本接口（DescribeVpnConnections）查询VPN通道列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeVpnConnectionsPaginated(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpnConnections, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -160,8 +160,6 @@ extension Bmvpc {
     /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
     public func describeVpnConnectionsPaginator(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnConnectionsRequest, DescribeVpnConnectionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnConnectionsRequest, DescribeVpnConnectionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVpnConnectionsRequest, DescribeVpnConnectionsResponse>.ResultSequence(input: input, region: region, command: self.describeVpnConnections, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVpnConnectionsRequest, DescribeVpnConnectionsResponse>.ResponseSequence(input: input, region: region, command: self.describeVpnConnections, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnConnections, logger: logger, on: eventLoop)
     }
 }

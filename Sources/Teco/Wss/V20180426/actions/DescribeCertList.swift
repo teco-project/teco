@@ -147,7 +147,7 @@ extension Wss {
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeCertListPaginated(_ input: DescribeCertListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCertListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCertList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -157,8 +157,6 @@ extension Wss {
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
     public func describeCertListPaginator(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResultSequence(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResponseSequence(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
     }
 }

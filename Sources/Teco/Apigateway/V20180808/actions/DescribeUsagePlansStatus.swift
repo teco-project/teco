@@ -119,7 +119,7 @@ extension Apigateway {
     /// 查询使用计划列表
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
-    @inlinable
+    @inlinable @discardableResult
     public func describeUsagePlansStatusPaginated(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlansStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsagePlansStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Apigateway {
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
     public func describeUsagePlansStatusPaginator(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResultSequence(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
     }
 }

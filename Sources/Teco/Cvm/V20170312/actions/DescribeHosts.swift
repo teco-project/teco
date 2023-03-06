@@ -132,7 +132,7 @@ extension Cvm {
     /// 查看CDH实例列表
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
-    @inlinable
+    @inlinable @discardableResult
     public func describeHostsPaginated(_ input: DescribeHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeHosts, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Cvm {
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     @inlinable
     public func describeHostsPaginator(_ input: DescribeHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostsRequest, DescribeHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostsRequest, DescribeHostsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeHostsRequest, DescribeHostsResponse>.ResultSequence(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeHostsRequest, DescribeHostsResponse>.ResponseSequence(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)
     }
 }

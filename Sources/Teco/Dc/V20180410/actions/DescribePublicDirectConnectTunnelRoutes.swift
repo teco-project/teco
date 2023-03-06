@@ -129,7 +129,7 @@ extension Dc {
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
-    @inlinable
+    @inlinable @discardableResult
     public func describePublicDirectConnectTunnelRoutesPaginated(_ input: DescribePublicDirectConnectTunnelRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublicDirectConnectTunnelRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePublicDirectConnectTunnelRoutes, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -139,8 +139,6 @@ extension Dc {
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
     @inlinable
     public func describePublicDirectConnectTunnelRoutesPaginator(_ input: DescribePublicDirectConnectTunnelRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublicDirectConnectTunnelRoutesRequest, DescribePublicDirectConnectTunnelRoutesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublicDirectConnectTunnelRoutesRequest, DescribePublicDirectConnectTunnelRoutesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribePublicDirectConnectTunnelRoutesRequest, DescribePublicDirectConnectTunnelRoutesResponse>.ResultSequence(input: input, region: region, command: self.describePublicDirectConnectTunnelRoutes, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribePublicDirectConnectTunnelRoutesRequest, DescribePublicDirectConnectTunnelRoutesResponse>.ResponseSequence(input: input, region: region, command: self.describePublicDirectConnectTunnelRoutes, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicDirectConnectTunnelRoutes, logger: logger, on: eventLoop)
     }
 }

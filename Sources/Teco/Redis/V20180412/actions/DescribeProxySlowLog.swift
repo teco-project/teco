@@ -137,7 +137,7 @@ extension Redis {
     /// 查询代理慢查询
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
-    @inlinable
+    @inlinable @discardableResult
     public func describeProxySlowLogPaginated(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProxySlowLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProxySlowLog, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -147,8 +147,6 @@ extension Redis {
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
     public func describeProxySlowLogPaginator(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResultSequence(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResponseSequence(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
     }
 }

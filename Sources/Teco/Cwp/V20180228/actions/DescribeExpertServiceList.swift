@@ -134,7 +134,7 @@ extension Cwp {
     /// 安全管家列表
     ///
     /// 专家服务-安全管家列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeExpertServiceListPaginated(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExpertServiceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeExpertServiceList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -144,8 +144,6 @@ extension Cwp {
     /// 专家服务-安全管家列表
     @inlinable
     public func describeExpertServiceListPaginator(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResultSequence(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResponseSequence(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
     }
 }

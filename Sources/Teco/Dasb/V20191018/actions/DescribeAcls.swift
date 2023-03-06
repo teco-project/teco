@@ -140,7 +140,7 @@ extension Dasb {
     }
 
     /// 查询访问权限列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeAclsPaginated(_ input: DescribeAclsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAclsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAcls, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -148,8 +148,6 @@ extension Dasb {
     /// 查询访问权限列表
     @inlinable
     public func describeAclsPaginator(_ input: DescribeAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAclsRequest, DescribeAclsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAclsRequest, DescribeAclsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeAclsRequest, DescribeAclsResponse>.ResultSequence(input: input, region: region, command: self.describeAcls, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeAclsRequest, DescribeAclsResponse>.ResponseSequence(input: input, region: region, command: self.describeAcls, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcls, logger: logger, on: eventLoop)
     }
 }

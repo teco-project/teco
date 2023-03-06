@@ -133,7 +133,7 @@ extension Tcss {
     }
 
     /// 查询漏洞影响的镜像列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulImageListPaginated(_ input: DescribeVulImageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulImageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVulImageList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -141,8 +141,6 @@ extension Tcss {
     /// 查询漏洞影响的镜像列表
     @inlinable
     public func describeVulImageListPaginator(_ input: DescribeVulImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResultSequence(input: input, region: region, command: self.describeVulImageList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResponseSequence(input: input, region: region, command: self.describeVulImageList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulImageList, logger: logger, on: eventLoop)
     }
 }

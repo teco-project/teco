@@ -115,7 +115,7 @@ extension Tke {
     }
 
     /// 集群关联的伸缩组列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeClusterAsGroupsPaginated(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterAsGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClusterAsGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Tke {
     /// 集群关联的伸缩组列表
     @inlinable
     public func describeClusterAsGroupsPaginator(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
     }
 }

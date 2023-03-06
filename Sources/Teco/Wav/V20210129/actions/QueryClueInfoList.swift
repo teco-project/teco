@@ -119,7 +119,7 @@ extension Wav {
     /// 查询线索列表接口
     ///
     /// 企业可通过此接口获取线索列表。
-    @inlinable
+    @inlinable @discardableResult
     public func queryClueInfoListPaginated(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryClueInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.queryClueInfoList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -129,8 +129,6 @@ extension Wav {
     /// 企业可通过此接口获取线索列表。
     @inlinable
     public func queryClueInfoListPaginator(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResultSequence(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResponseSequence(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
     }
 }

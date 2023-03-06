@@ -110,7 +110,7 @@ extension Iot {
     }
 
     /// 获取Topic列表
-    @inlinable
+    @inlinable @discardableResult
     public func getTopicsPaginated(_ input: GetTopicsRequest, region: TCRegion? = nil, onResponse: @escaping (GetTopicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getTopics, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -118,8 +118,6 @@ extension Iot {
     /// 获取Topic列表
     @inlinable
     public func getTopicsPaginator(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResultSequence, responses: TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResultSequence(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResponseSequence(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
     }
 }

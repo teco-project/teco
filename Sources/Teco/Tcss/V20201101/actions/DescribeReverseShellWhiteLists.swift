@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时反弹shell白名单列表
     ///
     /// 查询运行时运行时反弹shell白名单列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeReverseShellWhiteListsPaginated(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReverseShellWhiteListsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReverseShellWhiteLists, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时运行时反弹shell白名单列表信息
     @inlinable
     public func describeReverseShellWhiteListsPaginator(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResultSequence(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResponseSequence(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)
     }
 }

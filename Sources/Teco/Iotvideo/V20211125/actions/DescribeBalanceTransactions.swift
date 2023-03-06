@@ -115,7 +115,7 @@ extension Iotvideo {
     }
 
     /// 拉取账户流水
-    @inlinable
+    @inlinable @discardableResult
     public func describeBalanceTransactionsPaginated(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBalanceTransactionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBalanceTransactions, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -123,8 +123,6 @@ extension Iotvideo {
     /// 拉取账户流水
     @inlinable
     public func describeBalanceTransactionsPaginator(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResultSequence(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResponseSequence(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
     }
 }

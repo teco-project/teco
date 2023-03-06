@@ -123,7 +123,7 @@ extension Tcr {
     /// 获取个人版镜像仓库tag列表
     ///
     /// 用于获取个人版镜像仓库tag列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeImagePersonalPaginated(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagePersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeImagePersonal, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -133,8 +133,6 @@ extension Tcr {
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
     public func describeImagePersonalPaginator(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResultSequence(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
     }
 }

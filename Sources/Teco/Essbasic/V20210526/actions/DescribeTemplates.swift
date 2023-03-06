@@ -170,7 +170,7 @@ extension Essbasic {
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
-    @inlinable
+    @inlinable @discardableResult
     public func describeTemplatesPaginated(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -180,8 +180,6 @@ extension Essbasic {
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
     public func describeTemplatesPaginator(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTemplatesRequest, DescribeTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTemplatesRequest, DescribeTemplatesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeTemplatesRequest, DescribeTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeTemplatesRequest, DescribeTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
     }
 }

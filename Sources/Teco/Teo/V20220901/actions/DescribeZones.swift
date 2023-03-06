@@ -141,7 +141,7 @@ extension Teo {
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页。
-    @inlinable
+    @inlinable @discardableResult
     public func describeZonesPaginated(_ input: DescribeZonesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZonesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeZones, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -151,8 +151,6 @@ extension Teo {
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
     public func describeZonesPaginator(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResultSequence(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResponseSequence(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Tcss {
     /// 运行时高危系统调用列表
     ///
     /// 查询运行时运行时高危系统调用列表信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskSyscallEventsPaginated(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskSyscallEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRiskSyscallEvents, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -142,8 +142,6 @@ extension Tcss {
     /// 查询运行时运行时高危系统调用列表信息
     @inlinable
     public func describeRiskSyscallEventsPaginator(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskSyscallEventsRequest, DescribeRiskSyscallEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskSyscallEventsRequest, DescribeRiskSyscallEventsResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeRiskSyscallEventsRequest, DescribeRiskSyscallEventsResponse>.ResultSequence(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeRiskSyscallEventsRequest, DescribeRiskSyscallEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)
     }
 }

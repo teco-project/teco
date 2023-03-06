@@ -120,7 +120,7 @@ extension Tcss {
     }
 
     /// 查询漏洞扫描忽略的本地镜像列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeVulIgnoreLocalImageListPaginated(_ input: DescribeVulIgnoreLocalImageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulIgnoreLocalImageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVulIgnoreLocalImageList, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -128,8 +128,6 @@ extension Tcss {
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
     public func describeVulIgnoreLocalImageListPaginator(_ input: DescribeVulIgnoreLocalImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResultSequence(input: input, region: region, command: self.describeVulIgnoreLocalImageList, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResponseSequence(input: input, region: region, command: self.describeVulIgnoreLocalImageList, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulIgnoreLocalImageList, logger: logger, on: eventLoop)
     }
 }

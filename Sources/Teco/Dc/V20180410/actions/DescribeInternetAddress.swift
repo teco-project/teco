@@ -116,7 +116,7 @@ extension Dc {
     }
 
     /// 获取用户互联网公网地址信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeInternetAddressPaginated(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInternetAddressResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInternetAddress, callback: onResponse, logger: logger, on: eventLoop)
     }
@@ -124,8 +124,6 @@ extension Dc {
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddressPaginator(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResponseSequence) {
-        let results = TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResultSequence(input: input, region: region, command: self.describeInternetAddress, logger: logger, on: eventLoop)
-        let responses = TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResponseSequence(input: input, region: region, command: self.describeInternetAddress, logger: logger, on: eventLoop)
-        return (results, responses)
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInternetAddress, logger: logger, on: eventLoop)
     }
 }
