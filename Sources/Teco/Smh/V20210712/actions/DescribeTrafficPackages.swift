@@ -125,4 +125,30 @@ extension Smh {
         let input = DescribeTrafficPackagesRequest(resourceIds: resourceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, type: type)
         return try await self.client.execute(action: "DescribeTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackagesPaginated(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TrafficPackage])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+    }
+
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackagesPaginated(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficPackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficPackages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

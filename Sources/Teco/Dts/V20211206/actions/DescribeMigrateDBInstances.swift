@@ -147,4 +147,30 @@ extension Dts {
         let input = DescribeMigrateDBInstancesRequest(databaseType: databaseType, migrateRole: migrateRole, instanceId: instanceId, instanceName: instanceName, limit: limit, offset: offset, accountMode: accountMode, tmpSecretId: tmpSecretId, tmpSecretKey: tmpSecretKey, tmpToken: tmpToken)
         return try await self.client.execute(action: "DescribeMigrateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstancesPaginated(_ input: DescribeMigrateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MigrateDBItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeMigrateDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstancesPaginated(_ input: DescribeMigrateDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMigrateDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMigrateDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstancesPaginator(_ input: DescribeMigrateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrateDBInstancesRequest, DescribeMigrateDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrateDBInstancesRequest, DescribeMigrateDBInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMigrateDBInstancesRequest, DescribeMigrateDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeMigrateDBInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMigrateDBInstancesRequest, DescribeMigrateDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeMigrateDBInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

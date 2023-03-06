@@ -111,4 +111,24 @@ extension Tione {
         let input = DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder)
         return try await self.client.execute(action: "DescribeNotebookLifecycleScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScriptsPaginated(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NotebookLifecycleScriptsSummary])> {
+        self.client.paginate(input: input, region: region, command: self.describeNotebookLifecycleScripts, logger: logger, on: eventLoop)
+    }
+
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScriptsPaginated(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNotebookLifecycleScriptsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNotebookLifecycleScripts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScriptsPaginator(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResultSequence(input: input, region: region, command: self.describeNotebookLifecycleScripts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResponseSequence(input: input, region: region, command: self.describeNotebookLifecycleScripts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

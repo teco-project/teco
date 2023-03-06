@@ -120,4 +120,24 @@ extension Ecm {
         let input = DescribeAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Address])> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAddressesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResultSequence(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResponseSequence(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

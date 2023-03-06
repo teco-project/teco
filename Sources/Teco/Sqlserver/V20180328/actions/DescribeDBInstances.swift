@@ -187,4 +187,30 @@ extension Sqlserver {
         let input = DescribeDBInstancesRequest(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType)
         return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询实例列表。
+    @inlinable
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DBInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询实例列表。
+    @inlinable
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询实例列表。
+    @inlinable
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

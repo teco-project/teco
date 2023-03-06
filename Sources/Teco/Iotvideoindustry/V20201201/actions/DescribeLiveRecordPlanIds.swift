@@ -102,4 +102,24 @@ extension Iotvideoindustry {
         let input = DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeLiveRecordPlanIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIdsPaginated(_ input: DescribeLiveRecordPlanIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LiveRecordPlanItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveRecordPlanIds, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIdsPaginated(_ input: DescribeLiveRecordPlanIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveRecordPlanIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveRecordPlanIds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIdsPaginator(_ input: DescribeLiveRecordPlanIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveRecordPlanIdsRequest, DescribeLiveRecordPlanIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveRecordPlanIdsRequest, DescribeLiveRecordPlanIdsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLiveRecordPlanIdsRequest, DescribeLiveRecordPlanIdsResponse>.ResultSequence(input: input, region: region, command: self.describeLiveRecordPlanIds, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLiveRecordPlanIdsRequest, DescribeLiveRecordPlanIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveRecordPlanIds, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

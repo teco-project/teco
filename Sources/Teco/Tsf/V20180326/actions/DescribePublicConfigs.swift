@@ -114,4 +114,24 @@ extension Tsf {
         let input = DescribePublicConfigsRequest(configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion)
         return try await self.client.execute(action: "DescribePublicConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询公共配置项列表
+    @inlinable
+    public func describePublicConfigsPaginated(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Config])> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置项列表
+    @inlinable
+    public func describePublicConfigsPaginated(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublicConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置项列表
+    @inlinable
+    public func describePublicConfigsPaginator(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResultSequence(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

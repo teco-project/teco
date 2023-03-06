@@ -104,4 +104,24 @@ extension Organization {
         let input = DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin)
         return try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentitiesPaginated(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OrgMemberAuthIdentity])> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentitiesPaginated(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationMemberAuthIdentitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentitiesPaginator(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResultSequence(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResponseSequence(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

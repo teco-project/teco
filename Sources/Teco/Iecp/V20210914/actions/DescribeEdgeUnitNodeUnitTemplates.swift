@@ -123,4 +123,24 @@ extension Iecp {
         let input = DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order)
         return try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询边缘单元EdgeUnit模板列表
+    @inlinable
+    public func describeEdgeUnitNodeUnitTemplatesPaginated(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NodeUnitTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元EdgeUnit模板列表
+    @inlinable
+    public func describeEdgeUnitNodeUnitTemplatesPaginated(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeUnitNodeUnitTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元EdgeUnit模板列表
+    @inlinable
+    public func describeEdgeUnitNodeUnitTemplatesPaginator(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

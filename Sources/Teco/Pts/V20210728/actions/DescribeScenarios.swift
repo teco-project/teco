@@ -133,4 +133,24 @@ extension Pts {
         let input = DescribeScenariosRequest(scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, offset: offset, limit: limit, orderBy: orderBy, ascend: ascend, projectIds: projectIds, scenarioType: scenarioType)
         return try await self.client.execute(action: "DescribeScenarios", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询场景列表
+    @inlinable
+    public func describeScenariosPaginated(_ input: DescribeScenariosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Scenario])> {
+        self.client.paginate(input: input, region: region, command: self.describeScenarios, logger: logger, on: eventLoop)
+    }
+
+    /// 查询场景列表
+    @inlinable
+    public func describeScenariosPaginated(_ input: DescribeScenariosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScenariosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScenarios, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询场景列表
+    @inlinable
+    public func describeScenariosPaginator(_ input: DescribeScenariosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScenariosRequest, DescribeScenariosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScenariosRequest, DescribeScenariosResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeScenariosRequest, DescribeScenariosResponse>.ResultSequence(input: input, region: region, command: self.describeScenarios, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeScenariosRequest, DescribeScenariosResponse>.ResponseSequence(input: input, region: region, command: self.describeScenarios, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

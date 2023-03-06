@@ -112,4 +112,30 @@ extension Wedata {
         let input = DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
         return try await self.client.execute(action: "DescribeRuleHistoryByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询规则操作记录接口
+    ///
+    /// 过滤条件【必要字段】{ruleId}
+    @inlinable
+    public func describeRuleHistoryByPagePaginated(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleHistory])> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleHistoryByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则操作记录接口
+    ///
+    /// 过滤条件【必要字段】{ruleId}
+    @inlinable
+    public func describeRuleHistoryByPagePaginated(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleHistoryByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleHistoryByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则操作记录接口
+    ///
+    /// 过滤条件【必要字段】{ruleId}
+    @inlinable
+    public func describeRuleHistoryByPagePaginator(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleHistoryByPageRequest, DescribeRuleHistoryByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleHistoryByPageRequest, DescribeRuleHistoryByPageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRuleHistoryByPageRequest, DescribeRuleHistoryByPageResponse>.ResultSequence(input: input, region: region, command: self.describeRuleHistoryByPage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRuleHistoryByPageRequest, DescribeRuleHistoryByPageResponse>.ResponseSequence(input: input, region: region, command: self.describeRuleHistoryByPage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

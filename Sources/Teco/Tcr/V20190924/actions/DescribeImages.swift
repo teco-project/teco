@@ -135,4 +135,30 @@ extension Tcr {
         let input = DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch)
         return try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TcrImageInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResultSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImagesRequest, DescribeImagesResponse>.ResponseSequence(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -131,4 +131,24 @@ extension Cwp {
         let input = DescribeAssetEnvListRequest(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvListPaginated(_ input: DescribeAssetEnvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetEnvBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetEnvList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvListPaginated(_ input: DescribeAssetEnvListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetEnvListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetEnvList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvListPaginator(_ input: DescribeAssetEnvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetEnvListRequest, DescribeAssetEnvListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetEnvListRequest, DescribeAssetEnvListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetEnvListRequest, DescribeAssetEnvListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetEnvList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetEnvListRequest, DescribeAssetEnvListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetEnvList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

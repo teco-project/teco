@@ -121,4 +121,30 @@ extension Postgres {
         let input = DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeServerlessDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstancesPaginated(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ServerlessDBInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeServerlessDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstancesPaginated(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServerlessDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServerlessDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstancesPaginator(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeServerlessDBInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeServerlessDBInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

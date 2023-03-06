@@ -124,4 +124,24 @@ extension Tsf {
         let input = DescribeFileConfigReleasesRequest(configId: configId, configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeFileConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件配置项发布信息
+    @inlinable
+    public func describeFileConfigReleasesPaginated(_ input: DescribeFileConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileConfigRelease])> {
+        self.client.paginate(input: input, region: region, command: self.describeFileConfigReleases, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件配置项发布信息
+    @inlinable
+    public func describeFileConfigReleasesPaginated(_ input: DescribeFileConfigReleasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileConfigReleasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFileConfigReleases, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件配置项发布信息
+    @inlinable
+    public func describeFileConfigReleasesPaginator(_ input: DescribeFileConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResultSequence(input: input, region: region, command: self.describeFileConfigReleases, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResponseSequence(input: input, region: region, command: self.describeFileConfigReleases, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

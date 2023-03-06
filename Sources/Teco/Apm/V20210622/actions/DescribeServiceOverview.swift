@@ -132,4 +132,30 @@ extension Apm {
         let input = DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime)
         return try await self.client.execute(action: "DescribeServiceOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverviewPaginated(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ApmMetricRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)
+    }
+
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverviewPaginated(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceOverviewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceOverview, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverviewPaginator(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResultSequence(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

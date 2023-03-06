@@ -129,4 +129,39 @@ extension Wedata {
         let input = DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
         return try await self.client.execute(action: "DescribeRuleGroupsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPagePaginated(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupsByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPagePaginated(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleGroupsByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupsByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPagePaginator(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResultSequence(input: input, region: region, command: self.describeRuleGroupsByPage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResponseSequence(input: input, region: region, command: self.describeRuleGroupsByPage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

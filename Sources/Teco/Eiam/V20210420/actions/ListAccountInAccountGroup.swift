@@ -114,4 +114,24 @@ extension Eiam {
         let input = ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit)
         return try await self.client.execute(action: "ListAccountInAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroupPaginated(_ input: ListAccountInAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AppAccountInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listAccountInAccountGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroupPaginated(_ input: ListAccountInAccountGroupRequest, region: TCRegion? = nil, onResponse: @escaping (ListAccountInAccountGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listAccountInAccountGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroupPaginator(_ input: ListAccountInAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListAccountInAccountGroupRequest, ListAccountInAccountGroupResponse>.ResultSequence, responses: TCClient.Paginator<ListAccountInAccountGroupRequest, ListAccountInAccountGroupResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListAccountInAccountGroupRequest, ListAccountInAccountGroupResponse>.ResultSequence(input: input, region: region, command: self.listAccountInAccountGroup, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListAccountInAccountGroupRequest, ListAccountInAccountGroupResponse>.ResponseSequence(input: input, region: region, command: self.listAccountInAccountGroup, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

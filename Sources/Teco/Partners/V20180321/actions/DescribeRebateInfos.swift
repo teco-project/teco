@@ -110,4 +110,30 @@ extension Partners {
         let input = DescribeRebateInfosRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRebateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询代理商返佣信息（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosPaginated(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RebateInfoElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理商返佣信息（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosPaginated(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRebateInfosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRebateInfos, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理商返佣信息（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosPaginator(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResultSequence(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResponseSequence(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

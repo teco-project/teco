@@ -117,4 +117,24 @@ extension Ccc {
         let input = DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName)
         return try await self.client.execute(action: "DescribeSkillGroupInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoListPaginated(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SkillGroupInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoListPaginated(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSkillGroupInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSkillGroupInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoListPaginator(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

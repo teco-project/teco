@@ -112,4 +112,24 @@ extension Eb {
         let input = ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset)
         return try await self.client.execute(action: "ListEventBuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取事件集列表
+    @inlinable
+    public func listEventBusesPaginated(_ input: ListEventBusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EventBus])> {
+        self.client.paginate(input: input, region: region, command: self.listEventBuses, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件集列表
+    @inlinable
+    public func listEventBusesPaginated(_ input: ListEventBusesRequest, region: TCRegion? = nil, onResponse: @escaping (ListEventBusesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listEventBuses, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件集列表
+    @inlinable
+    public func listEventBusesPaginator(_ input: ListEventBusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListEventBusesRequest, ListEventBusesResponse>.ResultSequence, responses: TCClient.Paginator<ListEventBusesRequest, ListEventBusesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListEventBusesRequest, ListEventBusesResponse>.ResultSequence(input: input, region: region, command: self.listEventBuses, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListEventBusesRequest, ListEventBusesResponse>.ResponseSequence(input: input, region: region, command: self.listEventBuses, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

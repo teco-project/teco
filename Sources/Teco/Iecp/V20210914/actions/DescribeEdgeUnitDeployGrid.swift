@@ -118,4 +118,24 @@ extension Iecp {
         let input = DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order)
         return try await self.client.execute(action: "DescribeEdgeUnitDeployGrid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询边缘单元Grid列表
+    @inlinable
+    public func describeEdgeUnitDeployGridPaginated(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GridInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitDeployGrid, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元Grid列表
+    @inlinable
+    public func describeEdgeUnitDeployGridPaginated(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeUnitDeployGridResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitDeployGrid, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元Grid列表
+    @inlinable
+    public func describeEdgeUnitDeployGridPaginator(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitDeployGridRequest, DescribeEdgeUnitDeployGridResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitDeployGridRequest, DescribeEdgeUnitDeployGridResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEdgeUnitDeployGridRequest, DescribeEdgeUnitDeployGridResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeUnitDeployGrid, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEdgeUnitDeployGridRequest, DescribeEdgeUnitDeployGridResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeUnitDeployGrid, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

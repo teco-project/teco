@@ -106,4 +106,30 @@ extension Tem {
         let input = DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel)
         return try await self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespacesPaginated(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemNamespaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+    }
+
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespacesPaginated(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResultSequence(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResponseSequence(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

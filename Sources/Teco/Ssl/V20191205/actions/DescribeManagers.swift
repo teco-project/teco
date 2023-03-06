@@ -129,4 +129,24 @@ extension Ssl {
         let input = DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeManagers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagersPaginated(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ManagerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagersPaginated(_ input: DescribeManagersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeManagersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeManagers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagersPaginator(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResultSequence(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResponseSequence(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

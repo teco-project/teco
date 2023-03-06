@@ -106,4 +106,30 @@ extension Tia {
         let input = ListModelsRequest(cluster: cluster, limit: limit, offset: offset, servType: servType)
         return try await self.client.execute(action: "ListModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举Model
+    ///
+    /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
+    @inlinable
+    public func listModelsPaginated(_ input: ListModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Model])> {
+        self.client.paginate(input: input, region: region, command: self.listModels, logger: logger, on: eventLoop)
+    }
+
+    /// 列举Model
+    ///
+    /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
+    @inlinable
+    public func listModelsPaginated(_ input: ListModelsRequest, region: TCRegion? = nil, onResponse: @escaping (ListModelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listModels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举Model
+    ///
+    /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
+    @inlinable
+    public func listModelsPaginator(_ input: ListModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListModelsRequest, ListModelsResponse>.ResultSequence, responses: TCClient.Paginator<ListModelsRequest, ListModelsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListModelsRequest, ListModelsResponse>.ResultSequence(input: input, region: region, command: self.listModels, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListModelsRequest, ListModelsResponse>.ResponseSequence(input: input, region: region, command: self.listModels, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

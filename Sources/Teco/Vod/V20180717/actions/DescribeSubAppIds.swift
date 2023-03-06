@@ -115,4 +115,30 @@ extension Vod {
         let input = DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSubAppIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIdsPaginated(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SubAppIdInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)
+    }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIdsPaginated(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubAppIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubAppIds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIdsPaginator(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubAppIdsRequest, DescribeSubAppIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubAppIdsRequest, DescribeSubAppIdsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSubAppIdsRequest, DescribeSubAppIdsResponse>.ResultSequence(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSubAppIdsRequest, DescribeSubAppIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

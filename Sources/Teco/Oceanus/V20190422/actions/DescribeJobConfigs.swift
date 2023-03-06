@@ -130,4 +130,30 @@ extension Oceanus {
         let input = DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId)
         return try await self.client.execute(action: "DescribeJobConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigsPaginated(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [JobConfig])> {
+        self.client.paginate(input: input, region: region, command: self.describeJobConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigsPaginated(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeJobConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeJobConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigsPaginator(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResultSequence(input: input, region: region, command: self.describeJobConfigs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describeJobConfigs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

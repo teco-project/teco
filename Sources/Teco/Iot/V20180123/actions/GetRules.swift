@@ -97,4 +97,24 @@ extension Iot {
         let input = GetRulesRequest(offset: offset, length: length)
         return try await self.client.execute(action: "GetRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取转发规则列表
+    @inlinable
+    public func getRulesPaginated(_ input: GetRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Rule])> {
+        self.client.paginate(input: input, region: region, command: self.getRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转发规则列表
+    @inlinable
+    public func getRulesPaginated(_ input: GetRulesRequest, region: TCRegion? = nil, onResponse: @escaping (GetRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转发规则列表
+    @inlinable
+    public func getRulesPaginator(_ input: GetRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResultSequence, responses: TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResultSequence(input: input, region: region, command: self.getRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResponseSequence(input: input, region: region, command: self.getRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

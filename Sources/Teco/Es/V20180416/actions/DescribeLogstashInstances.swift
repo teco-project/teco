@@ -140,4 +140,30 @@ extension Es {
         let input = DescribeLogstashInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, vpcIds: vpcIds, tagList: tagList)
         return try await self.client.execute(action: "DescribeLogstashInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Logstash实例列表
+    ///
+    /// 查询用户该地域下符合条件的所有Logstash实例
+    @inlinable
+    public func describeLogstashInstancesPaginated(_ input: DescribeLogstashInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LogstashInstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLogstashInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Logstash实例列表
+    ///
+    /// 查询用户该地域下符合条件的所有Logstash实例
+    @inlinable
+    public func describeLogstashInstancesPaginated(_ input: DescribeLogstashInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogstashInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLogstashInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Logstash实例列表
+    ///
+    /// 查询用户该地域下符合条件的所有Logstash实例
+    @inlinable
+    public func describeLogstashInstancesPaginator(_ input: DescribeLogstashInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogstashInstancesRequest, DescribeLogstashInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogstashInstancesRequest, DescribeLogstashInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLogstashInstancesRequest, DescribeLogstashInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeLogstashInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLogstashInstancesRequest, DescribeLogstashInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeLogstashInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

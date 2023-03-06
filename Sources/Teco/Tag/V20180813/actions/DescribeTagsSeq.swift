@@ -138,4 +138,30 @@ extension Tag {
         let input = DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject)
         return try await self.client.execute(action: "DescribeTagsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTagsSeqPaginated(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TagWithDelete])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTagsSeqPaginated(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagsSeqResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsSeq, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTagsSeqPaginator(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagsSeqRequest, DescribeTagsSeqResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagsSeqRequest, DescribeTagsSeqResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTagsSeqRequest, DescribeTagsSeqResponse>.ResultSequence(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTagsSeqRequest, DescribeTagsSeqResponse>.ResponseSequence(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

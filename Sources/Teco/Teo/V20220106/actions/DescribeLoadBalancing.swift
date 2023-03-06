@@ -112,4 +112,24 @@ extension Teo {
         let input = DescribeLoadBalancingRequest(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy)
         return try await self.client.execute(action: "DescribeLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancingPaginated(_ input: DescribeLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoadBalancing])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancing, logger: logger, on: eventLoop)
+    }
+
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancingPaginated(_ input: DescribeLoadBalancingRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancingResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancing, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancingPaginator(_ input: DescribeLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoadBalancingRequest, DescribeLoadBalancingResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoadBalancingRequest, DescribeLoadBalancingResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLoadBalancingRequest, DescribeLoadBalancingResponse>.ResultSequence(input: input, region: region, command: self.describeLoadBalancing, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLoadBalancingRequest, DescribeLoadBalancingResponse>.ResponseSequence(input: input, region: region, command: self.describeLoadBalancing, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

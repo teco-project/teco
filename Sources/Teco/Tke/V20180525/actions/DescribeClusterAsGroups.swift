@@ -107,4 +107,24 @@ extension Tke {
         let input = DescribeClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroupsPaginated(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterAsGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroupsPaginated(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterAsGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterAsGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroupsPaginator(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

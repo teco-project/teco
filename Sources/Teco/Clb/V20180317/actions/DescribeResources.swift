@@ -112,4 +112,30 @@ extension Clb {
         let input = DescribeResourcesRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResourcesPaginated(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ZoneResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResourcesPaginated(_ input: DescribeResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

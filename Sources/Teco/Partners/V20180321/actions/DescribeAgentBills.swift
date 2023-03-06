@@ -130,4 +130,30 @@ extension Partners {
         let input = DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAgentBills", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBillsPaginated(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentBillElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentBills, logger: logger, on: eventLoop)
+    }
+
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBillsPaginated(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentBillsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentBills, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBillsPaginator(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResultSequence(input: input, region: region, command: self.describeAgentBills, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResponseSequence(input: input, region: region, command: self.describeAgentBills, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

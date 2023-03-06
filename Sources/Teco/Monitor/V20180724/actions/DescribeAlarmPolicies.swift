@@ -224,4 +224,30 @@ extension Monitor {
         let input = DescribeAlarmPoliciesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags)
         return try await self.client.execute(action: "DescribeAlarmPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询告警策略列表（支持按实例等条件筛选）
+    ///
+    /// 查询告警策略列表
+    @inlinable
+    public func describeAlarmPoliciesPaginated(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AlarmPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警策略列表（支持按实例等条件筛选）
+    ///
+    /// 查询告警策略列表
+    @inlinable
+    public func describeAlarmPoliciesPaginated(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmPolicies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警策略列表（支持按实例等条件筛选）
+    ///
+    /// 查询告警策略列表
+    @inlinable
+    public func describeAlarmPoliciesPaginator(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResultSequence(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResponseSequence(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

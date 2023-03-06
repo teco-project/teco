@@ -110,4 +110,30 @@ extension Cds {
         let input = DescribeDbauditInstancesRequest(searchRegion: searchRegion, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeDbauditInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstancesPaginated(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CdsAuditInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstancesPaginated(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDbauditInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDbauditInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstancesPaginator(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDbauditInstancesRequest, DescribeDbauditInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -117,4 +117,30 @@ extension Yunjing {
         let input = DescribeBruteAttacksRequest(uuid: uuid, offset: offset, filters: filters, limit: limit)
         return try await self.client.execute(action: "DescribeBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacksPaginated(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BruteAttack])> {
+        self.client.paginate(input: input, region: region, command: self.describeBruteAttacks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacksPaginated(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBruteAttacksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBruteAttacks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacksPaginator(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResultSequence(input: input, region: region, command: self.describeBruteAttacks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResponseSequence(input: input, region: region, command: self.describeBruteAttacks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

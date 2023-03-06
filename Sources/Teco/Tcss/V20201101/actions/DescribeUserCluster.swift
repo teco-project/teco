@@ -121,4 +121,30 @@ extension Tcss {
         let input = DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserClusterPaginated(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
+    }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserClusterPaginated(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserClusterResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCluster, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserClusterPaginator(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResultSequence(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResponseSequence(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -129,4 +129,30 @@ extension Cwp {
         let input = DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeProtectDirRelatedServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询防护目录关联服务器
+    ///
+    /// 查询防护目录关联服务器列表信息
+    @inlinable
+    public func describeProtectDirRelatedServerPaginated(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProtectDirRelatedServer])> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectDirRelatedServer, logger: logger, on: eventLoop)
+    }
+
+    /// 查询防护目录关联服务器
+    ///
+    /// 查询防护目录关联服务器列表信息
+    @inlinable
+    public func describeProtectDirRelatedServerPaginated(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProtectDirRelatedServerResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectDirRelatedServer, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询防护目录关联服务器
+    ///
+    /// 查询防护目录关联服务器列表信息
+    @inlinable
+    public func describeProtectDirRelatedServerPaginator(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResultSequence(input: input, region: region, command: self.describeProtectDirRelatedServer, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResponseSequence(input: input, region: region, command: self.describeProtectDirRelatedServer, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

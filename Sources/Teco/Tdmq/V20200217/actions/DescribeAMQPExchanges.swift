@@ -122,4 +122,24 @@ extension Tdmq {
         let input = DescribeAMQPExchangesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal)
         return try await self.client.execute(action: "DescribeAMQPExchanges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchangesPaginated(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPExchange])> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPExchanges, logger: logger, on: eventLoop)
+    }
+
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchangesPaginated(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPExchangesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPExchanges, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchangesPaginator(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPExchangesRequest, DescribeAMQPExchangesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPExchangesRequest, DescribeAMQPExchangesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAMQPExchangesRequest, DescribeAMQPExchangesResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPExchanges, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAMQPExchangesRequest, DescribeAMQPExchangesResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPExchanges, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

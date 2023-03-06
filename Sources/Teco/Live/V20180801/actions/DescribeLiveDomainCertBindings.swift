@@ -123,4 +123,30 @@ extension Live {
         let input = DescribeLiveDomainCertBindingsRequest(domainSearch: domainSearch, offset: offset, length: length, domainName: domainName, orderBy: orderBy)
         return try await self.client.execute(action: "DescribeLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询绑定证书的域名列表
+    ///
+    /// 查询绑定证书的域名列表。
+    @inlinable
+    public func describeLiveDomainCertBindingsPaginated(_ input: DescribeLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LiveDomainCertBindings])> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveDomainCertBindings, logger: logger, on: eventLoop)
+    }
+
+    /// 查询绑定证书的域名列表
+    ///
+    /// 查询绑定证书的域名列表。
+    @inlinable
+    public func describeLiveDomainCertBindingsPaginated(_ input: DescribeLiveDomainCertBindingsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveDomainCertBindingsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveDomainCertBindings, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询绑定证书的域名列表
+    ///
+    /// 查询绑定证书的域名列表。
+    @inlinable
+    public func describeLiveDomainCertBindingsPaginator(_ input: DescribeLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResultSequence(input: input, region: region, command: self.describeLiveDomainCertBindings, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveDomainCertBindings, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

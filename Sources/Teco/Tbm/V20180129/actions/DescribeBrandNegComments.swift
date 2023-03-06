@@ -128,4 +128,30 @@ extension Tbm {
         let input = DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeBrandNegComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取品牌用户差评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
+    @inlinable
+    public func describeBrandNegCommentsPaginated(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CommentInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
+    }
+
+    /// 获取品牌用户差评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
+    @inlinable
+    public func describeBrandNegCommentsPaginated(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBrandNegCommentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBrandNegComments, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取品牌用户差评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
+    @inlinable
+    public func describeBrandNegCommentsPaginator(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResultSequence(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResponseSequence(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

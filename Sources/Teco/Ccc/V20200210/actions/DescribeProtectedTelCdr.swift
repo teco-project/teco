@@ -112,4 +112,24 @@ extension Ccc {
         let input = DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeProtectedTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取主被叫受保护的电话服务记录与录音
+    @inlinable
+    public func describeProtectedTelCdrPaginated(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TelCdrInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectedTelCdr, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主被叫受保护的电话服务记录与录音
+    @inlinable
+    public func describeProtectedTelCdrPaginated(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProtectedTelCdrResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectedTelCdr, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主被叫受保护的电话服务记录与录音
+    @inlinable
+    public func describeProtectedTelCdrPaginator(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResultSequence(input: input, region: region, command: self.describeProtectedTelCdr, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResponseSequence(input: input, region: region, command: self.describeProtectedTelCdr, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

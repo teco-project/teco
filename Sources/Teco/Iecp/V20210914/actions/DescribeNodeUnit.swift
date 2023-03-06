@@ -118,4 +118,24 @@ extension Iecp {
         let input = DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter)
         return try await self.client.execute(action: "DescribeNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnitPaginated(_ input: DescribeNodeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [NodeUnitInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNodeUnit, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnitPaginated(_ input: DescribeNodeUnitRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNodeUnitResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNodeUnit, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnitPaginator(_ input: DescribeNodeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNodeUnitRequest, DescribeNodeUnitResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNodeUnitRequest, DescribeNodeUnitResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNodeUnitRequest, DescribeNodeUnitResponse>.ResultSequence(input: input, region: region, command: self.describeNodeUnit, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNodeUnitRequest, DescribeNodeUnitResponse>.ResponseSequence(input: input, region: region, command: self.describeNodeUnit, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

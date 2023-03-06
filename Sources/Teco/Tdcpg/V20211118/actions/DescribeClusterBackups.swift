@@ -102,4 +102,24 @@ extension Tdcpg {
         let input = DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeClusterBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackupsPaginated(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Backup])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterBackups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackupsPaginated(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterBackups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackupsPaginator(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeClusterBackups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterBackups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -156,4 +156,24 @@ extension Tsf {
         let input = SearchStdoutLogRequest(instanceId: instanceId, limit: limit, searchWords: searchWords, startTime: startTime, groupId: groupId, endTime: endTime, offset: offset, orderBy: orderBy, orderType: orderType, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId)
         return try await self.client.execute(action: "SearchStdoutLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLogPaginated(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [StdoutLogV2])> {
+        self.client.paginate(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
+    }
+
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLogPaginated(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, onResponse: @escaping (SearchStdoutLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchStdoutLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLogPaginator(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResultSequence, responses: TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResultSequence(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<SearchStdoutLogRequest, SearchStdoutLogResponse>.ResponseSequence(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

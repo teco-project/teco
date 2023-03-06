@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeTrafficPackagesRequest(trafficPackageIds: trafficPackageIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackagesPaginated(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TrafficPackage])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+    }
+
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackagesPaginated(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficPackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficPackages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

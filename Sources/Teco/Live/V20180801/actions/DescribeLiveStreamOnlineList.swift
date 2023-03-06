@@ -150,4 +150,42 @@ extension Live {
         let input = DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
         return try await self.client.execute(action: "DescribeLiveStreamOnlineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询直播中的流
+    ///
+    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+    ///
+    /// 注意：
+    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+    @inlinable
+    public func describeLiveStreamOnlineListPaginated(_ input: DescribeLiveStreamOnlineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [StreamOnlineInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamOnlineList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播中的流
+    ///
+    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+    ///
+    /// 注意：
+    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+    @inlinable
+    public func describeLiveStreamOnlineListPaginated(_ input: DescribeLiveStreamOnlineListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamOnlineListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamOnlineList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播中的流
+    ///
+    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+    ///
+    /// 注意：
+    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+    @inlinable
+    public func describeLiveStreamOnlineListPaginator(_ input: DescribeLiveStreamOnlineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveStreamOnlineListRequest, DescribeLiveStreamOnlineListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveStreamOnlineListRequest, DescribeLiveStreamOnlineListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLiveStreamOnlineListRequest, DescribeLiveStreamOnlineListResponse>.ResultSequence(input: input, region: region, command: self.describeLiveStreamOnlineList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLiveStreamOnlineListRequest, DescribeLiveStreamOnlineListResponse>.ResponseSequence(input: input, region: region, command: self.describeLiveStreamOnlineList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

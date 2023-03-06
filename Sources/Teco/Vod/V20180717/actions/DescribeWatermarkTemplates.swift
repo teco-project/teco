@@ -126,4 +126,30 @@ extension Vod {
         let input = DescribeWatermarkTemplatesRequest(subAppId: subAppId, type: type, offset: offset, definitions: definitions, limit: limit)
         return try await self.client.execute(action: "DescribeWatermarkTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplatesPaginated(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WatermarkTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplatesPaginated(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWatermarkTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWatermarkTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplatesPaginator(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

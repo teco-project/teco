@@ -135,4 +135,24 @@ extension Ssa {
         let input = DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime)
         return try await self.client.execute(action: "DescribeSafetyEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventListPaginated(_ input: DescribeSafetyEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DataEvent])> {
+        self.client.paginate(input: input, region: region, command: self.describeSafetyEventList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventListPaginated(_ input: DescribeSafetyEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSafetyEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSafetyEventList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventListPaginator(_ input: DescribeSafetyEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSafetyEventListRequest, DescribeSafetyEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSafetyEventListRequest, DescribeSafetyEventListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSafetyEventListRequest, DescribeSafetyEventListResponse>.ResultSequence(input: input, region: region, command: self.describeSafetyEventList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSafetyEventListRequest, DescribeSafetyEventListResponse>.ResponseSequence(input: input, region: region, command: self.describeSafetyEventList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

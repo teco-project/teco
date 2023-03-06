@@ -139,4 +139,24 @@ extension Tsf {
         let input = DescribeGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, groupResourceTypeList: groupResourceTypeList, status: status, groupIdList: groupIdList)
         return try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VmGroupSimple])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

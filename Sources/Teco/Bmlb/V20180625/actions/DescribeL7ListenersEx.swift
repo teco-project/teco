@@ -127,4 +127,30 @@ extension Bmlb {
         let input = DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeL7ListenersEx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取指定VPC下的7层监听器
+    ///
+    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    @inlinable
+    public func describeL7ListenersExPaginated(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [L7ExListener])> {
+        self.client.paginate(input: input, region: region, command: self.describeL7ListenersEx, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定VPC下的7层监听器
+    ///
+    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    @inlinable
+    public func describeL7ListenersExPaginated(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeL7ListenersExResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeL7ListenersEx, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定VPC下的7层监听器
+    ///
+    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    @inlinable
+    public func describeL7ListenersExPaginator(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeL7ListenersExRequest, DescribeL7ListenersExResponse>.ResultSequence, responses: TCClient.Paginator<DescribeL7ListenersExRequest, DescribeL7ListenersExResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeL7ListenersExRequest, DescribeL7ListenersExResponse>.ResultSequence(input: input, region: region, command: self.describeL7ListenersEx, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeL7ListenersExRequest, DescribeL7ListenersExResponse>.ResponseSequence(input: input, region: region, command: self.describeL7ListenersEx, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

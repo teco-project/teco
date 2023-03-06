@@ -126,4 +126,30 @@ extension Cwp {
         let input = DescribeRiskDnsListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeRiskDnsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsListPaginated(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RiskDnsList])> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsListPaginated(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskDnsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskDnsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsListPaginator(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResultSequence(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResponseSequence(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

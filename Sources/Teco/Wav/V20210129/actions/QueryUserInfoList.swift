@@ -94,4 +94,24 @@ extension Wav {
         let input = QueryUserInfoListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryUserInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoListPaginated(_ input: QueryUserInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [CorpUserInfo])> {
+        self.client.paginate(input: input, region: region, command: self.queryUserInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoListPaginated(_ input: QueryUserInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryUserInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryUserInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoListPaginator(_ input: QueryUserInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResultSequence(input: input, region: region, command: self.queryUserInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResponseSequence(input: input, region: region, command: self.queryUserInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

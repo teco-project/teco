@@ -201,4 +201,39 @@ extension Tiia {
         let input = SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId)
         return try await self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    @inlinable
+    public func searchImagePaginated(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ImageInfo])> {
+        self.client.paginate(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
+    }
+
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    @inlinable
+    public func searchImagePaginated(_ input: SearchImageRequest, region: TCRegion? = nil, onResponse: @escaping (SearchImageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchImage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    @inlinable
+    public func searchImagePaginator(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResultSequence, responses: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResultSequence(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResponseSequence(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -106,4 +106,24 @@ extension Cwp {
         let input = DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteListPaginated(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoginWhiteLists])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteListPaginated(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoginWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoginWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteListPaginator(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

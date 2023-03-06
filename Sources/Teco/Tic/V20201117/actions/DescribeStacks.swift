@@ -122,4 +122,39 @@ extension Tic {
         let input = DescribeStacksRequest(stackIds: stackIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeStacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    ///
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacksPaginated(_ input: DescribeStacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [StackInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    ///
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacksPaginated(_ input: DescribeStacksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStacksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeStacks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    ///
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacksPaginator(_ input: DescribeStacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResultSequence(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeStacksRequest, DescribeStacksResponse>.ResponseSequence(input: input, region: region, command: self.describeStacks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

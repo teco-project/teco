@@ -116,4 +116,30 @@ extension Batch {
         let input = DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeComputeEnvActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivitiesPaginated(_ input: DescribeComputeEnvActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Activity])> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvActivities, logger: logger, on: eventLoop)
+    }
+
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivitiesPaginated(_ input: DescribeComputeEnvActivitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComputeEnvActivitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvActivities, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivitiesPaginator(_ input: DescribeComputeEnvActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComputeEnvActivitiesRequest, DescribeComputeEnvActivitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComputeEnvActivitiesRequest, DescribeComputeEnvActivitiesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeComputeEnvActivitiesRequest, DescribeComputeEnvActivitiesResponse>.ResultSequence(input: input, region: region, command: self.describeComputeEnvActivities, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeComputeEnvActivitiesRequest, DescribeComputeEnvActivitiesResponse>.ResponseSequence(input: input, region: region, command: self.describeComputeEnvActivities, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

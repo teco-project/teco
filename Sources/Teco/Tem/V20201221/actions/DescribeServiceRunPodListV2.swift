@@ -121,4 +121,24 @@ extension Tem {
         let input = DescribeServiceRunPodListV2Request(namespaceId: namespaceId, serviceId: serviceId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel)
         return try await self.client.execute(action: "DescribeServiceRunPodListV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取服务下面运行pod列表
+    @inlinable
+    public func describeServiceRunPodListV2Paginated(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RunVersionPod])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceRunPodListV2, logger: logger, on: eventLoop)
+    }
+
+    /// 获取服务下面运行pod列表
+    @inlinable
+    public func describeServiceRunPodListV2Paginated(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceRunPodListV2Response, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceRunPodListV2, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取服务下面运行pod列表
+    @inlinable
+    public func describeServiceRunPodListV2Paginator(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceRunPodListV2Request, DescribeServiceRunPodListV2Response>.ResultSequence, responses: TCClient.Paginator<DescribeServiceRunPodListV2Request, DescribeServiceRunPodListV2Response>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServiceRunPodListV2Request, DescribeServiceRunPodListV2Response>.ResultSequence(input: input, region: region, command: self.describeServiceRunPodListV2, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServiceRunPodListV2Request, DescribeServiceRunPodListV2Response>.ResponseSequence(input: input, region: region, command: self.describeServiceRunPodListV2, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

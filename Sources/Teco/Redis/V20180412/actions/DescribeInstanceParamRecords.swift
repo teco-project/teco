@@ -102,4 +102,24 @@ extension Redis {
         let input = DescribeInstanceParamRecordsRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInstanceParamRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecordsPaginated(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceParamHistory])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecordsPaginated(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceParamRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceParamRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecordsPaginator(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

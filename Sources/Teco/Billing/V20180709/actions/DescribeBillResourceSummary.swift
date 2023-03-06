@@ -161,4 +161,24 @@ extension Billing {
         let input = DescribeBillResourceSummaryRequest(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode)
         return try await self.client.execute(action: "DescribeBillResourceSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询账单资源汇总数据
+    @inlinable
+    public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BillResourceSummary])> {
+        self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账单资源汇总数据
+    @inlinable
+    public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBillResourceSummaryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账单资源汇总数据
+    @inlinable
+    public func describeBillResourceSummaryPaginator(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillResourceSummaryRequest, DescribeBillResourceSummaryResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillResourceSummaryRequest, DescribeBillResourceSummaryResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBillResourceSummaryRequest, DescribeBillResourceSummaryResponse>.ResultSequence(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBillResourceSummaryRequest, DescribeBillResourceSummaryResponse>.ResponseSequence(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -111,4 +111,30 @@ extension Tcr {
         let input = DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag)
         return try await self.client.execute(action: "DescribeImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取个人版镜像仓库tag列表
+    ///
+    /// 用于获取个人版镜像仓库tag列表
+    @inlinable
+    public func describeImagePersonalPaginated(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TagInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
+    }
+
+    /// 获取个人版镜像仓库tag列表
+    ///
+    /// 用于获取个人版镜像仓库tag列表
+    @inlinable
+    public func describeImagePersonalPaginated(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagePersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImagePersonal, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取个人版镜像仓库tag列表
+    ///
+    /// 用于获取个人版镜像仓库tag列表
+    @inlinable
+    public func describeImagePersonalPaginator(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResultSequence(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -121,4 +121,30 @@ extension Ssa {
         let input = DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag)
         return try await self.client.execute(action: "DescribeSocAlertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 告警列表
+    ///
+    /// 拉取告警列表
+    @inlinable
+    public func describeSocAlertListPaginated(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AlertType])> {
+        self.client.paginate(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
+    }
+
+    /// 告警列表
+    ///
+    /// 拉取告警列表
+    @inlinable
+    public func describeSocAlertListPaginated(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocAlertListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSocAlertList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 告警列表
+    ///
+    /// 拉取告警列表
+    @inlinable
+    public func describeSocAlertListPaginator(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResultSequence(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResponseSequence(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -130,4 +130,30 @@ extension Lighthouse {
         let input = DescribeDiskBackupsRequest(diskBackupIds: diskBackupIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看云硬盘备份点列表
+    ///
+    /// 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
+    @inlinable
+    public func describeDiskBackupsPaginated(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DiskBackup])> {
+        self.client.paginate(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)
+    }
+
+    /// 查看云硬盘备份点列表
+    ///
+    /// 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
+    @inlinable
+    public func describeDiskBackupsPaginated(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDiskBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDiskBackups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看云硬盘备份点列表
+    ///
+    /// 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
+    @inlinable
+    public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

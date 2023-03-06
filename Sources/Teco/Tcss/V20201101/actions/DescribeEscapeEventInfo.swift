@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeEscapeEventInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfoPaginated(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EscapeEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfoPaginated(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEscapeEventInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEscapeEventInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfoPaginator(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResultSequence(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

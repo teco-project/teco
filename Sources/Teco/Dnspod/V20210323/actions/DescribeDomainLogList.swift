@@ -112,4 +112,24 @@ extension Dnspod {
         let input = DescribeDomainLogListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDomainLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取域名日志
+    @inlinable
+    public func describeDomainLogListPaginated(_ input: DescribeDomainLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.describeDomainLogList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名日志
+    @inlinable
+    public func describeDomainLogListPaginated(_ input: DescribeDomainLogListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainLogListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDomainLogList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名日志
+    @inlinable
+    public func describeDomainLogListPaginator(_ input: DescribeDomainLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainLogListRequest, DescribeDomainLogListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainLogListRequest, DescribeDomainLogListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDomainLogListRequest, DescribeDomainLogListResponse>.ResultSequence(input: input, region: region, command: self.describeDomainLogList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDomainLogListRequest, DescribeDomainLogListResponse>.ResponseSequence(input: input, region: region, command: self.describeDomainLogList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

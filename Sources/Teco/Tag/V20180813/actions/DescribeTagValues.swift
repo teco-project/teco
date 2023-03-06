@@ -123,4 +123,30 @@ extension Tag {
         let input = DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTagValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesPaginated(_ input: DescribeTagValuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Tag])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagValues, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesPaginated(_ input: DescribeTagValuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagValuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagValues, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesPaginator(_ input: DescribeTagValuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagValuesRequest, DescribeTagValuesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagValuesRequest, DescribeTagValuesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTagValuesRequest, DescribeTagValuesResponse>.ResultSequence(input: input, region: region, command: self.describeTagValues, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTagValuesRequest, DescribeTagValuesResponse>.ResponseSequence(input: input, region: region, command: self.describeTagValues, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

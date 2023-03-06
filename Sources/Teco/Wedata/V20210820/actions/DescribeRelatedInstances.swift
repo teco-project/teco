@@ -113,4 +113,24 @@ extension Wedata {
         let input = DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeRelatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务实例的关联实例列表
+    @inlinable
+    public func describeRelatedInstancesPaginated(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskInstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeRelatedInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务实例的关联实例列表
+    @inlinable
+    public func describeRelatedInstancesPaginated(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRelatedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRelatedInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务实例的关联实例列表
+    @inlinable
+    public func describeRelatedInstancesPaginator(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeRelatedInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeRelatedInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

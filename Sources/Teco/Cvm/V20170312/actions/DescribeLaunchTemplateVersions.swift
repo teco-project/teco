@@ -130,4 +130,30 @@ extension Cvm {
         let input = DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion)
         return try await self.client.execute(action: "DescribeLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例模板版本信息
+    ///
+    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+    @inlinable
+    public func describeLaunchTemplateVersionsPaginated(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LaunchTemplateVersionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例模板版本信息
+    ///
+    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+    @inlinable
+    public func describeLaunchTemplateVersionsPaginated(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLaunchTemplateVersionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLaunchTemplateVersions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例模板版本信息
+    ///
+    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+    @inlinable
+    public func describeLaunchTemplateVersionsPaginator(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResultSequence(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLaunchTemplateVersionsRequest, DescribeLaunchTemplateVersionsResponse>.ResponseSequence(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

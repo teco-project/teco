@@ -119,4 +119,24 @@ extension Tsf {
         let input = DescribeFileConfigsRequest(configId: configId, configIdList: configIdList, configName: configName, applicationId: applicationId, offset: offset, limit: limit, configVersion: configVersion)
         return try await self.client.execute(action: "DescribeFileConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigsPaginated(_ input: DescribeFileConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileConfig])> {
+        self.client.paginate(input: input, region: region, command: self.describeFileConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigsPaginated(_ input: DescribeFileConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFileConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigsPaginator(_ input: DescribeFileConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileConfigsRequest, DescribeFileConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileConfigsRequest, DescribeFileConfigsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFileConfigsRequest, DescribeFileConfigsResponse>.ResultSequence(input: input, region: region, command: self.describeFileConfigs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFileConfigsRequest, DescribeFileConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describeFileConfigs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

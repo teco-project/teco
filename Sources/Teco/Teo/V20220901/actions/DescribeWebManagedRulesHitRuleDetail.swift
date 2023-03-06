@@ -156,4 +156,30 @@ extension Teo {
         let input = DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area)
         return try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetailPaginated(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecHitRuleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeWebManagedRulesHitRuleDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetailPaginated(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebManagedRulesHitRuleDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWebManagedRulesHitRuleDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetailPaginator(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResultSequence(input: input, region: region, command: self.describeWebManagedRulesHitRuleDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeWebManagedRulesHitRuleDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

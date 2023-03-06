@@ -113,4 +113,24 @@ extension Tem {
         let input = DescribeEnvironmentsRequest(limit: limit, offset: offset, sourceChannel: sourceChannel, filters: filters, sortInfo: sortInfo, environmentId: environmentId)
         return try await self.client.execute(action: "DescribeEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取环境列表
+    @inlinable
+    public func describeEnvironmentsPaginated(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemNamespaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+    }
+
+    /// 获取环境列表
+    @inlinable
+    public func describeEnvironmentsPaginated(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEnvironmentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironments, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取环境列表
+    @inlinable
+    public func describeEnvironmentsPaginator(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResultSequence(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResponseSequence(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

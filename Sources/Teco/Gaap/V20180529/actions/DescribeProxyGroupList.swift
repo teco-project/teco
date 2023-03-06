@@ -128,4 +128,30 @@ extension Gaap {
         let input = DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet)
         return try await self.client.execute(action: "DescribeProxyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取通道组列表
+    ///
+    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
+    @inlinable
+    public func describeProxyGroupListPaginated(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProxyGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProxyGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取通道组列表
+    ///
+    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
+    @inlinable
+    public func describeProxyGroupListPaginated(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProxyGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProxyGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取通道组列表
+    ///
+    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
+    @inlinable
+    public func describeProxyGroupListPaginator(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResultSequence(input: input, region: region, command: self.describeProxyGroupList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResponseSequence(input: input, region: region, command: self.describeProxyGroupList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

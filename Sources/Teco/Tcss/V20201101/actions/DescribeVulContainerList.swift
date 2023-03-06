@@ -110,4 +110,24 @@ extension Tcss {
         let input = DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeVulContainerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerListPaginated(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VulAffectedContainerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVulContainerList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerListPaginated(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulContainerListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVulContainerList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerListPaginator(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResultSequence(input: input, region: region, command: self.describeVulContainerList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResponseSequence(input: input, region: region, command: self.describeVulContainerList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

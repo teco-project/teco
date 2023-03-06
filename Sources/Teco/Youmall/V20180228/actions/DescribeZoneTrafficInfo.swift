@@ -141,4 +141,30 @@ extension Youmall {
         let input = DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeZoneTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取区域客流人次及停留时间
+    ///
+    /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeZoneTrafficInfoPaginated(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ZoneTrafficInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeZoneTrafficInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区域客流人次及停留时间
+    ///
+    /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeZoneTrafficInfoPaginated(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZoneTrafficInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeZoneTrafficInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区域客流人次及停留时间
+    ///
+    /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeZoneTrafficInfoPaginator(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZoneTrafficInfoRequest, DescribeZoneTrafficInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZoneTrafficInfoRequest, DescribeZoneTrafficInfoResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeZoneTrafficInfoRequest, DescribeZoneTrafficInfoResponse>.ResultSequence(input: input, region: region, command: self.describeZoneTrafficInfo, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeZoneTrafficInfoRequest, DescribeZoneTrafficInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeZoneTrafficInfo, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -137,4 +137,24 @@ extension Cwp {
         let input = DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetDatabaseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseListPaginated(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetDatabaseBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseListPaginated(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetDatabaseListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetDatabaseList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseListPaginator(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

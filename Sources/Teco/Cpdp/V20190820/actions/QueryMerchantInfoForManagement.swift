@@ -104,4 +104,24 @@ extension Cpdp {
         let input = QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile)
         return try await self.client.execute(action: "QueryMerchantInfoForManagement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 智慧零售-查询管理端商户
+    @inlinable
+    public func queryMerchantInfoForManagementPaginated(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MerchantManagementList])> {
+        self.client.paginate(input: input, region: region, command: self.queryMerchantInfoForManagement, logger: logger, on: eventLoop)
+    }
+
+    /// 智慧零售-查询管理端商户
+    @inlinable
+    public func queryMerchantInfoForManagementPaginated(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, onResponse: @escaping (QueryMerchantInfoForManagementResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryMerchantInfoForManagement, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 智慧零售-查询管理端商户
+    @inlinable
+    public func queryMerchantInfoForManagementPaginator(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryMerchantInfoForManagementRequest, QueryMerchantInfoForManagementResponse>.ResultSequence, responses: TCClient.Paginator<QueryMerchantInfoForManagementRequest, QueryMerchantInfoForManagementResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryMerchantInfoForManagementRequest, QueryMerchantInfoForManagementResponse>.ResultSequence(input: input, region: region, command: self.queryMerchantInfoForManagement, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryMerchantInfoForManagementRequest, QueryMerchantInfoForManagementResponse>.ResponseSequence(input: input, region: region, command: self.queryMerchantInfoForManagement, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

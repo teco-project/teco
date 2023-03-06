@@ -114,4 +114,24 @@ extension Trp {
         let input = DescribeMerchantsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType)
         return try await self.client.execute(action: "DescribeMerchants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询商户列表
+    @inlinable
+    public func describeMerchantsPaginated(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Merchant])> {
+        self.client.paginate(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商户列表
+    @inlinable
+    public func describeMerchantsPaginated(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMerchantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMerchants, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商户列表
+    @inlinable
+    public func describeMerchantsPaginator(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResultSequence(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResponseSequence(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

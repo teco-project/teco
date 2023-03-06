@@ -112,4 +112,24 @@ extension Tdmq {
         let input = DescribeClustersRequest(offset: offset, limit: limit, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters)
         return try await self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取集群列表
+    @inlinable
+    public func describeClustersPaginated(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Cluster])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 获取集群列表
+    @inlinable
+    public func describeClustersPaginated(_ input: DescribeClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取集群列表
+    @inlinable
+    public func describeClustersPaginator(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResultSequence(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResponseSequence(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

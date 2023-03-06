@@ -109,4 +109,24 @@ extension Tsf {
         let input = DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck)
         return try await self.client.execute(action: "DescribeLanes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询泳道列表
+    @inlinable
+    public func describeLanesPaginated(_ input: DescribeLanesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LaneInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询泳道列表
+    @inlinable
+    public func describeLanesPaginated(_ input: DescribeLanesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLanesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLanes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询泳道列表
+    @inlinable
+    public func describeLanesPaginator(_ input: DescribeLanesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResultSequence(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLanesRequest, DescribeLanesResponse>.ResponseSequence(input: input, region: region, command: self.describeLanes, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

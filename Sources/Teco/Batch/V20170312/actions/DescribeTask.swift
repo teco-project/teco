@@ -145,4 +145,30 @@ extension Batch {
         let input = DescribeTaskRequest(jobId: jobId, taskName: taskName, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务详情
+    ///
+    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    @inlinable
+    public func describeTaskPaginated(_ input: DescribeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskInstanceView])> {
+        self.client.paginate(input: input, region: region, command: self.describeTask, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务详情
+    ///
+    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    @inlinable
+    public func describeTaskPaginated(_ input: DescribeTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTask, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务详情
+    ///
+    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    @inlinable
+    public func describeTaskPaginator(_ input: DescribeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskRequest, DescribeTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskRequest, DescribeTaskResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTaskRequest, DescribeTaskResponse>.ResultSequence(input: input, region: region, command: self.describeTask, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTaskRequest, DescribeTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeTask, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

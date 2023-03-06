@@ -131,4 +131,24 @@ extension Cfw {
         let input = DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter)
         return try await self.client.execute(action: "DescribeSecurityGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupListPaginated(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecurityGroupListData])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupListPaginated(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupListPaginator(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResultSequence(input: input, region: region, command: self.describeSecurityGroupList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResponseSequence(input: input, region: region, command: self.describeSecurityGroupList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

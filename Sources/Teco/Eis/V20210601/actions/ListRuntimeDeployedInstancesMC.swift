@@ -135,4 +135,24 @@ extension Eis {
         let input = ListRuntimeDeployedInstancesMCRequest(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status)
         return try await self.client.execute(action: "ListRuntimeDeployedInstancesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取运行时部署的应用实例列表
+    @inlinable
+    public func listRuntimeDeployedInstancesMCPaginated(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RuntimeDeployedInstanceMC])> {
+        self.client.paginate(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
+    }
+
+    /// 获取运行时部署的应用实例列表
+    @inlinable
+    public func listRuntimeDeployedInstancesMCPaginated(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, onResponse: @escaping (ListRuntimeDeployedInstancesMCResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取运行时部署的应用实例列表
+    @inlinable
+    public func listRuntimeDeployedInstancesMCPaginator(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResultSequence, responses: TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResultSequence(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListRuntimeDeployedInstancesMCRequest, ListRuntimeDeployedInstancesMCResponse>.ResponseSequence(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

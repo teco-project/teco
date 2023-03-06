@@ -121,4 +121,33 @@ extension Wedata {
         let input = DescribeFolderWorkflowListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeFolderWorkflowList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowListPaginated(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Workflow])> {
+        self.client.paginate(input: input, region: region, command: self.describeFolderWorkflowList, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowListPaginated(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFolderWorkflowListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFolderWorkflowList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowListPaginator(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFolderWorkflowListRequest, DescribeFolderWorkflowListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFolderWorkflowListRequest, DescribeFolderWorkflowListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFolderWorkflowListRequest, DescribeFolderWorkflowListResponse>.ResultSequence(input: input, region: region, command: self.describeFolderWorkflowList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFolderWorkflowListRequest, DescribeFolderWorkflowListResponse>.ResponseSequence(input: input, region: region, command: self.describeFolderWorkflowList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

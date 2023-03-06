@@ -119,4 +119,24 @@ extension Tcss {
         let input = DescribeNetworkFirewallPodLabelsListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeNetworkFirewallPodLabelsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群网络pod标签
+    @inlinable
+    public func describeNetworkFirewallPodLabelsListPaginated(_ input: DescribeNetworkFirewallPodLabelsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkClusterPodInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallPodLabelsList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络pod标签
+    @inlinable
+    public func describeNetworkFirewallPodLabelsListPaginated(_ input: DescribeNetworkFirewallPodLabelsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallPodLabelsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallPodLabelsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络pod标签
+    @inlinable
+    public func describeNetworkFirewallPodLabelsListPaginator(_ input: DescribeNetworkFirewallPodLabelsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallPodLabelsListRequest, DescribeNetworkFirewallPodLabelsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallPodLabelsListRequest, DescribeNetworkFirewallPodLabelsListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNetworkFirewallPodLabelsListRequest, DescribeNetworkFirewallPodLabelsListResponse>.ResultSequence(input: input, region: region, command: self.describeNetworkFirewallPodLabelsList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNetworkFirewallPodLabelsListRequest, DescribeNetworkFirewallPodLabelsListResponse>.ResponseSequence(input: input, region: region, command: self.describeNetworkFirewallPodLabelsList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

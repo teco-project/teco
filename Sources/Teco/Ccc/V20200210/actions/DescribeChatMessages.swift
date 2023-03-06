@@ -139,4 +139,36 @@ extension Ccc {
         let input = DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId)
         return try await self.client.execute(action: "DescribeChatMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务的聊天记录
+    ///
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
+    @inlinable
+    public func describeChatMessagesPaginated(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MessageBody])> {
+        self.client.paginate(input: input, region: region, command: self.describeChatMessages, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务的聊天记录
+    ///
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
+    @inlinable
+    public func describeChatMessagesPaginated(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeChatMessagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeChatMessages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务的聊天记录
+    ///
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
+    @inlinable
+    public func describeChatMessagesPaginator(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResultSequence(input: input, region: region, command: self.describeChatMessages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResponseSequence(input: input, region: region, command: self.describeChatMessages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

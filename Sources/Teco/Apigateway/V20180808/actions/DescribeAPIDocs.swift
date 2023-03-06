@@ -93,4 +93,24 @@ extension Apigateway {
         let input = DescribeAPIDocsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAPIDocs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocsPaginated(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [APIDoc])> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocsPaginated(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAPIDocsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIDocs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocsPaginator(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAPIDocsRequest, DescribeAPIDocsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAPIDocsRequest, DescribeAPIDocsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAPIDocsRequest, DescribeAPIDocsResponse>.ResultSequence(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAPIDocsRequest, DescribeAPIDocsResponse>.ResponseSequence(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

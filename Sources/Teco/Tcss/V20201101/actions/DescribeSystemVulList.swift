@@ -126,4 +126,24 @@ extension Tcss {
         let input = DescribeSystemVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeSystemVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulListPaginated(_ input: DescribeSystemVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VulInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulListPaginated(_ input: DescribeSystemVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSystemVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulListPaginator(_ input: DescribeSystemVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSystemVulListRequest, DescribeSystemVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSystemVulListRequest, DescribeSystemVulListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSystemVulListRequest, DescribeSystemVulListResponse>.ResultSequence(input: input, region: region, command: self.describeSystemVulList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSystemVulListRequest, DescribeSystemVulListResponse>.ResponseSequence(input: input, region: region, command: self.describeSystemVulList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

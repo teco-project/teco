@@ -109,4 +109,30 @@ extension Mna {
         let input = GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword)
         return try await self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevicesPaginated(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DeviceBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevicesPaginated(_ input: GetDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (GetDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResultSequence, responses: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResultSequence(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResponseSequence(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

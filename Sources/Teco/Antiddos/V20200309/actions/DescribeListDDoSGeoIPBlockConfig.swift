@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListDDoSGeoIPBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListDDoSGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的区域封禁配置列表
+    @inlinable
+    public func describeListDDoSGeoIPBlockConfigPaginated(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DDoSGeoIPBlockConfigRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的区域封禁配置列表
+    @inlinable
+    public func describeListDDoSGeoIPBlockConfigPaginated(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListDDoSGeoIPBlockConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的区域封禁配置列表
+    @inlinable
+    public func describeListDDoSGeoIPBlockConfigPaginator(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResultSequence(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResponseSequence(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

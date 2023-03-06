@@ -247,4 +247,30 @@ extension Emr {
         let input = ScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, instanceId: instanceId, payMode: payMode, clientToken: clientToken, preExecutedFileSettings: preExecutedFileSettings, taskCount: taskCount, coreCount: coreCount, unNecessaryNodeList: unNecessaryNodeList, routerCount: routerCount, softDeployInfo: softDeployInfo, serviceNodeInfo: serviceNodeInfo, disasterRecoverGroupIds: disasterRecoverGroupIds, tags: tags, hardwareResourceType: hardwareResourceType, podSpec: podSpec, clickHouseClusterName: clickHouseClusterName, clickHouseClusterType: clickHouseClusterType, yarnNodeLabel: yarnNodeLabel, podParameter: podParameter, masterCount: masterCount, startServiceAfterScaleOut: startServiceAfterScaleOut, zoneId: zoneId, subnetId: subnetId, scaleOutServiceConfAssign: scaleOutServiceConfAssign, autoRenew: autoRenew)
         return try await self.client.execute(action: "ScaleOutInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 实例扩容
+    ///
+    /// 扩容节点
+    @inlinable
+    public func scaleOutInstancePaginated(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
+    }
+
+    /// 实例扩容
+    ///
+    /// 扩容节点
+    @inlinable
+    public func scaleOutInstancePaginated(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, onResponse: @escaping (ScaleOutInstanceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.scaleOutInstance, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 实例扩容
+    ///
+    /// 扩容节点
+    @inlinable
+    public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResultSequence, responses: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResultSequence(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResponseSequence(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

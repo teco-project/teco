@@ -123,4 +123,30 @@ extension Bma {
         let input = DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters)
         return try await self.client.execute(action: "DescribeCRMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询作品监测详情
+    ///
+    /// 版权保护-查询作品监测详情接口
+    @inlinable
+    public func describeCRMonitorDetailPaginated(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MonitorTort])> {
+        self.client.paginate(input: input, region: region, command: self.describeCRMonitorDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询作品监测详情
+    ///
+    /// 版权保护-查询作品监测详情接口
+    @inlinable
+    public func describeCRMonitorDetailPaginated(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCRMonitorDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCRMonitorDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询作品监测详情
+    ///
+    /// 版权保护-查询作品监测详情接口
+    @inlinable
+    public func describeCRMonitorDetailPaginator(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCRMonitorDetailRequest, DescribeCRMonitorDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCRMonitorDetailRequest, DescribeCRMonitorDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCRMonitorDetailRequest, DescribeCRMonitorDetailResponse>.ResultSequence(input: input, region: region, command: self.describeCRMonitorDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCRMonitorDetailRequest, DescribeCRMonitorDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeCRMonitorDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

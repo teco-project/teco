@@ -112,4 +112,30 @@ extension Vpc {
         let input = DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询终端节点服务的服务白名单列表
+    ///
+    /// 查询终端节点服务的服务白名单列表。
+    @inlinable
+    public func describeVpcEndPointServiceWhiteListPaginated(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcEndPointServiceUser])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点服务的服务白名单列表
+    ///
+    /// 查询终端节点服务的服务白名单列表。
+    @inlinable
+    public func describeVpcEndPointServiceWhiteListPaginated(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcEndPointServiceWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点服务的服务白名单列表
+    ///
+    /// 查询终端节点服务的服务白名单列表。
+    @inlinable
+    public func describeVpcEndPointServiceWhiteListPaginator(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcEndPointServiceWhiteListRequest, DescribeVpcEndPointServiceWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcEndPointServiceWhiteListRequest, DescribeVpcEndPointServiceWhiteListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVpcEndPointServiceWhiteListRequest, DescribeVpcEndPointServiceWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVpcEndPointServiceWhiteListRequest, DescribeVpcEndPointServiceWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

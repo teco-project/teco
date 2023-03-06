@@ -122,4 +122,30 @@ extension Apigateway {
         let input = DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeIPStrategyApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询IP策略绑定的API列表
+    ///
+    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
+    @inlinable
+    public func describeIPStrategyApisStatusPaginated(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IPStrategyApi])> {
+        self.client.paginate(input: input, region: region, command: self.describeIPStrategyApisStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IP策略绑定的API列表
+    ///
+    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
+    @inlinable
+    public func describeIPStrategyApisStatusPaginated(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIPStrategyApisStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIPStrategyApisStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IP策略绑定的API列表
+    ///
+    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
+    @inlinable
+    public func describeIPStrategyApisStatusPaginator(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResultSequence(input: input, region: region, command: self.describeIPStrategyApisStatus, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeIPStrategyApisStatus, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

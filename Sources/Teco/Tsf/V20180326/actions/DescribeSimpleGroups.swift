@@ -129,4 +129,24 @@ extension Tsf {
         let input = DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType)
         return try await self.client.execute(action: "DescribeSimpleGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询简单部署组列表
+    @inlinable
+    public func describeSimpleGroupsPaginated(_ input: DescribeSimpleGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SimpleGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单部署组列表
+    @inlinable
+    public func describeSimpleGroupsPaginated(_ input: DescribeSimpleGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSimpleGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单部署组列表
+    @inlinable
+    public func describeSimpleGroupsPaginator(_ input: DescribeSimpleGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSimpleGroupsRequest, DescribeSimpleGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSimpleGroupsRequest, DescribeSimpleGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSimpleGroupsRequest, DescribeSimpleGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeSimpleGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSimpleGroupsRequest, DescribeSimpleGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeSimpleGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

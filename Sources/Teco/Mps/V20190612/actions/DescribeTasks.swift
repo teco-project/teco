@@ -122,4 +122,36 @@ extension Mps {
         let input = DescribeTasksRequest(status: status, limit: limit, scrollToken: scrollToken)
         return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近七天（168小时）内的任务。
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskSimpleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近七天（168小时）内的任务。
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近七天（168小时）内的任务。
+    @inlinable
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

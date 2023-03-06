@@ -107,4 +107,24 @@ extension Dayu {
         let input = DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeCCSelfDefinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC自定义策略
+    @inlinable
+    public func describeCCSelfDefinePolicyPaginated(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC自定义策略
+    @inlinable
+    public func describeCCSelfDefinePolicyPaginated(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCSelfDefinePolicyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCSelfDefinePolicy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC自定义策略
+    @inlinable
+    public func describeCCSelfDefinePolicyPaginator(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResultSequence(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResponseSequence(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -111,4 +111,30 @@ extension Yunjing {
         let input = DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAccountStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatisticsPaginated(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AccountStatistics])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccountStatistics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatisticsPaginated(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccountStatistics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatisticsPaginator(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResultSequence(input: input, region: region, command: self.describeAccountStatistics, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.describeAccountStatistics, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

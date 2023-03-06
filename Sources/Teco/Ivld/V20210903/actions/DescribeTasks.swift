@@ -124,4 +124,36 @@ extension Ivld {
         let input = DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy)
         return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 批量描述任务
+    ///
+    /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个任务信息
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述任务
+    ///
+    /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个任务信息
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述任务
+    ///
+    /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个任务信息
+    @inlinable
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

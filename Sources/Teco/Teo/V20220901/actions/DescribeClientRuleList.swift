@@ -140,4 +140,30 @@ extension Teo {
         let input = DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area)
         return try await self.client.execute(action: "DescribeClientRuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleListPaginated(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ClientRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleListPaginated(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClientRuleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClientRuleList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleListPaginator(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResultSequence(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResponseSequence(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

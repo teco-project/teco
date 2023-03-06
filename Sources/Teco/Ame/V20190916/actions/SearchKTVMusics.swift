@@ -125,4 +125,30 @@ extension Ame {
         let input = SearchKTVMusicsRequest(keyWord: keyWord, offset: offset, limit: limit, sort: sort, tagIds: tagIds)
         return try await self.client.execute(action: "SearchKTVMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 搜索直播互动曲库歌曲
+    ///
+    /// 根据搜索条件，返回匹配的歌曲列表。
+    @inlinable
+    public func searchKTVMusicsPaginated(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVMusicBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索直播互动曲库歌曲
+    ///
+    /// 根据搜索条件，返回匹配的歌曲列表。
+    @inlinable
+    public func searchKTVMusicsPaginated(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, onResponse: @escaping (SearchKTVMusicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchKTVMusics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索直播互动曲库歌曲
+    ///
+    /// 根据搜索条件，返回匹配的歌曲列表。
+    @inlinable
+    public func searchKTVMusicsPaginator(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResultSequence, responses: TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResultSequence(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResponseSequence(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

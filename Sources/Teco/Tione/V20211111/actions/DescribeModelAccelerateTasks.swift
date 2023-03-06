@@ -121,4 +121,24 @@ extension Tione {
         let input = DescribeModelAccelerateTasksRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeModelAccelerateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasksPaginated(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ModelAccelerateTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeModelAccelerateTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasksPaginated(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModelAccelerateTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModelAccelerateTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasksPaginator(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResultSequence(input: input, region: region, command: self.describeModelAccelerateTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeModelAccelerateTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

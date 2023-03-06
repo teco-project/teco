@@ -111,4 +111,30 @@ extension Cdn {
         let input = DescribeDomainsRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询域名基本信息
+    ///
+    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
+    @inlinable
+    public func describeDomainsPaginated(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BriefDomain])> {
+        self.client.paginate(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名基本信息
+    ///
+    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
+    @inlinable
+    public func describeDomainsPaginated(_ input: DescribeDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名基本信息
+    ///
+    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
+    @inlinable
+    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResultSequence(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResponseSequence(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

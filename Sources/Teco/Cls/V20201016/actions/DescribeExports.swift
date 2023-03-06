@@ -110,4 +110,30 @@ extension Cls {
         let input = DescribeExportsRequest(topicId: topicId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExportsPaginated(_ input: DescribeExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ExportInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeExports, logger: logger, on: eventLoop)
+    }
+
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExportsPaginated(_ input: DescribeExportsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExportsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExports, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExportsPaginator(_ input: DescribeExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExportsRequest, DescribeExportsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExportsRequest, DescribeExportsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeExportsRequest, DescribeExportsResponse>.ResultSequence(input: input, region: region, command: self.describeExports, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeExportsRequest, DescribeExportsResponse>.ResponseSequence(input: input, region: region, command: self.describeExports, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

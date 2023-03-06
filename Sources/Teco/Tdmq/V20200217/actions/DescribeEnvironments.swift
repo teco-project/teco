@@ -123,4 +123,30 @@ extension Tdmq {
         let input = DescribeEnvironmentsRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters)
         return try await self.client.execute(action: "DescribeEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironmentsPaginated(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Environment])> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+    }
+
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironmentsPaginated(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEnvironmentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironments, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironmentsPaginator(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResultSequence(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResponseSequence(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

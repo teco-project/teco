@@ -134,4 +134,30 @@ extension Dbbrain {
         let input = DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions)
         return try await self.client.execute(action: "DescribeDiagDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstancesPaginated(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDiagDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstancesPaginated(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDiagDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDiagDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstancesPaginator(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeDiagDBInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeDiagDBInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -114,4 +114,30 @@ extension Tke {
         let input = DescribePrometheusTempRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTempPaginated(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusTemp])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusTemp, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTempPaginated(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusTempResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusTemp, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTempPaginator(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusTemp, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusTemp, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

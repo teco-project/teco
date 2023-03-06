@@ -142,4 +142,39 @@ extension Ecm {
         let input = DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order)
         return try await self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云硬盘列表
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘列表。
+    ///
+    /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
+    @inlinable
+    public func describeDisksPaginated(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Disk])> {
+        self.client.paginate(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘列表
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘列表。
+    ///
+    /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
+    @inlinable
+    public func describeDisksPaginated(_ input: DescribeDisksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDisksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDisks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘列表
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘列表。
+    ///
+    /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
+    @inlinable
+    public func describeDisksPaginator(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResultSequence(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResponseSequence(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

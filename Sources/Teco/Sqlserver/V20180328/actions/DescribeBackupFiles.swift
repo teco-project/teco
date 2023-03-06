@@ -125,4 +125,30 @@ extension Sqlserver {
         let input = DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy)
         return try await self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份文件列表
+    ///
+    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    @inlinable
+    public func describeBackupFilesPaginated(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupFile])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份文件列表
+    ///
+    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    @inlinable
+    public func describeBackupFilesPaginated(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupFiles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份文件列表
+    ///
+    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    @inlinable
+    public func describeBackupFilesPaginator(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResultSequence(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResponseSequence(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

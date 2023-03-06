@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeAccessControlRulesRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRulesPaginated(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRulesPaginated(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessControlRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessControlRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRulesPaginator(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResultSequence(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

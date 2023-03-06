@@ -102,4 +102,30 @@ extension Ame {
         let input = DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length)
         return try await self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItemsPaginated(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [PackageItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
+    }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItemsPaginated(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePackageItemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePackageItems, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItemsPaginator(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResultSequence(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResponseSequence(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

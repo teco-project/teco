@@ -102,4 +102,30 @@ extension Wav {
         let input = QueryChannelCodeListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryChannelCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询渠道活码列表接口
+    ///
+    /// 根据游标拉取渠道活码列表信息
+    @inlinable
+    public func queryChannelCodeListPaginated(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ChannelCodeInnerDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryChannelCodeList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询渠道活码列表接口
+    ///
+    /// 根据游标拉取渠道活码列表信息
+    @inlinable
+    public func queryChannelCodeListPaginated(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryChannelCodeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryChannelCodeList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询渠道活码列表接口
+    ///
+    /// 根据游标拉取渠道活码列表信息
+    @inlinable
+    public func queryChannelCodeListPaginator(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResultSequence, responses: TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResultSequence(input: input, region: region, command: self.queryChannelCodeList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResponseSequence(input: input, region: region, command: self.queryChannelCodeList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

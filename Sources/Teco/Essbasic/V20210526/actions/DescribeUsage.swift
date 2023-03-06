@@ -146,4 +146,33 @@ extension Essbasic {
         let input = DescribeUsageRequest(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`)
         return try await self.client.execute(action: "DescribeUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 渠道用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsagePaginated(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UsageDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsage, logger: logger, on: eventLoop)
+    }
+
+    /// 渠道用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsagePaginated(_ input: DescribeUsageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 渠道用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsagePaginator(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsageRequest, DescribeUsageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsageRequest, DescribeUsageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeUsageRequest, DescribeUsageResponse>.ResultSequence(input: input, region: region, command: self.describeUsage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeUsageRequest, DescribeUsageResponse>.ResponseSequence(input: input, region: region, command: self.describeUsage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

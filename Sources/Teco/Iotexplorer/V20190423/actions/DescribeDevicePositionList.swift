@@ -107,4 +107,24 @@ extension Iotexplorer {
         let input = DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDevicePositionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionListPaginated(_ input: DescribeDevicePositionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProductDevicesPositionItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeDevicePositionList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionListPaginated(_ input: DescribeDevicePositionListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicePositionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDevicePositionList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionListPaginator(_ input: DescribeDevicePositionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDevicePositionListRequest, DescribeDevicePositionListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDevicePositionListRequest, DescribeDevicePositionListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDevicePositionListRequest, DescribeDevicePositionListResponse>.ResultSequence(input: input, region: region, command: self.describeDevicePositionList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDevicePositionListRequest, DescribeDevicePositionListResponse>.ResponseSequence(input: input, region: region, command: self.describeDevicePositionList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

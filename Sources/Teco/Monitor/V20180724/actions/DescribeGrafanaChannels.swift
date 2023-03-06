@@ -108,4 +108,24 @@ extension Monitor {
         let input = DescribeGrafanaChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIds: channelIds, channelState: channelState)
         return try await self.client.execute(action: "DescribeGrafanaChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出 Grafana 所有告警通道
+    @inlinable
+    public func describeGrafanaChannelsPaginated(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [GrafanaChannel])> {
+        self.client.paginate(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)
+    }
+
+    /// 列出 Grafana 所有告警通道
+    @inlinable
+    public func describeGrafanaChannelsPaginated(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGrafanaChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGrafanaChannels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出 Grafana 所有告警通道
+    @inlinable
+    public func describeGrafanaChannelsPaginator(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

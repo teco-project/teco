@@ -121,4 +121,30 @@ extension Apcas {
         let input = GetTaskListRequest(pageNumber: pageNumber, pageSize: pageSize, startTime: startTime, endTime: endTime, taskName: taskName, taskStatus: taskStatus)
         return try await self.client.execute(action: "GetTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询画像洞察任务列表
+    ///
+    /// 查询当前账号AppID下的画像洞察任务列表
+    @inlinable
+    public func getTaskListPaginated(_ input: GetTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ListModel])> {
+        self.client.paginate(input: input, region: region, command: self.getTaskList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询画像洞察任务列表
+    ///
+    /// 查询当前账号AppID下的画像洞察任务列表
+    @inlinable
+    public func getTaskListPaginated(_ input: GetTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (GetTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getTaskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询画像洞察任务列表
+    ///
+    /// 查询当前账号AppID下的画像洞察任务列表
+    @inlinable
+    public func getTaskListPaginator(_ input: GetTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResultSequence, responses: TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResultSequence(input: input, region: region, command: self.getTaskList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResponseSequence(input: input, region: region, command: self.getTaskList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

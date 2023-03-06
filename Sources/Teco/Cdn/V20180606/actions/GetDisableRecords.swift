@@ -142,4 +142,30 @@ extension Cdn {
         let input = GetDisableRecordsRequest(url: url, startTime: startTime, endTime: endTime, status: status, offset: offset, limit: limit, taskId: taskId)
         return try await self.client.execute(action: "GetDisableRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 禁用历史查询
+    ///
+    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
+    @inlinable
+    public func getDisableRecordsPaginated(_ input: GetDisableRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UrlRecord])> {
+        self.client.paginate(input: input, region: region, command: self.getDisableRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 禁用历史查询
+    ///
+    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
+    @inlinable
+    public func getDisableRecordsPaginated(_ input: GetDisableRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (GetDisableRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getDisableRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 禁用历史查询
+    ///
+    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
+    @inlinable
+    public func getDisableRecordsPaginator(_ input: GetDisableRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResultSequence, responses: TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResultSequence(input: input, region: region, command: self.getDisableRecords, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResponseSequence(input: input, region: region, command: self.getDisableRecords, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

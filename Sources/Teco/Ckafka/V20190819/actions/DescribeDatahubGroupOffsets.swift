@@ -108,4 +108,24 @@ extension Ckafka {
         let input = DescribeDatahubGroupOffsetsRequest(name: name, group: group, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDatahubGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsetsPaginated(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GroupOffsetTopic])> {
+        self.client.paginate(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsetsPaginated(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatahubGroupOffsetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDatahubGroupOffsets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsetsPaginator(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDatahubGroupOffsetsRequest, DescribeDatahubGroupOffsetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDatahubGroupOffsetsRequest, DescribeDatahubGroupOffsetsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDatahubGroupOffsetsRequest, DescribeDatahubGroupOffsetsResponse>.ResultSequence(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDatahubGroupOffsetsRequest, DescribeDatahubGroupOffsetsResponse>.ResponseSequence(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

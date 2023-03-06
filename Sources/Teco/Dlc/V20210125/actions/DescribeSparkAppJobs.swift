@@ -122,4 +122,24 @@ extension Dlc {
         let input = DescribeSparkAppJobsRequest(sortBy: sortBy, sorting: sorting, filters: filters, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSparkAppJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobsPaginated(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SparkJobInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSparkAppJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobsPaginated(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSparkAppJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSparkAppJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobsPaginator(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResultSequence(input: input, region: region, command: self.describeSparkAppJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeSparkAppJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

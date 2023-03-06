@@ -108,4 +108,24 @@ extension Iecp {
         let input = DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort)
         return try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplicationsPaginated(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ApplicationTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplicationsPaginated(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplicationsPaginator(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResultSequence(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResponseSequence(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

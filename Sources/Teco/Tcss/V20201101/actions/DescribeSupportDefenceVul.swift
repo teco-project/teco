@@ -115,4 +115,24 @@ extension Tcss {
         let input = DescribeSupportDefenceVulRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeSupportDefenceVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVulPaginated(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SupportDefenceVul])> {
+        self.client.paginate(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
+    }
+
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVulPaginated(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSupportDefenceVulResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSupportDefenceVul, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVulPaginator(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResultSequence(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResponseSequence(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

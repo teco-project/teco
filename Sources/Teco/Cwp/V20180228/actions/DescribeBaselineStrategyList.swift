@@ -112,4 +112,30 @@ extension Cwp {
         let input = DescribeBaselineStrategyListRequest(limit: limit, offset: offset, enabled: enabled)
         return try await self.client.execute(action: "DescribeBaselineStrategyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 用户基线策略列表查询
+    ///
+    /// 查询一个用户下的基线策略信息
+    @inlinable
+    public func describeBaselineStrategyListPaginated(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Strategy])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
+    }
+
+    /// 用户基线策略列表查询
+    ///
+    /// 查询一个用户下的基线策略信息
+    @inlinable
+    public func describeBaselineStrategyListPaginated(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineStrategyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineStrategyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 用户基线策略列表查询
+    ///
+    /// 查询一个用户下的基线策略信息
+    @inlinable
+    public func describeBaselineStrategyListPaginator(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResultSequence(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResponseSequence(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

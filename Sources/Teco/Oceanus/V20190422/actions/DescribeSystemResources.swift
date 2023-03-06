@@ -117,4 +117,24 @@ extension Oceanus {
         let input = DescribeSystemResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion)
         return try await self.client.execute(action: "DescribeSystemResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 描述系统资源接口
+    @inlinable
+    public func describeSystemResourcesPaginated(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SystemResourceItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
+    }
+
+    /// 描述系统资源接口
+    @inlinable
+    public func describeSystemResourcesPaginated(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSystemResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 描述系统资源接口
+    @inlinable
+    public func describeSystemResourcesPaginator(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSystemResourcesRequest, DescribeSystemResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

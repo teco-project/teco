@@ -116,4 +116,30 @@ extension Tcss {
         let input = DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAssetProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询进程列表
+    ///
+    /// 容器安全搜索查询进程列表
+    @inlinable
+    public func describeAssetProcessListPaginated(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProcessInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetProcessList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询进程列表
+    ///
+    /// 容器安全搜索查询进程列表
+    @inlinable
+    public func describeAssetProcessListPaginated(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetProcessListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetProcessList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询进程列表
+    ///
+    /// 容器安全搜索查询进程列表
+    @inlinable
+    public func describeAssetProcessListPaginator(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetProcessList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetProcessList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -159,4 +159,33 @@ extension Ess {
         let input = DescribeFileUrlsRequest(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent)
         return try await self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileUrl])> {
+        self.client.paginate(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileUrlsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFileUrls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrlsPaginator(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResultSequence(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResponseSequence(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

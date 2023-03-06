@@ -115,4 +115,30 @@ extension Cdb {
         let input = DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName)
         return try await self.client.execute(action: "DescribeAuditLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询审计日志文件
+    ///
+    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
+    @inlinable
+    public func describeAuditLogFilesPaginated(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AuditLogFile])> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditLogFiles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计日志文件
+    ///
+    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
+    @inlinable
+    public func describeAuditLogFilesPaginated(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditLogFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditLogFiles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计日志文件
+    ///
+    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
+    @inlinable
+    public func describeAuditLogFilesPaginator(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditLogFilesRequest, DescribeAuditLogFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditLogFilesRequest, DescribeAuditLogFilesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAuditLogFilesRequest, DescribeAuditLogFilesResponse>.ResultSequence(input: input, region: region, command: self.describeAuditLogFiles, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAuditLogFilesRequest, DescribeAuditLogFilesResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditLogFiles, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

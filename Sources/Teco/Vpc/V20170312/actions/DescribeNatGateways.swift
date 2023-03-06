@@ -119,4 +119,30 @@ extension Vpc {
         let input = DescribeNatGatewaysRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeNatGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGatewaysPaginated(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NatGateway])> {
+        self.client.paginate(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
+    }
+
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGatewaysPaginated(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNatGateways, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGatewaysPaginator(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResultSequence(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResponseSequence(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

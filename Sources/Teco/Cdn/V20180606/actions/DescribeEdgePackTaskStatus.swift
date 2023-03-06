@@ -128,4 +128,30 @@ extension Cdn {
         let input = DescribeEdgePackTaskStatusRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeEdgePackTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询动态打包任务状态列表
+    ///
+    /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
+    @inlinable
+    public func describeEdgePackTaskStatusPaginated(_ input: DescribeEdgePackTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EdgePackTaskStatus])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgePackTaskStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询动态打包任务状态列表
+    ///
+    /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
+    @inlinable
+    public func describeEdgePackTaskStatusPaginated(_ input: DescribeEdgePackTaskStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgePackTaskStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgePackTaskStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询动态打包任务状态列表
+    ///
+    /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
+    @inlinable
+    public func describeEdgePackTaskStatusPaginator(_ input: DescribeEdgePackTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResultSequence(input: input, region: region, command: self.describeEdgePackTaskStatus, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgePackTaskStatus, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

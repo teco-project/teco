@@ -123,4 +123,30 @@ extension Batch {
         let input = DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobsPaginated(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [JobView])> {
+        self.client.paginate(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobsPaginated(_ input: DescribeJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobsPaginator(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResultSequence(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

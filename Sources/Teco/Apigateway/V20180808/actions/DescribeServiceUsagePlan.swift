@@ -111,4 +111,33 @@ extension Apigateway {
         let input = DescribeServiceUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeServiceUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务使用计划详情
+    ///
+    /// 本接口（DescribeServiceUsagePlan）用于查询服务使用计划详情。
+    /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
+    @inlinable
+    public func describeServiceUsagePlanPaginated(_ input: DescribeServiceUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApiUsagePlan])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceUsagePlan, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务使用计划详情
+    ///
+    /// 本接口（DescribeServiceUsagePlan）用于查询服务使用计划详情。
+    /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
+    @inlinable
+    public func describeServiceUsagePlanPaginated(_ input: DescribeServiceUsagePlanRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceUsagePlanResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceUsagePlan, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务使用计划详情
+    ///
+    /// 本接口（DescribeServiceUsagePlan）用于查询服务使用计划详情。
+    /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
+    @inlinable
+    public func describeServiceUsagePlanPaginator(_ input: DescribeServiceUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResultSequence(input: input, region: region, command: self.describeServiceUsagePlan, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceUsagePlan, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

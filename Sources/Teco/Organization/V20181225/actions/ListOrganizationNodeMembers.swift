@@ -102,4 +102,24 @@ extension Organization {
         let input = ListOrganizationNodeMembersRequest(nodeId: nodeId, offset: offset, limit: limit)
         return try await self.client.execute(action: "ListOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取企业组织单元成员列表
+    @inlinable
+    public func listOrganizationNodeMembersPaginated(_ input: ListOrganizationNodeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OrgMember])> {
+        self.client.paginate(input: input, region: region, command: self.listOrganizationNodeMembers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取企业组织单元成员列表
+    @inlinable
+    public func listOrganizationNodeMembersPaginated(_ input: ListOrganizationNodeMembersRequest, region: TCRegion? = nil, onResponse: @escaping (ListOrganizationNodeMembersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listOrganizationNodeMembers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取企业组织单元成员列表
+    @inlinable
+    public func listOrganizationNodeMembersPaginator(_ input: ListOrganizationNodeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListOrganizationNodeMembersRequest, ListOrganizationNodeMembersResponse>.ResultSequence, responses: TCClient.Paginator<ListOrganizationNodeMembersRequest, ListOrganizationNodeMembersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListOrganizationNodeMembersRequest, ListOrganizationNodeMembersResponse>.ResultSequence(input: input, region: region, command: self.listOrganizationNodeMembers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListOrganizationNodeMembersRequest, ListOrganizationNodeMembersResponse>.ResponseSequence(input: input, region: region, command: self.listOrganizationNodeMembers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

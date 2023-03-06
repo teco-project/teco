@@ -136,4 +136,30 @@ extension Pts {
         let input = DescribeCronJobsRequest(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend)
         return try await self.client.execute(action: "DescribeCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobsPaginated(_ input: DescribeCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CronJob])> {
+        self.client.paginate(input: input, region: region, command: self.describeCronJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobsPaginated(_ input: DescribeCronJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCronJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCronJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobsPaginator(_ input: DescribeCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResultSequence(input: input, region: region, command: self.describeCronJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeCronJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

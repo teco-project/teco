@@ -120,4 +120,30 @@ extension Tdmq {
         let input = DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList)
         return try await self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPVHost])> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPVHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHostsPaginator(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAMQPVHostsRequest, DescribeAMQPVHostsResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -128,4 +128,30 @@ extension Postgres {
         let input = DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例Xlog列表
+    ///
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    @inlinable
+    public func describeDBXlogsPaginated(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Xlog])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBXlogs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例Xlog列表
+    ///
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    @inlinable
+    public func describeDBXlogsPaginated(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBXlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBXlogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例Xlog列表
+    ///
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    @inlinable
+    public func describeDBXlogsPaginator(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResultSequence(input: input, region: region, command: self.describeDBXlogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBXlogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

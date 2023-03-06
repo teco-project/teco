@@ -124,4 +124,24 @@ extension Wedata {
         let input = DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields)
         return try await self.client.execute(action: "DescribeTaskAlarmRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务告警规则列表
+    @inlinable
+    public func describeTaskAlarmRegulationsPaginated(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskAlarmInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务告警规则列表
+    @inlinable
+    public func describeTaskAlarmRegulationsPaginated(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskAlarmRegulationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskAlarmRegulations, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务告警规则列表
+    @inlinable
+    public func describeTaskAlarmRegulationsPaginator(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResultSequence(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTaskAlarmRegulationsRequest, DescribeTaskAlarmRegulationsResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskAlarmRegulations, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -119,4 +119,30 @@ extension Tat {
         let input = DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInvokers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询执行器
+    ///
+    /// 此接口用于查询执行器信息。
+    @inlinable
+    public func describeInvokersPaginated(_ input: DescribeInvokersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Invoker])> {
+        self.client.paginate(input: input, region: region, command: self.describeInvokers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行器
+    ///
+    /// 此接口用于查询执行器信息。
+    @inlinable
+    public func describeInvokersPaginated(_ input: DescribeInvokersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInvokersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInvokers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行器
+    ///
+    /// 此接口用于查询执行器信息。
+    @inlinable
+    public func describeInvokersPaginator(_ input: DescribeInvokersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInvokersRequest, DescribeInvokersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInvokersRequest, DescribeInvokersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInvokersRequest, DescribeInvokersResponse>.ResultSequence(input: input, region: region, command: self.describeInvokers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInvokersRequest, DescribeInvokersResponse>.ResponseSequence(input: input, region: region, command: self.describeInvokers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

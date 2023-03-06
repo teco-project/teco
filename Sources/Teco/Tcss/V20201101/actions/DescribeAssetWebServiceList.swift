@@ -116,4 +116,30 @@ extension Tcss {
         let input = DescribeAssetWebServiceListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAssetWebServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceListPaginated(_ input: DescribeAssetWebServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ServiceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebServiceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceListPaginated(_ input: DescribeAssetWebServiceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetWebServiceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebServiceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceListPaginator(_ input: DescribeAssetWebServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetWebServiceList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetWebServiceList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

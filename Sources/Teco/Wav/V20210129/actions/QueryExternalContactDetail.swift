@@ -112,4 +112,30 @@ extension Wav {
         let input = QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryExternalContactDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询外部联系人详情接口
+    ///
+    /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
+    @inlinable
+    public func queryExternalContactDetailPaginated(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [FollowUser])> {
+        self.client.paginate(input: input, region: region, command: self.queryExternalContactDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询外部联系人详情接口
+    ///
+    /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
+    @inlinable
+    public func queryExternalContactDetailPaginated(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, onResponse: @escaping (QueryExternalContactDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryExternalContactDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询外部联系人详情接口
+    ///
+    /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
+    @inlinable
+    public func queryExternalContactDetailPaginator(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResultSequence, responses: TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResultSequence(input: input, region: region, command: self.queryExternalContactDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResponseSequence(input: input, region: region, command: self.queryExternalContactDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

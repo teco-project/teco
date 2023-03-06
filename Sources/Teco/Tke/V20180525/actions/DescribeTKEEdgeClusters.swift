@@ -108,4 +108,24 @@ extension Tke {
         let input = DescribeTKEEdgeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeTKEEdgeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询边缘集群列表
+    @inlinable
+    public func describeTKEEdgeClustersPaginated(_ input: DescribeTKEEdgeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EdgeCluster])> {
+        self.client.paginate(input: input, region: region, command: self.describeTKEEdgeClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘集群列表
+    @inlinable
+    public func describeTKEEdgeClustersPaginated(_ input: DescribeTKEEdgeClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTKEEdgeClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTKEEdgeClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘集群列表
+    @inlinable
+    public func describeTKEEdgeClustersPaginator(_ input: DescribeTKEEdgeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTKEEdgeClustersRequest, DescribeTKEEdgeClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTKEEdgeClustersRequest, DescribeTKEEdgeClustersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTKEEdgeClustersRequest, DescribeTKEEdgeClustersResponse>.ResultSequence(input: input, region: region, command: self.describeTKEEdgeClusters, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTKEEdgeClustersRequest, DescribeTKEEdgeClustersResponse>.ResponseSequence(input: input, region: region, command: self.describeTKEEdgeClusters, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

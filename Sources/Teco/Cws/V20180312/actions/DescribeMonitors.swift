@@ -115,4 +115,30 @@ extension Cws {
         let input = DescribeMonitorsRequest(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitorsPaginated(_ input: DescribeMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MonitorsDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitors, logger: logger, on: eventLoop)
+    }
+
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitorsPaginated(_ input: DescribeMonitorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMonitorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitors, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitorsPaginator(_ input: DescribeMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMonitorsRequest, DescribeMonitorsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMonitorsRequest, DescribeMonitorsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMonitorsRequest, DescribeMonitorsResponse>.ResultSequence(input: input, region: region, command: self.describeMonitors, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMonitorsRequest, DescribeMonitorsResponse>.ResponseSequence(input: input, region: region, command: self.describeMonitors, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

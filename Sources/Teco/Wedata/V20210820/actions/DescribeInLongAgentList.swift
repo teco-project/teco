@@ -149,4 +149,24 @@ extension Wedata {
         let input = DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes)
         return try await self.client.execute(action: "DescribeInLongAgentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentListPaginated(_ input: DescribeInLongAgentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InLongAgentDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongAgentList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentListPaginated(_ input: DescribeInLongAgentListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInLongAgentListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongAgentList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentListPaginator(_ input: DescribeInLongAgentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInLongAgentListRequest, DescribeInLongAgentListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInLongAgentListRequest, DescribeInLongAgentListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInLongAgentListRequest, DescribeInLongAgentListResponse>.ResultSequence(input: input, region: region, command: self.describeInLongAgentList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInLongAgentListRequest, DescribeInLongAgentListResponse>.ResponseSequence(input: input, region: region, command: self.describeInLongAgentList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

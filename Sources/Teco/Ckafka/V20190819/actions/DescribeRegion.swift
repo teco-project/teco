@@ -107,4 +107,30 @@ extension Ckafka {
         let input = DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId)
         return try await self.client.execute(action: "DescribeRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegionPaginated(_ input: DescribeRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Region])> {
+        self.client.paginate(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegionPaginated(_ input: DescribeRegionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRegionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRegion, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegionPaginator(_ input: DescribeRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResultSequence(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRegionRequest, DescribeRegionResponse>.ResponseSequence(input: input, region: region, command: self.describeRegion, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

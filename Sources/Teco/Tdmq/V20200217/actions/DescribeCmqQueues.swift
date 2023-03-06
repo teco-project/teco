@@ -118,4 +118,24 @@ extension Tdmq {
         let input = DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters)
         return try await self.client.execute(action: "DescribeCmqQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询cmq全量队列
+    @inlinable
+    public func describeCmqQueuesPaginated(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CmqQueue])> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
+    }
+
+    /// 查询cmq全量队列
+    @inlinable
+    public func describeCmqQueuesPaginated(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCmqQueuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqQueues, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询cmq全量队列
+    @inlinable
+    public func describeCmqQueuesPaginator(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResultSequence(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCmqQueuesRequest, DescribeCmqQueuesResponse>.ResponseSequence(input: input, region: region, command: self.describeCmqQueues, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

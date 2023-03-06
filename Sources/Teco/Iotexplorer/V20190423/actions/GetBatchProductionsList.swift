@@ -111,4 +111,30 @@ extension Iotexplorer {
         let input = GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsListPaginated(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BatchProductionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
+    }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsListPaginated(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBatchProductionsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBatchProductionsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsListPaginator(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResultSequence, responses: TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResultSequence(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResponseSequence(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

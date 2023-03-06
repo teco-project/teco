@@ -113,4 +113,24 @@ extension Tsf {
         let input = DescribeImageRepositoryRequest(searchWord: searchWord, offset: offset, limit: limit, repoType: repoType, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo)
         return try await self.client.execute(action: "DescribeImageRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 镜像仓库列表
+    @inlinable
+    public func describeImageRepositoryPaginated(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ImageRepository])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageRepository, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库列表
+    @inlinable
+    public func describeImageRepositoryPaginated(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageRepositoryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageRepository, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库列表
+    @inlinable
+    public func describeImageRepositoryPaginator(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResultSequence(input: input, region: region, command: self.describeImageRepository, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResponseSequence(input: input, region: region, command: self.describeImageRepository, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

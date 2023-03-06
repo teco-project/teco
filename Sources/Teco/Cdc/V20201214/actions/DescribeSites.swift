@@ -107,4 +107,24 @@ extension Cdc {
         let input = DescribeSitesRequest(siteIds: siteIds, name: name, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询站点列表
+    @inlinable
+    public func describeSitesPaginated(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Site])> {
+        self.client.paginate(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点列表
+    @inlinable
+    public func describeSitesPaginated(_ input: DescribeSitesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSitesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSites, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点列表
+    @inlinable
+    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

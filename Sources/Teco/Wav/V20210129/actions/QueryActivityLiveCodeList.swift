@@ -102,4 +102,30 @@ extension Wav {
         let input = QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryActivityLiveCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询活动活码列表接口
+    ///
+    /// 根据游标拉取活动活码列表信息
+    @inlinable
+    public func queryActivityLiveCodeListPaginated(_ input: QueryActivityLiveCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [LiveCodeDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityLiveCodeList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动活码列表接口
+    ///
+    /// 根据游标拉取活动活码列表信息
+    @inlinable
+    public func queryActivityLiveCodeListPaginated(_ input: QueryActivityLiveCodeListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryActivityLiveCodeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityLiveCodeList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动活码列表接口
+    ///
+    /// 根据游标拉取活动活码列表信息
+    @inlinable
+    public func queryActivityLiveCodeListPaginator(_ input: QueryActivityLiveCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryActivityLiveCodeListRequest, QueryActivityLiveCodeListResponse>.ResultSequence, responses: TCClient.Paginator<QueryActivityLiveCodeListRequest, QueryActivityLiveCodeListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryActivityLiveCodeListRequest, QueryActivityLiveCodeListResponse>.ResultSequence(input: input, region: region, command: self.queryActivityLiveCodeList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryActivityLiveCodeListRequest, QueryActivityLiveCodeListResponse>.ResponseSequence(input: input, region: region, command: self.queryActivityLiveCodeList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

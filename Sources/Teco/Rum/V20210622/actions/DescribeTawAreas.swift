@@ -112,4 +112,24 @@ extension Rum {
         let input = DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset)
         return try await self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreasPaginated(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RumAreaInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
+    }
+
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreasPaginated(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTawAreasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTawAreas, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreasPaginator(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResultSequence(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResponseSequence(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

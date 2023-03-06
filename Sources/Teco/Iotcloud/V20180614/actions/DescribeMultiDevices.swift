@@ -119,4 +119,30 @@ extension Iotcloud {
         let input = DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevicesPaginated(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MultiDevicesInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevicesPaginated(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMultiDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMultiDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevicesPaginator(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

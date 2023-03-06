@@ -109,4 +109,24 @@ extension Wedata {
         let input = DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPagePaginated(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleGroupMonitor])> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitorsByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPagePaginated(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMonitorsByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitorsByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPagePaginator(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMonitorsByPageRequest, DescribeMonitorsByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMonitorsByPageRequest, DescribeMonitorsByPageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMonitorsByPageRequest, DescribeMonitorsByPageResponse>.ResultSequence(input: input, region: region, command: self.describeMonitorsByPage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMonitorsByPageRequest, DescribeMonitorsByPageResponse>.ResponseSequence(input: input, region: region, command: self.describeMonitorsByPage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

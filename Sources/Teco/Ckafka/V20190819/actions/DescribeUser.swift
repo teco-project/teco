@@ -103,4 +103,24 @@ extension Ckafka {
         let input = DescribeUserRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户信息
+    @inlinable
+    public func describeUserPaginated(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [User])> {
+        self.client.paginate(input: input, region: region, command: self.describeUser, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户信息
+    @inlinable
+    public func describeUserPaginated(_ input: DescribeUserRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUser, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户信息
+    @inlinable
+    public func describeUserPaginator(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserRequest, DescribeUserResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserRequest, DescribeUserResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeUserRequest, DescribeUserResponse>.ResultSequence(input: input, region: region, command: self.describeUser, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeUserRequest, DescribeUserResponse>.ResponseSequence(input: input, region: region, command: self.describeUser, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

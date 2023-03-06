@@ -117,4 +117,24 @@ extension Ecm {
         let input = DescribeRouteTablesRequest(routeTableIds: routeTableIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
         return try await self.client.execute(action: "DescribeRouteTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTablesPaginated(_ input: DescribeRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RouteTable])> {
+        self.client.paginate(input: input, region: region, command: self.describeRouteTables, logger: logger, on: eventLoop)
+    }
+
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTablesPaginated(_ input: DescribeRouteTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRouteTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRouteTables, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTablesPaginator(_ input: DescribeRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResultSequence(input: input, region: region, command: self.describeRouteTables, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeRouteTables, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

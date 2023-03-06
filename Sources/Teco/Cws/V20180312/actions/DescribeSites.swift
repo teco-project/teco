@@ -115,4 +115,30 @@ extension Cws {
         let input = DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSitesPaginated(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Site])> {
+        self.client.paginate(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+    }
+
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSitesPaginated(_ input: DescribeSitesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSitesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSites, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

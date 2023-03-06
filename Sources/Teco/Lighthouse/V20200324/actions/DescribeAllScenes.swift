@@ -110,4 +110,30 @@ extension Lighthouse {
         let input = DescribeAllScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAllScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询全地域使用场景列表
+    ///
+    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+    @inlinable
+    public func describeAllScenesPaginated(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SceneInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAllScenes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全地域使用场景列表
+    ///
+    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+    @inlinable
+    public func describeAllScenesPaginated(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAllScenesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAllScenes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全地域使用场景列表
+    ///
+    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+    @inlinable
+    public func describeAllScenesPaginator(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResultSequence(input: input, region: region, command: self.describeAllScenes, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResponseSequence(input: input, region: region, command: self.describeAllScenes, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

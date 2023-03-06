@@ -132,4 +132,24 @@ extension Tbaas {
         let input = GetChaincodeCompileLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, limit: limit, offset: offset)
         return try await self.client.execute(action: "GetChaincodeCompileLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取合约编译日志
+    @inlinable
+    public func getChaincodeCompileLogForUserPaginated(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LogDetailForUser])> {
+        self.client.paginate(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
+    }
+
+    /// 获取合约编译日志
+    @inlinable
+    public func getChaincodeCompileLogForUserPaginated(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetChaincodeCompileLogForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getChaincodeCompileLogForUser, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取合约编译日志
+    @inlinable
+    public func getChaincodeCompileLogForUserPaginator(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResultSequence(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResponseSequence(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

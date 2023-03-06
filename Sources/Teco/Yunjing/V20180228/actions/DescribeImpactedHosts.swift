@@ -116,4 +116,30 @@ extension Yunjing {
         let input = DescribeImpactedHostsRequest(vulId: vulId, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取漏洞受影响机器列表
+    ///
+    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
+    @inlinable
+    public func describeImpactedHostsPaginated(_ input: DescribeImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImpactedHost])> {
+        self.client.paginate(input: input, region: region, command: self.describeImpactedHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取漏洞受影响机器列表
+    ///
+    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
+    @inlinable
+    public func describeImpactedHostsPaginated(_ input: DescribeImpactedHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImpactedHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImpactedHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取漏洞受影响机器列表
+    ///
+    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
+    @inlinable
+    public func describeImpactedHostsPaginator(_ input: DescribeImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResultSequence(input: input, region: region, command: self.describeImpactedHosts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResponseSequence(input: input, region: region, command: self.describeImpactedHosts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

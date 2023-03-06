@@ -138,4 +138,30 @@ extension Cme {
         let input = DescribeTasksRequest(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`)
         return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

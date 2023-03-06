@@ -162,4 +162,30 @@ extension Ssl {
         let input = DescribeCertificatesRequest(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring)
         return try await self.client.execute(action: "DescribeCertificates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificatesPaginated(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Certificates])> {
+        self.client.paginate(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificatesPaginated(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCertificatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCertificates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResultSequence(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResponseSequence(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

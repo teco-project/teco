@@ -137,4 +137,24 @@ extension Bmeip {
         let input = DescribeEipAclsRequest(aclName: aclName, aclIds: aclIds, offset: offset, limit: limit, eipIds: eipIds, eipIps: eipIps, eipNames: eipNames, orderField: orderField, order: order, aclNames: aclNames)
         return try await self.client.execute(action: "DescribeEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAclsPaginated(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EipAcl])> {
+        self.client.paginate(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAclsPaginated(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEipAclsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEipAcls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAclsPaginator(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResultSequence(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEipAclsRequest, DescribeEipAclsResponse>.ResponseSequence(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -115,4 +115,30 @@ extension Iotexplorer {
         let input = GetStudioProductListRequest(projectId: projectId, devStatus: devStatus, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetStudioProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品列表
+    ///
+    /// 提供查询某个项目下所有产品信息的能力。
+    @inlinable
+    public func getStudioProductListPaginated(_ input: GetStudioProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProductEntry])> {
+        self.client.paginate(input: input, region: region, command: self.getStudioProductList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品列表
+    ///
+    /// 提供查询某个项目下所有产品信息的能力。
+    @inlinable
+    public func getStudioProductListPaginated(_ input: GetStudioProductListRequest, region: TCRegion? = nil, onResponse: @escaping (GetStudioProductListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getStudioProductList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品列表
+    ///
+    /// 提供查询某个项目下所有产品信息的能力。
+    @inlinable
+    public func getStudioProductListPaginator(_ input: GetStudioProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResultSequence, responses: TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResultSequence(input: input, region: region, command: self.getStudioProductList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResponseSequence(input: input, region: region, command: self.getStudioProductList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -140,4 +140,30 @@ extension Sqlserver {
         let input = DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId)
         return try await self.client.execute(action: "DescribeIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询增量备份导入任务
+    ///
+    /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
+    @inlinable
+    public func describeIncrementalMigrationPaginated(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Migration])> {
+        self.client.paginate(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
+    }
+
+    /// 查询增量备份导入任务
+    ///
+    /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
+    @inlinable
+    public func describeIncrementalMigrationPaginated(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIncrementalMigrationResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIncrementalMigration, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询增量备份导入任务
+    ///
+    /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
+    @inlinable
+    public func describeIncrementalMigrationPaginator(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResultSequence(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIncrementalMigrationRequest, DescribeIncrementalMigrationResponse>.ResponseSequence(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

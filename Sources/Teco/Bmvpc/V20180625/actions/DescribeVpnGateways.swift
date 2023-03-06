@@ -129,4 +129,30 @@ extension Bmvpc {
         let input = DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeVpnGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGatewaysPaginated(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpnGateway])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGateways, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGatewaysPaginated(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGateways, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGatewaysPaginator(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResultSequence(input: input, region: region, command: self.describeVpnGateways, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResponseSequence(input: input, region: region, command: self.describeVpnGateways, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

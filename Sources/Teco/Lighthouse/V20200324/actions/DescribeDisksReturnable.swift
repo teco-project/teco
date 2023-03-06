@@ -110,4 +110,30 @@ extension Lighthouse {
         let input = DescribeDisksReturnableRequest(diskIds: diskIds, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeDisksReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看云硬盘是否可退还
+    ///
+    /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
+    @inlinable
+    public func describeDisksReturnablePaginated(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DiskReturnable])> {
+        self.client.paginate(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)
+    }
+
+    /// 查看云硬盘是否可退还
+    ///
+    /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
+    @inlinable
+    public func describeDisksReturnablePaginated(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDisksReturnableResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDisksReturnable, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看云硬盘是否可退还
+    ///
+    /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
+    @inlinable
+    public func describeDisksReturnablePaginator(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResultSequence(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResponseSequence(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

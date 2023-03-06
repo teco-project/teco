@@ -121,4 +121,24 @@ extension Teo {
         let input = DescribePrefetchTasksRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrefetchTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasksPaginated(_ input: DescribePrefetchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Task])> {
+        self.client.paginate(input: input, region: region, command: self.describePrefetchTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasksPaginated(_ input: DescribePrefetchTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrefetchTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrefetchTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasksPaginator(_ input: DescribePrefetchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResultSequence(input: input, region: region, command: self.describePrefetchTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePrefetchTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

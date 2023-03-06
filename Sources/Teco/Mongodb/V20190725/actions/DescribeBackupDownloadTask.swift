@@ -132,4 +132,24 @@ extension Mongodb {
         let input = DescribeBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status)
         return try await self.client.execute(action: "DescribeBackupDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTaskPaginated(_ input: DescribeBackupDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupDownloadTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupDownloadTask, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTaskPaginated(_ input: DescribeBackupDownloadTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupDownloadTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupDownloadTask, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTaskPaginator(_ input: DescribeBackupDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResultSequence(input: input, region: region, command: self.describeBackupDownloadTask, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResponseSequence(input: input, region: region, command: self.describeBackupDownloadTask, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

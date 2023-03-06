@@ -110,4 +110,30 @@ extension Eis {
         let input = ListEisConnectorsRequest(connectorName: connectorName, offset: offset, limit: limit)
         return try await self.client.execute(action: "ListEisConnectors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取连接器列表
+    ///
+    /// 连接器列表
+    @inlinable
+    public func listEisConnectorsPaginated(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EisConnectorSummary])> {
+        self.client.paginate(input: input, region: region, command: self.listEisConnectors, logger: logger, on: eventLoop)
+    }
+
+    /// 获取连接器列表
+    ///
+    /// 连接器列表
+    @inlinable
+    public func listEisConnectorsPaginated(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, onResponse: @escaping (ListEisConnectorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listEisConnectors, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取连接器列表
+    ///
+    /// 连接器列表
+    @inlinable
+    public func listEisConnectorsPaginator(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResultSequence, responses: TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResultSequence(input: input, region: region, command: self.listEisConnectors, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResponseSequence(input: input, region: region, command: self.listEisConnectors, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

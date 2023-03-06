@@ -133,4 +133,30 @@ extension Vod {
         let input = DescribeWordSamplesRequest(subAppId: subAppId, usages: usages, keywords: keywords, tags: tags, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取关键词样本列表
+    ///
+    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    @inlinable
+    public func describeWordSamplesPaginated(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AiSampleWord])> {
+        self.client.paginate(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
+    }
+
+    /// 获取关键词样本列表
+    ///
+    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    @inlinable
+    public func describeWordSamplesPaginated(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWordSamplesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWordSamples, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取关键词样本列表
+    ///
+    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    @inlinable
+    public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResultSequence(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResponseSequence(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

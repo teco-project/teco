@@ -114,4 +114,24 @@ extension Tcr {
         let input = DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion)
         return try await self.client.execute(action: "DescribeInstanceAll", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询全部实例信息
+    @inlinable
+    public func describeInstanceAllPaginated(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Registry])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全部实例信息
+    @inlinable
+    public func describeInstanceAllPaginated(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceAllResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceAll, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全部实例信息
+    @inlinable
+    public func describeInstanceAllPaginator(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

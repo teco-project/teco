@@ -116,4 +116,30 @@ extension Cdb {
         let input = DescribeAuditRulesRequest(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAuditRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRulesPaginated(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AuditRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRulesPaginated(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRulesPaginator(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResultSequence(input: input, region: region, command: self.describeAuditRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeAuditRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

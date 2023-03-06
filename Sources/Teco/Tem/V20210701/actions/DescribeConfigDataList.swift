@@ -98,4 +98,24 @@ extension Tem {
         let input = DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit)
         return try await self.client.execute(action: "DescribeConfigDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询配置列表
+    @inlinable
+    public func describeConfigDataListPaginated(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ConfigData])> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigDataList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置列表
+    @inlinable
+    public func describeConfigDataListPaginated(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigDataListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigDataList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置列表
+    @inlinable
+    public func describeConfigDataListPaginator(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResultSequence(input: input, region: region, command: self.describeConfigDataList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResponseSequence(input: input, region: region, command: self.describeConfigDataList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

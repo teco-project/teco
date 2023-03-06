@@ -124,4 +124,30 @@ extension Ame {
         let input = DescribeKTVRobotsRequest(robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取直播互动机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobotsPaginated(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVRobotInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobotsPaginated(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVRobotsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVRobots, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobotsPaginator(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResultSequence(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

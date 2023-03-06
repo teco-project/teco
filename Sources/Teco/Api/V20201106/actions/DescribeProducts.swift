@@ -105,4 +105,30 @@ extension Api {
         let input = DescribeProductsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProductsPaginated(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RegionProduct])> {
+        self.client.paginate(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
+    }
+
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProductsPaginated(_ input: DescribeProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProducts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResultSequence(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResponseSequence(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListDDoSSpeedLimitConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的访问限速配置列表
+    @inlinable
+    public func describeListDDoSSpeedLimitConfigPaginated(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DDoSSpeedLimitConfigRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的访问限速配置列表
+    @inlinable
+    public func describeListDDoSSpeedLimitConfigPaginated(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListDDoSSpeedLimitConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的访问限速配置列表
+    @inlinable
+    public func describeListDDoSSpeedLimitConfigPaginator(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResultSequence(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResponseSequence(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

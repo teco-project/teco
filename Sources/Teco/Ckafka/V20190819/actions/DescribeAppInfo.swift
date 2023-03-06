@@ -93,4 +93,24 @@ extension Ckafka {
         let input = DescribeAppInfoRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAppInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户列表
+    @inlinable
+    public func describeAppInfoPaginated(_ input: DescribeAppInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Int64])> {
+        self.client.paginate(input: input, region: region, command: self.describeAppInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户列表
+    @inlinable
+    public func describeAppInfoPaginated(_ input: DescribeAppInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAppInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAppInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户列表
+    @inlinable
+    public func describeAppInfoPaginator(_ input: DescribeAppInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResultSequence(input: input, region: region, command: self.describeAppInfo, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeAppInfo, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

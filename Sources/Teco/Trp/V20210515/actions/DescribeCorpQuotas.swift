@@ -109,4 +109,24 @@ extension Trp {
         let input = DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword)
         return try await self.client.execute(action: "DescribeCorpQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotasPaginated(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CorpQuota])> {
+        self.client.paginate(input: input, region: region, command: self.describeCorpQuotas, logger: logger, on: eventLoop)
+    }
+
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotasPaginated(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCorpQuotasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCorpQuotas, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotasPaginator(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResultSequence(input: input, region: region, command: self.describeCorpQuotas, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResponseSequence(input: input, region: region, command: self.describeCorpQuotas, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

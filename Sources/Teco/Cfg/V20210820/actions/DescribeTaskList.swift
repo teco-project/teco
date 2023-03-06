@@ -127,4 +127,24 @@ extension Cfg {
         let input = DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags)
         return try await self.client.execute(action: "DescribeTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务列表
+    @inlinable
+    public func describeTaskListPaginated(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    @inlinable
+    public func describeTaskListPaginated(_ input: DescribeTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    @inlinable
+    public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResultSequence(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -123,4 +123,30 @@ extension Dlc {
         let input = DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters)
         return try await self.client.execute(action: "DescribeScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询script列表
+    ///
+    /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    @inlinable
+    public func describeScriptsPaginated(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Script])> {
+        self.client.paginate(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)
+    }
+
+    /// 查询script列表
+    ///
+    /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    @inlinable
+    public func describeScriptsPaginated(_ input: DescribeScriptsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScriptsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScripts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询script列表
+    ///
+    /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    @inlinable
+    public func describeScriptsPaginator(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResultSequence(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResponseSequence(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

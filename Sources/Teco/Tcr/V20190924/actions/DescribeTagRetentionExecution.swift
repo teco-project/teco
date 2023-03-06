@@ -107,4 +107,24 @@ extension Tcr {
         let input = DescribeTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeTagRetentionExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecutionPaginated(_ input: DescribeTagRetentionExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RetentionExecution])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagRetentionExecution, logger: logger, on: eventLoop)
+    }
+
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecutionPaginated(_ input: DescribeTagRetentionExecutionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagRetentionExecutionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagRetentionExecution, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecutionPaginator(_ input: DescribeTagRetentionExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagRetentionExecutionRequest, DescribeTagRetentionExecutionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagRetentionExecutionRequest, DescribeTagRetentionExecutionResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTagRetentionExecutionRequest, DescribeTagRetentionExecutionResponse>.ResultSequence(input: input, region: region, command: self.describeTagRetentionExecution, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTagRetentionExecutionRequest, DescribeTagRetentionExecutionResponse>.ResponseSequence(input: input, region: region, command: self.describeTagRetentionExecution, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

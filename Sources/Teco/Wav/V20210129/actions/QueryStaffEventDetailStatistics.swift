@@ -112,4 +112,30 @@ extension Wav {
         let input = QueryStaffEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryStaffEventDetailStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 企业成员SaaS使用明细数据接口
+    ///
+    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+    @inlinable
+    public func queryStaffEventDetailStatisticsPaginated(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SalesActionEventDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryStaffEventDetailStatistics, logger: logger, on: eventLoop)
+    }
+
+    /// 企业成员SaaS使用明细数据接口
+    ///
+    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+    @inlinable
+    public func queryStaffEventDetailStatisticsPaginated(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (QueryStaffEventDetailStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryStaffEventDetailStatistics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 企业成员SaaS使用明细数据接口
+    ///
+    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+    @inlinable
+    public func queryStaffEventDetailStatisticsPaginator(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryStaffEventDetailStatisticsRequest, QueryStaffEventDetailStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<QueryStaffEventDetailStatisticsRequest, QueryStaffEventDetailStatisticsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryStaffEventDetailStatisticsRequest, QueryStaffEventDetailStatisticsResponse>.ResultSequence(input: input, region: region, command: self.queryStaffEventDetailStatistics, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryStaffEventDetailStatisticsRequest, QueryStaffEventDetailStatisticsResponse>.ResponseSequence(input: input, region: region, command: self.queryStaffEventDetailStatistics, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

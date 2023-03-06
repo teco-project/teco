@@ -107,4 +107,24 @@ extension Privatedns {
         let input = DescribePrivateZoneRecordListRequest(zoneId: zoneId, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePrivateZoneRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取私有域记录列表
+    @inlinable
+    public func describePrivateZoneRecordListPaginated(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrivateZoneRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describePrivateZoneRecordList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取私有域记录列表
+    @inlinable
+    public func describePrivateZoneRecordListPaginated(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivateZoneRecordListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrivateZoneRecordList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取私有域记录列表
+    @inlinable
+    public func describePrivateZoneRecordListPaginator(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResultSequence(input: input, region: region, command: self.describePrivateZoneRecordList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResponseSequence(input: input, region: region, command: self.describePrivateZoneRecordList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

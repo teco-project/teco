@@ -109,4 +109,24 @@ extension Tke {
         let input = DescribePrometheusAlertPolicyRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取2.0实例告警策略列表
+    @inlinable
+    public func describePrometheusAlertPolicyPaginated(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusAlertPolicyItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例告警策略列表
+    @inlinable
+    public func describePrometheusAlertPolicyPaginated(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusAlertPolicyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertPolicy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例告警策略列表
+    @inlinable
+    public func describePrometheusAlertPolicyPaginator(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResultSequence(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResponseSequence(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

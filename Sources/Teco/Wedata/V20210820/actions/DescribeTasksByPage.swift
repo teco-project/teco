@@ -116,4 +116,33 @@ extension Wedata {
         let input = DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeTasksByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 根据工作流分页查询任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据工作流分页查询任务
+    @inlinable
+    public func describeTasksByPagePaginated(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskInfoData])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasksByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 根据工作流分页查询任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据工作流分页查询任务
+    @inlinable
+    public func describeTasksByPagePaginated(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasksByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 根据工作流分页查询任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据工作流分页查询任务
+    @inlinable
+    public func describeTasksByPagePaginator(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksByPageRequest, DescribeTasksByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksByPageRequest, DescribeTasksByPageResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTasksByPageRequest, DescribeTasksByPageResponse>.ResultSequence(input: input, region: region, command: self.describeTasksByPage, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTasksByPageRequest, DescribeTasksByPageResponse>.ResponseSequence(input: input, region: region, command: self.describeTasksByPage, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -122,4 +122,30 @@ extension Apigateway {
         let input = DescribeIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询IP策略详情
+    ///
+    /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
+    @inlinable
+    public func describeIPStrategyPaginated(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DesApisStatus])> {
+        self.client.paginate(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IP策略详情
+    ///
+    /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
+    @inlinable
+    public func describeIPStrategyPaginated(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIPStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIPStrategy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IP策略详情
+    ///
+    /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
+    @inlinable
+    public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResultSequence(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResponseSequence(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

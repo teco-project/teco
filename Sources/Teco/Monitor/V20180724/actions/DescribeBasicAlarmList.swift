@@ -154,4 +154,24 @@ extension Monitor {
         let input = DescribeBasicAlarmListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, occurTimeOrder: occurTimeOrder, projectIds: projectIds, viewNames: viewNames, alarmStatus: alarmStatus, objLike: objLike, instanceGroupIds: instanceGroupIds, metricNames: metricNames)
         return try await self.client.execute(action: "DescribeBasicAlarmList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取基础告警列表
+    @inlinable
+    public func describeBasicAlarmListPaginated(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeBasicAlarmListAlarms])> {
+        self.client.paginate(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基础告警列表
+    @inlinable
+    public func describeBasicAlarmListPaginated(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBasicAlarmListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBasicAlarmList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基础告警列表
+    @inlinable
+    public func describeBasicAlarmListPaginator(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResultSequence(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResponseSequence(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

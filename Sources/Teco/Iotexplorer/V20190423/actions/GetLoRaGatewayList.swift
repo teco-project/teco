@@ -111,4 +111,30 @@ extension Iotexplorer {
         let input = GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetLoRaGatewayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取 LoRa 网关列表
+    ///
+    /// 获取 LoRa 网关列表接口
+    @inlinable
+    public func getLoRaGatewayListPaginated(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoRaGatewayItem])> {
+        self.client.paginate(input: input, region: region, command: self.getLoRaGatewayList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 LoRa 网关列表
+    ///
+    /// 获取 LoRa 网关列表接口
+    @inlinable
+    public func getLoRaGatewayListPaginated(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLoRaGatewayListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getLoRaGatewayList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 LoRa 网关列表
+    ///
+    /// 获取 LoRa 网关列表接口
+    @inlinable
+    public func getLoRaGatewayListPaginator(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResultSequence, responses: TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResultSequence(input: input, region: region, command: self.getLoRaGatewayList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResponseSequence(input: input, region: region, command: self.getLoRaGatewayList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

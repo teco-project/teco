@@ -111,4 +111,30 @@ extension Postgres {
         let input = DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeReadOnlyGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroupsPaginated(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ReadOnlyGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeReadOnlyGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroupsPaginated(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReadOnlyGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReadOnlyGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroupsPaginator(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReadOnlyGroupsRequest, DescribeReadOnlyGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReadOnlyGroupsRequest, DescribeReadOnlyGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeReadOnlyGroupsRequest, DescribeReadOnlyGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeReadOnlyGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeReadOnlyGroupsRequest, DescribeReadOnlyGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeReadOnlyGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

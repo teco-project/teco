@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeUploadedFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFilesPaginated(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SqlFileInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUploadedFiles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFilesPaginated(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUploadedFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUploadedFiles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFilesPaginator(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUploadedFilesRequest, DescribeUploadedFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUploadedFilesRequest, DescribeUploadedFilesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeUploadedFilesRequest, DescribeUploadedFilesResponse>.ResultSequence(input: input, region: region, command: self.describeUploadedFiles, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeUploadedFilesRequest, DescribeUploadedFilesResponse>.ResponseSequence(input: input, region: region, command: self.describeUploadedFiles, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

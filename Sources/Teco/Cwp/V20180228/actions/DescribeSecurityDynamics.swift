@@ -105,4 +105,30 @@ extension Cwp {
         let input = DescribeSecurityDynamicsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamicsPaginated(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecurityDynamic])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamicsPaginated(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityDynamicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityDynamics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamicsPaginator(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResultSequence(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResponseSequence(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

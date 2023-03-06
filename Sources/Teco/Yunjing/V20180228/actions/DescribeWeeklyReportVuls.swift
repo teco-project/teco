@@ -115,4 +115,30 @@ extension Yunjing {
         let input = DescribeWeeklyReportVulsRequest(beginDate: beginDate, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeWeeklyReportVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVulsPaginated(_ input: DescribeWeeklyReportVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WeeklyReportVul])> {
+        self.client.paginate(input: input, region: region, command: self.describeWeeklyReportVuls, logger: logger, on: eventLoop)
+    }
+
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVulsPaginated(_ input: DescribeWeeklyReportVulsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWeeklyReportVulsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWeeklyReportVuls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVulsPaginator(_ input: DescribeWeeklyReportVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResultSequence(input: input, region: region, command: self.describeWeeklyReportVuls, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResponseSequence(input: input, region: region, command: self.describeWeeklyReportVuls, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

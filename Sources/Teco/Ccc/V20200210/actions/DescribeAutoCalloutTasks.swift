@@ -102,4 +102,24 @@ extension Ccc {
         let input = DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeAutoCalloutTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 批量查询自动任务外呼
+    @inlinable
+    public func describeAutoCalloutTasksPaginated(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutoCalloutTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 批量查询自动任务外呼
+    @inlinable
+    public func describeAutoCalloutTasksPaginated(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoCalloutTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoCalloutTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 批量查询自动任务外呼
+    @inlinable
+    public func describeAutoCalloutTasksPaginator(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResultSequence(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

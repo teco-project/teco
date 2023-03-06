@@ -161,4 +161,30 @@ extension Pts {
         let input = DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset, scenarioType: scenarioType, owner: owner)
         return try await self.client.execute(action: "DescribeScenarioWithJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询场景及对应的任务
+    ///
+    /// 查询场景配置并附带已经执行的任务内容
+    @inlinable
+    public func describeScenarioWithJobsPaginated(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ScenarioWithJobs])> {
+        self.client.paginate(input: input, region: region, command: self.describeScenarioWithJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询场景及对应的任务
+    ///
+    /// 查询场景配置并附带已经执行的任务内容
+    @inlinable
+    public func describeScenarioWithJobsPaginated(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScenarioWithJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScenarioWithJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询场景及对应的任务
+    ///
+    /// 查询场景配置并附带已经执行的任务内容
+    @inlinable
+    public func describeScenarioWithJobsPaginator(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResultSequence(input: input, region: region, command: self.describeScenarioWithJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeScenarioWithJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

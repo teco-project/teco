@@ -121,4 +121,30 @@ extension Tsf {
         let input = DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord)
         return try await self.client.execute(action: "DescribePluginInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网关分组或API绑定（或未绑定）的插件列表
+    ///
+    /// 分页查询网关分组/API绑定（或未绑定）的插件列表
+    @inlinable
+    public func describePluginInstancesPaginated(_ input: DescribePluginInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GatewayPlugin])> {
+        self.client.paginate(input: input, region: region, command: self.describePluginInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关分组或API绑定（或未绑定）的插件列表
+    ///
+    /// 分页查询网关分组/API绑定（或未绑定）的插件列表
+    @inlinable
+    public func describePluginInstancesPaginated(_ input: DescribePluginInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePluginInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePluginInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关分组或API绑定（或未绑定）的插件列表
+    ///
+    /// 分页查询网关分组/API绑定（或未绑定）的插件列表
+    @inlinable
+    public func describePluginInstancesPaginator(_ input: DescribePluginInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginInstancesRequest, DescribePluginInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginInstancesRequest, DescribePluginInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePluginInstancesRequest, DescribePluginInstancesResponse>.ResultSequence(input: input, region: region, command: self.describePluginInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePluginInstancesRequest, DescribePluginInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describePluginInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

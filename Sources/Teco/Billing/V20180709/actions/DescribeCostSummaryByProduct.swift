@@ -122,4 +122,24 @@ extension Billing {
         let input = DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum)
         return try await self.client.execute(action: "DescribeCostSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取按产品汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByProductPaginated(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ConsumptionBusinessSummaryDataItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCostSummaryByProduct, logger: logger, on: eventLoop)
+    }
+
+    /// 获取按产品汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByProductPaginated(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCostSummaryByProductResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCostSummaryByProduct, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取按产品汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByProductPaginator(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResultSequence(input: input, region: region, command: self.describeCostSummaryByProduct, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResponseSequence(input: input, region: region, command: self.describeCostSummaryByProduct, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

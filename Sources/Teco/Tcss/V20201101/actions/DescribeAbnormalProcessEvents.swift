@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeAbnormalProcessEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeAbnormalProcessEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运行时异常进程列表
+    ///
+    /// 查询运行时异常进程事件列表信息
+    @inlinable
+    public func describeAbnormalProcessEventsPaginated(_ input: DescribeAbnormalProcessEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AbnormalProcessEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAbnormalProcessEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时异常进程列表
+    ///
+    /// 查询运行时异常进程事件列表信息
+    @inlinable
+    public func describeAbnormalProcessEventsPaginated(_ input: DescribeAbnormalProcessEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAbnormalProcessEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAbnormalProcessEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时异常进程列表
+    ///
+    /// 查询运行时异常进程事件列表信息
+    @inlinable
+    public func describeAbnormalProcessEventsPaginator(_ input: DescribeAbnormalProcessEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAbnormalProcessEventsRequest, DescribeAbnormalProcessEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAbnormalProcessEventsRequest, DescribeAbnormalProcessEventsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAbnormalProcessEventsRequest, DescribeAbnormalProcessEventsResponse>.ResultSequence(input: input, region: region, command: self.describeAbnormalProcessEvents, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAbnormalProcessEventsRequest, DescribeAbnormalProcessEventsResponse>.ResponseSequence(input: input, region: region, command: self.describeAbnormalProcessEvents, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

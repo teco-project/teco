@@ -160,4 +160,30 @@ extension Cpdp {
         let input = QueryOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasSecretId: midasSecretId, midasSignature: midasSignature, count: count, offset: offset, startTime: startTime, endTime: endTime, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment)
         return try await self.client.execute(action: "QueryOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 聚鑫-查询订单接口
+    ///
+    /// 根据订单号，或者用户Id，查询支付订单状态
+    @inlinable
+    public func queryOrderPaginated(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [QueryOrderOutOrderList])> {
+        self.client.paginate(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
+    }
+
+    /// 聚鑫-查询订单接口
+    ///
+    /// 根据订单号，或者用户Id，查询支付订单状态
+    @inlinable
+    public func queryOrderPaginated(_ input: QueryOrderRequest, region: TCRegion? = nil, onResponse: @escaping (QueryOrderResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryOrder, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 聚鑫-查询订单接口
+    ///
+    /// 根据订单号，或者用户Id，查询支付订单状态
+    @inlinable
+    public func queryOrderPaginator(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResultSequence, responses: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResultSequence(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResponseSequence(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

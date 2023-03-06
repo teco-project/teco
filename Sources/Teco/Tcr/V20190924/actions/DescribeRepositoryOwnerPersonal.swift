@@ -106,4 +106,30 @@ extension Tcr {
         let input = DescribeRepositoryOwnerPersonalRequest(offset: offset, limit: limit, repoName: repoName)
         return try await self.client.execute(action: "DescribeRepositoryOwnerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询个人版所有仓库
+    ///
+    /// 用于在个人版中获取用户全部的镜像仓库列表
+    @inlinable
+    public func describeRepositoryOwnerPersonalPaginated(_ input: DescribeRepositoryOwnerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RepoInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeRepositoryOwnerPersonal, logger: logger, on: eventLoop)
+    }
+
+    /// 查询个人版所有仓库
+    ///
+    /// 用于在个人版中获取用户全部的镜像仓库列表
+    @inlinable
+    public func describeRepositoryOwnerPersonalPaginated(_ input: DescribeRepositoryOwnerPersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRepositoryOwnerPersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRepositoryOwnerPersonal, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询个人版所有仓库
+    ///
+    /// 用于在个人版中获取用户全部的镜像仓库列表
+    @inlinable
+    public func describeRepositoryOwnerPersonalPaginator(_ input: DescribeRepositoryOwnerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoryOwnerPersonalRequest, DescribeRepositoryOwnerPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoryOwnerPersonalRequest, DescribeRepositoryOwnerPersonalResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRepositoryOwnerPersonalRequest, DescribeRepositoryOwnerPersonalResponse>.ResultSequence(input: input, region: region, command: self.describeRepositoryOwnerPersonal, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRepositoryOwnerPersonalRequest, DescribeRepositoryOwnerPersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeRepositoryOwnerPersonal, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -104,4 +104,24 @@ extension Iotvideoindustry {
         let input = DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset)
         return try await self.client.execute(action: "DescribeBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取场景绑定通道列表
+    @inlinable
+    public func describeBindSceneChannelsPaginated(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ChannelItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeBindSceneChannels, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景绑定通道列表
+    @inlinable
+    public func describeBindSceneChannelsPaginated(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindSceneChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBindSceneChannels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景绑定通道列表
+    @inlinable
+    public func describeBindSceneChannelsPaginator(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindSceneChannelsRequest, DescribeBindSceneChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindSceneChannelsRequest, DescribeBindSceneChannelsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBindSceneChannelsRequest, DescribeBindSceneChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeBindSceneChannels, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBindSceneChannelsRequest, DescribeBindSceneChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeBindSceneChannels, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

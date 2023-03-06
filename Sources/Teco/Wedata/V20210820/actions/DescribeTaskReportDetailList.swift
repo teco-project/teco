@@ -152,4 +152,24 @@ extension Wedata {
         let input = DescribeTaskReportDetailListRequest(projectId: projectId, taskId: taskId, beginDate: beginDate, endDate: endDate, stateList: stateList, sortItem: sortItem, sortType: sortType, pageIndex: pageIndex, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeTaskReportDetailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 离线任务周期统计明细
+    @inlinable
+    public func describeTaskReportDetailListPaginated(_ input: DescribeTaskReportDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskReportDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskReportDetailList, logger: logger, on: eventLoop)
+    }
+
+    /// 离线任务周期统计明细
+    @inlinable
+    public func describeTaskReportDetailListPaginated(_ input: DescribeTaskReportDetailListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskReportDetailListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskReportDetailList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 离线任务周期统计明细
+    @inlinable
+    public func describeTaskReportDetailListPaginator(_ input: DescribeTaskReportDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResultSequence(input: input, region: region, command: self.describeTaskReportDetailList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResponseSequence(input: input, region: region, command: self.describeTaskReportDetailList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

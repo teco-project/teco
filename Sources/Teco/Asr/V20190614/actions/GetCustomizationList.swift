@@ -104,4 +104,24 @@ extension Asr {
         let input = GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset)
         return try await self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationListPaginated(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Model])> {
+        self.client.paginate(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationListPaginated(_ input: GetCustomizationListRequest, region: TCRegion? = nil, onResponse: @escaping (GetCustomizationListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getCustomizationList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationListPaginator(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetCustomizationListRequest, GetCustomizationListResponse>.ResultSequence, responses: TCClient.Paginator<GetCustomizationListRequest, GetCustomizationListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetCustomizationListRequest, GetCustomizationListResponse>.ResultSequence(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetCustomizationListRequest, GetCustomizationListResponse>.ResponseSequence(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

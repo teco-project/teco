@@ -123,4 +123,24 @@ extension Tcss {
         let input = DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeEmergencyVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulListPaginated(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EmergencyVulInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulListPaginated(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEmergencyVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulListPaginator(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResultSequence(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResponseSequence(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

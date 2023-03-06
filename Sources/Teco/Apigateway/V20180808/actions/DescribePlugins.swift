@@ -121,4 +121,30 @@ extension Apigateway {
         let input = DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePluginsPaginated(_ input: DescribePluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Plugin])> {
+        self.client.paginate(input: input, region: region, command: self.describePlugins, logger: logger, on: eventLoop)
+    }
+
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePluginsPaginated(_ input: DescribePluginsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePluginsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePlugins, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePluginsPaginator(_ input: DescribePluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginsRequest, DescribePluginsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginsRequest, DescribePluginsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePluginsRequest, DescribePluginsResponse>.ResultSequence(input: input, region: region, command: self.describePlugins, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePluginsRequest, DescribePluginsResponse>.ResponseSequence(input: input, region: region, command: self.describePlugins, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

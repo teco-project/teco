@@ -142,4 +142,30 @@ extension Dlc {
         let input = DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViewsPaginated(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ViewResponseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
+    }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViewsPaginated(_ input: DescribeViewsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeViewsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeViews, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViewsPaginator(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResultSequence(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResponseSequence(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

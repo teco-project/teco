@@ -119,4 +119,24 @@ extension Pts {
         let input = DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind)
         return try await self.client.execute(action: "DescribeFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件列表
+    @inlinable
+    public func describeFilesPaginated(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [File])> {
+        self.client.paginate(input: input, region: region, command: self.describeFiles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件列表
+    @inlinable
+    public func describeFilesPaginated(_ input: DescribeFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFiles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件列表
+    @inlinable
+    public func describeFilesPaginator(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResultSequence(input: input, region: region, command: self.describeFiles, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResponseSequence(input: input, region: region, command: self.describeFiles, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

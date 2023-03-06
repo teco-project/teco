@@ -136,4 +136,24 @@ extension Tag {
         let input = DescribeResourcesByTagsRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
         return try await self.client.execute(action: "DescribeResourcesByTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 通过标签查询资源列表
+    @inlinable
+    public func describeResourcesByTagsPaginated(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ResourceTag])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourcesByTags, logger: logger, on: eventLoop)
+    }
+
+    /// 通过标签查询资源列表
+    @inlinable
+    public func describeResourcesByTagsPaginated(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourcesByTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourcesByTags, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 通过标签查询资源列表
+    @inlinable
+    public func describeResourcesByTagsPaginator(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesByTagsRequest, DescribeResourcesByTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesByTagsRequest, DescribeResourcesByTagsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeResourcesByTagsRequest, DescribeResourcesByTagsResponse>.ResultSequence(input: input, region: region, command: self.describeResourcesByTags, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeResourcesByTagsRequest, DescribeResourcesByTagsResponse>.ResponseSequence(input: input, region: region, command: self.describeResourcesByTags, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -121,4 +121,24 @@ extension Bmvpc {
         let input = DescribeVpcResourceRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeVpcResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResourcePaginated(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
+    }
+
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResourcePaginated(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcResourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcResource, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResourcePaginator(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResultSequence(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVpcResourceRequest, DescribeVpcResourceResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

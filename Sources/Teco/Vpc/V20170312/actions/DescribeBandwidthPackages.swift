@@ -125,4 +125,30 @@ extension Vpc {
         let input = DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBandwidthPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询带宽包资源
+    ///
+    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
+    @inlinable
+    public func describeBandwidthPackagesPaginated(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BandwidthPackage])> {
+        self.client.paginate(input: input, region: region, command: self.describeBandwidthPackages, logger: logger, on: eventLoop)
+    }
+
+    /// 查询带宽包资源
+    ///
+    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
+    @inlinable
+    public func describeBandwidthPackagesPaginated(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBandwidthPackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBandwidthPackages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询带宽包资源
+    ///
+    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
+    @inlinable
+    public func describeBandwidthPackagesPaginator(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResultSequence(input: input, region: region, command: self.describeBandwidthPackages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResponseSequence(input: input, region: region, command: self.describeBandwidthPackages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

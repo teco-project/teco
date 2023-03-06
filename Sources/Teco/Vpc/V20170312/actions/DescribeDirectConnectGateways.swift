@@ -122,4 +122,30 @@ extension Vpc {
         let input = DescribeDirectConnectGatewaysRequest(directConnectGatewayIds: directConnectGatewayIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDirectConnectGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专线网关
+    ///
+    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
+    @inlinable
+    public func describeDirectConnectGatewaysPaginated(_ input: DescribeDirectConnectGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DirectConnectGateway])> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectGateways, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线网关
+    ///
+    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
+    @inlinable
+    public func describeDirectConnectGatewaysPaginated(_ input: DescribeDirectConnectGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectGateways, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线网关
+    ///
+    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
+    @inlinable
+    public func describeDirectConnectGatewaysPaginator(_ input: DescribeDirectConnectGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDirectConnectGatewaysRequest, DescribeDirectConnectGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDirectConnectGatewaysRequest, DescribeDirectConnectGatewaysResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDirectConnectGatewaysRequest, DescribeDirectConnectGatewaysResponse>.ResultSequence(input: input, region: region, command: self.describeDirectConnectGateways, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDirectConnectGatewaysRequest, DescribeDirectConnectGatewaysResponse>.ResponseSequence(input: input, region: region, command: self.describeDirectConnectGateways, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

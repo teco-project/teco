@@ -119,4 +119,30 @@ extension Vpc {
         let input = DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId)
         return try await self.client.execute(action: "DescribeVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPointPaginated(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EndPoint])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPointPaginated(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcEndPointResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPoint, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPointPaginator(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResultSequence(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResponseSequence(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

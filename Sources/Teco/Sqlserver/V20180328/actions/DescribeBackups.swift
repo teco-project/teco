@@ -168,4 +168,30 @@ extension Sqlserver {
         let input = DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat)
         return try await self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackupsPaginated(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Backup])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackupsPaginated(_ input: DescribeBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

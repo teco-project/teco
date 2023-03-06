@@ -103,4 +103,24 @@ extension Tsf {
         let input = DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeMsApiList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiListPaginated(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MsApiArray])> {
+        self.client.paginate(input: input, region: region, command: self.describeMsApiList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiListPaginated(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMsApiListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMsApiList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiListPaginator(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResultSequence(input: input, region: region, command: self.describeMsApiList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResponseSequence(input: input, region: region, command: self.describeMsApiList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

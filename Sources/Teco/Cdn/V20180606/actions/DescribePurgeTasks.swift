@@ -159,4 +159,30 @@ extension Cdn {
         let input = DescribePurgeTasksRequest(purgeType: purgeType, startTime: startTime, endTime: endTime, taskId: taskId, offset: offset, limit: limit, keyword: keyword, status: status, area: area)
         return try await self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
+    @inlinable
+    public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PurgeTask])> {
+        self.client.paginate(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
+    @inlinable
+    public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePurgeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePurgeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
+    @inlinable
+    public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

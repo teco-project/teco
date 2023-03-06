@@ -128,4 +128,36 @@ extension Cdb {
         let input = DescribeBackupDatabasesRequest(instanceId: instanceId, startTime: startTime, searchDatabase: searchDatabase, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBackupDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份数据库列表
+    ///
+    /// 本接口(DescribeBackupDatabases)用于查询备份文件包含的库 (已废弃)。
+    /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
+    /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
+    @inlinable
+    public func describeBackupDatabasesPaginated(_ input: DescribeBackupDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DatabaseName])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupDatabases, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份数据库列表
+    ///
+    /// 本接口(DescribeBackupDatabases)用于查询备份文件包含的库 (已废弃)。
+    /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
+    /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
+    @inlinable
+    public func describeBackupDatabasesPaginated(_ input: DescribeBackupDatabasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupDatabasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupDatabases, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份数据库列表
+    ///
+    /// 本接口(DescribeBackupDatabases)用于查询备份文件包含的库 (已废弃)。
+    /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
+    /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
+    @inlinable
+    public func describeBackupDatabasesPaginator(_ input: DescribeBackupDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupDatabasesRequest, DescribeBackupDatabasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupDatabasesRequest, DescribeBackupDatabasesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupDatabasesRequest, DescribeBackupDatabasesResponse>.ResultSequence(input: input, region: region, command: self.describeBackupDatabases, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupDatabasesRequest, DescribeBackupDatabasesResponse>.ResponseSequence(input: input, region: region, command: self.describeBackupDatabases, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

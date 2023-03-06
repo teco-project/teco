@@ -132,4 +132,30 @@ extension Live {
         let input = DescribeTimeShiftStreamListRequest(startTime: startTime, endTime: endTime, streamName: streamName, domain: domain, domainGroup: domainGroup, pageSize: pageSize, pageNum: pageNum)
         return try await self.client.execute(action: "DescribeTimeShiftStreamList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询时移流列表
+    ///
+    /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
+    @inlinable
+    public func describeTimeShiftStreamListPaginated(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TimeShiftStreamInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTimeShiftStreamList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询时移流列表
+    ///
+    /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
+    @inlinable
+    public func describeTimeShiftStreamListPaginated(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTimeShiftStreamListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTimeShiftStreamList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询时移流列表
+    ///
+    /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
+    @inlinable
+    public func describeTimeShiftStreamListPaginator(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResultSequence(input: input, region: region, command: self.describeTimeShiftStreamList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResponseSequence(input: input, region: region, command: self.describeTimeShiftStreamList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

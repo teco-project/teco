@@ -111,4 +111,30 @@ extension Teo {
         let input = DescribeIdentificationsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeIdentifications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentificationsPaginated(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Identification])> {
+        self.client.paginate(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentificationsPaginated(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIdentificationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIdentifications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentificationsPaginator(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResultSequence(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResponseSequence(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

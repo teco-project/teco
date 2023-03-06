@@ -123,4 +123,24 @@ extension Tsf {
         let input = DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId)
         return try await self.client.execute(action: "DescribeContainerGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroupsPaginated(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ContainGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroupsPaginated(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeContainerGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroupsPaginator(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeContainerGroupsRequest, DescribeContainerGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeContainerGroupsRequest, DescribeContainerGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeContainerGroupsRequest, DescribeContainerGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeContainerGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeContainerGroupsRequest, DescribeContainerGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeContainerGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

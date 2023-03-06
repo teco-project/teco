@@ -138,4 +138,30 @@ extension Postgres {
         let input = DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeDBErrlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取错误日志
+    ///
+    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    @inlinable
+    public func describeDBErrlogsPaginated(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ErrLogDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取错误日志
+    ///
+    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    @inlinable
+    public func describeDBErrlogsPaginated(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBErrlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBErrlogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取错误日志
+    ///
+    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    @inlinable
+    public func describeDBErrlogsPaginator(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResultSequence(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResponseSequence(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

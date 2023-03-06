@@ -139,4 +139,24 @@ extension Es {
         let input = DescribeIndexListRequest(indexType: indexType, instanceId: instanceId, indexName: indexName, username: username, password: password, offset: offset, limit: limit, orderBy: orderBy, indexStatusList: indexStatusList, order: order)
         return try await self.client.execute(action: "DescribeIndexList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexListPaginated(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IndexMetaField])> {
+        self.client.paginate(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexListPaginated(_ input: DescribeIndexListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIndexListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIndexList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResultSequence(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResponseSequence(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

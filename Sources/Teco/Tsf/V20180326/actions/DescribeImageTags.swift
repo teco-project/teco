@@ -118,4 +118,24 @@ extension Tsf {
         let input = DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo)
         return try await self.client.execute(action: "DescribeImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTagsPaginated(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ImageTag])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageTags, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTagsPaginated(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageTags, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTagsPaginator(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResultSequence(input: input, region: region, command: self.describeImageTags, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResponseSequence(input: input, region: region, command: self.describeImageTags, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

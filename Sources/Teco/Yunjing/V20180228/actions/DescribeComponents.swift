@@ -122,4 +122,30 @@ extension Yunjing {
         let input = DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponentsPaginated(_ input: DescribeComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Component])> {
+        self.client.paginate(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponentsPaginated(_ input: DescribeComponentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComponentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComponents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponentsPaginator(_ input: DescribeComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResultSequence(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeComponentsRequest, DescribeComponentsResponse>.ResponseSequence(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

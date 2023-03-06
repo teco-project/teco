@@ -108,4 +108,24 @@ extension Teo {
         let input = DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters, zoneId: zoneId)
         return try await self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取源站组信息列表
+    @inlinable
+    public func describeOriginGroupPaginated(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OriginGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeOriginGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 获取源站组信息列表
+    @inlinable
+    public func describeOriginGroupPaginated(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOriginGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOriginGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取源站组信息列表
+    @inlinable
+    public func describeOriginGroupPaginator(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResultSequence(input: input, region: region, command: self.describeOriginGroup, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResponseSequence(input: input, region: region, command: self.describeOriginGroup, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

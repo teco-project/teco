@@ -125,4 +125,30 @@ extension Ecm {
         let input = DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
         return try await self.client.execute(action: "DescribeHaVips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询HAVIP列表
+    ///
+    /// 用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVipsPaginated(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [HaVip])> {
+        self.client.paginate(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HAVIP列表
+    ///
+    /// 用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVipsPaginated(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHaVipsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHaVips, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HAVIP列表
+    ///
+    /// 用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVipsPaginator(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResultSequence(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResponseSequence(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

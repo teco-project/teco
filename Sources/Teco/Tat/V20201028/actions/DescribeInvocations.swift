@@ -119,4 +119,30 @@ extension Tat {
         let input = DescribeInvocationsRequest(invocationIds: invocationIds, filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInvocations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询执行活动
+    ///
+    /// 此接口用于查询执行活动详情。
+    @inlinable
+    public func describeInvocationsPaginated(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Invocation])> {
+        self.client.paginate(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行活动
+    ///
+    /// 此接口用于查询执行活动详情。
+    @inlinable
+    public func describeInvocationsPaginated(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInvocationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInvocations, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行活动
+    ///
+    /// 此接口用于查询执行活动详情。
+    @inlinable
+    public func describeInvocationsPaginator(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResultSequence(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInvocationsRequest, DescribeInvocationsResponse>.ResponseSequence(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

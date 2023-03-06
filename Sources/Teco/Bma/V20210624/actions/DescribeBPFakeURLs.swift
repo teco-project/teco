@@ -106,4 +106,24 @@ extension Bma {
         let input = DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeBPFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLsPaginated(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FakeURLInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLsPaginated(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBPFakeURLsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBPFakeURLs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLsPaginator(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResultSequence(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResponseSequence(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

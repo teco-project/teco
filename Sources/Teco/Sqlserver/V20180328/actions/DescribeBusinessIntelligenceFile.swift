@@ -135,4 +135,30 @@ extension Sqlserver {
         let input = DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFilePaginated(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BusinessIntelligenceFile])> {
+        self.client.paginate(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFilePaginated(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBusinessIntelligenceFileResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBusinessIntelligenceFile, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFilePaginator(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResultSequence(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResponseSequence(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

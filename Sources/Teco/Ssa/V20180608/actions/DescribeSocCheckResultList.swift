@@ -110,4 +110,24 @@ extension Ssa {
         let input = DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId)
         return try await self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 云安全配置检查项结果列表
+    @inlinable
+    public func describeSocCheckResultListPaginated(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SocCheckResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项结果列表
+    @inlinable
+    public func describeSocCheckResultListPaginated(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocCheckResultListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckResultList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项结果列表
+    @inlinable
+    public func describeSocCheckResultListPaginator(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResultSequence(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResponseSequence(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

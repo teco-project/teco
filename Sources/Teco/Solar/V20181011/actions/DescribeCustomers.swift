@@ -153,4 +153,24 @@ extension Solar {
         let input = DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId)
         return try await self.client.execute(action: "DescribeCustomers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomersPaginated(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CustomerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomersPaginated(_ input: DescribeCustomersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomersPaginator(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResultSequence(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCustomersRequest, DescribeCustomersResponse>.ResponseSequence(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

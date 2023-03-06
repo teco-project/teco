@@ -99,4 +99,24 @@ extension Organization {
         let input = DescribeOrganizationNodesRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取组织节点列表
+    @inlinable
+    public func describeOrganizationNodesPaginated(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [OrgNode])> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationNodes, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织节点列表
+    @inlinable
+    public func describeOrganizationNodesPaginated(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationNodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationNodes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织节点列表
+    @inlinable
+    public func describeOrganizationNodesPaginator(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResultSequence(input: input, region: region, command: self.describeOrganizationNodes, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResponseSequence(input: input, region: region, command: self.describeOrganizationNodes, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

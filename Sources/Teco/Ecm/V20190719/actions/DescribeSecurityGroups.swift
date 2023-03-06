@@ -111,4 +111,24 @@ extension Ecm {
         let input = DescribeSecurityGroupsRequest(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看安全组
+    @inlinable
+    public func describeSecurityGroupsPaginated(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SecurityGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查看安全组
+    @inlinable
+    public func describeSecurityGroupsPaginated(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看安全组
+    @inlinable
+    public func describeSecurityGroupsPaginator(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

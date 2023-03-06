@@ -128,4 +128,30 @@ extension Ssl {
         let input = DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeCertificateOperateLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取证书操作日志
+    ///
+    /// 获取用户账号下有关证书的操作日志。
+    @inlinable
+    public func describeCertificateOperateLogsPaginated(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OperationLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeCertificateOperateLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书操作日志
+    ///
+    /// 获取用户账号下有关证书的操作日志。
+    @inlinable
+    public func describeCertificateOperateLogsPaginated(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCertificateOperateLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCertificateOperateLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书操作日志
+    ///
+    /// 获取用户账号下有关证书的操作日志。
+    @inlinable
+    public func describeCertificateOperateLogsPaginator(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResultSequence(input: input, region: region, command: self.describeCertificateOperateLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeCertificateOperateLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

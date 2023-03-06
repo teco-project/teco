@@ -153,4 +153,30 @@ extension Cdn {
         let input = DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status)
         return try await self.client.execute(action: "DescribePushTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 预热历史查询
+    ///
+    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    @inlinable
+    public func describePushTasksPaginated(_ input: DescribePushTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PushTask])> {
+        self.client.paginate(input: input, region: region, command: self.describePushTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 预热历史查询
+    ///
+    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    @inlinable
+    public func describePushTasksPaginated(_ input: DescribePushTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePushTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePushTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 预热历史查询
+    ///
+    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    @inlinable
+    public func describePushTasksPaginator(_ input: DescribePushTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePushTasksRequest, DescribePushTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePushTasksRequest, DescribePushTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePushTasksRequest, DescribePushTasksResponse>.ResultSequence(input: input, region: region, command: self.describePushTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePushTasksRequest, DescribePushTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePushTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

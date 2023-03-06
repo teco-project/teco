@@ -109,4 +109,24 @@ extension Tcb {
         let input = DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询版本历史
+    @inlinable
+    public func describeCloudBaseRunVersionSnapshotPaginated(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [CloudRunServiceSimpleVersionSnapshot])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
+    }
+
+    /// 查询版本历史
+    @inlinable
+    public func describeCloudBaseRunVersionSnapshotPaginated(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseRunVersionSnapshotResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询版本历史
+    @inlinable
+    public func describeCloudBaseRunVersionSnapshotPaginator(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResultSequence(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCloudBaseRunVersionSnapshotRequest, DescribeCloudBaseRunVersionSnapshotResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudBaseRunVersionSnapshot, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -115,4 +115,24 @@ extension Tcss {
         let input = DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteListPaginated(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EscapeWhiteListInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteListPaginated(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEscapeWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEscapeWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteListPaginator(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

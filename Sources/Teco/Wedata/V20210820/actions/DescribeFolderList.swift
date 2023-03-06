@@ -121,4 +121,33 @@ extension Wedata {
         let input = DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeFolderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取文件夹目录【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹目录
+    @inlinable
+    public func describeFolderListPaginated(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Folder])> {
+        self.client.paginate(input: input, region: region, command: self.describeFolderList, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取文件夹目录【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹目录
+    @inlinable
+    public func describeFolderListPaginated(_ input: DescribeFolderListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFolderListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFolderList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取文件夹目录【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹目录
+    @inlinable
+    public func describeFolderListPaginator(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFolderListRequest, DescribeFolderListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFolderListRequest, DescribeFolderListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFolderListRequest, DescribeFolderListResponse>.ResultSequence(input: input, region: region, command: self.describeFolderList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFolderListRequest, DescribeFolderListResponse>.ResponseSequence(input: input, region: region, command: self.describeFolderList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -111,4 +111,30 @@ extension Tcr {
         let input = DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonalPaginated(_ input: DescribeApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TriggerResp])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationTriggerPersonal, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonalPaginated(_ input: DescribeApplicationTriggerPersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationTriggerPersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationTriggerPersonal, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonalPaginator(_ input: DescribeApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationTriggerPersonalRequest, DescribeApplicationTriggerPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationTriggerPersonalRequest, DescribeApplicationTriggerPersonalResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeApplicationTriggerPersonalRequest, DescribeApplicationTriggerPersonalResponse>.ResultSequence(input: input, region: region, command: self.describeApplicationTriggerPersonal, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeApplicationTriggerPersonalRequest, DescribeApplicationTriggerPersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeApplicationTriggerPersonal, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

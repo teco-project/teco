@@ -107,4 +107,30 @@ extension Apigateway {
         let input = DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeServicesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatusPaginated(_ input: DescribeServicesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Service])> {
+        self.client.paginate(input: input, region: region, command: self.describeServicesStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatusPaginated(_ input: DescribeServicesStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServicesStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServicesStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatusPaginator(_ input: DescribeServicesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServicesStatusRequest, DescribeServicesStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServicesStatusRequest, DescribeServicesStatusResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServicesStatusRequest, DescribeServicesStatusResponse>.ResultSequence(input: input, region: region, command: self.describeServicesStatus, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServicesStatusRequest, DescribeServicesStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeServicesStatus, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

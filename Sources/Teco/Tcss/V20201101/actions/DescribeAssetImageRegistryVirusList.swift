@@ -116,4 +116,24 @@ extension Tcss {
         let input = DescribeAssetImageRegistryVirusListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
         return try await self.client.execute(action: "DescribeAssetImageRegistryVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 镜像仓库查询木马病毒列表
+    @inlinable
+    public func describeAssetImageRegistryVirusListPaginated(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageVirus])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库查询木马病毒列表
+    @inlinable
+    public func describeAssetImageRegistryVirusListPaginated(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageRegistryVirusListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRegistryVirusList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库查询木马病毒列表
+    @inlinable
+    public func describeAssetImageRegistryVirusListPaginator(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetImageRegistryVirusListRequest, DescribeAssetImageRegistryVirusListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

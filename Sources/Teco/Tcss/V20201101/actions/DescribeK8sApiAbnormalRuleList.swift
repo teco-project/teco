@@ -116,4 +116,24 @@ extension Tcss {
         let input = DescribeK8sApiAbnormalRuleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeK8sApiAbnormalRuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询k8sapi异常请求规则列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleListPaginated(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [K8sApiAbnormalRuleListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询k8sapi异常请求规则列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleListPaginated(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeK8sApiAbnormalRuleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询k8sapi异常请求规则列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleListPaginator(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResultSequence(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResponseSequence(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

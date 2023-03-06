@@ -117,4 +117,24 @@ extension Tdmq {
         let input = DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeNamespaceBundlesOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOptPaginated(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BundleSetOpt])> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaceBundlesOpt, logger: logger, on: eventLoop)
+    }
+
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOptPaginated(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNamespaceBundlesOptResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaceBundlesOpt, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOptPaginator(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResultSequence(input: input, region: region, command: self.describeNamespaceBundlesOpt, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResponseSequence(input: input, region: region, command: self.describeNamespaceBundlesOpt, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

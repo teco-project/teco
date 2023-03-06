@@ -102,4 +102,30 @@ extension Wav {
         let input = QueryActivityListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryActivityList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityListPaginated(_ input: QueryActivityListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ActivityDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityListPaginated(_ input: QueryActivityListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryActivityListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityListPaginator(_ input: QueryActivityListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryActivityListRequest, QueryActivityListResponse>.ResultSequence, responses: TCClient.Paginator<QueryActivityListRequest, QueryActivityListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryActivityListRequest, QueryActivityListResponse>.ResultSequence(input: input, region: region, command: self.queryActivityList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryActivityListRequest, QueryActivityListResponse>.ResponseSequence(input: input, region: region, command: self.queryActivityList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

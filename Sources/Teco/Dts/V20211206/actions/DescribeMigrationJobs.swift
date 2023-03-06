@@ -169,4 +169,24 @@ extension Dts {
         let input = DescribeMigrationJobsRequest(jobId: jobId, jobName: jobName, status: status, srcInstanceId: srcInstanceId, srcRegion: srcRegion, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, dstInstanceId: dstInstanceId, dstRegion: dstRegion, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, runMode: runMode, orderSeq: orderSeq, limit: limit, offset: offset, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeMigrationJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobsPaginated(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [JobItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeMigrationJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobsPaginated(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMigrationJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMigrationJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobsPaginator(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResultSequence(input: input, region: region, command: self.describeMigrationJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResponseSequence(input: input, region: region, command: self.describeMigrationJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

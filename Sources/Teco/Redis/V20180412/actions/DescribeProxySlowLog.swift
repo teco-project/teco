@@ -125,4 +125,30 @@ extension Redis {
         let input = DescribeProxySlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeProxySlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询代理慢查询
+    ///
+    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+    @inlinable
+    public func describeProxySlowLogPaginated(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceProxySlowlogDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理慢查询
+    ///
+    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+    @inlinable
+    public func describeProxySlowLogPaginated(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProxySlowLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProxySlowLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理慢查询
+    ///
+    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+    @inlinable
+    public func describeProxySlowLogPaginator(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResultSequence(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResponseSequence(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

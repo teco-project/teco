@@ -123,4 +123,30 @@ extension Yinsuda {
         let input = DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylistsPaginated(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVPlaylistBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
+    }
+
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylistsPaginated(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVPlaylistsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylists, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylistsPaginator(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResultSequence(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResponseSequence(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

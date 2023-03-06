@@ -131,4 +131,30 @@ extension Lighthouse {
         let input = DescribeModifyInstanceBundlesRequest(instanceId: instanceId, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeModifyInstanceBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundlesPaginated(_ input: DescribeModifyInstanceBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ModifyBundle])> {
+        self.client.paginate(input: input, region: region, command: self.describeModifyInstanceBundles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundlesPaginated(_ input: DescribeModifyInstanceBundlesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModifyInstanceBundlesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModifyInstanceBundles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundlesPaginator(_ input: DescribeModifyInstanceBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResultSequence(input: input, region: region, command: self.describeModifyInstanceBundles, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResponseSequence(input: input, region: region, command: self.describeModifyInstanceBundles, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -115,4 +115,30 @@ extension Facefusion {
         let input = DescribeMaterialListRequest(activityId: activityId, materialId: materialId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeMaterialList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询素材列表
+    ///
+    /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
+    @inlinable
+    public func describeMaterialListPaginated(_ input: DescribeMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PublicMaterialInfos])> {
+        self.client.paginate(input: input, region: region, command: self.describeMaterialList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询素材列表
+    ///
+    /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
+    @inlinable
+    public func describeMaterialListPaginated(_ input: DescribeMaterialListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMaterialListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMaterialList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询素材列表
+    ///
+    /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
+    @inlinable
+    public func describeMaterialListPaginator(_ input: DescribeMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMaterialListRequest, DescribeMaterialListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMaterialListRequest, DescribeMaterialListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMaterialListRequest, DescribeMaterialListResponse>.ResultSequence(input: input, region: region, command: self.describeMaterialList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMaterialListRequest, DescribeMaterialListResponse>.ResponseSequence(input: input, region: region, command: self.describeMaterialList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

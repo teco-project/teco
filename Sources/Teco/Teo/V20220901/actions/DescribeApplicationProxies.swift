@@ -110,4 +110,30 @@ extension Teo {
         let input = DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeApplicationProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxiesPaginated(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ApplicationProxy])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxiesPaginated(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationProxiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxiesPaginator(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationProxiesRequest, DescribeApplicationProxiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationProxiesRequest, DescribeApplicationProxiesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeApplicationProxiesRequest, DescribeApplicationProxiesResponse>.ResultSequence(input: input, region: region, command: self.describeApplicationProxies, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeApplicationProxiesRequest, DescribeApplicationProxiesResponse>.ResponseSequence(input: input, region: region, command: self.describeApplicationProxies, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

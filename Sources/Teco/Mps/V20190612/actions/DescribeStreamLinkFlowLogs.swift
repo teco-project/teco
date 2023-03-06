@@ -149,4 +149,30 @@ extension Mps {
         let input = DescribeStreamLinkFlowLogsRequest(flowId: flowId, startTime: startTime, endTime: endTime, type: type, pipeline: pipeline, pageSize: pageSize, sortType: sortType, pageNum: pageNum)
         return try await self.client.execute(action: "DescribeStreamLinkFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询传输流的日志
+    ///
+    /// 查询媒体传输流的日志信息。
+    @inlinable
+    public func describeStreamLinkFlowLogsPaginated(_ input: DescribeStreamLinkFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FlowLogInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamLinkFlowLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询传输流的日志
+    ///
+    /// 查询媒体传输流的日志信息。
+    @inlinable
+    public func describeStreamLinkFlowLogsPaginated(_ input: DescribeStreamLinkFlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamLinkFlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamLinkFlowLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询传输流的日志
+    ///
+    /// 查询媒体传输流的日志信息。
+    @inlinable
+    public func describeStreamLinkFlowLogsPaginator(_ input: DescribeStreamLinkFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStreamLinkFlowLogsRequest, DescribeStreamLinkFlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStreamLinkFlowLogsRequest, DescribeStreamLinkFlowLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeStreamLinkFlowLogsRequest, DescribeStreamLinkFlowLogsResponse>.ResultSequence(input: input, region: region, command: self.describeStreamLinkFlowLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeStreamLinkFlowLogsRequest, DescribeStreamLinkFlowLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeStreamLinkFlowLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -125,4 +125,30 @@ extension Iotexplorer {
         let input = SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId)
         return try await self.client.execute(action: "SearchStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 搜索产品
+    ///
+    /// 提供根据产品名称查找产品的能力
+    @inlinable
+    public func searchStudioProductPaginated(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProductEntry])> {
+        self.client.paginate(input: input, region: region, command: self.searchStudioProduct, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索产品
+    ///
+    /// 提供根据产品名称查找产品的能力
+    @inlinable
+    public func searchStudioProductPaginated(_ input: SearchStudioProductRequest, region: TCRegion? = nil, onResponse: @escaping (SearchStudioProductResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchStudioProduct, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索产品
+    ///
+    /// 提供根据产品名称查找产品的能力
+    @inlinable
+    public func searchStudioProductPaginator(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResultSequence, responses: TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResultSequence(input: input, region: region, command: self.searchStudioProduct, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResponseSequence(input: input, region: region, command: self.searchStudioProduct, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

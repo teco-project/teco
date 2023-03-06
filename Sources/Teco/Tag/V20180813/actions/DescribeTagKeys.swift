@@ -123,4 +123,30 @@ extension Tag {
         let input = DescribeTagKeysRequest(createUin: createUin, offset: offset, limit: limit, showProject: showProject)
         return try await self.client.execute(action: "DescribeTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeysPaginated(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeysPaginated(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagKeysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagKeys, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeysPaginator(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagKeysRequest, DescribeTagKeysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagKeysRequest, DescribeTagKeysResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTagKeysRequest, DescribeTagKeysResponse>.ResultSequence(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTagKeysRequest, DescribeTagKeysResponse>.ResponseSequence(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

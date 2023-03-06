@@ -97,4 +97,24 @@ extension Ses {
         let input = ListEmailTemplatesRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "ListEmailTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取当前邮件模板列表
+    @inlinable
+    public func listEmailTemplatesPaginated(_ input: ListEmailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TemplatesMetadata])> {
+        self.client.paginate(input: input, region: region, command: self.listEmailTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取当前邮件模板列表
+    @inlinable
+    public func listEmailTemplatesPaginated(_ input: ListEmailTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (ListEmailTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listEmailTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取当前邮件模板列表
+    @inlinable
+    public func listEmailTemplatesPaginator(_ input: ListEmailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListEmailTemplatesRequest, ListEmailTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<ListEmailTemplatesRequest, ListEmailTemplatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListEmailTemplatesRequest, ListEmailTemplatesResponse>.ResultSequence(input: input, region: region, command: self.listEmailTemplates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListEmailTemplatesRequest, ListEmailTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.listEmailTemplates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

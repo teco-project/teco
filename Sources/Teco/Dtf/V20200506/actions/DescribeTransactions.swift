@@ -123,4 +123,24 @@ extension Dtf {
         let input = DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactionsPaginated(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Transaction])> {
+        self.client.paginate(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactionsPaginated(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTransactionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTransactions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResultSequence(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResponseSequence(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

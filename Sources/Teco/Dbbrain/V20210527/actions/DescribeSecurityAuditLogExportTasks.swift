@@ -120,4 +120,30 @@ extension Dbbrain {
         let input = DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, product: product, asyncRequestIds: asyncRequestIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询安全审计日志导出任务列表
+    ///
+    /// 查询安全审计日志导出任务列表。
+    @inlinable
+    public func describeSecurityAuditLogExportTasksPaginated(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecLogExportTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全审计日志导出任务列表
+    ///
+    /// 查询安全审计日志导出任务列表。
+    @inlinable
+    public func describeSecurityAuditLogExportTasksPaginated(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityAuditLogExportTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全审计日志导出任务列表
+    ///
+    /// 查询安全审计日志导出任务列表。
+    @inlinable
+    public func describeSecurityAuditLogExportTasksPaginator(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResultSequence(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

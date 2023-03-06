@@ -136,4 +136,24 @@ extension Tag {
         let input = DescribeResourceTagsRequest(createUin: createUin, resourceRegion: resourceRegion, serviceType: serviceType, resourcePrefix: resourcePrefix, resourceId: resourceId, offset: offset, limit: limit, cosResourceId: cosResourceId)
         return try await self.client.execute(action: "DescribeResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTagsPaginated(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TagResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTags, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTagsPaginated(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTags, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTagsPaginator(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResultSequence(input: input, region: region, command: self.describeResourceTags, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResponseSequence(input: input, region: region, command: self.describeResourceTags, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

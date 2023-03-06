@@ -103,4 +103,24 @@ extension Cdc {
         let input = DescribeDedicatedClusterHostsRequest(dedicatedClusterId: dedicatedClusterId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDedicatedClusterHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 专用集群宿主机信息
+    @inlinable
+    public func describeDedicatedClusterHostsPaginated(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HostInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusterHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 专用集群宿主机信息
+    @inlinable
+    public func describeDedicatedClusterHostsPaginated(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDedicatedClusterHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusterHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 专用集群宿主机信息
+    @inlinable
+    public func describeDedicatedClusterHostsPaginator(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResultSequence(input: input, region: region, command: self.describeDedicatedClusterHosts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResponseSequence(input: input, region: region, command: self.describeDedicatedClusterHosts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

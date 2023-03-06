@@ -126,4 +126,24 @@ extension Tdcpg {
         let input = DescribeClusterInstancesRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例
+    @inlinable
+    public func describeClusterInstancesPaginated(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Instance])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例
+    @inlinable
+    public func describeClusterInstancesPaginated(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例
+    @inlinable
+    public func describeClusterInstancesPaginator(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeClusterInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

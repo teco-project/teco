@@ -103,4 +103,24 @@ extension Tcr {
         let input = DescribeInstanceCustomizedDomainRequest(registryId: registryId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例自定义域名列表
+    @inlinable
+    public func describeInstanceCustomizedDomainPaginated(_ input: DescribeInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CustomizedDomainInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceCustomizedDomain, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例自定义域名列表
+    @inlinable
+    public func describeInstanceCustomizedDomainPaginated(_ input: DescribeInstanceCustomizedDomainRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceCustomizedDomainResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceCustomizedDomain, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例自定义域名列表
+    @inlinable
+    public func describeInstanceCustomizedDomainPaginator(_ input: DescribeInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceCustomizedDomainRequest, DescribeInstanceCustomizedDomainResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceCustomizedDomainRequest, DescribeInstanceCustomizedDomainResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstanceCustomizedDomainRequest, DescribeInstanceCustomizedDomainResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceCustomizedDomain, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstanceCustomizedDomainRequest, DescribeInstanceCustomizedDomainResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceCustomizedDomain, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

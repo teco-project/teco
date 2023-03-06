@@ -125,4 +125,30 @@ extension Sqlserver {
         let input = DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset)
         return try await self.client.execute(action: "DescribeDBInstanceInter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询互通实例的信息
+    ///
+    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    @inlinable
+    public func describeDBInstanceInterPaginated(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InterInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstanceInter, logger: logger, on: eventLoop)
+    }
+
+    /// 查询互通实例的信息
+    ///
+    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    @inlinable
+    public func describeDBInstanceInterPaginated(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstanceInterResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstanceInter, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询互通实例的信息
+    ///
+    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    @inlinable
+    public func describeDBInstanceInterPaginator(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBInstanceInterRequest, DescribeDBInstanceInterResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBInstanceInterRequest, DescribeDBInstanceInterResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDBInstanceInterRequest, DescribeDBInstanceInterResponse>.ResultSequence(input: input, region: region, command: self.describeDBInstanceInter, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDBInstanceInterRequest, DescribeDBInstanceInterResponse>.ResponseSequence(input: input, region: region, command: self.describeDBInstanceInter, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -127,4 +127,30 @@ extension Clb {
         let input = DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters)
         return try await self.client.execute(action: "DescribeCustomizedConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取配置列表
+    ///
+    /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
+    @inlinable
+    public func describeCustomizedConfigListPaginated(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ConfigListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomizedConfigList, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取配置列表
+    ///
+    /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
+    @inlinable
+    public func describeCustomizedConfigListPaginated(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomizedConfigListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomizedConfigList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取配置列表
+    ///
+    /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
+    @inlinable
+    public func describeCustomizedConfigListPaginator(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResultSequence(input: input, region: region, command: self.describeCustomizedConfigList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResponseSequence(input: input, region: region, command: self.describeCustomizedConfigList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

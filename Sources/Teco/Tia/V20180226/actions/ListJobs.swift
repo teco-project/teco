@@ -101,4 +101,30 @@ extension Tia {
         let input = ListJobsRequest(cluster: cluster, limit: limit, offset: offset)
         return try await self.client.execute(action: "ListJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举Job
+    ///
+    /// 列举训练任务
+    @inlinable
+    public func listJobsPaginated(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Job])> {
+        self.client.paginate(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 列举Job
+    ///
+    /// 列举训练任务
+    @inlinable
+    public func listJobsPaginated(_ input: ListJobsRequest, region: TCRegion? = nil, onResponse: @escaping (ListJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举Job
+    ///
+    /// 列举训练任务
+    @inlinable
+    public func listJobsPaginator(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResultSequence, responses: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResultSequence(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResponseSequence(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

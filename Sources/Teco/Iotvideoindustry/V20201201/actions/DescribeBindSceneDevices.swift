@@ -112,4 +112,30 @@ extension Iotvideoindustry {
         let input = DescribeBindSceneDevicesRequest(sceneId: sceneId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBindSceneDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevicesPaginated(_ input: DescribeBindSceneDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DeviceItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeBindSceneDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevicesPaginated(_ input: DescribeBindSceneDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindSceneDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBindSceneDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevicesPaginator(_ input: DescribeBindSceneDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeBindSceneDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeBindSceneDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

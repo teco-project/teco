@@ -104,4 +104,24 @@ extension Iotexplorer {
         let input = GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetPositionSpaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceListPaginated(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PositionSpaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getPositionSpaceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceListPaginated(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, onResponse: @escaping (GetPositionSpaceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getPositionSpaceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceListPaginator(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetPositionSpaceListRequest, GetPositionSpaceListResponse>.ResultSequence, responses: TCClient.Paginator<GetPositionSpaceListRequest, GetPositionSpaceListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetPositionSpaceListRequest, GetPositionSpaceListResponse>.ResultSequence(input: input, region: region, command: self.getPositionSpaceList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetPositionSpaceListRequest, GetPositionSpaceListResponse>.ResponseSequence(input: input, region: region, command: self.getPositionSpaceList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

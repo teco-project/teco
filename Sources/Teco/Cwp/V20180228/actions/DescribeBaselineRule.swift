@@ -136,4 +136,30 @@ extension Cwp {
         let input = DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid)
         return try await self.client.execute(action: "DescribeBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRulePaginated(_ input: DescribeBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BaselineRuleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineRule, logger: logger, on: eventLoop)
+    }
+
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRulePaginated(_ input: DescribeBaselineRuleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineRuleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineRule, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRulePaginator(_ input: DescribeBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineRuleRequest, DescribeBaselineRuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineRuleRequest, DescribeBaselineRuleResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBaselineRuleRequest, DescribeBaselineRuleResponse>.ResultSequence(input: input, region: region, command: self.describeBaselineRule, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBaselineRuleRequest, DescribeBaselineRuleResponse>.ResponseSequence(input: input, region: region, command: self.describeBaselineRule, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

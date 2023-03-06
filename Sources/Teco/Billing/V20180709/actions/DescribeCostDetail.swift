@@ -143,4 +143,24 @@ extension Billing {
         let input = DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId)
         return try await self.client.execute(action: "DescribeCostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetailPaginated(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CostDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeCostDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetailPaginated(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCostDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCostDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetailPaginator(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCostDetailRequest, DescribeCostDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCostDetailRequest, DescribeCostDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCostDetailRequest, DescribeCostDetailResponse>.ResultSequence(input: input, region: region, command: self.describeCostDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCostDetailRequest, DescribeCostDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeCostDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

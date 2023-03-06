@@ -127,4 +127,24 @@ extension Tdmq {
         let input = DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder)
         return try await self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenantsPaginated(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InternalTenant])> {
+        self.client.paginate(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenantsPaginated(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAllTenantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAllTenants, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenantsPaginator(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResultSequence(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResponseSequence(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

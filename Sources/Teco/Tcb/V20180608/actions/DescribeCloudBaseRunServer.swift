@@ -147,4 +147,30 @@ extension Tcb {
         let input = DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName)
         return try await self.client.execute(action: "DescribeCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServerPaginated(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CloudBaseRunServerVersionItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServerPaginated(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseRunServerResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunServer, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServerPaginator(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudBaseRunServerRequest, DescribeCloudBaseRunServerResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudBaseRunServerRequest, DescribeCloudBaseRunServerResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCloudBaseRunServerRequest, DescribeCloudBaseRunServerResponse>.ResultSequence(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCloudBaseRunServerRequest, DescribeCloudBaseRunServerResponse>.ResponseSequence(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

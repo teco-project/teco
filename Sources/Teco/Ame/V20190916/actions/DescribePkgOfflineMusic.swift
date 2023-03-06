@@ -110,4 +110,30 @@ extension Ame {
         let input = DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePkgOfflineMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusicPaginated(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [OfflineMusicDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
+    }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusicPaginated(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePkgOfflineMusicResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePkgOfflineMusic, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusicPaginator(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResultSequence, responses: TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResultSequence(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResponseSequence(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

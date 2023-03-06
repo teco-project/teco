@@ -103,4 +103,24 @@ extension Tsf {
         let input = DescribePathRewritesRequest(gatewayGroupId: gatewayGroupId, searchWord: searchWord, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询路径重写列表
+    @inlinable
+    public func describePathRewritesPaginated(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PathRewrite])> {
+        self.client.paginate(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
+    }
+
+    /// 查询路径重写列表
+    @inlinable
+    public func describePathRewritesPaginated(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePathRewritesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePathRewrites, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询路径重写列表
+    @inlinable
+    public func describePathRewritesPaginator(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResultSequence(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePathRewritesRequest, DescribePathRewritesResponse>.ResponseSequence(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

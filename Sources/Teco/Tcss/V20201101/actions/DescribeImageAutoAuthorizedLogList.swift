@@ -117,4 +117,24 @@ extension Tcss {
         let input = DescribeImageAutoAuthorizedLogListRequest(taskId: taskId, filters: filters, limit: limit, offset: offset, by: by, order: order)
         return try await self.client.execute(action: "DescribeImageAutoAuthorizedLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询镜像自动授权结果列表
+    @inlinable
+    public func describeImageAutoAuthorizedLogListPaginated(_ input: DescribeImageAutoAuthorizedLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutoAuthorizedImageInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageAutoAuthorizedLogList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像自动授权结果列表
+    @inlinable
+    public func describeImageAutoAuthorizedLogListPaginated(_ input: DescribeImageAutoAuthorizedLogListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageAutoAuthorizedLogListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageAutoAuthorizedLogList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像自动授权结果列表
+    @inlinable
+    public func describeImageAutoAuthorizedLogListPaginator(_ input: DescribeImageAutoAuthorizedLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageAutoAuthorizedLogListRequest, DescribeImageAutoAuthorizedLogListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageAutoAuthorizedLogListRequest, DescribeImageAutoAuthorizedLogListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeImageAutoAuthorizedLogListRequest, DescribeImageAutoAuthorizedLogListResponse>.ResultSequence(input: input, region: region, command: self.describeImageAutoAuthorizedLogList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeImageAutoAuthorizedLogListRequest, DescribeImageAutoAuthorizedLogListResponse>.ResponseSequence(input: input, region: region, command: self.describeImageAutoAuthorizedLogList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

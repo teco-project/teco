@@ -127,4 +127,24 @@ extension Tdmq {
         let input = DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue)
         return try await self.client.execute(action: "DescribeAMQPQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Amqp队列列表
+    @inlinable
+    public func describeAMQPQueuesPaginated(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPQueueDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPQueues, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp队列列表
+    @inlinable
+    public func describeAMQPQueuesPaginated(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPQueuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPQueues, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp队列列表
+    @inlinable
+    public func describeAMQPQueuesPaginator(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResultSequence(input: input, region: region, command: self.describeAMQPQueues, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResponseSequence(input: input, region: region, command: self.describeAMQPQueues, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -122,4 +122,30 @@ extension Dbbrain {
         let input = DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName)
         return try await self.client.execute(action: "DescribeMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
+    @inlinable
+    public func describeMailProfilePaginated(_ input: DescribeMailProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UserProfile])> {
+        self.client.paginate(input: input, region: region, command: self.describeMailProfile, logger: logger, on: eventLoop)
+    }
+
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
+    @inlinable
+    public func describeMailProfilePaginated(_ input: DescribeMailProfileRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMailProfileResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMailProfile, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
+    @inlinable
+    public func describeMailProfilePaginator(_ input: DescribeMailProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMailProfileRequest, DescribeMailProfileResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMailProfileRequest, DescribeMailProfileResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMailProfileRequest, DescribeMailProfileResponse>.ResultSequence(input: input, region: region, command: self.describeMailProfile, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMailProfileRequest, DescribeMailProfileResponse>.ResponseSequence(input: input, region: region, command: self.describeMailProfile, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

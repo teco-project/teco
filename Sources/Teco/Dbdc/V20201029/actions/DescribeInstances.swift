@@ -145,4 +145,30 @@ extension Dbdc {
         let input = DescribeInstancesRequest(instanceTypes: instanceTypes, productIds: productIds, instanceIds: instanceIds, fenceFlag: fenceFlag, instanceName: instanceName, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType, instanceStatus: instanceStatus)
         return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询独享集群列表
+    ///
+    /// 根据不同地域不同用户，获取集群列表信息
+    @inlinable
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceExpand])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询独享集群列表
+    ///
+    /// 根据不同地域不同用户，获取集群列表信息
+    @inlinable
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询独享集群列表
+    ///
+    /// 根据不同地域不同用户，获取集群列表信息
+    @inlinable
+    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

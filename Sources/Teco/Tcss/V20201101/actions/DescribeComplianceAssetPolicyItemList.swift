@@ -116,4 +116,30 @@ extension Tcss {
         let input = DescribeComplianceAssetPolicyItemListRequest(customerAssetId: customerAssetId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeComplianceAssetPolicyItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询某资产下的检测项列表
+    ///
+    /// 查询某资产下的检测项列表
+    @inlinable
+    public func describeComplianceAssetPolicyItemListPaginated(_ input: DescribeComplianceAssetPolicyItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ComplianceAssetPolicyItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceAssetPolicyItemList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询某资产下的检测项列表
+    ///
+    /// 查询某资产下的检测项列表
+    @inlinable
+    public func describeComplianceAssetPolicyItemListPaginated(_ input: DescribeComplianceAssetPolicyItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceAssetPolicyItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceAssetPolicyItemList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询某资产下的检测项列表
+    ///
+    /// 查询某资产下的检测项列表
+    @inlinable
+    public func describeComplianceAssetPolicyItemListPaginator(_ input: DescribeComplianceAssetPolicyItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResultSequence(input: input, region: region, command: self.describeComplianceAssetPolicyItemList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResponseSequence(input: input, region: region, command: self.describeComplianceAssetPolicyItemList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

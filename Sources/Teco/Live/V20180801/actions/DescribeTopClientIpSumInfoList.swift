@@ -152,4 +152,30 @@ extension Live {
         let input = DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage)
         return try await self.client.execute(action: "DescribeTopClientIpSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoListPaginated(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClientIpPlaySumInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTopClientIpSumInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoListPaginated(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopClientIpSumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTopClientIpSumInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoListPaginator(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeTopClientIpSumInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeTopClientIpSumInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

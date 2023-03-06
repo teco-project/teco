@@ -129,4 +129,30 @@ extension Monitor {
         let input = DescribeRecordingRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, name: name)
         return try await self.client.execute(action: "DescribeRecordingRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRulesPaginated(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordingRuleSet])> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRulesPaginated(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordingRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordingRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRulesPaginator(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResultSequence(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

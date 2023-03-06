@@ -135,4 +135,30 @@ extension Bmlb {
         let input = DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp)
         return try await self.client.execute(action: "DescribeTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceiversPaginated(_ input: DescribeTrafficMirrorReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TrafficMirrorReceiver])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrorReceivers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceiversPaginated(_ input: DescribeTrafficMirrorReceiversRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficMirrorReceiversResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrorReceivers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceiversPaginator(_ input: DescribeTrafficMirrorReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficMirrorReceiversRequest, DescribeTrafficMirrorReceiversResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficMirrorReceiversRequest, DescribeTrafficMirrorReceiversResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTrafficMirrorReceiversRequest, DescribeTrafficMirrorReceiversResponse>.ResultSequence(input: input, region: region, command: self.describeTrafficMirrorReceivers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTrafficMirrorReceiversRequest, DescribeTrafficMirrorReceiversResponse>.ResponseSequence(input: input, region: region, command: self.describeTrafficMirrorReceivers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

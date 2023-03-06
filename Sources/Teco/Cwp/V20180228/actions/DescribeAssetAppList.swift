@@ -132,4 +132,24 @@ extension Cwp {
         let input = DescribeAssetAppListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetAppList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应用列表
+    @inlinable
+    public func describeAssetAppListPaginated(_ input: DescribeAssetAppListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetAppBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetAppList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用列表
+    @inlinable
+    public func describeAssetAppListPaginated(_ input: DescribeAssetAppListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetAppListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetAppList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用列表
+    @inlinable
+    public func describeAssetAppListPaginator(_ input: DescribeAssetAppListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetAppList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetAppList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

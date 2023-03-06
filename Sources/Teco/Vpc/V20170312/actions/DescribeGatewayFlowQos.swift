@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeGatewayFlowQosRequest(gatewayId: gatewayId, ipAddresses: ipAddresses, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGatewayFlowQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQosPaginated(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GatewayQos])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayFlowQos, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQosPaginated(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayFlowQosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayFlowQos, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQosPaginator(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResultSequence(input: input, region: region, command: self.describeGatewayFlowQos, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResponseSequence(input: input, region: region, command: self.describeGatewayFlowQos, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

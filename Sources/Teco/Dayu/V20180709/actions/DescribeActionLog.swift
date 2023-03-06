@@ -125,4 +125,24 @@ extension Dayu {
         let input = DescribeActionLogRequest(startTime: startTime, endTime: endTime, business: business, filter: filter, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeActionLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLogPaginated(_ input: DescribeActionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [KeyValueRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
+    }
+
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLogPaginated(_ input: DescribeActionLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeActionLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeActionLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLogPaginator(_ input: DescribeActionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResultSequence(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResponseSequence(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

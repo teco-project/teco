@@ -115,4 +115,30 @@ extension Rum {
         let input = DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo)
         return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取 RUM 应用列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RumProject])> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 RUM 应用列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProjectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 RUM 应用列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResultSequence(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResponseSequence(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

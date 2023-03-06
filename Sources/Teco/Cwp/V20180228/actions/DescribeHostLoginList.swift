@@ -122,4 +122,24 @@ extension Cwp {
         let input = DescribeHostLoginListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeHostLoginList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取登录审计列表
+    @inlinable
+    public func describeHostLoginListPaginated(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HostLoginList])> {
+        self.client.paginate(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取登录审计列表
+    @inlinable
+    public func describeHostLoginListPaginated(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostLoginListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHostLoginList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取登录审计列表
+    @inlinable
+    public func describeHostLoginListPaginator(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostLoginListRequest, DescribeHostLoginListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostLoginListRequest, DescribeHostLoginListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeHostLoginListRequest, DescribeHostLoginListResponse>.ResultSequence(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeHostLoginListRequest, DescribeHostLoginListResponse>.ResponseSequence(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

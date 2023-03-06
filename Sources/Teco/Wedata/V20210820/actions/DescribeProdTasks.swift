@@ -107,4 +107,30 @@ extension Wedata {
         let input = DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters)
         return try await self.client.execute(action: "DescribeProdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasksPaginated(_ input: DescribeProdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ProdSchedulerTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeProdTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasksPaginated(_ input: DescribeProdTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProdTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProdTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasksPaginator(_ input: DescribeProdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProdTasksRequest, DescribeProdTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProdTasksRequest, DescribeProdTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProdTasksRequest, DescribeProdTasksResponse>.ResultSequence(input: input, region: region, command: self.describeProdTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProdTasksRequest, DescribeProdTasksResponse>.ResponseSequence(input: input, region: region, command: self.describeProdTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

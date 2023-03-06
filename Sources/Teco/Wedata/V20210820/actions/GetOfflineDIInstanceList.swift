@@ -107,4 +107,24 @@ extension Wedata {
         let input = GetOfflineDIInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition)
         return try await self.client.execute(action: "GetOfflineDIInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取离线任务实例列表(新)
+    @inlinable
+    public func getOfflineDIInstanceListPaginated(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OfflineInstance])> {
+        self.client.paginate(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取离线任务实例列表(新)
+    @inlinable
+    public func getOfflineDIInstanceListPaginated(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (GetOfflineDIInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getOfflineDIInstanceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取离线任务实例列表(新)
+    @inlinable
+    public func getOfflineDIInstanceListPaginator(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResultSequence(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResponseSequence(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

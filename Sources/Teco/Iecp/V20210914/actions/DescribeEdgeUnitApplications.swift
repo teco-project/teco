@@ -118,4 +118,24 @@ extension Iecp {
         let input = DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace)
         return try await self.client.execute(action: "DescribeEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取单元下应用列表
+    @inlinable
+    public func describeEdgeUnitApplicationsPaginated(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ApplicationStatusInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitApplications, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单元下应用列表
+    @inlinable
+    public func describeEdgeUnitApplicationsPaginated(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeUnitApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeUnitApplications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单元下应用列表
+    @inlinable
+    public func describeEdgeUnitApplicationsPaginator(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeUnitApplications, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeUnitApplications, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

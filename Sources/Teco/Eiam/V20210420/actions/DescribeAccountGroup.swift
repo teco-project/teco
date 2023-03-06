@@ -114,4 +114,24 @@ extension Eiam {
         let input = DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询账号组列表
+    @inlinable
+    public func describeAccountGroupPaginated(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccountGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccountGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账号组列表
+    @inlinable
+    public func describeAccountGroupPaginated(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccountGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账号组列表
+    @inlinable
+    public func describeAccountGroupPaginator(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResultSequence(input: input, region: region, command: self.describeAccountGroup, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResponseSequence(input: input, region: region, command: self.describeAccountGroup, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -103,4 +103,24 @@ extension Ckafka {
         let input = DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTopicSubscribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroupPaginated(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GroupInfoResponse])> {
+        self.client.paginate(input: input, region: region, command: self.describeTopicSubscribeGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroupPaginated(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopicSubscribeGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTopicSubscribeGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroupPaginator(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResultSequence(input: input, region: region, command: self.describeTopicSubscribeGroup, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResponseSequence(input: input, region: region, command: self.describeTopicSubscribeGroup, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

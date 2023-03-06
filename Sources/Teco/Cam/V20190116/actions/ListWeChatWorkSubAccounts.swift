@@ -97,4 +97,24 @@ extension Cam {
         let input = ListWeChatWorkSubAccountsRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "ListWeChatWorkSubAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccountsPaginated(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WeChatWorkSubAccount])> {
+        self.client.paginate(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccountsPaginated(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (ListWeChatWorkSubAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listWeChatWorkSubAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccountsPaginator(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResultSequence, responses: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResultSequence(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResponseSequence(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

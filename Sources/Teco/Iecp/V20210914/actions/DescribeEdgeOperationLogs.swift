@@ -124,4 +124,24 @@ extension Iecp {
         let input = DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition)
         return try await self.client.execute(action: "DescribeEdgeOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogsPaginated(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [OperationLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeOperationLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogsPaginated(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeOperationLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeOperationLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogsPaginator(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResultSequence(input: input, region: region, command: self.describeEdgeOperationLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeEdgeOperationLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

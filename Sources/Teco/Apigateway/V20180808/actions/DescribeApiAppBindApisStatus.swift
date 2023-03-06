@@ -112,4 +112,30 @@ extension Apigateway {
         let input = DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeApiAppBindApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应用绑定的Api列表
+    ///
+    /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
+    @inlinable
+    public func describeApiAppBindApisStatusPaginated(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApiAppApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeApiAppBindApisStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用绑定的Api列表
+    ///
+    /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
+    @inlinable
+    public func describeApiAppBindApisStatusPaginated(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiAppBindApisStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApiAppBindApisStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用绑定的Api列表
+    ///
+    /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
+    @inlinable
+    public func describeApiAppBindApisStatusPaginator(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResultSequence(input: input, region: region, command: self.describeApiAppBindApisStatus, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResponseSequence(input: input, region: region, command: self.describeApiAppBindApisStatus, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

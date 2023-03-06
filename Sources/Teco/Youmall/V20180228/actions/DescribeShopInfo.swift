@@ -105,4 +105,30 @@ extension Youmall {
         let input = DescribeShopInfoRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeShopInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfoPaginated(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ShopInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfoPaginated(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShopInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeShopInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfoPaginator(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResultSequence(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

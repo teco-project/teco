@@ -130,4 +130,24 @@ extension Cwp {
         let input = DescribeAssetPortInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetPortInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资产管理端口列表
+    @inlinable
+    public func describeAssetPortInfoListPaginated(_ input: DescribeAssetPortInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetPortBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetPortInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理端口列表
+    @inlinable
+    public func describeAssetPortInfoListPaginated(_ input: DescribeAssetPortInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetPortInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetPortInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理端口列表
+    @inlinable
+    public func describeAssetPortInfoListPaginator(_ input: DescribeAssetPortInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetPortInfoListRequest, DescribeAssetPortInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetPortInfoListRequest, DescribeAssetPortInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetPortInfoListRequest, DescribeAssetPortInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetPortInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetPortInfoListRequest, DescribeAssetPortInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetPortInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

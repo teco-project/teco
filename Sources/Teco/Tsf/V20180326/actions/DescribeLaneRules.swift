@@ -109,4 +109,24 @@ extension Tsf {
         let input = DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList)
         return try await self.client.execute(action: "DescribeLaneRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询泳道规则列表
+    @inlinable
+    public func describeLaneRulesPaginated(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LaneRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeLaneRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询泳道规则列表
+    @inlinable
+    public func describeLaneRulesPaginated(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLaneRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLaneRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询泳道规则列表
+    @inlinable
+    public func describeLaneRulesPaginator(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResultSequence(input: input, region: region, command: self.describeLaneRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeLaneRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

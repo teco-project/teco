@@ -97,4 +97,30 @@ extension Ame {
         let input = DescribePackagesRequest(offset: offset, length: length)
         return try await self.client.execute(action: "DescribePackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取已购曲库包列表
+    ///
+    /// 获取已购曲库包列表接口
+    @inlinable
+    public func describePackagesPaginated(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Package])> {
+        self.client.paginate(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)
+    }
+
+    /// 获取已购曲库包列表
+    ///
+    /// 获取已购曲库包列表接口
+    @inlinable
+    public func describePackagesPaginated(_ input: DescribePackagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePackagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePackages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取已购曲库包列表
+    ///
+    /// 获取已购曲库包列表接口
+    @inlinable
+    public func describePackagesPaginator(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResultSequence(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResponseSequence(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -122,4 +122,30 @@ extension Cdn {
         let input = DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence)
         return try await self.client.execute(action: "DescribeScdnIpStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategyPaginated(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ScdnIpStrategy])> {
+        self.client.paginate(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategyPaginated(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScdnIpStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScdnIpStrategy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategyPaginator(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResultSequence(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResponseSequence(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

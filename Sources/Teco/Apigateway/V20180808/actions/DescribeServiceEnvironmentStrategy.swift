@@ -107,4 +107,30 @@ extension Apigateway {
         let input = DescribeServiceEnvironmentStrategyRequest(serviceId: serviceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeServiceEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategyPaginated(_ input: DescribeServiceEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ServiceEnvironmentStrategy])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceEnvironmentStrategy, logger: logger, on: eventLoop)
+    }
+
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategyPaginated(_ input: DescribeServiceEnvironmentStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceEnvironmentStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceEnvironmentStrategy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategyPaginator(_ input: DescribeServiceEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResultSequence(input: input, region: region, command: self.describeServiceEnvironmentStrategy, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceEnvironmentStrategy, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

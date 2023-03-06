@@ -107,4 +107,24 @@ extension Iotvideo {
         let input = DescribeAIModelApplicationsRequest(modelId: modelId, limit: limit, offset: offset, productId: productId)
         return try await self.client.execute(action: "DescribeAIModelApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 用户AI模型申请记录
+    @inlinable
+    public func describeAIModelApplicationsPaginated(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AIModelApplication])> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModelApplications, logger: logger, on: eventLoop)
+    }
+
+    /// 用户AI模型申请记录
+    @inlinable
+    public func describeAIModelApplicationsPaginated(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAIModelApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModelApplications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 用户AI模型申请记录
+    @inlinable
+    public func describeAIModelApplicationsPaginator(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResultSequence(input: input, region: region, command: self.describeAIModelApplications, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResponseSequence(input: input, region: region, command: self.describeAIModelApplications, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据备份文件列表
+    ///
+    /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
+    @inlinable
+    public func describeBackupsPaginated(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据备份文件列表
+    ///
+    /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
+    @inlinable
+    public func describeBackupsPaginated(_ input: DescribeBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据备份文件列表
+    ///
+    /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
+    @inlinable
+    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

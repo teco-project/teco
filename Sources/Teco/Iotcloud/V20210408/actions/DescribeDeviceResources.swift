@@ -126,4 +126,30 @@ extension Iotcloud {
         let input = DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeDeviceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
+    @inlinable
+    public func describeDeviceResourcesPaginated(_ input: DescribeDeviceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeviceResourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceResources, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
+    @inlinable
+    public func describeDeviceResourcesPaginated(_ input: DescribeDeviceResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
+    @inlinable
+    public func describeDeviceResourcesPaginator(_ input: DescribeDeviceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceResourcesRequest, DescribeDeviceResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceResourcesRequest, DescribeDeviceResourcesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDeviceResourcesRequest, DescribeDeviceResourcesResponse>.ResultSequence(input: input, region: region, command: self.describeDeviceResources, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDeviceResourcesRequest, DescribeDeviceResourcesResponse>.ResponseSequence(input: input, region: region, command: self.describeDeviceResources, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

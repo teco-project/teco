@@ -127,4 +127,24 @@ extension Dasb {
         let input = DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembersPaginated(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Device])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembersPaginated(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceGroupMembersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceGroupMembers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembersPaginator(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResultSequence(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResponseSequence(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

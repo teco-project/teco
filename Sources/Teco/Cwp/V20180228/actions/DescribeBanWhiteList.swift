@@ -103,4 +103,24 @@ extension Cwp {
         let input = DescribeBanWhiteListRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeBanWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteListPaginated(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BanWhiteListDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteListPaginated(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBanWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBanWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteListPaginator(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResultSequence(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBanWhiteListRequest, DescribeBanWhiteListResponse>.ResponseSequence(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

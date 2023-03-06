@@ -102,4 +102,24 @@ extension Tci {
         let input = DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取人员列表
+    @inlinable
+    public func describePersonsPaginated(_ input: DescribePersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Person])> {
+        self.client.paginate(input: input, region: region, command: self.describePersons, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取人员列表
+    @inlinable
+    public func describePersonsPaginated(_ input: DescribePersonsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePersons, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取人员列表
+    @inlinable
+    public func describePersonsPaginator(_ input: DescribePersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResultSequence(input: input, region: region, command: self.describePersons, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResponseSequence(input: input, region: region, command: self.describePersons, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

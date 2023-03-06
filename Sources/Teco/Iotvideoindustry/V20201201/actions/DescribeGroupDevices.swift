@@ -128,4 +128,30 @@ extension Iotvideoindustry {
         let input = DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes)
         return try await self.client.execute(action: "DescribeGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询分组下的设备
+    ///
+    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
+    @inlinable
+    public func describeGroupDevicesPaginated(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GroupDeviceItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分组下的设备
+    ///
+    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
+    @inlinable
+    public func describeGroupDevicesPaginated(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分组下的设备
+    ///
+    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
+    @inlinable
+    public func describeGroupDevicesPaginator(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeGroupDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

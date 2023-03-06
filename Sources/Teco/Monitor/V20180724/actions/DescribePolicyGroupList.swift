@@ -168,4 +168,24 @@ extension Monitor {
         let input = DescribePolicyGroupListRequest(module: module, limit: limit, offset: offset, like: like, instanceGroupId: instanceGroupId, updateTimeOrder: updateTimeOrder, projectIds: projectIds, viewNames: viewNames, filterUnuseReceiver: filterUnuseReceiver, receivers: receivers, receiverUserList: receiverUserList, dimensions: dimensions, conditionTempGroupId: conditionTempGroupId, receiverType: receiverType, isOpen: isOpen)
         return try await self.client.execute(action: "DescribePolicyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取基础策略告警组列表
+    @inlinable
+    public func describePolicyGroupListPaginated(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribePolicyGroupListGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describePolicyGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基础策略告警组列表
+    @inlinable
+    public func describePolicyGroupListPaginated(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePolicyGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePolicyGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基础策略告警组列表
+    @inlinable
+    public func describePolicyGroupListPaginator(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePolicyGroupListRequest, DescribePolicyGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePolicyGroupListRequest, DescribePolicyGroupListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePolicyGroupListRequest, DescribePolicyGroupListResponse>.ResultSequence(input: input, region: region, command: self.describePolicyGroupList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePolicyGroupListRequest, DescribePolicyGroupListResponse>.ResponseSequence(input: input, region: region, command: self.describePolicyGroupList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

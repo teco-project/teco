@@ -103,4 +103,24 @@ extension Apigateway {
         let input = DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters)
         return try await self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApisPaginated(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BindApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApisPaginated(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUpstreamBindApisResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreamBindApis, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApisPaginator(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResultSequence(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResponseSequence(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

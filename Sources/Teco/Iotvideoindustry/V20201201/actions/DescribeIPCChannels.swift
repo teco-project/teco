@@ -121,4 +121,33 @@ extension Iotvideoindustry {
         let input = DescribeIPCChannelsRequest(offset: offset, limit: limit, deviceId: deviceId, channelTypes: channelTypes)
         return try await self.client.execute(action: "DescribeIPCChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取IPC设备下属通道（旧）
+    ///
+    /// 获取IPC设备下属通道
+    /// 请使用DescribeChannels接口
+    @inlinable
+    public func describeIPCChannelsPaginated(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GroupDeviceItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
+    }
+
+    /// 获取IPC设备下属通道（旧）
+    ///
+    /// 获取IPC设备下属通道
+    /// 请使用DescribeChannels接口
+    @inlinable
+    public func describeIPCChannelsPaginated(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIPCChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIPCChannels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取IPC设备下属通道（旧）
+    ///
+    /// 获取IPC设备下属通道
+    /// 请使用DescribeChannels接口
+    @inlinable
+    public func describeIPCChannelsPaginator(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResultSequence(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResponseSequence(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -113,4 +113,24 @@ extension Ckafka {
         let input = DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取消费分组offset
+    @inlinable
+    public func describeGroupOffsetsPaginated(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GroupOffsetTopic])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消费分组offset
+    @inlinable
+    public func describeGroupOffsetsPaginated(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupOffsetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupOffsets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消费分组offset
+    @inlinable
+    public func describeGroupOffsetsPaginator(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResultSequence(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResponseSequence(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

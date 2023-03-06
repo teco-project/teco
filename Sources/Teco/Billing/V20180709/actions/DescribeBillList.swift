@@ -193,4 +193,30 @@ extension Billing {
         let input = DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount)
         return try await self.client.execute(action: "DescribeBillList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillListPaginated(_ input: DescribeBillListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BillTransactionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBillList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillListPaginated(_ input: DescribeBillListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBillListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBillList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillListPaginator(_ input: DescribeBillListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResultSequence(input: input, region: region, command: self.describeBillList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResponseSequence(input: input, region: region, command: self.describeBillList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

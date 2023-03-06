@@ -129,4 +129,24 @@ extension Tsf {
         let input = DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList)
         return try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取应用列表
+    @inlinable
+    public func describeApplicationsPaginated(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApplicationForPage])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用列表
+    @inlinable
+    public func describeApplicationsPaginated(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用列表
+    @inlinable
+    public func describeApplicationsPaginator(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResultSequence(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeApplicationsRequest, DescribeApplicationsResponse>.ResponseSequence(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

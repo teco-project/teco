@@ -118,4 +118,30 @@ extension Yunjing {
         let input = DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid)
         return try await self.client.execute(action: "DescribeMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequestsPaginated(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MaliciousRequest])> {
+        self.client.paginate(input: input, region: region, command: self.describeMaliciousRequests, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequestsPaginated(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMaliciousRequestsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMaliciousRequests, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequestsPaginator(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMaliciousRequestsRequest, DescribeMaliciousRequestsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMaliciousRequestsRequest, DescribeMaliciousRequestsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMaliciousRequestsRequest, DescribeMaliciousRequestsResponse>.ResultSequence(input: input, region: region, command: self.describeMaliciousRequests, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMaliciousRequestsRequest, DescribeMaliciousRequestsResponse>.ResponseSequence(input: input, region: region, command: self.describeMaliciousRequests, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

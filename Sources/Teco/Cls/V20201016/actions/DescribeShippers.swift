@@ -133,4 +133,30 @@ extension Cls {
         let input = DescribeShippersRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeShippers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippersPaginated(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ShipperInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippersPaginated(_ input: DescribeShippersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShippersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeShippers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippersPaginator(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResultSequence(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResponseSequence(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

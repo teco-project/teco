@@ -122,4 +122,24 @@ extension Bm {
         let input = DescribePsaRegulationsRequest(limit: limit, offset: offset, psaIds: psaIds, psaNames: psaNames, tags: tags, orderField: orderField, order: order)
         return try await self.client.execute(action: "DescribePsaRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulationsPaginated(_ input: DescribePsaRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PsaRegulation])> {
+        self.client.paginate(input: input, region: region, command: self.describePsaRegulations, logger: logger, on: eventLoop)
+    }
+
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulationsPaginated(_ input: DescribePsaRegulationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePsaRegulationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePsaRegulations, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulationsPaginator(_ input: DescribePsaRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePsaRegulationsRequest, DescribePsaRegulationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePsaRegulationsRequest, DescribePsaRegulationsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePsaRegulationsRequest, DescribePsaRegulationsResponse>.ResultSequence(input: input, region: region, command: self.describePsaRegulations, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePsaRegulationsRequest, DescribePsaRegulationsResponse>.ResponseSequence(input: input, region: region, command: self.describePsaRegulations, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

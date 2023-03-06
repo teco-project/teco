@@ -112,4 +112,24 @@ extension Tcss {
         let input = DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeAutoAuthorizedRuleHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHostPaginated(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutoAuthorizedRuleHostInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHostPaginated(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoAuthorizedRuleHostResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHostPaginator(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResultSequence(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

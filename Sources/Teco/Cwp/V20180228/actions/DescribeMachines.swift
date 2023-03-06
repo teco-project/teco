@@ -140,4 +140,30 @@ extension Cwp {
         let input = DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds)
         return try await self.client.execute(action: "DescribeMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取区域主机列表
+    ///
+    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
+    @inlinable
+    public func describeMachinesPaginated(_ input: DescribeMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Machine])> {
+        self.client.paginate(input: input, region: region, command: self.describeMachines, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区域主机列表
+    ///
+    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
+    @inlinable
+    public func describeMachinesPaginated(_ input: DescribeMachinesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMachinesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMachines, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区域主机列表
+    ///
+    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
+    @inlinable
+    public func describeMachinesPaginator(_ input: DescribeMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMachinesRequest, DescribeMachinesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMachinesRequest, DescribeMachinesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMachinesRequest, DescribeMachinesResponse>.ResultSequence(input: input, region: region, command: self.describeMachines, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMachinesRequest, DescribeMachinesResponse>.ResponseSequence(input: input, region: region, command: self.describeMachines, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

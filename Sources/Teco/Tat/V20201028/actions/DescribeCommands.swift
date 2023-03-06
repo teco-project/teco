@@ -124,4 +124,30 @@ extension Tat {
         let input = DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeCommands", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommandsPaginated(_ input: DescribeCommandsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Command])> {
+        self.client.paginate(input: input, region: region, command: self.describeCommands, logger: logger, on: eventLoop)
+    }
+
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommandsPaginated(_ input: DescribeCommandsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCommandsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCommands, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommandsPaginator(_ input: DescribeCommandsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCommandsRequest, DescribeCommandsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCommandsRequest, DescribeCommandsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCommandsRequest, DescribeCommandsResponse>.ResultSequence(input: input, region: region, command: self.describeCommands, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCommandsRequest, DescribeCommandsResponse>.ResponseSequence(input: input, region: region, command: self.describeCommands, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

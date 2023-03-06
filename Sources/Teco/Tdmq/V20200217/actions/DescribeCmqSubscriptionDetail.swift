@@ -108,4 +108,24 @@ extension Tdmq {
         let input = DescribeCmqSubscriptionDetailRequest(topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName)
         return try await self.client.execute(action: "DescribeCmqSubscriptionDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询cmq订阅详情
+    @inlinable
+    public func describeCmqSubscriptionDetailPaginated(_ input: DescribeCmqSubscriptionDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CmqSubscription])> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqSubscriptionDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询cmq订阅详情
+    @inlinable
+    public func describeCmqSubscriptionDetailPaginated(_ input: DescribeCmqSubscriptionDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCmqSubscriptionDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqSubscriptionDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询cmq订阅详情
+    @inlinable
+    public func describeCmqSubscriptionDetailPaginator(_ input: DescribeCmqSubscriptionDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCmqSubscriptionDetailRequest, DescribeCmqSubscriptionDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCmqSubscriptionDetailRequest, DescribeCmqSubscriptionDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCmqSubscriptionDetailRequest, DescribeCmqSubscriptionDetailResponse>.ResultSequence(input: input, region: region, command: self.describeCmqSubscriptionDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCmqSubscriptionDetailRequest, DescribeCmqSubscriptionDetailResponse>.ResponseSequence(input: input, region: region, command: self.describeCmqSubscriptionDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -129,4 +129,24 @@ extension Ic {
         let input = DescribeSmsRequest(sdkappid: sdkappid, iccid: iccid, msisdn: msisdn, smsType: smsType, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询短信列表
+    @inlinable
+    public func describeSmsPaginated(_ input: DescribeSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResSms])> {
+        self.client.paginate(input: input, region: region, command: self.describeSms, logger: logger, on: eventLoop)
+    }
+
+    /// 查询短信列表
+    @inlinable
+    public func describeSmsPaginated(_ input: DescribeSmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询短信列表
+    @inlinable
+    public func describeSmsPaginator(_ input: DescribeSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResultSequence(input: input, region: region, command: self.describeSms, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResponseSequence(input: input, region: region, command: self.describeSms, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

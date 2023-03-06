@@ -103,4 +103,24 @@ extension Tdmq {
         let input = DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRabbitMQNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeListPaginated(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RabbitMQPrivateNode])> {
+        self.client.paginate(input: input, region: region, command: self.describeRabbitMQNodeList, logger: logger, on: eventLoop)
+    }
+
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeListPaginated(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRabbitMQNodeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRabbitMQNodeList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeListPaginator(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRabbitMQNodeListRequest, DescribeRabbitMQNodeListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRabbitMQNodeListRequest, DescribeRabbitMQNodeListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRabbitMQNodeListRequest, DescribeRabbitMQNodeListResponse>.ResultSequence(input: input, region: region, command: self.describeRabbitMQNodeList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRabbitMQNodeListRequest, DescribeRabbitMQNodeListResponse>.ResponseSequence(input: input, region: region, command: self.describeRabbitMQNodeList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

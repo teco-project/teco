@@ -136,4 +136,24 @@ extension Cwp {
         let input = DescribeAssetWebFrameListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetWebFrameList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资产管理Web框架列表
+    @inlinable
+    public func describeAssetWebFrameListPaginated(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetWebFrameBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebFrameList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理Web框架列表
+    @inlinable
+    public func describeAssetWebFrameListPaginated(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetWebFrameListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebFrameList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理Web框架列表
+    @inlinable
+    public func describeAssetWebFrameListPaginator(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetWebFrameList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetWebFrameList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

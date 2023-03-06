@@ -116,4 +116,30 @@ extension Apigateway {
         let input = DescribeAllPluginApisRequest(serviceId: serviceId, pluginId: pluginId, environmentName: environmentName, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAllPluginApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 展示插件相关的API列表
+    ///
+    /// 展示插件相关的API列表，包括已绑定的和未绑定的API信息。
+    @inlinable
+    public func describeAllPluginApisPaginated(_ input: DescribeAllPluginApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AvailableApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAllPluginApis, logger: logger, on: eventLoop)
+    }
+
+    /// 展示插件相关的API列表
+    ///
+    /// 展示插件相关的API列表，包括已绑定的和未绑定的API信息。
+    @inlinable
+    public func describeAllPluginApisPaginated(_ input: DescribeAllPluginApisRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAllPluginApisResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAllPluginApis, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 展示插件相关的API列表
+    ///
+    /// 展示插件相关的API列表，包括已绑定的和未绑定的API信息。
+    @inlinable
+    public func describeAllPluginApisPaginator(_ input: DescribeAllPluginApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllPluginApisRequest, DescribeAllPluginApisResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllPluginApisRequest, DescribeAllPluginApisResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAllPluginApisRequest, DescribeAllPluginApisResponse>.ResultSequence(input: input, region: region, command: self.describeAllPluginApis, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAllPluginApisRequest, DescribeAllPluginApisResponse>.ResponseSequence(input: input, region: region, command: self.describeAllPluginApis, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -122,4 +122,30 @@ extension Cwp {
         let input = DescribeProtectNetListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeProtectNetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 旗舰重保列表
+    ///
+    /// 专家服务-旗舰重保列表
+    @inlinable
+    public func describeProtectNetListPaginated(_ input: DescribeProtectNetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProtectNetInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectNetList, logger: logger, on: eventLoop)
+    }
+
+    /// 旗舰重保列表
+    ///
+    /// 专家服务-旗舰重保列表
+    @inlinable
+    public func describeProtectNetListPaginated(_ input: DescribeProtectNetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProtectNetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectNetList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 旗舰重保列表
+    ///
+    /// 专家服务-旗舰重保列表
+    @inlinable
+    public func describeProtectNetListPaginator(_ input: DescribeProtectNetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProtectNetListRequest, DescribeProtectNetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProtectNetListRequest, DescribeProtectNetListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeProtectNetListRequest, DescribeProtectNetListResponse>.ResultSequence(input: input, region: region, command: self.describeProtectNetList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeProtectNetListRequest, DescribeProtectNetListResponse>.ResponseSequence(input: input, region: region, command: self.describeProtectNetList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

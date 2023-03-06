@@ -107,4 +107,24 @@ extension Iotvideo {
         let input = DescribeAIModelsRequest(modelId: modelId, status: status, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAIModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModelsPaginated(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AIModelInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModelsPaginated(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAIModelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModelsPaginator(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAIModelsRequest, DescribeAIModelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAIModelsRequest, DescribeAIModelsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAIModelsRequest, DescribeAIModelsResponse>.ResultSequence(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAIModelsRequest, DescribeAIModelsResponse>.ResponseSequence(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

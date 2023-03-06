@@ -120,4 +120,30 @@ extension Dbbrain {
         let input = DescribeSqlFiltersRequest(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFiltersPaginated(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SQLFilter])> {
+        self.client.paginate(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFiltersPaginated(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSqlFiltersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSqlFilters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFiltersPaginator(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResultSequence(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResponseSequence(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

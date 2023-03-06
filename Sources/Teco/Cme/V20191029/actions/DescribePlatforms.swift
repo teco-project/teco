@@ -127,4 +127,39 @@ extension Cme {
         let input = DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePlatforms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    ///
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatformsPaginated(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PlatformInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePlatforms, logger: logger, on: eventLoop)
+    }
+
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    ///
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatformsPaginated(_ input: DescribePlatformsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePlatformsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePlatforms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    ///
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatformsPaginator(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResultSequence(input: input, region: region, command: self.describePlatforms, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResponseSequence(input: input, region: region, command: self.describePlatforms, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

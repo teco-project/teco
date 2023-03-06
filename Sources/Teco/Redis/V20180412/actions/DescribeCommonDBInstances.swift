@@ -160,4 +160,30 @@ extension Redis {
         let input = DescribeCommonDBInstancesRequest(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeCommonDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Redis实例列表信息
+    ///
+    /// 查询Redis实例列表信息。该接口已废弃。
+    @inlinable
+    public func describeCommonDBInstancesPaginated(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RedisCommonInstanceList])> {
+        self.client.paginate(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Redis实例列表信息
+    ///
+    /// 查询Redis实例列表信息。该接口已废弃。
+    @inlinable
+    public func describeCommonDBInstancesPaginated(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCommonDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCommonDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Redis实例列表信息
+    ///
+    /// 查询Redis实例列表信息。该接口已废弃。
+    @inlinable
+    public func describeCommonDBInstancesPaginator(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

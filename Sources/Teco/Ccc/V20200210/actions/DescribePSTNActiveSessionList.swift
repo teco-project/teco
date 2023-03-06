@@ -110,4 +110,30 @@ extension Ccc {
         let input = DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePSTNActiveSessionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionListPaginated(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PSTNSessionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePSTNActiveSessionList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionListPaginated(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePSTNActiveSessionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePSTNActiveSessionList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionListPaginator(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResultSequence(input: input, region: region, command: self.describePSTNActiveSessionList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResponseSequence(input: input, region: region, command: self.describePSTNActiveSessionList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

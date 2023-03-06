@@ -112,4 +112,24 @@ extension Tcr {
         let input = DescribeWebhookTriggerLogRequest(registryId: registryId, namespace: namespace, id: id, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeWebhookTriggerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取触发器日志
+    @inlinable
+    public func describeWebhookTriggerLogPaginated(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [WebhookTriggerLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
+    }
+
+    /// 获取触发器日志
+    @inlinable
+    public func describeWebhookTriggerLogPaginated(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebhookTriggerLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWebhookTriggerLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取触发器日志
+    @inlinable
+    public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResultSequence(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResponseSequence(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

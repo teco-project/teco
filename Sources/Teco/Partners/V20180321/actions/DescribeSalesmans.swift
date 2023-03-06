@@ -120,4 +120,30 @@ extension Partners {
         let input = DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeSalesmans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmansPaginated(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentSalesmanElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmansPaginated(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSalesmansResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSalesmans, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmansPaginator(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResultSequence(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSalesmansRequest, DescribeSalesmansResponse>.ResponseSequence(input: input, region: region, command: self.describeSalesmans, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

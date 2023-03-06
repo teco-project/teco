@@ -107,4 +107,24 @@ extension Iotvideo {
         let input = DescribeDevicesRequest(productId: productId, offset: offset, limit: limit, deviceName: deviceName)
         return try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备列表
+    @inlinable
+    public func describeDevicesPaginated(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表
+    @inlinable
+    public func describeDevicesPaginated(_ input: DescribeDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表
+    @inlinable
+    public func describeDevicesPaginator(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDevicesRequest, DescribeDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

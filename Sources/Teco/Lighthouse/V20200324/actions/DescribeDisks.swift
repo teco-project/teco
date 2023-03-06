@@ -152,4 +152,30 @@ extension Lighthouse {
         let input = DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order)
         return try await self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云硬盘
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘信息。
+    @inlinable
+    public func describeDisksPaginated(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Disk])> {
+        self.client.paginate(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘信息。
+    @inlinable
+    public func describeDisksPaginated(_ input: DescribeDisksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDisksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDisks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘信息。
+    @inlinable
+    public func describeDisksPaginator(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResultSequence(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResponseSequence(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -140,4 +140,30 @@ extension Sqlserver {
         let input = DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询订阅发布
+    ///
+    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
+    @inlinable
+    public func describePublishSubscribePaginated(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PublishSubscribe])> {
+        self.client.paginate(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅发布
+    ///
+    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
+    @inlinable
+    public func describePublishSubscribePaginated(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublishSubscribeResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePublishSubscribe, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅发布
+    ///
+    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
+    @inlinable
+    public func describePublishSubscribePaginator(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResultSequence(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResponseSequence(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

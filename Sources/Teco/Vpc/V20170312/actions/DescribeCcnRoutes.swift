@@ -126,4 +126,30 @@ extension Vpc {
         let input = DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcnRoute])> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutesPaginator(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResultSequence(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResponseSequence(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

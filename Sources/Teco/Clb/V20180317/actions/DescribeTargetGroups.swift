@@ -107,4 +107,24 @@ extension Clb {
         let input = DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroupsPaginated(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TargetGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTargetGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroupsPaginated(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTargetGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTargetGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroupsPaginator(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTargetGroupsRequest, DescribeTargetGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTargetGroupsRequest, DescribeTargetGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTargetGroupsRequest, DescribeTargetGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeTargetGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTargetGroupsRequest, DescribeTargetGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeTargetGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

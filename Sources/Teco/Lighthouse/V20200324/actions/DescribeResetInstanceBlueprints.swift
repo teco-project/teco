@@ -134,4 +134,30 @@ extension Lighthouse {
         let input = DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeResetInstanceBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprintsPaginated(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResetInstanceBlueprint])> {
+        self.client.paginate(input: input, region: region, command: self.describeResetInstanceBlueprints, logger: logger, on: eventLoop)
+    }
+
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprintsPaginated(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResetInstanceBlueprintsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResetInstanceBlueprints, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprintsPaginator(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResultSequence(input: input, region: region, command: self.describeResetInstanceBlueprints, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResponseSequence(input: input, region: region, command: self.describeResetInstanceBlueprints, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

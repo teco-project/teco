@@ -153,4 +153,24 @@ extension Cynosdb {
         let input = DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList)
         return try await self.client.execute(action: "DescribeBackupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份文件列表
+    @inlinable
+    public func describeBackupListPaginated(_ input: DescribeBackupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupFileInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份文件列表
+    @inlinable
+    public func describeBackupListPaginated(_ input: DescribeBackupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份文件列表
+    @inlinable
+    public func describeBackupListPaginator(_ input: DescribeBackupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupListRequest, DescribeBackupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupListRequest, DescribeBackupListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBackupListRequest, DescribeBackupListResponse>.ResultSequence(input: input, region: region, command: self.describeBackupList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBackupListRequest, DescribeBackupListResponse>.ResponseSequence(input: input, region: region, command: self.describeBackupList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

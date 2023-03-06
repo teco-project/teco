@@ -143,4 +143,30 @@ extension Partners {
         let input = DescribeAgentPayDealsRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames)
         return try await self.client.execute(action: "DescribeAgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 代理商代付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
+    @inlinable
+    public func describeAgentPayDealsPaginated(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentDealElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentPayDeals, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商代付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
+    @inlinable
+    public func describeAgentPayDealsPaginated(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentPayDealsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentPayDeals, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商代付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
+    @inlinable
+    public func describeAgentPayDealsPaginator(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResultSequence(input: input, region: region, command: self.describeAgentPayDeals, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResponseSequence(input: input, region: region, command: self.describeAgentPayDeals, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

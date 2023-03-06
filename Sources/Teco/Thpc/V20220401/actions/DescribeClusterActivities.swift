@@ -110,4 +110,30 @@ extension Thpc {
         let input = DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeClusterActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群活动历史记录
+    ///
+    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
+    @inlinable
+    public func describeClusterActivitiesPaginated(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ClusterActivity])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterActivities, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群活动历史记录
+    ///
+    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
+    @inlinable
+    public func describeClusterActivitiesPaginated(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterActivitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterActivities, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群活动历史记录
+    ///
+    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
+    @inlinable
+    public func describeClusterActivitiesPaginator(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResultSequence(input: input, region: region, command: self.describeClusterActivities, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResponseSequence(input: input, region: region, command: self.describeClusterActivities, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

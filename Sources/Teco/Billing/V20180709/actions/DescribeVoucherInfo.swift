@@ -167,4 +167,24 @@ extension Billing {
         let input = DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`)
         return try await self.client.execute(action: "DescribeVoucherInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取代金券相关信息
+    @inlinable
+    public func describeVoucherInfoPaginated(_ input: DescribeVoucherInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VoucherInfos])> {
+        self.client.paginate(input: input, region: region, command: self.describeVoucherInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取代金券相关信息
+    @inlinable
+    public func describeVoucherInfoPaginated(_ input: DescribeVoucherInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVoucherInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVoucherInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取代金券相关信息
+    @inlinable
+    public func describeVoucherInfoPaginator(_ input: DescribeVoucherInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResultSequence(input: input, region: region, command: self.describeVoucherInfo, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResponseSequence(input: input, region: region, command: self.describeVoucherInfo, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

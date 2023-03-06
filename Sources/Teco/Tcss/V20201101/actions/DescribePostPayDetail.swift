@@ -97,4 +97,30 @@ extension Tcss {
         let input = DescribePostPayDetailRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePostPayDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetailPaginated(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SoftQuotaDayInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetailPaginated(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePostPayDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePostPayDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetailPaginator(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResultSequence(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResponseSequence(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

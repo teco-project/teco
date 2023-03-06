@@ -125,4 +125,24 @@ extension Teo {
         let input = DescribePurgeTasksRequest(zoneId: zoneId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询清除缓存历史记录
+    @inlinable
+    public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Task])> {
+        self.client.paginate(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询清除缓存历史记录
+    @inlinable
+    public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePurgeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePurgeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询清除缓存历史记录
+    @inlinable
+    public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

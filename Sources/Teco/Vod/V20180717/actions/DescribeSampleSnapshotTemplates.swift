@@ -122,4 +122,30 @@ extension Vod {
         let input = DescribeSampleSnapshotTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeSampleSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplatesPaginated(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SampleSnapshotTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplatesPaginated(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSampleSnapshotTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSampleSnapshotTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplatesPaginator(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

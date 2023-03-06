@@ -103,4 +103,24 @@ extension Tcm {
         let input = DescribeMeshListRequest(filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeMeshList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网格列表
+    @inlinable
+    public func describeMeshListPaginated(_ input: DescribeMeshListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Mesh])> {
+        self.client.paginate(input: input, region: region, command: self.describeMeshList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网格列表
+    @inlinable
+    public func describeMeshListPaginated(_ input: DescribeMeshListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMeshListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMeshList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网格列表
+    @inlinable
+    public func describeMeshListPaginator(_ input: DescribeMeshListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMeshListRequest, DescribeMeshListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMeshListRequest, DescribeMeshListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMeshListRequest, DescribeMeshListResponse>.ResultSequence(input: input, region: region, command: self.describeMeshList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMeshListRequest, DescribeMeshListResponse>.ResponseSequence(input: input, region: region, command: self.describeMeshList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -121,4 +121,30 @@ extension Iotvideo {
         let input = DescribeFirmwareTaskDevicesRequest(productID: productID, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeFirmwareTaskDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询固件升级任务的设备列表
+    ///
+    /// 本接口用于查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevicesPaginated(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeviceUpdateStatus])> {
+        self.client.paginate(input: input, region: region, command: self.describeFirmwareTaskDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询固件升级任务的设备列表
+    ///
+    /// 本接口用于查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevicesPaginated(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFirmwareTaskDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFirmwareTaskDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询固件升级任务的设备列表
+    ///
+    /// 本接口用于查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevicesPaginator(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeFirmwareTaskDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeFirmwareTaskDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

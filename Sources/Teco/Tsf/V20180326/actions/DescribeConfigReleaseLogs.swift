@@ -114,4 +114,24 @@ extension Tsf {
         let input = DescribeConfigReleaseLogsRequest(groupId: groupId, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId)
         return try await self.client.execute(action: "DescribeConfigReleaseLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询配置发布历史
+    @inlinable
+    public func describeConfigReleaseLogsPaginated(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ConfigReleaseLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigReleaseLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置发布历史
+    @inlinable
+    public func describeConfigReleaseLogsPaginated(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigReleaseLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigReleaseLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置发布历史
+    @inlinable
+    public func describeConfigReleaseLogsPaginator(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResultSequence(input: input, region: region, command: self.describeConfigReleaseLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeConfigReleaseLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

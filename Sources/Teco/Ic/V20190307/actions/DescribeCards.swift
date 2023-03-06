@@ -101,4 +101,30 @@ extension Ic {
         let input = DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCardsPaginated(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [CardInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCards, logger: logger, on: eventLoop)
+    }
+
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCardsPaginated(_ input: DescribeCardsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCardsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCards, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCardsPaginator(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResultSequence(input: input, region: region, command: self.describeCards, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResponseSequence(input: input, region: region, command: self.describeCards, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

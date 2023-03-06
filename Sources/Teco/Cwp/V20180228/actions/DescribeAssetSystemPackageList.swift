@@ -131,4 +131,24 @@ extension Cwp {
         let input = DescribeAssetSystemPackageListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetSystemPackageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageListPaginated(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetSystemPackageInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetSystemPackageList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageListPaginated(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetSystemPackageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetSystemPackageList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageListPaginator(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetSystemPackageList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetSystemPackageList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

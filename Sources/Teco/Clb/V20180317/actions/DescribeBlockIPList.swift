@@ -114,4 +114,30 @@ extension Clb {
         let input = DescribeBlockIPListRequest(loadBalancerId: loadBalancerId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBlockIPList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）
+    ///
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
+    @inlinable
+    public func describeBlockIPListPaginated(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BlockedIP])> {
+        self.client.paginate(input: input, region: region, command: self.describeBlockIPList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）
+    ///
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
+    @inlinable
+    public func describeBlockIPListPaginated(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBlockIPListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBlockIPList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）
+    ///
+    /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
+    @inlinable
+    public func describeBlockIPListPaginator(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResultSequence(input: input, region: region, command: self.describeBlockIPList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResponseSequence(input: input, region: region, command: self.describeBlockIPList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

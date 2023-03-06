@@ -119,4 +119,24 @@ extension Hasim {
         let input = DescribeRulesRequest(ruleID: ruleID, ruleIDs: ruleIDs, name: name, type: type, isActive: isActive, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自动化规则列表
+    @inlinable
+    public func describeRulesPaginated(_ input: DescribeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Rule])> {
+        self.client.paginate(input: input, region: region, command: self.describeRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动化规则列表
+    @inlinable
+    public func describeRulesPaginated(_ input: DescribeRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动化规则列表
+    @inlinable
+    public func describeRulesPaginator(_ input: DescribeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResultSequence(input: input, region: region, command: self.describeRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

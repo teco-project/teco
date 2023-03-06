@@ -124,4 +124,30 @@ extension Yunjing {
         let input = DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid)
         return try await self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogsPaginated(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DefendAttackLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogsPaginated(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAttackLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAttackLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResultSequence(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

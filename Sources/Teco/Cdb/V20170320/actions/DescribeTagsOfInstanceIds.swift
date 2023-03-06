@@ -109,4 +109,30 @@ extension Cdb {
         let input = DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTagsOfInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIdsPaginated(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [TagsInfoOfInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIdsPaginated(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagsOfInstanceIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsOfInstanceIds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIdsPaginator(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResultSequence(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResponseSequence(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

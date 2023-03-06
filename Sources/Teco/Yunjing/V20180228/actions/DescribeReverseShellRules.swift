@@ -103,4 +103,24 @@ extension Yunjing {
         let input = DescribeReverseShellRulesRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeReverseShellRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRulesPaginated(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ReverseShellRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeReverseShellRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRulesPaginated(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReverseShellRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReverseShellRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRulesPaginator(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReverseShellRulesRequest, DescribeReverseShellRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReverseShellRulesRequest, DescribeReverseShellRulesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeReverseShellRulesRequest, DescribeReverseShellRulesResponse>.ResultSequence(input: input, region: region, command: self.describeReverseShellRules, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeReverseShellRulesRequest, DescribeReverseShellRulesResponse>.ResponseSequence(input: input, region: region, command: self.describeReverseShellRules, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

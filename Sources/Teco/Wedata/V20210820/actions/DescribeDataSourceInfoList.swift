@@ -131,4 +131,30 @@ extension Wedata {
         let input = DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName)
         return try await self.client.execute(action: "DescribeDataSourceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取数据源信息
+    ///
+    /// 获取数据源信息-数据源分页列表
+    @inlinable
+    public func describeDataSourceInfoListPaginated(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DatasourceBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据源信息
+    ///
+    /// 获取数据源信息-数据源分页列表
+    @inlinable
+    public func describeDataSourceInfoListPaginated(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDataSourceInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDataSourceInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据源信息
+    ///
+    /// 获取数据源信息-数据源分页列表
+    @inlinable
+    public func describeDataSourceInfoListPaginator(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

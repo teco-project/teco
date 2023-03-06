@@ -104,4 +104,24 @@ extension Ssa {
         let input = DescribeSocCheckItemListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex)
         return try await self.client.execute(action: "DescribeSocCheckItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemListPaginated(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SocCheckItemV1])> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemListPaginated(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocCheckItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckItemList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemListPaginator(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResultSequence(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSocCheckItemListRequest, DescribeSocCheckItemListResponse>.ResponseSequence(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

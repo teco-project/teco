@@ -117,4 +117,24 @@ extension Emr {
         let input = DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters)
         return try await self.client.execute(action: "DescribeInstancesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群列表
+    @inlinable
+    public func describeInstancesListPaginated(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EmrListInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    @inlinable
+    public func describeInstancesListPaginated(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    @inlinable
+    public func describeInstancesListPaginator(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResultSequence(input: input, region: region, command: self.describeInstancesList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResponseSequence(input: input, region: region, command: self.describeInstancesList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

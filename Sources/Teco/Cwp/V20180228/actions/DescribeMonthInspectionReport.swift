@@ -105,4 +105,30 @@ extension Cwp {
         let input = DescribeMonthInspectionReportRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReportPaginated(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MonthInspectionReport])> {
+        self.client.paginate(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReportPaginated(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMonthInspectionReportResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMonthInspectionReport, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReportPaginator(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResultSequence(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResponseSequence(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

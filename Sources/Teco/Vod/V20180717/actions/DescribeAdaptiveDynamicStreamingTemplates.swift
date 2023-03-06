@@ -122,4 +122,30 @@ extension Vod {
         let input = DescribeAdaptiveDynamicStreamingTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplatesPaginated(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AdaptiveDynamicStreamingTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplatesPaginated(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAdaptiveDynamicStreamingTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplatesPaginator(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResultSequence(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAdaptiveDynamicStreamingTemplatesRequest, DescribeAdaptiveDynamicStreamingTemplatesResponse>.ResponseSequence(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

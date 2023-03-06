@@ -98,4 +98,24 @@ extension Tcr {
         let input = DescribeNamespacePersonalRequest(namespace: namespace, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonalPaginated(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [NamespaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
+    }
+
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonalPaginated(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNamespacePersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespacePersonal, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonalPaginator(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResultSequence(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResponseSequence(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -135,4 +135,30 @@ extension Tke {
         let input = CheckInstancesUpgradeAbleRequest(clusterId: clusterId, instanceIds: instanceIds, upgradeType: upgradeType, offset: offset, limit: limit, filter: filter)
         return try await self.client.execute(action: "CheckInstancesUpgradeAble", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 节点是否可升级
+    ///
+    /// 检查给定节点列表中哪些是可升级的
+    @inlinable
+    public func checkInstancesUpgradeAblePaginated(_ input: CheckInstancesUpgradeAbleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UpgradeAbleInstancesItem])> {
+        self.client.paginate(input: input, region: region, command: self.checkInstancesUpgradeAble, logger: logger, on: eventLoop)
+    }
+
+    /// 节点是否可升级
+    ///
+    /// 检查给定节点列表中哪些是可升级的
+    @inlinable
+    public func checkInstancesUpgradeAblePaginated(_ input: CheckInstancesUpgradeAbleRequest, region: TCRegion? = nil, onResponse: @escaping (CheckInstancesUpgradeAbleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.checkInstancesUpgradeAble, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 节点是否可升级
+    ///
+    /// 检查给定节点列表中哪些是可升级的
+    @inlinable
+    public func checkInstancesUpgradeAblePaginator(_ input: CheckInstancesUpgradeAbleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<CheckInstancesUpgradeAbleRequest, CheckInstancesUpgradeAbleResponse>.ResultSequence, responses: TCClient.Paginator<CheckInstancesUpgradeAbleRequest, CheckInstancesUpgradeAbleResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<CheckInstancesUpgradeAbleRequest, CheckInstancesUpgradeAbleResponse>.ResultSequence(input: input, region: region, command: self.checkInstancesUpgradeAble, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<CheckInstancesUpgradeAbleRequest, CheckInstancesUpgradeAbleResponse>.ResponseSequence(input: input, region: region, command: self.checkInstancesUpgradeAble, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -124,4 +124,24 @@ extension Ecm {
         let input = DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取模块列表
+    @inlinable
+    public func describeModulePaginated(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ModuleItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模块列表
+    @inlinable
+    public func describeModulePaginated(_ input: DescribeModuleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModuleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModule, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模块列表
+    @inlinable
+    public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResultSequence(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResponseSequence(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

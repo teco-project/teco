@@ -116,4 +116,24 @@ extension Iotexplorer {
         let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取网关绑定的子设备列表
+    @inlinable
+    public func describeGatewayBindDevicesPaginated(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BindDeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关绑定的子设备列表
+    @inlinable
+    public func describeGatewayBindDevicesPaginated(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayBindDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayBindDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关绑定的子设备列表
+    @inlinable
+    public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResultSequence(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResponseSequence(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

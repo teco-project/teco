@@ -115,4 +115,30 @@ extension Bmvpc {
         let input = DescribeSubnetByDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSubnetByDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询物理机加入的子网列表
+    ///
+    /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
+    @inlinable
+    public func describeSubnetByDevicePaginated(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SubnetInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubnetByDevice, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理机加入的子网列表
+    ///
+    /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
+    @inlinable
+    public func describeSubnetByDevicePaginated(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubnetByDeviceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubnetByDevice, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理机加入的子网列表
+    ///
+    /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
+    @inlinable
+    public func describeSubnetByDevicePaginator(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResultSequence(input: input, region: region, command: self.describeSubnetByDevice, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResponseSequence(input: input, region: region, command: self.describeSubnetByDevice, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

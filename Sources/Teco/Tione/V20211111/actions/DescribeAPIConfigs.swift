@@ -115,4 +115,24 @@ extension Tione {
         let input = DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters)
         return try await self.client.execute(action: "DescribeAPIConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigsPaginated(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [APIConfigDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigsPaginated(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAPIConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigsPaginator(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResultSequence(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResponseSequence(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListPortAclListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListPortAclList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclListPaginated(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AclConfigRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListPortAclList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclListPaginated(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListPortAclListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListPortAclList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclListPaginator(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResultSequence(input: input, region: region, command: self.describeListPortAclList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResponseSequence(input: input, region: region, command: self.describeListPortAclList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

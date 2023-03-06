@@ -115,4 +115,30 @@ extension Cme {
         let input = DescribeAccountsRequest(platform: platform, phone: phone, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取账号信息
+    ///
+    /// 获取平台中所有的已注册账号。
+    @inlinable
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccountInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取账号信息
+    ///
+    /// 获取平台中所有的已注册账号。
+    @inlinable
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取账号信息
+    ///
+    /// 获取平台中所有的已注册账号。
+    @inlinable
+    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResultSequence(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResponseSequence(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

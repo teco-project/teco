@@ -110,4 +110,30 @@ extension Lighthouse {
         let input = DescribeInstancesReturnableRequest(instanceIds: instanceIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeInstancesReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例是否可退还
+    ///
+    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
+    @inlinable
+    public func describeInstancesReturnablePaginated(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceReturnable])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesReturnable, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例是否可退还
+    ///
+    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
+    @inlinable
+    public func describeInstancesReturnablePaginated(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesReturnableResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesReturnable, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例是否可退还
+    ///
+    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
+    @inlinable
+    public func describeInstancesReturnablePaginator(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesReturnableRequest, DescribeInstancesReturnableResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesReturnableRequest, DescribeInstancesReturnableResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstancesReturnableRequest, DescribeInstancesReturnableResponse>.ResultSequence(input: input, region: region, command: self.describeInstancesReturnable, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstancesReturnableRequest, DescribeInstancesReturnableResponse>.ResponseSequence(input: input, region: region, command: self.describeInstancesReturnable, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

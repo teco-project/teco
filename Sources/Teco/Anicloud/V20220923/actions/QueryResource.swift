@@ -104,4 +104,24 @@ extension Anicloud {
         let input = QueryResourceRequest(type: type, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "QueryResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询购买资源
+    @inlinable
+    public func queryResourcePaginated(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Resource])> {
+        self.client.paginate(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
+    }
+
+    /// 查询购买资源
+    @inlinable
+    public func queryResourcePaginated(_ input: QueryResourceRequest, region: TCRegion? = nil, onResponse: @escaping (QueryResourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryResource, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询购买资源
+    @inlinable
+    public func queryResourcePaginator(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResultSequence, responses: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResultSequence(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResponseSequence(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

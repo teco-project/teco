@@ -118,4 +118,24 @@ extension Cloudhsm {
         let input = DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType)
         return try await self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsmsPaginated(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsmsPaginated(_ input: DescribeVsmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVsmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVsms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsmsPaginator(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResultSequence(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVsmsRequest, DescribeVsmsResponse>.ResponseSequence(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

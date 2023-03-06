@@ -167,4 +167,30 @@ extension Vpc {
         let input = DescribeFlowLogsRequest(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion)
         return try await self.client.execute(action: "DescribeFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询流日志集合
+    ///
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    @inlinable
+    public func describeFlowLogsPaginated(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FlowLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询流日志集合
+    ///
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    @inlinable
+    public func describeFlowLogsPaginated(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询流日志集合
+    ///
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    @inlinable
+    public func describeFlowLogsPaginator(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResultSequence(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResponseSequence(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

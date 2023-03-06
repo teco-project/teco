@@ -117,4 +117,24 @@ extension Tcaplusdb {
         let input = DescribeTablesRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, selectedTables: selectedTables, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询表详情
+    @inlinable
+    public func describeTablesPaginated(_ input: DescribeTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TableInfoNew])> {
+        self.client.paginate(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
+    }
+
+    /// 查询表详情
+    @inlinable
+    public func describeTablesPaginated(_ input: DescribeTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTables, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询表详情
+    @inlinable
+    public func describeTablesPaginator(_ input: DescribeTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResultSequence(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeTablesRequest, DescribeTablesResponse>.ResponseSequence(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -115,4 +115,30 @@ extension Cvm {
         let input = DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDisasterRecoverGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroupsPaginated(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DisasterRecoverGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeDisasterRecoverGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroupsPaginated(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDisasterRecoverGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDisasterRecoverGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroupsPaginator(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisasterRecoverGroupsRequest, DescribeDisasterRecoverGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisasterRecoverGroupsRequest, DescribeDisasterRecoverGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDisasterRecoverGroupsRequest, DescribeDisasterRecoverGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeDisasterRecoverGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDisasterRecoverGroupsRequest, DescribeDisasterRecoverGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeDisasterRecoverGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

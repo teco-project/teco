@@ -116,4 +116,30 @@ extension Cdb {
         let input = DescribeDeployGroupListRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeDeployGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询置放群组列表
+    ///
+    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
+    @inlinable
+    public func describeDeployGroupListPaginated(_ input: DescribeDeployGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DeployGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeployGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询置放群组列表
+    ///
+    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
+    @inlinable
+    public func describeDeployGroupListPaginated(_ input: DescribeDeployGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeployGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeployGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询置放群组列表
+    ///
+    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
+    @inlinable
+    public func describeDeployGroupListPaginator(_ input: DescribeDeployGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeployGroupListRequest, DescribeDeployGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeployGroupListRequest, DescribeDeployGroupListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeDeployGroupListRequest, DescribeDeployGroupListResponse>.ResultSequence(input: input, region: region, command: self.describeDeployGroupList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeDeployGroupListRequest, DescribeDeployGroupListResponse>.ResponseSequence(input: input, region: region, command: self.describeDeployGroupList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

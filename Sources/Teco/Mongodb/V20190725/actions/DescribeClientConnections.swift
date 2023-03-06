@@ -110,4 +110,30 @@ extension Mongodb {
         let input = DescribeClientConnectionsRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeClientConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。
+    @inlinable
+    public func describeClientConnectionsPaginated(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClientConnection])> {
+        self.client.paginate(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。
+    @inlinable
+    public func describeClientConnectionsPaginated(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClientConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClientConnections, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。
+    @inlinable
+    public func describeClientConnectionsPaginator(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResultSequence(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResponseSequence(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

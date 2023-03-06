@@ -122,4 +122,24 @@ extension Antiddos {
         let input = DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
         return try await self.client.execute(action: "DescribeCCPrecisionPlyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyListPaginated(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCPrecisionPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyListPaginated(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCPrecisionPlyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCPrecisionPlyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyListPaginator(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCPrecisionPlyListRequest, DescribeCCPrecisionPlyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCPrecisionPlyListRequest, DescribeCCPrecisionPlyListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCCPrecisionPlyListRequest, DescribeCCPrecisionPlyListResponse>.ResultSequence(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCCPrecisionPlyListRequest, DescribeCCPrecisionPlyListResponse>.ResponseSequence(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

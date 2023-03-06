@@ -97,4 +97,24 @@ extension Bma {
         let input = DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLsPaginated(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProtectURLInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLsPaginated(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBPProtectURLsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBPProtectURLs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLsPaginator(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResultSequence(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResponseSequence(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

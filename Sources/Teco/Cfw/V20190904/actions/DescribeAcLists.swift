@@ -146,4 +146,24 @@ extension Cfw {
         let input = DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId)
         return try await self.client.execute(action: "DescribeAcLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 访问控制列表
+    @inlinable
+    public func describeAcListsPaginated(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AcListsData])> {
+        self.client.paginate(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
+    }
+
+    /// 访问控制列表
+    @inlinable
+    public func describeAcListsPaginated(_ input: DescribeAcListsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAcListsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAcLists, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 访问控制列表
+    @inlinable
+    public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResultSequence(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResponseSequence(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

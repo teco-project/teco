@@ -130,4 +130,39 @@ extension As {
         let input = DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例
+    ///
+    /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
+    ///
+    /// * 可以根据实例ID、伸缩组ID等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeAutoScalingInstancesPaginated(_ input: DescribeAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Instance])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoScalingInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例
+    ///
+    /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
+    ///
+    /// * 可以根据实例ID、伸缩组ID等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeAutoScalingInstancesPaginated(_ input: DescribeAutoScalingInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoScalingInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoScalingInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例
+    ///
+    /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
+    ///
+    /// * 可以根据实例ID、伸缩组ID等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeAutoScalingInstancesPaginator(_ input: DescribeAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResponse>.ResultSequence(input: input, region: region, command: self.describeAutoScalingInstances, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResponse>.ResponseSequence(input: input, region: region, command: self.describeAutoScalingInstances, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

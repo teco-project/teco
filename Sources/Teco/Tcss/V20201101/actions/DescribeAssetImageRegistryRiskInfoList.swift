@@ -126,4 +126,24 @@ extension Tcss {
         let input = DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id)
         return try await self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoListPaginated(_ input: DescribeAssetImageRegistryRiskInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageRisk])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRegistryRiskInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoListPaginated(_ input: DescribeAssetImageRegistryRiskInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageRegistryRiskInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRegistryRiskInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoListPaginator(_ input: DescribeAssetImageRegistryRiskInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageRegistryRiskInfoListRequest, DescribeAssetImageRegistryRiskInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageRegistryRiskInfoListRequest, DescribeAssetImageRegistryRiskInfoListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeAssetImageRegistryRiskInfoListRequest, DescribeAssetImageRegistryRiskInfoListResponse>.ResultSequence(input: input, region: region, command: self.describeAssetImageRegistryRiskInfoList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeAssetImageRegistryRiskInfoListRequest, DescribeAssetImageRegistryRiskInfoListResponse>.ResponseSequence(input: input, region: region, command: self.describeAssetImageRegistryRiskInfoList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

@@ -120,4 +120,24 @@ extension Tione {
         let input = DescribeModelServiceGroupsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeModelServiceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroupsPaginated(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ServiceGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroupsPaginated(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModelServiceGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModelServiceGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroupsPaginator(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResultSequence(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeModelServiceGroupsRequest, DescribeModelServiceGroupsResponse>.ResponseSequence(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

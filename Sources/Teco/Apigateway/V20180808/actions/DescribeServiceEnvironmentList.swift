@@ -107,4 +107,30 @@ extension Apigateway {
         let input = DescribeServiceEnvironmentListRequest(serviceId: serviceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeServiceEnvironmentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务环境列表
+    ///
+    /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
+    @inlinable
+    public func describeServiceEnvironmentListPaginated(_ input: DescribeServiceEnvironmentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Environment])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceEnvironmentList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务环境列表
+    ///
+    /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
+    @inlinable
+    public func describeServiceEnvironmentListPaginated(_ input: DescribeServiceEnvironmentListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceEnvironmentListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceEnvironmentList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务环境列表
+    ///
+    /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
+    @inlinable
+    public func describeServiceEnvironmentListPaginator(_ input: DescribeServiceEnvironmentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceEnvironmentListRequest, DescribeServiceEnvironmentListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceEnvironmentListRequest, DescribeServiceEnvironmentListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeServiceEnvironmentListRequest, DescribeServiceEnvironmentListResponse>.ResultSequence(input: input, region: region, command: self.describeServiceEnvironmentList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeServiceEnvironmentListRequest, DescribeServiceEnvironmentListResponse>.ResponseSequence(input: input, region: region, command: self.describeServiceEnvironmentList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

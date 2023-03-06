@@ -126,4 +126,24 @@ extension Tcss {
         let input = DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询运行时文件查杀事件列表
+    @inlinable
+    public func describeVirusListPaginated(_ input: DescribeVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VirusInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运行时文件查杀事件列表
+    @inlinable
+    public func describeVirusListPaginated(_ input: DescribeVirusListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVirusListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运行时文件查杀事件列表
+    @inlinable
+    public func describeVirusListPaginator(_ input: DescribeVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVirusListRequest, DescribeVirusListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVirusListRequest, DescribeVirusListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeVirusListRequest, DescribeVirusListResponse>.ResultSequence(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeVirusListRequest, DescribeVirusListResponse>.ResponseSequence(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

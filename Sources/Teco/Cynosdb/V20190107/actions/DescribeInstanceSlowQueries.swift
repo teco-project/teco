@@ -145,4 +145,30 @@ extension Cynosdb {
         let input = DescribeInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeInstanceSlowQueries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例慢查询日志
+    ///
+    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+    @inlinable
+    public func describeInstanceSlowQueriesPaginated(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowQueriesItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceSlowQueries, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢查询日志
+    ///
+    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+    @inlinable
+    public func describeInstanceSlowQueriesPaginated(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceSlowQueriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceSlowQueries, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢查询日志
+    ///
+    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+    @inlinable
+    public func describeInstanceSlowQueriesPaginator(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResultSequence(input: input, region: region, command: self.describeInstanceSlowQueries, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResponseSequence(input: input, region: region, command: self.describeInstanceSlowQueries, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

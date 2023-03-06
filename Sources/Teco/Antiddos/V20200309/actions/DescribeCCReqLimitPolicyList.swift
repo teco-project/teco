@@ -122,4 +122,24 @@ extension Antiddos {
         let input = DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
         return try await self.client.execute(action: "DescribeCCReqLimitPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC频率限制策略列表
+    @inlinable
+    public func describeCCReqLimitPolicyListPaginated(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCReqLimitPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC频率限制策略列表
+    @inlinable
+    public func describeCCReqLimitPolicyListPaginated(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCReqLimitPolicyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCReqLimitPolicyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC频率限制策略列表
+    @inlinable
+    public func describeCCReqLimitPolicyListPaginator(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResultSequence(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResponseSequence(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

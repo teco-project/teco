@@ -142,4 +142,24 @@ extension Wedata {
         let input = DescribeInLongTkeClusterListRequest(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeInLongTkeClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterListPaginated(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InLongTkeDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterListPaginated(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInLongTkeClusterListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongTkeClusterList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterListPaginator(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResultSequence(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResponseSequence(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }

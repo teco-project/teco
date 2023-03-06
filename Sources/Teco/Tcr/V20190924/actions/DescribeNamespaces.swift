@@ -130,4 +130,30 @@ extension Tcr {
         let input = DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy)
         return try await self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询命名空间信息
+    ///
+    /// 查询命名空间列表或指定命名空间信息
+    @inlinable
+    public func describeNamespacesPaginated(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TcrNamespaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+    }
+
+    /// 查询命名空间信息
+    ///
+    /// 查询命名空间列表或指定命名空间信息
+    @inlinable
+    public func describeNamespacesPaginated(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNamespaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询命名空间信息
+    ///
+    /// 查询命名空间列表或指定命名空间信息
+    @inlinable
+    public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResponseSequence) {
+        let results = TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResultSequence(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+        let responses = TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResponseSequence(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
+        return (results, responses)
+    }
 }
