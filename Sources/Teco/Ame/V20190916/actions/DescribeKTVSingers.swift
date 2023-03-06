@@ -62,7 +62,7 @@ extension Ame {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeKTVSingersResponse) -> DescribeKTVSingersRequest? {
+        public func makeNextRequest(with response: DescribeKTVSingersResponse) -> DescribeKTVSingersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

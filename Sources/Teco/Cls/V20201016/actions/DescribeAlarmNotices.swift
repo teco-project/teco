@@ -58,7 +58,7 @@ extension Cls {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAlarmNoticesResponse) -> DescribeAlarmNoticesRequest? {
+        public func makeNextRequest(with response: DescribeAlarmNoticesResponse) -> DescribeAlarmNoticesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

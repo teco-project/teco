@@ -46,7 +46,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetOfflineDIInstanceListResponse) -> GetOfflineDIInstanceListRequest? {
+        public func makeNextRequest(with response: GetOfflineDIInstanceListResponse) -> GetOfflineDIInstanceListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

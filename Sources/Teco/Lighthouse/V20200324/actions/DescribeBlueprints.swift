@@ -68,7 +68,7 @@ extension Lighthouse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBlueprintsResponse) -> DescribeBlueprintsRequest? {
+        public func makeNextRequest(with response: DescribeBlueprintsResponse) -> DescribeBlueprintsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

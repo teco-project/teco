@@ -42,7 +42,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProcessStatisticsResponse) -> DescribeProcessStatisticsRequest? {
+        public func makeNextRequest(with response: DescribeProcessStatisticsResponse) -> DescribeProcessStatisticsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

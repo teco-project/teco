@@ -43,7 +43,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLiveForbidStreamListResponse) -> DescribeLiveForbidStreamListRequest? {
+        public func makeNextRequest(with response: DescribeLiveForbidStreamListResponse) -> DescribeLiveForbidStreamListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

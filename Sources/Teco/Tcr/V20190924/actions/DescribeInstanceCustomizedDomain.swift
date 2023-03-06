@@ -41,7 +41,7 @@ extension Tcr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstanceCustomizedDomainResponse) -> DescribeInstanceCustomizedDomainRequest? {
+        public func makeNextRequest(with response: DescribeInstanceCustomizedDomainResponse) -> DescribeInstanceCustomizedDomainRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

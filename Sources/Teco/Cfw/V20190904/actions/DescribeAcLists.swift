@@ -76,7 +76,7 @@ extension Cfw {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAcListsResponse) -> DescribeAcListsRequest? {
+        public func makeNextRequest(with response: DescribeAcListsResponse) -> DescribeAcListsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

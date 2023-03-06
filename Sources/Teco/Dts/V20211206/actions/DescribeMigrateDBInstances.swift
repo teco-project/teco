@@ -76,7 +76,7 @@ extension Dts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMigrateDBInstancesResponse) -> DescribeMigrateDBInstancesRequest? {
+        public func makeNextRequest(with response: DescribeMigrateDBInstancesResponse) -> DescribeMigrateDBInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

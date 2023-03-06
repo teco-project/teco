@@ -54,7 +54,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAssetClusterListResponse) -> DescribeAssetClusterListRequest? {
+        public func makeNextRequest(with response: DescribeAssetClusterListResponse) -> DescribeAssetClusterListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

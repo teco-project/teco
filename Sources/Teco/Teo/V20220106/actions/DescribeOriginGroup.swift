@@ -47,7 +47,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOriginGroupResponse) -> DescribeOriginGroupRequest? {
+        public func makeNextRequest(with response: DescribeOriginGroupResponse) -> DescribeOriginGroupRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

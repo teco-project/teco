@@ -46,7 +46,7 @@ extension Eiam {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccountGroupResponse) -> DescribeAccountGroupRequest? {
+        public func makeNextRequest(with response: DescribeAccountGroupResponse) -> DescribeAccountGroupRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

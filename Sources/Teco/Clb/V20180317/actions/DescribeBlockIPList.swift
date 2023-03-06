@@ -41,7 +41,7 @@ extension Clb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBlockIPListResponse) -> DescribeBlockIPListRequest? {
+        public func makeNextRequest(with response: DescribeBlockIPListResponse) -> DescribeBlockIPListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

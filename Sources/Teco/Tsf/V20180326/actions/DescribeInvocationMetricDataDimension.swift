@@ -61,7 +61,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInvocationMetricDataDimensionResponse) -> DescribeInvocationMetricDataDimensionRequest? {
+        public func makeNextRequest(with response: DescribeInvocationMetricDataDimensionResponse) -> DescribeInvocationMetricDataDimensionRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Iotexplorer {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSpaceFenceEventListResponse) -> DescribeSpaceFenceEventListRequest? {
+        public func makeNextRequest(with response: DescribeSpaceFenceEventListResponse) -> DescribeSpaceFenceEventListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

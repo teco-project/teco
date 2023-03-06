@@ -74,7 +74,7 @@ extension Ssa {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSafetyEventListResponse) -> DescribeSafetyEventListRequest? {
+        public func makeNextRequest(with response: DescribeSafetyEventListResponse) -> DescribeSafetyEventListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

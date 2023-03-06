@@ -71,7 +71,7 @@ extension Apm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeServiceOverviewResponse) -> DescribeServiceOverviewRequest? {
+        public func makeNextRequest(with response: DescribeServiceOverviewResponse) -> DescribeServiceOverviewRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

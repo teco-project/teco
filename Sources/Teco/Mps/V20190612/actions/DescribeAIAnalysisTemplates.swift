@@ -48,7 +48,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAIAnalysisTemplatesResponse) -> DescribeAIAnalysisTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeAIAnalysisTemplatesResponse) -> DescribeAIAnalysisTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

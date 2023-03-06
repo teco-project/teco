@@ -49,7 +49,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWorkflowsResponse) -> DescribeWorkflowsRequest? {
+        public func makeNextRequest(with response: DescribeWorkflowsResponse) -> DescribeWorkflowsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Iotexplorer {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetLoRaGatewayListResponse) -> GetLoRaGatewayListRequest? {
+        public func makeNextRequest(with response: GetLoRaGatewayListResponse) -> GetLoRaGatewayListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

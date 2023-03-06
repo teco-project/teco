@@ -66,7 +66,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEKSContainerInstancesResponse) -> DescribeEKSContainerInstancesRequest? {
+        public func makeNextRequest(with response: DescribeEKSContainerInstancesResponse) -> DescribeEKSContainerInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

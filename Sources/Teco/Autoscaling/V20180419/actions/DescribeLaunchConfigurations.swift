@@ -54,7 +54,7 @@ extension As {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLaunchConfigurationsResponse) -> DescribeLaunchConfigurationsRequest? {
+        public func makeNextRequest(with response: DescribeLaunchConfigurationsResponse) -> DescribeLaunchConfigurationsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

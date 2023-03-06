@@ -51,7 +51,7 @@ extension Scf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListNamespacesResponse) -> ListNamespacesRequest? {
+        public func makeNextRequest(with response: ListNamespacesResponse) -> ListNamespacesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

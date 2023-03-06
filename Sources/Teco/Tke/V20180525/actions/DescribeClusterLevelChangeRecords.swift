@@ -51,7 +51,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeClusterLevelChangeRecordsResponse) -> DescribeClusterLevelChangeRecordsRequest? {
+        public func makeNextRequest(with response: DescribeClusterLevelChangeRecordsResponse) -> DescribeClusterLevelChangeRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

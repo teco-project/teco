@@ -71,7 +71,7 @@ extension Cls {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLogsetsResponse) -> DescribeLogsetsRequest? {
+        public func makeNextRequest(with response: DescribeLogsetsResponse) -> DescribeLogsetsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

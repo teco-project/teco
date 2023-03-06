@@ -74,7 +74,7 @@ extension Eis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListRuntimeDeployedInstancesMCResponse) -> ListRuntimeDeployedInstancesMCRequest? {
+        public func makeNextRequest(with response: ListRuntimeDeployedInstancesMCResponse) -> ListRuntimeDeployedInstancesMCRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

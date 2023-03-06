@@ -213,7 +213,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SearchMediaResponse) -> SearchMediaRequest? {
+        public func makeNextRequest(with response: SearchMediaResponse) -> SearchMediaRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

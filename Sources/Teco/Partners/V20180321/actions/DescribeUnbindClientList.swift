@@ -69,7 +69,7 @@ extension Partners {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUnbindClientListResponse) -> DescribeUnbindClientListRequest? {
+        public func makeNextRequest(with response: DescribeUnbindClientListResponse) -> DescribeUnbindClientListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

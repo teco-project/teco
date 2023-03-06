@@ -42,7 +42,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeReverseShellRulesResponse) -> DescribeReverseShellRulesRequest? {
+        public func makeNextRequest(with response: DescribeReverseShellRulesResponse) -> DescribeReverseShellRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

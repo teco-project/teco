@@ -51,7 +51,7 @@ extension Tcaplusdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTableGroupsResponse) -> DescribeTableGroupsRequest? {
+        public func makeNextRequest(with response: DescribeTableGroupsResponse) -> DescribeTableGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

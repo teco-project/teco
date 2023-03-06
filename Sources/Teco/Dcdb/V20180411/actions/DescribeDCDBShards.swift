@@ -56,7 +56,7 @@ extension Dcdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDCDBShardsResponse) -> DescribeDCDBShardsRequest? {
+        public func makeNextRequest(with response: DescribeDCDBShardsResponse) -> DescribeDCDBShardsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

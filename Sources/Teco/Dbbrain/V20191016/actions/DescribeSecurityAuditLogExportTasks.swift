@@ -51,7 +51,7 @@ extension Dbbrain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSecurityAuditLogExportTasksResponse) -> DescribeSecurityAuditLogExportTasksRequest? {
+        public func makeNextRequest(with response: DescribeSecurityAuditLogExportTasksResponse) -> DescribeSecurityAuditLogExportTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

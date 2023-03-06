@@ -51,7 +51,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeReverseShellEventsResponse) -> DescribeReverseShellEventsRequest? {
+        public func makeNextRequest(with response: DescribeReverseShellEventsResponse) -> DescribeReverseShellEventsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

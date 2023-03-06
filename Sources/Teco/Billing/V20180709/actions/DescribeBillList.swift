@@ -84,7 +84,7 @@ extension Billing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBillListResponse) -> DescribeBillListRequest? {
+        public func makeNextRequest(with response: DescribeBillListResponse) -> DescribeBillListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

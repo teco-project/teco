@@ -51,7 +51,7 @@ extension Privatedns {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAuditLogResponse) -> DescribeAuditLogRequest? {
+        public func makeNextRequest(with response: DescribeAuditLogResponse) -> DescribeAuditLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -56,7 +56,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImageRepositoryResponse) -> DescribeImageRepositoryRequest? {
+        public func makeNextRequest(with response: DescribeImageRepositoryResponse) -> DescribeImageRepositoryRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Batch {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTaskLogsResponse) -> DescribeTaskLogsRequest? {
+        public func makeNextRequest(with response: DescribeTaskLogsResponse) -> DescribeTaskLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

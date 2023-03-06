@@ -36,7 +36,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSecurityDynamicsResponse) -> DescribeSecurityDynamicsRequest? {
+        public func makeNextRequest(with response: DescribeSecurityDynamicsResponse) -> DescribeSecurityDynamicsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

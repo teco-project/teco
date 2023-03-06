@@ -56,7 +56,7 @@ extension Sqlserver {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBackupFilesResponse) -> DescribeBackupFilesRequest? {
+        public func makeNextRequest(with response: DescribeBackupFilesResponse) -> DescribeBackupFilesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

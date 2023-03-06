@@ -51,7 +51,7 @@ extension Dbbrain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSqlFiltersResponse) -> DescribeSqlFiltersRequest? {
+        public func makeNextRequest(with response: DescribeSqlFiltersResponse) -> DescribeSqlFiltersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -56,7 +56,7 @@ extension Eiam {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListUsersResponse) -> ListUsersRequest? {
+        public func makeNextRequest(with response: ListUsersResponse) -> ListUsersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

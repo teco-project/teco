@@ -46,7 +46,7 @@ extension Bm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUserCmdTasksResponse) -> DescribeUserCmdTasksRequest? {
+        public func makeNextRequest(with response: DescribeUserCmdTasksResponse) -> DescribeUserCmdTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -46,7 +46,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTemplateHistoryResponse) -> DescribeTemplateHistoryRequest? {
+        public func makeNextRequest(with response: DescribeTemplateHistoryResponse) -> DescribeTemplateHistoryRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

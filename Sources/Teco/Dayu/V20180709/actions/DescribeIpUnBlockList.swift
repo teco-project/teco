@@ -64,7 +64,7 @@ extension Dayu {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeIpUnBlockListResponse) -> DescribeIpUnBlockListRequest? {
+        public func makeNextRequest(with response: DescribeIpUnBlockListResponse) -> DescribeIpUnBlockListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

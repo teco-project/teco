@@ -46,7 +46,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePodInstancesResponse) -> DescribePodInstancesRequest? {
+        public func makeNextRequest(with response: DescribePodInstancesResponse) -> DescribePodInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

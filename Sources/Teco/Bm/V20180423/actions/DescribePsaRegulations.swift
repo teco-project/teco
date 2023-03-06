@@ -61,7 +61,7 @@ extension Bm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePsaRegulationsResponse) -> DescribePsaRegulationsRequest? {
+        public func makeNextRequest(with response: DescribePsaRegulationsResponse) -> DescribePsaRegulationsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -46,7 +46,7 @@ extension Cloudhsm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSubnetResponse) -> DescribeSubnetRequest? {
+        public func makeNextRequest(with response: DescribeSubnetResponse) -> DescribeSubnetRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

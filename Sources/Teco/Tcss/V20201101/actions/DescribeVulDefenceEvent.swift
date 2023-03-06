@@ -65,7 +65,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVulDefenceEventResponse) -> DescribeVulDefenceEventRequest? {
+        public func makeNextRequest(with response: DescribeVulDefenceEventResponse) -> DescribeVulDefenceEventRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

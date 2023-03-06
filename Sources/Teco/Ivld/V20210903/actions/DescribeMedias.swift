@@ -46,7 +46,7 @@ extension Ivld {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMediasResponse) -> DescribeMediasRequest? {
+        public func makeNextRequest(with response: DescribeMediasResponse) -> DescribeMediasRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

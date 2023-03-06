@@ -51,7 +51,7 @@ extension Cms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFileSampleResponse) -> DescribeFileSampleRequest? {
+        public func makeNextRequest(with response: DescribeFileSampleResponse) -> DescribeFileSampleRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

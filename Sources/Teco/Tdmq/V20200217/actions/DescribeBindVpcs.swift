@@ -41,7 +41,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBindVpcsResponse) -> DescribeBindVpcsRequest? {
+        public func makeNextRequest(with response: DescribeBindVpcsResponse) -> DescribeBindVpcsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

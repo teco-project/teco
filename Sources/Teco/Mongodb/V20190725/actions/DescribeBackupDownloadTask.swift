@@ -71,7 +71,7 @@ extension Mongodb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBackupDownloadTaskResponse) -> DescribeBackupDownloadTaskRequest? {
+        public func makeNextRequest(with response: DescribeBackupDownloadTaskResponse) -> DescribeBackupDownloadTaskRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

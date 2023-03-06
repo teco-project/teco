@@ -66,7 +66,7 @@ extension Bmlb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTrafficMirrorsResponse) -> DescribeTrafficMirrorsRequest? {
+        public func makeNextRequest(with response: DescribeTrafficMirrorsResponse) -> DescribeTrafficMirrorsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

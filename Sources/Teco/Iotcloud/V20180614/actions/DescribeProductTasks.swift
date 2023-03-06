@@ -41,7 +41,7 @@ extension Iotcloud {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProductTasksResponse) -> DescribeProductTasksRequest? {
+        public func makeNextRequest(with response: DescribeProductTasksResponse) -> DescribeProductTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

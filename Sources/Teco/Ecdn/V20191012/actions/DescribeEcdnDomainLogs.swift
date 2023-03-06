@@ -59,7 +59,7 @@ extension Ecdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEcdnDomainLogsResponse) -> DescribeEcdnDomainLogsRequest? {
+        public func makeNextRequest(with response: DescribeEcdnDomainLogsResponse) -> DescribeEcdnDomainLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

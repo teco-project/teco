@@ -66,7 +66,7 @@ extension Ic {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSmsResponse) -> DescribeSmsRequest? {
+        public func makeNextRequest(with response: DescribeSmsResponse) -> DescribeSmsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

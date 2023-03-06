@@ -46,7 +46,7 @@ extension Tcr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeApplicationTriggerPersonalResponse) -> DescribeApplicationTriggerPersonalRequest? {
+        public func makeNextRequest(with response: DescribeApplicationTriggerPersonalResponse) -> DescribeApplicationTriggerPersonalRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

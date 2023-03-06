@@ -51,7 +51,7 @@ extension Ckafka {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: FetchMessageListByOffsetResponse) -> FetchMessageListByOffsetRequest? {
+        public func makeNextRequest(with response: FetchMessageListByOffsetResponse) -> FetchMessageListByOffsetRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

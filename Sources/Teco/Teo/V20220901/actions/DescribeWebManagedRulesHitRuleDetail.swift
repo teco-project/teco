@@ -86,7 +86,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWebManagedRulesHitRuleDetailResponse) -> DescribeWebManagedRulesHitRuleDetailRequest? {
+        public func makeNextRequest(with response: DescribeWebManagedRulesHitRuleDetailResponse) -> DescribeWebManagedRulesHitRuleDetailRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

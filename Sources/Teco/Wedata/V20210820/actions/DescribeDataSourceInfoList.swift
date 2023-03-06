@@ -61,7 +61,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDataSourceInfoListResponse) -> DescribeDataSourceInfoListRequest? {
+        public func makeNextRequest(with response: DescribeDataSourceInfoListResponse) -> DescribeDataSourceInfoListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

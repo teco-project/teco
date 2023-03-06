@@ -54,7 +54,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLiveDomainCertBindingsResponse) -> DescribeLiveDomainCertBindingsRequest? {
+        public func makeNextRequest(with response: DescribeLiveDomainCertBindingsResponse) -> DescribeLiveDomainCertBindingsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

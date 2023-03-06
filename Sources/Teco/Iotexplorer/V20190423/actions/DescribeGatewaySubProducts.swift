@@ -51,7 +51,7 @@ extension Iotexplorer {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGatewaySubProductsResponse) -> DescribeGatewaySubProductsRequest? {
+        public func makeNextRequest(with response: DescribeGatewaySubProductsResponse) -> DescribeGatewaySubProductsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

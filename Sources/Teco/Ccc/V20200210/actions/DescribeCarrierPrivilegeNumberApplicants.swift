@@ -46,7 +46,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCarrierPrivilegeNumberApplicantsResponse) -> DescribeCarrierPrivilegeNumberApplicantsRequest? {
+        public func makeNextRequest(with response: DescribeCarrierPrivilegeNumberApplicantsResponse) -> DescribeCarrierPrivilegeNumberApplicantsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

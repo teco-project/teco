@@ -84,7 +84,7 @@ extension Partners {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAgentDealsByCacheResponse) -> DescribeAgentDealsByCacheRequest? {
+        public func makeNextRequest(with response: DescribeAgentDealsByCacheResponse) -> DescribeAgentDealsByCacheRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

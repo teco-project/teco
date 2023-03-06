@@ -46,7 +46,7 @@ extension Privatedns {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccountVpcListResponse) -> DescribeAccountVpcListRequest? {
+        public func makeNextRequest(with response: DescribeAccountVpcListResponse) -> DescribeAccountVpcListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

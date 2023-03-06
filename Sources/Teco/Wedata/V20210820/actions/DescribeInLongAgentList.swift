@@ -76,7 +76,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInLongAgentListResponse) -> DescribeInLongAgentListRequest? {
+        public func makeNextRequest(with response: DescribeInLongAgentListResponse) -> DescribeInLongAgentListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

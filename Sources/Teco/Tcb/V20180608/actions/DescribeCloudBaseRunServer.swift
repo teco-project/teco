@@ -51,7 +51,7 @@ extension Tcb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCloudBaseRunServerResponse) -> DescribeCloudBaseRunServerRequest? {
+        public func makeNextRequest(with response: DescribeCloudBaseRunServerResponse) -> DescribeCloudBaseRunServerRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Thpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeClusterActivitiesResponse) -> DescribeClusterActivitiesRequest? {
+        public func makeNextRequest(with response: DescribeClusterActivitiesResponse) -> DescribeClusterActivitiesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

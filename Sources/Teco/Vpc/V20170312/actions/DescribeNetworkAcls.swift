@@ -49,7 +49,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNetworkAclsResponse) -> DescribeNetworkAclsRequest? {
+        public func makeNextRequest(with response: DescribeNetworkAclsResponse) -> DescribeNetworkAclsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

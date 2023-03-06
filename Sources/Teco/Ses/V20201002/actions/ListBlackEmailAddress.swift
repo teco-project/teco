@@ -64,7 +64,7 @@ extension Ses {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListBlackEmailAddressResponse) -> ListBlackEmailAddressRequest? {
+        public func makeNextRequest(with response: ListBlackEmailAddressResponse) -> ListBlackEmailAddressRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

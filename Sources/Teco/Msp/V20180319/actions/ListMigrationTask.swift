@@ -41,7 +41,7 @@ extension Msp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListMigrationTaskResponse) -> ListMigrationTaskRequest? {
+        public func makeNextRequest(with response: ListMigrationTaskResponse) -> ListMigrationTaskRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

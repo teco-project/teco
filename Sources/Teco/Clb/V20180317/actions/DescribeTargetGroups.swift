@@ -46,7 +46,7 @@ extension Clb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTargetGroupsResponse) -> DescribeTargetGroupsRequest? {
+        public func makeNextRequest(with response: DescribeTargetGroupsResponse) -> DescribeTargetGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

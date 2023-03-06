@@ -41,7 +41,7 @@ extension Tci {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImageTaskResponse) -> DescribeImageTaskRequest? {
+        public func makeNextRequest(with response: DescribeImageTaskResponse) -> DescribeImageTaskRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

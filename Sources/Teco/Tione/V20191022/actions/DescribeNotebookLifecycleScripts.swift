@@ -50,7 +50,7 @@ extension Tione {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNotebookLifecycleScriptsResponse) -> DescribeNotebookLifecycleScriptsRequest? {
+        public func makeNextRequest(with response: DescribeNotebookLifecycleScriptsResponse) -> DescribeNotebookLifecycleScriptsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

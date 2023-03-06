@@ -68,7 +68,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeStreamLinkFlowLogsResponse) -> DescribeStreamLinkFlowLogsRequest? {
+        public func makeNextRequest(with response: DescribeStreamLinkFlowLogsResponse) -> DescribeStreamLinkFlowLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

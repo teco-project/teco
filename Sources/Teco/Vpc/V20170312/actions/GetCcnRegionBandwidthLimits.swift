@@ -58,7 +58,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetCcnRegionBandwidthLimitsResponse) -> GetCcnRegionBandwidthLimitsRequest? {
+        public func makeNextRequest(with response: GetCcnRegionBandwidthLimitsResponse) -> GetCcnRegionBandwidthLimitsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

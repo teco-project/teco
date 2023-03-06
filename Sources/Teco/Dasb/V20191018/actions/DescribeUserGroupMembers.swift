@@ -56,7 +56,7 @@ extension Dasb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUserGroupMembersResponse) -> DescribeUserGroupMembersRequest? {
+        public func makeNextRequest(with response: DescribeUserGroupMembersResponse) -> DescribeUserGroupMembersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

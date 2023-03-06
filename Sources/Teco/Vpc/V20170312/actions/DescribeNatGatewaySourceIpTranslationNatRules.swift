@@ -49,7 +49,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNatGatewaySourceIpTranslationNatRulesResponse) -> DescribeNatGatewaySourceIpTranslationNatRulesRequest? {
+        public func makeNextRequest(with response: DescribeNatGatewaySourceIpTranslationNatRulesResponse) -> DescribeNatGatewaySourceIpTranslationNatRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

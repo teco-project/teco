@@ -74,7 +74,7 @@ extension Cdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCdnDomainLogsResponse) -> DescribeCdnDomainLogsRequest? {
+        public func makeNextRequest(with response: DescribeCdnDomainLogsResponse) -> DescribeCdnDomainLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

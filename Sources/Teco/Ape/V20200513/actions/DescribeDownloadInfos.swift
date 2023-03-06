@@ -59,7 +59,7 @@ extension Ape {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDownloadInfosResponse) -> DescribeDownloadInfosRequest? {
+        public func makeNextRequest(with response: DescribeDownloadInfosResponse) -> DescribeDownloadInfosRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -48,7 +48,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSnapshotPoliciesResponse) -> DescribeSnapshotPoliciesRequest? {
+        public func makeNextRequest(with response: DescribeSnapshotPoliciesResponse) -> DescribeSnapshotPoliciesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

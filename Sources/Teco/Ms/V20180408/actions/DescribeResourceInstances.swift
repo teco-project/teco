@@ -56,7 +56,7 @@ extension Ms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeResourceInstancesResponse) -> DescribeResourceInstancesRequest? {
+        public func makeNextRequest(with response: DescribeResourceInstancesResponse) -> DescribeResourceInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

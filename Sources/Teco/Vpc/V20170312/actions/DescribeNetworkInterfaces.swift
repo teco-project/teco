@@ -61,7 +61,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNetworkInterfacesResponse) -> DescribeNetworkInterfacesRequest? {
+        public func makeNextRequest(with response: DescribeNetworkInterfacesResponse) -> DescribeNetworkInterfacesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

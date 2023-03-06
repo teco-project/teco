@@ -56,7 +56,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBindingPolicyObjectListResponse) -> DescribeBindingPolicyObjectListRequest? {
+        public func makeNextRequest(with response: DescribeBindingPolicyObjectListResponse) -> DescribeBindingPolicyObjectListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

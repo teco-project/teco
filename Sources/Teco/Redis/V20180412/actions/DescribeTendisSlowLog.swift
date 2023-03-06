@@ -56,7 +56,7 @@ extension Redis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTendisSlowLogResponse) -> DescribeTendisSlowLogRequest? {
+        public func makeNextRequest(with response: DescribeTendisSlowLogResponse) -> DescribeTendisSlowLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

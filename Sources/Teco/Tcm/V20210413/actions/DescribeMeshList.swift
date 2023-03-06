@@ -41,7 +41,7 @@ extension Tcm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMeshListResponse) -> DescribeMeshListRequest? {
+        public func makeNextRequest(with response: DescribeMeshListResponse) -> DescribeMeshListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

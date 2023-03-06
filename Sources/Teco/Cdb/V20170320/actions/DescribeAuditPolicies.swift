@@ -62,7 +62,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAuditPoliciesResponse) -> DescribeAuditPoliciesRequest? {
+        public func makeNextRequest(with response: DescribeAuditPoliciesResponse) -> DescribeAuditPoliciesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

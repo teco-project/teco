@@ -76,7 +76,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTelCdrResponse) -> DescribeTelCdrRequest? {
+        public func makeNextRequest(with response: DescribeTelCdrResponse) -> DescribeTelCdrRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -58,7 +58,7 @@ extension Clb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCustomizedConfigListResponse) -> DescribeCustomizedConfigListRequest? {
+        public func makeNextRequest(with response: DescribeCustomizedConfigListResponse) -> DescribeCustomizedConfigListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

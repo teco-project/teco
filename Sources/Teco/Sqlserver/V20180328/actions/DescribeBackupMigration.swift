@@ -81,7 +81,7 @@ extension Sqlserver {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBackupMigrationResponse) -> DescribeBackupMigrationRequest? {
+        public func makeNextRequest(with response: DescribeBackupMigrationResponse) -> DescribeBackupMigrationRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

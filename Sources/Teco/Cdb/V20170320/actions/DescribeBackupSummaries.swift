@@ -51,7 +51,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBackupSummariesResponse) -> DescribeBackupSummariesRequest? {
+        public func makeNextRequest(with response: DescribeBackupSummariesResponse) -> DescribeBackupSummariesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

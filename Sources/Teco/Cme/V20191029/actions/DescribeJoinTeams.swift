@@ -46,7 +46,7 @@ extension Cme {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeJoinTeamsResponse) -> DescribeJoinTeamsRequest? {
+        public func makeNextRequest(with response: DescribeJoinTeamsResponse) -> DescribeJoinTeamsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

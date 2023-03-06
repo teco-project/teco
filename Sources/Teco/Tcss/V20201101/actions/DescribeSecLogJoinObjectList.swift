@@ -63,7 +63,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSecLogJoinObjectListResponse) -> DescribeSecLogJoinObjectListRequest? {
+        public func makeNextRequest(with response: DescribeSecLogJoinObjectListResponse) -> DescribeSecLogJoinObjectListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

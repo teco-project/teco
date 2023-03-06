@@ -41,7 +41,7 @@ extension Partners {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRebateInfosNewResponse) -> DescribeRebateInfosNewRequest? {
+        public func makeNextRequest(with response: DescribeRebateInfosNewResponse) -> DescribeRebateInfosNewRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

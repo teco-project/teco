@@ -51,7 +51,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLoadBalancingResponse) -> DescribeLoadBalancingRequest? {
+        public func makeNextRequest(with response: DescribeLoadBalancingResponse) -> DescribeLoadBalancingRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

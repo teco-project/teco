@@ -52,7 +52,7 @@ extension Tione {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAPIConfigsResponse) -> DescribeAPIConfigsRequest? {
+        public func makeNextRequest(with response: DescribeAPIConfigsResponse) -> DescribeAPIConfigsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

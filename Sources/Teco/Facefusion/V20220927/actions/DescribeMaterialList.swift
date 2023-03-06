@@ -46,7 +46,7 @@ extension Facefusion {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMaterialListResponse) -> DescribeMaterialListRequest? {
+        public func makeNextRequest(with response: DescribeMaterialListResponse) -> DescribeMaterialListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

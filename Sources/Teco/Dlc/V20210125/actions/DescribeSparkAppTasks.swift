@@ -61,7 +61,7 @@ extension Dlc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSparkAppTasksResponse) -> DescribeSparkAppTasksRequest? {
+        public func makeNextRequest(with response: DescribeSparkAppTasksResponse) -> DescribeSparkAppTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -48,7 +48,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAnimatedGraphicsTemplatesResponse) -> DescribeAnimatedGraphicsTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeAnimatedGraphicsTemplatesResponse) -> DescribeAnimatedGraphicsTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

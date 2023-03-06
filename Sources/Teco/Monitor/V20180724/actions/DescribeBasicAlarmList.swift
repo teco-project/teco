@@ -86,7 +86,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBasicAlarmListResponse) -> DescribeBasicAlarmListRequest? {
+        public func makeNextRequest(with response: DescribeBasicAlarmListResponse) -> DescribeBasicAlarmListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

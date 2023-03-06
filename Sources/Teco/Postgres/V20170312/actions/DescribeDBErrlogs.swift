@@ -69,7 +69,7 @@ extension Postgres {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDBErrlogsResponse) -> DescribeDBErrlogsRequest? {
+        public func makeNextRequest(with response: DescribeDBErrlogsResponse) -> DescribeDBErrlogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

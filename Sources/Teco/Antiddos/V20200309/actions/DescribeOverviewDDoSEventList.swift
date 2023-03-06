@@ -51,7 +51,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOverviewDDoSEventListResponse) -> DescribeOverviewDDoSEventListRequest? {
+        public func makeNextRequest(with response: DescribeOverviewDDoSEventListResponse) -> DescribeOverviewDDoSEventListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

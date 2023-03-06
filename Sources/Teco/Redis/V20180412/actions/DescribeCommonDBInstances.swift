@@ -91,7 +91,7 @@ extension Redis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCommonDBInstancesResponse) -> DescribeCommonDBInstancesRequest? {
+        public func makeNextRequest(with response: DescribeCommonDBInstancesResponse) -> DescribeCommonDBInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

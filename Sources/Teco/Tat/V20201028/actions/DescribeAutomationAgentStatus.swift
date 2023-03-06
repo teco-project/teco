@@ -46,7 +46,7 @@ extension Tat {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAutomationAgentStatusResponse) -> DescribeAutomationAgentStatusRequest? {
+        public func makeNextRequest(with response: DescribeAutomationAgentStatusResponse) -> DescribeAutomationAgentStatusRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

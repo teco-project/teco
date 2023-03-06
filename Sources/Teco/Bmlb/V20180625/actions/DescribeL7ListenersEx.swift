@@ -58,7 +58,7 @@ extension Bmlb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeL7ListenersExResponse) -> DescribeL7ListenersExRequest? {
+        public func makeNextRequest(with response: DescribeL7ListenersExResponse) -> DescribeL7ListenersExRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -81,7 +81,7 @@ extension Essbasic {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTemplatesResponse) -> DescribeTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeTemplatesResponse) -> DescribeTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

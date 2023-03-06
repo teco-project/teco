@@ -51,7 +51,7 @@ extension Iotvideo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOtaVersionsResponse) -> DescribeOtaVersionsRequest? {
+        public func makeNextRequest(with response: DescribeOtaVersionsResponse) -> DescribeOtaVersionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

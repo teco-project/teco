@@ -41,7 +41,7 @@ extension Tdcpg {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeClusterBackupsResponse) -> DescribeClusterBackupsRequest? {
+        public func makeNextRequest(with response: DescribeClusterBackupsResponse) -> DescribeClusterBackupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

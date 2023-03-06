@@ -77,7 +77,7 @@ extension Cynosdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstancesResponse) -> DescribeInstancesRequest? {
+        public func makeNextRequest(with response: DescribeInstancesResponse) -> DescribeInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

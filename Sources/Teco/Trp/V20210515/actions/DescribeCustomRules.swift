@@ -56,7 +56,7 @@ extension Trp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCustomRulesResponse) -> DescribeCustomRulesRequest? {
+        public func makeNextRequest(with response: DescribeCustomRulesResponse) -> DescribeCustomRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -56,7 +56,7 @@ extension Cfs {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAutoSnapshotPoliciesResponse) -> DescribeAutoSnapshotPoliciesRequest? {
+        public func makeNextRequest(with response: DescribeAutoSnapshotPoliciesResponse) -> DescribeAutoSnapshotPoliciesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

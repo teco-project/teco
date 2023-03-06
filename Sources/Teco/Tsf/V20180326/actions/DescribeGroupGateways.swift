@@ -46,7 +46,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGroupGatewaysResponse) -> DescribeGroupGatewaysRequest? {
+        public func makeNextRequest(with response: DescribeGroupGatewaysResponse) -> DescribeGroupGatewaysRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -69,7 +69,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInLongTkeClusterListResponse) -> DescribeInLongTkeClusterListRequest? {
+        public func makeNextRequest(with response: DescribeInLongTkeClusterListResponse) -> DescribeInLongTkeClusterListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

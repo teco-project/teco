@@ -41,7 +41,7 @@ extension Tem {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNamespacesResponse) -> DescribeNamespacesRequest? {
+        public func makeNextRequest(with response: DescribeNamespacesResponse) -> DescribeNamespacesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

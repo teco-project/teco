@@ -46,7 +46,7 @@ extension Tbaas {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetClusterListForUserResponse) -> GetClusterListForUserRequest? {
+        public func makeNextRequest(with response: GetClusterListForUserResponse) -> GetClusterListForUserRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

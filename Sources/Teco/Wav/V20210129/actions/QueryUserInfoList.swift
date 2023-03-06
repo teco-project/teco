@@ -36,7 +36,7 @@ extension Wav {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryUserInfoListResponse) -> QueryUserInfoListRequest? {
+        public func makeNextRequest(with response: QueryUserInfoListResponse) -> QueryUserInfoListRequest? {
             guard response.nextCursor != nil else {
                 return nil
             }

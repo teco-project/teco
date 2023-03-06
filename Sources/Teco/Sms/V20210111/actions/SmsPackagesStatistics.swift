@@ -53,7 +53,7 @@ extension Sms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SmsPackagesStatisticsResponse) -> SmsPackagesStatisticsRequest? {
+        public func makeNextRequest(with response: SmsPackagesStatisticsResponse) -> SmsPackagesStatisticsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

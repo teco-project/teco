@@ -46,7 +46,7 @@ extension Domain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePhoneEmailListResponse) -> DescribePhoneEmailListRequest? {
+        public func makeNextRequest(with response: DescribePhoneEmailListResponse) -> DescribePhoneEmailListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

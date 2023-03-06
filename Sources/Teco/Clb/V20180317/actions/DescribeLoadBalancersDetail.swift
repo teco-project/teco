@@ -61,7 +61,7 @@ extension Clb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLoadBalancersDetailResponse) -> DescribeLoadBalancersDetailRequest? {
+        public func makeNextRequest(with response: DescribeLoadBalancersDetailResponse) -> DescribeLoadBalancersDetailRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

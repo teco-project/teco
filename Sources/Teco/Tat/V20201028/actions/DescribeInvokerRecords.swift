@@ -41,7 +41,7 @@ extension Tat {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInvokerRecordsResponse) -> DescribeInvokerRecordsRequest? {
+        public func makeNextRequest(with response: DescribeInvokerRecordsResponse) -> DescribeInvokerRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

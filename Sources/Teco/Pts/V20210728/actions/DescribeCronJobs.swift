@@ -66,7 +66,7 @@ extension Pts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCronJobsResponse) -> DescribeCronJobsRequest? {
+        public func makeNextRequest(with response: DescribeCronJobsResponse) -> DescribeCronJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

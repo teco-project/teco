@@ -56,7 +56,7 @@ extension Ape {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImagesResponse) -> DescribeImagesRequest? {
+        public func makeNextRequest(with response: DescribeImagesResponse) -> DescribeImagesRequest? {
             guard response.haveMore else {
                 return nil
             }

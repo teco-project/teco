@@ -65,7 +65,7 @@ extension Yinsuda {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeKTVRobotsResponse) -> DescribeKTVRobotsRequest? {
+        public func makeNextRequest(with response: DescribeKTVRobotsResponse) -> DescribeKTVRobotsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

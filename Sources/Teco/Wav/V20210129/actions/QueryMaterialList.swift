@@ -41,7 +41,7 @@ extension Wav {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryMaterialListResponse) -> QueryMaterialListRequest? {
+        public func makeNextRequest(with response: QueryMaterialListResponse) -> QueryMaterialListRequest? {
             guard response.nextCursor != nil else {
                 return nil
             }

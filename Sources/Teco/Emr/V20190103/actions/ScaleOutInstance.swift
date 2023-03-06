@@ -167,7 +167,7 @@ extension Emr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ScaleOutInstanceResponse) -> ScaleOutInstanceRequest? {
+        public func makeNextRequest(with response: ScaleOutInstanceResponse) -> ScaleOutInstanceRequest? {
             guard response.clientToken != nil else {
                 return nil
             }

@@ -79,7 +79,7 @@ extension Dbbrain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSlowLogTopSqlsResponse) -> DescribeSlowLogTopSqlsRequest? {
+        public func makeNextRequest(with response: DescribeSlowLogTopSqlsResponse) -> DescribeSlowLogTopSqlsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

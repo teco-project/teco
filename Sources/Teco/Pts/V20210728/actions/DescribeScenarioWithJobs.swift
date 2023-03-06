@@ -91,7 +91,7 @@ extension Pts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScenarioWithJobsResponse) -> DescribeScenarioWithJobsRequest? {
+        public func makeNextRequest(with response: DescribeScenarioWithJobsResponse) -> DescribeScenarioWithJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

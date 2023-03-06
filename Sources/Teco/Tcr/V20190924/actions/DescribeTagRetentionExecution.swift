@@ -46,7 +46,7 @@ extension Tcr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTagRetentionExecutionResponse) -> DescribeTagRetentionExecutionRequest? {
+        public func makeNextRequest(with response: DescribeTagRetentionExecutionResponse) -> DescribeTagRetentionExecutionRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

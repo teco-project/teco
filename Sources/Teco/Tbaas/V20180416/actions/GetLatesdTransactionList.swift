@@ -76,7 +76,7 @@ extension Tbaas {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetLatesdTransactionListResponse) -> GetLatesdTransactionListRequest? {
+        public func makeNextRequest(with response: GetLatesdTransactionListResponse) -> GetLatesdTransactionListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

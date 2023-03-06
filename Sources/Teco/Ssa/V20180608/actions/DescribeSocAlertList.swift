@@ -56,7 +56,7 @@ extension Ssa {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSocAlertListResponse) -> DescribeSocAlertListRequest? {
+        public func makeNextRequest(with response: DescribeSocAlertListResponse) -> DescribeSocAlertListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

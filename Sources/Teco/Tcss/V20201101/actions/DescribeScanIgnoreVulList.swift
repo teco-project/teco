@@ -53,7 +53,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScanIgnoreVulListResponse) -> DescribeScanIgnoreVulListRequest? {
+        public func makeNextRequest(with response: DescribeScanIgnoreVulListResponse) -> DescribeScanIgnoreVulListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

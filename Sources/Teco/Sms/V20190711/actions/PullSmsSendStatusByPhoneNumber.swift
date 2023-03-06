@@ -58,7 +58,7 @@ extension Sms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: PullSmsSendStatusByPhoneNumberResponse) -> PullSmsSendStatusByPhoneNumberRequest? {
+        public func makeNextRequest(with response: PullSmsSendStatusByPhoneNumberResponse) -> PullSmsSendStatusByPhoneNumberRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

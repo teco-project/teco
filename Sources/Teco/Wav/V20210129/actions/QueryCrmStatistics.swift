@@ -56,7 +56,7 @@ extension Wav {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryCrmStatisticsResponse) -> QueryCrmStatisticsRequest? {
+        public func makeNextRequest(with response: QueryCrmStatisticsResponse) -> QueryCrmStatisticsRequest? {
             guard response.nextCursor != nil else {
                 return nil
             }

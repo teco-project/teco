@@ -46,7 +46,7 @@ extension Tse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCloudNativeAPIGatewayNodesResponse) -> DescribeCloudNativeAPIGatewayNodesRequest? {
+        public func makeNextRequest(with response: DescribeCloudNativeAPIGatewayNodesResponse) -> DescribeCloudNativeAPIGatewayNodesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

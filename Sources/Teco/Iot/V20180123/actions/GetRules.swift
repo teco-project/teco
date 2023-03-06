@@ -36,7 +36,7 @@ extension Iot {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetRulesResponse) -> GetRulesRequest? {
+        public func makeNextRequest(with response: GetRulesResponse) -> GetRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

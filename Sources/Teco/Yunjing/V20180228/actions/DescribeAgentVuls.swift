@@ -55,7 +55,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAgentVulsResponse) -> DescribeAgentVulsRequest? {
+        public func makeNextRequest(with response: DescribeAgentVulsResponse) -> DescribeAgentVulsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

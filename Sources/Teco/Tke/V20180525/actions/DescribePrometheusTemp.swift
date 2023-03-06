@@ -45,7 +45,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePrometheusTempResponse) -> DescribePrometheusTempRequest? {
+        public func makeNextRequest(with response: DescribePrometheusTempResponse) -> DescribePrometheusTempRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

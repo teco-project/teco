@@ -66,7 +66,7 @@ extension Smh {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOfficialInstancesResponse) -> DescribeOfficialInstancesRequest? {
+        public func makeNextRequest(with response: DescribeOfficialInstancesResponse) -> DescribeOfficialInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -47,7 +47,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAssistantCidrResponse) -> DescribeAssistantCidrRequest? {
+        public func makeNextRequest(with response: DescribeAssistantCidrResponse) -> DescribeAssistantCidrRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -58,7 +58,7 @@ extension Ecm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSnapshotsResponse) -> DescribeSnapshotsRequest? {
+        public func makeNextRequest(with response: DescribeSnapshotsResponse) -> DescribeSnapshotsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

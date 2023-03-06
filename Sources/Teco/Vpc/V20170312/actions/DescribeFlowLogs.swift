@@ -98,7 +98,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFlowLogsResponse) -> DescribeFlowLogsRequest? {
+        public func makeNextRequest(with response: DescribeFlowLogsResponse) -> DescribeFlowLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

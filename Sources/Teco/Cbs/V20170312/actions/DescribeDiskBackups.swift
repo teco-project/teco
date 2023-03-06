@@ -58,7 +58,7 @@ extension Cbs {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDiskBackupsResponse) -> DescribeDiskBackupsRequest? {
+        public func makeNextRequest(with response: DescribeDiskBackupsResponse) -> DescribeDiskBackupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -112,7 +112,7 @@ extension Tiia {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SearchImageResponse) -> SearchImageRequest? {
+        public func makeNextRequest(with response: SearchImageResponse) -> SearchImageRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

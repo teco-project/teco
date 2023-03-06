@@ -91,7 +91,7 @@ extension Solar {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCustomersResponse) -> DescribeCustomersRequest? {
+        public func makeNextRequest(with response: DescribeCustomersResponse) -> DescribeCustomersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

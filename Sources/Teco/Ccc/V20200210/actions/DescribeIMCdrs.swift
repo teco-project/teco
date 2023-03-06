@@ -61,7 +61,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeIMCdrsResponse) -> DescribeIMCdrsRequest? {
+        public func makeNextRequest(with response: DescribeIMCdrsResponse) -> DescribeIMCdrsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

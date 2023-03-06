@@ -56,7 +56,7 @@ extension Gse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePlayerSessionsResponse) -> DescribePlayerSessionsRequest? {
+        public func makeNextRequest(with response: DescribePlayerSessionsResponse) -> DescribePlayerSessionsRequest? {
             guard response.nextToken != nil else {
                 return nil
             }

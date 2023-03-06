@@ -70,7 +70,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeClientRuleListResponse) -> DescribeClientRuleListRequest? {
+        public func makeNextRequest(with response: DescribeClientRuleListResponse) -> DescribeClientRuleListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

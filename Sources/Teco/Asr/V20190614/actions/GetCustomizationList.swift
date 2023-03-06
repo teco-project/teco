@@ -41,7 +41,7 @@ extension Asr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetCustomizationListResponse) -> GetCustomizationListRequest? {
+        public func makeNextRequest(with response: GetCustomizationListResponse) -> GetCustomizationListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

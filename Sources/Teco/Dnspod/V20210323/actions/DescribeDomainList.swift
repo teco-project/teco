@@ -51,7 +51,7 @@ extension Dnspod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDomainListResponse) -> DescribeDomainListRequest? {
+        public func makeNextRequest(with response: DescribeDomainListResponse) -> DescribeDomainListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

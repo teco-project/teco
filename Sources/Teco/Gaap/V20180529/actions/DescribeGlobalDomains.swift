@@ -52,7 +52,7 @@ extension Gaap {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGlobalDomainsResponse) -> DescribeGlobalDomainsRequest? {
+        public func makeNextRequest(with response: DescribeGlobalDomainsResponse) -> DescribeGlobalDomainsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

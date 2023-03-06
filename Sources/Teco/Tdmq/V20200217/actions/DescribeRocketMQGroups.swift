@@ -76,7 +76,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRocketMQGroupsResponse) -> DescribeRocketMQGroupsRequest? {
+        public func makeNextRequest(with response: DescribeRocketMQGroupsResponse) -> DescribeRocketMQGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -71,7 +71,7 @@ extension Es {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLogstashInstancesResponse) -> DescribeLogstashInstancesRequest? {
+        public func makeNextRequest(with response: DescribeLogstashInstancesResponse) -> DescribeLogstashInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

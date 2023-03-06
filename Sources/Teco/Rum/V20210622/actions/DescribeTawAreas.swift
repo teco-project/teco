@@ -51,7 +51,7 @@ extension Rum {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTawAreasResponse) -> DescribeTawAreasRequest? {
+        public func makeNextRequest(with response: DescribeTawAreasResponse) -> DescribeTawAreasRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

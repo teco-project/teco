@@ -61,7 +61,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAMQPClustersResponse) -> DescribeAMQPClustersRequest? {
+        public func makeNextRequest(with response: DescribeAMQPClustersResponse) -> DescribeAMQPClustersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

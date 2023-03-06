@@ -53,7 +53,7 @@ extension Lighthouse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeKeyPairsResponse) -> DescribeKeyPairsRequest? {
+        public func makeNextRequest(with response: DescribeKeyPairsResponse) -> DescribeKeyPairsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Waf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccessExportsResponse) -> DescribeAccessExportsRequest? {
+        public func makeNextRequest(with response: DescribeAccessExportsResponse) -> DescribeAccessExportsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

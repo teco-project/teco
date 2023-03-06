@@ -51,7 +51,7 @@ extension Cvm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeHpcClustersResponse) -> DescribeHpcClustersRequest? {
+        public func makeNextRequest(with response: DescribeHpcClustersResponse) -> DescribeHpcClustersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

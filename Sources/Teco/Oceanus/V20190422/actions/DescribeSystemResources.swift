@@ -56,7 +56,7 @@ extension Oceanus {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSystemResourcesResponse) -> DescribeSystemResourcesRequest? {
+        public func makeNextRequest(with response: DescribeSystemResourcesResponse) -> DescribeSystemResourcesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

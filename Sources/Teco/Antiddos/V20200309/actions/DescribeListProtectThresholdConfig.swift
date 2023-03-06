@@ -56,7 +56,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeListProtectThresholdConfigResponse) -> DescribeListProtectThresholdConfigRequest? {
+        public func makeNextRequest(with response: DescribeListProtectThresholdConfigResponse) -> DescribeListProtectThresholdConfigRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

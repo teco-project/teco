@@ -61,7 +61,7 @@ extension Cvm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLaunchTemplateVersionsResponse) -> DescribeLaunchTemplateVersionsRequest? {
+        public func makeNextRequest(with response: DescribeLaunchTemplateVersionsResponse) -> DescribeLaunchTemplateVersionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFolderWorkflowListResponse) -> DescribeFolderWorkflowListRequest? {
+        public func makeNextRequest(with response: DescribeFolderWorkflowListResponse) -> DescribeFolderWorkflowListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

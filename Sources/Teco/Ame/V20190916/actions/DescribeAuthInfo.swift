@@ -41,7 +41,7 @@ extension Ame {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAuthInfoResponse) -> DescribeAuthInfoRequest? {
+        public func makeNextRequest(with response: DescribeAuthInfoResponse) -> DescribeAuthInfoRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -66,7 +66,7 @@ extension Sqlserver {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBusinessIntelligenceFileResponse) -> DescribeBusinessIntelligenceFileRequest? {
+        public func makeNextRequest(with response: DescribeBusinessIntelligenceFileResponse) -> DescribeBusinessIntelligenceFileRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

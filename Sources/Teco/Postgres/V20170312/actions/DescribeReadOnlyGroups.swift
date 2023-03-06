@@ -51,7 +51,7 @@ extension Postgres {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeReadOnlyGroupsResponse) -> DescribeReadOnlyGroupsRequest? {
+        public func makeNextRequest(with response: DescribeReadOnlyGroupsResponse) -> DescribeReadOnlyGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

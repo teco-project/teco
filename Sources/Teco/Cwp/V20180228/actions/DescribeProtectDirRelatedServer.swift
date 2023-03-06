@@ -56,7 +56,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProtectDirRelatedServerResponse) -> DescribeProtectDirRelatedServerRequest? {
+        public func makeNextRequest(with response: DescribeProtectDirRelatedServerResponse) -> DescribeProtectDirRelatedServerRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

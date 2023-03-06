@@ -64,7 +64,7 @@ extension Tem {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeApplicationPodsResponse) -> DescribeApplicationPodsRequest? {
+        public func makeNextRequest(with response: DescribeApplicationPodsResponse) -> DescribeApplicationPodsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

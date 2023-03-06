@@ -69,7 +69,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLiveTranscodeDetailInfoResponse) -> DescribeLiveTranscodeDetailInfoRequest? {
+        public func makeNextRequest(with response: DescribeLiveTranscodeDetailInfoResponse) -> DescribeLiveTranscodeDetailInfoRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

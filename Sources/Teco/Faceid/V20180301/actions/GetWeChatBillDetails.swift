@@ -46,7 +46,7 @@ extension Faceid {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetWeChatBillDetailsResponse) -> GetWeChatBillDetailsRequest? {
+        public func makeNextRequest(with response: GetWeChatBillDetailsResponse) -> GetWeChatBillDetailsRequest? {
             guard response.hasNextPage else {
                 return nil
             }

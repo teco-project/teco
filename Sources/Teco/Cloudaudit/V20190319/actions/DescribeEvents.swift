@@ -56,7 +56,7 @@ extension Cloudaudit {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEventsResponse) -> DescribeEventsRequest? {
+        public func makeNextRequest(with response: DescribeEventsResponse) -> DescribeEventsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -63,7 +63,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAssetImageRegistryRiskInfoListResponse) -> DescribeAssetImageRegistryRiskInfoListRequest? {
+        public func makeNextRequest(with response: DescribeAssetImageRegistryRiskInfoListResponse) -> DescribeAssetImageRegistryRiskInfoListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

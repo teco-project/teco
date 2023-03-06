@@ -50,7 +50,7 @@ extension As {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLifecycleHooksResponse) -> DescribeLifecycleHooksRequest? {
+        public func makeNextRequest(with response: DescribeLifecycleHooksResponse) -> DescribeLifecycleHooksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

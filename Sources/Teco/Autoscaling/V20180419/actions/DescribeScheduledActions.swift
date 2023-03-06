@@ -49,7 +49,7 @@ extension As {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScheduledActionsResponse) -> DescribeScheduledActionsRequest? {
+        public func makeNextRequest(with response: DescribeScheduledActionsResponse) -> DescribeScheduledActionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

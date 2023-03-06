@@ -41,7 +41,7 @@ extension Iai {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetPersonListResponse) -> GetPersonListRequest? {
+        public func makeNextRequest(with response: GetPersonListResponse) -> GetPersonListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

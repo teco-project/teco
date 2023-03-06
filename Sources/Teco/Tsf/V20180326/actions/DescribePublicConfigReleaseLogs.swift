@@ -41,7 +41,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePublicConfigReleaseLogsResponse) -> DescribePublicConfigReleaseLogsRequest? {
+        public func makeNextRequest(with response: DescribePublicConfigReleaseLogsResponse) -> DescribePublicConfigReleaseLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -106,7 +106,7 @@ extension Bmlb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLoadBalancersResponse) -> DescribeLoadBalancersRequest? {
+        public func makeNextRequest(with response: DescribeLoadBalancersResponse) -> DescribeLoadBalancersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

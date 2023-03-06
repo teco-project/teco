@@ -46,7 +46,7 @@ extension Gse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstancesExtendResponse) -> DescribeInstancesExtendRequest? {
+        public func makeNextRequest(with response: DescribeInstancesExtendResponse) -> DescribeInstancesExtendRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Gpm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMatchCodesResponse) -> DescribeMatchCodesRequest? {
+        public func makeNextRequest(with response: DescribeMatchCodesResponse) -> DescribeMatchCodesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

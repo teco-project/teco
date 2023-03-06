@@ -66,7 +66,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAlarmEventsResponse) -> DescribeAlarmEventsRequest? {
+        public func makeNextRequest(with response: DescribeAlarmEventsResponse) -> DescribeAlarmEventsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

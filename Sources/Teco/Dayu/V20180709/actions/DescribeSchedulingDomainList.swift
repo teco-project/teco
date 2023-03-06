@@ -41,7 +41,7 @@ extension Dayu {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSchedulingDomainListResponse) -> DescribeSchedulingDomainListRequest? {
+        public func makeNextRequest(with response: DescribeSchedulingDomainListResponse) -> DescribeSchedulingDomainListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

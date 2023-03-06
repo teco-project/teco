@@ -61,7 +61,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeChatMessagesResponse) -> DescribeChatMessagesRequest? {
+        public func makeNextRequest(with response: DescribeChatMessagesResponse) -> DescribeChatMessagesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

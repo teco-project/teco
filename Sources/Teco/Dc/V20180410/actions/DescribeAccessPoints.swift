@@ -43,7 +43,7 @@ extension Dc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccessPointsResponse) -> DescribeAccessPointsRequest? {
+        public func makeNextRequest(with response: DescribeAccessPointsResponse) -> DescribeAccessPointsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

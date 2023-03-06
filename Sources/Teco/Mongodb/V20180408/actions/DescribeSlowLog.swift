@@ -64,7 +64,7 @@ extension Mongodb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSlowLogResponse) -> DescribeSlowLogRequest? {
+        public func makeNextRequest(with response: DescribeSlowLogResponse) -> DescribeSlowLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

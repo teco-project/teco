@@ -41,7 +41,7 @@ extension Smh {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLibrariesResponse) -> DescribeLibrariesRequest? {
+        public func makeNextRequest(with response: DescribeLibrariesResponse) -> DescribeLibrariesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

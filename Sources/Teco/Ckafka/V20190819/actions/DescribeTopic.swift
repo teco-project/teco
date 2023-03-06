@@ -51,7 +51,7 @@ extension Ckafka {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTopicResponse) -> DescribeTopicRequest? {
+        public func makeNextRequest(with response: DescribeTopicResponse) -> DescribeTopicRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

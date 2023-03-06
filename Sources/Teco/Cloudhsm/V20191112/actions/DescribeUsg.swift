@@ -41,7 +41,7 @@ extension Cloudhsm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUsgResponse) -> DescribeUsgRequest? {
+        public func makeNextRequest(with response: DescribeUsgResponse) -> DescribeUsgRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

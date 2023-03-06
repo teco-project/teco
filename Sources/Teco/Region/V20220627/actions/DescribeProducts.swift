@@ -36,7 +36,7 @@ extension Region {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProductsResponse) -> DescribeProductsRequest? {
+        public func makeNextRequest(with response: DescribeProductsResponse) -> DescribeProductsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

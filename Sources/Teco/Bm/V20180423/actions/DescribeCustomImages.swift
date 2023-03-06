@@ -67,7 +67,7 @@ extension Bm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCustomImagesResponse) -> DescribeCustomImagesRequest? {
+        public func makeNextRequest(with response: DescribeCustomImagesResponse) -> DescribeCustomImagesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

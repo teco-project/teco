@@ -56,7 +56,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePluginInstancesResponse) -> DescribePluginInstancesRequest? {
+        public func makeNextRequest(with response: DescribePluginInstancesResponse) -> DescribePluginInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

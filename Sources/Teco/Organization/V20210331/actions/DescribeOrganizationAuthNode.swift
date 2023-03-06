@@ -36,7 +36,7 @@ extension Organization {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOrganizationAuthNodeResponse) -> DescribeOrganizationAuthNodeRequest? {
+        public func makeNextRequest(with response: DescribeOrganizationAuthNodeResponse) -> DescribeOrganizationAuthNodeRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

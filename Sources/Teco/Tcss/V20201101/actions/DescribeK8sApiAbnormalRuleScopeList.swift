@@ -48,7 +48,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeK8sApiAbnormalRuleScopeListResponse) -> DescribeK8sApiAbnormalRuleScopeListRequest? {
+        public func makeNextRequest(with response: DescribeK8sApiAbnormalRuleScopeListResponse) -> DescribeK8sApiAbnormalRuleScopeListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

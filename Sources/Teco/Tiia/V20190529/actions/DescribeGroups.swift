@@ -41,7 +41,7 @@ extension Tiia {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGroupsResponse) -> DescribeGroupsRequest? {
+        public func makeNextRequest(with response: DescribeGroupsResponse) -> DescribeGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

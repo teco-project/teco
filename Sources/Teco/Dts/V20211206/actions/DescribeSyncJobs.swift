@@ -81,7 +81,7 @@ extension Dts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSyncJobsResponse) -> DescribeSyncJobsRequest? {
+        public func makeNextRequest(with response: DescribeSyncJobsResponse) -> DescribeSyncJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

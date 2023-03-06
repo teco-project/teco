@@ -116,7 +116,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCrossBorderComplianceResponse) -> DescribeCrossBorderComplianceRequest? {
+        public func makeNextRequest(with response: DescribeCrossBorderComplianceResponse) -> DescribeCrossBorderComplianceRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Mariadb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstanceNodeInfoResponse) -> DescribeInstanceNodeInfoRequest? {
+        public func makeNextRequest(with response: DescribeInstanceNodeInfoResponse) -> DescribeInstanceNodeInfoRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

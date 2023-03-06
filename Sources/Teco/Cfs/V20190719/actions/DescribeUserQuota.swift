@@ -48,7 +48,7 @@ extension Cfs {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUserQuotaResponse) -> DescribeUserQuotaRequest? {
+        public func makeNextRequest(with response: DescribeUserQuotaResponse) -> DescribeUserQuotaRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -36,7 +36,7 @@ extension Ape {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAuthUsersResponse) -> DescribeAuthUsersRequest? {
+        public func makeNextRequest(with response: DescribeAuthUsersResponse) -> DescribeAuthUsersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -46,7 +46,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNatGatewayDirectConnectGatewayRouteResponse) -> DescribeNatGatewayDirectConnectGatewayRouteRequest? {
+        public func makeNextRequest(with response: DescribeNatGatewayDirectConnectGatewayRouteResponse) -> DescribeNatGatewayDirectConnectGatewayRouteRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

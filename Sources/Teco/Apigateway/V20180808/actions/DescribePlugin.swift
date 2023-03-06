@@ -41,7 +41,7 @@ extension Apigateway {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePluginResponse) -> DescribePluginRequest? {
+        public func makeNextRequest(with response: DescribePluginResponse) -> DescribePluginRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

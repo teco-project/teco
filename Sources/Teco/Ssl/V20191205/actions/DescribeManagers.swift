@@ -68,7 +68,7 @@ extension Ssl {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeManagersResponse) -> DescribeManagersRequest? {
+        public func makeNextRequest(with response: DescribeManagersResponse) -> DescribeManagersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

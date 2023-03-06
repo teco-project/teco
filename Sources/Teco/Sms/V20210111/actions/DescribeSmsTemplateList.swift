@@ -51,7 +51,7 @@ extension Sms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSmsTemplateListResponse) -> DescribeSmsTemplateListRequest? {
+        public func makeNextRequest(with response: DescribeSmsTemplateListResponse) -> DescribeSmsTemplateListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

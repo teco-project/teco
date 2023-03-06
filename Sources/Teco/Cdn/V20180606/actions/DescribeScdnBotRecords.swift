@@ -157,7 +157,7 @@ extension Cdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScdnBotRecordsResponse) -> DescribeScdnBotRecordsRequest? {
+        public func makeNextRequest(with response: DescribeScdnBotRecordsResponse) -> DescribeScdnBotRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

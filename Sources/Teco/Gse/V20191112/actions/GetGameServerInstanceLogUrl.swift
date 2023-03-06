@@ -51,7 +51,7 @@ extension Gse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetGameServerInstanceLogUrlResponse) -> GetGameServerInstanceLogUrlRequest? {
+        public func makeNextRequest(with response: GetGameServerInstanceLogUrlResponse) -> GetGameServerInstanceLogUrlRequest? {
             guard response.hasNext else {
                 return nil
             }

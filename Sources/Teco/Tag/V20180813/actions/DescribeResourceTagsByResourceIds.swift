@@ -56,7 +56,7 @@ extension Tag {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeResourceTagsByResourceIdsResponse) -> DescribeResourceTagsByResourceIdsRequest? {
+        public func makeNextRequest(with response: DescribeResourceTagsByResourceIdsResponse) -> DescribeResourceTagsByResourceIdsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

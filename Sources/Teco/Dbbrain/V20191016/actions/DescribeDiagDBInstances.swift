@@ -61,7 +61,7 @@ extension Dbbrain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDiagDBInstancesResponse) -> DescribeDiagDBInstancesRequest? {
+        public func makeNextRequest(with response: DescribeDiagDBInstancesResponse) -> DescribeDiagDBInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

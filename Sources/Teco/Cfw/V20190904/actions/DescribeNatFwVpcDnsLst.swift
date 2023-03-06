@@ -46,7 +46,7 @@ extension Cfw {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNatFwVpcDnsLstResponse) -> DescribeNatFwVpcDnsLstRequest? {
+        public func makeNextRequest(with response: DescribeNatFwVpcDnsLstResponse) -> DescribeNatFwVpcDnsLstRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

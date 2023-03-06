@@ -52,7 +52,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUserClusterResponse) -> DescribeUserClusterRequest? {
+        public func makeNextRequest(with response: DescribeUserClusterResponse) -> DescribeUserClusterRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccessControlEventsResponse) -> DescribeAccessControlEventsRequest? {
+        public func makeNextRequest(with response: DescribeAccessControlEventsResponse) -> DescribeAccessControlEventsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

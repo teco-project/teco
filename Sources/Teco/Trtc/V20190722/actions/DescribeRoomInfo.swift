@@ -60,7 +60,7 @@ extension Trtc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRoomInfoResponse) -> DescribeRoomInfoRequest? {
+        public func makeNextRequest(with response: DescribeRoomInfoResponse) -> DescribeRoomInfoRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

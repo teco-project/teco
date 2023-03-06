@@ -42,7 +42,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePrivilegeRulesResponse) -> DescribePrivilegeRulesRequest? {
+        public func makeNextRequest(with response: DescribePrivilegeRulesResponse) -> DescribePrivilegeRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

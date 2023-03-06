@@ -46,7 +46,7 @@ extension Ams {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAmsListResponse) -> DescribeAmsListRequest? {
+        public func makeNextRequest(with response: DescribeAmsListResponse) -> DescribeAmsListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

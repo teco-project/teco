@@ -46,7 +46,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeListBlackWhiteIpListResponse) -> DescribeListBlackWhiteIpListRequest? {
+        public func makeNextRequest(with response: DescribeListBlackWhiteIpListResponse) -> DescribeListBlackWhiteIpListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

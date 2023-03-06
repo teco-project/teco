@@ -74,7 +74,7 @@ extension Ecdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePurgeTasksResponse) -> DescribePurgeTasksRequest? {
+        public func makeNextRequest(with response: DescribePurgeTasksResponse) -> DescribePurgeTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

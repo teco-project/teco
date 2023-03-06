@@ -52,7 +52,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVulEffectHostListResponse) -> DescribeVulEffectHostListRequest? {
+        public func makeNextRequest(with response: DescribeVulEffectHostListResponse) -> DescribeVulEffectHostListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

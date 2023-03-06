@@ -41,7 +41,7 @@ extension Iotexplorer {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetPositionSpaceListResponse) -> GetPositionSpaceListRequest? {
+        public func makeNextRequest(with response: GetPositionSpaceListResponse) -> GetPositionSpaceListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }
