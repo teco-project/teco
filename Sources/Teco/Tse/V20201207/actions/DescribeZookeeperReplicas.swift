@@ -41,7 +41,7 @@ extension Tse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeZookeeperReplicasResponse) -> DescribeZookeeperReplicasRequest? {
+        public func makeNextRequest(with response: DescribeZookeeperReplicasResponse) -> DescribeZookeeperReplicasRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

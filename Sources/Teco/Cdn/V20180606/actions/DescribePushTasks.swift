@@ -82,7 +82,7 @@ extension Cdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePushTasksResponse) -> DescribePushTasksRequest? {
+        public func makeNextRequest(with response: DescribePushTasksResponse) -> DescribePushTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Tcaplusdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTablesInRecycleResponse) -> DescribeTablesInRecycleRequest? {
+        public func makeNextRequest(with response: DescribeTablesInRecycleResponse) -> DescribeTablesInRecycleRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

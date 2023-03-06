@@ -56,7 +56,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRiskDnsListResponse) -> DescribeRiskDnsListRequest? {
+        public func makeNextRequest(with response: DescribeRiskDnsListResponse) -> DescribeRiskDnsListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

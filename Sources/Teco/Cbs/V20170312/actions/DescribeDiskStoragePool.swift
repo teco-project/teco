@@ -46,7 +46,7 @@ extension Cbs {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDiskStoragePoolResponse) -> DescribeDiskStoragePoolRequest? {
+        public func makeNextRequest(with response: DescribeDiskStoragePoolResponse) -> DescribeDiskStoragePoolRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

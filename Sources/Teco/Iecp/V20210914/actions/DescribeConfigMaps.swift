@@ -56,7 +56,7 @@ extension Iecp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeConfigMapsResponse) -> DescribeConfigMapsRequest? {
+        public func makeNextRequest(with response: DescribeConfigMapsResponse) -> DescribeConfigMapsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

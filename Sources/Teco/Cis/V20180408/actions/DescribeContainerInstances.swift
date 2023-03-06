@@ -44,7 +44,7 @@ extension Cis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeContainerInstancesResponse) -> DescribeContainerInstancesRequest? {
+        public func makeNextRequest(with response: DescribeContainerInstancesResponse) -> DescribeContainerInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

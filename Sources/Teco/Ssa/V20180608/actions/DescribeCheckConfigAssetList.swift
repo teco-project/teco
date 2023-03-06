@@ -51,7 +51,7 @@ extension Ssa {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCheckConfigAssetListResponse) -> DescribeCheckConfigAssetListRequest? {
+        public func makeNextRequest(with response: DescribeCheckConfigAssetListResponse) -> DescribeCheckConfigAssetListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

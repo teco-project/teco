@@ -53,7 +53,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAssetImageRegistryVulListResponse) -> DescribeAssetImageRegistryVulListRequest? {
+        public func makeNextRequest(with response: DescribeAssetImageRegistryVulListResponse) -> DescribeAssetImageRegistryVulListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

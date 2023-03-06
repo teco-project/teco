@@ -51,7 +51,7 @@ extension Wedata {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFolderListResponse) -> DescribeFolderListRequest? {
+        public func makeNextRequest(with response: DescribeFolderListResponse) -> DescribeFolderListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

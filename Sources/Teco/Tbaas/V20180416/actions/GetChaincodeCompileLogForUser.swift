@@ -71,7 +71,7 @@ extension Tbaas {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetChaincodeCompileLogForUserResponse) -> GetChaincodeCompileLogForUserRequest? {
+        public func makeNextRequest(with response: GetChaincodeCompileLogForUserResponse) -> GetChaincodeCompileLogForUserRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

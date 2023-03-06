@@ -51,7 +51,7 @@ extension Tse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSREInstancesResponse) -> DescribeSREInstancesRequest? {
+        public func makeNextRequest(with response: DescribeSREInstancesResponse) -> DescribeSREInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

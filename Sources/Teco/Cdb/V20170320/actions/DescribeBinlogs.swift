@@ -41,7 +41,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBinlogsResponse) -> DescribeBinlogsRequest? {
+        public func makeNextRequest(with response: DescribeBinlogsResponse) -> DescribeBinlogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

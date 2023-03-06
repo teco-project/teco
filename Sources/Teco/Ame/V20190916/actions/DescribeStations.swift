@@ -36,7 +36,7 @@ extension Ame {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeStationsResponse) -> DescribeStationsRequest? {
+        public func makeNextRequest(with response: DescribeStationsResponse) -> DescribeStationsRequest? {
             guard response.haveMore > 0 else {
                 return nil
             }

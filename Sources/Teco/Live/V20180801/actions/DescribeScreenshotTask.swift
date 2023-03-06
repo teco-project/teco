@@ -56,7 +56,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScreenshotTaskResponse) -> DescribeScreenshotTaskRequest? {
+        public func makeNextRequest(with response: DescribeScreenshotTaskResponse) -> DescribeScreenshotTaskRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

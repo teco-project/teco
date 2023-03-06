@@ -46,7 +46,7 @@ extension Cws {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMonitorsResponse) -> DescribeMonitorsRequest? {
+        public func makeNextRequest(with response: DescribeMonitorsResponse) -> DescribeMonitorsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

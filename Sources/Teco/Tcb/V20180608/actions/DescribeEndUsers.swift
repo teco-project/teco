@@ -46,7 +46,7 @@ extension Tcb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEndUsersResponse) -> DescribeEndUsersRequest? {
+        public func makeNextRequest(with response: DescribeEndUsersResponse) -> DescribeEndUsersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

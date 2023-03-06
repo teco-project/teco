@@ -41,7 +41,7 @@ extension Tcr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFavorRepositoryPersonalResponse) -> DescribeFavorRepositoryPersonalRequest? {
+        public func makeNextRequest(with response: DescribeFavorRepositoryPersonalResponse) -> DescribeFavorRepositoryPersonalRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

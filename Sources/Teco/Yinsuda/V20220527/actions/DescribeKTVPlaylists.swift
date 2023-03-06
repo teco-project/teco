@@ -54,7 +54,7 @@ extension Yinsuda {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeKTVPlaylistsResponse) -> DescribeKTVPlaylistsRequest? {
+        public func makeNextRequest(with response: DescribeKTVPlaylistsResponse) -> DescribeKTVPlaylistsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -86,7 +86,7 @@ extension Ess {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFileUrlsResponse) -> DescribeFileUrlsRequest? {
+        public func makeNextRequest(with response: DescribeFileUrlsResponse) -> DescribeFileUrlsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

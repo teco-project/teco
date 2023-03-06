@@ -41,7 +41,7 @@ extension Tse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNacosReplicasResponse) -> DescribeNacosReplicasRequest? {
+        public func makeNextRequest(with response: DescribeNacosReplicasResponse) -> DescribeNacosReplicasRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

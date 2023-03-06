@@ -46,7 +46,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProductListResponse) -> DescribeProductListRequest? {
+        public func makeNextRequest(with response: DescribeProductListResponse) -> DescribeProductListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

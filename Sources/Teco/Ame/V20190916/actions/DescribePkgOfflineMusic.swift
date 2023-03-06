@@ -41,7 +41,7 @@ extension Ame {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePkgOfflineMusicResponse) -> DescribePkgOfflineMusicRequest? {
+        public func makeNextRequest(with response: DescribePkgOfflineMusicResponse) -> DescribePkgOfflineMusicRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

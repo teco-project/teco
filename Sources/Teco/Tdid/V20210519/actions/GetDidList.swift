@@ -51,7 +51,7 @@ extension Tdid {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetDidListResponse) -> GetDidListRequest? {
+        public func makeNextRequest(with response: GetDidListResponse) -> GetDidListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

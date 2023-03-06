@@ -56,7 +56,7 @@ extension Gme {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeApplicationListResponse) -> DescribeApplicationListRequest? {
+        public func makeNextRequest(with response: DescribeApplicationListResponse) -> DescribeApplicationListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

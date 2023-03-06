@@ -46,7 +46,7 @@ extension Iotvideoindustry {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeIPCChannelsResponse) -> DescribeIPCChannelsRequest? {
+        public func makeNextRequest(with response: DescribeIPCChannelsResponse) -> DescribeIPCChannelsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

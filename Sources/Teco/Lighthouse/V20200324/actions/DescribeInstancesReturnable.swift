@@ -41,7 +41,7 @@ extension Lighthouse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstancesReturnableResponse) -> DescribeInstancesReturnableRequest? {
+        public func makeNextRequest(with response: DescribeInstancesReturnableResponse) -> DescribeInstancesReturnableRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

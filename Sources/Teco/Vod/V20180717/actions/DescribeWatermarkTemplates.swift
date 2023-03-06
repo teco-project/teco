@@ -56,7 +56,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWatermarkTemplatesResponse) -> DescribeWatermarkTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeWatermarkTemplatesResponse) -> DescribeWatermarkTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

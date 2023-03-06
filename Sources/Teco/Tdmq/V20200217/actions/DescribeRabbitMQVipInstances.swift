@@ -41,7 +41,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRabbitMQVipInstancesResponse) -> DescribeRabbitMQVipInstancesRequest? {
+        public func makeNextRequest(with response: DescribeRabbitMQVipInstancesResponse) -> DescribeRabbitMQVipInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

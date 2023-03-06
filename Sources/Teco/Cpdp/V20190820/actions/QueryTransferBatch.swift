@@ -87,7 +87,7 @@ extension Cpdp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryTransferBatchResponse) -> QueryTransferBatchRequest? {
+        public func makeNextRequest(with response: QueryTransferBatchResponse) -> QueryTransferBatchRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -58,7 +58,7 @@ extension Gaap {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProxyGroupListResponse) -> DescribeProxyGroupListRequest? {
+        public func makeNextRequest(with response: DescribeProxyGroupListResponse) -> DescribeProxyGroupListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

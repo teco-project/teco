@@ -48,7 +48,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBandwidthPackageResourcesResponse) -> DescribeBandwidthPackageResourcesRequest? {
+        public func makeNextRequest(with response: DescribeBandwidthPackageResourcesResponse) -> DescribeBandwidthPackageResourcesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

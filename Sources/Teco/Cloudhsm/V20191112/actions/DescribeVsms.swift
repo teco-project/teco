@@ -56,7 +56,7 @@ extension Cloudhsm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVsmsResponse) -> DescribeVsmsRequest? {
+        public func makeNextRequest(with response: DescribeVsmsResponse) -> DescribeVsmsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

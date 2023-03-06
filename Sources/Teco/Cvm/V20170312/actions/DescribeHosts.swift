@@ -51,7 +51,7 @@ extension Cvm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeHostsResponse) -> DescribeHostsRequest? {
+        public func makeNextRequest(with response: DescribeHostsResponse) -> DescribeHostsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

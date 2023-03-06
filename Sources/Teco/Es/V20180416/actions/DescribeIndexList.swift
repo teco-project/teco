@@ -76,7 +76,7 @@ extension Es {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeIndexListResponse) -> DescribeIndexListRequest? {
+        public func makeNextRequest(with response: DescribeIndexListResponse) -> DescribeIndexListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

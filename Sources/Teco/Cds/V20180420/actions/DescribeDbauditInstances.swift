@@ -41,7 +41,7 @@ extension Cds {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDbauditInstancesResponse) -> DescribeDbauditInstancesRequest? {
+        public func makeNextRequest(with response: DescribeDbauditInstancesResponse) -> DescribeDbauditInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

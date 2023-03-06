@@ -41,7 +41,7 @@ extension Asw {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFlowServicesResponse) -> DescribeFlowServicesRequest? {
+        public func makeNextRequest(with response: DescribeFlowServicesResponse) -> DescribeFlowServicesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

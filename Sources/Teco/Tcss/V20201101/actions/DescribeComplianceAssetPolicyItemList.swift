@@ -47,7 +47,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeComplianceAssetPolicyItemListResponse) -> DescribeComplianceAssetPolicyItemListRequest? {
+        public func makeNextRequest(with response: DescribeComplianceAssetPolicyItemListResponse) -> DescribeComplianceAssetPolicyItemListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

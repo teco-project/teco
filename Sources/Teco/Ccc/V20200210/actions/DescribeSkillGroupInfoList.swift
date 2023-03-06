@@ -56,7 +56,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSkillGroupInfoListResponse) -> DescribeSkillGroupInfoListRequest? {
+        public func makeNextRequest(with response: DescribeSkillGroupInfoListResponse) -> DescribeSkillGroupInfoListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

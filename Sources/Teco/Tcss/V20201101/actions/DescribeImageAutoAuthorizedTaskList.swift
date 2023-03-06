@@ -62,7 +62,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImageAutoAuthorizedTaskListResponse) -> DescribeImageAutoAuthorizedTaskListRequest? {
+        public func makeNextRequest(with response: DescribeImageAutoAuthorizedTaskListResponse) -> DescribeImageAutoAuthorizedTaskListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

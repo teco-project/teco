@@ -46,7 +46,7 @@ extension Scf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListLayersResponse) -> ListLayersRequest? {
+        public func makeNextRequest(with response: ListLayersResponse) -> ListLayersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

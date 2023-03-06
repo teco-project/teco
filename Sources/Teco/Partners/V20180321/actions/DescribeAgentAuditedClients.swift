@@ -91,7 +91,7 @@ extension Partners {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAgentAuditedClientsResponse) -> DescribeAgentAuditedClientsRequest? {
+        public func makeNextRequest(with response: DescribeAgentAuditedClientsResponse) -> DescribeAgentAuditedClientsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

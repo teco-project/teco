@@ -50,7 +50,7 @@ extension Ecm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSecurityGroupsResponse) -> DescribeSecurityGroupsRequest? {
+        public func makeNextRequest(with response: DescribeSecurityGroupsResponse) -> DescribeSecurityGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

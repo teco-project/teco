@@ -46,7 +46,7 @@ extension Dc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInternetAddressResponse) -> DescribeInternetAddressRequest? {
+        public func makeNextRequest(with response: DescribeInternetAddressResponse) -> DescribeInternetAddressRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

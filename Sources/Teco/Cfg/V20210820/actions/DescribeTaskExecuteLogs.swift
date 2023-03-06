@@ -41,7 +41,7 @@ extension Cfg {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTaskExecuteLogsResponse) -> DescribeTaskExecuteLogsRequest? {
+        public func makeNextRequest(with response: DescribeTaskExecuteLogsResponse) -> DescribeTaskExecuteLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

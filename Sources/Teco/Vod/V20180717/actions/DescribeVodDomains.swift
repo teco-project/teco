@@ -47,7 +47,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVodDomainsResponse) -> DescribeVodDomainsRequest? {
+        public func makeNextRequest(with response: DescribeVodDomainsResponse) -> DescribeVodDomainsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

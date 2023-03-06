@@ -51,7 +51,7 @@ extension Dts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCompareTasksResponse) -> DescribeCompareTasksRequest? {
+        public func makeNextRequest(with response: DescribeCompareTasksResponse) -> DescribeCompareTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

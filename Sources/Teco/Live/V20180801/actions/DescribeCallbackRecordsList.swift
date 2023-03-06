@@ -66,7 +66,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCallbackRecordsListResponse) -> DescribeCallbackRecordsListRequest? {
+        public func makeNextRequest(with response: DescribeCallbackRecordsListResponse) -> DescribeCallbackRecordsListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

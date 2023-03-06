@@ -79,7 +79,7 @@ extension Cr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryRecordListResponse) -> QueryRecordListRequest? {
+        public func makeNextRequest(with response: QueryRecordListResponse) -> QueryRecordListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

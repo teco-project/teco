@@ -41,7 +41,7 @@ extension Cloudaudit {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListKeyAliasByRegionResponse) -> ListKeyAliasByRegionRequest? {
+        public func makeNextRequest(with response: ListKeyAliasByRegionResponse) -> ListKeyAliasByRegionRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

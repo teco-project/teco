@@ -50,7 +50,7 @@ extension Batch {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeComputeEnvCreateInfosResponse) -> DescribeComputeEnvCreateInfosRequest? {
+        public func makeNextRequest(with response: DescribeComputeEnvCreateInfosResponse) -> DescribeComputeEnvCreateInfosRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

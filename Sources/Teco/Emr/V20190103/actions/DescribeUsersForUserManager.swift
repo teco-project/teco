@@ -51,7 +51,7 @@ extension Emr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeUsersForUserManagerResponse) -> DescribeUsersForUserManagerRequest? {
+        public func makeNextRequest(with response: DescribeUsersForUserManagerResponse) -> DescribeUsersForUserManagerRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

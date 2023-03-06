@@ -56,7 +56,7 @@ extension Tem {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEnvironmentsResponse) -> DescribeEnvironmentsRequest? {
+        public func makeNextRequest(with response: DescribeEnvironmentsResponse) -> DescribeEnvironmentsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

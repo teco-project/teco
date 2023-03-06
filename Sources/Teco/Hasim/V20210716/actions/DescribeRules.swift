@@ -61,7 +61,7 @@ extension Hasim {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRulesResponse) -> DescribeRulesRequest? {
+        public func makeNextRequest(with response: DescribeRulesResponse) -> DescribeRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

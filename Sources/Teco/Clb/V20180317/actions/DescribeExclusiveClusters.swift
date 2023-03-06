@@ -50,7 +50,7 @@ extension Clb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeExclusiveClustersResponse) -> DescribeExclusiveClustersRequest? {
+        public func makeNextRequest(with response: DescribeExclusiveClustersResponse) -> DescribeExclusiveClustersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

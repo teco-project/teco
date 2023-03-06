@@ -56,7 +56,7 @@ extension Gse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTimerScalingPoliciesResponse) -> DescribeTimerScalingPoliciesRequest? {
+        public func makeNextRequest(with response: DescribeTimerScalingPoliciesResponse) -> DescribeTimerScalingPoliciesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

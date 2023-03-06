@@ -36,7 +36,7 @@ extension Bma {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBPProtectURLsResponse) -> DescribeBPProtectURLsRequest? {
+        public func makeNextRequest(with response: DescribeBPProtectURLsResponse) -> DescribeBPProtectURLsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

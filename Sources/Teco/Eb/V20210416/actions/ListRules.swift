@@ -51,7 +51,7 @@ extension Eb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListRulesResponse) -> ListRulesRequest? {
+        public func makeNextRequest(with response: ListRulesResponse) -> ListRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

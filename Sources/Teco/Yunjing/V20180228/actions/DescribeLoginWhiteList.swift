@@ -42,7 +42,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLoginWhiteListResponse) -> DescribeLoginWhiteListRequest? {
+        public func makeNextRequest(with response: DescribeLoginWhiteListResponse) -> DescribeLoginWhiteListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

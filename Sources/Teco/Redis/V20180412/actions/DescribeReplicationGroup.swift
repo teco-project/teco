@@ -46,7 +46,7 @@ extension Redis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeReplicationGroupResponse) -> DescribeReplicationGroupRequest? {
+        public func makeNextRequest(with response: DescribeReplicationGroupResponse) -> DescribeReplicationGroupRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

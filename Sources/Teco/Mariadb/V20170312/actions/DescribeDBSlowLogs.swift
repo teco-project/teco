@@ -79,7 +79,7 @@ extension Mariadb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDBSlowLogsResponse) -> DescribeDBSlowLogsRequest? {
+        public func makeNextRequest(with response: DescribeDBSlowLogsResponse) -> DescribeDBSlowLogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Domain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBatchOperationLogDetailsResponse) -> DescribeBatchOperationLogDetailsRequest? {
+        public func makeNextRequest(with response: DescribeBatchOperationLogDetailsResponse) -> DescribeBatchOperationLogDetailsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

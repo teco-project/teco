@@ -48,7 +48,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAdaptiveDynamicStreamingTemplatesResponse) -> DescribeAdaptiveDynamicStreamingTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeAdaptiveDynamicStreamingTemplatesResponse) -> DescribeAdaptiveDynamicStreamingTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

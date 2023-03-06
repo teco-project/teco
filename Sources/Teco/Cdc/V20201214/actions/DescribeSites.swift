@@ -46,7 +46,7 @@ extension Cdc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSitesResponse) -> DescribeSitesRequest? {
+        public func makeNextRequest(with response: DescribeSitesResponse) -> DescribeSitesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

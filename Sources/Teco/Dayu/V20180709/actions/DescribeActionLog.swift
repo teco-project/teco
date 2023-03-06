@@ -64,7 +64,7 @@ extension Dayu {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeActionLogResponse) -> DescribeActionLogRequest? {
+        public func makeNextRequest(with response: DescribeActionLogResponse) -> DescribeActionLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

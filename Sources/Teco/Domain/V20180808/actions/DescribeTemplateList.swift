@@ -51,7 +51,7 @@ extension Domain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTemplateListResponse) -> DescribeTemplateListRequest? {
+        public func makeNextRequest(with response: DescribeTemplateListResponse) -> DescribeTemplateListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

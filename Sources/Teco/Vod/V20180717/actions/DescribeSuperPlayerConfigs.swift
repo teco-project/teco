@@ -53,7 +53,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSuperPlayerConfigsResponse) -> DescribeSuperPlayerConfigsRequest? {
+        public func makeNextRequest(with response: DescribeSuperPlayerConfigsResponse) -> DescribeSuperPlayerConfigsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

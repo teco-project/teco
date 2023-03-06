@@ -99,7 +99,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SearchBusinessLogResponse) -> SearchBusinessLogRequest? {
+        public func makeNextRequest(with response: SearchBusinessLogResponse) -> SearchBusinessLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

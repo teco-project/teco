@@ -50,7 +50,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLiveStreamPushInfoListResponse) -> DescribeLiveStreamPushInfoListRequest? {
+        public func makeNextRequest(with response: DescribeLiveStreamPushInfoListResponse) -> DescribeLiveStreamPushInfoListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

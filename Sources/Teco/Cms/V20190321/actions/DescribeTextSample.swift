@@ -51,7 +51,7 @@ extension Cms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTextSampleResponse) -> DescribeTextSampleRequest? {
+        public func makeNextRequest(with response: DescribeTextSampleResponse) -> DescribeTextSampleRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

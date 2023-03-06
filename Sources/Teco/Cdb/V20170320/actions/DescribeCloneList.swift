@@ -41,7 +41,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCloneListResponse) -> DescribeCloneListRequest? {
+        public func makeNextRequest(with response: DescribeCloneListResponse) -> DescribeCloneListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

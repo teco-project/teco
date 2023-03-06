@@ -64,7 +64,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DownloadL4LogsResponse) -> DownloadL4LogsRequest? {
+        public func makeNextRequest(with response: DownloadL4LogsResponse) -> DownloadL4LogsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

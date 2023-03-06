@@ -51,7 +51,7 @@ extension Iotvideoindustry {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSubGroupsResponse) -> DescribeSubGroupsRequest? {
+        public func makeNextRequest(with response: DescribeSubGroupsResponse) -> DescribeSubGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

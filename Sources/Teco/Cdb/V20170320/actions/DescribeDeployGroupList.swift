@@ -46,7 +46,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDeployGroupListResponse) -> DescribeDeployGroupListRequest? {
+        public func makeNextRequest(with response: DescribeDeployGroupListResponse) -> DescribeDeployGroupListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

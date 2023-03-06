@@ -51,7 +51,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBaselinePolicyListResponse) -> DescribeBaselinePolicyListRequest? {
+        public func makeNextRequest(with response: DescribeBaselinePolicyListResponse) -> DescribeBaselinePolicyListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

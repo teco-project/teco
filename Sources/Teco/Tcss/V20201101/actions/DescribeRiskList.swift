@@ -57,7 +57,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRiskListResponse) -> DescribeRiskListRequest? {
+        public func makeNextRequest(with response: DescribeRiskListResponse) -> DescribeRiskListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

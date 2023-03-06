@@ -51,7 +51,7 @@ extension Eb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListEventBusesResponse) -> ListEventBusesRequest? {
+        public func makeNextRequest(with response: ListEventBusesResponse) -> ListEventBusesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

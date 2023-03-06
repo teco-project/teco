@@ -51,7 +51,7 @@ extension Tiems {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeResourceGroupsResponse) -> DescribeResourceGroupsRequest? {
+        public func makeNextRequest(with response: DescribeResourceGroupsResponse) -> DescribeResourceGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -91,7 +91,7 @@ extension Dlc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDMSTablesResponse) -> DescribeDMSTablesRequest? {
+        public func makeNextRequest(with response: DescribeDMSTablesResponse) -> DescribeDMSTablesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

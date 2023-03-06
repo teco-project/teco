@@ -41,7 +41,7 @@ extension Redis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeInstanceAccountResponse) -> DescribeInstanceAccountRequest? {
+        public func makeNextRequest(with response: DescribeInstanceAccountResponse) -> DescribeInstanceAccountRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

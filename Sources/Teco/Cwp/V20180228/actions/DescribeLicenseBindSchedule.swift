@@ -47,7 +47,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLicenseBindScheduleResponse) -> DescribeLicenseBindScheduleRequest? {
+        public func makeNextRequest(with response: DescribeLicenseBindScheduleResponse) -> DescribeLicenseBindScheduleRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

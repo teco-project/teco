@@ -51,7 +51,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAutoAuthorizedRuleHostResponse) -> DescribeAutoAuthorizedRuleHostRequest? {
+        public func makeNextRequest(with response: DescribeAutoAuthorizedRuleHostResponse) -> DescribeAutoAuthorizedRuleHostRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

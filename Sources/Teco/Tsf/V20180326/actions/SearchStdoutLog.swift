@@ -98,7 +98,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SearchStdoutLogResponse) -> SearchStdoutLogRequest? {
+        public func makeNextRequest(with response: SearchStdoutLogResponse) -> SearchStdoutLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

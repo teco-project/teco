@@ -56,7 +56,7 @@ extension Pts {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAlertChannelsResponse) -> DescribeAlertChannelsRequest? {
+        public func makeNextRequest(with response: DescribeAlertChannelsResponse) -> DescribeAlertChannelsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

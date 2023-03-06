@@ -72,7 +72,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAssetWebAppListResponse) -> DescribeAssetWebAppListRequest? {
+        public func makeNextRequest(with response: DescribeAssetWebAppListResponse) -> DescribeAssetWebAppListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

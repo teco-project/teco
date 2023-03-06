@@ -66,7 +66,7 @@ extension Gaap {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeHTTPListenersResponse) -> DescribeHTTPListenersRequest? {
+        public func makeNextRequest(with response: DescribeHTTPListenersResponse) -> DescribeHTTPListenersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

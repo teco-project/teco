@@ -46,7 +46,7 @@ extension Iotvideo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCloudStorageUsersResponse) -> DescribeCloudStorageUsersRequest? {
+        public func makeNextRequest(with response: DescribeCloudStorageUsersResponse) -> DescribeCloudStorageUsersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

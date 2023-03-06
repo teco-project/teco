@@ -53,7 +53,7 @@ extension Essbasic {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ChannelDescribeEmployeesResponse) -> ChannelDescribeEmployeesRequest? {
+        public func makeNextRequest(with response: ChannelDescribeEmployeesResponse) -> ChannelDescribeEmployeesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

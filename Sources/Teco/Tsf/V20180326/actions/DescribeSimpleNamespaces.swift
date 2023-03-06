@@ -81,7 +81,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSimpleNamespacesResponse) -> DescribeSimpleNamespacesRequest? {
+        public func makeNextRequest(with response: DescribeSimpleNamespacesResponse) -> DescribeSimpleNamespacesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -55,7 +55,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeExportJobManageListResponse) -> DescribeExportJobManageListRequest? {
+        public func makeNextRequest(with response: DescribeExportJobManageListResponse) -> DescribeExportJobManageListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

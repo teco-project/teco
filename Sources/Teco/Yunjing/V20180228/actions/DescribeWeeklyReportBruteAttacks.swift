@@ -46,7 +46,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWeeklyReportBruteAttacksResponse) -> DescribeWeeklyReportBruteAttacksRequest? {
+        public func makeNextRequest(with response: DescribeWeeklyReportBruteAttacksResponse) -> DescribeWeeklyReportBruteAttacksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

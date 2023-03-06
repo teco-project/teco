@@ -71,7 +71,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTranscodeTemplatesResponse) -> DescribeTranscodeTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeTranscodeTemplatesResponse) -> DescribeTranscodeTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

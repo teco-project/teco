@@ -56,7 +56,7 @@ extension Billing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCostSummaryByRegionResponse) -> DescribeCostSummaryByRegionRequest? {
+        public func makeNextRequest(with response: DescribeCostSummaryByRegionResponse) -> DescribeCostSummaryByRegionRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -50,7 +50,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeComplianceScanFailedAssetListResponse) -> DescribeComplianceScanFailedAssetListRequest? {
+        public func makeNextRequest(with response: DescribeComplianceScanFailedAssetListResponse) -> DescribeComplianceScanFailedAssetListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

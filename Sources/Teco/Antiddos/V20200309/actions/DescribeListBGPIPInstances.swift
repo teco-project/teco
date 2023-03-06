@@ -112,7 +112,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeListBGPIPInstancesResponse) -> DescribeListBGPIPInstancesRequest? {
+        public func makeNextRequest(with response: DescribeListBGPIPInstancesResponse) -> DescribeListBGPIPInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

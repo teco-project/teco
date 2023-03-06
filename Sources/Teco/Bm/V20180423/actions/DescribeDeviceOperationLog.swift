@@ -59,7 +59,7 @@ extension Bm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDeviceOperationLogResponse) -> DescribeDeviceOperationLogRequest? {
+        public func makeNextRequest(with response: DescribeDeviceOperationLogResponse) -> DescribeDeviceOperationLogRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

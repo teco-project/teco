@@ -74,7 +74,7 @@ extension Partners {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAgentSelfPayDealsResponse) -> DescribeAgentSelfPayDealsRequest? {
+        public func makeNextRequest(with response: DescribeAgentSelfPayDealsResponse) -> DescribeAgentSelfPayDealsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

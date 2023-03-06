@@ -66,7 +66,7 @@ extension Wss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCertListResponse) -> DescribeCertListRequest? {
+        public func makeNextRequest(with response: DescribeCertListResponse) -> DescribeCertListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

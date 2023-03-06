@@ -80,7 +80,7 @@ extension Ess {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFlowTemplatesResponse) -> DescribeFlowTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeFlowTemplatesResponse) -> DescribeFlowTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

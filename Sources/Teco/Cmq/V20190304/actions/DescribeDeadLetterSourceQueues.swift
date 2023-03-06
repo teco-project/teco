@@ -46,7 +46,7 @@ extension Cmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDeadLetterSourceQueuesResponse) -> DescribeDeadLetterSourceQueuesRequest? {
+        public func makeNextRequest(with response: DescribeDeadLetterSourceQueuesResponse) -> DescribeDeadLetterSourceQueuesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

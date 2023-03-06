@@ -63,7 +63,7 @@ extension Cls {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeShippersResponse) -> DescribeShippersRequest? {
+        public func makeNextRequest(with response: DescribeShippersResponse) -> DescribeShippersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

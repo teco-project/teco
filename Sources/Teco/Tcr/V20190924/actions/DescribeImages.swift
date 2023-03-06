@@ -66,7 +66,7 @@ extension Tcr {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImagesResponse) -> DescribeImagesRequest? {
+        public func makeNextRequest(with response: DescribeImagesResponse) -> DescribeImagesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

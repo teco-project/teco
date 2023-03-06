@@ -42,7 +42,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDefaultCertificatesResponse) -> DescribeDefaultCertificatesRequest? {
+        public func makeNextRequest(with response: DescribeDefaultCertificatesResponse) -> DescribeDefaultCertificatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

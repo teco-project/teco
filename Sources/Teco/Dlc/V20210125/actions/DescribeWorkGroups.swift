@@ -56,7 +56,7 @@ extension Dlc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWorkGroupsResponse) -> DescribeWorkGroupsRequest? {
+        public func makeNextRequest(with response: DescribeWorkGroupsResponse) -> DescribeWorkGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

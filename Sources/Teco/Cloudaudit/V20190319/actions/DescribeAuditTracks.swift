@@ -36,7 +36,7 @@ extension Cloudaudit {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAuditTracksResponse) -> DescribeAuditTracksRequest? {
+        public func makeNextRequest(with response: DescribeAuditTracksResponse) -> DescribeAuditTracksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

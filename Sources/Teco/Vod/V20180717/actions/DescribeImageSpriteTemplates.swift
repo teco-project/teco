@@ -53,7 +53,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImageSpriteTemplatesResponse) -> DescribeImageSpriteTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeImageSpriteTemplatesResponse) -> DescribeImageSpriteTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

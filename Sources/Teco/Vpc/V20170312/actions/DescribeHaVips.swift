@@ -52,7 +52,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeHaVipsResponse) -> DescribeHaVipsRequest? {
+        public func makeNextRequest(with response: DescribeHaVipsResponse) -> DescribeHaVipsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

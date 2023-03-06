@@ -41,7 +41,7 @@ extension Ccc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePSTNActiveSessionListResponse) -> DescribePSTNActiveSessionListRequest? {
+        public func makeNextRequest(with response: DescribePSTNActiveSessionListResponse) -> DescribePSTNActiveSessionListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

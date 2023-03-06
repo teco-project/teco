@@ -41,7 +41,7 @@ extension Apigateway {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeServiceReleaseVersionResponse) -> DescribeServiceReleaseVersionRequest? {
+        public func makeNextRequest(with response: DescribeServiceReleaseVersionResponse) -> DescribeServiceReleaseVersionRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

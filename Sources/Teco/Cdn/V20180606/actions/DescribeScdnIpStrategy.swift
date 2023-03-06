@@ -51,7 +51,7 @@ extension Cdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScdnIpStrategyResponse) -> DescribeScdnIpStrategyRequest? {
+        public func makeNextRequest(with response: DescribeScdnIpStrategyResponse) -> DescribeScdnIpStrategyRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

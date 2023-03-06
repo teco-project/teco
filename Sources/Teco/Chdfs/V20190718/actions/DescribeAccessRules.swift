@@ -41,7 +41,7 @@ extension Chdfs {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAccessRulesResponse) -> DescribeAccessRulesRequest? {
+        public func makeNextRequest(with response: DescribeAccessRulesResponse) -> DescribeAccessRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

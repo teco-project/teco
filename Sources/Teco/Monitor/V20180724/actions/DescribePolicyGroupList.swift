@@ -101,7 +101,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePolicyGroupListResponse) -> DescribePolicyGroupListRequest? {
+        public func makeNextRequest(with response: DescribePolicyGroupListResponse) -> DescribePolicyGroupListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

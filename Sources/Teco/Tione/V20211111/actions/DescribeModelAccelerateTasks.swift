@@ -58,7 +58,7 @@ extension Tione {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeModelAccelerateTasksResponse) -> DescribeModelAccelerateTasksRequest? {
+        public func makeNextRequest(with response: DescribeModelAccelerateTasksResponse) -> DescribeModelAccelerateTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

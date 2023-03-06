@@ -60,7 +60,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeZonesResponse) -> DescribeZonesRequest? {
+        public func makeNextRequest(with response: DescribeZonesResponse) -> DescribeZonesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

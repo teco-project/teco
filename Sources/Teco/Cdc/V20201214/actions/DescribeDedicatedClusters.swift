@@ -61,7 +61,7 @@ extension Cdc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDedicatedClustersResponse) -> DescribeDedicatedClustersRequest? {
+        public func makeNextRequest(with response: DescribeDedicatedClustersResponse) -> DescribeDedicatedClustersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

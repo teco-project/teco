@@ -46,7 +46,7 @@ extension Kms {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListKeysResponse) -> ListKeysRequest? {
+        public func makeNextRequest(with response: ListKeysResponse) -> ListKeysRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

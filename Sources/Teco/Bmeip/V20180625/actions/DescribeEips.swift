@@ -101,7 +101,7 @@ extension Bmeip {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEipsResponse) -> DescribeEipsRequest? {
+        public func makeNextRequest(with response: DescribeEipsResponse) -> DescribeEipsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

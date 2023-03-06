@@ -36,7 +36,7 @@ extension Fmu {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetModelListResponse) -> GetModelListRequest? {
+        public func makeNextRequest(with response: GetModelListResponse) -> GetModelListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

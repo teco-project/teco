@@ -71,7 +71,7 @@ extension Tione {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTrainingJobsResponse) -> DescribeTrainingJobsRequest? {
+        public func makeNextRequest(with response: DescribeTrainingJobsResponse) -> DescribeTrainingJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

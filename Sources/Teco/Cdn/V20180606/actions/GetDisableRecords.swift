@@ -71,7 +71,7 @@ extension Cdn {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetDisableRecordsResponse) -> GetDisableRecordsRequest? {
+        public func makeNextRequest(with response: GetDisableRecordsResponse) -> GetDisableRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -56,7 +56,7 @@ extension Ame {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: SearchKTVMusicsResponse) -> SearchKTVMusicsRequest? {
+        public func makeNextRequest(with response: SearchKTVMusicsResponse) -> SearchKTVMusicsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

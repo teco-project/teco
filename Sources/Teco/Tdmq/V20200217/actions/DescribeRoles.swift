@@ -54,7 +54,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeRolesResponse) -> DescribeRolesRequest? {
+        public func makeNextRequest(with response: DescribeRolesResponse) -> DescribeRolesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

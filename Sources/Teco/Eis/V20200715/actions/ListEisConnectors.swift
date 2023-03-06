@@ -41,7 +41,7 @@ extension Eis {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListEisConnectorsResponse) -> ListEisConnectorsRequest? {
+        public func makeNextRequest(with response: ListEisConnectorsResponse) -> ListEisConnectorsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

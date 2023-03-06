@@ -46,7 +46,7 @@ extension Trtc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePictureResponse) -> DescribePictureRequest? {
+        public func makeNextRequest(with response: DescribePictureResponse) -> DescribePictureRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

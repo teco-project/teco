@@ -69,7 +69,7 @@ extension Bmvpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVpnConnectionsResponse) -> DescribeVpnConnectionsRequest? {
+        public func makeNextRequest(with response: DescribeVpnConnectionsResponse) -> DescribeVpnConnectionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

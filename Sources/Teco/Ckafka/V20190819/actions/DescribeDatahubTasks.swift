@@ -61,7 +61,7 @@ extension Ckafka {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDatahubTasksResponse) -> DescribeDatahubTasksRequest? {
+        public func makeNextRequest(with response: DescribeDatahubTasksResponse) -> DescribeDatahubTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

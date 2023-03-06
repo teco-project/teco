@@ -46,7 +46,7 @@ extension Tem {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeConfigDataListResponse) -> DescribeConfigDataListRequest? {
+        public func makeNextRequest(with response: DescribeConfigDataListResponse) -> DescribeConfigDataListRequest? {
             guard response.result.continueToken != nil else {
                 return nil
             }

@@ -42,7 +42,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBanWhiteListResponse) -> DescribeBanWhiteListRequest? {
+        public func makeNextRequest(with response: DescribeBanWhiteListResponse) -> DescribeBanWhiteListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

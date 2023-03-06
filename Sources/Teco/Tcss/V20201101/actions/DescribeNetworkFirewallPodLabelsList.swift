@@ -57,7 +57,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNetworkFirewallPodLabelsListResponse) -> DescribeNetworkFirewallPodLabelsListRequest? {
+        public func makeNextRequest(with response: DescribeNetworkFirewallPodLabelsListResponse) -> DescribeNetworkFirewallPodLabelsListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

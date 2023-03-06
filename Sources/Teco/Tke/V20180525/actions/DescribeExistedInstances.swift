@@ -66,7 +66,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeExistedInstancesResponse) -> DescribeExistedInstancesRequest? {
+        public func makeNextRequest(with response: DescribeExistedInstancesResponse) -> DescribeExistedInstancesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

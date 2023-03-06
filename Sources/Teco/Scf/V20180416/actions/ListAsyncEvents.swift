@@ -86,7 +86,7 @@ extension Scf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListAsyncEventsResponse) -> ListAsyncEventsRequest? {
+        public func makeNextRequest(with response: ListAsyncEventsResponse) -> ListAsyncEventsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

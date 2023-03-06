@@ -46,7 +46,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCCLevelListResponse) -> DescribeCCLevelListRequest? {
+        public func makeNextRequest(with response: DescribeCCLevelListResponse) -> DescribeCCLevelListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

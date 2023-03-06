@@ -46,7 +46,7 @@ extension Tsf {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePathRewritesResponse) -> DescribePathRewritesRequest? {
+        public func makeNextRequest(with response: DescribePathRewritesResponse) -> DescribePathRewritesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

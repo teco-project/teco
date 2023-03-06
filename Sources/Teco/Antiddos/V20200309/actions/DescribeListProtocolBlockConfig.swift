@@ -46,7 +46,7 @@ extension Antiddos {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeListProtocolBlockConfigResponse) -> DescribeListProtocolBlockConfigRequest? {
+        public func makeNextRequest(with response: DescribeListProtocolBlockConfigResponse) -> DescribeListProtocolBlockConfigRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

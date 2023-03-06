@@ -54,7 +54,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeImageCachesResponse) -> DescribeImageCachesRequest? {
+        public func makeNextRequest(with response: DescribeImageCachesResponse) -> DescribeImageCachesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

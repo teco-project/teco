@@ -59,7 +59,7 @@ extension Mps {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWordSamplesResponse) -> DescribeWordSamplesRequest? {
+        public func makeNextRequest(with response: DescribeWordSamplesResponse) -> DescribeWordSamplesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

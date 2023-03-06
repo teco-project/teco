@@ -49,7 +49,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMaliciousRequestsResponse) -> DescribeMaliciousRequestsRequest? {
+        public func makeNextRequest(with response: DescribeMaliciousRequestsResponse) -> DescribeMaliciousRequestsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -54,7 +54,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeOpenPortsResponse) -> DescribeOpenPortsRequest? {
+        public func makeNextRequest(with response: DescribeOpenPortsResponse) -> DescribeOpenPortsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

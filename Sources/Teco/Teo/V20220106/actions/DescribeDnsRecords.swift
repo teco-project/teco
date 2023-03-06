@@ -61,7 +61,7 @@ extension Teo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDnsRecordsResponse) -> DescribeDnsRecordsRequest? {
+        public func makeNextRequest(with response: DescribeDnsRecordsResponse) -> DescribeDnsRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

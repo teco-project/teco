@@ -42,7 +42,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeLocalGatewayResponse) -> DescribeLocalGatewayRequest? {
+        public func makeNextRequest(with response: DescribeLocalGatewayResponse) -> DescribeLocalGatewayRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

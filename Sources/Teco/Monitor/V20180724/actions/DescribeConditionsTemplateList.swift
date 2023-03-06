@@ -66,7 +66,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeConditionsTemplateListResponse) -> DescribeConditionsTemplateListRequest? {
+        public func makeNextRequest(with response: DescribeConditionsTemplateListResponse) -> DescribeConditionsTemplateListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

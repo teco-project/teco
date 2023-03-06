@@ -51,7 +51,7 @@ extension Tdmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAMQPVHostsResponse) -> DescribeAMQPVHostsRequest? {
+        public func makeNextRequest(with response: DescribeAMQPVHostsResponse) -> DescribeAMQPVHostsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

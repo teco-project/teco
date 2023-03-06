@@ -56,7 +56,7 @@ extension Cme {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTeamMembersResponse) -> DescribeTeamMembersRequest? {
+        public func makeNextRequest(with response: DescribeTeamMembersResponse) -> DescribeTeamMembersRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -41,7 +41,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetUpgradeInstanceProgressResponse) -> GetUpgradeInstanceProgressRequest? {
+        public func makeNextRequest(with response: GetUpgradeInstanceProgressResponse) -> GetUpgradeInstanceProgressRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

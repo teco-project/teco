@@ -61,7 +61,7 @@ extension Iecp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeEdgeNodesResponse) -> DescribeEdgeNodesRequest? {
+        public func makeNextRequest(with response: DescribeEdgeNodesResponse) -> DescribeEdgeNodesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

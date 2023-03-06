@@ -48,7 +48,7 @@ extension Yunjing {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNonlocalLoginPlacesResponse) -> DescribeNonlocalLoginPlacesRequest? {
+        public func makeNextRequest(with response: DescribeNonlocalLoginPlacesResponse) -> DescribeNonlocalLoginPlacesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

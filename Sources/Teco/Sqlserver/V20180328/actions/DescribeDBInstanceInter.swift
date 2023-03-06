@@ -56,7 +56,7 @@ extension Sqlserver {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDBInstanceInterResponse) -> DescribeDBInstanceInterRequest? {
+        public func makeNextRequest(with response: DescribeDBInstanceInterResponse) -> DescribeDBInstanceInterRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

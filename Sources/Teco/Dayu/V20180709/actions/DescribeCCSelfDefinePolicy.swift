@@ -46,7 +46,7 @@ extension Dayu {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCCSelfDefinePolicyResponse) -> DescribeCCSelfDefinePolicyRequest? {
+        public func makeNextRequest(with response: DescribeCCSelfDefinePolicyResponse) -> DescribeCCSelfDefinePolicyRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

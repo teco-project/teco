@@ -56,7 +56,7 @@ extension Dbbrain {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeNoPrimaryKeyTablesResponse) -> DescribeNoPrimaryKeyTablesRequest? {
+        public func makeNextRequest(with response: DescribeNoPrimaryKeyTablesResponse) -> DescribeNoPrimaryKeyTablesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

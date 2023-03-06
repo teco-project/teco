@@ -56,7 +56,7 @@ extension Tic {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeStackVersionsResponse) -> DescribeStackVersionsRequest? {
+        public func makeNextRequest(with response: DescribeStackVersionsResponse) -> DescribeStackVersionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

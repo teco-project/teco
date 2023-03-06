@@ -65,7 +65,7 @@ extension Live {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVisitTopSumInfoListResponse) -> DescribeVisitTopSumInfoListRequest? {
+        public func makeNextRequest(with response: DescribeVisitTopSumInfoListResponse) -> DescribeVisitTopSumInfoListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

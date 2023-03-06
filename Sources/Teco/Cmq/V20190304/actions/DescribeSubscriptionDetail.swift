@@ -46,7 +46,7 @@ extension Cmq {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSubscriptionDetailResponse) -> DescribeSubscriptionDetailRequest? {
+        public func makeNextRequest(with response: DescribeSubscriptionDetailResponse) -> DescribeSubscriptionDetailRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

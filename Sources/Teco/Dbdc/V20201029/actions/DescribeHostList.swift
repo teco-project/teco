@@ -46,7 +46,7 @@ extension Dbdc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeHostListResponse) -> DescribeHostListRequest? {
+        public func makeNextRequest(with response: DescribeHostListResponse) -> DescribeHostListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

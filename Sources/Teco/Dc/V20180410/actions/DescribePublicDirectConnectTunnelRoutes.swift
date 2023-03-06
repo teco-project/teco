@@ -48,7 +48,7 @@ extension Dc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePublicDirectConnectTunnelRoutesResponse) -> DescribePublicDirectConnectTunnelRoutesRequest? {
+        public func makeNextRequest(with response: DescribePublicDirectConnectTunnelRoutesResponse) -> DescribePublicDirectConnectTunnelRoutesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

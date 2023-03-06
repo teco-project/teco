@@ -51,7 +51,7 @@ extension Trp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMerchantsResponse) -> DescribeMerchantsRequest? {
+        public func makeNextRequest(with response: DescribeMerchantsResponse) -> DescribeMerchantsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

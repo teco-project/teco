@@ -56,7 +56,7 @@ extension Smh {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTrafficPackagesResponse) -> DescribeTrafficPackagesRequest? {
+        public func makeNextRequest(with response: DescribeTrafficPackagesResponse) -> DescribeTrafficPackagesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

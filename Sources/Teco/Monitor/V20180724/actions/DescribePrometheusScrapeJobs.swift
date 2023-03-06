@@ -56,7 +56,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePrometheusScrapeJobsResponse) -> DescribePrometheusScrapeJobsRequest? {
+        public func makeNextRequest(with response: DescribePrometheusScrapeJobsResponse) -> DescribePrometheusScrapeJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

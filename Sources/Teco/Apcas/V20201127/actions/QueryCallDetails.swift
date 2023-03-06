@@ -51,7 +51,7 @@ extension Apcas {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: QueryCallDetailsResponse) -> QueryCallDetailsRequest? {
+        public func makeNextRequest(with response: QueryCallDetailsResponse) -> QueryCallDetailsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -51,7 +51,7 @@ extension Ses {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListSendTasksResponse) -> ListSendTasksRequest? {
+        public func makeNextRequest(with response: ListSendTasksResponse) -> ListSendTasksRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

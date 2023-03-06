@@ -36,7 +36,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSearchTemplatesResponse) -> DescribeSearchTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeSearchTemplatesResponse) -> DescribeSearchTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

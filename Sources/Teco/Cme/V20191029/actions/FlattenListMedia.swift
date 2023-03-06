@@ -56,7 +56,7 @@ extension Cme {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: FlattenListMediaResponse) -> FlattenListMediaRequest? {
+        public func makeNextRequest(with response: FlattenListMediaResponse) -> FlattenListMediaRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

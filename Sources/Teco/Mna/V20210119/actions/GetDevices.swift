@@ -41,7 +41,7 @@ extension Mna {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetDevicesResponse) -> GetDevicesRequest? {
+        public func makeNextRequest(with response: GetDevicesResponse) -> GetDevicesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

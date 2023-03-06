@@ -41,7 +41,7 @@ extension Bma {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeCRMonitorsResponse) -> DescribeCRMonitorsRequest? {
+        public func makeNextRequest(with response: DescribeCRMonitorsResponse) -> DescribeCRMonitorsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

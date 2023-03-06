@@ -46,7 +46,7 @@ extension Nlp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeWordItemsResponse) -> DescribeWordItemsRequest? {
+        public func makeNextRequest(with response: DescribeWordItemsResponse) -> DescribeWordItemsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

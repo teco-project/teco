@@ -56,7 +56,7 @@ extension Iecp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeMessageRouteListResponse) -> DescribeMessageRouteListRequest? {
+        public func makeNextRequest(with response: DescribeMessageRouteListResponse) -> DescribeMessageRouteListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

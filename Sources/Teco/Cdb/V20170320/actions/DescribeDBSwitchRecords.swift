@@ -41,7 +41,7 @@ extension Cdb {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDBSwitchRecordsResponse) -> DescribeDBSwitchRecordsRequest? {
+        public func makeNextRequest(with response: DescribeDBSwitchRecordsResponse) -> DescribeDBSwitchRecordsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

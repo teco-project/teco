@@ -62,7 +62,7 @@ extension Lighthouse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeModifyInstanceBundlesResponse) -> DescribeModifyInstanceBundlesRequest? {
+        public func makeNextRequest(with response: DescribeModifyInstanceBundlesResponse) -> DescribeModifyInstanceBundlesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

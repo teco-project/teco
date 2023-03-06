@@ -46,7 +46,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSubAppIdsResponse) -> DescribeSubAppIdsRequest? {
+        public func makeNextRequest(with response: DescribeSubAppIdsResponse) -> DescribeSubAppIdsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

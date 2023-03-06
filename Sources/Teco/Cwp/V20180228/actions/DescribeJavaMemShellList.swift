@@ -41,7 +41,7 @@ extension Cwp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeJavaMemShellListResponse) -> DescribeJavaMemShellListRequest? {
+        public func makeNextRequest(with response: DescribeJavaMemShellListResponse) -> DescribeJavaMemShellListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

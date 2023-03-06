@@ -63,7 +63,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAlertRulesResponse) -> DescribeAlertRulesRequest? {
+        public func makeNextRequest(with response: DescribeAlertRulesResponse) -> DescribeAlertRulesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

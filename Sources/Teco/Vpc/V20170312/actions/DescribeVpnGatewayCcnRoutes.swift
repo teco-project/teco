@@ -41,7 +41,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVpnGatewayCcnRoutesResponse) -> DescribeVpnGatewayCcnRoutesRequest? {
+        public func makeNextRequest(with response: DescribeVpnGatewayCcnRoutesResponse) -> DescribeVpnGatewayCcnRoutesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

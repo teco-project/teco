@@ -64,7 +64,7 @@ extension Youmall {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeShopTrafficInfoResponse) -> DescribeShopTrafficInfoRequest? {
+        public func makeNextRequest(with response: DescribeShopTrafficInfoResponse) -> DescribeShopTrafficInfoRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

@@ -68,7 +68,7 @@ extension Cpdp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: GetPayRollAuthListResponse) -> GetPayRollAuthListRequest? {
+        public func makeNextRequest(with response: GetPayRollAuthListResponse) -> GetPayRollAuthListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

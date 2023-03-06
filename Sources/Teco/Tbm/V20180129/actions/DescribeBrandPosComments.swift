@@ -59,7 +59,7 @@ extension Tbm {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBrandPosCommentsResponse) -> DescribeBrandPosCommentsRequest? {
+        public func makeNextRequest(with response: DescribeBrandPosCommentsResponse) -> DescribeBrandPosCommentsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

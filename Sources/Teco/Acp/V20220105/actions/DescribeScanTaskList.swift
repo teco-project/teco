@@ -71,7 +71,7 @@ extension Acp {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeScanTaskListResponse) -> DescribeScanTaskListRequest? {
+        public func makeNextRequest(with response: DescribeScanTaskListResponse) -> DescribeScanTaskListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

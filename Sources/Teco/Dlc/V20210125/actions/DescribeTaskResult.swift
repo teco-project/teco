@@ -41,7 +41,7 @@ extension Dlc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeTaskResultResponse) -> DescribeTaskResultRequest? {
+        public func makeNextRequest(with response: DescribeTaskResultResponse) -> DescribeTaskResultRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

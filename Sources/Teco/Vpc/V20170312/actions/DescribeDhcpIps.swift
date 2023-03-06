@@ -51,7 +51,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDhcpIpsResponse) -> DescribeDhcpIpsRequest? {
+        public func makeNextRequest(with response: DescribeDhcpIpsResponse) -> DescribeDhcpIpsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

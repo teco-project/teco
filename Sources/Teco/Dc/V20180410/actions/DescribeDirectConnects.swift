@@ -46,7 +46,7 @@ extension Dc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeDirectConnectsResponse) -> DescribeDirectConnectsRequest? {
+        public func makeNextRequest(with response: DescribeDirectConnectsResponse) -> DescribeDirectConnectsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

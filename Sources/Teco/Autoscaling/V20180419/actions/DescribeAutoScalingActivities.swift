@@ -69,7 +69,7 @@ extension As {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeAutoScalingActivitiesResponse) -> DescribeAutoScalingActivitiesRequest? {
+        public func makeNextRequest(with response: DescribeAutoScalingActivitiesResponse) -> DescribeAutoScalingActivitiesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

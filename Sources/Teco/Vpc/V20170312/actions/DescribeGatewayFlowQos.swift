@@ -49,7 +49,7 @@ extension Vpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGatewayFlowQosResponse) -> DescribeGatewayFlowQosRequest? {
+        public func makeNextRequest(with response: DescribeGatewayFlowQosResponse) -> DescribeGatewayFlowQosRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

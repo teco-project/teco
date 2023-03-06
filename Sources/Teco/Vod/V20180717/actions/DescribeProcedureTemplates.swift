@@ -53,7 +53,7 @@ extension Vod {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeProcedureTemplatesResponse) -> DescribeProcedureTemplatesRequest? {
+        public func makeNextRequest(with response: DescribeProcedureTemplatesResponse) -> DescribeProcedureTemplatesRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

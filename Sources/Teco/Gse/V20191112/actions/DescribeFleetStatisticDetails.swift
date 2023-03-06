@@ -59,7 +59,7 @@ extension Gse {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeFleetStatisticDetailsResponse) -> DescribeFleetStatisticDetailsRequest? {
+        public func makeNextRequest(with response: DescribeFleetStatisticDetailsResponse) -> DescribeFleetStatisticDetailsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

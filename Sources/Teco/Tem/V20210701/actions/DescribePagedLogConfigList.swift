@@ -56,7 +56,7 @@ extension Tem {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribePagedLogConfigListResponse) -> DescribePagedLogConfigListRequest? {
+        public func makeNextRequest(with response: DescribePagedLogConfigListResponse) -> DescribePagedLogConfigListRequest? {
             guard response.result.continueToken != nil else {
                 return nil
             }

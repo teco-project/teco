@@ -46,7 +46,7 @@ extension Bmvpc {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeSubnetByHostedDeviceResponse) -> DescribeSubnetByHostedDeviceRequest? {
+        public func makeNextRequest(with response: DescribeSubnetByHostedDeviceResponse) -> DescribeSubnetByHostedDeviceRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

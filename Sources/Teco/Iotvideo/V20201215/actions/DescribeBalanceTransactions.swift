@@ -46,7 +46,7 @@ extension Iotvideo {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeBalanceTransactionsResponse) -> DescribeBalanceTransactionsRequest? {
+        public func makeNextRequest(with response: DescribeBalanceTransactionsResponse) -> DescribeBalanceTransactionsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

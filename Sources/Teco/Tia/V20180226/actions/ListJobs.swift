@@ -41,7 +41,7 @@ extension Tia {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: ListJobsResponse) -> ListJobsRequest? {
+        public func makeNextRequest(with response: ListJobsResponse) -> ListJobsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

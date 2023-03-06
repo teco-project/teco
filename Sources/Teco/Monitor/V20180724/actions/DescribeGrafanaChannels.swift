@@ -56,7 +56,7 @@ extension Monitor {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeGrafanaChannelsResponse) -> DescribeGrafanaChannelsRequest? {
+        public func makeNextRequest(with response: DescribeGrafanaChannelsResponse) -> DescribeGrafanaChannelsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

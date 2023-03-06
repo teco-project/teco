@@ -51,7 +51,7 @@ extension Tcss {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeVulIgnoreLocalImageListResponse) -> DescribeVulIgnoreLocalImageListRequest? {
+        public func makeNextRequest(with response: DescribeVulIgnoreLocalImageListResponse) -> DescribeVulIgnoreLocalImageListRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }

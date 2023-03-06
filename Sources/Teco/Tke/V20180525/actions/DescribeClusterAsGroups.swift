@@ -46,7 +46,7 @@ extension Tke {
         }
 
         /// Compute the next request based on API response.
-        public func getNextPaginatedRequest(with response: DescribeClusterAsGroupsResponse) -> DescribeClusterAsGroupsRequest? {
+        public func makeNextRequest(with response: DescribeClusterAsGroupsResponse) -> DescribeClusterAsGroupsRequest? {
             guard !response.getItems().isEmpty else {
                 return nil
             }
