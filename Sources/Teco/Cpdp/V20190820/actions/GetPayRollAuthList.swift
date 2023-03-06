@@ -72,7 +72,7 @@ extension Cpdp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetPayRollAuthListRequest(openId: self.openId, subMerchantId: self.subMerchantId, authDate: self.authDate, offset: self.offset + response.offset, limit: self.limit, wechatAppId: self.wechatAppId, wechatSubAppId: self.wechatSubAppId, authStatus: self.authStatus)
+            return GetPayRollAuthListRequest(openId: self.openId, subMerchantId: self.subMerchantId, authDate: self.authDate, offset: self.offset + response.limit, limit: self.limit, wechatAppId: self.wechatAppId, wechatSubAppId: self.wechatSubAppId, authStatus: self.authStatus)
         }
     }
 

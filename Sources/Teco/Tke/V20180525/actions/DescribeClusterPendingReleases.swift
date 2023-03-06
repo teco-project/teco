@@ -50,7 +50,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterPendingReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.offset ?? 0), clusterType: self.clusterType)
+            return DescribeClusterPendingReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), clusterType: self.clusterType)
         }
     }
 

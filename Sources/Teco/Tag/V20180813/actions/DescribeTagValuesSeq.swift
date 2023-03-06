@@ -50,7 +50,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTagValuesSeqRequest(tagKeys: self.tagKeys, createUin: self.createUin, offset: (self.offset ?? 0) + response.offset, limit: self.limit)
+            return DescribeTagValuesSeqRequest(tagKeys: self.tagKeys, createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
         }
     }
 

@@ -60,7 +60,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.offset ?? 0), namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
+            return DescribeClusterReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
         }
     }
 

@@ -85,7 +85,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTemplatesRequest(agent: self.agent, templateId: self.templateId, contentType: self.contentType, limit: self.limit, offset: (self.offset ?? 0) + response.offset, queryAllComponents: self.queryAllComponents, templateName: self.templateName, operator: self.operator, withPreviewUrl: self.withPreviewUrl, withPdfUrl: self.withPdfUrl, channelTemplateId: self.channelTemplateId)
+            return DescribeTemplatesRequest(agent: self.agent, templateId: self.templateId, contentType: self.contentType, limit: self.limit, offset: (self.offset ?? 0) + response.limit, queryAllComponents: self.queryAllComponents, templateName: self.templateName, operator: self.operator, withPreviewUrl: self.withPreviewUrl, withPdfUrl: self.withPdfUrl, channelTemplateId: self.channelTemplateId)
         }
     }
 

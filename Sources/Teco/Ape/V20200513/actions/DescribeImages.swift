@@ -60,7 +60,7 @@ extension Ape {
             guard response.haveMore else {
                 return nil
             }
-            return DescribeImagesRequest(offset: self.offset + response.offset, limit: self.limit, keyword: self.keyword, orientation: self.orientation, imageSenseType: self.imageSenseType, layeredGalleryIds: self.layeredGalleryIds)
+            return DescribeImagesRequest(offset: self.offset + response.limit, limit: self.limit, keyword: self.keyword, orientation: self.orientation, imageSenseType: self.imageSenseType, layeredGalleryIds: self.layeredGalleryIds)
         }
     }
 

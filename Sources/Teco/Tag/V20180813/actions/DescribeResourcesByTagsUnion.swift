@@ -70,7 +70,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourcesByTagsUnionRequest(tagFilters: self.tagFilters, createUin: self.createUin, offset: (self.offset ?? 0) + response.offset, limit: self.limit, resourcePrefix: self.resourcePrefix, resourceId: self.resourceId, resourceRegion: self.resourceRegion, serviceType: self.serviceType)
+            return DescribeResourcesByTagsUnionRequest(tagFilters: self.tagFilters, createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit, resourcePrefix: self.resourcePrefix, resourceId: self.resourceId, resourceRegion: self.resourceRegion, serviceType: self.serviceType)
         }
     }
 
