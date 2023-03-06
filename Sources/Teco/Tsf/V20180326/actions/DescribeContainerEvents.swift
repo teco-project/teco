@@ -109,4 +109,24 @@ extension Tsf {
         let input = DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId)
         return try await self.client.execute(action: "DescribeContainerEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取容器事件列表
+    @inlinable
+    public func describeContainerEventsPaginated(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ContainerEvent])> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 获取容器事件列表
+    @inlinable @discardableResult
+    public func describeContainerEventsPaginated(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeContainerEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取容器事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ContainerEvent` and `DescribeContainerEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeContainerEventsPaginator(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerEvents, logger: logger, on: eventLoop)
+    }
 }

@@ -123,4 +123,30 @@ extension Cwp {
         let input = DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags)
         return try await self.client.execute(action: "DescribeLicenseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable
+    public func describeLicenseListPaginated(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LicenseDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeLicenseList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable @discardableResult
+    public func describeLicenseListPaginated(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLicenseListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLicenseList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    ///
+    /// - Returns: `AsyncSequence`s of `LicenseDetail` and `DescribeLicenseListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLicenseListPaginator(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseList, logger: logger, on: eventLoop)
+    }
 }

@@ -144,4 +144,24 @@ extension Dts {
         let input = DescribeSyncJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, status: status, runMode: runMode, jobType: jobType, payMode: payMode, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeSyncJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询同步任务信息
+    @inlinable
+    public func describeSyncJobsPaginated(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SyncJobInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询同步任务信息
+    @inlinable @discardableResult
+    public func describeSyncJobsPaginated(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSyncJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSyncJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询同步任务信息
+    ///
+    /// - Returns: `AsyncSequence`s of `SyncJobInfo` and `DescribeSyncJobsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSyncJobsPaginator(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSyncJobsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)
+    }
 }

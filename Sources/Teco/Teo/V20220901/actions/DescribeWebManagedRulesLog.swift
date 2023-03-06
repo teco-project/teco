@@ -157,4 +157,30 @@ extension Teo {
         let input = DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset, queryCondition: queryCondition, area: area)
         return try await self.client.execute(action: "DescribeWebManagedRulesLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Web攻击日志
+    ///
+    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    @inlinable
+    public func describeWebManagedRulesLogPaginated(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WebLogs])> {
+        self.client.paginate(input: input, region: region, command: self.describeWebManagedRulesLog, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Web攻击日志
+    ///
+    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    @inlinable @discardableResult
+    public func describeWebManagedRulesLogPaginated(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebManagedRulesLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWebManagedRulesLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Web攻击日志
+    ///
+    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `WebLogs` and `DescribeWebManagedRulesLogResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWebManagedRulesLogPaginator(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebManagedRulesLogRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebManagedRulesLog, logger: logger, on: eventLoop)
+    }
 }

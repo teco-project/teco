@@ -107,4 +107,24 @@ extension Ivld {
         let input = DescribeCustomPersonsRequest(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter)
         return try await self.client.execute(action: "DescribeCustomPersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 批量描述自定义人物
+    @inlinable
+    public func describeCustomPersonsPaginated(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CustomPersonInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomPersons, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述自定义人物
+    @inlinable @discardableResult
+    public func describeCustomPersonsPaginated(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomPersonsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomPersons, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述自定义人物
+    ///
+    /// - Returns: `AsyncSequence`s of `CustomPersonInfo` and `DescribeCustomPersonsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCustomPersonsPaginator(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomPersonsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomPersons, logger: logger, on: eventLoop)
+    }
 }

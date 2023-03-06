@@ -107,4 +107,24 @@ extension Clb {
         let input = DescribeTargetGroupListRequest(targetGroupIds: targetGroupIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTargetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取目标组列表
+    @inlinable
+    public func describeTargetGroupListPaginated(_ input: DescribeTargetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TargetGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTargetGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取目标组列表
+    @inlinable @discardableResult
+    public func describeTargetGroupListPaginated(_ input: DescribeTargetGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTargetGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTargetGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取目标组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TargetGroupInfo` and `DescribeTargetGroupListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTargetGroupListPaginator(_ input: DescribeTargetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTargetGroupListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroupList, logger: logger, on: eventLoop)
+    }
 }

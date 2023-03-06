@@ -130,4 +130,30 @@ extension Tdmq {
         let input = DescribeSubscriptionsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId)
         return try await self.client.execute(action: "DescribeSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取消费订阅列表
+    ///
+    /// 查询指定环境和主题下的订阅者列表
+    @inlinable
+    public func describeSubscriptionsPaginated(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Subscription])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消费订阅列表
+    ///
+    /// 查询指定环境和主题下的订阅者列表
+    @inlinable @discardableResult
+    public func describeSubscriptionsPaginated(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubscriptionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscriptions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消费订阅列表
+    ///
+    /// 查询指定环境和主题下的订阅者列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Subscription` and `DescribeSubscriptionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSubscriptionsPaginator(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscriptionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)
+    }
 }

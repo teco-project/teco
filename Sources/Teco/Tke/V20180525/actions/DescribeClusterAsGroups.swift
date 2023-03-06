@@ -107,4 +107,24 @@ extension Tke {
         let input = DescribeClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroupsPaginated(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterAsGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 集群关联的伸缩组列表
+    @inlinable @discardableResult
+    public func describeClusterAsGroupsPaginated(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterAsGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterAsGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 集群关联的伸缩组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterAsGroup` and `DescribeClusterAsGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeClusterAsGroupsPaginator(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterAsGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
+    }
 }

@@ -124,4 +124,24 @@ extension Tcb {
         let input = DescribeCloudBaseProjectLatestVersionListRequest(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId)
         return try await self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取云开发项目列表
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionListPaginated(_ input: DescribeCloudBaseProjectLatestVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CloudBaseProjectVersion])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云开发项目列表
+    @inlinable @discardableResult
+    public func describeCloudBaseProjectLatestVersionListPaginated(_ input: DescribeCloudBaseProjectLatestVersionListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseProjectLatestVersionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云开发项目列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CloudBaseProjectVersion` and `DescribeCloudBaseProjectLatestVersionListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionListPaginator(_ input: DescribeCloudBaseProjectLatestVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudBaseProjectLatestVersionListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseProjectLatestVersionList, logger: logger, on: eventLoop)
+    }
 }

@@ -166,4 +166,30 @@ extension Live {
         let input = DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeLivePackageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询直播套餐包信息
+    ///
+    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
+    @inlinable
+    public func describeLivePackageInfoPaginated(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LivePackageInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播套餐包信息
+    ///
+    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
+    @inlinable @discardableResult
+    public func describeLivePackageInfoPaginated(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLivePackageInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLivePackageInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播套餐包信息
+    ///
+    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
+    ///
+    /// - Returns: `AsyncSequence`s of `LivePackageInfo` and `DescribeLivePackageInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLivePackageInfoPaginator(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLivePackageInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
+    }
 }

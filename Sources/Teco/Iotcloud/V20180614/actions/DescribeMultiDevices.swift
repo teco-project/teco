@@ -119,4 +119,30 @@ extension Iotcloud {
         let input = DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevicesPaginated(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MultiDevicesInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable @discardableResult
+    public func describeMultiDevicesPaginated(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMultiDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMultiDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    ///
+    /// - Returns: `AsyncSequence`s of `MultiDevicesInfo` and `DescribeMultiDevicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMultiDevicesPaginator(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMultiDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
+    }
 }

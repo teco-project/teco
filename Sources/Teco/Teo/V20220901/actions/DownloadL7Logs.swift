@@ -134,4 +134,30 @@ extension Teo {
         let input = DownloadL7LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset)
         return try await self.client.execute(action: "DownloadL7Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 下载七层离线日志
+    ///
+    /// 本接口（DownloadL7Logs）下载七层离线日志。
+    @inlinable
+    public func downloadL7LogsPaginated(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [L7OfflineLog])> {
+        self.client.paginate(input: input, region: region, command: self.downloadL7Logs, logger: logger, on: eventLoop)
+    }
+
+    /// 下载七层离线日志
+    ///
+    /// 本接口（DownloadL7Logs）下载七层离线日志。
+    @inlinable @discardableResult
+    public func downloadL7LogsPaginated(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, onResponse: @escaping (DownloadL7LogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.downloadL7Logs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 下载七层离线日志
+    ///
+    /// 本接口（DownloadL7Logs）下载七层离线日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `L7OfflineLog` and `DownloadL7LogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func downloadL7LogsPaginator(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DownloadL7LogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL7Logs, logger: logger, on: eventLoop)
+    }
 }

@@ -110,4 +110,30 @@ extension Partners {
         let input = DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRebateInfosNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询代理商返佣信息V2
+    ///
+    /// 代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosNewPaginated(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RebateInfoElemNew])> {
+        self.client.paginate(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理商返佣信息V2
+    ///
+    /// 代理商可查询自己名下全部返佣信息
+    @inlinable @discardableResult
+    public func describeRebateInfosNewPaginated(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRebateInfosNewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRebateInfosNew, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询代理商返佣信息V2
+    ///
+    /// 代理商可查询自己名下全部返佣信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RebateInfoElemNew` and `DescribeRebateInfosNewResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRebateInfosNewPaginator(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRebateInfosNewRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)
+    }
 }

@@ -138,4 +138,30 @@ extension As {
         let input = DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeAutoScalingActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+    @inlinable
+    public func describeAutoScalingActivitiesPaginated(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Activity])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoScalingActivities, logger: logger, on: eventLoop)
+    }
+
+    /// 查询伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+    @inlinable @discardableResult
+    public func describeAutoScalingActivitiesPaginated(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoScalingActivitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoScalingActivities, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `Activity` and `DescribeAutoScalingActivitiesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAutoScalingActivitiesPaginator(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoScalingActivitiesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoScalingActivities, logger: logger, on: eventLoop)
+    }
 }

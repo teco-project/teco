@@ -120,4 +120,24 @@ extension Tione {
         let input = DescribeModelServicesRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeModelServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询多个服务
+    @inlinable
+    public func describeModelServicesPaginated(_ input: DescribeModelServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Service])> {
+        self.client.paginate(input: input, region: region, command: self.describeModelServices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询多个服务
+    @inlinable @discardableResult
+    public func describeModelServicesPaginated(_ input: DescribeModelServicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModelServicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModelServices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询多个服务
+    ///
+    /// - Returns: `AsyncSequence`s of `Service` and `DescribeModelServicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeModelServicesPaginator(_ input: DescribeModelServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModelServicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelServices, logger: logger, on: eventLoop)
+    }
 }

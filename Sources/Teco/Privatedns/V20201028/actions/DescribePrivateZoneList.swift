@@ -102,4 +102,24 @@ extension Privatedns {
         let input = DescribePrivateZoneListRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrivateZoneList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取私有域列表
+    @inlinable
+    public func describePrivateZoneListPaginated(_ input: DescribePrivateZoneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrivateZone])> {
+        self.client.paginate(input: input, region: region, command: self.describePrivateZoneList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取私有域列表
+    @inlinable @discardableResult
+    public func describePrivateZoneListPaginated(_ input: DescribePrivateZoneListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivateZoneListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrivateZoneList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取私有域列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrivateZone` and `DescribePrivateZoneListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrivateZoneListPaginator(_ input: DescribePrivateZoneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateZoneListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateZoneList, logger: logger, on: eventLoop)
+    }
 }

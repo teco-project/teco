@@ -103,4 +103,24 @@ extension Tcr {
         let input = DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeReplicationInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询从实例列表
+    @inlinable
+    public func describeReplicationInstancesPaginated(_ input: DescribeReplicationInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ReplicationRegistry])> {
+        self.client.paginate(input: input, region: region, command: self.describeReplicationInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询从实例列表
+    @inlinable @discardableResult
+    public func describeReplicationInstancesPaginated(_ input: DescribeReplicationInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReplicationInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReplicationInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询从实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ReplicationRegistry` and `DescribeReplicationInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReplicationInstancesPaginator(_ input: DescribeReplicationInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReplicationInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationInstances, logger: logger, on: eventLoop)
+    }
 }

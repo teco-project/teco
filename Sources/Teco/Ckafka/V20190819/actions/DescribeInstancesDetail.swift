@@ -136,4 +136,30 @@ extension Ckafka {
         let input = DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList)
         return try await self.client.execute(action: "DescribeInstancesDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例列表详情
+    ///
+    /// 用户账户下获取实例列表详情
+    @inlinable
+    public func describeInstancesDetailPaginated(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表详情
+    ///
+    /// 用户账户下获取实例列表详情
+    @inlinable @discardableResult
+    public func describeInstancesDetailPaginated(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表详情
+    ///
+    /// 用户账户下获取实例列表详情
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceDetail` and `DescribeInstancesDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstancesDetailPaginator(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesDetail, logger: logger, on: eventLoop)
+    }
 }

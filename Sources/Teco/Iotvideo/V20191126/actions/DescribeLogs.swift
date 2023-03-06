@@ -135,4 +135,33 @@ extension Iotvideo {
         let input = DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime)
         return try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询设备日志列表
+    ///
+    /// 本接口（DescribeLogs）用于查询设备日志列表。
+    /// 设备日志最长保留时长为15天,超期自动清除。
+    @inlinable
+    public func describeLogsPaginated(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LogData])> {
+        self.client.paginate(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备日志列表
+    ///
+    /// 本接口（DescribeLogs）用于查询设备日志列表。
+    /// 设备日志最长保留时长为15天,超期自动清除。
+    @inlinable @discardableResult
+    public func describeLogsPaginated(_ input: DescribeLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备日志列表
+    ///
+    /// 本接口（DescribeLogs）用于查询设备日志列表。
+    /// 设备日志最长保留时长为15天,超期自动清除。
+    ///
+    /// - Returns: `AsyncSequence`s of `LogData` and `DescribeLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLogsPaginator(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
+    }
 }

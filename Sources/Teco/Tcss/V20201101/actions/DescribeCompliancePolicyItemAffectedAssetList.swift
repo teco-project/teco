@@ -117,4 +117,30 @@ extension Tcss {
         let input = DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询检测项影响的资产列表
+    ///
+    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
+    @inlinable
+    public func describeCompliancePolicyItemAffectedAssetListPaginated(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ComplianceAffectedAsset])> {
+        self.client.paginate(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询检测项影响的资产列表
+    ///
+    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
+    @inlinable @discardableResult
+    public func describeCompliancePolicyItemAffectedAssetListPaginated(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCompliancePolicyItemAffectedAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询检测项影响的资产列表
+    ///
+    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
+    ///
+    /// - Returns: `AsyncSequence`s of `ComplianceAffectedAsset` and `DescribeCompliancePolicyItemAffectedAssetListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCompliancePolicyItemAffectedAssetListPaginator(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompliancePolicyItemAffectedAssetListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
+    }
 }

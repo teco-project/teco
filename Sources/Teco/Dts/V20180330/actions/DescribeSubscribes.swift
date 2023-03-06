@@ -160,4 +160,30 @@ extension Dts {
         let input = DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion)
         return try await self.client.execute(action: "DescribeSubscribes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取数据订阅实例列表
+    ///
+    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    @inlinable
+    public func describeSubscribesPaginated(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SubscribeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据订阅实例列表
+    ///
+    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    @inlinable @discardableResult
+    public func describeSubscribesPaginated(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubscribesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscribes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取数据订阅实例列表
+    ///
+    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    ///
+    /// - Returns: `AsyncSequence`s of `SubscribeInfo` and `DescribeSubscribesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSubscribesPaginator(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscribesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
+    }
 }

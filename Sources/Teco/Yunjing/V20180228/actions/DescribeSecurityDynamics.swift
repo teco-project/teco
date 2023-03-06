@@ -105,4 +105,30 @@ extension Yunjing {
         let input = DescribeSecurityDynamicsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取安全事件消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件消息数据。
+    @inlinable
+    public func describeSecurityDynamicsPaginated(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecurityDynamic])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件消息数据。
+    @inlinable @discardableResult
+    public func describeSecurityDynamicsPaginated(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityDynamicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityDynamics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全事件消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件消息数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecurityDynamic` and `DescribeSecurityDynamicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSecurityDynamicsPaginator(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityDynamicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
+    }
 }

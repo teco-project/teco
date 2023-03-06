@@ -120,4 +120,30 @@ extension Tdmq {
         let input = DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList)
         return try await self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPVHost])> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable @discardableResult
+    public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPVHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AMQPVHost` and `DescribeAMQPVHostsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAMQPVHostsPaginator(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPVHostsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+    }
 }

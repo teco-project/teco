@@ -150,4 +150,30 @@ extension Sqlserver {
         let input = DescribeBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func describeBackupMigrationPaginated(_ input: DescribeBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Migration])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupMigration, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable @discardableResult
+    public func describeBackupMigrationPaginated(_ input: DescribeBackupMigrationRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupMigrationResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupMigration, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    ///
+    /// - Returns: `AsyncSequence`s of `Migration` and `DescribeBackupMigrationResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBackupMigrationPaginator(_ input: DescribeBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupMigrationRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupMigration, logger: logger, on: eventLoop)
+    }
 }

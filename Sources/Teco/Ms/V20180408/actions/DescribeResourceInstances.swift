@@ -125,4 +125,30 @@ extension Ms {
         let input = DescribeResourceInstancesRequest(filters: filters, offset: offset, limit: limit, pids: pids, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeResourceInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeResourceInstancesPaginated(_ input: DescribeResourceInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ResourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable @discardableResult
+    public func describeResourceInstancesPaginated(_ input: DescribeResourceInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceInfo` and `DescribeResourceInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceInstancesPaginator(_ input: DescribeResourceInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceInstances, logger: logger, on: eventLoop)
+    }
 }

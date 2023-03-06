@@ -116,4 +116,30 @@ extension Tcss {
         let input = DescribeAssetPortListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAssetPortList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable
+    public func describeAssetPortListPaginated(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PortInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable @discardableResult
+    public func describeAssetPortListPaginated(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetPortListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetPortList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PortInfo` and `DescribeAssetPortListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetPortListPaginator(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetPortListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)
+    }
 }

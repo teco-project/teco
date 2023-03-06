@@ -123,4 +123,30 @@ extension Yunjing {
         let input = DescribeAccountsRequest(uuid: uuid, username: username, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Account])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable @discardableResult
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `Account` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
 }

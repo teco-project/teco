@@ -135,4 +135,30 @@ extension Smh {
         let input = DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone)
         return try await self.client.execute(action: "DescribeOfficialInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable
+    public func describeOfficialInstancesPaginated(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Instance])> {
+        self.client.paginate(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable @discardableResult
+    public func describeOfficialInstancesPaginated(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOfficialInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOfficialInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    ///
+    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeOfficialInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOfficialInstancesPaginator(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOfficialInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
+    }
 }

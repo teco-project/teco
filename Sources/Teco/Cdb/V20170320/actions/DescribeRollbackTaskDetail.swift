@@ -116,4 +116,30 @@ extension Cdb {
         let input = DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeRollbackTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询回档任务详情
+    ///
+    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    @inlinable
+    public func describeRollbackTaskDetailPaginated(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RollbackTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeRollbackTaskDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询回档任务详情
+    ///
+    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    @inlinable @discardableResult
+    public func describeRollbackTaskDetailPaginated(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRollbackTaskDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRollbackTaskDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询回档任务详情
+    ///
+    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `RollbackTask` and `DescribeRollbackTaskDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRollbackTaskDetailPaginator(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRollbackTaskDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRollbackTaskDetail, logger: logger, on: eventLoop)
+    }
 }

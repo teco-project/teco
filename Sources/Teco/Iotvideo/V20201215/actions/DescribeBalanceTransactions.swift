@@ -107,4 +107,24 @@ extension Iotvideo {
         let input = DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation)
         return try await self.client.execute(action: "DescribeBalanceTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取账户流水
+    @inlinable
+    public func describeBalanceTransactionsPaginated(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BalanceTransaction])> {
+        self.client.paginate(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取账户流水
+    @inlinable @discardableResult
+    public func describeBalanceTransactionsPaginated(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBalanceTransactionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBalanceTransactions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取账户流水
+    ///
+    /// - Returns: `AsyncSequence`s of `BalanceTransaction` and `DescribeBalanceTransactionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBalanceTransactionsPaginator(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBalanceTransactionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
+    }
 }

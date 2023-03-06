@@ -94,4 +94,24 @@ extension Wav {
         let input = QueryMiniAppCodeListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryMiniAppCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询小程序码列表接口
+    @inlinable
+    public func queryMiniAppCodeListPaginated(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [MiniAppCodeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询小程序码列表接口
+    @inlinable @discardableResult
+    public func queryMiniAppCodeListPaginated(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryMiniAppCodeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryMiniAppCodeList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询小程序码列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `MiniAppCodeInfo` and `QueryMiniAppCodeListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryMiniAppCodeListPaginator(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMiniAppCodeListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
+    }
 }

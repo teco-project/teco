@@ -109,4 +109,24 @@ extension Iotexplorer {
         let input = SearchPositionSpaceRequest(projectId: projectId, spaceName: spaceName, offset: offset, limit: limit)
         return try await self.client.execute(action: "SearchPositionSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 搜索位置空间
+    @inlinable
+    public func searchPositionSpacePaginated(_ input: SearchPositionSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PositionSpaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.searchPositionSpace, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索位置空间
+    @inlinable @discardableResult
+    public func searchPositionSpacePaginated(_ input: SearchPositionSpaceRequest, region: TCRegion? = nil, onResponse: @escaping (SearchPositionSpaceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchPositionSpace, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索位置空间
+    ///
+    /// - Returns: `AsyncSequence`s of `PositionSpaceInfo` and `SearchPositionSpaceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func searchPositionSpacePaginator(_ input: SearchPositionSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchPositionSpaceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchPositionSpace, logger: logger, on: eventLoop)
+    }
 }

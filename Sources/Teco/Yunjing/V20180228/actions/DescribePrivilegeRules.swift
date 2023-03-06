@@ -103,4 +103,24 @@ extension Yunjing {
         let input = DescribePrivilegeRulesRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribePrivilegeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取本地提权规则列表
+    @inlinable
+    public func describePrivilegeRulesPaginated(_ input: DescribePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrivilegeRule])> {
+        self.client.paginate(input: input, region: region, command: self.describePrivilegeRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取本地提权规则列表
+    @inlinable @discardableResult
+    public func describePrivilegeRulesPaginated(_ input: DescribePrivilegeRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivilegeRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrivilegeRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取本地提权规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrivilegeRule` and `DescribePrivilegeRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrivilegeRulesPaginator(_ input: DescribePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivilegeRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeRules, logger: logger, on: eventLoop)
+    }
 }

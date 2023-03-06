@@ -132,4 +132,30 @@ extension Ecm {
         let input = DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort)
         return try await self.client.execute(action: "DescribeVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询VPC列表
+    ///
+    /// 查询私有网络列表
+    @inlinable
+    public func describeVpcsPaginated(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPC列表
+    ///
+    /// 查询私有网络列表
+    @inlinable @discardableResult
+    public func describeVpcsPaginated(_ input: DescribeVpcsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPC列表
+    ///
+    /// 查询私有网络列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcInfo` and `DescribeVpcsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
+    }
 }

@@ -125,4 +125,30 @@ extension Dlc {
         let input = DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc)
         return try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询数据库列表。
+    @inlinable
+    public func describeDatabasesPaginated(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DatabaseResponseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询数据库列表。
+    @inlinable @discardableResult
+    public func describeDatabasesPaginated(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatabasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDatabases, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询数据库列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DatabaseResponseInfo` and `DescribeDatabasesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDatabasesPaginator(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatabasesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
+    }
 }

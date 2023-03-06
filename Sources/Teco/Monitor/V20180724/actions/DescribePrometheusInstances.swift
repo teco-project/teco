@@ -169,4 +169,42 @@ extension Monitor {
         let input = DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType)
         return try await self.client.execute(action: "DescribePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看 Prometheus 实例列表
+    ///
+    /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+    /// <ul>
+    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+    /// </ul>
+    @inlinable
+    public func describePrometheusInstancesPaginated(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrometheusInstancesItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查看 Prometheus 实例列表
+    ///
+    /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+    /// <ul>
+    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+    /// </ul>
+    @inlinable @discardableResult
+    public func describePrometheusInstancesPaginated(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看 Prometheus 实例列表
+    ///
+    /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+    /// <ul>
+    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+    /// </ul>
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusInstancesItem` and `DescribePrometheusInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusInstancesPaginator(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
+    }
 }

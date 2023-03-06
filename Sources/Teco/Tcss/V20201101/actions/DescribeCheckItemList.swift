@@ -110,4 +110,30 @@ extension Tcss {
         let input = DescribeCheckItemListRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeCheckItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询所有检查项接口
+    ///
+    /// 查询所有检查项接口，返回总数和检查项列表
+    @inlinable
+    public func describeCheckItemListPaginated(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterCheckItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCheckItemList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询所有检查项接口
+    ///
+    /// 查询所有检查项接口，返回总数和检查项列表
+    @inlinable @discardableResult
+    public func describeCheckItemListPaginated(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCheckItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCheckItemList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询所有检查项接口
+    ///
+    /// 查询所有检查项接口，返回总数和检查项列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterCheckItem` and `DescribeCheckItemListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCheckItemListPaginator(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCheckItemListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCheckItemList, logger: logger, on: eventLoop)
+    }
 }

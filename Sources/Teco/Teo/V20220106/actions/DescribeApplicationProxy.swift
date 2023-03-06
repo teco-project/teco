@@ -120,4 +120,24 @@ extension Teo {
         let input = DescribeApplicationProxyRequest(zoneId: zoneId, offset: offset, limit: limit, proxyId: proxyId)
         return try await self.client.execute(action: "DescribeApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取应用代理列表
+    @inlinable
+    public func describeApplicationProxyPaginated(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ApplicationProxy])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxy, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用代理列表
+    @inlinable @discardableResult
+    public func describeApplicationProxyPaginated(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationProxyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用代理列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ApplicationProxy` and `DescribeApplicationProxyResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApplicationProxyPaginator(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationProxyRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationProxy, logger: logger, on: eventLoop)
+    }
 }

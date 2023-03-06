@@ -127,4 +127,24 @@ extension Dasb {
         let input = DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembersPaginated(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Device])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产组成员列表
+    @inlinable @discardableResult
+    public func describeDeviceGroupMembersPaginated(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceGroupMembersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceGroupMembers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产组成员列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Device` and `DescribeDeviceGroupMembersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDeviceGroupMembersPaginator(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceGroupMembersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
+    }
 }

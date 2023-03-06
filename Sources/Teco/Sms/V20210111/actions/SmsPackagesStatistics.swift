@@ -121,4 +121,36 @@ extension Sms {
         let input = SmsPackagesStatisticsRequest(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
         return try await self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 套餐包信息统计
+    ///
+    /// 用户套餐包信息统计。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func smsPackagesStatisticsPaginated(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SmsPackagesStatistics])> {
+        self.client.paginate(input: input, region: region, command: self.smsPackagesStatistics, logger: logger, on: eventLoop)
+    }
+
+    /// 套餐包信息统计
+    ///
+    /// 用户套餐包信息统计。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable @discardableResult
+    public func smsPackagesStatisticsPaginated(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (SmsPackagesStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.smsPackagesStatistics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 套餐包信息统计
+    ///
+    /// 用户套餐包信息统计。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    ///
+    /// - Returns: `AsyncSequence`s of `SmsPackagesStatistics` and `SmsPackagesStatisticsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func smsPackagesStatisticsPaginator(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SmsPackagesStatisticsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.smsPackagesStatistics, logger: logger, on: eventLoop)
+    }
 }

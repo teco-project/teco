@@ -130,4 +130,30 @@ extension Redis {
         let input = DescribeSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset, role: role)
         return try await self.client.execute(action: "DescribeSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable
+    public func describeSlowLogPaginated(_ input: DescribeSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceSlowlogDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLog, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable @discardableResult
+    public func describeSlowLogPaginated(_ input: DescribeSlowLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceSlowlogDetail` and `DescribeSlowLogResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSlowLogPaginator(_ input: DescribeSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLog, logger: logger, on: eventLoop)
+    }
 }

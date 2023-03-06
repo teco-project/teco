@@ -134,4 +134,30 @@ extension Cfs {
         let input = DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order)
         return try await self.client.execute(action: "DescribeCfsSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable
+    public func describeCfsSnapshotsPaginated(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SnapshotInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsSnapshots, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable @discardableResult
+    public func describeCfsSnapshotsPaginated(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCfsSnapshotsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsSnapshots, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotInfo` and `DescribeCfsSnapshotsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCfsSnapshotsPaginator(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsSnapshotsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsSnapshots, logger: logger, on: eventLoop)
+    }
 }

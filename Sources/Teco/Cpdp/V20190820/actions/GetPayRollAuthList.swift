@@ -138,4 +138,24 @@ extension Cpdp {
         let input = GetPayRollAuthListRequest(openId: openId, subMerchantId: subMerchantId, authDate: authDate, offset: offset, limit: limit, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId, authStatus: authStatus)
         return try await self.client.execute(action: "GetPayRollAuthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 务工卡-查询核身记录
+    @inlinable
+    public func getPayRollAuthListPaginated(_ input: GetPayRollAuthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PayRollAuthResult])> {
+        self.client.paginate(input: input, region: region, command: self.getPayRollAuthList, logger: logger, on: eventLoop)
+    }
+
+    /// 务工卡-查询核身记录
+    @inlinable @discardableResult
+    public func getPayRollAuthListPaginated(_ input: GetPayRollAuthListRequest, region: TCRegion? = nil, onResponse: @escaping (GetPayRollAuthListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getPayRollAuthList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 务工卡-查询核身记录
+    ///
+    /// - Returns: `AsyncSequence`s of `PayRollAuthResult` and `GetPayRollAuthListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getPayRollAuthListPaginator(_ input: GetPayRollAuthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPayRollAuthListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPayRollAuthList, logger: logger, on: eventLoop)
+    }
 }

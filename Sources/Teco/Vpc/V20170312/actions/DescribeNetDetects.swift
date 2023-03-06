@@ -121,4 +121,30 @@ extension Vpc {
         let input = DescribeNetDetectsRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeNetDetects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网络探测列表
+    ///
+    /// 本接口（DescribeNetDetects）用于查询网络探测列表。
+    @inlinable
+    public func describeNetDetectsPaginated(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetDetect])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetDetects, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络探测列表
+    ///
+    /// 本接口（DescribeNetDetects）用于查询网络探测列表。
+    @inlinable @discardableResult
+    public func describeNetDetectsPaginated(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetDetectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetDetects, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络探测列表
+    ///
+    /// 本接口（DescribeNetDetects）用于查询网络探测列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `NetDetect` and `DescribeNetDetectsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetDetectsPaginator(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetDetectsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetects, logger: logger, on: eventLoop)
+    }
 }

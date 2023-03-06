@@ -107,4 +107,30 @@ extension Wav {
         let input = QueryVehicleInfoListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryVehicleInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable
+    public func queryVehicleInfoListPaginated(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [VehicleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable @discardableResult
+    public func queryVehicleInfoListPaginated(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryVehicleInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryVehicleInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `VehicleInfo` and `QueryVehicleInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryVehicleInfoListPaginator(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryVehicleInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)
+    }
 }

@@ -175,4 +175,30 @@ extension Tsf {
         let input = DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList)
         return try await self.client.execute(action: "DescribeStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 服务统计
+    ///
+    /// 服务统计页面：接口和服务维度
+    @inlinable
+    public func describeStatisticsPaginated(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ServiceStatisticsResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeStatistics, logger: logger, on: eventLoop)
+    }
+
+    /// 服务统计
+    ///
+    /// 服务统计页面：接口和服务维度
+    @inlinable @discardableResult
+    public func describeStatisticsPaginated(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeStatistics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 服务统计
+    ///
+    /// 服务统计页面：接口和服务维度
+    ///
+    /// - Returns: `AsyncSequence`s of `ServiceStatisticsResult` and `DescribeStatisticsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeStatisticsPaginator(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStatisticsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStatistics, logger: logger, on: eventLoop)
+    }
 }

@@ -138,4 +138,30 @@ extension Mongodb {
         let input = DescribeSlowLogPatternsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format)
         return try await self.client.execute(action: "DescribeSlowLogPatterns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取慢日志统计信息
+    ///
+    /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
+    @inlinable
+    public func describeSlowLogPatternsPaginated(_ input: DescribeSlowLogPatternsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SlowLogPattern])> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogPatterns, logger: logger, on: eventLoop)
+    }
+
+    /// 获取慢日志统计信息
+    ///
+    /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
+    @inlinable @discardableResult
+    public func describeSlowLogPatternsPaginated(_ input: DescribeSlowLogPatternsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogPatternsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogPatterns, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取慢日志统计信息
+    ///
+    /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogPattern` and `DescribeSlowLogPatternsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSlowLogPatternsPaginator(_ input: DescribeSlowLogPatternsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogPatternsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogPatterns, logger: logger, on: eventLoop)
+    }
 }

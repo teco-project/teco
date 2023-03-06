@@ -112,4 +112,24 @@ extension Cwp {
         let input = DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeClientException", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取客户端异常事件
+    @inlinable
+    public func describeClientExceptionPaginated(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RecordInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)
+    }
+
+    /// 获取客户端异常事件
+    @inlinable @discardableResult
+    public func describeClientExceptionPaginated(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClientExceptionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClientException, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取客户端异常事件
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordInfo` and `DescribeClientExceptionResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeClientExceptionPaginator(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientExceptionRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)
+    }
 }

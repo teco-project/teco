@@ -130,4 +130,30 @@ extension Teo {
         let input = DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId)
         return try await self.client.execute(action: "DescribeDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询 DNS 记录列表
+    ///
+    /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeDnsRecordsPaginated(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DnsRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 DNS 记录列表
+    ///
+    /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
+    @inlinable @discardableResult
+    public func describeDnsRecordsPaginated(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDnsRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDnsRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 DNS 记录列表
+    ///
+    /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
+    ///
+    /// - Returns: `AsyncSequence`s of `DnsRecord` and `DescribeDnsRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDnsRecordsPaginator(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDnsRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
+    }
 }

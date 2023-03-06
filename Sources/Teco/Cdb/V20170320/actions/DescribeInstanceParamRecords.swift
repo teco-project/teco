@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeInstanceParamRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable
+    public func describeInstanceParamRecordsPaginated(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ParamRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable @discardableResult
+    public func describeInstanceParamRecordsPaginated(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceParamRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceParamRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    ///
+    /// - Returns: `AsyncSequence`s of `ParamRecord` and `DescribeInstanceParamRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstanceParamRecordsPaginator(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceParamRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
+    }
 }

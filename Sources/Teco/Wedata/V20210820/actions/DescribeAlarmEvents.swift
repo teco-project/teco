@@ -128,4 +128,24 @@ extension Wedata {
         let input = DescribeAlarmEventsRequest(filters: filters, orderFields: orderFields, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 告警事件列表
+    @inlinable
+    public func describeAlarmEventsPaginated(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AlarmEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 告警事件列表
+    @inlinable @discardableResult
+    public func describeAlarmEventsPaginated(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 告警事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AlarmEventInfo` and `DescribeAlarmEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlarmEventsPaginator(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmEvents, logger: logger, on: eventLoop)
+    }
 }

@@ -155,4 +155,30 @@ extension Billing {
         let input = DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId)
         return try await self.client.execute(action: "DescribeDealsByCond", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable
+    public func describeDealsByCondPaginated(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Deal])> {
+        self.client.paginate(input: input, region: region, command: self.describeDealsByCond, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable @discardableResult
+    public func describeDealsByCondPaginated(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDealsByCondResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDealsByCond, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    ///
+    /// - Returns: `AsyncSequence`s of `Deal` and `DescribeDealsByCondResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDealsByCondPaginator(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDealsByCondRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDealsByCond, logger: logger, on: eventLoop)
+    }
 }

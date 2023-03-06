@@ -115,4 +115,24 @@ extension Tdmq {
         let input = DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters)
         return try await self.client.execute(action: "DescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取角色列表
+    @inlinable
+    public func describeRolesPaginated(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Role])> {
+        self.client.paginate(input: input, region: region, command: self.describeRoles, logger: logger, on: eventLoop)
+    }
+
+    /// 获取角色列表
+    @inlinable @discardableResult
+    public func describeRolesPaginated(_ input: DescribeRolesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRoles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取角色列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Role` and `DescribeRolesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRolesPaginator(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRolesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoles, logger: logger, on: eventLoop)
+    }
 }

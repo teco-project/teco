@@ -147,4 +147,30 @@ extension Live {
         let input = DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode)
         return try await self.client.execute(action: "DescribeCallbackRecordsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable
+    public func describeCallbackRecordsListPaginated(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CallbackEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
+    }
+
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable @discardableResult
+    public func describeCallbackRecordsListPaginated(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCallbackRecordsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCallbackRecordsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    ///
+    /// - Returns: `AsyncSequence`s of `CallbackEventInfo` and `DescribeCallbackRecordsListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCallbackRecordsListPaginator(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCallbackRecordsListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
+    }
 }

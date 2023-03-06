@@ -137,4 +137,30 @@ extension Pts {
         let input = DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames)
         return try await self.client.execute(action: "DescribeAlertRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable
+    public func describeAlertRecordsPaginated(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AlertRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable @discardableResult
+    public func describeAlertRecordsPaginated(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlertRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AlertRecord` and `DescribeAlertRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlertRecordsPaginator(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRecords, logger: logger, on: eventLoop)
+    }
 }

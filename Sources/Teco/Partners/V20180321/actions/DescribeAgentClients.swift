@@ -135,4 +135,30 @@ extension Partners {
         let input = DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName)
         return try await self.client.execute(action: "DescribeAgentClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询待审核客户列表
+    ///
+    /// 代理商可查询自己名下待审核客户列表
+    @inlinable
+    public func describeAgentClientsPaginated(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentClientElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentClients, logger: logger, on: eventLoop)
+    }
+
+    /// 查询待审核客户列表
+    ///
+    /// 代理商可查询自己名下待审核客户列表
+    @inlinable @discardableResult
+    public func describeAgentClientsPaginated(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentClientsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentClients, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询待审核客户列表
+    ///
+    /// 代理商可查询自己名下待审核客户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentClientElem` and `DescribeAgentClientsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAgentClientsPaginator(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentClientsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentClients, logger: logger, on: eventLoop)
+    }
 }

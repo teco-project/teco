@@ -117,4 +117,30 @@ extension Apigateway {
         let input = DescribeApiBindApiAppsStatusRequest(serviceId: serviceId, apiIds: apiIds, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeApiBindApiAppsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable
+    public func describeApiBindApiAppsStatusPaginated(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApiAppApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable @discardableResult
+    public func describeApiBindApiAppsStatusPaginated(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiBindApiAppsStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApiBindApiAppsStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ApiAppApiInfo` and `DescribeApiBindApiAppsStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApiBindApiAppsStatusPaginator(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiBindApiAppsStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)
+    }
 }

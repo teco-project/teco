@@ -129,4 +129,24 @@ extension Ssl {
         let input = DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeManagers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagersPaginated(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ManagerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询管理人列表
+    @inlinable @discardableResult
+    public func describeManagersPaginated(_ input: DescribeManagersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeManagersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeManagers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询管理人列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ManagerInfo` and `DescribeManagersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeManagersPaginator(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeManagersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
+    }
 }

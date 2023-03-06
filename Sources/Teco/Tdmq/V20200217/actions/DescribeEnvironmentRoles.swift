@@ -120,4 +120,24 @@ extension Tdmq {
         let input = DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters)
         return try await self.client.execute(action: "DescribeEnvironmentRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取命名空间角色列表
+    @inlinable
+    public func describeEnvironmentRolesPaginated(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EnvironmentRole])> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
+    }
+
+    /// 获取命名空间角色列表
+    @inlinable @discardableResult
+    public func describeEnvironmentRolesPaginated(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEnvironmentRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEnvironmentRoles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取命名空间角色列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EnvironmentRole` and `DescribeEnvironmentRolesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEnvironmentRolesPaginator(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEnvironmentRolesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
+    }
 }

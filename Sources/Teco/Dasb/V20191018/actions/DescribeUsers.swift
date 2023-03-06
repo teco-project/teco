@@ -133,4 +133,24 @@ extension Dasb {
         let input = DescribeUsersRequest(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId)
         return try await self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户列表
+    @inlinable
+    public func describeUsersPaginated(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [User])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户列表
+    @inlinable @discardableResult
+    public func describeUsersPaginated(_ input: DescribeUsersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `User` and `DescribeUsersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUsersPaginator(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsers, logger: logger, on: eventLoop)
+    }
 }

@@ -112,4 +112,24 @@ extension Rum {
         let input = DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset)
         return try await self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreasPaginated(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RumAreaInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
+    }
+
+    /// 查询片区信息
+    @inlinable @discardableResult
+    public func describeTawAreasPaginated(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTawAreasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTawAreas, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询片区信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RumAreaInfo` and `DescribeTawAreasResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTawAreasPaginator(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawAreasRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
+    }
 }

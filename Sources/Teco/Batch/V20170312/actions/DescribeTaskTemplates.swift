@@ -120,4 +120,30 @@ extension Batch {
         let input = DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取任务模板
+    ///
+    /// 用于查询任务模板信息
+    @inlinable
+    public func describeTaskTemplatesPaginated(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskTemplateView])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务模板
+    ///
+    /// 用于查询任务模板信息
+    @inlinable @discardableResult
+    public func describeTaskTemplatesPaginated(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务模板
+    ///
+    /// 用于查询任务模板信息
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskTemplateView` and `DescribeTaskTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTaskTemplatesPaginator(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskTemplates, logger: logger, on: eventLoop)
+    }
 }

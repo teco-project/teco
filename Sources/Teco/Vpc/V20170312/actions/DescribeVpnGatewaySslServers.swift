@@ -125,4 +125,30 @@ extension Vpc {
         let input = DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal)
         return try await self.client.execute(action: "DescribeVpnGatewaySslServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable
+    public func describeVpnGatewaySslServersPaginated(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SslVpnSever])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable @discardableResult
+    public func describeVpnGatewaySslServersPaginated(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewaySslServersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslServers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `SslVpnSever` and `DescribeVpnGatewaySslServersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpnGatewaySslServersPaginator(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslServersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)
+    }
 }

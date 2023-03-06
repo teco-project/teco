@@ -115,4 +115,30 @@ extension Ame {
         let input = DescribeKTVPlaylistsRequest(type: type, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable
+    public func describeKTVPlaylistsPaginated(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVPlaylistBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable @discardableResult
+    public func describeKTVPlaylistsPaginated(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVPlaylistsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylists, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVPlaylistBaseInfo` and `DescribeKTVPlaylistsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKTVPlaylistsPaginator(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVPlaylistsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,30 @@ extension Bmvpc {
         let input = DescribeSubnetByHostedDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSubnetByHostedDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询托管机器加入的子网列表
+    ///
+    /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
+    @inlinable
+    public func describeSubnetByHostedDevicePaginated(_ input: DescribeSubnetByHostedDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SubnetInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubnetByHostedDevice, logger: logger, on: eventLoop)
+    }
+
+    /// 查询托管机器加入的子网列表
+    ///
+    /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
+    @inlinable @discardableResult
+    public func describeSubnetByHostedDevicePaginated(_ input: DescribeSubnetByHostedDeviceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubnetByHostedDeviceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubnetByHostedDevice, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询托管机器加入的子网列表
+    ///
+    /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
+    ///
+    /// - Returns: `AsyncSequence`s of `SubnetInfo` and `DescribeSubnetByHostedDeviceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSubnetByHostedDevicePaginator(_ input: DescribeSubnetByHostedDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetByHostedDeviceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnetByHostedDevice, logger: logger, on: eventLoop)
+    }
 }

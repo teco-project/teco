@@ -117,4 +117,30 @@ extension Apigateway {
         let input = DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeApiEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 展示API绑定的限流策略
+    ///
+    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
+    @inlinable
+    public func describeApiEnvironmentStrategyPaginated(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApiEnvironmentStrategy])> {
+        self.client.paginate(input: input, region: region, command: self.describeApiEnvironmentStrategy, logger: logger, on: eventLoop)
+    }
+
+    /// 展示API绑定的限流策略
+    ///
+    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
+    @inlinable @discardableResult
+    public func describeApiEnvironmentStrategyPaginated(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiEnvironmentStrategyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApiEnvironmentStrategy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 展示API绑定的限流策略
+    ///
+    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
+    ///
+    /// - Returns: `AsyncSequence`s of `ApiEnvironmentStrategy` and `DescribeApiEnvironmentStrategyResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApiEnvironmentStrategyPaginator(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiEnvironmentStrategyRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiEnvironmentStrategy, logger: logger, on: eventLoop)
+    }
 }

@@ -127,4 +127,24 @@ extension Tbaas {
         let input = GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetBlockTransactionListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取区块内的交易列表
+    @inlinable
+    public func getBlockTransactionListForUserPaginated(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TransactionItem])> {
+        self.client.paginate(input: input, region: region, command: self.getBlockTransactionListForUser, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区块内的交易列表
+    @inlinable @discardableResult
+    public func getBlockTransactionListForUserPaginated(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetBlockTransactionListForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBlockTransactionListForUser, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取区块内的交易列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TransactionItem` and `GetBlockTransactionListForUserResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getBlockTransactionListForUserPaginator(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBlockTransactionListForUserRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBlockTransactionListForUser, logger: logger, on: eventLoop)
+    }
 }

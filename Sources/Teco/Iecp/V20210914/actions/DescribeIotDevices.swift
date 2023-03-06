@@ -117,4 +117,24 @@ extension Iecp {
         let input = DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order)
         return try await self.client.execute(action: "DescribeIotDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备列表信息
+    @inlinable
+    public func describeIotDevicesPaginated(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IotDevicesInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表信息
+    @inlinable @discardableResult
+    public func describeIotDevicesPaginated(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIotDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIotDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `IotDevicesInfo` and `DescribeIotDevicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIotDevicesPaginator(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIotDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
+    }
 }

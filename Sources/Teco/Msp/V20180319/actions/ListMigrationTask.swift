@@ -102,4 +102,24 @@ extension Msp {
         let input = ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId)
         return try await self.client.execute(action: "ListMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取迁移任务列表
+    @inlinable
+    public func listMigrationTaskPaginated(_ input: ListMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Task])> {
+        self.client.paginate(input: input, region: region, command: self.listMigrationTask, logger: logger, on: eventLoop)
+    }
+
+    /// 获取迁移任务列表
+    @inlinable @discardableResult
+    public func listMigrationTaskPaginated(_ input: ListMigrationTaskRequest, region: TCRegion? = nil, onResponse: @escaping (ListMigrationTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listMigrationTask, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取迁移任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Task` and `ListMigrationTaskResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listMigrationTaskPaginator(_ input: ListMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListMigrationTaskRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listMigrationTask, logger: logger, on: eventLoop)
+    }
 }

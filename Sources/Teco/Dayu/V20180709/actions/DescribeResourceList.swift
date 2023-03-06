@@ -186,4 +186,24 @@ extension Dayu {
         let input = DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain)
         return try await self.client.execute(action: "DescribeResourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资源列表
+    @inlinable
+    public func describeResourceListPaginated(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [KeyValueRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资源列表
+    @inlinable @discardableResult
+    public func describeResourceListPaginated(_ input: DescribeResourceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资源列表
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyValueRecord` and `DescribeResourceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceListPaginator(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
+    }
 }

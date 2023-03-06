@@ -122,4 +122,24 @@ extension Tdmq {
         let input = DescribeAMQPRouteRelationsRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue)
         return try await self.client.execute(action: "DescribeAMQPRouteRelations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Amqp路由关系列表
+    @inlinable
+    public func describeAMQPRouteRelationsPaginated(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPRouteRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp路由关系列表
+    @inlinable @discardableResult
+    public func describeAMQPRouteRelationsPaginated(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPRouteRelationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAMQPRouteRelations, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Amqp路由关系列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AMQPRouteRelation` and `DescribeAMQPRouteRelationsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPRouteRelationsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
+    }
 }

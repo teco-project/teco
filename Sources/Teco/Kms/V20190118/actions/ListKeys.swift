@@ -116,4 +116,30 @@ extension Kms {
         let input = ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId)
         return try await self.client.execute(action: "ListKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable
+    public func listKeysPaginated(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Key])> {
+        self.client.paginate(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable @discardableResult
+    public func listKeysPaginated(_ input: ListKeysRequest, region: TCRegion? = nil, onResponse: @escaping (ListKeysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listKeys, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Key` and `ListKeysResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listKeysPaginator(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeysRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
+    }
 }

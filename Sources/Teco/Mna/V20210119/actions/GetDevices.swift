@@ -109,4 +109,30 @@ extension Mna {
         let input = GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword)
         return try await self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevicesPaginated(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DeviceBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable @discardableResult
+    public func getDevicesPaginated(_ input: GetDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (GetDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceBaseInfo` and `GetDevicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
+    }
 }

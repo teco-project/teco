@@ -116,4 +116,30 @@ extension Zj {
         let input = GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status)
         return try await self.client.execute(action: "GetCrowdPackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable
+    public func getCrowdPackListPaginated(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SmsGetCrowdPackList])> {
+        self.client.paginate(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable @discardableResult
+    public func getCrowdPackListPaginated(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, onResponse: @escaping (GetCrowdPackListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getCrowdPackList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `SmsGetCrowdPackList` and `GetCrowdPackListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getCrowdPackListPaginator(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCrowdPackListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
+    }
 }

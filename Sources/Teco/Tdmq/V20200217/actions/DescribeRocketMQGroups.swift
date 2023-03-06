@@ -137,4 +137,24 @@ extension Tdmq {
         let input = DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types)
         return try await self.client.execute(action: "DescribeRocketMQGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取RocketMQ消费组列表
+    @inlinable
+    public func describeRocketMQGroupsPaginated(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RocketMQGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ消费组列表
+    @inlinable @discardableResult
+    public func describeRocketMQGroupsPaginated(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRocketMQGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ消费组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RocketMQGroup` and `DescribeRocketMQGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRocketMQGroupsPaginator(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)
+    }
 }

@@ -132,4 +132,30 @@ extension Essbasic {
         let input = ChannelDescribeEmployeesRequest(limit: limit, agent: agent, filters: filters, offset: offset, operator: `operator`)
         return try await self.client.execute(action: "ChannelDescribeEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询企业员工
+    ///
+    /// 查询企业员工列表
+    @inlinable
+    public func channelDescribeEmployeesPaginated(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Staff])> {
+        self.client.paginate(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
+    }
+
+    /// 查询企业员工
+    ///
+    /// 查询企业员工列表
+    @inlinable @discardableResult
+    public func channelDescribeEmployeesPaginated(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (ChannelDescribeEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.channelDescribeEmployees, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询企业员工
+    ///
+    /// 查询企业员工列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Staff` and `ChannelDescribeEmployeesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func channelDescribeEmployeesPaginator(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ChannelDescribeEmployeesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
+    }
 }

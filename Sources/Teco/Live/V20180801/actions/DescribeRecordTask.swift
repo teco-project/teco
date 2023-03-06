@@ -132,4 +132,39 @@ extension Live {
         let input = DescribeRecordTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
         return try await self.client.execute(action: "DescribeRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable
+    public func describeRecordTaskPaginated(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [RecordTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable @discardableResult
+    public func describeRecordTaskPaginated(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordTask, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordTask` and `DescribeRecordTaskResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRecordTaskPaginator(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordTaskRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
+    }
 }

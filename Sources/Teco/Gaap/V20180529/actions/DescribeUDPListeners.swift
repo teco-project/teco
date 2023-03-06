@@ -137,4 +137,30 @@ extension Gaap {
         let input = DescribeUDPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, groupId: groupId, searchValue: searchValue)
         return try await self.client.execute(action: "DescribeUDPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询UDP监听器列表
+    ///
+    /// 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
+    @inlinable
+    public func describeUDPListenersPaginated(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UDPListener])> {
+        self.client.paginate(input: input, region: region, command: self.describeUDPListeners, logger: logger, on: eventLoop)
+    }
+
+    /// 查询UDP监听器列表
+    ///
+    /// 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
+    @inlinable @discardableResult
+    public func describeUDPListenersPaginated(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUDPListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUDPListeners, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询UDP监听器列表
+    ///
+    /// 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
+    ///
+    /// - Returns: `AsyncSequence`s of `UDPListener` and `DescribeUDPListenersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUDPListenersPaginator(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUDPListenersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUDPListeners, logger: logger, on: eventLoop)
+    }
 }

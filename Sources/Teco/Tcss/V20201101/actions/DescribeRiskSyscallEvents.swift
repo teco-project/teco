@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeRiskSyscallEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运行时高危系统调用列表
+    ///
+    /// 查询运行时运行时高危系统调用列表信息
+    @inlinable
+    public func describeRiskSyscallEventsPaginated(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RiskSyscallEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时高危系统调用列表
+    ///
+    /// 查询运行时运行时高危系统调用列表信息
+    @inlinable @discardableResult
+    public func describeRiskSyscallEventsPaginated(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskSyscallEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskSyscallEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时高危系统调用列表
+    ///
+    /// 查询运行时运行时高危系统调用列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RiskSyscallEventInfo` and `DescribeRiskSyscallEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRiskSyscallEventsPaginator(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskSyscallEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)
+    }
 }

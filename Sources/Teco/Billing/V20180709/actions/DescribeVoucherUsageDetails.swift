@@ -112,4 +112,24 @@ extension Billing {
         let input = DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`)
         return try await self.client.execute(action: "DescribeVoucherUsageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取代金券使用记录
+    @inlinable
+    public func describeVoucherUsageDetailsPaginated(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UsageRecords])> {
+        self.client.paginate(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
+    }
+
+    /// 获取代金券使用记录
+    @inlinable @discardableResult
+    public func describeVoucherUsageDetailsPaginated(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVoucherUsageDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVoucherUsageDetails, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取代金券使用记录
+    ///
+    /// - Returns: `AsyncSequence`s of `UsageRecords` and `DescribeVoucherUsageDetailsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVoucherUsageDetailsPaginator(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVoucherUsageDetailsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
+    }
 }

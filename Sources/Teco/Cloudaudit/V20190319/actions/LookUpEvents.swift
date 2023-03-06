@@ -127,4 +127,30 @@ extension Cloudaudit {
         let input = LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode)
         return try await self.client.execute(action: "LookUpEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 检索日志
+    ///
+    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
+    @inlinable
+    public func lookUpEventsPaginated(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Event])> {
+        self.client.paginate(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 检索日志
+    ///
+    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
+    @inlinable @discardableResult
+    public func lookUpEventsPaginated(_ input: LookUpEventsRequest, region: TCRegion? = nil, onResponse: @escaping (LookUpEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.lookUpEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 检索日志
+    ///
+    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Event` and `LookUpEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func lookUpEventsPaginator(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<LookUpEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
+    }
 }

@@ -117,4 +117,30 @@ extension Vpc {
         let input = DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专线网关云联网路由
+    ///
+    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func describeDirectConnectGatewayCcnRoutesPaginated(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DirectConnectGatewayCcnRoute])> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectGatewayCcnRoutes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线网关云联网路由
+    ///
+    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
+    @inlinable @discardableResult
+    public func describeDirectConnectGatewayCcnRoutesPaginated(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectGatewayCcnRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectGatewayCcnRoutes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线网关云联网路由
+    ///
+    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
+    ///
+    /// - Returns: `AsyncSequence`s of `DirectConnectGatewayCcnRoute` and `DescribeDirectConnectGatewayCcnRoutesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDirectConnectGatewayCcnRoutesPaginator(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectGatewayCcnRoutesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectGatewayCcnRoutes, logger: logger, on: eventLoop)
+    }
 }

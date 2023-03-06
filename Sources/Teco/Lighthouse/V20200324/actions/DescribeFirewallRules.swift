@@ -114,4 +114,30 @@ extension Lighthouse {
         let input = DescribeFirewallRulesRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询防火墙规则
+    ///
+    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
+    @inlinable
+    public func describeFirewallRulesPaginated(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FirewallRuleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询防火墙规则
+    ///
+    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
+    @inlinable @discardableResult
+    public func describeFirewallRulesPaginated(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFirewallRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFirewallRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询防火墙规则
+    ///
+    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
+    ///
+    /// - Returns: `AsyncSequence`s of `FirewallRuleInfo` and `DescribeFirewallRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeFirewallRulesPaginator(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirewallRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
+    }
 }

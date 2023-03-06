@@ -115,4 +115,30 @@ extension Vod {
         let input = DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSubAppIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIdsPaginated(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SubAppIdInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)
+    }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable @discardableResult
+    public func describeSubAppIdsPaginated(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubAppIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubAppIds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    ///
+    /// - Returns: `AsyncSequence`s of `SubAppIdInfo` and `DescribeSubAppIdsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSubAppIdsPaginator(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubAppIdsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)
+    }
 }

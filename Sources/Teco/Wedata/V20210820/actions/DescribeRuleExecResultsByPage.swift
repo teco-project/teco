@@ -99,4 +99,24 @@ extension Wedata {
         let input = DescribeRuleExecResultsByPageRequest(ruleGroupExecId: ruleGroupExecId, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeRuleExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询规则执行结果列表
+    @inlinable
+    public func describeRuleExecResultsByPagePaginated(_ input: DescribeRuleExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleExecResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleExecResultsByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则执行结果列表
+    @inlinable @discardableResult
+    public func describeRuleExecResultsByPagePaginated(_ input: DescribeRuleExecResultsByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleExecResultsByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleExecResultsByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询规则执行结果列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleExecResult` and `DescribeRuleExecResultsByPageResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRuleExecResultsByPagePaginator(_ input: DescribeRuleExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleExecResultsByPageRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleExecResultsByPage, logger: logger, on: eventLoop)
+    }
 }

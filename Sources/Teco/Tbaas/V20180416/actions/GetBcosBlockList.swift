@@ -125,4 +125,30 @@ extension Tbaas {
         let input = GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash)
         return try await self.client.execute(action: "GetBcosBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询Bcos区块列表
+    ///
+    /// Bcos分页查询当前群组下的区块列表
+    @inlinable
+    public func getBcosBlockListPaginated(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BcosBlockObj])> {
+        self.client.paginate(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询Bcos区块列表
+    ///
+    /// Bcos分页查询当前群组下的区块列表
+    @inlinable @discardableResult
+    public func getBcosBlockListPaginated(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBcosBlockListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBcosBlockList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询Bcos区块列表
+    ///
+    /// Bcos分页查询当前群组下的区块列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BcosBlockObj` and `GetBcosBlockListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getBcosBlockListPaginator(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBcosBlockListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)
+    }
 }

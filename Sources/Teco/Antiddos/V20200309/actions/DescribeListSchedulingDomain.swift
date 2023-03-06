@@ -102,4 +102,24 @@ extension Antiddos {
         let input = DescribeListSchedulingDomainRequest(offset: offset, limit: limit, filterDomain: filterDomain)
         return try await self.client.execute(action: "DescribeListSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取智能调度域名列表
+    @inlinable
+    public func describeListSchedulingDomainPaginated(_ input: DescribeListSchedulingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SchedulingDomainInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeListSchedulingDomain, logger: logger, on: eventLoop)
+    }
+
+    /// 获取智能调度域名列表
+    @inlinable @discardableResult
+    public func describeListSchedulingDomainPaginated(_ input: DescribeListSchedulingDomainRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListSchedulingDomainResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListSchedulingDomain, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取智能调度域名列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SchedulingDomainInfo` and `DescribeListSchedulingDomainResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListSchedulingDomainPaginator(_ input: DescribeListSchedulingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListSchedulingDomainRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListSchedulingDomain, logger: logger, on: eventLoop)
+    }
 }

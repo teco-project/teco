@@ -124,4 +124,30 @@ extension Iotcloud {
         let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId)
         return try await self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
+    @inlinable
+    public func describeGatewayBindDevicesPaginated(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BindDeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
+    @inlinable @discardableResult
+    public func describeGatewayBindDevicesPaginated(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayBindDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayBindDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BindDeviceInfo` and `DescribeGatewayBindDevicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayBindDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
+    }
 }

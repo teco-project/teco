@@ -112,4 +112,24 @@ extension Tcaplusdb {
         let input = DescribeTasksRequest(clusterIds: clusterIds, taskIds: taskIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务列表
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskInfoNew])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    @inlinable @discardableResult
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInfoNew` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
 }

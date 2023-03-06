@@ -117,4 +117,24 @@ extension Cfg {
         let input = DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags)
         return try await self.client.execute(action: "DescribeTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询经验库列表
+    @inlinable
+    public func describeTemplateListPaginated(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemplateListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询经验库列表
+    @inlinable @discardableResult
+    public func describeTemplateListPaginated(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplateListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplateList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询经验库列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateListItem` and `DescribeTemplateListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTemplateListPaginator(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplateListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)
+    }
 }

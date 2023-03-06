@@ -162,4 +162,30 @@ extension Youmall {
         let input = DescribePersonVisitInfoRequest(companyId: companyId, shopId: shopId, offset: offset, limit: limit, startDate: startDate, endDate: endDate, pictureExpires: pictureExpires, startDateTime: startDateTime, endDateTime: endDateTime)
         return try await self.client.execute(action: "DescribePersonVisitInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describePersonVisitInfoPaginated(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PersonVisitInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable @discardableResult
+    public func describePersonVisitInfoPaginated(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonVisitInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePersonVisitInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    ///
+    /// - Returns: `AsyncSequence`s of `PersonVisitInfo` and `DescribePersonVisitInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePersonVisitInfoPaginator(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonVisitInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)
+    }
 }

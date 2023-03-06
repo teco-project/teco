@@ -109,4 +109,24 @@ extension Iotexplorer {
         let input = DescribeGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGatewaySubDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询绑定到家庭的网关设备的子设备列表
+    @inlinable
+    public func describeGatewaySubDeviceListPaginated(_ input: DescribeGatewaySubDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FamilySubDevice])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewaySubDeviceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询绑定到家庭的网关设备的子设备列表
+    @inlinable @discardableResult
+    public func describeGatewaySubDeviceListPaginated(_ input: DescribeGatewaySubDeviceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewaySubDeviceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewaySubDeviceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询绑定到家庭的网关设备的子设备列表
+    ///
+    /// - Returns: `AsyncSequence`s of `FamilySubDevice` and `DescribeGatewaySubDeviceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGatewaySubDeviceListPaginator(_ input: DescribeGatewaySubDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewaySubDeviceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewaySubDeviceList, logger: logger, on: eventLoop)
+    }
 }

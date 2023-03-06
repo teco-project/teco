@@ -110,4 +110,30 @@ extension Dcdb {
         let input = DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeDCDBInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
+    @inlinable
+    public func describeDCDBInstanceNodeInfoPaginated(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BriefNodeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
+    @inlinable @discardableResult
+    public func describeDCDBInstanceNodeInfoPaginated(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDCDBInstanceNodeInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
+    ///
+    /// - Returns: `AsyncSequence`s of `BriefNodeInfo` and `DescribeDCDBInstanceNodeInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDCDBInstanceNodeInfoPaginator(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBInstanceNodeInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, logger: logger, on: eventLoop)
+    }
 }

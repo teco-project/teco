@@ -127,4 +127,30 @@ extension Wedata {
         let input = DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId)
         return try await self.client.execute(action: "DescribeTableQualityDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable
+    public func describeTableQualityDetailsPaginated(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TableQualityDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
+    }
+
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable @discardableResult
+    public func describeTableQualityDetailsPaginated(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTableQualityDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTableQualityDetails, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    ///
+    /// - Returns: `AsyncSequence`s of `TableQualityDetail` and `DescribeTableQualityDetailsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTableQualityDetailsPaginator(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTableQualityDetailsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
+    }
 }

@@ -121,4 +121,30 @@ extension Teo {
         let input = DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort)
         return try await self.client.execute(action: "DescribeHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeHostsCertificatePaginated(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [HostCertSetting])> {
+        self.client.paginate(input: input, region: region, command: self.describeHostsCertificate, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable @discardableResult
+    public func describeHostsCertificatePaginated(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostsCertificateResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHostsCertificate, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    ///
+    /// - Returns: `AsyncSequence`s of `HostCertSetting` and `DescribeHostsCertificateResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHostsCertificatePaginator(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostsCertificateRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostsCertificate, logger: logger, on: eventLoop)
+    }
 }

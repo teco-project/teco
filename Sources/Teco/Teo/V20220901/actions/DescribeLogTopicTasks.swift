@@ -111,4 +111,30 @@ extension Teo {
         let input = DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeLogTopicTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable
+    public func describeLogTopicTasksPaginated(_ input: DescribeLogTopicTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClsLogTopicInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLogTopicTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable @discardableResult
+    public func describeLogTopicTasksPaginated(_ input: DescribeLogTopicTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogTopicTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLogTopicTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClsLogTopicInfo` and `DescribeLogTopicTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLogTopicTasksPaginator(_ input: DescribeLogTopicTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogTopicTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogTopicTasks, logger: logger, on: eventLoop)
+    }
 }

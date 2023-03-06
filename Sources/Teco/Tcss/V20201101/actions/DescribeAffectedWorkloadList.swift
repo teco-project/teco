@@ -126,4 +126,30 @@ extension Tcss {
         let input = DescribeAffectedWorkloadListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeAffectedWorkloadList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable
+    public func describeAffectedWorkloadListPaginated(_ input: DescribeAffectedWorkloadListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AffectedWorkloadItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAffectedWorkloadList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable @discardableResult
+    public func describeAffectedWorkloadListPaginated(_ input: DescribeAffectedWorkloadListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAffectedWorkloadListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAffectedWorkloadList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AffectedWorkloadItem` and `DescribeAffectedWorkloadListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAffectedWorkloadListPaginator(_ input: DescribeAffectedWorkloadListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAffectedWorkloadListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAffectedWorkloadList, logger: logger, on: eventLoop)
+    }
 }

@@ -103,4 +103,24 @@ extension Ckafka {
         let input = DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeConnectResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Datahub连接源列表
+    @inlinable
+    public func describeConnectResourcesPaginated(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeConnectResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeConnectResources, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Datahub连接源列表
+    @inlinable @discardableResult
+    public func describeConnectResourcesPaginated(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConnectResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConnectResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Datahub连接源列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeConnectResource` and `DescribeConnectResourcesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeConnectResourcesPaginator(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConnectResourcesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConnectResources, logger: logger, on: eventLoop)
+    }
 }

@@ -159,4 +159,33 @@ extension Ess {
         let input = DescribeFileUrlsRequest(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent)
         return try await self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileUrl])> {
+        self.client.paginate(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable @discardableResult
+    public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileUrlsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFileUrls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    ///
+    /// - Returns: `AsyncSequence`s of `FileUrl` and `DescribeFileUrlsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeFileUrlsPaginator(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileUrlsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
+    }
 }

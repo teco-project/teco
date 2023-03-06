@@ -120,4 +120,30 @@ extension Cvm {
         let input = DescribeHostsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable
+    public func describeHostsPaginated(_ input: DescribeHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HostItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable @discardableResult
+    public func describeHostsPaginated(_ input: DescribeHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `HostItem` and `DescribeHostsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHostsPaginator(_ input: DescribeHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)
+    }
 }

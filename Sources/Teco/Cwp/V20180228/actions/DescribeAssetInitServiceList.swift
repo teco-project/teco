@@ -142,4 +142,24 @@ extension Cwp {
         let input = DescribeAssetInitServiceListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetInitServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询资产管理启动服务列表
+    @inlinable
+    public func describeAssetInitServiceListPaginated(_ input: DescribeAssetInitServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetInitServiceBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetInitServiceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理启动服务列表
+    @inlinable @discardableResult
+    public func describeAssetInitServiceListPaginated(_ input: DescribeAssetInitServiceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetInitServiceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetInitServiceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询资产管理启动服务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetInitServiceBaseInfo` and `DescribeAssetInitServiceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetInitServiceListPaginator(_ input: DescribeAssetInitServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetInitServiceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetInitServiceList, logger: logger, on: eventLoop)
+    }
 }

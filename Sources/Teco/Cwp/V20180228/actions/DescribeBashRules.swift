@@ -108,4 +108,24 @@ extension Cwp {
         let input = DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取高危命令规则列表
+    @inlinable
+    public func describeBashRulesPaginated(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BashRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令规则列表
+    @inlinable @discardableResult
+    public func describeBashRulesPaginated(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBashRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBashRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BashRule` and `DescribeBashRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBashRulesPaginator(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
+    }
 }

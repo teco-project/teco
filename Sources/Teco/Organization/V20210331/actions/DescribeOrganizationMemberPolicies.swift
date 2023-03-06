@@ -109,4 +109,24 @@ extension Organization {
         let input = DescribeOrganizationMemberPoliciesRequest(offset: offset, limit: limit, memberUin: memberUin, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeOrganizationMemberPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取组织成员的授权策略列表
+    @inlinable
+    public func describeOrganizationMemberPoliciesPaginated(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OrgMemberPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberPolicies, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织成员的授权策略列表
+    @inlinable @discardableResult
+    public func describeOrganizationMemberPoliciesPaginated(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationMemberPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberPolicies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组织成员的授权策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrgMemberPolicy` and `DescribeOrganizationMemberPoliciesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOrganizationMemberPoliciesPaginator(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberPoliciesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberPolicies, logger: logger, on: eventLoop)
+    }
 }

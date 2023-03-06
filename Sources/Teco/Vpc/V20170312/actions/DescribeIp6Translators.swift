@@ -123,4 +123,33 @@ extension Vpc {
         let input = DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询IPV6转换实例及其绑定规则信息
+    ///
+    /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
+    /// 2. 支持过滤查询
+    @inlinable
+    public func describeIp6TranslatorsPaginated(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Ip6Translator])> {
+        self.client.paginate(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IPV6转换实例及其绑定规则信息
+    ///
+    /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
+    /// 2. 支持过滤查询
+    @inlinable @discardableResult
+    public func describeIp6TranslatorsPaginated(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIp6TranslatorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIp6Translators, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询IPV6转换实例及其绑定规则信息
+    ///
+    /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
+    /// 2. 支持过滤查询
+    ///
+    /// - Returns: `AsyncSequence`s of `Ip6Translator` and `DescribeIp6TranslatorsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIp6TranslatorsPaginator(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIp6TranslatorsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)
+    }
 }

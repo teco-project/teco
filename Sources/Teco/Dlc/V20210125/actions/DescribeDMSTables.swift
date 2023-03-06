@@ -154,4 +154,24 @@ extension Dlc {
         let input = DescribeDMSTablesRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset, sort: sort, asc: asc)
         return try await self.client.execute(action: "DescribeDMSTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// DMS元数据获取表列表
+    @inlinable
+    public func describeDMSTablesPaginated(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DMSTableInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
+    }
+
+    /// DMS元数据获取表列表
+    @inlinable @discardableResult
+    public func describeDMSTablesPaginated(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDMSTablesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDMSTables, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// DMS元数据获取表列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DMSTableInfo` and `DescribeDMSTablesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDMSTablesPaginator(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDMSTablesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
+    }
 }

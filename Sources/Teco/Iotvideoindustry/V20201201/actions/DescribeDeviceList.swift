@@ -117,4 +117,30 @@ extension Iotvideoindustry {
         let input = DescribeDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceTypes: deviceTypes)
         return try await self.client.execute(action: "DescribeDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备列表
+    ///
+    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+    @inlinable
+    public func describeDeviceListPaginated(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AllDeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表
+    ///
+    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+    @inlinable @discardableResult
+    public func describeDeviceListPaginated(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备列表
+    ///
+    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+    ///
+    /// - Returns: `AsyncSequence`s of `AllDeviceInfo` and `DescribeDeviceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDeviceListPaginator(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceList, logger: logger, on: eventLoop)
+    }
 }

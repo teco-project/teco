@@ -115,4 +115,30 @@ extension Vod {
         let input = DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeHeadTailTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable
+    public func describeHeadTailTemplatesPaginated(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HeadTailTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeHeadTailTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable @discardableResult
+    public func describeHeadTailTemplatesPaginated(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHeadTailTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHeadTailTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `HeadTailTemplate` and `DescribeHeadTailTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHeadTailTemplatesPaginator(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHeadTailTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHeadTailTemplates, logger: logger, on: eventLoop)
+    }
 }

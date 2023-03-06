@@ -102,4 +102,24 @@ extension Bma {
         let input = DescribeBPReportFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeBPReportFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询举报列表
+    @inlinable
+    public func describeBPReportFakeURLsPaginated(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ReportFakeURLInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBPReportFakeURLs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询举报列表
+    @inlinable @discardableResult
+    public func describeBPReportFakeURLsPaginated(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBPReportFakeURLsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBPReportFakeURLs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询举报列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ReportFakeURLInfo` and `DescribeBPReportFakeURLsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBPReportFakeURLsPaginator(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPReportFakeURLsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPReportFakeURLs, logger: logger, on: eventLoop)
+    }
 }

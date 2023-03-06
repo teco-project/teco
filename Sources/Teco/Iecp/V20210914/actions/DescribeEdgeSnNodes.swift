@@ -119,4 +119,24 @@ extension Iecp {
         let input = DescribeEdgeSnNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, snPattern: snPattern, remarkPattern: remarkPattern, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeEdgeSnNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询预注册节点列表
+    @inlinable
+    public func describeEdgeSnNodesPaginated(_ input: DescribeEdgeSnNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EdgeDracoNodeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeSnNodes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预注册节点列表
+    @inlinable @discardableResult
+    public func describeEdgeSnNodesPaginated(_ input: DescribeEdgeSnNodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEdgeSnNodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEdgeSnNodes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预注册节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EdgeDracoNodeInfo` and `DescribeEdgeSnNodesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEdgeSnNodesPaginator(_ input: DescribeEdgeSnNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeSnNodesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeSnNodes, logger: logger, on: eventLoop)
+    }
 }

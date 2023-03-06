@@ -149,4 +149,30 @@ extension Ess {
         let input = DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType)
         return try await self.client.execute(action: "DescribeFlowTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable
+    public func describeFlowTemplatesPaginated(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemplateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable @discardableResult
+    public func describeFlowTemplatesPaginated(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFlowTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeFlowTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeFlowTemplatesPaginator(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowTemplates, logger: logger, on: eventLoop)
+    }
 }

@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeVpcEndPointServiceRequest(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds)
         return try await self.client.execute(action: "DescribeVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询终端节点服务列表
+    ///
+    /// 查询终端节点服务列表。
+    @inlinable
+    public func describeVpcEndPointServicePaginated(_ input: DescribeVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EndPointService])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPointService, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点服务列表
+    ///
+    /// 查询终端节点服务列表。
+    @inlinable @discardableResult
+    public func describeVpcEndPointServicePaginated(_ input: DescribeVpcEndPointServiceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcEndPointServiceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcEndPointService, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询终端节点服务列表
+    ///
+    /// 查询终端节点服务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `EndPointService` and `DescribeVpcEndPointServiceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpcEndPointServicePaginator(_ input: DescribeVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcEndPointServiceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcEndPointService, logger: logger, on: eventLoop)
+    }
 }

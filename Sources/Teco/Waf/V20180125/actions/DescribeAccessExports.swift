@@ -111,4 +111,30 @@ extension Waf {
         let input = DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAccessExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable
+    public func describeAccessExportsPaginated(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ExportAccessInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)
+    }
+
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable @discardableResult
+    public func describeAccessExportsPaginated(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessExportsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessExports, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ExportAccessInfo` and `DescribeAccessExportsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccessExportsPaginator(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessExportsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)
+    }
 }

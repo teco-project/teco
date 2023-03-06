@@ -161,4 +161,30 @@ extension Cme {
         let input = DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`)
         return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProjectInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+    }
+
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable @discardableResult
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProjectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProjectInfo` and `DescribeProjectsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+    }
 }

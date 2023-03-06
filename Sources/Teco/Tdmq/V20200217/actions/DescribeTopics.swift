@@ -144,4 +144,30 @@ extension Tdmq {
         let input = DescribeTopicsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, clusterId: clusterId, filters: filters, topicCreator: topicCreator)
         return try await self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable
+    public func describeTopicsPaginated(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Topic])> {
+        self.client.paginate(input: input, region: region, command: self.describeTopics, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable @discardableResult
+    public func describeTopicsPaginated(_ input: DescribeTopicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTopics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Topic` and `DescribeTopicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTopicsPaginator(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopics, logger: logger, on: eventLoop)
+    }
 }

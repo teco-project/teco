@@ -124,4 +124,30 @@ extension Yunjing {
         let input = DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid)
         return try await self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogsPaginated(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DefendAttackLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable @discardableResult
+    public func describeAttackLogsPaginated(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAttackLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAttackLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DefendAttackLog` and `DescribeAttackLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAttackLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
+    }
 }

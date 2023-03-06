@@ -155,4 +155,30 @@ extension Dnspod {
         let input = DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取域名的解析记录列表
+    ///
+    /// 获取某个域名下的解析记录列表
+    @inlinable
+    public func describeRecordListPaginated(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RecordListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名的解析记录列表
+    ///
+    /// 获取某个域名下的解析记录列表
+    @inlinable @discardableResult
+    public func describeRecordListPaginated(_ input: DescribeRecordListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名的解析记录列表
+    ///
+    /// 获取某个域名下的解析记录列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordListItem` and `DescribeRecordListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRecordListPaginator(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
+    }
 }

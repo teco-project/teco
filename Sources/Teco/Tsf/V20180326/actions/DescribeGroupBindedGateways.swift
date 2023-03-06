@@ -103,4 +103,24 @@ extension Tsf {
         let input = DescribeGroupBindedGatewaysRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord)
         return try await self.client.execute(action: "DescribeGroupBindedGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询某个API分组已绑定的网关部署组信息列表
+    @inlinable
+    public func describeGroupBindedGatewaysPaginated(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GatewayDeployGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某个API分组已绑定的网关部署组信息列表
+    @inlinable @discardableResult
+    public func describeGroupBindedGatewaysPaginated(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupBindedGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupBindedGateways, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某个API分组已绑定的网关部署组信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `GatewayDeployGroup` and `DescribeGroupBindedGatewaysResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGroupBindedGatewaysPaginator(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupBindedGatewaysRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
+    }
 }

@@ -131,4 +131,39 @@ extension As {
         let input = DescribeLifecycleHooksRequest(lifecycleHookIds: lifecycleHookIds, filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeLifecycleHooks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询生命周期挂钩
+    ///
+    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
+    ///
+    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
+    @inlinable
+    public func describeLifecycleHooksPaginated(_ input: DescribeLifecycleHooksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LifecycleHook])> {
+        self.client.paginate(input: input, region: region, command: self.describeLifecycleHooks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询生命周期挂钩
+    ///
+    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
+    ///
+    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
+    @inlinable @discardableResult
+    public func describeLifecycleHooksPaginated(_ input: DescribeLifecycleHooksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLifecycleHooksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLifecycleHooks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询生命周期挂钩
+    ///
+    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
+    ///
+    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
+    ///
+    /// - Returns: `AsyncSequence`s of `LifecycleHook` and `DescribeLifecycleHooksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLifecycleHooksPaginator(_ input: DescribeLifecycleHooksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLifecycleHooksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLifecycleHooks, logger: logger, on: eventLoop)
+    }
 }

@@ -119,4 +119,30 @@ extension Clb {
         let input = DescribeExclusiveClustersRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeExclusiveClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群列表
+    ///
+    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    @inlinable
+    public func describeExclusiveClustersPaginated(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Cluster])> {
+        self.client.paginate(input: input, region: region, command: self.describeExclusiveClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    ///
+    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    @inlinable @discardableResult
+    public func describeExclusiveClustersPaginated(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExclusiveClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExclusiveClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    ///
+    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    ///
+    /// - Returns: `AsyncSequence`s of `Cluster` and `DescribeExclusiveClustersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeExclusiveClustersPaginator(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExclusiveClustersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveClusters, logger: logger, on: eventLoop)
+    }
 }

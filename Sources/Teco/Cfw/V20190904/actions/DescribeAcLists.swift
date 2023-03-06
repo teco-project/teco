@@ -146,4 +146,24 @@ extension Cfw {
         let input = DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId)
         return try await self.client.execute(action: "DescribeAcLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 访问控制列表
+    @inlinable
+    public func describeAcListsPaginated(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AcListsData])> {
+        self.client.paginate(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
+    }
+
+    /// 访问控制列表
+    @inlinable @discardableResult
+    public func describeAcListsPaginated(_ input: DescribeAcListsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAcListsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAcLists, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 访问控制列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AcListsData` and `DescribeAcListsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAcListsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
+    }
 }

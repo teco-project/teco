@@ -117,4 +117,24 @@ extension Oceanus {
         let input = DescribeSystemResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion)
         return try await self.client.execute(action: "DescribeSystemResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 描述系统资源接口
+    @inlinable
+    public func describeSystemResourcesPaginated(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SystemResourceItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
+    }
+
+    /// 描述系统资源接口
+    @inlinable @discardableResult
+    public func describeSystemResourcesPaginated(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSystemResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSystemResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 描述系统资源接口
+    ///
+    /// - Returns: `AsyncSequence`s of `SystemResourceItem` and `DescribeSystemResourcesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSystemResourcesPaginator(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSystemResourcesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)
+    }
 }

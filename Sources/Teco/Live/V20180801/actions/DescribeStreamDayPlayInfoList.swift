@@ -141,4 +141,30 @@ extension Live {
         let input = DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName)
         return try await self.client.execute(action: "DescribeStreamDayPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询所有流的流量数据
+    ///
+    /// 查询天维度每条流的播放数据，包括总流量等。
+    @inlinable
+    public func describeStreamDayPlayInfoListPaginated(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PlayDataInfoByStream])> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询所有流的流量数据
+    ///
+    /// 查询天维度每条流的播放数据，包括总流量等。
+    @inlinable @discardableResult
+    public func describeStreamDayPlayInfoListPaginated(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamDayPlayInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamDayPlayInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询所有流的流量数据
+    ///
+    /// 查询天维度每条流的播放数据，包括总流量等。
+    ///
+    /// - Returns: `AsyncSequence`s of `PlayDataInfoByStream` and `DescribeStreamDayPlayInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeStreamDayPlayInfoListPaginator(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamDayPlayInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)
+    }
 }

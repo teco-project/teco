@@ -144,4 +144,30 @@ extension Cdn {
         let input = DescribeCdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, logType: logType)
         return try await self.client.execute(action: "DescribeCdnDomainLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable
+    public func describeCdnDomainLogsPaginated(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DomainLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable @discardableResult
+    public func describeCdnDomainLogsPaginated(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCdnDomainLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCdnDomainLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainLog` and `DescribeCdnDomainLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCdnDomainLogsPaginator(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCdnDomainLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
+    }
 }

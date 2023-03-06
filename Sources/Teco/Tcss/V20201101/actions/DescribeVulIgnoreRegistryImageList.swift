@@ -102,4 +102,24 @@ extension Tcss {
         let input = DescribeVulIgnoreRegistryImageListRequest(pocID: pocID, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeVulIgnoreRegistryImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable
+    public func describeVulIgnoreRegistryImageListPaginated(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VulIgnoreRegistryImage])> {
+        self.client.paginate(input: input, region: region, command: self.describeVulIgnoreRegistryImageList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable @discardableResult
+    public func describeVulIgnoreRegistryImageListPaginated(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulIgnoreRegistryImageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVulIgnoreRegistryImageList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VulIgnoreRegistryImage` and `DescribeVulIgnoreRegistryImageListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVulIgnoreRegistryImageListPaginator(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulIgnoreRegistryImageListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulIgnoreRegistryImageList, logger: logger, on: eventLoop)
+    }
 }

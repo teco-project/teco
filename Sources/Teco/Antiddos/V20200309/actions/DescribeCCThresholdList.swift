@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId)
         return try await self.client.execute(action: "DescribeCCThresholdList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC清洗阈值列表
+    @inlinable
+    public func describeCCThresholdListPaginated(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCThresholdPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC清洗阈值列表
+    @inlinable @discardableResult
+    public func describeCCThresholdListPaginated(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCThresholdListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCThresholdList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC清洗阈值列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CCThresholdPolicy` and `DescribeCCThresholdListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCCThresholdListPaginator(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCThresholdListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
+    }
 }

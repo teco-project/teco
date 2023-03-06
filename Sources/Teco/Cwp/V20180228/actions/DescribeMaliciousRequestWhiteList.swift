@@ -106,4 +106,24 @@ extension Cwp {
         let input = DescribeMaliciousRequestWhiteListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeMaliciousRequestWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询恶意请求白名单列表
+    @inlinable
+    public func describeMaliciousRequestWhiteListPaginated(_ input: DescribeMaliciousRequestWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MaliciousRequestWhiteListInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMaliciousRequestWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询恶意请求白名单列表
+    @inlinable @discardableResult
+    public func describeMaliciousRequestWhiteListPaginated(_ input: DescribeMaliciousRequestWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMaliciousRequestWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMaliciousRequestWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询恶意请求白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `MaliciousRequestWhiteListInfo` and `DescribeMaliciousRequestWhiteListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMaliciousRequestWhiteListPaginator(_ input: DescribeMaliciousRequestWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMaliciousRequestWhiteListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMaliciousRequestWhiteList, logger: logger, on: eventLoop)
+    }
 }

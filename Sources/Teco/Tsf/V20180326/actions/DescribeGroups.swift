@@ -139,4 +139,24 @@ extension Tsf {
         let input = DescribeGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, groupResourceTypeList: groupResourceTypeList, status: status, groupIdList: groupIdList)
         return try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VmGroupSimple])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 获取虚拟机部署组列表
+    @inlinable @discardableResult
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取虚拟机部署组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VmGroupSimple` and `DescribeGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+    }
 }

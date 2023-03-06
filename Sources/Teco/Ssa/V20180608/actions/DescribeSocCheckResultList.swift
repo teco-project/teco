@@ -110,4 +110,24 @@ extension Ssa {
         let input = DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId)
         return try await self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 云安全配置检查项结果列表
+    @inlinable
+    public func describeSocCheckResultListPaginated(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SocCheckResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项结果列表
+    @inlinable @discardableResult
+    public func describeSocCheckResultListPaginated(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSocCheckResultListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSocCheckResultList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 云安全配置检查项结果列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SocCheckResult` and `DescribeSocCheckResultListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSocCheckResultListPaginator(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSocCheckResultListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
+    }
 }

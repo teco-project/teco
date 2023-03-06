@@ -93,4 +93,24 @@ extension Apigateway {
         let input = DescribeAPIDocsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAPIDocs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocsPaginated(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [APIDoc])> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 文档列表
+    @inlinable @discardableResult
+    public func describeAPIDocsPaginated(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAPIDocsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIDocs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 文档列表
+    ///
+    /// - Returns: `AsyncSequence`s of `APIDoc` and `DescribeAPIDocsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAPIDocsPaginator(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIDocsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,24 @@ extension Tcb {
         let input = DescribeEndUsersRequest(envId: envId, offset: offset, limit: limit, uuIds: uuIds)
         return try await self.client.execute(action: "DescribeEndUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取终端用户列表
+    @inlinable
+    public func describeEndUsersPaginated(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EndUserInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEndUsers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取终端用户列表
+    @inlinable @discardableResult
+    public func describeEndUsersPaginated(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEndUsersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEndUsers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取终端用户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EndUserInfo` and `DescribeEndUsersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEndUsersPaginator(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEndUsersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEndUsers, logger: logger, on: eventLoop)
+    }
 }

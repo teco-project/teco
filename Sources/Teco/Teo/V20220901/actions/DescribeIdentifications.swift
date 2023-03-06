@@ -111,4 +111,30 @@ extension Teo {
         let input = DescribeIdentificationsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeIdentifications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentificationsPaginated(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Identification])> {
+        self.client.paginate(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable @discardableResult
+    public func describeIdentificationsPaginated(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIdentificationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIdentifications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Identification` and `DescribeIdentificationsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIdentificationsPaginator(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIdentificationsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
+    }
 }

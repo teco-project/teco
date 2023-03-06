@@ -125,4 +125,24 @@ extension Tag {
         let input = DescribeResourceTagsByResourceIdsSeqRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 按顺序查看资源关联的标签
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeqPaginated(_ input: DescribeResourceTagsByResourceIdsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TagResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTagsByResourceIdsSeq, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查看资源关联的标签
+    @inlinable @discardableResult
+    public func describeResourceTagsByResourceIdsSeqPaginated(_ input: DescribeResourceTagsByResourceIdsSeqRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceTagsByResourceIdsSeqResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTagsByResourceIdsSeq, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查看资源关联的标签
+    ///
+    /// - Returns: `AsyncSequence`s of `TagResource` and `DescribeResourceTagsByResourceIdsSeqResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeqPaginator(_ input: DescribeResourceTagsByResourceIdsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByResourceIdsSeqRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByResourceIdsSeq, logger: logger, on: eventLoop)
+    }
 }

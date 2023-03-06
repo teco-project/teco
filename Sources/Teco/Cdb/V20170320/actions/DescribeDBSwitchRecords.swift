@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDBSwitchRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云数据库切换记录
+    ///
+    /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    @inlinable
+    public func describeDBSwitchRecordsPaginated(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DBSwitchInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBSwitchRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库切换记录
+    ///
+    /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    @inlinable @discardableResult
+    public func describeDBSwitchRecordsPaginated(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBSwitchRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBSwitchRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库切换记录
+    ///
+    /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `DBSwitchInfo` and `DescribeDBSwitchRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBSwitchRecordsPaginator(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBSwitchRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSwitchRecords, logger: logger, on: eventLoop)
+    }
 }

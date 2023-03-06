@@ -138,4 +138,24 @@ extension Billing {
         let input = DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions)
         return try await self.client.execute(action: "DescribeCostSummaryByResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取按资源汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByResourcePaginated(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ConsumptionResourceSummaryDataItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCostSummaryByResource, logger: logger, on: eventLoop)
+    }
+
+    /// 获取按资源汇总消耗详情
+    @inlinable @discardableResult
+    public func describeCostSummaryByResourcePaginated(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCostSummaryByResourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCostSummaryByResource, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取按资源汇总消耗详情
+    ///
+    /// - Returns: `AsyncSequence`s of `ConsumptionResourceSummaryDataItem` and `DescribeCostSummaryByResourceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCostSummaryByResourcePaginator(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCostSummaryByResourceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByResource, logger: logger, on: eventLoop)
+    }
 }

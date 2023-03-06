@@ -107,4 +107,24 @@ extension Cmq {
         let input = DescribeDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举死信队列源队列
+    @inlinable
+    public func describeDeadLetterSourceQueuesPaginated(_ input: DescribeDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeadLetterSource])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeadLetterSourceQueues, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举死信队列源队列
+    @inlinable @discardableResult
+    public func describeDeadLetterSourceQueuesPaginated(_ input: DescribeDeadLetterSourceQueuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeadLetterSourceQueuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeadLetterSourceQueues, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举死信队列源队列
+    ///
+    /// - Returns: `AsyncSequence`s of `DeadLetterSource` and `DescribeDeadLetterSourceQueuesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDeadLetterSourceQueuesPaginator(_ input: DescribeDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeadLetterSourceQueuesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeadLetterSourceQueues, logger: logger, on: eventLoop)
+    }
 }

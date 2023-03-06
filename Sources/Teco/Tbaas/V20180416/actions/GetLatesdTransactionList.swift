@@ -137,4 +137,24 @@ extension Tbaas {
         let input = GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取最新交易列表
+    @inlinable
+    public func getLatesdTransactionListPaginated(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TransactionItem])> {
+        self.client.paginate(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取最新交易列表
+    @inlinable @discardableResult
+    public func getLatesdTransactionListPaginated(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLatesdTransactionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getLatesdTransactionList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取最新交易列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TransactionItem` and `GetLatesdTransactionListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getLatesdTransactionListPaginator(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLatesdTransactionListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
+    }
 }

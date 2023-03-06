@@ -106,4 +106,30 @@ extension Fmu {
         let input = GetModelListRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "GetModelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable
+    public func getModelListPaginated(_ input: GetModelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ModelInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getModelList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable @discardableResult
+    public func getModelListPaginated(_ input: GetModelListRequest, region: TCRegion? = nil, onResponse: @escaping (GetModelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getModelList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    ///
+    /// - Returns: `AsyncSequence`s of `ModelInfo` and `GetModelListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getModelListPaginator(_ input: GetModelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetModelListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getModelList, logger: logger, on: eventLoop)
+    }
 }

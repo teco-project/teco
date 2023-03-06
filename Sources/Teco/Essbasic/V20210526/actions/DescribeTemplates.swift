@@ -158,4 +158,30 @@ extension Essbasic {
         let input = DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId)
         return try await self.client.execute(action: "DescribeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable
+    public func describeTemplatesPaginated(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemplateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable @discardableResult
+    public func describeTemplatesPaginated(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTemplatesPaginator(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
+    }
 }

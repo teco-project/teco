@@ -144,4 +144,30 @@ extension Gaap {
         let input = DescribeHTTPSListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId, http3Supported: http3Supported)
         return try await self.client.execute(action: "DescribeHTTPSListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询HTTPS监听器信息
+    ///
+    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
+    @inlinable
+    public func describeHTTPSListenersPaginated(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HTTPSListener])> {
+        self.client.paginate(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HTTPS监听器信息
+    ///
+    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
+    @inlinable @discardableResult
+    public func describeHTTPSListenersPaginated(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHTTPSListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHTTPSListeners, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HTTPS监听器信息
+    ///
+    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `HTTPSListener` and `DescribeHTTPSListenersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHTTPSListenersPaginator(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHTTPSListenersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
+    }
 }

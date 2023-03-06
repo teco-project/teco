@@ -166,4 +166,30 @@ extension Live {
         let input = DescribeProIspPlaySumInfoListRequest(startTime: startTime, endTime: endTime, statType: statType, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage)
         return try await self.client.execute(action: "DescribeProIspPlaySumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询分省份分运营商播放汇总数据
+    ///
+    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
+    @inlinable
+    public func describeProIspPlaySumInfoListPaginated(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProIspPlaySumInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProIspPlaySumInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分省份分运营商播放汇总数据
+    ///
+    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
+    @inlinable @discardableResult
+    public func describeProIspPlaySumInfoListPaginated(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProIspPlaySumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProIspPlaySumInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分省份分运营商播放汇总数据
+    ///
+    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProIspPlaySumInfo` and `DescribeProIspPlaySumInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProIspPlaySumInfoListPaginator(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProIspPlaySumInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProIspPlaySumInfoList, logger: logger, on: eventLoop)
+    }
 }

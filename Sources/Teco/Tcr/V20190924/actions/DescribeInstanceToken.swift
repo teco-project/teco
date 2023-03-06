@@ -102,4 +102,24 @@ extension Tcr {
         let input = DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询长期访问凭证信息
+    @inlinable
+    public func describeInstanceTokenPaginated(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TcrInstanceToken])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceToken, logger: logger, on: eventLoop)
+    }
+
+    /// 查询长期访问凭证信息
+    @inlinable @discardableResult
+    public func describeInstanceTokenPaginated(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceTokenResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceToken, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询长期访问凭证信息
+    ///
+    /// - Returns: `AsyncSequence`s of `TcrInstanceToken` and `DescribeInstanceTokenResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstanceTokenPaginator(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceTokenRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceToken, logger: logger, on: eventLoop)
+    }
 }

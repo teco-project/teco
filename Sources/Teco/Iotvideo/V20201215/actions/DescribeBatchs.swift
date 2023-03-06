@@ -102,4 +102,24 @@ extension Iotvideo {
         let input = DescribeBatchsRequest(productId: productId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeBatchs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取批次列表
+    @inlinable
+    public func describeBatchsPaginated(_ input: DescribeBatchsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VideoBatch])> {
+        self.client.paginate(input: input, region: region, command: self.describeBatchs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取批次列表
+    @inlinable @discardableResult
+    public func describeBatchsPaginated(_ input: DescribeBatchsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBatchsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBatchs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取批次列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VideoBatch` and `DescribeBatchsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBatchsPaginator(_ input: DescribeBatchsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchs, logger: logger, on: eventLoop)
+    }
 }

@@ -110,4 +110,30 @@ extension Tat {
         let input = DescribeInvokerRecordsRequest(invokerIds: invokerIds, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInvokerRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询执行器执行记录
+    ///
+    /// 此接口用于查询执行器的执行记录。
+    @inlinable
+    public func describeInvokerRecordsPaginated(_ input: DescribeInvokerRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InvokerRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeInvokerRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行器执行记录
+    ///
+    /// 此接口用于查询执行器的执行记录。
+    @inlinable @discardableResult
+    public func describeInvokerRecordsPaginated(_ input: DescribeInvokerRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInvokerRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInvokerRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询执行器执行记录
+    ///
+    /// 此接口用于查询执行器的执行记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `InvokerRecord` and `DescribeInvokerRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInvokerRecordsPaginator(_ input: DescribeInvokerRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInvokerRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvokerRecords, logger: logger, on: eventLoop)
+    }
 }

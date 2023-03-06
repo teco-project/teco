@@ -116,4 +116,30 @@ extension Nlp {
         let input = DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text)
         return try await self.client.execute(action: "DescribeWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询指定词库的词条信息
+    ///
+    /// 依据自定义词库的ID，查询对应的词条信息。
+    @inlinable
+    public func describeWordItemsPaginated(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WordItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
+    }
+
+    /// 查询指定词库的词条信息
+    ///
+    /// 依据自定义词库的ID，查询对应的词条信息。
+    @inlinable @discardableResult
+    public func describeWordItemsPaginated(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWordItemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWordItems, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询指定词库的词条信息
+    ///
+    /// 依据自定义词库的ID，查询对应的词条信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `WordItem` and `DescribeWordItemsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWordItemsPaginator(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordItemsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
+    }
 }

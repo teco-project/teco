@@ -118,4 +118,24 @@ extension Cloudhsm {
         let input = DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType)
         return try await self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsmsPaginated(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户VSM列表
+    @inlinable @discardableResult
+    public func describeVsmsPaginated(_ input: DescribeVsmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVsmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVsms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户VSM列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceInfo` and `DescribeVsmsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVsmsPaginator(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVsmsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)
+    }
 }

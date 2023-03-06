@@ -98,4 +98,24 @@ extension Apigateway {
         let input = DescribeUpstreamsRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeUpstreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询后端通道列表详情
+    @inlinable
+    public func describeUpstreamsPaginated(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UpstreamInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道列表详情
+    @inlinable @discardableResult
+    public func describeUpstreamsPaginated(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUpstreamsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreams, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道列表详情
+    ///
+    /// - Returns: `AsyncSequence`s of `UpstreamInfo` and `DescribeUpstreamsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUpstreamsPaginator(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
+    }
 }

@@ -128,4 +128,24 @@ extension Bm {
         let input = DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus)
         return try await self.client.execute(action: "DescribeCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看自定义镜像列表
+    @inlinable
+    public func describeCustomImagesPaginated(_ input: DescribeCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CustomImage])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomImages, logger: logger, on: eventLoop)
+    }
+
+    /// 查看自定义镜像列表
+    @inlinable @discardableResult
+    public func describeCustomImagesPaginated(_ input: DescribeCustomImagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomImagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomImages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看自定义镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CustomImage` and `DescribeCustomImagesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCustomImagesPaginator(_ input: DescribeCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomImagesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomImages, logger: logger, on: eventLoop)
+    }
 }

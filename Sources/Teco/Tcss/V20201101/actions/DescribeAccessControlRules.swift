@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeAccessControlRulesRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRulesPaginated(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable @discardableResult
+    public func describeAccessControlRulesPaginated(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccessControlRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccessControlRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleBaseInfo` and `DescribeAccessControlRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccessControlRulesPaginator(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessControlRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
+    }
 }

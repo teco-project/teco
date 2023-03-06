@@ -105,4 +105,30 @@ extension Bda {
         let input = GetGroupListRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "GetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取人体库列表
+    ///
+    /// 获取人体库列表。
+    @inlinable
+    public func getGroupListPaginated(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人体库列表
+    ///
+    /// 获取人体库列表。
+    @inlinable @discardableResult
+    public func getGroupListPaginated(_ input: GetGroupListRequest, region: TCRegion? = nil, onResponse: @escaping (GetGroupListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getGroupList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人体库列表
+    ///
+    /// 获取人体库列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `GroupInfo` and `GetGroupListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getGroupListPaginator(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetGroupListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
+    }
 }

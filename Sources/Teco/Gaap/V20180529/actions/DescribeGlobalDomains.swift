@@ -113,4 +113,24 @@ extension Gaap {
         let input = DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet)
         return try await self.client.execute(action: "DescribeGlobalDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询域名列表
+    @inlinable
+    public func describeGlobalDomainsPaginated(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Domain])> {
+        self.client.paginate(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名列表
+    @inlinable @discardableResult
+    public func describeGlobalDomainsPaginated(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGlobalDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGlobalDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Domain` and `DescribeGlobalDomainsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGlobalDomainsPaginator(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGlobalDomainsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
+    }
 }

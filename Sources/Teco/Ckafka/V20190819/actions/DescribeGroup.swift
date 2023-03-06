@@ -103,4 +103,24 @@ extension Ckafka {
         let input = DescribeGroupRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举消费分组(精简版)
+    @inlinable
+    public func describeGroupPaginated(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举消费分组(精简版)
+    @inlinable @discardableResult
+    public func describeGroupPaginated(_ input: DescribeGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举消费分组(精简版)
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeGroup` and `DescribeGroupResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGroupPaginator(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroup, logger: logger, on: eventLoop)
+    }
 }

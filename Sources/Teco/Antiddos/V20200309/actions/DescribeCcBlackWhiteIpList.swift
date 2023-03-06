@@ -132,4 +132,24 @@ extension Antiddos {
         let input = DescribeCcBlackWhiteIpListRequest(business: business, instanceId: instanceId, offset: offset, limit: limit, ip: ip, domain: domain, protocol: `protocol`, filterIp: filterIp, filterType: filterType)
         return try await self.client.execute(action: "DescribeCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC四层黑白名单列表
+    @inlinable
+    public func describeCcBlackWhiteIpListPaginated(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcBlackWhiteIpPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC四层黑白名单列表
+    @inlinable @discardableResult
+    public func describeCcBlackWhiteIpListPaginated(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcBlackWhiteIpListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCcBlackWhiteIpList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC四层黑白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CcBlackWhiteIpPolicy` and `DescribeCcBlackWhiteIpListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCcBlackWhiteIpListPaginator(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcBlackWhiteIpListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
+    }
 }

@@ -112,4 +112,24 @@ extension Cwp {
         let input = DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeBaselinePolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取基线策略列表
+    @inlinable
+    public func describeBaselinePolicyListPaginated(_ input: DescribeBaselinePolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BaselinePolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselinePolicyList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基线策略列表
+    @inlinable @discardableResult
+    public func describeBaselinePolicyListPaginated(_ input: DescribeBaselinePolicyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselinePolicyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselinePolicyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基线策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselinePolicy` and `DescribeBaselinePolicyListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBaselinePolicyListPaginator(_ input: DescribeBaselinePolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselinePolicyListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselinePolicyList, logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,24 @@ extension Tsf {
         let input = DescribePublicConfigReleasesRequest(configName: configName, namespaceId: namespaceId, limit: limit, offset: offset, configId: configId)
         return try await self.client.execute(action: "DescribePublicConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询公共配置发布信息
+    @inlinable
+    public func describePublicConfigReleasesPaginated(_ input: DescribePublicConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ConfigRelease])> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigReleases, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置发布信息
+    @inlinable @discardableResult
+    public func describePublicConfigReleasesPaginated(_ input: DescribePublicConfigReleasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublicConfigReleasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigReleases, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置发布信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigRelease` and `DescribePublicConfigReleasesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePublicConfigReleasesPaginator(_ input: DescribePublicConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicConfigReleasesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigReleases, logger: logger, on: eventLoop)
+    }
 }

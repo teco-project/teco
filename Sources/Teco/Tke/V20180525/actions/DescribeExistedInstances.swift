@@ -136,4 +136,30 @@ extension Tke {
         let input = DescribeExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, filters: filters, vagueIpAddress: vagueIpAddress, vagueInstanceName: vagueInstanceName, offset: offset, limit: limit, ipAddresses: ipAddresses)
         return try await self.client.execute(action: "DescribeExistedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询已经存在的节点
+    ///
+    /// 查询已经存在的节点，判断是否可以加入集群
+    @inlinable
+    public func describeExistedInstancesPaginated(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ExistedInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询已经存在的节点
+    ///
+    /// 查询已经存在的节点，判断是否可以加入集群
+    @inlinable @discardableResult
+    public func describeExistedInstancesPaginated(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExistedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExistedInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询已经存在的节点
+    ///
+    /// 查询已经存在的节点，判断是否可以加入集群
+    ///
+    /// - Returns: `AsyncSequence`s of `ExistedInstance` and `DescribeExistedInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeExistedInstancesPaginator(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExistedInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)
+    }
 }

@@ -155,4 +155,33 @@ extension Cdb {
         let input = DescribeSlowLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, userHosts: userHosts, userNames: userNames, dataBases: dataBases, sortBy: sortBy, orderBy: orderBy, offset: offset, limit: limit, instType: instType)
         return try await self.client.execute(action: "DescribeSlowLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例慢日志
+    ///
+    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
+    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable
+    public func describeSlowLogDataPaginated(_ input: DescribeSlowLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowLogItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogData, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢日志
+    ///
+    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
+    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable @discardableResult
+    public func describeSlowLogDataPaginated(_ input: DescribeSlowLogDataRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogDataResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogData, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例慢日志
+    ///
+    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
+    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogItem` and `DescribeSlowLogDataResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSlowLogDataPaginator(_ input: DescribeSlowLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogDataRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogData, logger: logger, on: eventLoop)
+    }
 }

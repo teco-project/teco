@@ -123,4 +123,30 @@ extension Tag {
         let input = DescribeTagKeysRequest(createUin: createUin, offset: offset, limit: limit, showProject: showProject)
         return try await self.client.execute(action: "DescribeTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeysPaginated(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable @discardableResult
+    public func describeTagKeysPaginated(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagKeysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagKeys, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeTagKeysResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTagKeysPaginator(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagKeysRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)
+    }
 }

@@ -122,4 +122,24 @@ extension Cwp {
         let input = DescribeHostLoginListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeHostLoginList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取登录审计列表
+    @inlinable
+    public func describeHostLoginListPaginated(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HostLoginList])> {
+        self.client.paginate(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取登录审计列表
+    @inlinable @discardableResult
+    public func describeHostLoginListPaginated(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostLoginListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHostLoginList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取登录审计列表
+    ///
+    /// - Returns: `AsyncSequence`s of `HostLoginList` and `DescribeHostLoginListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHostLoginListPaginator(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostLoginListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)
+    }
 }

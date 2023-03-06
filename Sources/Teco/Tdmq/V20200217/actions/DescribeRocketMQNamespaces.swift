@@ -107,4 +107,24 @@ extension Tdmq {
         let input = DescribeRocketMQNamespacesRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword)
         return try await self.client.execute(action: "DescribeRocketMQNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取RocketMQ命名空间列表
+    @inlinable
+    public func describeRocketMQNamespacesPaginated(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RocketMQNamespace])> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQNamespaces, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ命名空间列表
+    @inlinable @discardableResult
+    public func describeRocketMQNamespacesPaginated(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRocketMQNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQNamespaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ命名空间列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RocketMQNamespace` and `DescribeRocketMQNamespacesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRocketMQNamespacesPaginator(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQNamespacesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQNamespaces, logger: logger, on: eventLoop)
+    }
 }

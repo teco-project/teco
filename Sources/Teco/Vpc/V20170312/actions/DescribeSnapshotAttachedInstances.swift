@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeSnapshotAttachedInstancesRequest(snapshotPolicyId: snapshotPolicyId, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSnapshotAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询快照策略关联实例列表
+    ///
+    /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
+    @inlinable
+    public func describeSnapshotAttachedInstancesPaginated(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SnapshotInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotAttachedInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照策略关联实例列表
+    ///
+    /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
+    @inlinable @discardableResult
+    public func describeSnapshotAttachedInstancesPaginated(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotAttachedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotAttachedInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照策略关联实例列表
+    ///
+    /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotInstance` and `DescribeSnapshotAttachedInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSnapshotAttachedInstancesPaginator(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotAttachedInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotAttachedInstances, logger: logger, on: eventLoop)
+    }
 }

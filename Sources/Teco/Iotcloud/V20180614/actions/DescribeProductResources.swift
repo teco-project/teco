@@ -116,4 +116,30 @@ extension Iotcloud {
         let input = DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name)
         return try await self.client.execute(action: "DescribeProductResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品资源列表
+    ///
+    /// 本接口（DescribeProductResources）用于查询产品资源列表。
+    @inlinable
+    public func describeProductResourcesPaginated(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProductResourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品资源列表
+    ///
+    /// 本接口（DescribeProductResources）用于查询产品资源列表。
+    @inlinable @discardableResult
+    public func describeProductResourcesPaginated(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProductResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品资源列表
+    ///
+    /// 本接口（DescribeProductResources）用于查询产品资源列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductResourceInfo` and `DescribeProductResourcesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProductResourcesPaginator(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductResourcesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
+    }
 }

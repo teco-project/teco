@@ -127,4 +127,30 @@ extension Eiam {
         let input = ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal)
         return try await self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取用户列表信息
+    ///
+    /// 获取用户列表信息。
+    @inlinable
+    public func listUsersPaginated(_ input: ListUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UserInformation])> {
+        self.client.paginate(input: input, region: region, command: self.listUsers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户列表信息
+    ///
+    /// 获取用户列表信息。
+    @inlinable @discardableResult
+    public func listUsersPaginated(_ input: ListUsersRequest, region: TCRegion? = nil, onResponse: @escaping (ListUsersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listUsers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户列表信息
+    ///
+    /// 获取用户列表信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `UserInformation` and `ListUsersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listUsersPaginator(_ input: ListUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListUsersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listUsers, logger: logger, on: eventLoop)
+    }
 }

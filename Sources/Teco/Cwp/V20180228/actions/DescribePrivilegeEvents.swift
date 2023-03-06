@@ -113,4 +113,24 @@ extension Cwp {
         let input = DescribePrivilegeEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribePrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取本地提权事件列表
+    @inlinable
+    public func describePrivilegeEventsPaginated(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrivilegeEscalationProcess])> {
+        self.client.paginate(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 获取本地提权事件列表
+    @inlinable @discardableResult
+    public func describePrivilegeEventsPaginated(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrivilegeEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrivilegeEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取本地提权事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrivilegeEscalationProcess` and `DescribePrivilegeEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrivilegeEventsPaginator(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivilegeEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
+    }
 }

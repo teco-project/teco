@@ -102,4 +102,24 @@ extension Cloudaudit {
         let input = ListKeyAliasByRegionRequest(kmsRegion: kmsRegion, limit: limit, offset: offset)
         return try await self.client.execute(action: "ListKeyAliasByRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 根据地域获取KMS密钥别名
+    @inlinable
+    public func listKeyAliasByRegionPaginated(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KeyMetadata])> {
+        self.client.paginate(input: input, region: region, command: self.listKeyAliasByRegion, logger: logger, on: eventLoop)
+    }
+
+    /// 根据地域获取KMS密钥别名
+    @inlinable @discardableResult
+    public func listKeyAliasByRegionPaginated(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, onResponse: @escaping (ListKeyAliasByRegionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listKeyAliasByRegion, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 根据地域获取KMS密钥别名
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyMetadata` and `ListKeyAliasByRegionResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listKeyAliasByRegionPaginator(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyAliasByRegionRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyAliasByRegion, logger: logger, on: eventLoop)
+    }
 }

@@ -120,4 +120,30 @@ extension Cdb {
         let input = DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDBImportRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据库导入任务记录
+    ///
+    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
+    @inlinable
+    public func describeDBImportRecordsPaginated(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ImportRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBImportRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库导入任务记录
+    ///
+    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
+    @inlinable @discardableResult
+    public func describeDBImportRecordsPaginated(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBImportRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBImportRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库导入任务记录
+    ///
+    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `ImportRecord` and `DescribeDBImportRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBImportRecordsPaginator(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBImportRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBImportRecords, logger: logger, on: eventLoop)
+    }
 }

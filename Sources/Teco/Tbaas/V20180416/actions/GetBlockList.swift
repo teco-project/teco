@@ -140,4 +140,30 @@ extension Tbaas {
         let input = GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable
+    public func getBlockListPaginated(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Block])> {
+        self.client.paginate(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable @discardableResult
+    public func getBlockListPaginated(_ input: GetBlockListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBlockListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBlockList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    ///
+    /// - Returns: `AsyncSequence`s of `Block` and `GetBlockListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getBlockListPaginator(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBlockListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
+    }
 }

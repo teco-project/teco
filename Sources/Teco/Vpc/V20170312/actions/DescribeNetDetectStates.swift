@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeNetDetectStates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网络探测验证结果列表
+    ///
+    /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
+    @inlinable
+    public func describeNetDetectStatesPaginated(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetDetectState])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络探测验证结果列表
+    ///
+    /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
+    @inlinable @discardableResult
+    public func describeNetDetectStatesPaginated(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetDetectStatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetDetectStates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络探测验证结果列表
+    ///
+    /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `NetDetectState` and `DescribeNetDetectStatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetDetectStatesPaginator(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetDetectStatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
+    }
 }

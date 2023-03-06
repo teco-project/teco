@@ -136,4 +136,30 @@ extension Tcss {
         let input = DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetImageVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询镜像病毒列表
+    ///
+    /// 容器安全查询镜像病毒列表
+    @inlinable
+    public func describeAssetImageVirusListPaginated(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageVirusInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageVirusList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像病毒列表
+    ///
+    /// 容器安全查询镜像病毒列表
+    @inlinable @discardableResult
+    public func describeAssetImageVirusListPaginated(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageVirusListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageVirusList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像病毒列表
+    ///
+    /// 容器安全查询镜像病毒列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageVirusInfo` and `DescribeAssetImageVirusListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetImageVirusListPaginator(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageVirusListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageVirusList, logger: logger, on: eventLoop)
+    }
 }

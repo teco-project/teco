@@ -128,4 +128,24 @@ extension Tsf {
         let input = DescribeConfigSummaryRequest(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList)
         return try await self.client.execute(action: "DescribeConfigSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询配置汇总列表
+    @inlinable
+    public func describeConfigSummaryPaginated(_ input: DescribeConfigSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Config])> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigSummary, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置汇总列表
+    @inlinable @discardableResult
+    public func describeConfigSummaryPaginated(_ input: DescribeConfigSummaryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigSummaryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigSummary, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询配置汇总列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Config` and `DescribeConfigSummaryResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeConfigSummaryPaginator(_ input: DescribeConfigSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigSummaryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigSummary, logger: logger, on: eventLoop)
+    }
 }

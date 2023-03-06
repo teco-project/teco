@@ -160,4 +160,30 @@ extension Mariadb {
         let input = DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave)
         return try await self.client.execute(action: "DescribeDBSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询慢查询日志列表
+    ///
+    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
+    @inlinable
+    public func describeDBSlowLogsPaginated(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowLogData])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询慢查询日志列表
+    ///
+    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
+    @inlinable @discardableResult
+    public func describeDBSlowLogsPaginated(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBSlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBSlowLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询慢查询日志列表
+    ///
+    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogData` and `DescribeDBSlowLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBSlowLogsPaginator(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBSlowLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
+    }
 }

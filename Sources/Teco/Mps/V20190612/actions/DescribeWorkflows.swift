@@ -118,4 +118,30 @@ extension Mps {
         let input = DescribeWorkflowsRequest(workflowIds: workflowIds, status: status, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeWorkflows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable
+    public func describeWorkflowsPaginated(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WorkflowInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
+    }
+
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable @discardableResult
+    public func describeWorkflowsPaginated(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWorkflowsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWorkflows, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `WorkflowInfo` and `DescribeWorkflowsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWorkflowsPaginator(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkflowsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
+    }
 }

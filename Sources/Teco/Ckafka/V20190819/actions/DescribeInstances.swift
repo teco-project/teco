@@ -126,4 +126,30 @@ extension Ckafka {
         let input = DescribeInstancesRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId)
         return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例列表信息
+    ///
+    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
+    @inlinable
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Instance])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表信息
+    ///
+    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
+    @inlinable @discardableResult
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表信息
+    ///
+    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
 }

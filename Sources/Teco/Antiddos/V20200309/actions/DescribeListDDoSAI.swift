@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的AI防护开关列表
+    @inlinable
+    public func describeListDDoSAIPaginated(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DDoSAIRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSAI, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的AI防护开关列表
+    @inlinable @discardableResult
+    public func describeListDDoSAIPaginated(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListDDoSAIResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListDDoSAI, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的AI防护开关列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DDoSAIRelation` and `DescribeListDDoSAIResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListDDoSAIPaginator(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSAIRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSAI, logger: logger, on: eventLoop)
+    }
 }

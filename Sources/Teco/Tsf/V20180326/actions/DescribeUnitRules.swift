@@ -104,4 +104,24 @@ extension Tsf {
         let input = DescribeUnitRulesRequest(gatewayInstanceId: gatewayInstanceId, searchWord: searchWord, status: status, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeUnitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询单元化规则列表
+    @inlinable
+    public func describeUnitRulesPaginated(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [TsfPageUnitRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单元化规则列表
+    @inlinable @discardableResult
+    public func describeUnitRulesPaginated(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUnitRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUnitRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单元化规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TsfPageUnitRule` and `DescribeUnitRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUnitRulesPaginator(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnitRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)
+    }
 }

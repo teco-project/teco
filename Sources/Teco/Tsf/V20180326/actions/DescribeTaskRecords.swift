@@ -132,4 +132,30 @@ extension Tsf {
         let input = DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids)
         return try await self.client.execute(action: "DescribeTaskRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable
+    public func describeTaskRecordsPaginated(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable @discardableResult
+    public func describeTaskRecordsPaginated(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskRecord` and `DescribeTaskRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTaskRecordsPaginator(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskRecords, logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,24 @@ extension Iotvideo {
         let input = DescribeAIModelsRequest(modelId: modelId, status: status, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAIModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModelsPaginated(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AIModelInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取AI模型列表
+    @inlinable @discardableResult
+    public func describeAIModelsPaginated(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAIModelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAIModels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取AI模型列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AIModelInfo` and `DescribeAIModelsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAIModelsPaginator(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAIModelsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)
+    }
 }

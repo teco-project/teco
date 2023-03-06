@@ -142,4 +142,24 @@ extension Memcached {
         let input = DescribeInstancesRequest(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds)
         return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Cmem实例列表
+    @inlinable
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceListInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Cmem实例列表
+    @inlinable @discardableResult
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Cmem实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceListInfo` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
 }

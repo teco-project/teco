@@ -110,4 +110,30 @@ extension Ame {
         let input = DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVSingerMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取歌手下歌曲列表
+    ///
+    /// 根据歌手id，返回该歌手下歌曲列表。
+    @inlinable
+    public func describeKTVSingerMusicsPaginated(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVMusicBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取歌手下歌曲列表
+    ///
+    /// 根据歌手id，返回该歌手下歌曲列表。
+    @inlinable @discardableResult
+    public func describeKTVSingerMusicsPaginated(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVSingerMusicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVSingerMusics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取歌手下歌曲列表
+    ///
+    /// 根据歌手id，返回该歌手下歌曲列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `DescribeKTVSingerMusicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKTVSingerMusicsPaginator(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVSingerMusicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
+    }
 }

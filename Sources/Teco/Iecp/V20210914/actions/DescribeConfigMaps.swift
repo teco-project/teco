@@ -109,4 +109,24 @@ extension Iecp {
         let input = DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort)
         return try await self.client.execute(action: "DescribeConfigMaps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取ConfigMap列表
+    @inlinable
+    public func describeConfigMapsPaginated(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ConfigMapBasicInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigMaps, logger: logger, on: eventLoop)
+    }
+
+    /// 获取ConfigMap列表
+    @inlinable @discardableResult
+    public func describeConfigMapsPaginated(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigMapsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigMaps, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取ConfigMap列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigMapBasicInfo` and `DescribeConfigMapsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeConfigMapsPaginator(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigMapsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigMaps, logger: logger, on: eventLoop)
+    }
 }

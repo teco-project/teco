@@ -112,4 +112,24 @@ extension Dasb {
         let input = DescribeUserGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId)
         return try await self.client.execute(action: "DescribeUserGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户组列表
+    @inlinable
+    public func describeUserGroupsPaginated(_ input: DescribeUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Group])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户组列表
+    @inlinable @discardableResult
+    public func describeUserGroupsPaginated(_ input: DescribeUserGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Group` and `DescribeUserGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserGroupsPaginator(_ input: DescribeUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserGroups, logger: logger, on: eventLoop)
+    }
 }

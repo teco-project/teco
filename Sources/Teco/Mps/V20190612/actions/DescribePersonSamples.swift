@@ -130,4 +130,30 @@ extension Mps {
         let input = DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePersonSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamplesPaginated(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AiSamplePerson])> {
+        self.client.paginate(input: input, region: region, command: self.describePersonSamples, logger: logger, on: eventLoop)
+    }
+
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable @discardableResult
+    public func describePersonSamplesPaginated(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonSamplesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePersonSamples, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `AiSamplePerson` and `DescribePersonSamplesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePersonSamplesPaginator(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonSamplesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonSamples, logger: logger, on: eventLoop)
+    }
 }

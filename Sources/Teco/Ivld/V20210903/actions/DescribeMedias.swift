@@ -132,4 +132,42 @@ extension Ivld {
         let input = DescribeMediasRequest(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy)
         return try await self.client.execute(action: "DescribeMedias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 批量描述媒资文件
+    ///
+    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable
+    public func describeMediasPaginated(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MediaInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述媒资文件
+    ///
+    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable @discardableResult
+    public func describeMediasPaginated(_ input: DescribeMediasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMediasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMedias, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 批量描述媒资文件
+    ///
+    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
+    /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `MediaInfo` and `DescribeMediasResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMediasPaginator(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMediasRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
+    }
 }

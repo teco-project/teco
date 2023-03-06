@@ -110,4 +110,30 @@ extension Asr {
         let input = GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetAsrVocabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举热词表
+    ///
+    /// 用户通过该接口，可获得所有的热词表及其信息。
+    @inlinable
+    public func getAsrVocabListPaginated(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Vocab])> {
+        self.client.paginate(input: input, region: region, command: self.getAsrVocabList, logger: logger, on: eventLoop)
+    }
+
+    /// 列举热词表
+    ///
+    /// 用户通过该接口，可获得所有的热词表及其信息。
+    @inlinable @discardableResult
+    public func getAsrVocabListPaginated(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, onResponse: @escaping (GetAsrVocabListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getAsrVocabList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举热词表
+    ///
+    /// 用户通过该接口，可获得所有的热词表及其信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Vocab` and `GetAsrVocabListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getAsrVocabListPaginator(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAsrVocabListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAsrVocabList, logger: logger, on: eventLoop)
+    }
 }

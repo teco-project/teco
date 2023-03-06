@@ -115,4 +115,30 @@ extension Monitor {
         let input = DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrometheusRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取聚合规则列表，包含关联集群内的资源
+    ///
+    /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
+    @inlinable
+    public func describePrometheusRecordRulesPaginated(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusRecordRuleYamlItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取聚合规则列表，包含关联集群内的资源
+    ///
+    /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
+    @inlinable @discardableResult
+    public func describePrometheusRecordRulesPaginated(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusRecordRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusRecordRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取聚合规则列表，包含关联集群内的资源
+    ///
+    /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusRecordRuleYamlItem` and `DescribePrometheusRecordRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusRecordRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
+    }
 }

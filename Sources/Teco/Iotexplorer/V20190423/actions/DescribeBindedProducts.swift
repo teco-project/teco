@@ -107,4 +107,24 @@ extension Iotexplorer {
         let input = DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource)
         return try await self.client.execute(action: "DescribeBindedProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取网关产品已经绑定的子产品
+    @inlinable
+    public func describeBindedProductsPaginated(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BindProductInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关产品已经绑定的子产品
+    @inlinable @discardableResult
+    public func describeBindedProductsPaginated(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindedProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBindedProducts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关产品已经绑定的子产品
+    ///
+    /// - Returns: `AsyncSequence`s of `BindProductInfo` and `DescribeBindedProductsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBindedProductsPaginator(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindedProductsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
+    }
 }

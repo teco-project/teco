@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeComplianceScanFailedAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeComplianceScanFailedAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable
+    public func describeComplianceScanFailedAssetListPaginated(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ComplianceScanFailedAsset])> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable @discardableResult
+    public func describeComplianceScanFailedAssetListPaginated(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceScanFailedAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceScanFailedAssetList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ComplianceScanFailedAsset` and `DescribeComplianceScanFailedAssetListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceScanFailedAssetListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
+    }
 }

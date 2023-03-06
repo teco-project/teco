@@ -114,4 +114,24 @@ extension Tcss {
         let input = DescribeScanIgnoreVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeScanIgnoreVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询扫描忽略的漏洞列表
+    @inlinable
+    public func describeScanIgnoreVulListPaginated(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ScanIgnoreVul])> {
+        self.client.paginate(input: input, region: region, command: self.describeScanIgnoreVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫描忽略的漏洞列表
+    @inlinable @discardableResult
+    public func describeScanIgnoreVulListPaginated(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanIgnoreVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScanIgnoreVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫描忽略的漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ScanIgnoreVul` and `DescribeScanIgnoreVulListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScanIgnoreVulListPaginator(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanIgnoreVulListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanIgnoreVulList, logger: logger, on: eventLoop)
+    }
 }

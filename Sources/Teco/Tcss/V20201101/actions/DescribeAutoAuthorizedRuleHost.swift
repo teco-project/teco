@@ -112,4 +112,24 @@ extension Tcss {
         let input = DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeAutoAuthorizedRuleHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHostPaginated(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutoAuthorizedRuleHostInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable @discardableResult
+    public func describeAutoAuthorizedRuleHostPaginated(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoAuthorizedRuleHostResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自动授权规则授权范围主机信息
+    ///
+    /// - Returns: `AsyncSequence`s of `AutoAuthorizedRuleHostInfo` and `DescribeAutoAuthorizedRuleHostResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAutoAuthorizedRuleHostPaginator(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoAuthorizedRuleHostRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
+    }
 }

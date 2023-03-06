@@ -110,4 +110,30 @@ extension Youmall {
         let input = DescribePersonRequest(mallId: mallId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable
+    public func describePersonPaginated(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PersonProfile])> {
+        self.client.paginate(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable @discardableResult
+    public func describePersonPaginated(_ input: DescribePersonRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePerson, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    ///
+    /// - Returns: `AsyncSequence`s of `PersonProfile` and `DescribePersonResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePersonPaginator(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
+    }
 }

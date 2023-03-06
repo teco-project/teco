@@ -135,4 +135,30 @@ extension Bmlb {
         let input = DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeTrafficMirrors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取流量镜像实例的列表信息
+    ///
+    /// 获取流量镜像实例的列表信息。
+    @inlinable
+    public func describeTrafficMirrorsPaginated(_ input: DescribeTrafficMirrorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TrafficMirror])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrors, logger: logger, on: eventLoop)
+    }
+
+    /// 获取流量镜像实例的列表信息
+    ///
+    /// 获取流量镜像实例的列表信息。
+    @inlinable @discardableResult
+    public func describeTrafficMirrorsPaginated(_ input: DescribeTrafficMirrorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficMirrorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrors, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取流量镜像实例的列表信息
+    ///
+    /// 获取流量镜像实例的列表信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `TrafficMirror` and `DescribeTrafficMirrorsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTrafficMirrorsPaginator(_ input: DescribeTrafficMirrorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficMirrorsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficMirrors, logger: logger, on: eventLoop)
+    }
 }

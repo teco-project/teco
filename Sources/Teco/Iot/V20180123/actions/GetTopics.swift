@@ -102,4 +102,24 @@ extension Iot {
         let input = GetTopicsRequest(productId: productId, offset: offset, length: length)
         return try await self.client.execute(action: "GetTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Topic列表
+    @inlinable
+    public func getTopicsPaginated(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Topic])> {
+        self.client.paginate(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Topic列表
+    @inlinable @discardableResult
+    public func getTopicsPaginated(_ input: GetTopicsRequest, region: TCRegion? = nil, onResponse: @escaping (GetTopicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getTopics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Topic列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Topic` and `GetTopicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getTopicsPaginator(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTopicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
+    }
 }

@@ -119,4 +119,24 @@ extension Pts {
         let input = DescribeAlertChannelsRequest(projectIds: projectIds, offset: offset, limit: limit, noticeIds: noticeIds, orderBy: orderBy, ascend: ascend)
         return try await self.client.execute(action: "DescribeAlertChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询告警通知接收组
+    @inlinable
+    public func describeAlertChannelsPaginated(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AlertChannelRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警通知接收组
+    @inlinable @discardableResult
+    public func describeAlertChannelsPaginated(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlertChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertChannels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警通知接收组
+    ///
+    /// - Returns: `AsyncSequence`s of `AlertChannelRecord` and `DescribeAlertChannelsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlertChannelsPaginator(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertChannelsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
+    }
 }

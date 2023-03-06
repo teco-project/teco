@@ -176,4 +176,30 @@ extension Monitor {
         let input = DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeProductEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品事件列表
+    ///
+    /// 分页获取产品事件的列表
+    @inlinable
+    public func describeProductEventListPaginated(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeProductEventListEvents])> {
+        self.client.paginate(input: input, region: region, command: self.describeProductEventList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品事件列表
+    ///
+    /// 分页获取产品事件的列表
+    @inlinable @discardableResult
+    public func describeProductEventListPaginated(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProductEventList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品事件列表
+    ///
+    /// 分页获取产品事件的列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeProductEventListEvents` and `DescribeProductEventListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProductEventListPaginator(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductEventListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductEventList, logger: logger, on: eventLoop)
+    }
 }

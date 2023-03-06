@@ -161,4 +161,24 @@ extension Billing {
         let input = DescribeBillResourceSummaryRequest(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode)
         return try await self.client.execute(action: "DescribeBillResourceSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询账单资源汇总数据
+    @inlinable
+    public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BillResourceSummary])> {
+        self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账单资源汇总数据
+    @inlinable @discardableResult
+    public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBillResourceSummaryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询账单资源汇总数据
+    ///
+    /// - Returns: `AsyncSequence`s of `BillResourceSummary` and `DescribeBillResourceSummaryResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBillResourceSummaryPaginator(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillResourceSummaryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
+    }
 }

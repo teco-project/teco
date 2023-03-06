@@ -145,4 +145,30 @@ extension Acp {
         let input = DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeScanTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取应用合规隐私诊断任务列表
+    ///
+    /// 获取App隐私合规诊断任务列表
+    @inlinable
+    public func describeScanTaskListPaginated(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AppTaskData])> {
+        self.client.paginate(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用合规隐私诊断任务列表
+    ///
+    /// 获取App隐私合规诊断任务列表
+    @inlinable @discardableResult
+    public func describeScanTaskListPaginated(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScanTaskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用合规隐私诊断任务列表
+    ///
+    /// 获取App隐私合规诊断任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AppTaskData` and `DescribeScanTaskListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanTaskListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
+    }
 }

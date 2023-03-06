@@ -99,4 +99,24 @@ extension Iotvideoindustry {
         let input = DescribeScenesRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取场景列表
+    @inlinable
+    public func describeScenesPaginated(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SceneItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景列表
+    @inlinable @discardableResult
+    public func describeScenesPaginated(_ input: DescribeScenesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScenesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScenes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取场景列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SceneItem` and `DescribeScenesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScenesPaginator(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)
+    }
 }

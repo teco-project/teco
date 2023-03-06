@@ -116,4 +116,30 @@ extension Vod {
         let input = DescribeVodDomainsRequest(domains: domains, limit: limit, offset: offset, subAppId: subAppId)
         return try await self.client.execute(action: "DescribeVodDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询点播域名列表
+    ///
+    /// 该接口用于查询点播域名信息列表。
+    @inlinable
+    public func describeVodDomainsPaginated(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DomainDetailInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 查询点播域名列表
+    ///
+    /// 该接口用于查询点播域名信息列表。
+    @inlinable @discardableResult
+    public func describeVodDomainsPaginated(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVodDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVodDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询点播域名列表
+    ///
+    /// 该接口用于查询点播域名信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainDetailInfo` and `DescribeVodDomainsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVodDomainsPaginator(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVodDomainsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
+    }
 }

@@ -113,4 +113,24 @@ extension Tcss {
         let input = DescribeNetworkFirewallClusterListRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeNetworkFirewallClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群策略列表
+    @inlinable
+    public func describeNetworkFirewallClusterListPaginated(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkClusterInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallClusterList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群策略列表
+    @inlinable @discardableResult
+    public func describeNetworkFirewallClusterListPaginated(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallClusterListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallClusterList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkClusterInfoItem` and `DescribeNetworkFirewallClusterListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetworkFirewallClusterListPaginator(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallClusterListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallClusterList, logger: logger, on: eventLoop)
+    }
 }

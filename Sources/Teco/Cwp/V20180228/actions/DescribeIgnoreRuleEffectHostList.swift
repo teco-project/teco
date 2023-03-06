@@ -122,4 +122,30 @@ extension Cwp {
         let input = DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames)
         return try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询忽略检测项影响主机列表
+    ///
+    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    @inlinable
+    public func describeIgnoreRuleEffectHostListPaginated(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [IgnoreRuleEffectHostInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeIgnoreRuleEffectHostList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询忽略检测项影响主机列表
+    ///
+    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    @inlinable @discardableResult
+    public func describeIgnoreRuleEffectHostListPaginated(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIgnoreRuleEffectHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIgnoreRuleEffectHostList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询忽略检测项影响主机列表
+    ///
+    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `IgnoreRuleEffectHostInfo` and `DescribeIgnoreRuleEffectHostListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIgnoreRuleEffectHostListPaginator(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIgnoreRuleEffectHostListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIgnoreRuleEffectHostList, logger: logger, on: eventLoop)
+    }
 }

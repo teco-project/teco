@@ -129,4 +129,33 @@ extension Ms {
         let input = DescribeScanInstancesRequest(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询扫描列表
+    ///
+    /// 本接口用于查看app列表。
+    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @inlinable
+    public func describeScanInstancesPaginated(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AppScanSet])> {
+        self.client.paginate(input: input, region: region, command: self.describeScanInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫描列表
+    ///
+    /// 本接口用于查看app列表。
+    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @inlinable @discardableResult
+    public func describeScanInstancesPaginated(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScanInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫描列表
+    ///
+    /// 本接口用于查看app列表。
+    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `AppScanSet` and `DescribeScanInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScanInstancesPaginator(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanInstances, logger: logger, on: eventLoop)
+    }
 }

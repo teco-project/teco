@@ -114,4 +114,30 @@ extension Clb {
         let input = DescribeClusterResourcesRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeClusterResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群中资源列表
+    ///
+    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
+    @inlinable
+    public func describeClusterResourcesPaginated(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterResource])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterResources, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群中资源列表
+    ///
+    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
+    @inlinable @discardableResult
+    public func describeClusterResourcesPaginated(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterResourcesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterResources, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群中资源列表
+    ///
+    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterResource` and `DescribeClusterResourcesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeClusterResourcesPaginator(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterResourcesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterResources, logger: logger, on: eventLoop)
+    }
 }

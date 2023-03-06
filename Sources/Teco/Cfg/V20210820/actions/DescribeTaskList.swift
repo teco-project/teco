@@ -127,4 +127,24 @@ extension Cfg {
         let input = DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags)
         return try await self.client.execute(action: "DescribeTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询任务列表
+    @inlinable
+    public func describeTaskListPaginated(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    @inlinable @discardableResult
+    public func describeTaskListPaginated(_ input: DescribeTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskListItem` and `DescribeTaskListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
+    }
 }

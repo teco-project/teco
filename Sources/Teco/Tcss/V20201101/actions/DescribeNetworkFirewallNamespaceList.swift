@@ -118,4 +118,24 @@ extension Tcss {
         let input = DescribeNetworkFirewallNamespaceListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeNetworkFirewallNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群网络空间列表
+    @inlinable
+    public func describeNetworkFirewallNamespaceListPaginated(_ input: DescribeNetworkFirewallNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkClusterNamespaceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallNamespaceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络空间列表
+    @inlinable @discardableResult
+    public func describeNetworkFirewallNamespaceListPaginated(_ input: DescribeNetworkFirewallNamespaceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallNamespaceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallNamespaceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络空间列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkClusterNamespaceInfo` and `DescribeNetworkFirewallNamespaceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetworkFirewallNamespaceListPaginator(_ input: DescribeNetworkFirewallNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallNamespaceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallNamespaceList, logger: logger, on: eventLoop)
+    }
 }

@@ -120,4 +120,30 @@ extension Iotexplorer {
         let input = DescribeGatewaySubProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, projectId: projectId, productSource: productSource)
         return try await self.client.execute(action: "DescribeGatewaySubProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取网关可操作的子产品
+    ///
+    /// 用于获取网关可绑定或解绑的子产品
+    @inlinable
+    public func describeGatewaySubProductsPaginated(_ input: DescribeGatewaySubProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BindProductInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewaySubProducts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关可操作的子产品
+    ///
+    /// 用于获取网关可绑定或解绑的子产品
+    @inlinable @discardableResult
+    public func describeGatewaySubProductsPaginated(_ input: DescribeGatewaySubProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewaySubProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewaySubProducts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网关可操作的子产品
+    ///
+    /// 用于获取网关可绑定或解绑的子产品
+    ///
+    /// - Returns: `AsyncSequence`s of `BindProductInfo` and `DescribeGatewaySubProductsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGatewaySubProductsPaginator(_ input: DescribeGatewaySubProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewaySubProductsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewaySubProducts, logger: logger, on: eventLoop)
+    }
 }

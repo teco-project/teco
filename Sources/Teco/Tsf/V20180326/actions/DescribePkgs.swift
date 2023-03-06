@@ -136,4 +136,30 @@ extension Tsf {
         let input = DescribePkgsRequest(applicationId: applicationId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, repositoryType: repositoryType, repositoryId: repositoryId, packageTypeList: packageTypeList)
         return try await self.client.execute(action: "DescribePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable
+    public func describePkgsPaginated(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PkgInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePkgs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable @discardableResult
+    public func describePkgsPaginated(_ input: DescribePkgsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePkgsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePkgs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    ///
+    /// - Returns: `AsyncSequence`s of `PkgInfo` and `DescribePkgsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePkgsPaginator(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePkgsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePkgs, logger: logger, on: eventLoop)
+    }
 }

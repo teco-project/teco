@@ -97,4 +97,30 @@ extension Tcss {
         let input = DescribePostPayDetailRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePostPayDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetailPaginated(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SoftQuotaDayInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable @discardableResult
+    public func describePostPayDetailPaginated(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePostPayDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePostPayDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    ///
+    /// - Returns: `AsyncSequence`s of `SoftQuotaDayInfo` and `DescribePostPayDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePostPayDetailPaginator(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePostPayDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
+    }
 }

@@ -120,4 +120,24 @@ extension Cwp {
         let input = DescribeBaselineHostDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeBaselineHostDetectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取基线检测主机列表
+    @inlinable
+    public func describeBaselineHostDetectListPaginated(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BaselineHostDetect])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基线检测主机列表
+    @inlinable @discardableResult
+    public func describeBaselineHostDetectListPaginated(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineHostDetectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineHostDetectList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取基线检测主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselineHostDetect` and `DescribeBaselineHostDetectListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBaselineHostDetectListPaginator(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineHostDetectListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
+    }
 }

@@ -125,4 +125,30 @@ extension Postgres {
         let input = DescribeDBInstancesRequest(filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DBInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable @discardableResult
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DBInstance` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
 }

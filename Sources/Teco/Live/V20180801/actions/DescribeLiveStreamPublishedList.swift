@@ -155,4 +155,33 @@ extension Live {
         let input = DescribeLiveStreamPublishedListRequest(domainName: domainName, endTime: endTime, startTime: startTime, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
         return try await self.client.execute(action: "DescribeLiveStreamPublishedList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询历史流列表
+    ///
+    /// 返回已经推过流的流列表。<br>
+    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
+    @inlinable
+    public func describeLiveStreamPublishedListPaginated(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [StreamName])> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询历史流列表
+    ///
+    /// 返回已经推过流的流列表。<br>
+    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
+    @inlinable @discardableResult
+    public func describeLiveStreamPublishedListPaginated(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamPublishedListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamPublishedList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询历史流列表
+    ///
+    /// 返回已经推过流的流列表。<br>
+    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `StreamName` and `DescribeLiveStreamPublishedListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLiveStreamPublishedListPaginator(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamPublishedListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
+    }
 }

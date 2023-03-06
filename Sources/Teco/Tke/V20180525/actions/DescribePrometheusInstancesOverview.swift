@@ -113,4 +113,30 @@ extension Tke {
         let input = DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取2.0实例列表
+    ///
+    /// 获取与云监控融合实例列表
+    @inlinable
+    public func describePrometheusInstancesOverviewPaginated(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusInstancesOverview])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例列表
+    ///
+    /// 获取与云监控融合实例列表
+    @inlinable @discardableResult
+    public func describePrometheusInstancesOverviewPaginated(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesOverviewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusInstancesOverview, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例列表
+    ///
+    /// 获取与云监控融合实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusInstancesOverview` and `DescribePrometheusInstancesOverviewResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusInstancesOverviewPaginator(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusInstancesOverviewRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
+    }
 }

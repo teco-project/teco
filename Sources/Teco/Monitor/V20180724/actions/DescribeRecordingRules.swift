@@ -129,4 +129,30 @@ extension Monitor {
         let input = DescribeRecordingRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, name: name)
         return try await self.client.execute(action: "DescribeRecordingRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRulesPaginated(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordingRuleSet])> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable @discardableResult
+    public func describeRecordingRulesPaginated(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordingRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordingRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordingRuleSet` and `DescribeRecordingRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRecordingRulesPaginator(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordingRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
+    }
 }

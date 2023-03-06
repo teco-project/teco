@@ -108,4 +108,24 @@ extension Cmq {
         let input = DescribeSubscriptionDetailRequest(topicName: topicName, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeSubscriptionDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询订阅详情
+    @inlinable
+    public func describeSubscriptionDetailPaginated(_ input: DescribeSubscriptionDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Subscription])> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscriptionDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅详情
+    @inlinable @discardableResult
+    public func describeSubscriptionDetailPaginated(_ input: DescribeSubscriptionDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSubscriptionDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSubscriptionDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订阅详情
+    ///
+    /// - Returns: `AsyncSequence`s of `Subscription` and `DescribeSubscriptionDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSubscriptionDetailPaginator(_ input: DescribeSubscriptionDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscriptionDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscriptionDetail, logger: logger, on: eventLoop)
+    }
 }

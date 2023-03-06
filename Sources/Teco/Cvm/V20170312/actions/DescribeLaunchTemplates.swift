@@ -118,4 +118,30 @@ extension Cvm {
         let input = DescribeLaunchTemplatesRequest(launchTemplateIds: launchTemplateIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeLaunchTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable
+    public func describeLaunchTemplatesPaginated(_ input: DescribeLaunchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LaunchTemplateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLaunchTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable @discardableResult
+    public func describeLaunchTemplatesPaginated(_ input: DescribeLaunchTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLaunchTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLaunchTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    ///
+    /// - Returns: `AsyncSequence`s of `LaunchTemplateInfo` and `DescribeLaunchTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLaunchTemplatesPaginator(_ input: DescribeLaunchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaunchTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaunchTemplates, logger: logger, on: eventLoop)
+    }
 }

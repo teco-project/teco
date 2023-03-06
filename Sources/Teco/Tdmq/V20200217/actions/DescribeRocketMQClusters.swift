@@ -123,4 +123,24 @@ extension Tdmq {
         let input = DescribeRocketMQClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters)
         return try await self.client.execute(action: "DescribeRocketMQClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取RocketMQ集群列表
+    @inlinable
+    public func describeRocketMQClustersPaginated(_ input: DescribeRocketMQClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RocketMQClusterDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ集群列表
+    @inlinable @discardableResult
+    public func describeRocketMQClustersPaginated(_ input: DescribeRocketMQClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRocketMQClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRocketMQClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取RocketMQ集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RocketMQClusterDetail` and `DescribeRocketMQClustersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRocketMQClustersPaginator(_ input: DescribeRocketMQClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQClustersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQClusters, logger: logger, on: eventLoop)
+    }
 }

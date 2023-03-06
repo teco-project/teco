@@ -109,4 +109,24 @@ extension Cfs {
         let input = DescribeUserQuotaRequest(fileSystemId: fileSystemId, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件系统配额
+    @inlinable
+    public func describeUserQuotaPaginated(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UserQuota])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统配额
+    @inlinable @discardableResult
+    public func describeUserQuotaPaginated(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserQuotaResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserQuota, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统配额
+    ///
+    /// - Returns: `AsyncSequence`s of `UserQuota` and `DescribeUserQuotaResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserQuotaPaginator(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserQuotaRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)
+    }
 }

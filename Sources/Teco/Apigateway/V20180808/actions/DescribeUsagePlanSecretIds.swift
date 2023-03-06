@@ -111,4 +111,33 @@ extension Apigateway {
         let input = DescribeUsagePlanSecretIdsRequest(usagePlanId: usagePlanId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeUsagePlanSecretIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable
+    public func describeUsagePlanSecretIdsPaginated(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UsagePlanBindSecret])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable @discardableResult
+    public func describeUsagePlanSecretIdsPaginated(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlanSecretIdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlanSecretIds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `UsagePlanBindSecret` and `DescribeUsagePlanSecretIdsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUsagePlanSecretIdsPaginator(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlanSecretIdsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
+    }
 }

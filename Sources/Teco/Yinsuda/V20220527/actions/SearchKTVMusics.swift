@@ -122,4 +122,30 @@ extension Yinsuda {
         let input = SearchKTVMusicsRequest(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
         return try await self.client.execute(action: "SearchKTVMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable
+    public func searchKTVMusicsPaginated(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [KTVMusicBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable @discardableResult
+    public func searchKTVMusicsPaginated(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, onResponse: @escaping (SearchKTVMusicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchKTVMusics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `SearchKTVMusicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func searchKTVMusicsPaginator(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchKTVMusicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
+    }
 }

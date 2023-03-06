@@ -122,4 +122,24 @@ extension Oceanus {
         let input = DescribeResourceConfigsRequest(resourceId: resourceId, offset: offset, limit: limit, resourceConfigVersions: resourceConfigVersions, jobConfigVersion: jobConfigVersion, jobId: jobId, workSpaceId: workSpaceId)
         return try await self.client.execute(action: "DescribeResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 描述资源配置接口
+    @inlinable
+    public func describeResourceConfigsPaginated(_ input: DescribeResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResourceConfigItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 描述资源配置接口
+    @inlinable @discardableResult
+    public func describeResourceConfigsPaginated(_ input: DescribeResourceConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 描述资源配置接口
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceConfigItem` and `DescribeResourceConfigsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceConfigsPaginator(_ input: DescribeResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceConfigsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceConfigs, logger: logger, on: eventLoop)
+    }
 }

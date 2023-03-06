@@ -107,4 +107,24 @@ extension Dnspod {
         let input = DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword)
         return try await self.client.execute(action: "DescribeDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取域名列表
+    @inlinable
+    public func describeDomainListPaginated(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DomainListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeDomainList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名列表
+    @inlinable @discardableResult
+    public func describeDomainListPaginated(_ input: DescribeDomainListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDomainList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainListItem` and `DescribeDomainListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDomainListPaginator(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainList, logger: logger, on: eventLoop)
+    }
 }

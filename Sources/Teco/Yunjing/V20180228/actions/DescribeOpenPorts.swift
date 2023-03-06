@@ -123,4 +123,30 @@ extension Yunjing {
         let input = DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeOpenPorts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取端口列表
+    ///
+    /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    @inlinable
+    public func describeOpenPortsPaginated(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OpenPort])> {
+        self.client.paginate(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取端口列表
+    ///
+    /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    @inlinable @discardableResult
+    public func describeOpenPortsPaginated(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOpenPortsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOpenPorts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取端口列表
+    ///
+    /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `OpenPort` and `DescribeOpenPortsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOpenPortsPaginator(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOpenPortsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)
+    }
 }

@@ -121,4 +121,30 @@ extension Iotvideo {
         let input = DescribeOtaVersionsRequest(offset: offset, limit: limit, productId: productId, otaVersion: otaVersion, pubStatus: pubStatus)
         return try await self.client.execute(action: "DescribeOtaVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询固件版本信息列表
+    ///
+    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
+    @inlinable
+    public func describeOtaVersionsPaginated(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VersionData])> {
+        self.client.paginate(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
+    }
+
+    /// 查询固件版本信息列表
+    ///
+    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
+    @inlinable @discardableResult
+    public func describeOtaVersionsPaginated(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOtaVersionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOtaVersions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询固件版本信息列表
+    ///
+    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `VersionData` and `DescribeOtaVersionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOtaVersionsPaginator(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOtaVersionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
+    }
 }

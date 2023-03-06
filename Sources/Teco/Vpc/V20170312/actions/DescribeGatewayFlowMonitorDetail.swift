@@ -153,4 +153,36 @@ extension Vpc {
         let input = DescribeGatewayFlowMonitorDetailRequest(timePoint: timePoint, vpnId: vpnId, directConnectGatewayId: directConnectGatewayId, peeringConnectionId: peeringConnectionId, natId: natId, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeGatewayFlowMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网关流量监控明细
+    ///
+    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
+    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
+    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
+    @inlinable
+    public func describeGatewayFlowMonitorDetailPaginated(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GatewayFlowMonitorDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关流量监控明细
+    ///
+    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
+    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
+    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
+    @inlinable @discardableResult
+    public func describeGatewayFlowMonitorDetailPaginated(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGatewayFlowMonitorDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网关流量监控明细
+    ///
+    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
+    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
+    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
+    ///
+    /// - Returns: `AsyncSequence`s of `GatewayFlowMonitorDetail` and `DescribeGatewayFlowMonitorDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGatewayFlowMonitorDetailPaginator(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayFlowMonitorDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
+    }
 }

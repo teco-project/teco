@@ -129,4 +129,30 @@ extension Ecdn {
         let input = DescribeEcdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeEcdnDomainLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询域名日志下载链接
+    ///
+    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    @inlinable
+    public func describeEcdnDomainLogsPaginated(_ input: DescribeEcdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DomainLogs])> {
+        self.client.paginate(input: input, region: region, command: self.describeEcdnDomainLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名日志下载链接
+    ///
+    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    @inlinable @discardableResult
+    public func describeEcdnDomainLogsPaginated(_ input: DescribeEcdnDomainLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEcdnDomainLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEcdnDomainLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询域名日志下载链接
+    ///
+    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainLogs` and `DescribeEcdnDomainLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEcdnDomainLogsPaginator(_ input: DescribeEcdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEcdnDomainLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEcdnDomainLogs, logger: logger, on: eventLoop)
+    }
 }

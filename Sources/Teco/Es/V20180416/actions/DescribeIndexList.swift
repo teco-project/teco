@@ -139,4 +139,24 @@ extension Es {
         let input = DescribeIndexListRequest(indexType: indexType, instanceId: instanceId, indexName: indexName, username: username, password: password, offset: offset, limit: limit, orderBy: orderBy, indexStatusList: indexStatusList, order: order)
         return try await self.client.execute(action: "DescribeIndexList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexListPaginated(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IndexMetaField])> {
+        self.client.paginate(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取索引列表
+    @inlinable @discardableResult
+    public func describeIndexListPaginated(_ input: DescribeIndexListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIndexListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIndexList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取索引列表
+    ///
+    /// - Returns: `AsyncSequence`s of `IndexMetaField` and `DescribeIndexListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIndexListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
+    }
 }

@@ -122,4 +122,24 @@ extension Cwp {
         let input = DescribeBashEventsNewRequest(limit: limit, filters: filters, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeBashEventsNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取高危命令列表(新)
+    @inlinable
+    public func describeBashEventsNewPaginated(_ input: DescribeBashEventsNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BashEventNew])> {
+        self.client.paginate(input: input, region: region, command: self.describeBashEventsNew, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令列表(新)
+    @inlinable @discardableResult
+    public func describeBashEventsNewPaginated(_ input: DescribeBashEventsNewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBashEventsNewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBashEventsNew, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令列表(新)
+    ///
+    /// - Returns: `AsyncSequence`s of `BashEventNew` and `DescribeBashEventsNewResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBashEventsNewPaginator(_ input: DescribeBashEventsNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashEventsNewRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashEventsNew, logger: logger, on: eventLoop)
+    }
 }

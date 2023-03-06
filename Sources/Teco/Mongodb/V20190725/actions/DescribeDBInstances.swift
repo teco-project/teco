@@ -165,4 +165,30 @@ extension Mongodb {
         let input = DescribeDBInstancesRequest(instanceIds: instanceIds, instanceType: instanceType, clusterType: clusterType, status: status, vpcId: vpcId, subnetId: subnetId, payMode: payMode, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, projectIds: projectIds, searchKey: searchKey, tags: tags)
         return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云数据库实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InstanceDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable @discardableResult
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceDetail` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
 }

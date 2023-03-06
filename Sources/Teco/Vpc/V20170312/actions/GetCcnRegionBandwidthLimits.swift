@@ -129,4 +129,30 @@ extension Vpc {
         let input = GetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, filters: filters, sortedBy: sortedBy, offset: offset, limit: limit, orderBy: orderBy)
         return try await self.client.execute(action: "GetCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云联网相关地域带宽信息
+    ///
+    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
+    @inlinable
+    public func getCcnRegionBandwidthLimitsPaginated(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcnBandwidthInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网相关地域带宽信息
+    ///
+    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
+    @inlinable @discardableResult
+    public func getCcnRegionBandwidthLimitsPaginated(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, onResponse: @escaping (GetCcnRegionBandwidthLimitsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getCcnRegionBandwidthLimits, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网相关地域带宽信息
+    ///
+    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
+    ///
+    /// - Returns: `AsyncSequence`s of `CcnBandwidthInfo` and `GetCcnRegionBandwidthLimitsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getCcnRegionBandwidthLimitsPaginator(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCcnRegionBandwidthLimitsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)
+    }
 }

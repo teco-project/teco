@@ -112,4 +112,24 @@ extension Solar {
         let input = DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus)
         return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 项目列表展示
+    @inlinable
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProjectInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+    }
+
+    /// 项目列表展示
+    @inlinable @discardableResult
+    public func describeProjectsPaginated(_ input: DescribeProjectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProjectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProjects, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 项目列表展示
+    ///
+    /// - Returns: `AsyncSequence`s of `ProjectInfo` and `DescribeProjectsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
+    }
 }

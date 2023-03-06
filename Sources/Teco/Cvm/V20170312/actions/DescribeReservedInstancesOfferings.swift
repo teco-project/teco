@@ -141,4 +141,30 @@ extension Cvm {
         let input = DescribeReservedInstancesOfferingsRequest(dryRun: dryRun, offset: offset, limit: limit, maxDuration: maxDuration, minDuration: minDuration, filters: filters)
         return try await self.client.execute(action: "DescribeReservedInstancesOfferings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable
+    public func describeReservedInstancesOfferingsPaginated(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ReservedInstancesOffering])> {
+        self.client.paginate(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)
+    }
+
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable @discardableResult
+    public func describeReservedInstancesOfferingsPaginated(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReservedInstancesOfferingsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReservedInstancesOfferings, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    ///
+    /// - Returns: `AsyncSequence`s of `ReservedInstancesOffering` and `DescribeReservedInstancesOfferingsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReservedInstancesOfferingsPaginator(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReservedInstancesOfferingsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)
+    }
 }

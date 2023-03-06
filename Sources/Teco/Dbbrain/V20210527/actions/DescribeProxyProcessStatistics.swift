@@ -121,4 +121,30 @@ extension Dbbrain {
         let input = DescribeProxyProcessStatisticsRequest(instanceId: instanceId, instanceProxyId: instanceProxyId, limit: limit, product: product, offset: offset, sortBy: sortBy, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeProxyProcessStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取单个proxy实时会话统计详情
+    ///
+    /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
+    @inlinable
+    public func describeProxyProcessStatisticsPaginated(_ input: DescribeProxyProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SessionItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeProxyProcessStatistics, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单个proxy实时会话统计详情
+    ///
+    /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
+    @inlinable @discardableResult
+    public func describeProxyProcessStatisticsPaginated(_ input: DescribeProxyProcessStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProxyProcessStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProxyProcessStatistics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单个proxy实时会话统计详情
+    ///
+    /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
+    ///
+    /// - Returns: `AsyncSequence`s of `SessionItem` and `DescribeProxyProcessStatisticsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProxyProcessStatisticsPaginator(_ input: DescribeProxyProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxyProcessStatisticsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxyProcessStatistics, logger: logger, on: eventLoop)
+    }
 }

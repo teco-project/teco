@@ -122,4 +122,39 @@ extension Cvm {
         let input = DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看实例状态列表
+    ///
+    /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
+    ///
+    /// * 可以根据实例`ID`来查询实例的状态。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
+    @inlinable
+    public func describeInstancesStatusPaginated(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceStatus])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查看实例状态列表
+    ///
+    /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
+    ///
+    /// * 可以根据实例`ID`来查询实例的状态。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
+    @inlinable @discardableResult
+    public func describeInstancesStatusPaginated(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstancesStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看实例状态列表
+    ///
+    /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
+    ///
+    /// * 可以根据实例`ID`来查询实例的状态。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceStatus` and `DescribeInstancesStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstancesStatusPaginator(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)
+    }
 }

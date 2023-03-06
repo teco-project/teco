@@ -117,4 +117,30 @@ extension Yunjing {
         let input = DescribeNonlocalLoginPlacesRequest(uuid: uuid, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取异地登录事件
+    ///
+    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    @inlinable
+    public func describeNonlocalLoginPlacesPaginated(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NonLocalLoginPlace])> {
+        self.client.paginate(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录事件
+    ///
+    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    @inlinable @discardableResult
+    public func describeNonlocalLoginPlacesPaginated(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNonlocalLoginPlacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNonlocalLoginPlaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录事件
+    ///
+    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    ///
+    /// - Returns: `AsyncSequence`s of `NonLocalLoginPlace` and `DescribeNonlocalLoginPlacesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNonlocalLoginPlacesPaginator(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNonlocalLoginPlacesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
+    }
 }

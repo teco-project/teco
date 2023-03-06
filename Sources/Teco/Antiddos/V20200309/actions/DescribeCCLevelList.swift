@@ -115,4 +115,30 @@ extension Antiddos {
         let input = DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId)
         return try await self.client.execute(action: "DescribeCCLevelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable
+    public func describeCCLevelListPaginated(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCLevelPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable @discardableResult
+    public func describeCCLevelListPaginated(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCLevelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCLevelList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CCLevelPolicy` and `DescribeCCLevelListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCCLevelListPaginator(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCLevelListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
+    }
 }

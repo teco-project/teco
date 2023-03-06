@@ -124,4 +124,30 @@ extension Yunjing {
         let input = DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAgentVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable
+    public func describeAgentVulsPaginated(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentVul])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentVuls, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable @discardableResult
+    public func describeAgentVulsPaginated(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentVulsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentVuls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentVul` and `DescribeAgentVulsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAgentVulsPaginator(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentVulsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentVuls, logger: logger, on: eventLoop)
+    }
 }

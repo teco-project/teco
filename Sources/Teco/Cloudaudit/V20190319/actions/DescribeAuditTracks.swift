@@ -97,4 +97,24 @@ extension Cloudaudit {
         let input = DescribeAuditTracksRequest(pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeAuditTracks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云审计跟踪集列表
+    @inlinable
+    public func describeAuditTracksPaginated(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Tracks])> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云审计跟踪集列表
+    @inlinable @discardableResult
+    public func describeAuditTracksPaginated(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditTracksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditTracks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云审计跟踪集列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Tracks` and `DescribeAuditTracksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAuditTracksPaginator(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditTracksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)
+    }
 }

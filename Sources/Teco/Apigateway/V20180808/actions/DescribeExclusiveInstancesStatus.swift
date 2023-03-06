@@ -98,4 +98,24 @@ extension Apigateway {
         let input = DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeExclusiveInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专享实例列表（新）
+    @inlinable
+    public func describeExclusiveInstancesStatusPaginated(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专享实例列表（新）
+    @inlinable @discardableResult
+    public func describeExclusiveInstancesStatusPaginated(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExclusiveInstancesStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExclusiveInstancesStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专享实例列表（新）
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceInfo` and `DescribeExclusiveInstancesStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeExclusiveInstancesStatusPaginator(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExclusiveInstancesStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
+    }
 }

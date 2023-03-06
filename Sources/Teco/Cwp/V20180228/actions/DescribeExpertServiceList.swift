@@ -122,4 +122,30 @@ extension Cwp {
         let input = DescribeExpertServiceListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeExpertServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全管家列表
+    ///
+    /// 专家服务-安全管家列表
+    @inlinable
+    public func describeExpertServiceListPaginated(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecurityButlerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家列表
+    ///
+    /// 专家服务-安全管家列表
+    @inlinable @discardableResult
+    public func describeExpertServiceListPaginated(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExpertServiceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExpertServiceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家列表
+    ///
+    /// 专家服务-安全管家列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SecurityButlerInfo` and `DescribeExpertServiceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeExpertServiceListPaginator(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExpertServiceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
+    }
 }

@@ -104,4 +104,24 @@ extension Redis {
         let input = DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看实例子账号信息
+    @inlinable
+    public func describeInstanceAccountPaginated(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Account])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
+    }
+
+    /// 查看实例子账号信息
+    @inlinable @discardableResult
+    public func describeInstanceAccountPaginated(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceAccountResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceAccount, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看实例子账号信息
+    ///
+    /// - Returns: `AsyncSequence`s of `Account` and `DescribeInstanceAccountResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceAccountRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
+    }
 }

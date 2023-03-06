@@ -125,4 +125,30 @@ extension Antiddos {
         let input = DescribeListProtectThresholdConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp, filterDomain: filterDomain, filterProtocol: filterProtocol)
         return try await self.client.execute(action: "DescribeListProtectThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取防护阈值配置列表
+    ///
+    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
+    @inlinable
+    public func describeListProtectThresholdConfigPaginated(_ input: DescribeListProtectThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProtectThresholdRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListProtectThresholdConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取防护阈值配置列表
+    ///
+    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
+    @inlinable @discardableResult
+    public func describeListProtectThresholdConfigPaginated(_ input: DescribeListProtectThresholdConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListProtectThresholdConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListProtectThresholdConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取防护阈值配置列表
+    ///
+    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtectThresholdRelation` and `DescribeListProtectThresholdConfigResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListProtectThresholdConfigPaginator(_ input: DescribeListProtectThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListProtectThresholdConfigRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListProtectThresholdConfig, logger: logger, on: eventLoop)
+    }
 }

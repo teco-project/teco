@@ -115,4 +115,30 @@ extension Trtc {
         let input = DescribePictureRequest(sdkAppId: sdkAppId, pictureId: pictureId, pageSize: pageSize, pageNo: pageNo)
         return try await self.client.execute(action: "DescribePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询图片
+    ///
+    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
+    @inlinable
+    public func describePicturePaginated(_ input: DescribePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PictureInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePicture, logger: logger, on: eventLoop)
+    }
+
+    /// 查询图片
+    ///
+    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
+    @inlinable @discardableResult
+    public func describePicturePaginated(_ input: DescribePictureRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePictureResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePicture, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询图片
+    ///
+    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
+    ///
+    /// - Returns: `AsyncSequence`s of `PictureInfo` and `DescribePictureResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePicturePaginator(_ input: DescribePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePictureRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePicture, logger: logger, on: eventLoop)
+    }
 }

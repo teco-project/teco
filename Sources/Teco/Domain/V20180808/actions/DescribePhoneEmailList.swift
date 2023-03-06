@@ -115,4 +115,30 @@ extension Domain {
         let input = DescribePhoneEmailListRequest(type: type, offset: offset, limit: limit, code: code)
         return try await self.client.execute(action: "DescribePhoneEmailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 已验证手机邮箱列表
+    ///
+    /// 本接口用于获取已验证的手机邮箱列表
+    @inlinable
+    public func describePhoneEmailListPaginated(_ input: DescribePhoneEmailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PhoneEmailData])> {
+        self.client.paginate(input: input, region: region, command: self.describePhoneEmailList, logger: logger, on: eventLoop)
+    }
+
+    /// 已验证手机邮箱列表
+    ///
+    /// 本接口用于获取已验证的手机邮箱列表
+    @inlinable @discardableResult
+    public func describePhoneEmailListPaginated(_ input: DescribePhoneEmailListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePhoneEmailListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePhoneEmailList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 已验证手机邮箱列表
+    ///
+    /// 本接口用于获取已验证的手机邮箱列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PhoneEmailData` and `DescribePhoneEmailListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePhoneEmailListPaginator(_ input: DescribePhoneEmailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePhoneEmailListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePhoneEmailList, logger: logger, on: eventLoop)
+    }
 }

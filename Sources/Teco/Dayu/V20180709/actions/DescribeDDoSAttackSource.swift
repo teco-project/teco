@@ -130,4 +130,24 @@ extension Dayu {
         let input = DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList)
         return try await self.client.execute(action: "DescribeDDoSAttackSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS攻击源列表
+    @inlinable
+    public func describeDDoSAttackSourcePaginated(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DDoSAttackSourceRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS攻击源列表
+    @inlinable @discardableResult
+    public func describeDDoSAttackSourcePaginated(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDDoSAttackSourceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDDoSAttackSource, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS攻击源列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DDoSAttackSourceRecord` and `DescribeDDoSAttackSourceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDDoSAttackSourcePaginator(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDDoSAttackSourceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
+    }
 }

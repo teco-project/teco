@@ -138,4 +138,30 @@ extension Youmall {
         let input = DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType)
         return try await self.client.execute(action: "DescribePersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取顾客详情列表
+    ///
+    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
+    @inlinable
+    public func describePersonInfoPaginated(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PersonInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取顾客详情列表
+    ///
+    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
+    @inlinable @discardableResult
+    public func describePersonInfoPaginated(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePersonInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePersonInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取顾客详情列表
+    ///
+    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
+    ///
+    /// - Returns: `AsyncSequence`s of `PersonInfo` and `DescribePersonInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePersonInfoPaginator(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)
+    }
 }

@@ -127,4 +127,30 @@ extension Tcss {
         let input = DescribeAssetImageVulListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeAssetImageVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询镜像漏洞列表
+    ///
+    /// 容器安全查询镜像漏洞列表
+    @inlinable
+    public func describeAssetImageVulListPaginated(_ input: DescribeAssetImageVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImagesVul])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像漏洞列表
+    ///
+    /// 容器安全查询镜像漏洞列表
+    @inlinable @discardableResult
+    public func describeAssetImageVulListPaginated(_ input: DescribeAssetImageVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像漏洞列表
+    ///
+    /// 容器安全查询镜像漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImagesVul` and `DescribeAssetImageVulListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetImageVulListPaginator(_ input: DescribeAssetImageVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageVulListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageVulList, logger: logger, on: eventLoop)
+    }
 }

@@ -118,4 +118,24 @@ extension Tcss {
         let input = DescribeNetworkFirewallPolicyListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeNetworkFirewallPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群网络策略列表
+    @inlinable
+    public func describeNetworkFirewallPolicyListPaginated(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkPolicyInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络策略列表
+    @inlinable @discardableResult
+    public func describeNetworkFirewallPolicyListPaginated(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkFirewallPolicyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkFirewallPolicyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群网络策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkPolicyInfoItem` and `DescribeNetworkFirewallPolicyListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetworkFirewallPolicyListPaginator(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallPolicyListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
+    }
 }

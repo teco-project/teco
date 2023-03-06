@@ -128,4 +128,30 @@ extension Bm {
         let input = DescribeDeviceOperationLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDeviceOperationLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable
+    public func describeDeviceOperationLogPaginated(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeviceOperationLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable @discardableResult
+    public func describeDeviceOperationLogPaginated(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDeviceOperationLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDeviceOperationLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceOperationLog` and `DescribeDeviceOperationLogResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDeviceOperationLogPaginator(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceOperationLogRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)
+    }
 }

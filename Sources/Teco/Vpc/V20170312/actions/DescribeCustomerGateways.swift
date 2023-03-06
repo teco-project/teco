@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeCustomerGatewaysRequest(customerGatewayIds: customerGatewayIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCustomerGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable
+    public func describeCustomerGatewaysPaginated(_ input: DescribeCustomerGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CustomerGateway])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomerGateways, logger: logger, on: eventLoop)
+    }
+
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable @discardableResult
+    public func describeCustomerGatewaysPaginated(_ input: DescribeCustomerGatewaysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomerGatewaysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomerGateways, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CustomerGateway` and `DescribeCustomerGatewaysResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCustomerGatewaysPaginator(_ input: DescribeCustomerGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomerGatewaysRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomerGateways, logger: logger, on: eventLoop)
+    }
 }

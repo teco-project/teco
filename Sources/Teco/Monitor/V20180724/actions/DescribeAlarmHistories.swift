@@ -195,4 +195,36 @@ extension Monitor {
         let input = DescribeAlarmHistoriesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds)
         return try await self.client.execute(action: "DescribeAlarmHistories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    ///
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable
+    public func describeAlarmHistoriesPaginated(_ input: DescribeAlarmHistoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AlarmHistory])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmHistories, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    ///
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable @discardableResult
+    public func describeAlarmHistoriesPaginated(_ input: DescribeAlarmHistoriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmHistoriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmHistories, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    ///
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    ///
+    /// - Returns: `AsyncSequence`s of `AlarmHistory` and `DescribeAlarmHistoriesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlarmHistoriesPaginator(_ input: DescribeAlarmHistoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmHistoriesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmHistories, logger: logger, on: eventLoop)
+    }
 }

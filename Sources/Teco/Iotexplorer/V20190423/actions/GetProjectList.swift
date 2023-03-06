@@ -132,4 +132,30 @@ extension Iotexplorer {
         let input = GetProjectListRequest(offset: offset, limit: limit, instanceId: instanceId, projectId: projectId, productId: productId, includes: includes, projectName: projectName)
         return try await self.client.execute(action: "GetProjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable
+    public func getProjectListPaginated(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProjectEntryEx])> {
+        self.client.paginate(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable @discardableResult
+    public func getProjectListPaginated(_ input: GetProjectListRequest, region: TCRegion? = nil, onResponse: @escaping (GetProjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getProjectList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProjectEntryEx` and `GetProjectListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getProjectListPaginator(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetProjectListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
+    }
 }

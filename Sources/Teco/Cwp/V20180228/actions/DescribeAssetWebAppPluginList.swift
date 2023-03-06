@@ -113,4 +113,24 @@ extension Cwp {
         let input = DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAssetWebAppPluginList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资产管理Web应用插件列表
+    @inlinable
+    public func describeAssetWebAppPluginListPaginated(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetWebAppPluginInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebAppPluginList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理Web应用插件列表
+    @inlinable @discardableResult
+    public func describeAssetWebAppPluginListPaginated(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetWebAppPluginListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebAppPluginList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资产管理Web应用插件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetWebAppPluginInfo` and `DescribeAssetWebAppPluginListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetWebAppPluginListPaginator(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebAppPluginListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebAppPluginList, logger: logger, on: eventLoop)
+    }
 }

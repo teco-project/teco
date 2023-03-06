@@ -114,4 +114,30 @@ extension Bda {
         let input = GetPersonListRequest(groupId: groupId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetPersonList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取人员列表
+    ///
+    /// 获取指定人体库中的人员列表。
+    @inlinable
+    public func getPersonListPaginated(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PersonInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人员列表
+    ///
+    /// 获取指定人体库中的人员列表。
+    @inlinable @discardableResult
+    public func getPersonListPaginated(_ input: GetPersonListRequest, region: TCRegion? = nil, onResponse: @escaping (GetPersonListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getPersonList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取人员列表
+    ///
+    /// 获取指定人体库中的人员列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `PersonInfo` and `GetPersonListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getPersonListPaginator(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPersonListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)
+    }
 }

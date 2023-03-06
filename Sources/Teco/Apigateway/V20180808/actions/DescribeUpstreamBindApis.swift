@@ -103,4 +103,24 @@ extension Apigateway {
         let input = DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters)
         return try await self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApisPaginated(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BindApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道所绑定的API列表
+    @inlinable @discardableResult
+    public func describeUpstreamBindApisPaginated(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUpstreamBindApisResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUpstreamBindApis, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询后端通道所绑定的API列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BindApiInfo` and `DescribeUpstreamBindApisResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUpstreamBindApisPaginator(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamBindApisRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
+    }
 }

@@ -131,4 +131,30 @@ extension Tcss {
         let input = DescribeComplianceTaskPolicyItemSummaryListRequest(assetType: assetType, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryListPaginated(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CompliancePolicyItemSummary])> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable @discardableResult
+    public func describeComplianceTaskPolicyItemSummaryListPaginated(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceTaskPolicyItemSummaryListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    ///
+    /// - Returns: `AsyncSequence`s of `CompliancePolicyItemSummary` and `DescribeComplianceTaskPolicyItemSummaryListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryListPaginator(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceTaskPolicyItemSummaryListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)
+    }
 }

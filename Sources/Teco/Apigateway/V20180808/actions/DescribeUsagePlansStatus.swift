@@ -107,4 +107,30 @@ extension Apigateway {
         let input = DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeUsagePlansStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询使用计划列表
+    ///
+    /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
+    @inlinable
+    public func describeUsagePlansStatusPaginated(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UsagePlanStatusInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划列表
+    ///
+    /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
+    @inlinable @discardableResult
+    public func describeUsagePlansStatusPaginated(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlansStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlansStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划列表
+    ///
+    /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `UsagePlanStatusInfo` and `DescribeUsagePlansStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUsagePlansStatusPaginator(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlansStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
+    }
 }

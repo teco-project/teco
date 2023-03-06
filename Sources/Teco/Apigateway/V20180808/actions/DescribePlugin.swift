@@ -106,4 +106,30 @@ extension Apigateway {
         let input = DescribePluginRequest(pluginId: pluginId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询插件详情
+    ///
+    /// 展示插件详情，支持按照插件ID进行。
+    @inlinable
+    public func describePluginPaginated(_ input: DescribePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AttachedApiInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
+    }
+
+    /// 查询插件详情
+    ///
+    /// 展示插件详情，支持按照插件ID进行。
+    @inlinable @discardableResult
+    public func describePluginPaginated(_ input: DescribePluginRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePluginResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePlugin, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询插件详情
+    ///
+    /// 展示插件详情，支持按照插件ID进行。
+    ///
+    /// - Returns: `AsyncSequence`s of `AttachedApiInfo` and `DescribePluginResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePluginPaginator(_ input: DescribePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
+    }
 }

@@ -114,4 +114,39 @@ extension Tiia {
         let input = DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId)
         return try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    @inlinable
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [GroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    @inlinable @discardableResult
+    public func describeGroupsPaginated(_ input: DescribeGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `GroupInfo` and `DescribeGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
+    }
 }

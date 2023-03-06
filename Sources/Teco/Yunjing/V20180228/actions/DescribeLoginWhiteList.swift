@@ -103,4 +103,24 @@ extension Yunjing {
         let input = DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteListPaginated(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoginWhiteLists])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录白名单列表
+    @inlinable @discardableResult
+    public func describeLoginWhiteListPaginated(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoginWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoginWhiteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取异地登录白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `LoginWhiteLists` and `DescribeLoginWhiteListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLoginWhiteListPaginator(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoginWhiteListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
+    }
 }

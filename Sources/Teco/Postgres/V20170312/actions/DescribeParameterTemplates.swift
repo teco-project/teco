@@ -120,4 +120,30 @@ extension Postgres {
         let input = DescribeParameterTemplatesRequest(filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeParameterTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询参数模板列表
+    ///
+    /// 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
+    @inlinable
+    public func describeParameterTemplatesPaginated(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ParameterTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeParameterTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数模板列表
+    ///
+    /// 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
+    @inlinable @discardableResult
+    public func describeParameterTemplatesPaginated(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeParameterTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeParameterTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数模板列表
+    ///
+    /// 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ParameterTemplate` and `DescribeParameterTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeParameterTemplatesPaginator(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeParameterTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeParameterTemplates, logger: logger, on: eventLoop)
+    }
 }

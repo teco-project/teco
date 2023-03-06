@@ -143,4 +143,30 @@ extension Partners {
         let input = DescribeAgentSelfPayDealsRequest(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames)
         return try await self.client.execute(action: "DescribeAgentSelfPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable
+    public func describeAgentSelfPayDealsPaginated(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentDealElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentSelfPayDeals, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable @discardableResult
+    public func describeAgentSelfPayDealsPaginated(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentSelfPayDealsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentSelfPayDeals, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentDealElem` and `DescribeAgentSelfPayDealsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAgentSelfPayDealsPaginator(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDeals, logger: logger, on: eventLoop)
+    }
 }

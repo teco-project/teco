@@ -133,4 +133,24 @@ extension Wedata {
         let input = DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime)
         return try await self.client.execute(action: "DescribeAlarmReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 告警接收人详情
+    @inlinable
+    public func describeAlarmReceiverPaginated(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AlarmReceiverInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
+    }
+
+    /// 告警接收人详情
+    @inlinable @discardableResult
+    public func describeAlarmReceiverPaginated(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmReceiverResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmReceiver, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 告警接收人详情
+    ///
+    /// - Returns: `AsyncSequence`s of `AlarmReceiverInfo` and `DescribeAlarmReceiverResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlarmReceiverPaginator(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmReceiverRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
+    }
 }

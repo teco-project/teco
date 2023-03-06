@@ -109,4 +109,24 @@ extension Wedata {
         let input = DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
         return try await self.client.execute(action: "DescribeRuleGroupExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 规则组执行结果分页查询接口
+    @inlinable
+    public func describeRuleGroupExecResultsByPagePaginated(_ input: DescribeRuleGroupExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleGroupExecResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupExecResultsByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 规则组执行结果分页查询接口
+    @inlinable @discardableResult
+    public func describeRuleGroupExecResultsByPagePaginated(_ input: DescribeRuleGroupExecResultsByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleGroupExecResultsByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupExecResultsByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 规则组执行结果分页查询接口
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleGroupExecResult` and `DescribeRuleGroupExecResultsByPageResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRuleGroupExecResultsByPagePaginator(_ input: DescribeRuleGroupExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleGroupExecResultsByPageRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupExecResultsByPage, logger: logger, on: eventLoop)
+    }
 }

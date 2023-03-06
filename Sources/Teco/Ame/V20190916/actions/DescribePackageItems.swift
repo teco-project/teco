@@ -102,4 +102,30 @@ extension Ame {
         let input = DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length)
         return try await self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItemsPaginated(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [PackageItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
+    }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable @discardableResult
+    public func describePackageItemsPaginated(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePackageItemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePackageItems, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `PackageItem` and `DescribePackageItemsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePackageItemsPaginator(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePackageItemsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
+    }
 }

@@ -123,4 +123,30 @@ extension Tag {
         let input = DescribeTagValuesSeqRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeTagValuesSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesSeqPaginated(_ input: DescribeTagValuesSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Tag])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagValuesSeq, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable @discardableResult
+    public func describeTagValuesSeqPaginated(_ input: DescribeTagValuesSeqRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagValuesSeqResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagValuesSeq, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    ///
+    /// - Returns: `AsyncSequence`s of `Tag` and `DescribeTagValuesSeqResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTagValuesSeqPaginator(_ input: DescribeTagValuesSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagValuesSeqRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagValuesSeq, logger: logger, on: eventLoop)
+    }
 }

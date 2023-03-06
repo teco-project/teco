@@ -126,4 +126,33 @@ extension Vod {
         let input = DescribeReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeReviewTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取审核模板列表
+    ///
+    /// 获取审核模板列表。
+    /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
+    @inlinable
+    public func describeReviewTemplatesPaginated(_ input: DescribeReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ReviewTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeReviewTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取审核模板列表
+    ///
+    /// 获取审核模板列表。
+    /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
+    @inlinable @discardableResult
+    public func describeReviewTemplatesPaginated(_ input: DescribeReviewTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReviewTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReviewTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取审核模板列表
+    ///
+    /// 获取审核模板列表。
+    /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
+    ///
+    /// - Returns: `AsyncSequence`s of `ReviewTemplate` and `DescribeReviewTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReviewTemplatesPaginator(_ input: DescribeReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReviewTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReviewTemplates, logger: logger, on: eventLoop)
+    }
 }

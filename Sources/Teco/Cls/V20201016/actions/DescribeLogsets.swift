@@ -140,4 +140,30 @@ extension Cls {
         let input = DescribeLogsetsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeLogsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取日志集列表
+    ///
+    /// 本接口用于获取日志集信息列表。
+    @inlinable
+    public func describeLogsetsPaginated(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LogsetInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLogsets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取日志集列表
+    ///
+    /// 本接口用于获取日志集信息列表。
+    @inlinable @discardableResult
+    public func describeLogsetsPaginated(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogsetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLogsets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取日志集列表
+    ///
+    /// 本接口用于获取日志集信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `LogsetInfo` and `DescribeLogsetsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLogsetsPaginator(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsetsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogsets, logger: logger, on: eventLoop)
+    }
 }

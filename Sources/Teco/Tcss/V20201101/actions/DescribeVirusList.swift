@@ -126,4 +126,24 @@ extension Tcss {
         let input = DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询运行时文件查杀事件列表
+    @inlinable
+    public func describeVirusListPaginated(_ input: DescribeVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VirusInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运行时文件查杀事件列表
+    @inlinable @discardableResult
+    public func describeVirusListPaginated(_ input: DescribeVirusListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVirusListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运行时文件查杀事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VirusInfo` and `DescribeVirusListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVirusListPaginator(_ input: DescribeVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)
+    }
 }

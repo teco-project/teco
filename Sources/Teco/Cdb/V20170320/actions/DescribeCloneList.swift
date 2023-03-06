@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCloneList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询克隆任务列表
+    ///
+    /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    @inlinable
+    public func describeCloneListPaginated(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CloneItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloneList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询克隆任务列表
+    ///
+    /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    @inlinable @discardableResult
+    public func describeCloneListPaginated(_ input: DescribeCloneListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloneListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloneList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询克隆任务列表
+    ///
+    /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CloneItem` and `DescribeCloneListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCloneListPaginator(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloneListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloneList, logger: logger, on: eventLoop)
+    }
 }

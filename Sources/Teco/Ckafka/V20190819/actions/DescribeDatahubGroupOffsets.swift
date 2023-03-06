@@ -108,4 +108,24 @@ extension Ckafka {
         let input = DescribeDatahubGroupOffsetsRequest(name: name, group: group, searchWord: searchWord, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDatahubGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsetsPaginated(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [GroupOffsetTopic])> {
+        self.client.paginate(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Datahub消费分组offset
+    @inlinable @discardableResult
+    public func describeDatahubGroupOffsetsPaginated(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatahubGroupOffsetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDatahubGroupOffsets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Datahub消费分组offset
+    ///
+    /// - Returns: `AsyncSequence`s of `GroupOffsetTopic` and `DescribeDatahubGroupOffsetsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDatahubGroupOffsetsPaginator(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatahubGroupOffsetsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)
+    }
 }

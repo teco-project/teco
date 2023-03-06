@@ -114,4 +114,30 @@ extension Clb {
         let input = DescribeCrossTargetsRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeCrossTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询跨域2.0版本云联网后端子机和网卡信息
+    ///
+    /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    @inlinable
+    public func describeCrossTargetsPaginated(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CrossTargets])> {
+        self.client.paginate(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)
+    }
+
+    /// 查询跨域2.0版本云联网后端子机和网卡信息
+    ///
+    /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    @inlinable @discardableResult
+    public func describeCrossTargetsPaginated(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCrossTargetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCrossTargets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询跨域2.0版本云联网后端子机和网卡信息
+    ///
+    /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `CrossTargets` and `DescribeCrossTargetsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCrossTargetsPaginator(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCrossTargetsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)
+    }
 }

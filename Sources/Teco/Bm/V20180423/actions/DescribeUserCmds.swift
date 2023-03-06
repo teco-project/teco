@@ -117,4 +117,24 @@ extension Bm {
         let input = DescribeUserCmdsRequest(offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey, cmdId: cmdId)
         return try await self.client.execute(action: "DescribeUserCmds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取自定义脚本信息列表
+    @inlinable
+    public func describeUserCmdsPaginated(_ input: DescribeUserCmdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UserCmd])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCmds, logger: logger, on: eventLoop)
+    }
+
+    /// 获取自定义脚本信息列表
+    @inlinable @discardableResult
+    public func describeUserCmdsPaginated(_ input: DescribeUserCmdsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserCmdsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCmds, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取自定义脚本信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `UserCmd` and `DescribeUserCmdsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserCmdsPaginator(_ input: DescribeUserCmdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserCmdsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmds, logger: logger, on: eventLoop)
+    }
 }

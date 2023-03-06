@@ -120,4 +120,30 @@ extension Dbdc {
         let input = DescribeDBInstancesRequest(instanceId: instanceId, hostId: hostId, limit: limit, offset: offset, shardType: shardType)
         return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DBInstanceDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable @discardableResult
+    public func describeDBInstancesPaginated(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DBInstanceDetail` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
+    }
 }

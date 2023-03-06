@@ -129,4 +129,30 @@ extension Cwp {
         let input = DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList)
         return try await self.client.execute(action: "DescribeBaselineEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable
+    public func describeBaselineEffectHostListPaginated(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BaselineEffectHost])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
+    }
+
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable @discardableResult
+    public func describeBaselineEffectHostListPaginated(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineEffectHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineEffectHostList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselineEffectHost` and `DescribeBaselineEffectHostListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBaselineEffectHostListPaginator(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineEffectHostListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
+    }
 }

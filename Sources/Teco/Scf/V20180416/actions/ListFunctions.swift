@@ -138,4 +138,30 @@ extension Scf {
         let input = ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters)
         return try await self.client.execute(action: "ListFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable
+    public func listFunctionsPaginated(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Function])> {
+        self.client.paginate(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
+    }
+
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable @discardableResult
+    public func listFunctionsPaginated(_ input: ListFunctionsRequest, region: TCRegion? = nil, onResponse: @escaping (ListFunctionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listFunctions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Function` and `ListFunctionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listFunctionsPaginator(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFunctionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
+    }
 }

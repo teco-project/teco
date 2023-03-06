@@ -162,4 +162,24 @@ extension Bmeip {
         let input = DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl)
         return try await self.client.execute(action: "DescribeEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 黑石EIP查询接口
+    @inlinable
+    public func describeEipsPaginated(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EipInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
+    }
+
+    /// 黑石EIP查询接口
+    @inlinable @discardableResult
+    public func describeEipsPaginated(_ input: DescribeEipsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEipsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEips, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 黑石EIP查询接口
+    ///
+    /// - Returns: `AsyncSequence`s of `EipInfo` and `DescribeEipsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
+    }
 }

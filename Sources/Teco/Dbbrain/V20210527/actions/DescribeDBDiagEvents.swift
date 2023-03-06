@@ -133,4 +133,30 @@ extension Dbbrain {
         let input = DescribeDBDiagEventsRequest(startTime: startTime, endTime: endTime, severities: severities, instanceIds: instanceIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDBDiagEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取诊断事件列表
+    ///
+    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    @inlinable
+    public func describeDBDiagEventsPaginated(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DiagHistoryEventItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 获取诊断事件列表
+    ///
+    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    @inlinable @discardableResult
+    public func describeDBDiagEventsPaginated(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBDiagEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDBDiagEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取诊断事件列表
+    ///
+    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    ///
+    /// - Returns: `AsyncSequence`s of `DiagHistoryEventItem` and `DescribeDBDiagEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDBDiagEventsPaginator(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBDiagEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)
+    }
 }

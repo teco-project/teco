@@ -136,4 +136,30 @@ extension Lighthouse {
         let input = DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones)
         return try await self.client.execute(action: "DescribeBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable
+    public func describeBundlesPaginated(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Bundle])> {
+        self.client.paginate(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
+    }
+
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable @discardableResult
+    public func describeBundlesPaginated(_ input: DescribeBundlesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBundlesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBundles, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Bundle` and `DescribeBundlesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBundlesPaginator(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBundlesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
+    }
 }

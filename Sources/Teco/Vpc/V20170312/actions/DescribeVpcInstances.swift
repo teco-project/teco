@@ -113,4 +113,30 @@ extension Vpc {
         let input = DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeVpcInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询VPC下的云主机实例列表
+    ///
+    /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
+    @inlinable
+    public func describeVpcInstancesPaginated(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CvmInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPC下的云主机实例列表
+    ///
+    /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
+    @inlinable @discardableResult
+    public func describeVpcInstancesPaginated(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询VPC下的云主机实例列表
+    ///
+    /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CvmInstance` and `DescribeVpcInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpcInstancesPaginator(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcInstances, logger: logger, on: eventLoop)
+    }
 }

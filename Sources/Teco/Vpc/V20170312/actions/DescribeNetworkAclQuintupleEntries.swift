@@ -122,4 +122,30 @@ extension Vpc {
         let input = DescribeNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询网络ACL五元组条目列表
+    ///
+    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+    @inlinable
+    public func describeNetworkAclQuintupleEntriesPaginated(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkAclQuintupleEntry])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询网络ACL五元组条目列表
+    ///
+    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+    @inlinable @discardableResult
+    public func describeNetworkAclQuintupleEntriesPaginated(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkAclQuintupleEntriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询网络ACL五元组条目列表
+    ///
+    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkAclQuintupleEntry` and `DescribeNetworkAclQuintupleEntriesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetworkAclQuintupleEntriesPaginator(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkAclQuintupleEntriesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)
+    }
 }

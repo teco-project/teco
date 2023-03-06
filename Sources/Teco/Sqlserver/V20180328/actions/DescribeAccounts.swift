@@ -129,4 +129,30 @@ extension Sqlserver {
         let input = DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccountDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable @discardableResult
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AccountDetail` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
 }

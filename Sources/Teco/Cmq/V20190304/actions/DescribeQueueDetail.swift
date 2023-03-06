@@ -112,4 +112,24 @@ extension Cmq {
         let input = DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName)
         return try await self.client.execute(action: "DescribeQueueDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举队列
+    @inlinable
+    public func describeQueueDetailPaginated(_ input: DescribeQueueDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [QueueSet])> {
+        self.client.paginate(input: input, region: region, command: self.describeQueueDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举队列
+    @inlinable @discardableResult
+    public func describeQueueDetailPaginated(_ input: DescribeQueueDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeQueueDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeQueueDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举队列
+    ///
+    /// - Returns: `AsyncSequence`s of `QueueSet` and `DescribeQueueDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeQueueDetailPaginator(_ input: DescribeQueueDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeQueueDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeQueueDetail, logger: logger, on: eventLoop)
+    }
 }

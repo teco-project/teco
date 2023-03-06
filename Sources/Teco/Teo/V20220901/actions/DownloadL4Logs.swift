@@ -134,4 +134,30 @@ extension Teo {
         let input = DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset)
         return try await self.client.execute(action: "DownloadL4Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 下载四层离线日志
+    ///
+    /// 本接口（DownloadL4Logs）用于下载四层离线日志。
+    @inlinable
+    public func downloadL4LogsPaginated(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [L4OfflineLog])> {
+        self.client.paginate(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)
+    }
+
+    /// 下载四层离线日志
+    ///
+    /// 本接口（DownloadL4Logs）用于下载四层离线日志。
+    @inlinable @discardableResult
+    public func downloadL4LogsPaginated(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, onResponse: @escaping (DownloadL4LogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.downloadL4Logs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 下载四层离线日志
+    ///
+    /// 本接口（DownloadL4Logs）用于下载四层离线日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `L4OfflineLog` and `DownloadL4LogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func downloadL4LogsPaginator(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DownloadL4LogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)
+    }
 }

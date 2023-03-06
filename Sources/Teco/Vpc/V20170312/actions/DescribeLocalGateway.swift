@@ -111,4 +111,30 @@ extension Vpc {
         let input = DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable
+    public func describeLocalGatewayPaginated(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LocalGateway])> {
+        self.client.paginate(input: input, region: region, command: self.describeLocalGateway, logger: logger, on: eventLoop)
+    }
+
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable @discardableResult
+    public func describeLocalGatewayPaginated(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLocalGatewayResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLocalGateway, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    ///
+    /// - Returns: `AsyncSequence`s of `LocalGateway` and `DescribeLocalGatewayResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLocalGatewayPaginator(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLocalGatewayRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLocalGateway, logger: logger, on: eventLoop)
+    }
 }

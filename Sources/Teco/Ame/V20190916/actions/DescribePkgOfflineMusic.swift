@@ -110,4 +110,30 @@ extension Ame {
         let input = DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePkgOfflineMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusicPaginated(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [OfflineMusicDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
+    }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable @discardableResult
+    public func describePkgOfflineMusicPaginated(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePkgOfflineMusicResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePkgOfflineMusic, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    ///
+    /// - Returns: `AsyncSequence`s of `OfflineMusicDetail` and `DescribePkgOfflineMusicResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePkgOfflineMusicPaginator(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePkgOfflineMusicRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
+    }
 }

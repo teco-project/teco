@@ -121,4 +121,30 @@ extension Tcss {
         let input = DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserClusterPaginated(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
+    }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable @discardableResult
+    public func describeUserClusterPaginated(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserClusterResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCluster, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterInfoItem` and `DescribeUserClusterResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserClusterPaginator(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserClusterRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
+    }
 }

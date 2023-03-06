@@ -125,4 +125,30 @@ extension Cfs {
         let input = DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, offset: offset, limit: limit, filters: filters, order: order, orderField: orderField)
         return try await self.client.execute(action: "DescribeAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable
+    public func describeAutoSnapshotPoliciesPaginated(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutoSnapshotPolicyInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable @discardableResult
+    public func describeAutoSnapshotPoliciesPaginated(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutoSnapshotPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutoSnapshotPolicies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `AutoSnapshotPolicyInfo` and `DescribeAutoSnapshotPoliciesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoSnapshotPoliciesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
+    }
 }

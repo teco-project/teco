@@ -116,4 +116,30 @@ extension Yunjing {
         let input = DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeHistoryAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable
+    public func describeHistoryAccountsPaginated(_ input: DescribeHistoryAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HistoryAccount])> {
+        self.client.paginate(input: input, region: region, command: self.describeHistoryAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable @discardableResult
+    public func describeHistoryAccountsPaginated(_ input: DescribeHistoryAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHistoryAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHistoryAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `HistoryAccount` and `DescribeHistoryAccountsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHistoryAccountsPaginator(_ input: DescribeHistoryAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHistoryAccountsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryAccounts, logger: logger, on: eventLoop)
+    }
 }

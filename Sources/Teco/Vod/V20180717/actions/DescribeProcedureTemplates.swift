@@ -122,4 +122,30 @@ extension Vod {
         let input = DescribeProcedureTemplatesRequest(subAppId: subAppId, names: names, type: type, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeProcedureTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取任务流模板列表
+    ///
+    /// 根据任务流模板名字，获取任务流模板详情列表。
+    @inlinable
+    public func describeProcedureTemplatesPaginated(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProcedureTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务流模板列表
+    ///
+    /// 根据任务流模板名字，获取任务流模板详情列表。
+    @inlinable @discardableResult
+    public func describeProcedureTemplatesPaginated(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProcedureTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProcedureTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取任务流模板列表
+    ///
+    /// 根据任务流模板名字，获取任务流模板详情列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProcedureTemplate` and `DescribeProcedureTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProcedureTemplatesPaginator(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcedureTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
+    }
 }

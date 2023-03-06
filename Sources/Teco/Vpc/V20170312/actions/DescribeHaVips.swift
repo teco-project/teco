@@ -121,4 +121,30 @@ extension Vpc {
         let input = DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeHaVips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询HAVIP列表
+    ///
+    /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVipsPaginated(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HaVip])> {
+        self.client.paginate(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HAVIP列表
+    ///
+    /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable @discardableResult
+    public func describeHaVipsPaginated(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHaVipsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHaVips, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HAVIP列表
+    ///
+    /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `HaVip` and `DescribeHaVipsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHaVipsPaginator(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHaVipsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,33 @@ extension Cdn {
         let input = DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains)
         return try await self.client.execute(action: "DescribeUrlViolations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable
+    public func describeUrlViolationsPaginated(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ViolationUrl])> {
+        self.client.paginate(input: input, region: region, command: self.describeUrlViolations, logger: logger, on: eventLoop)
+    }
+
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable @discardableResult
+    public func describeUrlViolationsPaginated(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUrlViolationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUrlViolations, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    ///
+    /// - Returns: `AsyncSequence`s of `ViolationUrl` and `DescribeUrlViolationsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUrlViolationsPaginator(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUrlViolationsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUrlViolations, logger: logger, on: eventLoop)
+    }
 }

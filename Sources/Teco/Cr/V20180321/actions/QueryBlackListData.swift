@@ -131,4 +131,24 @@ extension Cr {
         let input = QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue)
         return try await self.client.execute(action: "QueryBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看黑名单数据列表
+    @inlinable
+    public func queryBlackListDataPaginated(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BlackListData])> {
+        self.client.paginate(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
+    }
+
+    /// 查看黑名单数据列表
+    @inlinable @discardableResult
+    public func queryBlackListDataPaginated(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, onResponse: @escaping (QueryBlackListDataResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryBlackListData, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看黑名单数据列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BlackListData` and `QueryBlackListDataResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryBlackListDataPaginator(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryBlackListDataRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
+    }
 }

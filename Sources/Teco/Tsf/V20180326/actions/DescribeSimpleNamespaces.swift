@@ -139,4 +139,24 @@ extension Tsf {
         let input = DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck)
         return try await self.client.execute(action: "DescribeSimpleNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询简单命名空间列表
+    @inlinable
+    public func describeSimpleNamespacesPaginated(_ input: DescribeSimpleNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Namespace])> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleNamespaces, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单命名空间列表
+    @inlinable @discardableResult
+    public func describeSimpleNamespacesPaginated(_ input: DescribeSimpleNamespacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSimpleNamespacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleNamespaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单命名空间列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Namespace` and `DescribeSimpleNamespacesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSimpleNamespacesPaginator(_ input: DescribeSimpleNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleNamespacesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleNamespaces, logger: logger, on: eventLoop)
+    }
 }

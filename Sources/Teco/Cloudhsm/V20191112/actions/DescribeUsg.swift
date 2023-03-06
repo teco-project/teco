@@ -111,4 +111,30 @@ extension Cloudhsm {
         let input = DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord)
         return try await self.client.execute(action: "DescribeUsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable
+    public func describeUsgPaginated(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SgUnit])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable @discardableResult
+    public func describeUsgPaginated(_ input: DescribeUsgRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsgResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsg, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SgUnit` and `DescribeUsgResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUsgPaginator(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsgRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)
+    }
 }

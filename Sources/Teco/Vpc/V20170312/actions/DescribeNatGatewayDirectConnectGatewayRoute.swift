@@ -115,4 +115,30 @@ extension Vpc {
         let input = DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: natGatewayId, vpcId: vpcId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeNatGatewayDirectConnectGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专线绑定NAT路由
+    ///
+    /// 查询专线绑定NAT的路由
+    @inlinable
+    public func describeNatGatewayDirectConnectGatewayRoutePaginated(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [NatDirectConnectGatewayRoute])> {
+        self.client.paginate(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线绑定NAT路由
+    ///
+    /// 查询专线绑定NAT的路由
+    @inlinable @discardableResult
+    public func describeNatGatewayDirectConnectGatewayRoutePaginated(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatGatewayDirectConnectGatewayRouteResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专线绑定NAT路由
+    ///
+    /// 查询专线绑定NAT的路由
+    ///
+    /// - Returns: `AsyncSequence`s of `NatDirectConnectGatewayRoute` and `DescribeNatGatewayDirectConnectGatewayRouteResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNatGatewayDirectConnectGatewayRoutePaginator(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewayDirectConnectGatewayRouteRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
+    }
 }

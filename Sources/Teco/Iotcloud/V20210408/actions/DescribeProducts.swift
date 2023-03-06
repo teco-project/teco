@@ -105,4 +105,30 @@ extension Iotcloud {
         let input = DescribeProductsRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出产品列表。
+    @inlinable
+    public func describeProductsPaginated(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProductInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出产品列表。
+    @inlinable @discardableResult
+    public func describeProductsPaginated(_ input: DescribeProductsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProducts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出产品列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductInfo` and `DescribeProductsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
+    }
 }

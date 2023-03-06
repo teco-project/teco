@@ -129,4 +129,24 @@ extension Tsf {
         let input = DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId)
         return try await self.client.execute(action: "DescribeApiGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询API 分组信息列表
+    @inlinable
+    public func describeApiGroupsPaginated(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApiGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeApiGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询API 分组信息列表
+    @inlinable @discardableResult
+    public func describeApiGroupsPaginated(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApiGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApiGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询API 分组信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ApiGroupInfo` and `DescribeApiGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApiGroupsPaginator(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiGroups, logger: logger, on: eventLoop)
+    }
 }

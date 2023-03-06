@@ -122,4 +122,30 @@ extension Yinsuda {
         let input = DescribeKTVMusicsByTagRequest(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
         return try await self.client.execute(action: "DescribeKTVMusicsByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取标签歌曲
+    ///
+    /// 通过标签过滤歌曲列表。
+    @inlinable
+    public func describeKTVMusicsByTagPaginated(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [KTVMusicBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
+    }
+
+    /// 获取标签歌曲
+    ///
+    /// 通过标签过滤歌曲列表。
+    @inlinable @discardableResult
+    public func describeKTVMusicsByTagPaginated(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVMusicsByTagResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVMusicsByTag, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取标签歌曲
+    ///
+    /// 通过标签过滤歌曲列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `DescribeKTVMusicsByTagResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKTVMusicsByTagPaginator(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVMusicsByTagRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
+    }
 }

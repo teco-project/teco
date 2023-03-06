@@ -107,4 +107,30 @@ extension Wav {
         let input = QueryClueInfoListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryClueInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询线索列表接口
+    ///
+    /// 企业可通过此接口获取线索列表。
+    @inlinable
+    public func queryClueInfoListPaginated(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ClueInfoDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询线索列表接口
+    ///
+    /// 企业可通过此接口获取线索列表。
+    @inlinable @discardableResult
+    public func queryClueInfoListPaginated(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryClueInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryClueInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询线索列表接口
+    ///
+    /// 企业可通过此接口获取线索列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClueInfoDetail` and `QueryClueInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryClueInfoListPaginator(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryClueInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
+    }
 }

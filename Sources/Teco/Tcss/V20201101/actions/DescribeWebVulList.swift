@@ -126,4 +126,24 @@ extension Tcss {
         let input = DescribeWebVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeWebVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询web应用漏洞列表
+    @inlinable
+    public func describeWebVulListPaginated(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VulInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询web应用漏洞列表
+    @inlinable @discardableResult
+    public func describeWebVulListPaginated(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWebVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWebVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询web应用漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VulInfo` and `DescribeWebVulListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWebVulListPaginator(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebVulListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
+    }
 }

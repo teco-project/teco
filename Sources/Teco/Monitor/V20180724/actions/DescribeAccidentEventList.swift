@@ -149,4 +149,24 @@ extension Monitor {
         let input = DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource)
         return try await self.client.execute(action: "DescribeAccidentEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取平台事件列表
+    @inlinable
+    public func describeAccidentEventListPaginated(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeAccidentEventListAlarms])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccidentEventList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取平台事件列表
+    @inlinable @discardableResult
+    public func describeAccidentEventListPaginated(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccidentEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccidentEventList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取平台事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeAccidentEventListAlarms` and `DescribeAccidentEventListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccidentEventListPaginator(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccidentEventListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccidentEventList, logger: logger, on: eventLoop)
+    }
 }

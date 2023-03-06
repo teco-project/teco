@@ -121,4 +121,24 @@ extension Tem {
         let input = DescribeApplicationPodsRequest(environmentId: environmentId, applicationId: applicationId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel)
         return try await self.client.execute(action: "DescribeApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取应用实例列表
+    @inlinable
+    public func describeApplicationPodsPaginated(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RunVersionPod])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用实例列表
+    @inlinable @discardableResult
+    public func describeApplicationPodsPaginated(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationPodsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationPods, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取应用实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RunVersionPod` and `DescribeApplicationPodsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApplicationPodsPaginator(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationPodsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
+    }
 }

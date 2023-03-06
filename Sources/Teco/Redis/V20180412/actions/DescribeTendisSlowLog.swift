@@ -117,4 +117,24 @@ extension Redis {
         let input = DescribeTendisSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeTendisSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Tendis慢查询
+    @inlinable
+    public func describeTendisSlowLogPaginated(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TendisSlowLogDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Tendis慢查询
+    @inlinable @discardableResult
+    public func describeTendisSlowLogPaginated(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTendisSlowLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTendisSlowLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Tendis慢查询
+    ///
+    /// - Returns: `AsyncSequence`s of `TendisSlowLogDetail` and `DescribeTendisSlowLogResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTendisSlowLogPaginator(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTendisSlowLogRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)
+    }
 }

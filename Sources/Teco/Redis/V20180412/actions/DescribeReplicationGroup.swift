@@ -115,4 +115,30 @@ extension Redis {
         let input = DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
+    @inlinable
+    public func describeReplicationGroupPaginated(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Groups])> {
+        self.client.paginate(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
+    @inlinable @discardableResult
+    public func describeReplicationGroupPaginated(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReplicationGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReplicationGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
+    ///
+    /// - Returns: `AsyncSequence`s of `Groups` and `DescribeReplicationGroupResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReplicationGroupPaginator(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReplicationGroupRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
+    }
 }

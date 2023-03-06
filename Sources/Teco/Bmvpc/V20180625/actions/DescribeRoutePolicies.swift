@@ -129,4 +129,30 @@ extension Bmvpc {
         let input = DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询黑石路由表条目
+    ///
+    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
+    @inlinable
+    public func describeRoutePoliciesPaginated(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RoutePolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询黑石路由表条目
+    ///
+    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
+    @inlinable @discardableResult
+    public func describeRoutePoliciesPaginated(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRoutePoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRoutePolicies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询黑石路由表条目
+    ///
+    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
+    ///
+    /// - Returns: `AsyncSequence`s of `RoutePolicy` and `DescribeRoutePoliciesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRoutePoliciesPaginator(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRoutePoliciesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
+    }
 }

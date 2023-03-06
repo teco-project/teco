@@ -115,4 +115,30 @@ extension Tbaas {
         let input = GetClusterListForUserRequest(module: module, operation: operation, limit: limit, offset: offset)
         return try await self.client.execute(action: "GetClusterListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable
+    public func getClusterListForUserPaginated(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClusterDetailForUser])> {
+        self.client.paginate(input: input, region: region, command: self.getClusterListForUser, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable @discardableResult
+    public func getClusterListForUserPaginated(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, onResponse: @escaping (GetClusterListForUserResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getClusterListForUser, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterDetailForUser` and `GetClusterListForUserResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getClusterListForUserPaginator(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetClusterListForUserRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getClusterListForUser, logger: logger, on: eventLoop)
+    }
 }

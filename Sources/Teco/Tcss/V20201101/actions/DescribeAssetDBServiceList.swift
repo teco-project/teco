@@ -111,4 +111,30 @@ extension Tcss {
         let input = DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeAssetDBServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询db服务列表
+    ///
+    /// 容器安全查询db服务列表
+    @inlinable
+    public func describeAssetDBServiceListPaginated(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ServiceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetDBServiceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询db服务列表
+    ///
+    /// 容器安全查询db服务列表
+    @inlinable @discardableResult
+    public func describeAssetDBServiceListPaginated(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetDBServiceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetDBServiceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询db服务列表
+    ///
+    /// 容器安全查询db服务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ServiceInfo` and `DescribeAssetDBServiceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetDBServiceListPaginator(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetDBServiceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDBServiceList, logger: logger, on: eventLoop)
+    }
 }

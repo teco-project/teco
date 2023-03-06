@@ -118,4 +118,24 @@ extension Monitor {
         let input = DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出 Prometheus 抓取任务
+    @inlinable
+    public func describePrometheusScrapeJobsPaginated(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrometheusScrapeJob])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 列出 Prometheus 抓取任务
+    @inlinable @discardableResult
+    public func describePrometheusScrapeJobsPaginated(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusScrapeJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusScrapeJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出 Prometheus 抓取任务
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusScrapeJob` and `DescribePrometheusScrapeJobsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusScrapeJobsPaginator(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusScrapeJobsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
+    }
 }

@@ -128,4 +128,30 @@ extension Iotvideoindustry {
         let input = DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeVideoListByChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取通道录制文件列表
+    ///
+    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
+    @inlinable
+    public func describeVideoListByChannelPaginated(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordTaskItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeVideoListByChannel, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通道录制文件列表
+    ///
+    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
+    @inlinable @discardableResult
+    public func describeVideoListByChannelPaginated(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVideoListByChannelResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVideoListByChannel, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通道录制文件列表
+    ///
+    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordTaskItem` and `DescribeVideoListByChannelResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVideoListByChannelPaginator(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoListByChannelRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoListByChannel, logger: logger, on: eventLoop)
+    }
 }

@@ -118,4 +118,24 @@ extension Tdmq {
         let input = DescribeCmqTopicsRequest(offset: offset, limit: limit, topicName: topicName, topicNameList: topicNameList, isTagFilter: isTagFilter, filters: filters)
         return try await self.client.execute(action: "DescribeCmqTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举cmq全量主题
+    @inlinable
+    public func describeCmqTopicsPaginated(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CmqTopic])> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqTopics, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举cmq全量主题
+    @inlinable @discardableResult
+    public func describeCmqTopicsPaginated(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCmqTopicsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqTopics, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举cmq全量主题
+    ///
+    /// - Returns: `AsyncSequence`s of `CmqTopic` and `DescribeCmqTopicsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCmqTopicsPaginator(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmqTopicsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqTopics, logger: logger, on: eventLoop)
+    }
 }

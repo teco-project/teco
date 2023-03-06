@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeImageSimpleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询全部镜像列表
+    ///
+    /// DescribeImageSimpleList 查询全部镜像列表
+    @inlinable
+    public func describeImageSimpleListPaginated(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageSimpleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageSimpleList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全部镜像列表
+    ///
+    /// DescribeImageSimpleList 查询全部镜像列表
+    @inlinable @discardableResult
+    public func describeImageSimpleListPaginated(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageSimpleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageSimpleList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询全部镜像列表
+    ///
+    /// DescribeImageSimpleList 查询全部镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageSimpleInfo` and `DescribeImageSimpleListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeImageSimpleListPaginator(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSimpleListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSimpleList, logger: logger, on: eventLoop)
+    }
 }

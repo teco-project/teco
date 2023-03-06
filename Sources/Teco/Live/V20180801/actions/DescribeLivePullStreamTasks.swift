@@ -133,4 +133,33 @@ extension Live {
         let input = DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeLivePullStreamTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询直播拉流任务
+    ///
+    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
+    /// 排序方式：默认按更新时间 倒序排列。
+    @inlinable
+    public func describeLivePullStreamTasksPaginated(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PullStreamTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLivePullStreamTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播拉流任务
+    ///
+    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
+    /// 排序方式：默认按更新时间 倒序排列。
+    @inlinable @discardableResult
+    public func describeLivePullStreamTasksPaginated(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLivePullStreamTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLivePullStreamTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询直播拉流任务
+    ///
+    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
+    /// 排序方式：默认按更新时间 倒序排列。
+    ///
+    /// - Returns: `AsyncSequence`s of `PullStreamTaskInfo` and `DescribeLivePullStreamTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLivePullStreamTasksPaginator(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLivePullStreamTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePullStreamTasks, logger: logger, on: eventLoop)
+    }
 }

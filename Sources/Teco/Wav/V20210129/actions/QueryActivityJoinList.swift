@@ -107,4 +107,30 @@ extension Wav {
         let input = QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryActivityJoinList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询活动参与明细列表接口
+    ///
+    /// 根据游标拉取活动参与列表信息
+    @inlinable
+    public func queryActivityJoinListPaginated(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ActivityJoinDetail])> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动参与明细列表接口
+    ///
+    /// 根据游标拉取活动参与列表信息
+    @inlinable @discardableResult
+    public func queryActivityJoinListPaginated(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryActivityJoinListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryActivityJoinList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询活动参与明细列表接口
+    ///
+    /// 根据游标拉取活动参与列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ActivityJoinDetail` and `QueryActivityJoinListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryActivityJoinListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
+    }
 }

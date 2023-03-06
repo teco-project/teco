@@ -129,4 +129,36 @@ extension Cvm {
         let input = DescribeKeyPairsRequest(keyIds: keyIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
+    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
+    @inlinable
+    public func describeKeyPairsPaginated(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KeyPair])> {
+        self.client.paginate(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
+    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
+    @inlinable @discardableResult
+    public func describeKeyPairsPaginated(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKeyPairsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKeyPairs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
+    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyPair` and `DescribeKeyPairsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKeyPairsPaginator(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKeyPairsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
+    }
 }

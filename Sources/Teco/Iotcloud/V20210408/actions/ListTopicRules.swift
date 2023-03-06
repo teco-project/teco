@@ -105,4 +105,30 @@ extension Iotcloud {
         let input = ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize)
         return try await self.client.execute(action: "ListTopicRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable
+    public func listTopicRulesPaginated(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TopicRuleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable @discardableResult
+    public func listTopicRulesPaginated(_ input: ListTopicRulesRequest, region: TCRegion? = nil, onResponse: @escaping (ListTopicRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listTopicRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TopicRuleInfo` and `ListTopicRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listTopicRulesPaginator(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTopicRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
+    }
 }

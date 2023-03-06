@@ -130,4 +130,24 @@ extension Partners {
         let input = DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeUnbindClientList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 代理商名下客户解绑记录查询接口
+    @inlinable
+    public func describeUnbindClientListPaginated(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UnbindClientElem])> {
+        self.client.paginate(input: input, region: region, command: self.describeUnbindClientList, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商名下客户解绑记录查询接口
+    @inlinable @discardableResult
+    public func describeUnbindClientListPaginated(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUnbindClientListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUnbindClientList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 代理商名下客户解绑记录查询接口
+    ///
+    /// - Returns: `AsyncSequence`s of `UnbindClientElem` and `DescribeUnbindClientListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUnbindClientListPaginator(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnbindClientListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnbindClientList, logger: logger, on: eventLoop)
+    }
 }

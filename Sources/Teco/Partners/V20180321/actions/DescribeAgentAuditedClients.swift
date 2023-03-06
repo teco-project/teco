@@ -152,4 +152,24 @@ extension Partners {
         let input = DescribeAgentAuditedClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, clientUins: clientUins, hasOverdueBill: hasOverdueBill, clientRemark: clientRemark, offset: offset, limit: limit, clientType: clientType, projectType: projectType, salesUin: salesUin, salesName: salesName)
         return try await self.client.execute(action: "DescribeAgentAuditedClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询已审核客户列表
+    @inlinable
+    public func describeAgentAuditedClientsPaginated(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AgentAuditedClient])> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
+    }
+
+    /// 查询已审核客户列表
+    @inlinable @discardableResult
+    public func describeAgentAuditedClientsPaginated(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAgentAuditedClientsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAgentAuditedClients, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询已审核客户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentAuditedClient` and `DescribeAgentAuditedClientsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAgentAuditedClientsPaginator(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentAuditedClientsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
+    }
 }

@@ -104,4 +104,24 @@ extension Asr {
         let input = GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset)
         return try await self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationListPaginated(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Model])> {
+        self.client.paginate(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自学习模型列表
+    @inlinable @discardableResult
+    public func getCustomizationListPaginated(_ input: GetCustomizationListRequest, region: TCRegion? = nil, onResponse: @escaping (GetCustomizationListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getCustomizationList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自学习模型列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Model` and `GetCustomizationListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getCustomizationListPaginator(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCustomizationListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)
+    }
 }

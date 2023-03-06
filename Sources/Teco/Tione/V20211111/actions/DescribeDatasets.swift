@@ -131,4 +131,24 @@ extension Tione {
         let input = DescribeDatasetsRequest(datasetIds: datasetIds, filters: filters, tagFilters: tagFilters, order: order, orderField: orderField, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDatasets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据集列表
+    @inlinable
+    public func describeDatasetsPaginated(_ input: DescribeDatasetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DatasetGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeDatasets, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据集列表
+    @inlinable @discardableResult
+    public func describeDatasetsPaginated(_ input: DescribeDatasetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDatasetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDatasets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据集列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DatasetGroup` and `DescribeDatasetsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDatasetsPaginator(_ input: DescribeDatasetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatasetsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatasets, logger: logger, on: eventLoop)
+    }
 }

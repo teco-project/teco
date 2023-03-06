@@ -121,4 +121,30 @@ extension Cynosdb {
         let input = DescribeBinlogsRequest(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeBinlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Binlog列表
+    ///
+    /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
+    @inlinable
+    public func describeBinlogsPaginated(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BinlogItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Binlog列表
+    ///
+    /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
+    @inlinable @discardableResult
+    public func describeBinlogsPaginated(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBinlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBinlogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Binlog列表
+    ///
+    /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `BinlogItem` and `DescribeBinlogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBinlogsPaginator(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBinlogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)
+    }
 }

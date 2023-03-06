@@ -104,4 +104,24 @@ extension Iotexplorer {
         let input = DescribePositionFenceListRequest(spaceId: spaceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePositionFenceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取围栏列表
+    @inlinable
+    public func describePositionFenceListPaginated(_ input: DescribePositionFenceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PositionFenceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describePositionFenceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取围栏列表
+    @inlinable @discardableResult
+    public func describePositionFenceListPaginated(_ input: DescribePositionFenceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePositionFenceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePositionFenceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取围栏列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PositionFenceInfo` and `DescribePositionFenceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePositionFenceListPaginator(_ input: DescribePositionFenceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePositionFenceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePositionFenceList, logger: logger, on: eventLoop)
+    }
 }

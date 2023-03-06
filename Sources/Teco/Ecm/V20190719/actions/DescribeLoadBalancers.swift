@@ -154,4 +154,30 @@ extension Ecm {
         let input = DescribeLoadBalancersRequest(ecmRegion: ecmRegion, loadBalancerIds: loadBalancerIds, loadBalancerName: loadBalancerName, loadBalancerVips: loadBalancerVips, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, withBackend: withBackend, vpcId: vpcId, filters: filters, securityGroup: securityGroup)
         return try await self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancersPaginated(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [LoadBalancer])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
+    }
+
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询负载均衡实例列表。
+    @inlinable @discardableResult
+    public func describeLoadBalancersPaginated(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询负载均衡实例列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `LoadBalancer` and `DescribeLoadBalancersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
+    }
 }

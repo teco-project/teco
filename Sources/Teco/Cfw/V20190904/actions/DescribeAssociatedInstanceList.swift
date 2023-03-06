@@ -129,4 +129,24 @@ extension Cfw {
         let input = DescribeAssociatedInstanceListRequest(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type)
         return try await self.client.execute(action: "DescribeAssociatedInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取安全组关联实例列表
+    @inlinable
+    public func describeAssociatedInstanceListPaginated(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssociatedInstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全组关联实例列表
+    @inlinable @discardableResult
+    public func describeAssociatedInstanceListPaginated(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssociatedInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssociatedInstanceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取安全组关联实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssociatedInstanceInfo` and `DescribeAssociatedInstanceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssociatedInstanceListPaginator(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssociatedInstanceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
+    }
 }

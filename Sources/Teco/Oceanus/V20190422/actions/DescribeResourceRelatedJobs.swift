@@ -117,4 +117,24 @@ extension Oceanus {
         let input = DescribeResourceRelatedJobsRequest(resourceId: resourceId, descByJobConfigCreateTime: descByJobConfigCreateTime, offset: offset, limit: limit, resourceConfigVersion: resourceConfigVersion, workSpaceId: workSpaceId)
         return try await self.client.execute(action: "DescribeResourceRelatedJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取资源关联作业信息
+    @inlinable
+    public func describeResourceRelatedJobsPaginated(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ResourceRefJobInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资源关联作业信息
+    @inlinable @discardableResult
+    public func describeResourceRelatedJobsPaginated(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceRelatedJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceRelatedJobs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取资源关联作业信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceRefJobInfo` and `DescribeResourceRelatedJobsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceRelatedJobsPaginator(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceRelatedJobsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)
+    }
 }

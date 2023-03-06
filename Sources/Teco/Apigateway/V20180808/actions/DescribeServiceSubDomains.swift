@@ -110,4 +110,33 @@ extension Apigateway {
         let input = DescribeServiceSubDomainsRequest(serviceId: serviceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeServiceSubDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询自定义域名列表
+    ///
+    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
+    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    @inlinable
+    public func describeServiceSubDomainsPaginated(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DomainSetList])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自定义域名列表
+    ///
+    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
+    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    @inlinable @discardableResult
+    public func describeServiceSubDomainsPaginated(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceSubDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceSubDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询自定义域名列表
+    ///
+    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
+    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainSetList` and `DescribeServiceSubDomainsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeServiceSubDomainsPaginator(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceSubDomainsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)
+    }
 }

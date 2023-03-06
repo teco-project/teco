@@ -126,4 +126,30 @@ extension Cynosdb {
         let input = DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable
+    public func describeClusterParamLogsPaginated(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ClusterParamModifyLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterParamLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable @discardableResult
+    public func describeClusterParamLogsPaginated(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterParamLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterParamLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterParamModifyLog` and `DescribeClusterParamLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeClusterParamLogsPaginator(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterParamLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterParamLogs, logger: logger, on: eventLoop)
+    }
 }

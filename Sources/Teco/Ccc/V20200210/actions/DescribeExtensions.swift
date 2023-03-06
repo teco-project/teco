@@ -117,4 +117,24 @@ extension Ccc {
         let input = DescribeExtensionsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus)
         return try await self.client.execute(action: "DescribeExtensions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询话机列表信息
+    @inlinable
+    public func describeExtensionsPaginated(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ExtensionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeExtensions, logger: logger, on: eventLoop)
+    }
+
+    /// 查询话机列表信息
+    @inlinable @discardableResult
+    public func describeExtensionsPaginated(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeExtensionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeExtensions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询话机列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ExtensionInfo` and `DescribeExtensionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeExtensionsPaginator(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExtensionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExtensions, logger: logger, on: eventLoop)
+    }
 }

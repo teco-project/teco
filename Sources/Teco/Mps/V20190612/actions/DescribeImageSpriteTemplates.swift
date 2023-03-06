@@ -117,4 +117,30 @@ extension Mps {
         let input = DescribeImageSpriteTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeImageSpriteTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageSpriteTemplatesPaginated(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageSpriteTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageSpriteTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeImageSpriteTemplatesPaginated(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageSpriteTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageSpriteTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageSpriteTemplate` and `DescribeImageSpriteTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeImageSpriteTemplatesPaginator(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSpriteTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSpriteTemplates, logger: logger, on: eventLoop)
+    }
 }

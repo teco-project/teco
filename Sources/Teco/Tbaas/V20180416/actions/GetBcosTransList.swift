@@ -125,4 +125,30 @@ extension Tbaas {
         let input = GetBcosTransListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash)
         return try await self.client.execute(action: "GetBcosTransList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询Bcos交易列表
+    ///
+    /// Bcos分页查询当前群组的交易信息列表
+    @inlinable
+    public func getBcosTransListPaginated(_ input: GetBcosTransListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BcosTransInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getBcosTransList, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询Bcos交易列表
+    ///
+    /// Bcos分页查询当前群组的交易信息列表
+    @inlinable @discardableResult
+    public func getBcosTransListPaginated(_ input: GetBcosTransListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBcosTransListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBcosTransList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询Bcos交易列表
+    ///
+    /// Bcos分页查询当前群组的交易信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BcosTransInfo` and `GetBcosTransListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getBcosTransListPaginator(_ input: GetBcosTransListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBcosTransListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosTransList, logger: logger, on: eventLoop)
+    }
 }

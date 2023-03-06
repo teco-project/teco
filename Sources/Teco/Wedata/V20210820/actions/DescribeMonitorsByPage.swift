@@ -109,4 +109,24 @@ extension Wedata {
         let input = DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPagePaginated(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleGroupMonitor])> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitorsByPage, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询质量监控组
+    @inlinable @discardableResult
+    public func describeMonitorsByPagePaginated(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMonitorsByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMonitorsByPage, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询质量监控组
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleGroupMonitor` and `DescribeMonitorsByPageResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMonitorsByPagePaginator(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMonitorsByPageRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMonitorsByPage, logger: logger, on: eventLoop)
+    }
 }

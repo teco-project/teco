@@ -122,4 +122,30 @@ extension Yunjing {
         let input = DescribeProcessesRequest(uuid: uuid, processName: processName, limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeProcesses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取进程列表
+    ///
+    /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
+    @inlinable
+    public func describeProcessesPaginated(_ input: DescribeProcessesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Process])> {
+        self.client.paginate(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)
+    }
+
+    /// 获取进程列表
+    ///
+    /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
+    @inlinable @discardableResult
+    public func describeProcessesPaginated(_ input: DescribeProcessesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProcessesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProcesses, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取进程列表
+    ///
+    /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `Process` and `DescribeProcessesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProcessesPaginator(_ input: DescribeProcessesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcessesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)
+    }
 }

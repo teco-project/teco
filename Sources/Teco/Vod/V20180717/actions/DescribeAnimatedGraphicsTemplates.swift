@@ -122,4 +122,30 @@ extension Vod {
         let input = DescribeAnimatedGraphicsTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeAnimatedGraphicsTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取转动图模板列表
+    ///
+    /// 查询转动图模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeAnimatedGraphicsTemplatesPaginated(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AnimatedGraphicsTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转动图模板列表
+    ///
+    /// 查询转动图模板列表，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeAnimatedGraphicsTemplatesPaginated(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAnimatedGraphicsTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转动图模板列表
+    ///
+    /// 查询转动图模板列表，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `AnimatedGraphicsTemplate` and `DescribeAnimatedGraphicsTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAnimatedGraphicsTemplatesPaginator(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAnimatedGraphicsTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)
+    }
 }

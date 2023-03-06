@@ -111,4 +111,24 @@ extension Ecm {
         let input = DescribeSecurityGroupsRequest(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看安全组
+    @inlinable
+    public func describeSecurityGroupsPaginated(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SecurityGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查看安全组
+    @inlinable @discardableResult
+    public func describeSecurityGroupsPaginated(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecurityGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecurityGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看安全组
+    ///
+    /// - Returns: `AsyncSequence`s of `SecurityGroup` and `DescribeSecurityGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSecurityGroupsPaginator(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
+    }
 }

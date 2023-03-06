@@ -119,4 +119,24 @@ extension Wedata {
         let input = DescribeIntegrationTasksRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, startTime: startTime, endTime: endTime, taskType: taskType)
         return try await self.client.execute(action: "DescribeIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集成任务列表
+    @inlinable
+    public func describeIntegrationTasksPaginated(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [IntegrationTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeIntegrationTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集成任务列表
+    @inlinable @discardableResult
+    public func describeIntegrationTasksPaginated(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIntegrationTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集成任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `IntegrationTaskInfo` and `DescribeIntegrationTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIntegrationTasksPaginator(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationTasks, logger: logger, on: eventLoop)
+    }
 }

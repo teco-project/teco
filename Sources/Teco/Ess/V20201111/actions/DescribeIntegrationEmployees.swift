@@ -126,4 +126,30 @@ extension Ess {
         let input = DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset)
         return try await self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询员工信息
+    ///
+    /// 查询员工信息，每次返回的数据量最大为20
+    @inlinable
+    public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Staff])> {
+        self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
+    }
+
+    /// 查询员工信息
+    ///
+    /// 查询员工信息，每次返回的数据量最大为20
+    @inlinable @discardableResult
+    public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询员工信息
+    ///
+    /// 查询员工信息，每次返回的数据量最大为20
+    ///
+    /// - Returns: `AsyncSequence`s of `Staff` and `DescribeIntegrationEmployeesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIntegrationEmployeesPaginator(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationEmployeesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
+    }
 }

@@ -118,4 +118,30 @@ extension Vpc {
         let input = DescribeNetworkAclsRequest(filters: filters, networkAclIds: networkAclIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeNetworkAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询网络ACL列表
+    ///
+    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
+    @inlinable
+    public func describeNetworkAclsPaginated(_ input: DescribeNetworkAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NetworkAcl])> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkAcls, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络ACL列表
+    ///
+    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
+    @inlinable @discardableResult
+    public func describeNetworkAclsPaginated(_ input: DescribeNetworkAclsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNetworkAclsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNetworkAcls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询网络ACL列表
+    ///
+    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkAcl` and `DescribeNetworkAclsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNetworkAclsPaginator(_ input: DescribeNetworkAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkAclsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkAcls, logger: logger, on: eventLoop)
+    }
 }

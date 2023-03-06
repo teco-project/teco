@@ -117,4 +117,24 @@ extension Dlc {
         let input = DescribeWorkGroupsRequest(workGroupId: workGroupId, filters: filters, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting)
         return try await self.client.execute(action: "DescribeWorkGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取工作组列表
+    @inlinable
+    public func describeWorkGroupsPaginated(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [WorkGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 获取工作组列表
+    @inlinable @discardableResult
+    public func describeWorkGroupsPaginated(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWorkGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWorkGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取工作组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `WorkGroupInfo` and `DescribeWorkGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
+    }
 }

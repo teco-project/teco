@@ -135,4 +135,30 @@ extension Gaap {
         let input = DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId)
         return try await self.client.execute(action: "DescribeHTTPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询HTTP监听器信息
+    ///
+    /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
+    @inlinable
+    public func describeHTTPListenersPaginated(_ input: DescribeHTTPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HTTPListener])> {
+        self.client.paginate(input: input, region: region, command: self.describeHTTPListeners, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HTTP监听器信息
+    ///
+    /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
+    @inlinable @discardableResult
+    public func describeHTTPListenersPaginated(_ input: DescribeHTTPListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHTTPListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHTTPListeners, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询HTTP监听器信息
+    ///
+    /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `HTTPListener` and `DescribeHTTPListenersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHTTPListenersPaginator(_ input: DescribeHTTPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHTTPListenersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHTTPListeners, logger: logger, on: eventLoop)
+    }
 }

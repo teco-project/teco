@@ -141,4 +141,30 @@ extension Youmall {
         let input = DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeShopHourTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取每小时客流人数
+    ///
+    /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeShopHourTrafficInfoPaginated(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ShopHourTrafficInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeShopHourTrafficInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取每小时客流人数
+    ///
+    /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    @inlinable @discardableResult
+    public func describeShopHourTrafficInfoPaginated(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShopHourTrafficInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeShopHourTrafficInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取每小时客流人数
+    ///
+    /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    ///
+    /// - Returns: `AsyncSequence`s of `ShopHourTrafficInfo` and `DescribeShopHourTrafficInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeShopHourTrafficInfoPaginator(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShopHourTrafficInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopHourTrafficInfo, logger: logger, on: eventLoop)
+    }
 }

@@ -103,4 +103,24 @@ extension Tse {
         let input = DescribeZookeeperReplicasRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeZookeeperReplicas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable
+    public func describeZookeeperReplicasPaginated(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ZookeeperReplica])> {
+        self.client.paginate(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable @discardableResult
+    public func describeZookeeperReplicasPaginated(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZookeeperReplicasResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeZookeeperReplicas, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ZookeeperReplica` and `DescribeZookeeperReplicasResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeZookeeperReplicasPaginator(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZookeeperReplicasRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
+    }
 }

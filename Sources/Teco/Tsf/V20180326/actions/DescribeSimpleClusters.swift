@@ -114,4 +114,24 @@ extension Tsf {
         let input = DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
         return try await self.client.execute(action: "DescribeSimpleClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询简单集群列表
+    @inlinable
+    public func describeSimpleClustersPaginated(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Cluster])> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单集群列表
+    @inlinable @discardableResult
+    public func describeSimpleClustersPaginated(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSimpleClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Cluster` and `DescribeSimpleClustersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSimpleClustersPaginator(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleClustersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
+    }
 }

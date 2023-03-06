@@ -119,4 +119,30 @@ extension Batch {
         let input = DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeComputeEnvCreateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看计算环境创建信息列表
+    ///
+    /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
+    @inlinable
+    public func describeComputeEnvCreateInfosPaginated(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ComputeEnvCreateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvCreateInfos, logger: logger, on: eventLoop)
+    }
+
+    /// 查看计算环境创建信息列表
+    ///
+    /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
+    @inlinable @discardableResult
+    public func describeComputeEnvCreateInfosPaginated(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComputeEnvCreateInfosResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvCreateInfos, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看计算环境创建信息列表
+    ///
+    /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
+    ///
+    /// - Returns: `AsyncSequence`s of `ComputeEnvCreateInfo` and `DescribeComputeEnvCreateInfosResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComputeEnvCreateInfosPaginator(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvCreateInfosRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvCreateInfos, logger: logger, on: eventLoop)
+    }
 }

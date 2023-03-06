@@ -97,4 +97,24 @@ extension Iotexplorer {
         let input = GetTopicRuleListRequest(pageNum: pageNum, pageSize: pageSize)
         return try await self.client.execute(action: "GetTopicRuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取规则列表
+    @inlinable
+    public func getTopicRuleListPaginated(_ input: GetTopicRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TopicRuleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getTopicRuleList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取规则列表
+    @inlinable @discardableResult
+    public func getTopicRuleListPaginated(_ input: GetTopicRuleListRequest, region: TCRegion? = nil, onResponse: @escaping (GetTopicRuleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getTopicRuleList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TopicRuleInfo` and `GetTopicRuleListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getTopicRuleListPaginator(_ input: GetTopicRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTopicRuleListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopicRuleList, logger: logger, on: eventLoop)
+    }
 }

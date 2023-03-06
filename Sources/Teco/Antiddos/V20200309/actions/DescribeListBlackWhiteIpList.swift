@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的IP黑白名单列表
+    @inlinable
+    public func describeListBlackWhiteIpListPaginated(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BlackWhiteIpRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListBlackWhiteIpList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的IP黑白名单列表
+    @inlinable @discardableResult
+    public func describeListBlackWhiteIpListPaginated(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListBlackWhiteIpListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListBlackWhiteIpList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的IP黑白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BlackWhiteIpRelation` and `DescribeListBlackWhiteIpListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListBlackWhiteIpListPaginator(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBlackWhiteIpListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBlackWhiteIpList, logger: logger, on: eventLoop)
+    }
 }

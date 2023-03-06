@@ -112,4 +112,24 @@ extension Eb {
         let input = ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order)
         return try await self.client.execute(action: "ListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取事件规则列表
+    @inlinable
+    public func listRulesPaginated(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Rule])> {
+        self.client.paginate(input: input, region: region, command: self.listRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件规则列表
+    @inlinable @discardableResult
+    public func listRulesPaginated(_ input: ListRulesRequest, region: TCRegion? = nil, onResponse: @escaping (ListRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Rule` and `ListRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listRulesPaginator(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRules, logger: logger, on: eventLoop)
+    }
 }

@@ -198,4 +198,30 @@ extension Bm {
         let input = DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus)
         return try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询物理机信息
+    ///
+    /// 查询物理服务器，可以按照实例，业务IP等过滤
+    @inlinable
+    public func describeDevicesPaginated(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理机信息
+    ///
+    /// 查询物理服务器，可以按照实例，业务IP等过滤
+    @inlinable @discardableResult
+    public func describeDevicesPaginated(_ input: DescribeDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理机信息
+    ///
+    /// 查询物理服务器，可以按照实例，业务IP等过滤
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceInfo` and `DescribeDevicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDevicesPaginator(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)
+    }
 }

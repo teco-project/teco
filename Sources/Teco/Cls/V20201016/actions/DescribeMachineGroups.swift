@@ -141,4 +141,30 @@ extension Cls {
         let input = DescribeMachineGroupsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeMachineGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取机器组列表
+    ///
+    /// 获取机器组信息列表
+    @inlinable
+    public func describeMachineGroupsPaginated(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MachineGroupInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMachineGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 获取机器组列表
+    ///
+    /// 获取机器组信息列表
+    @inlinable @discardableResult
+    public func describeMachineGroupsPaginated(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMachineGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMachineGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取机器组列表
+    ///
+    /// 获取机器组信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `MachineGroupInfo` and `DescribeMachineGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMachineGroupsPaginator(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachineGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachineGroups, logger: logger, on: eventLoop)
+    }
 }

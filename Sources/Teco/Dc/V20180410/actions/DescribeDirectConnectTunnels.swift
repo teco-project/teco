@@ -119,4 +119,30 @@ extension Dc {
         let input = DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDirectConnectTunnels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专用通道列表
+    ///
+    /// 用于查询专用通道列表。
+    @inlinable
+    public func describeDirectConnectTunnelsPaginated(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DirectConnectTunnel])> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用通道列表
+    ///
+    /// 用于查询专用通道列表。
+    @inlinable @discardableResult
+    public func describeDirectConnectTunnelsPaginated(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectTunnelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnectTunnels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用通道列表
+    ///
+    /// 用于查询专用通道列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DirectConnectTunnel` and `DescribeDirectConnectTunnelsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDirectConnectTunnelsPaginator(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectTunnelsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
+    }
 }

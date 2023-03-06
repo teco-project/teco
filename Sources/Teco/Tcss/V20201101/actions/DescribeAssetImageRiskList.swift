@@ -128,4 +128,30 @@ extension Tcss {
         let input = DescribeAssetImageRiskListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeAssetImageRiskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询镜像风险列表
+    ///
+    /// 容器安全查询镜像风险列表
+    @inlinable
+    public func describeAssetImageRiskListPaginated(_ input: DescribeAssetImageRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageRiskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRiskList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像风险列表
+    ///
+    /// 容器安全查询镜像风险列表
+    @inlinable @discardableResult
+    public func describeAssetImageRiskListPaginated(_ input: DescribeAssetImageRiskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageRiskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageRiskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像风险列表
+    ///
+    /// 容器安全查询镜像风险列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageRiskInfo` and `DescribeAssetImageRiskListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetImageRiskListPaginator(_ input: DescribeAssetImageRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRiskListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRiskList, logger: logger, on: eventLoop)
+    }
 }

@@ -116,4 +116,30 @@ extension Tcr {
         let input = DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace)
         return try await self.client.execute(action: "DescribeRepositoryFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取满足输入搜索条件的个人版镜像仓库
+    ///
+    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
+    @inlinable
+    public func describeRepositoryFilterPersonalPaginated(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RepoInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
+    }
+
+    /// 获取满足输入搜索条件的个人版镜像仓库
+    ///
+    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
+    @inlinable @discardableResult
+    public func describeRepositoryFilterPersonalPaginated(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRepositoryFilterPersonalResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRepositoryFilterPersonal, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取满足输入搜索条件的个人版镜像仓库
+    ///
+    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
+    ///
+    /// - Returns: `AsyncSequence`s of `RepoInfo` and `DescribeRepositoryFilterPersonalResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRepositoryFilterPersonalPaginator(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoryFilterPersonalRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
+    }
 }

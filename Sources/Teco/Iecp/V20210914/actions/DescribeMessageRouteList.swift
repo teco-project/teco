@@ -117,4 +117,24 @@ extension Iecp {
         let input = DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order)
         return try await self.client.execute(action: "DescribeMessageRouteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取消息路由列表
+    @inlinable
+    public func describeMessageRouteListPaginated(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RouteInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消息路由列表
+    @inlinable @discardableResult
+    public func describeMessageRouteListPaginated(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMessageRouteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMessageRouteList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取消息路由列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RouteInfo` and `DescribeMessageRouteListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMessageRouteListPaginator(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMessageRouteListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
+    }
 }

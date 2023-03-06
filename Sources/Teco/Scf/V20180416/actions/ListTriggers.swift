@@ -123,4 +123,24 @@ extension Scf {
         let input = ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters)
         return try await self.client.execute(action: "ListTriggers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取函数触发器列表
+    @inlinable
+    public func listTriggersPaginated(_ input: ListTriggersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TriggerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listTriggers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取函数触发器列表
+    @inlinable @discardableResult
+    public func listTriggersPaginated(_ input: ListTriggersRequest, region: TCRegion? = nil, onResponse: @escaping (ListTriggersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listTriggers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取函数触发器列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TriggerInfo` and `ListTriggersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listTriggersPaginator(_ input: ListTriggersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTriggersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTriggers, logger: logger, on: eventLoop)
+    }
 }

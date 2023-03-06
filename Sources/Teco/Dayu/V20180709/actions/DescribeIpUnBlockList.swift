@@ -133,4 +133,24 @@ extension Dayu {
         let input = DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeIpUnBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取IP解封记录
+    @inlinable
+    public func describeIpUnBlockListPaginated(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [IpUnBlockData])> {
+        self.client.paginate(input: input, region: region, command: self.describeIpUnBlockList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取IP解封记录
+    @inlinable @discardableResult
+    public func describeIpUnBlockListPaginated(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIpUnBlockListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeIpUnBlockList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取IP解封记录
+    ///
+    /// - Returns: `AsyncSequence`s of `IpUnBlockData` and `DescribeIpUnBlockListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeIpUnBlockListPaginator(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIpUnBlockListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIpUnBlockList, logger: logger, on: eventLoop)
+    }
 }

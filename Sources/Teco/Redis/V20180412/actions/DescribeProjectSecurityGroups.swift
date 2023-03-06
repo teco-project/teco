@@ -120,4 +120,30 @@ extension Redis {
         let input = DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId, offset: offset, limit: limit, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询项目安全组详情
+    ///
+    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+    @inlinable
+    public func describeProjectSecurityGroupsPaginated(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecurityGroup])> {
+        self.client.paginate(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
+    }
+
+    /// 查询项目安全组详情
+    ///
+    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+    @inlinable @discardableResult
+    public func describeProjectSecurityGroupsPaginated(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProjectSecurityGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProjectSecurityGroups, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询项目安全组详情
+    ///
+    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecurityGroup` and `DescribeProjectSecurityGroupsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProjectSecurityGroupsPaginator(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectSecurityGroupsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
+    }
 }

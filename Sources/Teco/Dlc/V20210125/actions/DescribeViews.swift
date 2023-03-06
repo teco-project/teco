@@ -142,4 +142,30 @@ extension Dlc {
         let input = DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViewsPaginated(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ViewResponseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
+    }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable @discardableResult
+    public func describeViewsPaginated(_ input: DescribeViewsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeViewsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeViews, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ViewResponseInfo` and `DescribeViewsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeViewsPaginator(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeViewsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
+    }
 }

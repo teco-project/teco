@@ -130,4 +130,30 @@ extension Dcdb {
         let input = DescribeDCDBShardsRequest(instanceId: instanceId, shardInstanceIds: shardInstanceIds, offset: offset, limit: limit, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeDCDBShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询分片信息
+    ///
+    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    @inlinable
+    public func describeDCDBShardsPaginated(_ input: DescribeDCDBShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DCDBShardInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDCDBShards, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分片信息
+    ///
+    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    @inlinable @discardableResult
+    public func describeDCDBShardsPaginated(_ input: DescribeDCDBShardsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDCDBShardsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDCDBShards, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分片信息
+    ///
+    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DCDBShardInfo` and `DescribeDCDBShardsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDCDBShardsPaginator(_ input: DescribeDCDBShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBShardsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBShards, logger: logger, on: eventLoop)
+    }
 }

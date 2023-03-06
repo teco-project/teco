@@ -115,4 +115,30 @@ extension Clb {
         let input = DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain)
         return try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取配置绑定的server或location。
+    ///
+    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
+    @inlinable
+    public func describeCustomizedConfigAssociateListPaginated(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BindDetailItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取配置绑定的server或location。
+    ///
+    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
+    @inlinable @discardableResult
+    public func describeCustomizedConfigAssociateListPaginated(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCustomizedConfigAssociateListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCustomizedConfigAssociateList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取配置绑定的server或location。
+    ///
+    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
+    ///
+    /// - Returns: `AsyncSequence`s of `BindDetailItem` and `DescribeCustomizedConfigAssociateListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCustomizedConfigAssociateListPaginator(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomizedConfigAssociateListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
+    }
 }

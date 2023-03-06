@@ -140,4 +140,24 @@ extension Cr {
         let input = QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate)
         return try await self.client.execute(action: "QueryRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询录音列表
+    @inlinable
+    public func queryRecordListPaginated(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordInfo])> {
+        self.client.paginate(input: input, region: region, command: self.queryRecordList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录音列表
+    @inlinable @discardableResult
+    public func queryRecordListPaginated(_ input: QueryRecordListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryRecordListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryRecordList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录音列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordInfo` and `QueryRecordListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryRecordListPaginator(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryRecordListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryRecordList, logger: logger, on: eventLoop)
+    }
 }

@@ -136,4 +136,24 @@ extension Tag {
         let input = DescribeResourcesByTagsRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
         return try await self.client.execute(action: "DescribeResourcesByTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 通过标签查询资源列表
+    @inlinable
+    public func describeResourcesByTagsPaginated(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ResourceTag])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourcesByTags, logger: logger, on: eventLoop)
+    }
+
+    /// 通过标签查询资源列表
+    @inlinable @discardableResult
+    public func describeResourcesByTagsPaginated(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourcesByTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourcesByTags, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 通过标签查询资源列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceTag` and `DescribeResourcesByTagsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourcesByTagsPaginator(_ input: DescribeResourcesByTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesByTagsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourcesByTags, logger: logger, on: eventLoop)
+    }
 }

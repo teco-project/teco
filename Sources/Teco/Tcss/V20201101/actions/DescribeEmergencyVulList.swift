@@ -123,4 +123,24 @@ extension Tcss {
         let input = DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeEmergencyVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulListPaginated(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EmergencyVulInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应急漏洞列表
+    @inlinable @discardableResult
+    public func describeEmergencyVulListPaginated(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEmergencyVulListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyVulList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应急漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EmergencyVulInfo` and `DescribeEmergencyVulListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEmergencyVulListPaginator(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEmergencyVulListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
+    }
 }

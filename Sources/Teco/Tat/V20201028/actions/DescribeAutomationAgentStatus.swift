@@ -115,4 +115,30 @@ extension Tat {
         let input = DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAutomationAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询客户端状态
+    ///
+    /// 此接口用于查询自动化助手客户端的状态。
+    @inlinable
+    public func describeAutomationAgentStatusPaginated(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AutomationAgentInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户端状态
+    ///
+    /// 此接口用于查询自动化助手客户端的状态。
+    @inlinable @discardableResult
+    public func describeAutomationAgentStatusPaginated(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAutomationAgentStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAutomationAgentStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询客户端状态
+    ///
+    /// 此接口用于查询自动化助手客户端的状态。
+    ///
+    /// - Returns: `AsyncSequence`s of `AutomationAgentInfo` and `DescribeAutomationAgentStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAutomationAgentStatusPaginator(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutomationAgentStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
+    }
 }

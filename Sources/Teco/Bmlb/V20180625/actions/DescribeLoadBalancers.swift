@@ -167,4 +167,24 @@ extension Bmlb {
         let input = DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId)
         return try await self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取黑石负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancersPaginated(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoadBalancer])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
+    }
+
+    /// 获取黑石负载均衡实例列表
+    @inlinable @discardableResult
+    public func describeLoadBalancersPaginated(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancers, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取黑石负载均衡实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `LoadBalancer` and `DescribeLoadBalancersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
+    }
 }

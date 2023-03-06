@@ -127,4 +127,39 @@ extension Cbs {
         let input = DescribeDiskStoragePoolRequest(limit: limit, cdcIds: cdcIds, filters: filters, offset: offset)
         return try await self.client.execute(action: "DescribeDiskStoragePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云硬盘独享集群列表
+    ///
+    /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
+    ///
+    /// * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘独享集群列表。
+    @inlinable
+    public func describeDiskStoragePoolPaginated(_ input: DescribeDiskStoragePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Cdc])> {
+        self.client.paginate(input: input, region: region, command: self.describeDiskStoragePool, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘独享集群列表
+    ///
+    /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
+    ///
+    /// * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘独享集群列表。
+    @inlinable @discardableResult
+    public func describeDiskStoragePoolPaginated(_ input: DescribeDiskStoragePoolRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDiskStoragePoolResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDiskStoragePool, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云硬盘独享集群列表
+    ///
+    /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
+    ///
+    /// * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘独享集群列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Cdc` and `DescribeDiskStoragePoolResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDiskStoragePoolPaginator(_ input: DescribeDiskStoragePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiskStoragePoolRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiskStoragePool, logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,30 @@ extension Yunjing {
         let input = DescribeWeeklyReportNonlocalLoginPlacesRequest(beginDate: beginDate, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeWeeklyReportNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取专业周报异地登录数据
+    ///
+    /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
+    @inlinable
+    public func describeWeeklyReportNonlocalLoginPlacesPaginated(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WeeklyReportNonlocalLoginPlace])> {
+        self.client.paginate(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)
+    }
+
+    /// 获取专业周报异地登录数据
+    ///
+    /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
+    @inlinable @discardableResult
+    public func describeWeeklyReportNonlocalLoginPlacesPaginated(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWeeklyReportNonlocalLoginPlacesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取专业周报异地登录数据
+    ///
+    /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `WeeklyReportNonlocalLoginPlace` and `DescribeWeeklyReportNonlocalLoginPlacesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWeeklyReportNonlocalLoginPlacesPaginator(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportNonlocalLoginPlacesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)
+    }
 }

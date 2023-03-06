@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListWaterPrintConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的水印防护配置列表
+    @inlinable
+    public func describeListWaterPrintConfigPaginated(_ input: DescribeListWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [WaterPrintRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListWaterPrintConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的水印防护配置列表
+    @inlinable @discardableResult
+    public func describeListWaterPrintConfigPaginated(_ input: DescribeListWaterPrintConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListWaterPrintConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListWaterPrintConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的水印防护配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `WaterPrintRelation` and `DescribeListWaterPrintConfigResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListWaterPrintConfigPaginator(_ input: DescribeListWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListWaterPrintConfigRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListWaterPrintConfig, logger: logger, on: eventLoop)
+    }
 }

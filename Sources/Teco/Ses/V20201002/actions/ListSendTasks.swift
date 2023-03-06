@@ -120,4 +120,30 @@ extension Ses {
         let input = ListSendTasksRequest(offset: offset, limit: limit, status: status, receiverId: receiverId, taskType: taskType)
         return try await self.client.execute(action: "ListSendTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询发送任务
+    ///
+    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
+    @inlinable
+    public func listSendTasksPaginated(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SendTaskData])> {
+        self.client.paginate(input: input, region: region, command: self.listSendTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询发送任务
+    ///
+    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
+    @inlinable @discardableResult
+    public func listSendTasksPaginated(_ input: ListSendTasksRequest, region: TCRegion? = nil, onResponse: @escaping (ListSendTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listSendTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询发送任务
+    ///
+    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
+    ///
+    /// - Returns: `AsyncSequence`s of `SendTaskData` and `ListSendTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listSendTasksPaginator(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListSendTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSendTasks, logger: logger, on: eventLoop)
+    }
 }

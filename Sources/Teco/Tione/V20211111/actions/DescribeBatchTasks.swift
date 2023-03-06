@@ -133,4 +133,30 @@ extension Tione {
         let input = DescribeBatchTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField)
         return try await self.client.execute(action: "DescribeBatchTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable
+    public func describeBatchTasksPaginated(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BatchTaskSetItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable @discardableResult
+    public func describeBatchTasksPaginated(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBatchTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBatchTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `BatchTaskSetItem` and `DescribeBatchTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBatchTasksPaginator(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
+    }
 }

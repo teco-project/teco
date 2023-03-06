@@ -103,4 +103,24 @@ extension Yunjing {
         let input = DescribeBashEventsRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取高危命令列表
+    @inlinable
+    public func describeBashEventsPaginated(_ input: DescribeBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BashEvent])> {
+        self.client.paginate(input: input, region: region, command: self.describeBashEvents, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令列表
+    @inlinable @discardableResult
+    public func describeBashEventsPaginated(_ input: DescribeBashEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBashEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBashEvents, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高危命令列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BashEvent` and `DescribeBashEventsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBashEventsPaginator(_ input: DescribeBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashEventsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashEvents, logger: logger, on: eventLoop)
+    }
 }

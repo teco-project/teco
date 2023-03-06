@@ -138,4 +138,30 @@ extension Tag {
         let input = DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject)
         return try await self.client.execute(action: "DescribeTagsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTagsSeqPaginated(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TagWithDelete])> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable @discardableResult
+    public func describeTagsSeqPaginated(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTagsSeqResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTagsSeq, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 按顺序查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `TagWithDelete` and `DescribeTagsSeqResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTagsSeqPaginator(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagsSeqRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)
+    }
 }

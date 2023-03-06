@@ -125,4 +125,30 @@ extension Bm {
         let input = DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias)
         return try await self.client.execute(action: "DescribeDevicePosition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询设备位置信息
+    ///
+    /// 查询服务器所在的位置，如机架，上联交换机等信息
+    @inlinable
+    public func describeDevicePositionPaginated(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DevicePositionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备位置信息
+    ///
+    /// 查询服务器所在的位置，如机架，上联交换机等信息
+    @inlinable @discardableResult
+    public func describeDevicePositionPaginated(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDevicePositionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDevicePosition, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备位置信息
+    ///
+    /// 查询服务器所在的位置，如机架，上联交换机等信息
+    ///
+    /// - Returns: `AsyncSequence`s of `DevicePositionInfo` and `DescribeDevicePositionResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDevicePositionPaginator(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDevicePositionRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)
+    }
 }

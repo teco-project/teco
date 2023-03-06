@@ -107,4 +107,24 @@ extension Antiddos {
         let input = DescribeListProtocolBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
         return try await self.client.execute(action: "DescribeListProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取DDoS防护的协议封禁配置列表
+    @inlinable
+    public func describeListProtocolBlockConfigPaginated(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProtocolBlockRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的协议封禁配置列表
+    @inlinable @discardableResult
+    public func describeListProtocolBlockConfigPaginated(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListProtocolBlockConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListProtocolBlockConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取DDoS防护的协议封禁配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtocolBlockRelation` and `DescribeListProtocolBlockConfigResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListProtocolBlockConfigPaginator(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListProtocolBlockConfigRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)
+    }
 }

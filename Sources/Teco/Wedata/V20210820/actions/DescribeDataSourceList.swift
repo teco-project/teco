@@ -116,4 +116,33 @@ extension Wedata {
         let input = DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters)
         return try await self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 数据源管理-查询数据源分页列表【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源详情
+    @inlinable
+    public func describeDataSourceListPaginated(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DataSourceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDataSourceList, logger: logger, on: eventLoop)
+    }
+
+    /// 数据源管理-查询数据源分页列表【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源详情
+    @inlinable @discardableResult
+    public func describeDataSourceListPaginated(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDataSourceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDataSourceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 数据源管理-查询数据源分页列表【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源详情
+    ///
+    /// - Returns: `AsyncSequence`s of `DataSourceInfo` and `DescribeDataSourceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDataSourceListPaginator(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataSourceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceList, logger: logger, on: eventLoop)
+    }
 }

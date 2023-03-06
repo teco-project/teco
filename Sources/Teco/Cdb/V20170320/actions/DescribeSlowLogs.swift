@@ -110,4 +110,30 @@ extension Cdb {
         let input = DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询慢查询日志
+    ///
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    @inlinable
+    public func describeSlowLogsPaginated(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowLogInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询慢查询日志
+    ///
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    @inlinable @discardableResult
+    public func describeSlowLogsPaginated(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询慢查询日志
+    ///
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogInfo` and `DescribeSlowLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)
+    }
 }

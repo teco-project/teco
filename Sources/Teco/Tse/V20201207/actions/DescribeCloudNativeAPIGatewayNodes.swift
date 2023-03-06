@@ -103,4 +103,24 @@ extension Tse {
         let input = DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取云原生网关节点列表
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodesPaginated(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CloudNativeAPIGatewayNode])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudNativeAPIGatewayNodes, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云原生网关节点列表
+    @inlinable @discardableResult
+    public func describeCloudNativeAPIGatewayNodesPaginated(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudNativeAPIGatewayNodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudNativeAPIGatewayNodes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取云原生网关节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CloudNativeAPIGatewayNode` and `DescribeCloudNativeAPIGatewayNodesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodesPaginator(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudNativeAPIGatewayNodesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudNativeAPIGatewayNodes, logger: logger, on: eventLoop)
+    }
 }

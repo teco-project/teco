@@ -97,4 +97,24 @@ extension Cam {
         let input = ListCollaboratorsRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "ListCollaborators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取协作者列表
+    @inlinable
+    public func listCollaboratorsPaginated(_ input: ListCollaboratorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SubAccountInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listCollaborators, logger: logger, on: eventLoop)
+    }
+
+    /// 获取协作者列表
+    @inlinable @discardableResult
+    public func listCollaboratorsPaginated(_ input: ListCollaboratorsRequest, region: TCRegion? = nil, onResponse: @escaping (ListCollaboratorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listCollaborators, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取协作者列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SubAccountInfo` and `ListCollaboratorsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listCollaboratorsPaginator(_ input: ListCollaboratorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListCollaboratorsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listCollaborators, logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,24 @@ extension Tcss {
         let input = DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeAssetClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群列表
+    @inlinable
+    public func describeAssetClusterListPaginated(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetClusterListItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetClusterList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    @inlinable @discardableResult
+    public func describeAssetClusterListPaginated(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetClusterListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetClusterList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetClusterListItem` and `DescribeAssetClusterListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetClusterListPaginator(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetClusterListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetClusterList, logger: logger, on: eventLoop)
+    }
 }

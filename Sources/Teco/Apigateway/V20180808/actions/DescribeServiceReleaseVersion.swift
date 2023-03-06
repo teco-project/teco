@@ -111,4 +111,33 @@ extension Apigateway {
         let input = DescribeServiceReleaseVersionRequest(serviceId: serviceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeServiceReleaseVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable
+    public func describeServiceReleaseVersionPaginated(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ServiceReleaseHistoryInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable @discardableResult
+    public func describeServiceReleaseVersionPaginated(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceReleaseVersionResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeServiceReleaseVersion, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    ///
+    /// - Returns: `AsyncSequence`s of `ServiceReleaseHistoryInfo` and `DescribeServiceReleaseVersionResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeServiceReleaseVersionPaginator(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceReleaseVersionRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
+    }
 }

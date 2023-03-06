@@ -111,4 +111,30 @@ extension Iotexplorer {
         let input = GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit)
         return try await self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsListPaginated(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BatchProductionInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
+    }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable @discardableResult
+    public func getBatchProductionsListPaginated(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, onResponse: @escaping (GetBatchProductionsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getBatchProductionsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `BatchProductionInfo` and `GetBatchProductionsListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getBatchProductionsListPaginator(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBatchProductionsListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
+    }
 }

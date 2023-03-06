@@ -124,4 +124,24 @@ extension Tsf {
         let input = DescribePublicConfigSummaryRequest(searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList)
         return try await self.client.execute(action: "DescribePublicConfigSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询公共配置汇总列表
+    @inlinable
+    public func describePublicConfigSummaryPaginated(_ input: DescribePublicConfigSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Config])> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigSummary, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置汇总列表
+    @inlinable @discardableResult
+    public func describePublicConfigSummaryPaginated(_ input: DescribePublicConfigSummaryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePublicConfigSummaryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePublicConfigSummary, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询公共配置汇总列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Config` and `DescribePublicConfigSummaryResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePublicConfigSummaryPaginator(_ input: DescribePublicConfigSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicConfigSummaryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigSummary, logger: logger, on: eventLoop)
+    }
 }

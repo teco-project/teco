@@ -97,4 +97,24 @@ extension Bma {
         let input = DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLsPaginated(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProtectURLInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询保护网站
+    @inlinable @discardableResult
+    public func describeBPProtectURLsPaginated(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBPProtectURLsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBPProtectURLs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询保护网站
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtectURLInfo` and `DescribeBPProtectURLsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBPProtectURLsPaginator(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPProtectURLsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
+    }
 }

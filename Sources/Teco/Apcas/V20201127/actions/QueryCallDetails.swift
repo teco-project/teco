@@ -108,4 +108,24 @@ extension Apcas {
         let input = QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "QueryCallDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询调用明细
+    @inlinable
+    public func queryCallDetailsPaginated(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CallDetailItem])> {
+        self.client.paginate(input: input, region: region, command: self.queryCallDetails, logger: logger, on: eventLoop)
+    }
+
+    /// 查询调用明细
+    @inlinable @discardableResult
+    public func queryCallDetailsPaginated(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (QueryCallDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryCallDetails, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询调用明细
+    ///
+    /// - Returns: `AsyncSequence`s of `CallDetailItem` and `QueryCallDetailsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryCallDetailsPaginator(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCallDetailsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCallDetails, logger: logger, on: eventLoop)
+    }
 }

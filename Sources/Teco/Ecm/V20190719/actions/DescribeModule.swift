@@ -124,4 +124,24 @@ extension Ecm {
         let input = DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取模块列表
+    @inlinable
+    public func describeModulePaginated(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ModuleItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模块列表
+    @inlinable @discardableResult
+    public func describeModulePaginated(_ input: DescribeModuleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeModuleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeModule, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模块列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ModuleItem` and `DescribeModuleResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModuleRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
+    }
 }

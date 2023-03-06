@@ -117,4 +117,30 @@ extension Vpc {
         let input = DescribeSnapshotPoliciesRequest(snapshotPolicyIds: snapshotPolicyIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询快照策略
+    ///
+    /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
+    @inlinable
+    public func describeSnapshotPoliciesPaginated(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SnapshotPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照策略
+    ///
+    /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
+    @inlinable @discardableResult
+    public func describeSnapshotPoliciesPaginated(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotPolicies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询快照策略
+    ///
+    /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotPolicy` and `DescribeSnapshotPoliciesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotPoliciesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
+    }
 }

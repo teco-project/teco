@@ -191,4 +191,42 @@ extension Live {
         let input = DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc)
         return try await self.client.execute(action: "DescribeLiveStreamEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    ///
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable
+    public func describeLiveStreamEventListPaginated(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [StreamEventInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    ///
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable @discardableResult
+    public func describeLiveStreamEventListPaginated(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLiveStreamEventList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    ///
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `StreamEventInfo` and `DescribeLiveStreamEventListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLiveStreamEventListPaginator(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamEventListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)
+    }
 }

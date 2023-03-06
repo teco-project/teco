@@ -103,4 +103,24 @@ extension Cwp {
         let input = DescribeReverseShellRulesRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeReverseShellRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRulesPaginated(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ReverseShellRule])> {
+        self.client.paginate(input: input, region: region, command: self.describeReverseShellRules, logger: logger, on: eventLoop)
+    }
+
+    /// 获取反弹Shell规则列表
+    @inlinable @discardableResult
+    public func describeReverseShellRulesPaginated(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReverseShellRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReverseShellRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取反弹Shell规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ReverseShellRule` and `DescribeReverseShellRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReverseShellRulesPaginator(_ input: DescribeReverseShellRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellRules, logger: logger, on: eventLoop)
+    }
 }

@@ -119,4 +119,30 @@ extension Ams {
         let input = DescribeAmsListRequest(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters)
         return try await self.client.execute(action: "DescribeAmsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取音频审核明细数据
+    ///
+    /// 音频审核明细列表
+    @inlinable
+    public func describeAmsListPaginated(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AmsDetailInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取音频审核明细数据
+    ///
+    /// 音频审核明细列表
+    @inlinable @discardableResult
+    public func describeAmsListPaginated(_ input: DescribeAmsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAmsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAmsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取音频审核明细数据
+    ///
+    /// 音频审核明细列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AmsDetailInfo` and `DescribeAmsListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAmsListPaginator(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAmsListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
+    }
 }

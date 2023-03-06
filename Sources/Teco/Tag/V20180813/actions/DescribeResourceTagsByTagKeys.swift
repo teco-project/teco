@@ -130,4 +130,24 @@ extension Tag {
         let input = DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeResourceTagsByTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 根据标签键获取资源标签
+    @inlinable
+    public func describeResourceTagsByTagKeysPaginated(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ResourceIdTag])> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTagsByTagKeys, logger: logger, on: eventLoop)
+    }
+
+    /// 根据标签键获取资源标签
+    @inlinable @discardableResult
+    public func describeResourceTagsByTagKeysPaginated(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeResourceTagsByTagKeysResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeResourceTagsByTagKeys, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 根据标签键获取资源标签
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceIdTag` and `DescribeResourceTagsByTagKeysResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeResourceTagsByTagKeysPaginator(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByTagKeysRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByTagKeys, logger: logger, on: eventLoop)
+    }
 }

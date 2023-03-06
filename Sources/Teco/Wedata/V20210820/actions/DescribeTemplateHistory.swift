@@ -104,4 +104,24 @@ extension Wedata {
         let input = DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId)
         return try await self.client.execute(action: "DescribeTemplateHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询规则模版操作记录
+    @inlinable
+    public func describeTemplateHistoryPaginated(_ input: DescribeTemplateHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleTemplateHistory])> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplateHistory, logger: logger, on: eventLoop)
+    }
+
+    /// 查询规则模版操作记录
+    @inlinable @discardableResult
+    public func describeTemplateHistoryPaginated(_ input: DescribeTemplateHistoryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplateHistoryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTemplateHistory, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询规则模版操作记录
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleTemplateHistory` and `DescribeTemplateHistoryResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTemplateHistoryPaginator(_ input: DescribeTemplateHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplateHistoryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplateHistory, logger: logger, on: eventLoop)
+    }
 }

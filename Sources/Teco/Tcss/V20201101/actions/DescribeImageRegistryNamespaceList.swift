@@ -102,4 +102,24 @@ extension Tcss {
         let input = DescribeImageRegistryNamespaceListRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeImageRegistryNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable
+    public func describeImageRegistryNamespaceListPaginated(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageRegistryNamespaceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable @discardableResult
+    public func describeImageRegistryNamespaceListPaginated(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageRegistryNamespaceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageRegistryNamespaceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询用户镜像仓库下的项目名称列表
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeImageRegistryNamespaceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeImageRegistryNamespaceListPaginator(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageRegistryNamespaceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageRegistryNamespaceList, logger: logger, on: eventLoop)
+    }
 }

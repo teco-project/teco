@@ -98,4 +98,24 @@ extension Tsf {
         let input = DescribeProgramsRequest(searchWord: searchWord, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribePrograms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据集列表
+    @inlinable
+    public func describeProgramsPaginated(_ input: DescribeProgramsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Program])> {
+        self.client.paginate(input: input, region: region, command: self.describePrograms, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据集列表
+    @inlinable @discardableResult
+    public func describeProgramsPaginated(_ input: DescribeProgramsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProgramsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrograms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据集列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Program` and `DescribeProgramsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProgramsPaginator(_ input: DescribeProgramsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProgramsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrograms, logger: logger, on: eventLoop)
+    }
 }

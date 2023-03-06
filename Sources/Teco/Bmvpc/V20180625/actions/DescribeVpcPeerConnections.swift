@@ -114,4 +114,24 @@ extension Bmvpc {
         let input = DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId)
         return try await self.client.execute(action: "DescribeVpcPeerConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取对等连接列表
+    @inlinable
+    public func describeVpcPeerConnectionsPaginated(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcPeerConnection])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcPeerConnections, logger: logger, on: eventLoop)
+    }
+
+    /// 获取对等连接列表
+    @inlinable @discardableResult
+    public func describeVpcPeerConnectionsPaginated(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcPeerConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcPeerConnections, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取对等连接列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcPeerConnection` and `DescribeVpcPeerConnectionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpcPeerConnectionsPaginator(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcPeerConnectionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcPeerConnections, logger: logger, on: eventLoop)
+    }
 }

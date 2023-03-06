@@ -132,4 +132,39 @@ extension Live {
         let input = DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
         return try await self.client.execute(action: "DescribeScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询截图任务列表
+    ///
+    /// 查询指定时间段范围内启动和结束的截图任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
+    /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
+    @inlinable
+    public func describeScreenshotTaskPaginated(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ScreenshotTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)
+    }
+
+    /// 查询截图任务列表
+    ///
+    /// 查询指定时间段范围内启动和结束的截图任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
+    /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
+    @inlinable @discardableResult
+    public func describeScreenshotTaskPaginated(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScreenshotTaskResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScreenshotTask, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询截图任务列表
+    ///
+    /// 查询指定时间段范围内启动和结束的截图任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
+    /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
+    ///
+    /// - Returns: `AsyncSequence`s of `ScreenshotTask` and `DescribeScreenshotTaskResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScreenshotTaskPaginator(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScreenshotTaskRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)
+    }
 }

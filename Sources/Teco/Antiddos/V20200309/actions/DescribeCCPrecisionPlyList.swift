@@ -122,4 +122,24 @@ extension Antiddos {
         let input = DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
         return try await self.client.execute(action: "DescribeCCPrecisionPlyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyListPaginated(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CCPrecisionPolicy])> {
+        self.client.paginate(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC精准防护列表
+    @inlinable @discardableResult
+    public func describeCCPrecisionPlyListPaginated(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCCPrecisionPlyListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCCPrecisionPlyList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC精准防护列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CCPrecisionPolicy` and `DescribeCCPrecisionPlyListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCCPrecisionPlyListPaginator(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCPrecisionPlyListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,24 @@ extension Monitor {
         let input = DescribePrometheusAlertPolicyRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取2.0实例告警策略列表
+    @inlinable
+    public func describePrometheusAlertPolicyPaginated(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusAlertPolicyItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例告警策略列表
+    @inlinable @discardableResult
+    public func describePrometheusAlertPolicyPaginated(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusAlertPolicyResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertPolicy, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取2.0实例告警策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusAlertPolicyItem` and `DescribePrometheusAlertPolicyResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusAlertPolicyPaginator(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertPolicyRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
+    }
 }

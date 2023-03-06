@@ -120,4 +120,30 @@ extension Tcss {
         let input = DescribeAbnormalProcessRulesRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 运行时异常进程策略列表
+    ///
+    /// 查询运行时异常进程策略列表信息
+    @inlinable
+    public func describeAbnormalProcessRulesPaginated(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时异常进程策略列表
+    ///
+    /// 查询运行时异常进程策略列表信息
+    @inlinable @discardableResult
+    public func describeAbnormalProcessRulesPaginated(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAbnormalProcessRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAbnormalProcessRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 运行时异常进程策略列表
+    ///
+    /// 查询运行时异常进程策略列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleBaseInfo` and `DescribeAbnormalProcessRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAbnormalProcessRulesPaginator(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAbnormalProcessRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
+    }
 }

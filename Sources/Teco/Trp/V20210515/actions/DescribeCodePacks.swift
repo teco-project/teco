@@ -114,4 +114,24 @@ extension Trp {
         let input = DescribeCodePacksRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId, serialType: serialType)
         return try await self.client.execute(action: "DescribeCodePacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询码包列表
+    @inlinable
+    public func describeCodePacksPaginated(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CodePack])> {
+        self.client.paginate(input: input, region: region, command: self.describeCodePacks, logger: logger, on: eventLoop)
+    }
+
+    /// 查询码包列表
+    @inlinable @discardableResult
+    public func describeCodePacksPaginated(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCodePacksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCodePacks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询码包列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CodePack` and `DescribeCodePacksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCodePacksPaginator(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodePacksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodePacks, logger: logger, on: eventLoop)
+    }
 }

@@ -113,4 +113,24 @@ extension Hasim {
         let input = DescribeOrdersRequest(dealName: dealName, auditStatus: auditStatus, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询订单列表
+    @inlinable
+    public func describeOrdersPaginated(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [OrderInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeOrders, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订单列表
+    @inlinable @discardableResult
+    public func describeOrdersPaginated(_ input: DescribeOrdersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrdersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOrders, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询订单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrderInfo` and `DescribeOrdersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOrdersPaginator(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrdersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrders, logger: logger, on: eventLoop)
+    }
 }

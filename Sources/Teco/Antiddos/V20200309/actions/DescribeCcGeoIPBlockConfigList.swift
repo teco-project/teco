@@ -122,4 +122,24 @@ extension Antiddos {
         let input = DescribeCcGeoIPBlockConfigListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
         return try await self.client.execute(action: "DescribeCcGeoIPBlockConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取CC防护的区域封禁配置列表
+    @inlinable
+    public func describeCcGeoIPBlockConfigListPaginated(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcGeoIpPolicyNew])> {
+        self.client.paginate(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC防护的区域封禁配置列表
+    @inlinable @discardableResult
+    public func describeCcGeoIPBlockConfigListPaginated(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcGeoIPBlockConfigListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取CC防护的区域封禁配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CcGeoIpPolicyNew` and `DescribeCcGeoIPBlockConfigListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCcGeoIPBlockConfigListPaginator(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcGeoIPBlockConfigListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)
+    }
 }

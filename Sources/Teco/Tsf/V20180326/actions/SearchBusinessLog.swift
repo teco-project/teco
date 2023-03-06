@@ -157,4 +157,24 @@ extension Tsf {
         let input = SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId)
         return try await self.client.execute(action: "SearchBusinessLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 业务日志搜索
+    @inlinable
+    public func searchBusinessLogPaginated(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BusinessLogV2])> {
+        self.client.paginate(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
+    }
+
+    /// 业务日志搜索
+    @inlinable @discardableResult
+    public func searchBusinessLogPaginated(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, onResponse: @escaping (SearchBusinessLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchBusinessLog, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 业务日志搜索
+    ///
+    /// - Returns: `AsyncSequence`s of `BusinessLogV2` and `SearchBusinessLogResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func searchBusinessLogPaginator(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchBusinessLogRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
+    }
 }

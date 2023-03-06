@@ -140,4 +140,30 @@ extension Rum {
         let input = DescribeTawInstancesRequest(chargeStatuses: chargeStatuses, chargeTypes: chargeTypes, limit: limit, offset: offset, areaIds: areaIds, instanceStatuses: instanceStatuses, instanceIds: instanceIds, filters: filters, isDemo: isDemo)
         return try await self.client.execute(action: "DescribeTawInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询 RUM 业务系统信息
+    ///
+    /// 查询实例信息
+    @inlinable
+    public func describeTawInstancesPaginated(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RumInstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 RUM 业务系统信息
+    ///
+    /// 查询实例信息
+    @inlinable @discardableResult
+    public func describeTawInstancesPaginated(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTawInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTawInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 RUM 业务系统信息
+    ///
+    /// 查询实例信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RumInstanceInfo` and `DescribeTawInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTawInstancesPaginator(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
+    }
 }

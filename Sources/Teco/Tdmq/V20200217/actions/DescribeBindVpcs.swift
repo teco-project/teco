@@ -102,4 +102,24 @@ extension Tdmq {
         let input = DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId)
         return try await self.client.execute(action: "DescribeBindVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取租户VPC绑定关系
+    @inlinable
+    public func describeBindVpcsPaginated(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcBindRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeBindVpcs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取租户VPC绑定关系
+    @inlinable @discardableResult
+    public func describeBindVpcsPaginated(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindVpcsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBindVpcs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取租户VPC绑定关系
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcBindRecord` and `DescribeBindVpcsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBindVpcsPaginator(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindVpcsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindVpcs, logger: logger, on: eventLoop)
+    }
 }

@@ -157,4 +157,30 @@ extension Apm {
         let input = DescribeMetricRecordsRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeMetricRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 通用指标列表接口
+    ///
+    /// 拉取通用指标列表
+    @inlinable
+    public func describeMetricRecordsPaginated(_ input: DescribeMetricRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ApmMetricRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeMetricRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 通用指标列表接口
+    ///
+    /// 拉取通用指标列表
+    @inlinable @discardableResult
+    public func describeMetricRecordsPaginated(_ input: DescribeMetricRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMetricRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMetricRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 通用指标列表接口
+    ///
+    /// 拉取通用指标列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ApmMetricRecord` and `DescribeMetricRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMetricRecordsPaginator(_ input: DescribeMetricRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMetricRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMetricRecords, logger: logger, on: eventLoop)
+    }
 }

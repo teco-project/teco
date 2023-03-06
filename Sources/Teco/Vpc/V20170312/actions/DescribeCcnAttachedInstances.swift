@@ -129,4 +129,30 @@ extension Vpc {
         let input = DescribeCcnAttachedInstancesRequest(offset: offset, limit: limit, filters: filters, ccnId: ccnId, orderField: orderField, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeCcnAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云联网关联实例列表
+    ///
+    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
+    @inlinable
+    public func describeCcnAttachedInstancesPaginated(_ input: DescribeCcnAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcnAttachedInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnAttachedInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网关联实例列表
+    ///
+    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
+    @inlinable @discardableResult
+    public func describeCcnAttachedInstancesPaginated(_ input: DescribeCcnAttachedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnAttachedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnAttachedInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网关联实例列表
+    ///
+    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
+    ///
+    /// - Returns: `AsyncSequence`s of `CcnAttachedInstance` and `DescribeCcnAttachedInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCcnAttachedInstancesPaginator(_ input: DescribeCcnAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcnAttachedInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcnAttachedInstances, logger: logger, on: eventLoop)
+    }
 }

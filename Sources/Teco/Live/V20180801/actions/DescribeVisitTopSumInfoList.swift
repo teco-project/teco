@@ -157,4 +157,30 @@ extension Live {
         let input = DescribeVisitTopSumInfoListRequest(startTime: startTime, endTime: endTime, topIndex: topIndex, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam)
         return try await self.client.execute(action: "DescribeVisitTopSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询某时间段top n的域名或流id信息
+    ///
+    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
+    @inlinable
+    public func describeVisitTopSumInfoListPaginated(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PlaySumStatInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某时间段top n的域名或流id信息
+    ///
+    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
+    @inlinable @discardableResult
+    public func describeVisitTopSumInfoListPaginated(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVisitTopSumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVisitTopSumInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询某时间段top n的域名或流id信息
+    ///
+    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
+    ///
+    /// - Returns: `AsyncSequence`s of `PlaySumStatInfo` and `DescribeVisitTopSumInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVisitTopSumInfoListPaginator(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVisitTopSumInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
+    }
 }

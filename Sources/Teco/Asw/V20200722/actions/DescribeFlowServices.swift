@@ -110,4 +110,30 @@ extension Asw {
         let input = DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeFlowServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询状态机列表
+    ///
+    /// 查询指定用户下所有状态机，以列表形式返回
+    @inlinable
+    public func describeFlowServicesPaginated(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [StateMachine])> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowServices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询状态机列表
+    ///
+    /// 查询指定用户下所有状态机，以列表形式返回
+    @inlinable @discardableResult
+    public func describeFlowServicesPaginated(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFlowServicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeFlowServices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询状态机列表
+    ///
+    /// 查询指定用户下所有状态机，以列表形式返回
+    ///
+    /// - Returns: `AsyncSequence`s of `StateMachine` and `DescribeFlowServicesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeFlowServicesPaginator(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowServicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowServices, logger: logger, on: eventLoop)
+    }
 }

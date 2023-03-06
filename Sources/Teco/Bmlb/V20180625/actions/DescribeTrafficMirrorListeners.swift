@@ -145,4 +145,30 @@ extension Bmlb {
         let input = DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts)
         return try await self.client.execute(action: "DescribeTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable
+    public func describeTrafficMirrorListenersPaginated(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TrafficMirrorListener])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
+    }
+
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable @discardableResult
+    public func describeTrafficMirrorListenersPaginated(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrafficMirrorListenersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrafficMirrorListeners, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `TrafficMirrorListener` and `DescribeTrafficMirrorListenersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTrafficMirrorListenersPaginator(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficMirrorListenersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
+    }
 }

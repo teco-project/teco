@@ -119,4 +119,30 @@ extension Mps {
         let input = DescribeWatermarkTemplatesRequest(definitions: definitions, type: type, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeWatermarkTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplatesPaginated(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WatermarkTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeWatermarkTemplatesPaginated(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWatermarkTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWatermarkTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `WatermarkTemplate` and `DescribeWatermarkTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWatermarkTemplatesPaginator(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWatermarkTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
+    }
 }

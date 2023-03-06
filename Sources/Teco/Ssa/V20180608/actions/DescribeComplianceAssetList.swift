@@ -112,4 +112,24 @@ extension Ssa {
         let input = DescribeComplianceAssetListRequest(offset: offset, limit: limit, id: id, filter: filter, search: search)
         return try await self.client.execute(action: "DescribeComplianceAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 合规管理-资产列表
+    @inlinable
+    public func describeComplianceAssetListPaginated(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CheckAssetItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
+    }
+
+    /// 合规管理-资产列表
+    @inlinable @discardableResult
+    public func describeComplianceAssetListPaginated(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceAssetListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceAssetList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 合规管理-资产列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CheckAssetItem` and `DescribeComplianceAssetListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComplianceAssetListPaginator(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceAssetListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
+    }
 }

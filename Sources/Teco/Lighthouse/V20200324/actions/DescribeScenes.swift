@@ -110,4 +110,30 @@ extension Lighthouse {
         let input = DescribeScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看使用场景列表
+    ///
+    /// 本接口(DescribeScenes)用于查看使用场景列表。
+    @inlinable
+    public func describeScenesPaginated(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Scene])> {
+        self.client.paginate(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)
+    }
+
+    /// 查看使用场景列表
+    ///
+    /// 本接口(DescribeScenes)用于查看使用场景列表。
+    @inlinable @discardableResult
+    public func describeScenesPaginated(_ input: DescribeScenesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScenesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScenes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看使用场景列表
+    ///
+    /// 本接口(DescribeScenes)用于查看使用场景列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Scene` and `DescribeScenesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScenesPaginator(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)
+    }
 }

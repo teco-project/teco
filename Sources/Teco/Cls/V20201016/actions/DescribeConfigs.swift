@@ -125,4 +125,24 @@ extension Cls {
         let input = DescribeConfigsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取采集规则配置
+    @inlinable
+    public func describeConfigsPaginated(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ConfigInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采集规则配置
+    @inlinable @discardableResult
+    public func describeConfigsPaginated(_ input: DescribeConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采集规则配置
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigInfo` and `DescribeConfigsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeConfigsPaginator(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigs, logger: logger, on: eventLoop)
+    }
 }

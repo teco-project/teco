@@ -218,4 +218,24 @@ extension Cdn {
         let input = DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains)
         return try await self.client.execute(action: "DescribeScdnBotRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询BOT会话记录列表
+    @inlinable
+    public func describeScdnBotRecordsPaginated(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BotRecord])> {
+        self.client.paginate(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)
+    }
+
+    /// 查询BOT会话记录列表
+    @inlinable @discardableResult
+    public func describeScdnBotRecordsPaginated(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScdnBotRecordsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScdnBotRecords, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询BOT会话记录列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BotRecord` and `DescribeScdnBotRecordsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScdnBotRecordsPaginator(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScdnBotRecordsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)
+    }
 }

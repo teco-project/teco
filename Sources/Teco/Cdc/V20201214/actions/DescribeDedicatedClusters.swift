@@ -122,4 +122,24 @@ extension Cdc {
         let input = DescribeDedicatedClustersRequest(dedicatedClusterIds: dedicatedClusterIds, zones: zones, siteIds: siteIds, lifecycleStatuses: lifecycleStatuses, name: name, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDedicatedClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专用集群列表
+    @inlinable
+    public func describeDedicatedClustersPaginated(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DedicatedCluster])> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用集群列表
+    @inlinable @discardableResult
+    public func describeDedicatedClustersPaginated(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDedicatedClustersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DedicatedCluster` and `DescribeDedicatedClustersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDedicatedClustersPaginator(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClustersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusters, logger: logger, on: eventLoop)
+    }
 }

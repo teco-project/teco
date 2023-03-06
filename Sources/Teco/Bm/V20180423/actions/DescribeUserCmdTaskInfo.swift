@@ -117,4 +117,24 @@ extension Bm {
         let input = DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
         return try await self.client.execute(action: "DescribeUserCmdTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取自定义脚本任务详细信息
+    @inlinable
+    public func describeUserCmdTaskInfoPaginated(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UserCmdTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCmdTaskInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取自定义脚本任务详细信息
+    @inlinable @discardableResult
+    public func describeUserCmdTaskInfoPaginated(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserCmdTaskInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserCmdTaskInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取自定义脚本任务详细信息
+    ///
+    /// - Returns: `AsyncSequence`s of `UserCmdTaskInfo` and `DescribeUserCmdTaskInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserCmdTaskInfoPaginator(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserCmdTaskInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmdTaskInfo, logger: logger, on: eventLoop)
+    }
 }

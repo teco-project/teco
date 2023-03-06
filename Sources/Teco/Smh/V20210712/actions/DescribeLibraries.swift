@@ -110,4 +110,30 @@ extension Smh {
         let input = DescribeLibrariesRequest(libraryIds: libraryIds, pageNumber: pageNumber, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeLibraries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询媒体库
+    ///
+    /// 查询 PaaS 服务媒体库列表
+    @inlinable
+    public func describeLibrariesPaginated(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Library])> {
+        self.client.paginate(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
+    }
+
+    /// 查询媒体库
+    ///
+    /// 查询 PaaS 服务媒体库列表
+    @inlinable @discardableResult
+    public func describeLibrariesPaginated(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLibrariesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLibraries, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询媒体库
+    ///
+    /// 查询 PaaS 服务媒体库列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Library` and `DescribeLibrariesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLibrariesPaginator(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLibrariesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
+    }
 }

@@ -105,4 +105,24 @@ extension Tke {
         let input = DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribePrometheusOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例列表
+    @inlinable
+    public func describePrometheusOverviewsPaginated(_ input: DescribePrometheusOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusInstanceOverview])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusOverviews, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表
+    @inlinable @discardableResult
+    public func describePrometheusOverviewsPaginated(_ input: DescribePrometheusOverviewsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusOverviewsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusOverviews, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusInstanceOverview` and `DescribePrometheusOverviewsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusOverviewsPaginator(_ input: DescribePrometheusOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusOverviewsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusOverviews, logger: logger, on: eventLoop)
+    }
 }

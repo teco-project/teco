@@ -135,4 +135,30 @@ extension Sqlserver {
         let input = DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFilePaginated(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BusinessIntelligenceFile])> {
+        self.client.paginate(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable @discardableResult
+    public func describeBusinessIntelligenceFilePaginated(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBusinessIntelligenceFileResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBusinessIntelligenceFile, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    ///
+    /// - Returns: `AsyncSequence`s of `BusinessIntelligenceFile` and `DescribeBusinessIntelligenceFileResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBusinessIntelligenceFilePaginator(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBusinessIntelligenceFileRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
+    }
 }

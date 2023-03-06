@@ -137,4 +137,24 @@ extension Bmeip {
         let input = DescribeEipAclsRequest(aclName: aclName, aclIds: aclIds, offset: offset, limit: limit, eipIds: eipIds, eipIps: eipIps, eipNames: eipNames, orderField: orderField, order: order, aclNames: aclNames)
         return try await self.client.execute(action: "DescribeEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAclsPaginated(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EipAcl])> {
+        self.client.paginate(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP ACL
+    @inlinable @discardableResult
+    public func describeEipAclsPaginated(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEipAclsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEipAcls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP ACL
+    ///
+    /// - Returns: `AsyncSequence`s of `EipAcl` and `DescribeEipAclsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEipAclsPaginator(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipAclsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)
+    }
 }

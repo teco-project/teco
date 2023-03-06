@@ -105,4 +105,30 @@ extension Cwp {
         let input = DescribeMonthInspectionReportRequest(limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReportPaginated(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [MonthInspectionReport])> {
+        self.client.paginate(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable @discardableResult
+    public func describeMonthInspectionReportPaginated(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMonthInspectionReportResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMonthInspectionReport, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    ///
+    /// - Returns: `AsyncSequence`s of `MonthInspectionReport` and `DescribeMonthInspectionReportResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMonthInspectionReportPaginator(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMonthInspectionReportRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
+    }
 }

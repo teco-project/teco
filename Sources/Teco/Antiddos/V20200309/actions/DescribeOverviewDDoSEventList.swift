@@ -112,4 +112,24 @@ extension Antiddos {
         let input = DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeOverviewDDoSEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取防护概览的ddos攻击事件
+    @inlinable
+    public func describeOverviewDDoSEventListPaginated(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OverviewDDoSEvent])> {
+        self.client.paginate(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取防护概览的ddos攻击事件
+    @inlinable @discardableResult
+    public func describeOverviewDDoSEventListPaginated(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOverviewDDoSEventListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOverviewDDoSEventList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取防护概览的ddos攻击事件
+    ///
+    /// - Returns: `AsyncSequence`s of `OverviewDDoSEvent` and `DescribeOverviewDDoSEventListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOverviewDDoSEventListPaginator(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOverviewDDoSEventListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
+    }
 }

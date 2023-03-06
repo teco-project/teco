@@ -116,4 +116,30 @@ extension Teo {
         let input = DescribeAliasDomainsRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeAliasDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable
+    public func describeAliasDomainsPaginated(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AliasDomain])> {
+        self.client.paginate(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable @discardableResult
+    public func describeAliasDomainsPaginated(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAliasDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAliasDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AliasDomain` and `DescribeAliasDomainsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAliasDomainsPaginator(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAliasDomainsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
+    }
 }

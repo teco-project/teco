@@ -108,4 +108,24 @@ extension Kms {
         let input = DescribeWhiteBoxKeyDetailsRequest(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeWhiteBoxKeyDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取白盒密钥列表
+    @inlinable
+    public func describeWhiteBoxKeyDetailsPaginated(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [WhiteboxKeyInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)
+    }
+
+    /// 获取白盒密钥列表
+    @inlinable @discardableResult
+    public func describeWhiteBoxKeyDetailsPaginated(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeWhiteBoxKeyDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeWhiteBoxKeyDetails, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取白盒密钥列表
+    ///
+    /// - Returns: `AsyncSequence`s of `WhiteboxKeyInfo` and `DescribeWhiteBoxKeyDetailsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeWhiteBoxKeyDetailsPaginator(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWhiteBoxKeyDetailsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)
+    }
 }

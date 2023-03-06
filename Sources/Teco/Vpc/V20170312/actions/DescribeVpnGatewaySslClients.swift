@@ -117,4 +117,24 @@ extension Vpc {
         let input = DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal)
         return try await self.client.execute(action: "DescribeVpnGatewaySslClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询SSL-VPN-CLIENT 列表
+    @inlinable
+    public func describeVpnGatewaySslClientsPaginated(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SslVpnClient])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslClients, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SSL-VPN-CLIENT 列表
+    @inlinable @discardableResult
+    public func describeVpnGatewaySslClientsPaginated(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewaySslClientsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslClients, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询SSL-VPN-CLIENT 列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SslVpnClient` and `DescribeVpnGatewaySslClientsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpnGatewaySslClientsPaginator(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslClientsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslClients, logger: logger, on: eventLoop)
+    }
 }

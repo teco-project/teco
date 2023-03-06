@@ -120,4 +120,24 @@ extension Ecm {
         let input = DescribeAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Address])> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    @inlinable @discardableResult
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAddressesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Address` and `DescribeAddressesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAddressesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+    }
 }

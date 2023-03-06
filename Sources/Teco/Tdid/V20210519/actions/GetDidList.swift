@@ -107,4 +107,24 @@ extension Tdid {
         let input = GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId)
         return try await self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// DID列表
+    @inlinable
+    public func getDidListPaginated(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DidData])> {
+        self.client.paginate(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)
+    }
+
+    /// DID列表
+    @inlinable @discardableResult
+    public func getDidListPaginated(_ input: GetDidListRequest, region: TCRegion? = nil, onResponse: @escaping (GetDidListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getDidList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// DID列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DidData` and `GetDidListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getDidListPaginator(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDidListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)
+    }
 }

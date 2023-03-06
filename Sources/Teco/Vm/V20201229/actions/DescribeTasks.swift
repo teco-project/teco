@@ -138,4 +138,36 @@ extension Vm {
         let input = DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime)
         return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看审核任务列表
+    ///
+    /// 通过查看审核任务列表接口，可查询任务队列；您可根据多种业务信息（业务类型、审核结果、任务状态等）筛选审核任务列表。<br>
+    ///
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [TaskData])> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 查看审核任务列表
+    ///
+    /// 通过查看审核任务列表接口，可查询任务队列；您可根据多种业务信息（业务类型、审核结果、任务状态等）筛选审核任务列表。<br>
+    ///
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable @discardableResult
+    public func describeTasksPaginated(_ input: DescribeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看审核任务列表
+    ///
+    /// 通过查看审核任务列表接口，可查询任务队列；您可根据多种业务信息（业务类型、审核结果、任务状态等）筛选审核任务列表。<br>
+    ///
+    /// 默认接口请求频率限制：**20次/秒**。
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskData` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
+    }
 }

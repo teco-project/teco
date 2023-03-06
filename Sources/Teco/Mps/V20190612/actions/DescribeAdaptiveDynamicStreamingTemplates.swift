@@ -117,4 +117,30 @@ extension Mps {
         let input = DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplatesPaginated(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AdaptiveDynamicStreamingTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeAdaptiveDynamicStreamingTemplatesPaginated(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAdaptiveDynamicStreamingTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `AdaptiveDynamicStreamingTemplate` and `DescribeAdaptiveDynamicStreamingTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplatesPaginator(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAdaptiveDynamicStreamingTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)
+    }
 }

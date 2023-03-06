@@ -124,4 +124,24 @@ extension Tcss {
         let input = DescribeSecLogJoinObjectListRequest(logType: logType, limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeSecLogJoinObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询安全日志接入对象列表
+    @inlinable
+    public func describeSecLogJoinObjectListPaginated(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecLogJoinObjectInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全日志接入对象列表
+    @inlinable @discardableResult
+    public func describeSecLogJoinObjectListPaginated(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecLogJoinObjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecLogJoinObjectList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询安全日志接入对象列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SecLogJoinObjectInfo` and `DescribeSecLogJoinObjectListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSecLogJoinObjectListPaginator(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecLogJoinObjectListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
+    }
 }

@@ -139,4 +139,30 @@ extension Cynosdb {
         let input = DescribeAuditLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAuditLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据库审计日志
+    ///
+    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+    @inlinable
+    public func describeAuditLogsPaginated(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AuditLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库审计日志
+    ///
+    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+    @inlinable @discardableResult
+    public func describeAuditLogsPaginated(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库审计日志
+    ///
+    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `AuditLog` and `DescribeAuditLogsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAuditLogsPaginator(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
+    }
 }

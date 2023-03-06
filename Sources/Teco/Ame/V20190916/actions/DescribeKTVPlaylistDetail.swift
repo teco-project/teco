@@ -110,4 +110,30 @@ extension Ame {
         let input = DescribeKTVPlaylistDetailRequest(playlistId: playlistId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVPlaylistDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取直播互动曲库推荐歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+    @inlinable
+    public func describeKTVPlaylistDetailPaginated(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVMusicBaseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylistDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动曲库推荐歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+    @inlinable @discardableResult
+    public func describeKTVPlaylistDetailPaginated(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVPlaylistDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVPlaylistDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取直播互动曲库推荐歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `DescribeKTVPlaylistDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKTVPlaylistDetailPaginator(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVPlaylistDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVPlaylistDetail, logger: logger, on: eventLoop)
+    }
 }

@@ -128,4 +128,36 @@ extension Cms {
         let input = DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField)
         return try await self.client.execute(action: "DescribeTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 支持批量查询文本样本库。
+    @inlinable
+    public func describeTextSamplePaginated(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TextSample])> {
+        self.client.paginate(input: input, region: region, command: self.describeTextSample, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 支持批量查询文本样本库。
+    @inlinable @discardableResult
+    public func describeTextSamplePaginated(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTextSampleResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTextSample, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 支持批量查询文本样本库。
+    ///
+    /// - Returns: `AsyncSequence`s of `TextSample` and `DescribeTextSampleResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTextSamplePaginator(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTextSampleRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTextSample, logger: logger, on: eventLoop)
+    }
 }

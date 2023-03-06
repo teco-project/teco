@@ -99,4 +99,24 @@ extension Organization {
         let input = DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取可创建组织成员的认证主体关系列表
+    @inlinable
+    public func describeOrganizationAuthNodePaginated(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AuthNode])> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationAuthNode, logger: logger, on: eventLoop)
+    }
+
+    /// 获取可创建组织成员的认证主体关系列表
+    @inlinable @discardableResult
+    public func describeOrganizationAuthNodePaginated(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationAuthNodeResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeOrganizationAuthNode, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取可创建组织成员的认证主体关系列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AuthNode` and `DescribeOrganizationAuthNodeResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeOrganizationAuthNodePaginator(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationAuthNodeRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationAuthNode, logger: logger, on: eventLoop)
+    }
 }

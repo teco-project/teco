@@ -116,4 +116,30 @@ extension Cynosdb {
         let input = DescribeAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds, ruleTemplateNames: ruleTemplateNames, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询审计规则模版
+    ///
+    /// 查询审计规则模版信息
+    @inlinable
+    public func describeAuditRuleTemplatesPaginated(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AuditRuleTemplateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计规则模版
+    ///
+    /// 查询审计规则模版信息
+    @inlinable @discardableResult
+    public func describeAuditRuleTemplatesPaginated(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAuditRuleTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAuditRuleTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询审计规则模版
+    ///
+    /// 查询审计规则模版信息
+    ///
+    /// - Returns: `AsyncSequence`s of `AuditRuleTemplateInfo` and `DescribeAuditRuleTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAuditRuleTemplatesPaginator(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditRuleTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
+    }
 }

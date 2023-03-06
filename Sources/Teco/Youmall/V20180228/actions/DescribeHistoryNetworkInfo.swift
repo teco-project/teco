@@ -126,4 +126,30 @@ extension Youmall {
         let input = DescribeHistoryNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId, startDay: startDay, endDay: endDay, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeHistoryNetworkInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable
+    public func describeHistoryNetworkInfoPaginated(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [NetworkInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable @discardableResult
+    public func describeHistoryNetworkInfoPaginated(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHistoryNetworkInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHistoryNetworkInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkInfo` and `DescribeHistoryNetworkInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHistoryNetworkInfoPaginator(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHistoryNetworkInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
+    }
 }

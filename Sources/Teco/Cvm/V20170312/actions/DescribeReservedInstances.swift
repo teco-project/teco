@@ -132,4 +132,30 @@ extension Cvm {
         let input = DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeReservedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列出已购买的预留实例
+    ///
+    /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
+    @inlinable
+    public func describeReservedInstancesPaginated(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ReservedInstances])> {
+        self.client.paginate(input: input, region: region, command: self.describeReservedInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 列出已购买的预留实例
+    ///
+    /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
+    @inlinable @discardableResult
+    public func describeReservedInstancesPaginated(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReservedInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeReservedInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列出已购买的预留实例
+    ///
+    /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
+    ///
+    /// - Returns: `AsyncSequence`s of `ReservedInstances` and `DescribeReservedInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeReservedInstancesPaginator(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReservedInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReservedInstances, logger: logger, on: eventLoop)
+    }
 }

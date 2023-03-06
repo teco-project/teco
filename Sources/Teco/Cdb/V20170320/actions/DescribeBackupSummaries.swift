@@ -120,4 +120,30 @@ extension Cdb {
         let input = DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection)
         return try await self.client.execute(action: "DescribeBackupSummaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询备份实时统计
+    ///
+    /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+    @inlinable
+    public func describeBackupSummariesPaginated(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupSummaryItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupSummaries, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份实时统计
+    ///
+    /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+    @inlinable @discardableResult
+    public func describeBackupSummariesPaginated(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupSummariesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBackupSummaries, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询备份实时统计
+    ///
+    /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+    ///
+    /// - Returns: `AsyncSequence`s of `BackupSummaryItem` and `DescribeBackupSummariesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBackupSummariesPaginator(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupSummariesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupSummaries, logger: logger, on: eventLoop)
+    }
 }

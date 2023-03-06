@@ -135,4 +135,30 @@ extension Dcdb {
         let input = DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeUserTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable
+    public func describeUserTasksPaginated(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UserTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable @discardableResult
+    public func describeUserTasksPaginated(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUserTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `UserTaskInfo` and `DescribeUserTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUserTasksPaginator(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
+    }
 }

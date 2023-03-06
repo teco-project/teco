@@ -114,4 +114,24 @@ extension Cwp {
         let input = DescribeVulEffectHostListRequest(limit: limit, offset: offset, vulId: vulId, filters: filters)
         return try await self.client.execute(action: "DescribeVulEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 漏洞影响主机列表
+    @inlinable
+    public func describeVulEffectHostListPaginated(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VulEffectHostList])> {
+        self.client.paginate(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
+    }
+
+    /// 漏洞影响主机列表
+    @inlinable @discardableResult
+    public func describeVulEffectHostListPaginated(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVulEffectHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVulEffectHostList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 漏洞影响主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VulEffectHostList` and `DescribeVulEffectHostListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVulEffectHostListPaginator(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulEffectHostListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
+    }
 }

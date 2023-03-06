@@ -110,4 +110,30 @@ extension Iotcloud {
         let input = DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeProductTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品级任务列表
+    ///
+    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
+    @inlinable
+    public func describeProductTasksPaginated(_ input: DescribeProductTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProductTaskInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProductTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品级任务列表
+    ///
+    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
+    @inlinable @discardableResult
+    public func describeProductTasksPaginated(_ input: DescribeProductTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProductTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品级任务列表
+    ///
+    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductTaskInfo` and `DescribeProductTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProductTasksPaginator(_ input: DescribeProductTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductTasks, logger: logger, on: eventLoop)
+    }
 }

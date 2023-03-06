@@ -117,4 +117,30 @@ extension Mps {
         let input = DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取指定时间点截图模板列表
+    ///
+    /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSnapshotByTimeOffsetTemplatesPaginated(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SnapshotByTimeOffsetTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定时间点截图模板列表
+    ///
+    /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeSnapshotByTimeOffsetTemplatesPaginated(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSnapshotByTimeOffsetTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取指定时间点截图模板列表
+    ///
+    /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotByTimeOffsetTemplate` and `DescribeSnapshotByTimeOffsetTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotByTimeOffsetTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
+    }
 }

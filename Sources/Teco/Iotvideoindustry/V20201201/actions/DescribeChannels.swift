@@ -127,4 +127,30 @@ extension Iotvideoindustry {
         let input = DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId)
         return try await self.client.execute(action: "DescribeChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取设备下属通道列表
+    ///
+    /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    @inlinable
+    public func describeChannelsPaginated(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ChannelDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeChannels, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备下属通道列表
+    ///
+    /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    @inlinable @discardableResult
+    public func describeChannelsPaginated(_ input: DescribeChannelsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeChannelsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeChannels, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取设备下属通道列表
+    ///
+    /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ChannelDetail` and `DescribeChannelsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeChannelsPaginator(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChannelsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChannels, logger: logger, on: eventLoop)
+    }
 }

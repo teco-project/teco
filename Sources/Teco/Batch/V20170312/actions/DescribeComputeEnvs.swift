@@ -123,4 +123,30 @@ extension Batch {
         let input = DescribeComputeEnvsRequest(envIds: envIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeComputeEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取计算环境列表
+    ///
+    /// 用于查看计算环境列表
+    @inlinable
+    public func describeComputeEnvsPaginated(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ComputeEnvView])> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
+    }
+
+    /// 获取计算环境列表
+    ///
+    /// 用于查看计算环境列表
+    @inlinable @discardableResult
+    public func describeComputeEnvsPaginated(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComputeEnvsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComputeEnvs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取计算环境列表
+    ///
+    /// 用于查看计算环境列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ComputeEnvView` and `DescribeComputeEnvsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComputeEnvsPaginator(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
+    }
 }

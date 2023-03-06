@@ -124,4 +124,24 @@ extension Iecp {
         let input = DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType)
         return try await self.client.execute(action: "DescribeSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Secrets列表
+    @inlinable
+    public func describeSecretsPaginated(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecretItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSecrets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Secrets列表
+    @inlinable @discardableResult
+    public func describeSecretsPaginated(_ input: DescribeSecretsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSecretsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSecrets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Secrets列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SecretItem` and `DescribeSecretsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSecretsPaginator(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecretsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecrets, logger: logger, on: eventLoop)
+    }
 }

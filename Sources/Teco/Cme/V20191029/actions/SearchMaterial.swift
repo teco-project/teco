@@ -159,4 +159,30 @@ extension Cme {
         let input = SearchMaterialRequest(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`)
         return try await self.client.execute(action: "SearchMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 搜索媒体
+    ///
+    /// 根据检索条件搜索媒体，返回媒体的基本信息。
+    @inlinable
+    public func searchMaterialPaginated(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MaterialInfo])> {
+        self.client.paginate(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索媒体
+    ///
+    /// 根据检索条件搜索媒体，返回媒体的基本信息。
+    @inlinable @discardableResult
+    public func searchMaterialPaginated(_ input: SearchMaterialRequest, region: TCRegion? = nil, onResponse: @escaping (SearchMaterialResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.searchMaterial, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 搜索媒体
+    ///
+    /// 根据检索条件搜索媒体，返回媒体的基本信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `MaterialInfo` and `SearchMaterialResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func searchMaterialPaginator(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchMaterialRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
+    }
 }

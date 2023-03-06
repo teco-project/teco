@@ -109,4 +109,30 @@ extension Tag {
         let input = GetTagsRequest(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys)
         return try await self.client.execute(action: "GetTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable
+    public func getTagsPaginated(_ input: GetTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Tag])> {
+        self.client.paginate(input: input, region: region, command: self.getTags, logger: logger, on: eventLoop)
+    }
+
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable @discardableResult
+    public func getTagsPaginated(_ input: GetTagsRequest, region: TCRegion? = nil, onResponse: @escaping (GetTagsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getTags, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Tag` and `GetTagsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getTagsPaginator(_ input: GetTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTagsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTags, logger: logger, on: eventLoop)
+    }
 }

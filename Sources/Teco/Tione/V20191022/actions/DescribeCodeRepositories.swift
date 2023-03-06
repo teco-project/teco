@@ -112,4 +112,24 @@ extension Tione {
         let input = DescribeCodeRepositoriesRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder)
         return try await self.client.execute(action: "DescribeCodeRepositories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询存储库列表
+    @inlinable
+    public func describeCodeRepositoriesPaginated(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CodeRepoSummary])> {
+        self.client.paginate(input: input, region: region, command: self.describeCodeRepositories, logger: logger, on: eventLoop)
+    }
+
+    /// 查询存储库列表
+    @inlinable @discardableResult
+    public func describeCodeRepositoriesPaginated(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCodeRepositoriesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCodeRepositories, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询存储库列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CodeRepoSummary` and `DescribeCodeRepositoriesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCodeRepositoriesPaginator(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodeRepositoriesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodeRepositories, logger: logger, on: eventLoop)
+    }
 }

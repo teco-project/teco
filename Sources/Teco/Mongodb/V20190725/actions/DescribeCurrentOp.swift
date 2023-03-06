@@ -146,4 +146,30 @@ extension Mongodb {
         let input = DescribeCurrentOpRequest(instanceId: instanceId, ns: ns, millisecondRunning: millisecondRunning, op: op, replicaSetName: replicaSetName, state: state, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
         return try await self.client.execute(action: "DescribeCurrentOp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询数据库实例当前正在执行的操作
+    ///
+    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+    @inlinable
+    public func describeCurrentOpPaginated(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CurrentOp])> {
+        self.client.paginate(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库实例当前正在执行的操作
+    ///
+    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+    @inlinable @discardableResult
+    public func describeCurrentOpPaginated(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCurrentOpResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCurrentOp, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询数据库实例当前正在执行的操作
+    ///
+    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+    ///
+    /// - Returns: `AsyncSequence`s of `CurrentOp` and `DescribeCurrentOpResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCurrentOpPaginator(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCurrentOpRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
+    }
 }

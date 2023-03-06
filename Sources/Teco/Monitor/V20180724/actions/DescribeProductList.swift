@@ -117,4 +117,30 @@ extension Monitor {
         let input = DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云监控产品列表
+    ///
+    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
+    @inlinable
+    public func describeProductListPaginated(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProductSimple])> {
+        self.client.paginate(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云监控产品列表
+    ///
+    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
+    @inlinable @discardableResult
+    public func describeProductListPaginated(_ input: DescribeProductListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProductListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProductList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云监控产品列表
+    ///
+    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductSimple` and `DescribeProductListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProductListPaginator(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)
+    }
 }

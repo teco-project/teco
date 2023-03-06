@@ -155,4 +155,30 @@ extension Es {
         let input = DescribeInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, tagList: tagList, ipList: ipList, zoneList: zoneList, healthStatus: healthStatus, vpcIds: vpcIds)
         return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询ES集群实例
+    ///
+    /// 查询用户该地域下符合条件的所有实例
+    @inlinable
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InstanceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询ES集群实例
+    ///
+    /// 查询用户该地域下符合条件的所有实例
+    @inlinable @discardableResult
+    public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询ES集群实例
+    ///
+    /// 查询用户该地域下符合条件的所有实例
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceInfo` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
+    }
 }

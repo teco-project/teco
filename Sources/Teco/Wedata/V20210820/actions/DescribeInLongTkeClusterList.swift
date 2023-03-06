@@ -142,4 +142,24 @@ extension Wedata {
         let input = DescribeInLongTkeClusterListRequest(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeInLongTkeClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterListPaginated(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InLongTkeDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取TKE集群列表
+    @inlinable @discardableResult
+    public func describeInLongTkeClusterListPaginated(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInLongTkeClusterListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInLongTkeClusterList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取TKE集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `InLongTkeDetail` and `DescribeInLongTkeClusterListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInLongTkeClusterListPaginator(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInLongTkeClusterListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
+    }
 }

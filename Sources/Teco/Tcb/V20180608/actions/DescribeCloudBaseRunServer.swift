@@ -147,4 +147,30 @@ extension Tcb {
         let input = DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName)
         return try await self.client.execute(action: "DescribeCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServerPaginated(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [CloudBaseRunServerVersionItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable @discardableResult
+    public func describeCloudBaseRunServerPaginated(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCloudBaseRunServerResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCloudBaseRunServer, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    ///
+    /// - Returns: `AsyncSequence`s of `CloudBaseRunServerVersionItem` and `DescribeCloudBaseRunServerResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCloudBaseRunServerPaginator(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudBaseRunServerRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)
+    }
 }

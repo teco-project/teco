@@ -107,4 +107,24 @@ extension Iecp {
         let input = GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order)
         return try await self.client.execute(action: "GetMarketComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取组件市场组件列表
+    @inlinable
+    public func getMarketComponentListPaginated(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MarketComponentInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getMarketComponentList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组件市场组件列表
+    @inlinable @discardableResult
+    public func getMarketComponentListPaginated(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, onResponse: @escaping (GetMarketComponentListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getMarketComponentList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取组件市场组件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `MarketComponentInfo` and `GetMarketComponentListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getMarketComponentListPaginator(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetMarketComponentListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getMarketComponentList, logger: logger, on: eventLoop)
+    }
 }

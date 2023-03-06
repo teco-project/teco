@@ -108,4 +108,24 @@ extension Tem {
         let input = DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken)
         return try await self.client.execute(action: "DescribePagedLogConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询分页的日志收集配置列表
+    @inlinable
+    public func describePagedLogConfigListPaginated(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [LogConfig])> {
+        self.client.paginate(input: input, region: region, command: self.describePagedLogConfigList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分页的日志收集配置列表
+    @inlinable @discardableResult
+    public func describePagedLogConfigListPaginated(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePagedLogConfigListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePagedLogConfigList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询分页的日志收集配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `LogConfig` and `DescribePagedLogConfigListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePagedLogConfigListPaginator(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePagedLogConfigListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePagedLogConfigList, logger: logger, on: eventLoop)
+    }
 }

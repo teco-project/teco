@@ -120,4 +120,24 @@ extension Antiddos {
         let input = DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname)
         return try await self.client.execute(action: "DescribeListIPAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取单IP告警阈值配置列表
+    @inlinable
+    public func describeListIPAlarmConfigPaginated(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IPAlarmThresholdRelation])> {
+        self.client.paginate(input: input, region: region, command: self.describeListIPAlarmConfig, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单IP告警阈值配置列表
+    @inlinable @discardableResult
+    public func describeListIPAlarmConfigPaginated(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListIPAlarmConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListIPAlarmConfig, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取单IP告警阈值配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `IPAlarmThresholdRelation` and `DescribeListIPAlarmConfigResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListIPAlarmConfigPaginator(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListIPAlarmConfigRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListIPAlarmConfig, logger: logger, on: eventLoop)
+    }
 }

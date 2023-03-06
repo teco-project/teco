@@ -127,4 +127,24 @@ extension Tke {
         let input = DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds)
         return try await self.client.execute(action: "DescribeEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询容器实例
+    @inlinable
+    public func describeEKSContainerInstancesPaginated(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EksCi])> {
+        self.client.paginate(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器实例
+    @inlinable @discardableResult
+    public func describeEKSContainerInstancesPaginated(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEKSContainerInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEKSContainerInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器实例
+    ///
+    /// - Returns: `AsyncSequence`s of `EksCi` and `DescribeEKSContainerInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEKSContainerInstancesPaginator(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEKSContainerInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
+    }
 }

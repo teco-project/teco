@@ -114,4 +114,24 @@ extension Trp {
         let input = DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId)
         return try await self.client.execute(action: "DescribeTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询二维码列表
+    @inlinable
+    public func describeTraceCodesPaginated(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TraceCode])> {
+        self.client.paginate(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询二维码列表
+    @inlinable @discardableResult
+    public func describeTraceCodesPaginated(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTraceCodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTraceCodes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询二维码列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TraceCode` and `DescribeTraceCodesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTraceCodesPaginator(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTraceCodesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)
+    }
 }

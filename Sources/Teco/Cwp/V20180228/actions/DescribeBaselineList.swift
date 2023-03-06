@@ -118,4 +118,30 @@ extension Cwp {
         let input = DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters)
         return try await self.client.execute(action: "DescribeBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询基线列表
+    ///
+    /// 查询基线列表信息
+    @inlinable
+    public func describeBaselineListPaginated(_ input: DescribeBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BaselineInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询基线列表
+    ///
+    /// 查询基线列表信息
+    @inlinable @discardableResult
+    public func describeBaselineListPaginated(_ input: DescribeBaselineListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaselineListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBaselineList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询基线列表
+    ///
+    /// 查询基线列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselineInfo` and `DescribeBaselineListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBaselineListPaginator(_ input: DescribeBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineList, logger: logger, on: eventLoop)
+    }
 }

@@ -133,4 +133,33 @@ extension Vpc {
         let input = DescribeAddressesRequest(addressIds: addressIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Address])> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable @discardableResult
+    public func describeAddressesPaginated(_ input: DescribeAddressesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAddressesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAddresses, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    ///
+    /// - Returns: `AsyncSequence`s of `Address` and `DescribeAddressesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAddressesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
+    }
 }

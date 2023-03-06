@@ -133,4 +133,30 @@ extension Monitor {
         let input = DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type)
         return try await self.client.execute(action: "DescribeAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable
+    public func describeAlertRulesPaginated(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrometheusRuleSet])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)
+    }
+
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable @discardableResult
+    public func describeAlertRulesPaginated(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlertRulesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlertRules, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusRuleSet` and `DescribeAlertRulesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlertRulesPaginator(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRulesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)
+    }
 }

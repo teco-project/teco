@@ -94,4 +94,24 @@ extension Iotvideoindustry {
         let input = DescribeRecordDatesByLiveRequest(liveChannelId: liveChannelId, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeRecordDatesByLive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 直播录像存储日期列表
+    @inlinable
+    public func describeRecordDatesByLivePaginated(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [String])> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordDatesByLive, logger: logger, on: eventLoop)
+    }
+
+    /// 直播录像存储日期列表
+    @inlinable @discardableResult
+    public func describeRecordDatesByLivePaginated(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRecordDatesByLiveResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRecordDatesByLive, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 直播录像存储日期列表
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeRecordDatesByLiveResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRecordDatesByLivePaginator(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordDatesByLiveRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordDatesByLive, logger: logger, on: eventLoop)
+    }
 }

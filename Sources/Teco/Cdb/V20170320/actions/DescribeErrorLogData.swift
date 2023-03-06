@@ -135,4 +135,33 @@ extension Cdb {
         let input = DescribeErrorLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType)
         return try await self.client.execute(action: "DescribeErrorLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例错误日志详情
+    ///
+    /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
+    /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable
+    public func describeErrorLogDataPaginated(_ input: DescribeErrorLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ErrlogItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeErrorLogData, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例错误日志详情
+    ///
+    /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
+    /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable @discardableResult
+    public func describeErrorLogDataPaginated(_ input: DescribeErrorLogDataRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeErrorLogDataResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeErrorLogData, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例错误日志详情
+    ///
+    /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
+    /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    ///
+    /// - Returns: `AsyncSequence`s of `ErrlogItem` and `DescribeErrorLogDataResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeErrorLogDataPaginator(_ input: DescribeErrorLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeErrorLogDataRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeErrorLogData, logger: logger, on: eventLoop)
+    }
 }

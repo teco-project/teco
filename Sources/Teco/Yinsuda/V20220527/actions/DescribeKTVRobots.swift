@@ -134,4 +134,30 @@ extension Yinsuda {
         let input = DescribeKTVRobotsRequest(appName: appName, userId: userId, robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobotsPaginated(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [KTVRobotInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
+    }
+
+    /// 获取机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable @discardableResult
+    public func describeKTVRobotsPaginated(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeKTVRobotsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeKTVRobots, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    ///
+    /// - Returns: `AsyncSequence`s of `KTVRobotInfo` and `DescribeKTVRobotsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeKTVRobotsPaginator(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVRobotsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
+    }
 }

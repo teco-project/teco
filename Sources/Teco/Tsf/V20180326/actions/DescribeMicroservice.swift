@@ -109,4 +109,24 @@ extension Tsf {
         let input = DescribeMicroserviceRequest(microserviceId: microserviceId, offset: offset, limit: limit, groupIds: groupIds, filters: filters)
         return try await self.client.execute(action: "DescribeMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询微服务详情
+    @inlinable
+    public func describeMicroservicePaginated(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MsInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)
+    }
+
+    /// 查询微服务详情
+    @inlinable @discardableResult
+    public func describeMicroservicePaginated(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMicroserviceResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeMicroservice, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询微服务详情
+    ///
+    /// - Returns: `AsyncSequence`s of `MsInstance` and `DescribeMicroserviceResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeMicroservicePaginator(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMicroserviceRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)
+    }
 }

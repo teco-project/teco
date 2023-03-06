@@ -117,4 +117,24 @@ extension Ccc {
         let input = DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName)
         return try await self.client.execute(action: "DescribeSkillGroupInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoListPaginated(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SkillGroupInfoItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取技能组信息列表
+    @inlinable @discardableResult
+    public func describeSkillGroupInfoListPaginated(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSkillGroupInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSkillGroupInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取技能组信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SkillGroupInfoItem` and `DescribeSkillGroupInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSkillGroupInfoListPaginator(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSkillGroupInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
+    }
 }

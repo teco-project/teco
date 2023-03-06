@@ -126,4 +126,30 @@ extension Cwp {
         let input = DescribeRiskDnsListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeRiskDnsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsListPaginated(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RiskDnsList])> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable @discardableResult
+    public func describeRiskDnsListPaginated(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRiskDnsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRiskDnsList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RiskDnsList` and `DescribeRiskDnsListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRiskDnsListPaginator(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskDnsListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
+    }
 }

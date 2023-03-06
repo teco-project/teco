@@ -114,4 +114,30 @@ extension Bma {
         let input = DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
         return try await self.client.execute(action: "DescribeCRMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable
+    public func describeCRMonitorsPaginated(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Monitor])> {
+        self.client.paginate(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
+    }
+
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable @discardableResult
+    public func describeCRMonitorsPaginated(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCRMonitorsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCRMonitors, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `Monitor` and `DescribeCRMonitorsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCRMonitorsPaginator(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCRMonitorsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
+    }
 }

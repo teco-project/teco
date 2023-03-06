@@ -113,4 +113,30 @@ extension Cis {
         let input = DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable
+    public func describeContainerInstancesPaginated(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ContainerInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable @discardableResult
+    public func describeContainerInstancesPaginated(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeContainerInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeContainerInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ContainerInstance` and `DescribeContainerInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeContainerInstancesPaginator(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerInstances, logger: logger, on: eventLoop)
+    }
 }

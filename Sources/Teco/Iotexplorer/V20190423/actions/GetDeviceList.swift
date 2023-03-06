@@ -127,4 +127,30 @@ extension Iotexplorer {
         let input = GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId)
         return try await self.client.execute(action: "GetDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable
+    public func getDeviceListPaginated(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DeviceInfo])> {
+        self.client.paginate(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable @discardableResult
+    public func getDeviceListPaginated(_ input: GetDeviceListRequest, region: TCRegion? = nil, onResponse: @escaping (GetDeviceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getDeviceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceInfo` and `GetDeviceListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getDeviceListPaginator(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDeviceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
+    }
 }

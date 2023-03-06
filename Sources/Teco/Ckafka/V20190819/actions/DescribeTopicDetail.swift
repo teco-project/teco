@@ -116,4 +116,30 @@ extension Ckafka {
         let input = DescribeTopicDetailRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName)
         return try await self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取主题列表详情
+    ///
+    /// 获取主题列表详情（仅控制台调用）
+    @inlinable
+    public func describeTopicDetailPaginated(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TopicDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeTopicDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主题列表详情
+    ///
+    /// 获取主题列表详情（仅控制台调用）
+    @inlinable @discardableResult
+    public func describeTopicDetailPaginated(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopicDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTopicDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主题列表详情
+    ///
+    /// 获取主题列表详情（仅控制台调用）
+    ///
+    /// - Returns: `AsyncSequence`s of `TopicDetail` and `DescribeTopicDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTopicDetailPaginator(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicDetail, logger: logger, on: eventLoop)
+    }
 }

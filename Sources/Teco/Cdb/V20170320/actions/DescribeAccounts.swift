@@ -119,4 +119,30 @@ extension Cdb {
         let input = DescribeAccountsRequest(instanceId: instanceId, offset: offset, limit: limit, accountRegexp: accountRegexp)
         return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云数据库的所有账号信息
+    ///
+    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
+    @inlinable
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccountInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库的所有账号信息
+    ///
+    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
+    @inlinable @discardableResult
+    public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAccounts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云数据库的所有账号信息
+    ///
+    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `AccountInfo` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
+    }
 }

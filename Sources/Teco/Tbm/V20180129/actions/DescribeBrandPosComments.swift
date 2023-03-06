@@ -128,4 +128,30 @@ extension Tbm {
         let input = DescribeBrandPosCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeBrandPosComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取品牌用户好评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
+    @inlinable
+    public func describeBrandPosCommentsPaginated(_ input: DescribeBrandPosCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CommentInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeBrandPosComments, logger: logger, on: eventLoop)
+    }
+
+    /// 获取品牌用户好评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
+    @inlinable @discardableResult
+    public func describeBrandPosCommentsPaginated(_ input: DescribeBrandPosCommentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBrandPosCommentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBrandPosComments, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取品牌用户好评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CommentInfo` and `DescribeBrandPosCommentsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBrandPosCommentsPaginator(_ input: DescribeBrandPosCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBrandPosCommentsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBrandPosComments, logger: logger, on: eventLoop)
+    }
 }

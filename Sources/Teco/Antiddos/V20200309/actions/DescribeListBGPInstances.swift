@@ -172,4 +172,24 @@ extension Antiddos {
         let input = DescribeListBGPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag, filterTrialFlag: filterTrialFlag, filterConvoy: filterConvoy, excludeAdvancedInfo: excludeAdvancedInfo)
         return try await self.client.execute(action: "DescribeListBGPInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取高防包资产实例列表
+    @inlinable
+    public func describeListBGPInstancesPaginated(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BGPInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高防包资产实例列表
+    @inlinable @discardableResult
+    public func describeListBGPInstancesPaginated(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeListBGPInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeListBGPInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取高防包资产实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BGPInstance` and `DescribeListBGPInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeListBGPInstancesPaginator(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBGPInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
+    }
 }

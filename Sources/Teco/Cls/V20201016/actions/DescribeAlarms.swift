@@ -142,4 +142,30 @@ extension Cls {
         let input = DescribeAlarmsRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAlarms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable
+    public func describeAlarmsPaginated(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AlarmInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
+    }
+
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable @discardableResult
+    public func describeAlarmsPaginated(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarms, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AlarmInfo` and `DescribeAlarmsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlarmsPaginator(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
+    }
 }

@@ -124,4 +124,24 @@ extension Tsf {
         let input = DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
         return try await self.client.execute(action: "DescribeSimpleApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询简单应用列表
+    @inlinable
+    public func describeSimpleApplicationsPaginated(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SimpleApplication])> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleApplications, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单应用列表
+    @inlinable @discardableResult
+    public func describeSimpleApplicationsPaginated(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSimpleApplicationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSimpleApplications, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询简单应用列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SimpleApplication` and `DescribeSimpleApplicationsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSimpleApplicationsPaginator(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleApplicationsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleApplications, logger: logger, on: eventLoop)
+    }
 }

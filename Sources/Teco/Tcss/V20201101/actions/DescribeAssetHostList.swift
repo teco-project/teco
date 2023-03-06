@@ -130,4 +130,30 @@ extension Tcss {
         let input = DescribeAssetHostListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeAssetHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询主机列表
+    ///
+    /// 容器安全搜索查询主机列表
+    @inlinable
+    public func describeAssetHostListPaginated(_ input: DescribeAssetHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [HostInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetHostList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主机列表
+    ///
+    /// 容器安全搜索查询主机列表
+    @inlinable @discardableResult
+    public func describeAssetHostListPaginated(_ input: DescribeAssetHostListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetHostListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetHostList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询主机列表
+    ///
+    /// 容器安全搜索查询主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `HostInfo` and `DescribeAssetHostListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetHostListPaginator(_ input: DescribeAssetHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetHostListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetHostList, logger: logger, on: eventLoop)
+    }
 }

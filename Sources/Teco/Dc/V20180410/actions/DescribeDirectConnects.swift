@@ -120,4 +120,30 @@ extension Dc {
         let input = DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeDirectConnects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询物理专线列表
+    ///
+    /// 查询物理专线列表。
+    @inlinable
+    public func describeDirectConnectsPaginated(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DirectConnect])> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理专线列表
+    ///
+    /// 查询物理专线列表。
+    @inlinable @discardableResult
+    public func describeDirectConnectsPaginated(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDirectConnectsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDirectConnects, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询物理专线列表
+    ///
+    /// 查询物理专线列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DirectConnect` and `DescribeDirectConnectsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDirectConnectsPaginator(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)
+    }
 }

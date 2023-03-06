@@ -146,4 +146,30 @@ extension Kms {
         let input = ListKeyDetailRequest(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId)
         return try await self.client.execute(action: "ListKeyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable
+    public func listKeyDetailPaginated(_ input: ListKeyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [KeyMetadata])> {
+        self.client.paginate(input: input, region: region, command: self.listKeyDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable @discardableResult
+    public func listKeyDetailPaginated(_ input: ListKeyDetailRequest, region: TCRegion? = nil, onResponse: @escaping (ListKeyDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listKeyDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyMetadata` and `ListKeyDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listKeyDetailPaginator(_ input: ListKeyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyDetail, logger: logger, on: eventLoop)
+    }
 }

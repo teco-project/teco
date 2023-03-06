@@ -115,4 +115,24 @@ extension Tione {
         let input = DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters)
         return try await self.client.execute(action: "DescribeAPIConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigsPaginated(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [APIConfigDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
+    }
+
+    /// 列举API
+    @inlinable @discardableResult
+    public func describeAPIConfigsPaginated(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAPIConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAPIConfigs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 列举API
+    ///
+    /// - Returns: `AsyncSequence`s of `APIConfigDetail` and `DescribeAPIConfigsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAPIConfigsPaginator(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIConfigsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
+    }
 }

@@ -117,4 +117,30 @@ extension Mps {
         let input = DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeStreamLinkFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 批量查询媒体输入流
+    ///
+    /// 批量查询媒体输入流的配置信息。
+    @inlinable
+    public func describeStreamLinkFlowsPaginated(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeFlow])> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
+    }
+
+    /// 批量查询媒体输入流
+    ///
+    /// 批量查询媒体输入流的配置信息。
+    @inlinable @discardableResult
+    public func describeStreamLinkFlowsPaginated(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamLinkFlowsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeStreamLinkFlows, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 批量查询媒体输入流
+    ///
+    /// 批量查询媒体输入流的配置信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeFlow` and `DescribeStreamLinkFlowsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeStreamLinkFlowsPaginator(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamLinkFlowsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
+    }
 }

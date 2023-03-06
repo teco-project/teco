@@ -262,4 +262,30 @@ extension Cpdp {
         let input = QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus)
         return try await self.client.execute(action: "QueryTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable
+    public func queryTransferBatchPaginated(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TransferDetailResponse])> {
+        self.client.paginate(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
+    }
+
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable @discardableResult
+    public func queryTransferBatchPaginated(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, onResponse: @escaping (QueryTransferBatchResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryTransferBatch, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    ///
+    /// - Returns: `AsyncSequence`s of `TransferDetailResponse` and `QueryTransferBatchResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryTransferBatchPaginator(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryTransferBatchRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
+    }
 }

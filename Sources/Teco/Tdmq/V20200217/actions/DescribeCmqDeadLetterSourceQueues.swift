@@ -107,4 +107,24 @@ extension Tdmq {
         let input = DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName)
         return try await self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 枚举cmq死信队列源队列
+    @inlinable
+    public func describeCmqDeadLetterSourceQueuesPaginated(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CmqDeadLetterSource])> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqDeadLetterSourceQueues, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举cmq死信队列源队列
+    @inlinable @discardableResult
+    public func describeCmqDeadLetterSourceQueuesPaginated(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCmqDeadLetterSourceQueuesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCmqDeadLetterSourceQueues, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 枚举cmq死信队列源队列
+    ///
+    /// - Returns: `AsyncSequence`s of `CmqDeadLetterSource` and `DescribeCmqDeadLetterSourceQueuesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCmqDeadLetterSourceQueuesPaginator(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmqDeadLetterSourceQueuesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqDeadLetterSourceQueues, logger: logger, on: eventLoop)
+    }
 }

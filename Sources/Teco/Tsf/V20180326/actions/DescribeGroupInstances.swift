@@ -114,4 +114,24 @@ extension Tsf {
         let input = DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询虚拟机部署组云主机列表
+    @inlinable
+    public func describeGroupInstancesPaginated(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Instance])> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
+    }
+
+    /// 查询虚拟机部署组云主机列表
+    @inlinable @discardableResult
+    public func describeGroupInstancesPaginated(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGroupInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeGroupInstances, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询虚拟机部署组云主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeGroupInstancesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeGroupInstancesPaginator(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupInstancesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
+    }
 }

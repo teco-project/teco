@@ -128,4 +128,30 @@ extension Cls {
         let input = DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取通知渠道组列表
+    ///
+    /// 该接口用于获取通知渠道组列表
+    @inlinable
+    public func describeAlarmNoticesPaginated(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AlarmNotice])> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmNotices, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通知渠道组列表
+    ///
+    /// 该接口用于获取通知渠道组列表
+    @inlinable @discardableResult
+    public func describeAlarmNoticesPaginated(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAlarmNoticesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAlarmNotices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通知渠道组列表
+    ///
+    /// 该接口用于获取通知渠道组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AlarmNotice` and `DescribeAlarmNoticesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAlarmNoticesPaginator(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmNoticesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmNotices, logger: logger, on: eventLoop)
+    }
 }

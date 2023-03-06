@@ -110,4 +110,30 @@ extension Teo {
         let input = DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeApplicationProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxiesPaginated(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ApplicationProxy])> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxies, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable @discardableResult
+    public func describeApplicationProxiesPaginated(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApplicationProxiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApplicationProxies, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ApplicationProxy` and `DescribeApplicationProxiesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApplicationProxiesPaginator(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationProxiesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationProxies, logger: logger, on: eventLoop)
+    }
 }

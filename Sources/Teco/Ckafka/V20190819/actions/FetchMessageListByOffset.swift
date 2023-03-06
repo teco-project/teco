@@ -103,4 +103,24 @@ extension Ckafka {
         let input = FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber)
         return try await self.client.execute(action: "FetchMessageListByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 根据位点查询消息列表
+    @inlinable
+    public func fetchMessageListByOffsetPaginated(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ConsumerRecord])> {
+        self.client.paginate(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
+    }
+
+    /// 根据位点查询消息列表
+    @inlinable @discardableResult
+    public func fetchMessageListByOffsetPaginated(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, onResponse: @escaping (FetchMessageListByOffsetResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.fetchMessageListByOffset, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 根据位点查询消息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConsumerRecord` and `FetchMessageListByOffsetResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func fetchMessageListByOffsetPaginator(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<FetchMessageListByOffsetRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
+    }
 }

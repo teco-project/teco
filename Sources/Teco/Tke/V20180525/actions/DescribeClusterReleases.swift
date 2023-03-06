@@ -137,4 +137,30 @@ extension Tke {
         let input = DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName)
         return try await self.client.execute(action: "DescribeClusterReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询集群已安装应用列表
+    ///
+    /// 查询集群在应用市场中已安装应用列表
+    @inlinable
+    public func describeClusterReleasesPaginated(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Release])> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterReleases, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群已安装应用列表
+    ///
+    /// 查询集群在应用市场中已安装应用列表
+    @inlinable @discardableResult
+    public func describeClusterReleasesPaginated(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterReleasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeClusterReleases, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询集群已安装应用列表
+    ///
+    /// 查询集群在应用市场中已安装应用列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Release` and `DescribeClusterReleasesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeClusterReleasesPaginator(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterReleasesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterReleases, logger: logger, on: eventLoop)
+    }
 }

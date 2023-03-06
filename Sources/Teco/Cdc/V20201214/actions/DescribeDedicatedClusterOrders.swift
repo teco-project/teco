@@ -117,4 +117,24 @@ extension Cdc {
         let input = DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType)
         return try await self.client.execute(action: "DescribeDedicatedClusterOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询专用集群订单列表
+    @inlinable
+    public func describeDedicatedClusterOrdersPaginated(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DedicatedClusterOrder])> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用集群订单列表
+    @inlinable @discardableResult
+    public func describeDedicatedClusterOrdersPaginated(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDedicatedClusterOrdersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDedicatedClusterOrders, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询专用集群订单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DedicatedClusterOrder` and `DescribeDedicatedClusterOrdersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDedicatedClusterOrdersPaginator(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterOrdersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
+    }
 }

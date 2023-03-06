@@ -115,4 +115,24 @@ extension Tcss {
         let input = DescribeVirusAutoIsolateSampleListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeVirusAutoIsolateSampleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询木马自动隔离样本列表
+    @inlinable
+    public func describeVirusAutoIsolateSampleListPaginated(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VirusAutoIsolateSampleInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询木马自动隔离样本列表
+    @inlinable @discardableResult
+    public func describeVirusAutoIsolateSampleListPaginated(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVirusAutoIsolateSampleListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询木马自动隔离样本列表
+    ///
+    /// - Returns: `AsyncSequence`s of `VirusAutoIsolateSampleInfo` and `DescribeVirusAutoIsolateSampleListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVirusAutoIsolateSampleListPaginator(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusAutoIsolateSampleListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)
+    }
 }

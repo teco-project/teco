@@ -132,4 +132,30 @@ extension Tione {
         let input = DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField)
         return try await self.client.execute(action: "DescribeTrainingTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 模型训练任务列表
+    ///
+    /// 训练任务列表
+    @inlinable
+    public func describeTrainingTasksPaginated(_ input: DescribeTrainingTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TrainingTaskSetItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeTrainingTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 模型训练任务列表
+    ///
+    /// 训练任务列表
+    @inlinable @discardableResult
+    public func describeTrainingTasksPaginated(_ input: DescribeTrainingTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTrainingTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTrainingTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 模型训练任务列表
+    ///
+    /// 训练任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TrainingTaskSetItem` and `DescribeTrainingTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTrainingTasksPaginator(_ input: DescribeTrainingTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrainingTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrainingTasks, logger: logger, on: eventLoop)
+    }
 }

@@ -111,4 +111,30 @@ extension Waf {
         let input = DescribeDomainsRequest(offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取域名列表
+    ///
+    /// 查询用户所有域名的详细信息
+    @inlinable
+    public func describeDomainsPaginated(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DomainInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名列表
+    ///
+    /// 查询用户所有域名的详细信息
+    @inlinable @discardableResult
+    public func describeDomainsPaginated(_ input: DescribeDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDomains, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取域名列表
+    ///
+    /// 查询用户所有域名的详细信息
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainInfo` and `DescribeDomainsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
+    }
 }

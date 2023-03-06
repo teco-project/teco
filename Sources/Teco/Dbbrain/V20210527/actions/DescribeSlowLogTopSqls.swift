@@ -148,4 +148,30 @@ extension Dbbrain {
         let input = DescribeSlowLogTopSqlsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sortBy: sortBy, orderBy: orderBy, limit: limit, offset: offset, schemaList: schemaList, product: product)
         return try await self.client.execute(action: "DescribeSlowLogTopSqls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable
+    public func describeSlowLogTopSqlsPaginated(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowLogTopSqlItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogTopSqls, logger: logger, on: eventLoop)
+    }
+
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable @discardableResult
+    public func describeSlowLogTopSqlsPaginated(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogTopSqlsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSlowLogTopSqls, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogTopSqlItem` and `DescribeSlowLogTopSqlsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSlowLogTopSqlsPaginator(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogTopSqlsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogTopSqls, logger: logger, on: eventLoop)
+    }
 }

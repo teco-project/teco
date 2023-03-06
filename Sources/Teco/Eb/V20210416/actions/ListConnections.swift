@@ -112,4 +112,24 @@ extension Eb {
         let input = ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset)
         return try await self.client.execute(action: "ListConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取事件连接器列表
+    @inlinable
+    public func listConnectionsPaginated(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Connection])> {
+        self.client.paginate(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件连接器列表
+    @inlinable @discardableResult
+    public func listConnectionsPaginated(_ input: ListConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (ListConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listConnections, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取事件连接器列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Connection` and `ListConnectionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listConnectionsPaginator(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListConnectionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)
+    }
 }

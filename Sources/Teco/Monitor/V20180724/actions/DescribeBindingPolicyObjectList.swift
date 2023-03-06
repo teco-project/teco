@@ -127,4 +127,24 @@ extension Monitor {
         let input = DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions)
         return try await self.client.execute(action: "DescribeBindingPolicyObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取已绑定对象列表
+    @inlinable
+    public func describeBindingPolicyObjectListPaginated(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeBindingPolicyObjectListInstance])> {
+        self.client.paginate(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取已绑定对象列表
+    @inlinable @discardableResult
+    public func describeBindingPolicyObjectListPaginated(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBindingPolicyObjectListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeBindingPolicyObjectList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取已绑定对象列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeBindingPolicyObjectListInstance` and `DescribeBindingPolicyObjectListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeBindingPolicyObjectListPaginator(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindingPolicyObjectListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
+    }
 }

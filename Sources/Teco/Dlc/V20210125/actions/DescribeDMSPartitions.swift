@@ -147,4 +147,24 @@ extension Dlc {
         let input = DescribeDMSPartitionsRequest(databaseName: databaseName, tableName: tableName, schemaName: schemaName, name: name, values: values, partitionNames: partitionNames, partValues: partValues, filter: filter, maxParts: maxParts, offset: offset, limit: limit, expression: expression)
         return try await self.client.execute(action: "DescribeDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// DMS元数据获取分区
+    @inlinable
+    public func describeDMSPartitionsPaginated(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DMSPartition])> {
+        self.client.paginate(input: input, region: region, command: self.describeDMSPartitions, logger: logger, on: eventLoop)
+    }
+
+    /// DMS元数据获取分区
+    @inlinable @discardableResult
+    public func describeDMSPartitionsPaginated(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDMSPartitionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeDMSPartitions, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// DMS元数据获取分区
+    ///
+    /// - Returns: `AsyncSequence`s of `DMSPartition` and `DescribeDMSPartitionsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeDMSPartitionsPaginator(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDMSPartitionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSPartitions, logger: logger, on: eventLoop)
+    }
 }

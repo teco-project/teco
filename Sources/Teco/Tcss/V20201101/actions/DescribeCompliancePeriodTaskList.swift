@@ -114,4 +114,30 @@ extension Tcss {
         let input = DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCompliancePeriodTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询定时任务列表
+    ///
+    /// 查询合规检测的定时任务列表
+    @inlinable
+    public func describeCompliancePeriodTaskListPaginated(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CompliancePeriodTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询定时任务列表
+    ///
+    /// 查询合规检测的定时任务列表
+    @inlinable @discardableResult
+    public func describeCompliancePeriodTaskListPaginated(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCompliancePeriodTaskListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCompliancePeriodTaskList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询定时任务列表
+    ///
+    /// 查询合规检测的定时任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CompliancePeriodTask` and `DescribeCompliancePeriodTaskListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCompliancePeriodTaskListPaginator(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompliancePeriodTaskListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)
+    }
 }

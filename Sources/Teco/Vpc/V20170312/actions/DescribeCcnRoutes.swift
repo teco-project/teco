@@ -126,4 +126,30 @@ extension Vpc {
         let input = DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcnRoute])> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable @discardableResult
+    public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    ///
+    /// - Returns: `AsyncSequence`s of `CcnRoute` and `DescribeCcnRoutesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCcnRoutesPaginator(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcnRoutesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
+    }
 }

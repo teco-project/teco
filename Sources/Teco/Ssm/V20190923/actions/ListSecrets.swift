@@ -149,4 +149,30 @@ extension Ssm {
         let input = ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName)
         return try await self.client.execute(action: "ListSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取凭据的详细信息列表
+    ///
+    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
+    @inlinable
+    public func listSecretsPaginated(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SecretMetadata])> {
+        self.client.paginate(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
+    }
+
+    /// 获取凭据的详细信息列表
+    ///
+    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
+    @inlinable @discardableResult
+    public func listSecretsPaginated(_ input: ListSecretsRequest, region: TCRegion? = nil, onResponse: @escaping (ListSecretsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listSecrets, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取凭据的详细信息列表
+    ///
+    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecretMetadata` and `ListSecretsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listSecretsPaginator(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListSecretsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
+    }
 }

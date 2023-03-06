@@ -123,4 +123,24 @@ extension Iecp {
         let input = DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order)
         return try await self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroupPaginated(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NodeGroupNodeUnitTemplateInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNodeUnitTemplateOnNodeGroup, logger: logger, on: eventLoop)
+    }
+
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable @discardableResult
+    public func describeNodeUnitTemplateOnNodeGroupPaginated(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNodeUnitTemplateOnNodeGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNodeUnitTemplateOnNodeGroup, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NodeGroupNodeUnitTemplateInfo` and `DescribeNodeUnitTemplateOnNodeGroupResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroupPaginator(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNodeUnitTemplateOnNodeGroupRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNodeUnitTemplateOnNodeGroup, logger: logger, on: eventLoop)
+    }
 }

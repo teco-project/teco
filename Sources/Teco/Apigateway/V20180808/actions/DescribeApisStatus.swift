@@ -111,4 +111,30 @@ extension Apigateway {
         let input = DescribeApisStatusRequest(serviceId: serviceId, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询 API 接口列表
+    ///
+    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    @inlinable
+    public func describeApisStatusPaginated(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DesApisStatus])> {
+        self.client.paginate(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 接口列表
+    ///
+    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    @inlinable @discardableResult
+    public func describeApisStatusPaginated(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeApisStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeApisStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询 API 接口列表
+    ///
+    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DesApisStatus` and `DescribeApisStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApisStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
+    }
 }

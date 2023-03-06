@@ -121,4 +121,30 @@ extension Cwp {
         let input = DescribeProtectDirListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
         return try await self.client.execute(action: "DescribeProtectDirList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 防护目录列表
+    ///
+    /// 网页防篡改防护目录列表
+    @inlinable
+    public func describeProtectDirListPaginated(_ input: DescribeProtectDirListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProtectDirInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectDirList, logger: logger, on: eventLoop)
+    }
+
+    /// 防护目录列表
+    ///
+    /// 网页防篡改防护目录列表
+    @inlinable @discardableResult
+    public func describeProtectDirListPaginated(_ input: DescribeProtectDirListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProtectDirListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProtectDirList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 防护目录列表
+    ///
+    /// 网页防篡改防护目录列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtectDirInfo` and `DescribeProtectDirListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProtectDirListPaginator(_ input: DescribeProtectDirListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectDirListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectDirList, logger: logger, on: eventLoop)
+    }
 }

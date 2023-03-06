@@ -122,4 +122,30 @@ extension Vod {
         let input = DescribeImageProcessingTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeImageProcessingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageProcessingTemplatesPaginated(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImageProcessingTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeImageProcessingTemplatesPaginated(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageProcessingTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImageProcessingTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageProcessingTemplate` and `DescribeImageProcessingTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeImageProcessingTemplatesPaginator(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageProcessingTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
+    }
 }

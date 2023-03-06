@@ -135,4 +135,30 @@ extension Wss {
         let input = DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain)
         return try await self.client.execute(action: "DescribeCertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取证书列表
+    ///
+    /// 本接口(DescribeCertList)用于获取证书列表。
+    @inlinable
+    public func describeCertListPaginated(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SSLCertificate])> {
+        self.client.paginate(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书列表
+    ///
+    /// 本接口(DescribeCertList)用于获取证书列表。
+    @inlinable @discardableResult
+    public func describeCertListPaginated(_ input: DescribeCertListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCertListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCertList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取证书列表
+    ///
+    /// 本接口(DescribeCertList)用于获取证书列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SSLCertificate` and `DescribeCertListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCertListPaginator(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
+    }
 }

@@ -147,4 +147,39 @@ extension Cvm {
         let input = DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType)
         return try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable
+    public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Image])> {
+        self.client.paginate(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
+    }
+
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable @discardableResult
+    public func describeImagesPaginated(_ input: DescribeImagesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImagesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeImages, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Image` and `DescribeImagesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)
+    }
 }

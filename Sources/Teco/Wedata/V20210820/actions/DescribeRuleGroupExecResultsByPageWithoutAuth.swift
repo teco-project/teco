@@ -109,4 +109,24 @@ extension Wedata {
         let input = DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
         return try await self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 规则组执行结果分页查询接口不带鉴权
+    @inlinable
+    public func describeRuleGroupExecResultsByPageWithoutAuthPaginated(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RuleGroupExecResult])> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
+    }
+
+    /// 规则组执行结果分页查询接口不带鉴权
+    @inlinable @discardableResult
+    public func describeRuleGroupExecResultsByPageWithoutAuthPaginated(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRuleGroupExecResultsByPageWithoutAuthResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 规则组执行结果分页查询接口不带鉴权
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleGroupExecResult` and `DescribeRuleGroupExecResultsByPageWithoutAuthResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeRuleGroupExecResultsByPageWithoutAuthPaginator(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleGroupExecResultsByPageWithoutAuthRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
+    }
 }

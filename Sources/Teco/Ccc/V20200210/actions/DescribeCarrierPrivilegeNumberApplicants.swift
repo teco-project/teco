@@ -115,4 +115,30 @@ extension Ccc {
         let input = DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
         return try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicantsPaginated(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CarrierPrivilegeNumberApplicant])> {
+        self.client.paginate(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable @discardableResult
+    public func describeCarrierPrivilegeNumberApplicantsPaginated(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCarrierPrivilegeNumberApplicantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    ///
+    /// - Returns: `AsyncSequence`s of `CarrierPrivilegeNumberApplicant` and `DescribeCarrierPrivilegeNumberApplicantsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicantsPaginator(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCarrierPrivilegeNumberApplicantsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
+    }
 }

@@ -114,4 +114,24 @@ extension Cfw {
         let input = DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeNatFwVpcDnsLst", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable
+    public func describeNatFwVpcDnsLstPaginated(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [VpcDnsInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeNatFwVpcDnsLst, logger: logger, on: eventLoop)
+    }
+
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable @discardableResult
+    public func describeNatFwVpcDnsLstPaginated(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNatFwVpcDnsLstResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeNatFwVpcDnsLst, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 展示当前natfw 实例对应的vpc dns开关
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcDnsInfo` and `DescribeNatFwVpcDnsLstResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeNatFwVpcDnsLstPaginator(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwVpcDnsLstRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwVpcDnsLst, logger: logger, on: eventLoop)
+    }
 }

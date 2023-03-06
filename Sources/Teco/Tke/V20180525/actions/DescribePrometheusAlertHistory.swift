@@ -122,4 +122,24 @@ extension Tke {
         let input = DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribePrometheusAlertHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取告警历史
+    @inlinable
+    public func describePrometheusAlertHistoryPaginated(_ input: DescribePrometheusAlertHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusAlertHistoryItem])> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertHistory, logger: logger, on: eventLoop)
+    }
+
+    /// 获取告警历史
+    @inlinable @discardableResult
+    public func describePrometheusAlertHistoryPaginated(_ input: DescribePrometheusAlertHistoryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusAlertHistoryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describePrometheusAlertHistory, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取告警历史
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusAlertHistoryItem` and `DescribePrometheusAlertHistoryResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describePrometheusAlertHistoryPaginator(_ input: DescribePrometheusAlertHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertHistoryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertHistory, logger: logger, on: eventLoop)
+    }
 }

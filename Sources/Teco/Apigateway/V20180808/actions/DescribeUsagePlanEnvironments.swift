@@ -116,4 +116,33 @@ extension Apigateway {
         let input = DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeUsagePlanEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询使用计划绑定环境列表
+    ///
+    /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
+    /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
+    @inlinable
+    public func describeUsagePlanEnvironmentsPaginated(_ input: DescribeUsagePlanEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [UsagePlanEnvironment])> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlanEnvironments, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划绑定环境列表
+    ///
+    /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
+    /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
+    @inlinable @discardableResult
+    public func describeUsagePlanEnvironmentsPaginated(_ input: DescribeUsagePlanEnvironmentsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsagePlanEnvironmentsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeUsagePlanEnvironments, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询使用计划绑定环境列表
+    ///
+    /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
+    /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
+    ///
+    /// - Returns: `AsyncSequence`s of `UsagePlanEnvironment` and `DescribeUsagePlanEnvironmentsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeUsagePlanEnvironmentsPaginator(_ input: DescribeUsagePlanEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlanEnvironmentsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlanEnvironments, logger: logger, on: eventLoop)
+    }
 }

@@ -120,4 +120,30 @@ extension Dbbrain {
         let input = DescribeSqlFiltersRequest(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFiltersPaginated(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SQLFilter])> {
+        self.client.paginate(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable @discardableResult
+    public func describeSqlFiltersPaginated(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSqlFiltersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSqlFilters, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SQLFilter` and `DescribeSqlFiltersResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSqlFiltersPaginator(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlFiltersRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
+    }
 }

@@ -183,4 +183,30 @@ extension Cat {
         let input = DescribeProbeTasksRequest(taskIDs: taskIDs, taskName: taskName, targetAddress: targetAddress, taskStatus: taskStatus, offset: offset, limit: limit, payMode: payMode, orderState: orderState, taskType: taskType, taskCategory: taskCategory, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters)
         return try await self.client.execute(action: "DescribeProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 分页查询拨测任务列表
+    ///
+    /// 查询拨测任务列表
+    @inlinable
+    public func describeProbeTasksPaginated(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProbeTask])> {
+        self.client.paginate(input: input, region: region, command: self.describeProbeTasks, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询拨测任务列表
+    ///
+    /// 查询拨测任务列表
+    @inlinable @discardableResult
+    public func describeProbeTasksPaginated(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProbeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeProbeTasks, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询拨测任务列表
+    ///
+    /// 查询拨测任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProbeTask` and `DescribeProbeTasksResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeProbeTasksPaginator(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProbeTasksRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProbeTasks, logger: logger, on: eventLoop)
+    }
 }

@@ -124,4 +124,30 @@ extension Tcss {
         let input = DescribeAssetImageListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeAssetImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询镜像列表
+    ///
+    /// 容器安全搜索查询镜像列表
+    @inlinable
+    public func describeAssetImageListPaginated(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ImagesInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像列表
+    ///
+    /// 容器安全搜索查询镜像列表
+    @inlinable @discardableResult
+    public func describeAssetImageListPaginated(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetImageListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetImageList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询镜像列表
+    ///
+    /// 容器安全搜索查询镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImagesInfo` and `DescribeAssetImageListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetImageListPaginator(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageList, logger: logger, on: eventLoop)
+    }
 }

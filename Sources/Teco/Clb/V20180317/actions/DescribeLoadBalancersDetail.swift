@@ -131,4 +131,30 @@ extension Clb {
         let input = DescribeLoadBalancersDetailRequest(limit: limit, offset: offset, fields: fields, targetType: targetType, filters: filters)
         return try await self.client.execute(action: "DescribeLoadBalancersDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询负载均衡详细信息
+    ///
+    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    @inlinable
+    public func describeLoadBalancersDetailPaginated(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LoadBalancerDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
+    }
+
+    /// 查询负载均衡详细信息
+    ///
+    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    @inlinable @discardableResult
+    public func describeLoadBalancersDetailPaginated(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLoadBalancersDetailResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeLoadBalancersDetail, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询负载均衡详细信息
+    ///
+    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    ///
+    /// - Returns: `AsyncSequence`s of `LoadBalancerDetail` and `DescribeLoadBalancersDetailResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeLoadBalancersDetailPaginator(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersDetailRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
+    }
 }

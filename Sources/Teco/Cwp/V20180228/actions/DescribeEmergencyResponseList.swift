@@ -122,4 +122,30 @@ extension Cwp {
         let input = DescribeEmergencyResponseListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
         return try await self.client.execute(action: "DescribeEmergencyResponseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 应急响应列表
+    ///
+    /// 专家服务-应急响应列表
+    @inlinable
+    public func describeEmergencyResponseListPaginated(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EmergencyResponseInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)
+    }
+
+    /// 应急响应列表
+    ///
+    /// 专家服务-应急响应列表
+    @inlinable @discardableResult
+    public func describeEmergencyResponseListPaginated(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEmergencyResponseListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeEmergencyResponseList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 应急响应列表
+    ///
+    /// 专家服务-应急响应列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EmergencyResponseInfo` and `DescribeEmergencyResponseListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeEmergencyResponseListPaginator(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEmergencyResponseListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)
+    }
 }

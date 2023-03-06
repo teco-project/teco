@@ -115,4 +115,30 @@ extension Iotcloud {
         let input = ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productId: productId, filters: filters)
         return try await self.client.execute(action: "ListFirmwares", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表
+    @inlinable
+    public func listFirmwaresPaginated(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FirmwareInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listFirmwares, logger: logger, on: eventLoop)
+    }
+
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表
+    @inlinable @discardableResult
+    public func listFirmwaresPaginated(_ input: ListFirmwaresRequest, region: TCRegion? = nil, onResponse: @escaping (ListFirmwaresResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listFirmwares, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `FirmwareInfo` and `ListFirmwaresResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listFirmwaresPaginator(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFirmwaresRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFirmwares, logger: logger, on: eventLoop)
+    }
 }

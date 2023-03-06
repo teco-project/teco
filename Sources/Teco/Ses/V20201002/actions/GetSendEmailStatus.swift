@@ -120,4 +120,33 @@ extension Ses {
         let input = GetSendEmailStatusRequest(requestDate: requestDate, offset: offset, limit: limit, messageId: messageId, toEmailAddress: toEmailAddress)
         return try await self.client.execute(action: "GetSendEmailStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取邮件发送的状态（待废弃）
+    ///
+    /// 获取邮件发送状态。仅支持查询30天之内的数据
+    /// 默认接口请求频率限制：1次/秒
+    @inlinable
+    public func getSendEmailStatusPaginated(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [SendEmailStatus])> {
+        self.client.paginate(input: input, region: region, command: self.getSendEmailStatus, logger: logger, on: eventLoop)
+    }
+
+    /// 获取邮件发送的状态（待废弃）
+    ///
+    /// 获取邮件发送状态。仅支持查询30天之内的数据
+    /// 默认接口请求频率限制：1次/秒
+    @inlinable @discardableResult
+    public func getSendEmailStatusPaginated(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, onResponse: @escaping (GetSendEmailStatusResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getSendEmailStatus, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取邮件发送的状态（待废弃）
+    ///
+    /// 获取邮件发送状态。仅支持查询30天之内的数据
+    /// 默认接口请求频率限制：1次/秒
+    ///
+    /// - Returns: `AsyncSequence`s of `SendEmailStatus` and `GetSendEmailStatusResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getSendEmailStatusPaginator(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetSendEmailStatusRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getSendEmailStatus, logger: logger, on: eventLoop)
+    }
 }

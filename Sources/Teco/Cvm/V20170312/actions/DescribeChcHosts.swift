@@ -138,4 +138,39 @@ extension Cvm {
         let input = DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeChcHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询CHC物理服务器
+    ///
+    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+    ///
+    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeChcHostsPaginated(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ChcHost])> {
+        self.client.paginate(input: input, region: region, command: self.describeChcHosts, logger: logger, on: eventLoop)
+    }
+
+    /// 查询CHC物理服务器
+    ///
+    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+    ///
+    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable @discardableResult
+    public func describeChcHostsPaginated(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeChcHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeChcHosts, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询CHC物理服务器
+    ///
+    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+    ///
+    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    ///
+    /// - Returns: `AsyncSequence`s of `ChcHost` and `DescribeChcHostsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeChcHostsPaginator(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChcHostsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChcHosts, logger: logger, on: eventLoop)
+    }
 }

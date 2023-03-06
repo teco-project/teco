@@ -110,4 +110,30 @@ extension Mariadb {
         let input = DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
         return try await self.client.execute(action: "DescribeInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    @inlinable
+    public func describeInstanceNodeInfoPaginated(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [NodeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    @inlinable @discardableResult
+    public func describeInstanceNodeInfoPaginated(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceNodeInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeInstanceNodeInfo, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    ///
+    /// - Returns: `AsyncSequence`s of `NodeInfo` and `DescribeInstanceNodeInfoResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeInstanceNodeInfoPaginator(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceNodeInfoRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)
+    }
 }

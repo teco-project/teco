@@ -113,4 +113,24 @@ extension Cwp {
         let input = DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
         return try await self.client.execute(action: "DescribeAssetWebServiceProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取Web服务关联进程列表
+    @inlinable
+    public func describeAssetWebServiceProcessListPaginated(_ input: DescribeAssetWebServiceProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AssetAppProcessInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebServiceProcessList, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Web服务关联进程列表
+    @inlinable @discardableResult
+    public func describeAssetWebServiceProcessListPaginated(_ input: DescribeAssetWebServiceProcessListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetWebServiceProcessListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAssetWebServiceProcessList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取Web服务关联进程列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetAppProcessInfo` and `DescribeAssetWebServiceProcessListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAssetWebServiceProcessListPaginator(_ input: DescribeAssetWebServiceProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebServiceProcessListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebServiceProcessList, logger: logger, on: eventLoop)
+    }
 }

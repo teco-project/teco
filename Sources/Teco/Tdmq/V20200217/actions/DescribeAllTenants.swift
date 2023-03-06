@@ -127,4 +127,24 @@ extension Tdmq {
         let input = DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder)
         return try await self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenantsPaginated(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InternalTenant])> {
+        self.client.paginate(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个租户的虚拟集群列表
+    @inlinable @discardableResult
+    public func describeAllTenantsPaginated(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAllTenantsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeAllTenants, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取某个租户的虚拟集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `InternalTenant` and `DescribeAllTenantsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeAllTenantsPaginator(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllTenantsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
+    }
 }

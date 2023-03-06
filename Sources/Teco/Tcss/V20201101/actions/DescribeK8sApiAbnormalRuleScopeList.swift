@@ -109,4 +109,24 @@ extension Tcss {
         let input = DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters)
         return try await self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询k8sapi 异常规则中范围列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleScopeListPaginated(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [K8sApiAbnormalRuleScopeInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询k8sapi 异常规则中范围列表
+    @inlinable @discardableResult
+    public func describeK8sApiAbnormalRuleScopeListPaginated(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeK8sApiAbnormalRuleScopeListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询k8sapi 异常规则中范围列表
+    ///
+    /// - Returns: `AsyncSequence`s of `K8sApiAbnormalRuleScopeInfo` and `DescribeK8sApiAbnormalRuleScopeListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeK8sApiAbnormalRuleScopeListPaginator(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalRuleScopeListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)
+    }
 }

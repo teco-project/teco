@@ -130,4 +130,30 @@ extension Trp {
         let input = DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize)
         return try await self.client.execute(action: "DescribeTraceDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询溯源信息
+    ///
+    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
+    @inlinable
+    public func describeTraceDataListPaginated(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TraceData])> {
+        self.client.paginate(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询溯源信息
+    ///
+    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
+    @inlinable @discardableResult
+    public func describeTraceDataListPaginated(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTraceDataListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTraceDataList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询溯源信息
+    ///
+    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
+    ///
+    /// - Returns: `AsyncSequence`s of `TraceData` and `DescribeTraceDataListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTraceDataListPaginator(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTraceDataListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
+    }
 }

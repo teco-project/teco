@@ -125,4 +125,30 @@ extension Tcss {
         let input = DescribeComplianceWhitelistItemListRequest(offset: offset, limit: limit, assetTypeSet: assetTypeSet, filters: filters, by: by, order: order)
         return try await self.client.execute(action: "DescribeComplianceWhitelistItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable
+    public func describeComplianceWhitelistItemListPaginated(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ComplianceWhitelistItem])> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable @discardableResult
+    public func describeComplianceWhitelistItemListPaginated(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeComplianceWhitelistItemListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeComplianceWhitelistItemList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ComplianceWhitelistItem` and `DescribeComplianceWhitelistItemListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceWhitelistItemListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
+    }
 }

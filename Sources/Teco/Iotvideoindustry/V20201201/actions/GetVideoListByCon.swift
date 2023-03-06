@@ -137,4 +137,33 @@ extension Iotvideoindustry {
         let input = GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type)
         return try await self.client.execute(action: "GetVideoListByCon", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取通道录制文件列表（旧）
+    ///
+    /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
+    /// 请使用DescribeVideoListByChannel接口
+    @inlinable
+    public func getVideoListByConPaginated(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordTaskItem])> {
+        self.client.paginate(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通道录制文件列表（旧）
+    ///
+    /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
+    /// 请使用DescribeVideoListByChannel接口
+    @inlinable @discardableResult
+    public func getVideoListByConPaginated(_ input: GetVideoListByConRequest, region: TCRegion? = nil, onResponse: @escaping (GetVideoListByConResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.getVideoListByCon, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取通道录制文件列表（旧）
+    ///
+    /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
+    /// 请使用DescribeVideoListByChannel接口
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordTaskItem` and `GetVideoListByConResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func getVideoListByConPaginator(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetVideoListByConRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
+    }
 }

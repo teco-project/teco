@@ -117,4 +117,30 @@ extension Mps {
         let input = DescribeSampleSnapshotTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type)
         return try await self.client.execute(action: "DescribeSampleSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplatesPaginated(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SampleSnapshotTemplate])> {
+        self.client.paginate(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable @discardableResult
+    public func describeSampleSnapshotTemplatesPaginated(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSampleSnapshotTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeSampleSnapshotTemplates, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `SampleSnapshotTemplate` and `DescribeSampleSnapshotTemplatesResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeSampleSnapshotTemplatesPaginator(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSampleSnapshotTemplatesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
+    }
 }

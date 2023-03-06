@@ -133,4 +133,30 @@ extension Ses {
         let input = ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID)
         return try await self.client.execute(action: "ListBlackEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 获取黑名单邮箱地址
+    ///
+    /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
+    @inlinable
+    public func listBlackEmailAddressPaginated(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BlackEmailAddress])> {
+        self.client.paginate(input: input, region: region, command: self.listBlackEmailAddress, logger: logger, on: eventLoop)
+    }
+
+    /// 获取黑名单邮箱地址
+    ///
+    /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
+    @inlinable @discardableResult
+    public func listBlackEmailAddressPaginated(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, onResponse: @escaping (ListBlackEmailAddressResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listBlackEmailAddress, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 获取黑名单邮箱地址
+    ///
+    /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
+    ///
+    /// - Returns: `AsyncSequence`s of `BlackEmailAddress` and `ListBlackEmailAddressResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listBlackEmailAddressPaginator(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListBlackEmailAddressRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listBlackEmailAddress, logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,30 @@ extension Wav {
         let input = QueryDealerInfoListRequest(cursor: cursor, limit: limit)
         return try await self.client.execute(action: "QueryDealerInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+
+    /// 查询经销商信息列表接口
+    ///
+    /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
+    @inlinable
+    public func queryDealerInfoListPaginated(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DealerInfo])> {
+        self.client.paginate(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询经销商信息列表接口
+    ///
+    /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
+    @inlinable @discardableResult
+    public func queryDealerInfoListPaginated(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (QueryDealerInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.queryDealerInfoList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询经销商信息列表接口
+    ///
+    /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DealerInfo` and `QueryDealerInfoListResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func queryDealerInfoListPaginator(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryDealerInfoListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)
+    }
 }
