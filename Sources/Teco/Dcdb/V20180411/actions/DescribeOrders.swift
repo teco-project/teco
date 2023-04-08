@@ -68,8 +68,7 @@ extension Dcdb {
     /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        let input = DescribeOrdersRequest(dealNames: dealNames)
-        return self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
@@ -77,7 +76,6 @@ extension Dcdb {
     /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        let input = DescribeOrdersRequest(dealNames: dealNames)
-        return try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

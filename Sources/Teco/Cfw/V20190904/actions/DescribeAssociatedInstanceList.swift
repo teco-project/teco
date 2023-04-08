@@ -119,15 +119,13 @@ extension Cfw {
     /// 获取安全组关联实例列表
     @inlinable
     public func describeAssociatedInstanceList(offset: UInt64, limit: UInt64, area: String, searchValue: String? = nil, by: String? = nil, order: String? = nil, securityGroupId: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssociatedInstanceListResponse> {
-        let input = DescribeAssociatedInstanceListRequest(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type)
-        return self.client.execute(action: "DescribeAssociatedInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssociatedInstanceList(.init(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全组关联实例列表
     @inlinable
     public func describeAssociatedInstanceList(offset: UInt64, limit: UInt64, area: String, searchValue: String? = nil, by: String? = nil, order: String? = nil, securityGroupId: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssociatedInstanceListResponse {
-        let input = DescribeAssociatedInstanceListRequest(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type)
-        return try await self.client.execute(action: "DescribeAssociatedInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssociatedInstanceList(.init(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全组关联实例列表

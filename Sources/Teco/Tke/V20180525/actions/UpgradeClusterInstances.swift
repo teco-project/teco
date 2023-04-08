@@ -101,8 +101,7 @@ extension Tke {
     /// 给集群的一批work节点进行升级
     @inlinable @discardableResult
     public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, upgradeRunTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
-        let input = UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime)
-        return self.client.execute(action: "UpgradeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeClusterInstances(.init(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群节点升级
@@ -110,7 +109,6 @@ extension Tke {
     /// 给集群的一批work节点进行升级
     @inlinable @discardableResult
     public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, upgradeRunTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
-        let input = UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime)
-        return try await self.client.execute(action: "UpgradeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeClusterInstances(.init(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime), region: region, logger: logger, on: eventLoop)
     }
 }

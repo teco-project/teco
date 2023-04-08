@@ -64,8 +64,7 @@ extension Clb {
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
     public func describeLoadBalancerListByCertId(certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerListByCertIdResponse> {
-        let input = DescribeLoadBalancerListByCertIdRequest(certIds: certIds)
-        return self.client.execute(action: "DescribeLoadBalancerListByCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoadBalancerListByCertId(.init(certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据证书ID查询负载均衡
@@ -73,7 +72,6 @@ extension Clb {
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
     public func describeLoadBalancerListByCertId(certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
-        let input = DescribeLoadBalancerListByCertIdRequest(certIds: certIds)
-        return try await self.client.execute(action: "DescribeLoadBalancerListByCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoadBalancerListByCertId(.init(certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 }

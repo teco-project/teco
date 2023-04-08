@@ -58,14 +58,12 @@ extension Redis {
     /// 回收站实例立即下线
     @inlinable
     public func cleanUpInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanUpInstanceResponse> {
-        let input = CleanUpInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "CleanUpInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cleanUpInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回收站实例立即下线
     @inlinable
     public func cleanUpInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanUpInstanceResponse {
-        let input = CleanUpInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CleanUpInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cleanUpInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

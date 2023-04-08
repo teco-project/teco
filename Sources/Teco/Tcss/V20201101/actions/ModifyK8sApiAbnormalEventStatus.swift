@@ -64,14 +64,12 @@ extension Tcss {
     /// 修改k8sapi异常事件状态
     @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(eventIDSet: [UInt64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalEventStatusResponse> {
-        let input = ModifyK8sApiAbnormalEventStatusRequest(eventIDSet: eventIDSet, status: status, remark: remark)
-        return self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyK8sApiAbnormalEventStatus(.init(eventIDSet: eventIDSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常事件状态
     @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(eventIDSet: [UInt64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalEventStatusResponse {
-        let input = ModifyK8sApiAbnormalEventStatusRequest(eventIDSet: eventIDSet, status: status, remark: remark)
-        return try await self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyK8sApiAbnormalEventStatus(.init(eventIDSet: eventIDSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

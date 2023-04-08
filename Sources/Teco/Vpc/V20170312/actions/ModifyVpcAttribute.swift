@@ -80,8 +80,7 @@ extension Vpc {
     /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
     @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
-        let input = ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName)
-        return self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPC属性
@@ -89,7 +88,6 @@ extension Vpc {
     /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
     @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        let input = ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName)
-        return try await self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

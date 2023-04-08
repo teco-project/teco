@@ -117,14 +117,12 @@ extension Teo {
     /// 查询DDos攻击源信息
     @inlinable
     public func describeDDosAttackSourceEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackSourceEventResponse> {
-        let input = DescribeDDosAttackSourceEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area)
-        return self.client.execute(action: "DescribeDDosAttackSourceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDosAttackSourceEvent(.init(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDos攻击源信息
     @inlinable
     public func describeDDosAttackSourceEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackSourceEventResponse {
-        let input = DescribeDDosAttackSourceEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area)
-        return try await self.client.execute(action: "DescribeDDosAttackSourceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDosAttackSourceEvent(.init(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

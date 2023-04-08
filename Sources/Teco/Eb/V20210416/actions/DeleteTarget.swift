@@ -64,14 +64,12 @@ extension Eb {
     /// 删除事件目标
     @inlinable @discardableResult
     public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
-        let input = DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId)
-        return self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTarget(.init(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件目标
     @inlinable @discardableResult
     public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
-        let input = DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId)
-        return try await self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTarget(.init(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

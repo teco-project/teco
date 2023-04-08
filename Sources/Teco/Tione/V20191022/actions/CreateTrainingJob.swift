@@ -109,14 +109,12 @@ extension Tione {
     /// 创建训练任务
     @inlinable
     public func createTrainingJob(algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]? = nil, stoppingCondition: StoppingCondition? = nil, vpcConfig: VpcConfig? = nil, hyperParameters: String? = nil, envConfig: [EnvConfig]? = nil, roleName: String? = nil, retryWhenResourceInsufficient: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingJobResponse> {
-        let input = CreateTrainingJobRequest(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient)
-        return self.client.execute(action: "CreateTrainingJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTrainingJob(.init(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建训练任务
     @inlinable
     public func createTrainingJob(algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]? = nil, stoppingCondition: StoppingCondition? = nil, vpcConfig: VpcConfig? = nil, hyperParameters: String? = nil, envConfig: [EnvConfig]? = nil, roleName: String? = nil, retryWhenResourceInsufficient: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingJobResponse {
-        let input = CreateTrainingJobRequest(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient)
-        return try await self.client.execute(action: "CreateTrainingJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTrainingJob(.init(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -84,8 +84,7 @@ extension Mariadb {
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
     public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRenewalPriceResponse> {
-        let input = DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit)
-        return self.client.execute(action: "DescribeRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRenewalPrice(.init(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -93,7 +92,6 @@ extension Mariadb {
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
     public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
-        let input = DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit)
-        return try await self.client.execute(action: "DescribeRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRenewalPrice(.init(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

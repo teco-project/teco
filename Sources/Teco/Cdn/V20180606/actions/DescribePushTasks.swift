@@ -141,8 +141,7 @@ extension Cdn {
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
     public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushTasksResponse> {
-        let input = DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status)
-        return self.client.execute(action: "DescribePushTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePushTasks(.init(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预热历史查询
@@ -150,8 +149,7 @@ extension Cdn {
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
     public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
-        let input = DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status)
-        return try await self.client.execute(action: "DescribePushTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePushTasks(.init(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预热历史查询

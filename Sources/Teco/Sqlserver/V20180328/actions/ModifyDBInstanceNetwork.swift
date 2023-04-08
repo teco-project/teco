@@ -84,8 +84,7 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
     public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkResponse> {
-        let input = ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip)
-        return self.client.execute(action: "ModifyDBInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceNetwork(.init(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络
@@ -93,7 +92,6 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
     public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkResponse {
-        let input = ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip)
-        return try await self.client.execute(action: "ModifyDBInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceNetwork(.init(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 }

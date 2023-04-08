@@ -85,8 +85,7 @@ extension Tcss {
     /// 查询容器安全未处理事件信息
     @inlinable
     public func describeContainerSecEventSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerSecEventSummaryResponse> {
-        let input = DescribeContainerSecEventSummaryRequest()
-        return self.client.execute(action: "DescribeContainerSecEventSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeContainerSecEventSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全未处理事件概览
@@ -94,7 +93,6 @@ extension Tcss {
     /// 查询容器安全未处理事件信息
     @inlinable
     public func describeContainerSecEventSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerSecEventSummaryResponse {
-        let input = DescribeContainerSecEventSummaryRequest()
-        return try await self.client.execute(action: "DescribeContainerSecEventSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeContainerSecEventSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

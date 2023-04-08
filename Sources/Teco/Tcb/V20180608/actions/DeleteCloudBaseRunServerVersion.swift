@@ -84,14 +84,12 @@ extension Tcb {
     /// 删除服务版本
     @inlinable
     public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseRunServerVersionResponse> {
-        let input = DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark)
-        return self.client.execute(action: "DeleteCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCloudBaseRunServerVersion(.init(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务版本
     @inlinable
     public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
-        let input = DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark)
-        return try await self.client.execute(action: "DeleteCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCloudBaseRunServerVersion(.init(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 }

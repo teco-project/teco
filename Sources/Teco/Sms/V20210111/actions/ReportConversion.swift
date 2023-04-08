@@ -77,8 +77,7 @@ extension Sms {
     /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
     @inlinable
     public func reportConversion(smsSdkAppId: String, serialNo: String, conversionTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportConversionResponse> {
-        let input = ReportConversionRequest(smsSdkAppId: smsSdkAppId, serialNo: serialNo, conversionTime: conversionTime)
-        return self.client.execute(action: "ReportConversion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reportConversion(.init(smsSdkAppId: smsSdkAppId, serialNo: serialNo, conversionTime: conversionTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报转换率
@@ -87,7 +86,6 @@ extension Sms {
     /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
     @inlinable
     public func reportConversion(smsSdkAppId: String, serialNo: String, conversionTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportConversionResponse {
-        let input = ReportConversionRequest(smsSdkAppId: smsSdkAppId, serialNo: serialNo, conversionTime: conversionTime)
-        return try await self.client.execute(action: "ReportConversion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reportConversion(.init(smsSdkAppId: smsSdkAppId, serialNo: serialNo, conversionTime: conversionTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -81,8 +81,7 @@ extension Apigateway {
     /// 如果当前环境没有发布，不允许进行此操作。
     @inlinable
     public func demoteServiceUsagePlan(usagePlanId: String, serviceId: String, environment: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DemoteServiceUsagePlanResponse> {
-        let input = DemoteServiceUsagePlanRequest(usagePlanId: usagePlanId, serviceId: serviceId, environment: environment)
-        return self.client.execute(action: "DemoteServiceUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.demoteServiceUsagePlan(.init(usagePlanId: usagePlanId, serviceId: serviceId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务级别使用计划降级
@@ -92,7 +91,6 @@ extension Apigateway {
     /// 如果当前环境没有发布，不允许进行此操作。
     @inlinable
     public func demoteServiceUsagePlan(usagePlanId: String, serviceId: String, environment: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DemoteServiceUsagePlanResponse {
-        let input = DemoteServiceUsagePlanRequest(usagePlanId: usagePlanId, serviceId: serviceId, environment: environment)
-        return try await self.client.execute(action: "DemoteServiceUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.demoteServiceUsagePlan(.init(usagePlanId: usagePlanId, serviceId: serviceId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

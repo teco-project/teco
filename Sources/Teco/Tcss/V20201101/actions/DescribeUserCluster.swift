@@ -109,8 +109,7 @@ extension Tcss {
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
     public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
-        let input = DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserCluster(.init(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户集群资产查询
@@ -118,8 +117,7 @@ extension Tcss {
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
     public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
-        let input = DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserCluster(.init(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户集群资产查询

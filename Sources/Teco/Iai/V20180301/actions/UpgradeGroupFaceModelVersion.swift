@@ -75,8 +75,7 @@ extension Iai {
     /// 注：此处QPS限制为10。
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        let input = UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion)
-        return self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeGroupFaceModelVersion(.init(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级
@@ -86,7 +85,6 @@ extension Iai {
     /// 注：此处QPS限制为10。
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        let input = UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion)
-        return try await self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeGroupFaceModelVersion(.init(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

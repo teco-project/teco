@@ -114,8 +114,7 @@ extension Dbbrain {
     /// 查询关系型数据库的实时线程列表。
     @inlinable
     public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMySqlProcessListResponse> {
-        let input = DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product)
-        return self.client.execute(action: "DescribeMySqlProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMySqlProcessList(.init(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时线程列表
@@ -123,7 +122,6 @@ extension Dbbrain {
     /// 查询关系型数据库的实时线程列表。
     @inlinable
     public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMySqlProcessListResponse {
-        let input = DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product)
-        return try await self.client.execute(action: "DescribeMySqlProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMySqlProcessList(.init(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -81,8 +81,7 @@ extension Essbasic {
     /// 查询出证报告，返回报告 URL。
     @inlinable
     public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelFlowEvidenceReportResponse> {
-        let input = DescribeChannelFlowEvidenceReportRequest(agent: agent, reportId: reportId, operator: `operator`)
-        return self.client.execute(action: "DescribeChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
@@ -90,7 +89,6 @@ extension Essbasic {
     /// 查询出证报告，返回报告 URL。
     @inlinable
     public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
-        let input = DescribeChannelFlowEvidenceReportRequest(agent: agent, reportId: reportId, operator: `operator`)
-        return try await self.client.execute(action: "DescribeChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

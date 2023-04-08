@@ -109,15 +109,13 @@ extension Pts {
     /// 查询文件列表
     @inlinable
     public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFilesResponse> {
-        let input = DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind)
-        return self.client.execute(action: "DescribeFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFiles(.init(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件列表
     @inlinable
     public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
-        let input = DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind)
-        return try await self.client.execute(action: "DescribeFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFiles(.init(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件列表

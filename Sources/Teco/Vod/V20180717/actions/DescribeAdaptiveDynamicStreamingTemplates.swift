@@ -110,8 +110,7 @@ extension Vod {
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
     public func describeAdaptiveDynamicStreamingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAdaptiveDynamicStreamingTemplatesResponse> {
-        let input = DescribeAdaptiveDynamicStreamingTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
-        return self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAdaptiveDynamicStreamingTemplates(.init(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转自适应码流模板列表
@@ -119,8 +118,7 @@ extension Vod {
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
     public func describeAdaptiveDynamicStreamingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
-        let input = DescribeAdaptiveDynamicStreamingTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
-        return try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAdaptiveDynamicStreamingTemplates(.init(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转自适应码流模板列表

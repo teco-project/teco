@@ -64,8 +64,7 @@ extension Mongodb {
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
     public func describeSpecInfo(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
-        let input = DescribeSpecInfoRequest(zone: zone)
-        return self.client.execute(action: "DescribeSpecInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSpecInfo(.init(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库的售卖规格
@@ -73,7 +72,6 @@ extension Mongodb {
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
     public func describeSpecInfo(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
-        let input = DescribeSpecInfoRequest(zone: zone)
-        return try await self.client.execute(action: "DescribeSpecInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSpecInfo(.init(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

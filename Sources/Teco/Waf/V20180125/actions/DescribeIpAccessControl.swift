@@ -114,14 +114,12 @@ extension Waf {
     /// Waf ip黑白名单查询
     @inlinable
     public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpAccessControlResponse> {
-        let input = DescribeIpAccessControlRequest(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip)
-        return self.client.execute(action: "DescribeIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf ip黑白名单查询
     @inlinable
     public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
-        let input = DescribeIpAccessControlRequest(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip)
-        return try await self.client.execute(action: "DescribeIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

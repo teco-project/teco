@@ -59,14 +59,12 @@ extension Eiam {
     /// 账号组添加账号
     @inlinable @discardableResult
     public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAccountToAccountGroupResponse> {
-        let input = AddAccountToAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds)
-        return self.client.execute(action: "AddAccountToAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addAccountToAccountGroup(.init(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 账号组添加账号
     @inlinable @discardableResult
     public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
-        let input = AddAccountToAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds)
-        return try await self.client.execute(action: "AddAccountToAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addAccountToAccountGroup(.init(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Iotcloud {
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
-        let input = BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey)
-        return self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子设备
@@ -89,7 +88,6 @@ extension Iotcloud {
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
-        let input = BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey)
-        return try await self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -56,8 +56,7 @@ extension Cim {
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
     public func describeSdkAppid(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSdkAppidResponse> {
-        let input = DescribeSdkAppidRequest()
-        return self.client.execute(action: "DescribeSdkAppid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSdkAppid(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云通信 IM 的 SDKAppid
@@ -65,7 +64,6 @@ extension Cim {
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
     public func describeSdkAppid(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
-        let input = DescribeSdkAppidRequest()
-        return try await self.client.execute(action: "DescribeSdkAppid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSdkAppid(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

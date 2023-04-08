@@ -70,8 +70,7 @@ extension Kms {
     /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
     @inlinable @discardableResult
     public func bindCloudResource(keyId: String, productId: String, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindCloudResourceResponse> {
-        let input = BindCloudResourceRequest(keyId: keyId, productId: productId, resourceId: resourceId)
-        return self.client.execute(action: "BindCloudResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindCloudResource(.init(keyId: keyId, productId: productId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定密钥和云产品资源的使用关系
@@ -79,7 +78,6 @@ extension Kms {
     /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
     @inlinable @discardableResult
     public func bindCloudResource(keyId: String, productId: String, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudResourceResponse {
-        let input = BindCloudResourceRequest(keyId: keyId, productId: productId, resourceId: resourceId)
-        return try await self.client.execute(action: "BindCloudResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindCloudResource(.init(keyId: keyId, productId: productId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

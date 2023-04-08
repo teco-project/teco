@@ -107,8 +107,7 @@ extension Ticm {
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
     public func describeVideoTask(vodTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoTaskResponse> {
-        let input = DescribeVideoTaskRequest(vodTaskId: vodTaskId)
-        return self.client.execute(action: "DescribeVideoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVideoTask(.init(vodTaskId: vodTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频内容审核的结果
@@ -116,7 +115,6 @@ extension Ticm {
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
     public func describeVideoTask(vodTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
-        let input = DescribeVideoTaskRequest(vodTaskId: vodTaskId)
-        return try await self.client.execute(action: "DescribeVideoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVideoTask(.init(vodTaskId: vodTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -84,8 +84,7 @@ extension Cfw {
     /// DescribeBlockStaticList 告警中心柱形图
     @inlinable
     public func describeBlockStaticList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockStaticListResponse> {
-        let input = DescribeBlockStaticListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue)
-        return self.client.execute(action: "DescribeBlockStaticList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBlockStaticList(.init(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警中心柱形图
@@ -93,7 +92,6 @@ extension Cfw {
     /// DescribeBlockStaticList 告警中心柱形图
     @inlinable
     public func describeBlockStaticList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockStaticListResponse {
-        let input = DescribeBlockStaticListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue)
-        return try await self.client.execute(action: "DescribeBlockStaticList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBlockStaticList(.init(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 }

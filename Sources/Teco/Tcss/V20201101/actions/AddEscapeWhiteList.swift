@@ -66,14 +66,12 @@ extension Tcss {
     /// 新增逃逸白名单
     @inlinable @discardableResult
     public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
-        let input = AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs)
-        return self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addEscapeWhiteList(.init(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增逃逸白名单
     @inlinable @discardableResult
     public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
-        let input = AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs)
-        return try await self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addEscapeWhiteList(.init(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }
 }

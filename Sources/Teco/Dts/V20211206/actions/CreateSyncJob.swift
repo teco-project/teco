@@ -119,8 +119,7 @@ extension Dts {
     /// 创建一个同步任务
     @inlinable
     public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSyncJobResponse> {
-        let input = CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId)
-        return self.client.execute(action: "CreateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSyncJob(.init(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建同步任务
@@ -128,7 +127,6 @@ extension Dts {
     /// 创建一个同步任务
     @inlinable
     public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSyncJobResponse {
-        let input = CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId)
-        return try await self.client.execute(action: "CreateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSyncJob(.init(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), region: region, logger: logger, on: eventLoop)
     }
 }

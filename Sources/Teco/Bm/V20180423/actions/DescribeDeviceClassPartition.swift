@@ -104,8 +104,7 @@ extension Bm {
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
     @inlinable
     public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassPartitionResponse> {
-        let input = DescribeDeviceClassPartitionRequest(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount)
-        return self.client.execute(action: "DescribeDeviceClassPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceClassPartition(.init(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机型RAID方式以及系统盘大小
@@ -113,7 +112,6 @@ extension Bm {
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
     @inlinable
     public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassPartitionResponse {
-        let input = DescribeDeviceClassPartitionRequest(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount)
-        return try await self.client.execute(action: "DescribeDeviceClassPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceClassPartition(.init(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), region: region, logger: logger, on: eventLoop)
     }
 }

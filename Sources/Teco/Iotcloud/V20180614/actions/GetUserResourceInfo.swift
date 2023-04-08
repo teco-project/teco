@@ -60,8 +60,7 @@ extension Iotcloud {
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
     public func getUserResourceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResourceInfoResponse> {
-        let input = GetUserResourceInfoRequest()
-        return self.client.execute(action: "GetUserResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getUserResourceInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户资源信息
@@ -69,7 +68,6 @@ extension Iotcloud {
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
     public func getUserResourceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
-        let input = GetUserResourceInfoRequest()
-        return try await self.client.execute(action: "GetUserResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getUserResourceInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

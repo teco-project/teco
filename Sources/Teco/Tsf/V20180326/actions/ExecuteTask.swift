@@ -58,14 +58,12 @@ extension Tsf {
     /// 手动执行一次任务。
     @inlinable
     public func executeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
-        let input = ExecuteTaskRequest(taskId: taskId)
-        return self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.executeTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手动执行一次任务。
     @inlinable
     public func executeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
-        let input = ExecuteTaskRequest(taskId: taskId)
-        return try await self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.executeTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -98,8 +98,7 @@ extension Cpdp {
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
     public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOpenBankAccountResponse> {
-        let input = VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment)
-        return self.client.execute(action: "VerifyOpenBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyOpenBankAccount(.init(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡打款验证
@@ -107,7 +106,6 @@ extension Cpdp {
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
     public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
-        let input = VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment)
-        return try await self.client.execute(action: "VerifyOpenBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyOpenBankAccount(.init(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

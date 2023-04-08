@@ -74,8 +74,7 @@ extension Scf {
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
     public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionEventInvokeConfigResponse> {
-        let input = GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
-        return self.client.execute(action: "GetFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getFunctionEventInvokeConfig(.init(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数异步重试配置
@@ -83,7 +82,6 @@ extension Scf {
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
     public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
-        let input = GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
-        return try await self.client.execute(action: "GetFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getFunctionEventInvokeConfig(.init(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

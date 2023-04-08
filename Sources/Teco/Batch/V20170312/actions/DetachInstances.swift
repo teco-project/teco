@@ -65,8 +65,7 @@ extension Batch {
     /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
     @inlinable @discardableResult
     public func detachInstances(envId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachInstancesResponse> {
-        let input = DetachInstancesRequest(envId: envId, instanceIds: instanceIds)
-        return self.client.execute(action: "DetachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachInstances(.init(envId: envId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从计算环境移出实例
@@ -74,7 +73,6 @@ extension Batch {
     /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
     @inlinable @discardableResult
     public func detachInstances(envId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
-        let input = DetachInstancesRequest(envId: envId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "DetachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachInstances(.init(envId: envId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

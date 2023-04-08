@@ -106,15 +106,13 @@ extension Tcss {
     /// 镜像仓库查询木马病毒列表
     @inlinable
     public func describeAssetImageRegistryVirusList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVirusListResponse> {
-        let input = DescribeAssetImageRegistryVirusListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
-        return self.client.execute(action: "DescribeAssetImageRegistryVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryVirusList(.init(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询木马病毒列表
     @inlinable
     public func describeAssetImageRegistryVirusList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVirusListResponse {
-        let input = DescribeAssetImageRegistryVirusListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryVirusList(.init(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询木马病毒列表

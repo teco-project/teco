@@ -91,8 +91,7 @@ extension Ocr {
     /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
     @inlinable
     public func mixedInvoiceDetect(returnImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceDetectResponse> {
-        let input = MixedInvoiceDetectRequest(returnImage: returnImage, imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return self.client.execute(action: "MixedInvoiceDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.mixedInvoiceDetect(.init(returnImage: returnImage, imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 混贴票据分类
@@ -100,7 +99,6 @@ extension Ocr {
     /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
     @inlinable
     public func mixedInvoiceDetect(returnImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceDetectResponse {
-        let input = MixedInvoiceDetectRequest(returnImage: returnImage, imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return try await self.client.execute(action: "MixedInvoiceDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.mixedInvoiceDetect(.init(returnImage: returnImage, imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

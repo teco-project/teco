@@ -71,8 +71,7 @@ extension Cvm {
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
     public func describeAccountQuota(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
-        let input = DescribeAccountQuotaRequest(filters: filters)
-        return self.client.execute(action: "DescribeAccountQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccountQuota(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户配额详情
@@ -80,7 +79,6 @@ extension Cvm {
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
     public func describeAccountQuota(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
-        let input = DescribeAccountQuotaRequest(filters: filters)
-        return try await self.client.execute(action: "DescribeAccountQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccountQuota(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

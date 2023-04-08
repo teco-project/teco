@@ -89,14 +89,12 @@ extension Tke {
     /// 更新容器实例
     @inlinable
     public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
-        let input = UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials)
-        return self.client.execute(action: "UpdateEKSContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateEKSContainerInstance(.init(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新容器实例
     @inlinable
     public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
-        let input = UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials)
-        return try await self.client.execute(action: "UpdateEKSContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateEKSContainerInstance(.init(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), region: region, logger: logger, on: eventLoop)
     }
 }

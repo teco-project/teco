@@ -115,8 +115,7 @@ extension Clb {
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
     public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigListResponse> {
-        let input = DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters)
-        return self.client.execute(action: "DescribeCustomizedConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCustomizedConfigList(.init(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置列表
@@ -124,8 +123,7 @@ extension Clb {
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
     public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
-        let input = DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters)
-        return try await self.client.execute(action: "DescribeCustomizedConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCustomizedConfigList(.init(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置列表

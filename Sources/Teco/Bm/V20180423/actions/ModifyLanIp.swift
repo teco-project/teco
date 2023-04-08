@@ -78,14 +78,12 @@ extension Bm {
     /// 修改物理机内网IP（不重装系统）
     @inlinable
     public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLanIpResponse> {
-        let input = ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice)
-        return self.client.execute(action: "ModifyLanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLanIp(.init(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改物理机内网IP（不重装系统）
     @inlinable
     public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
-        let input = ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice)
-        return try await self.client.execute(action: "ModifyLanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLanIp(.init(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), region: region, logger: logger, on: eventLoop)
     }
 }

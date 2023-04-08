@@ -60,8 +60,7 @@ extension As {
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable @discardableResult
     public func deleteLifecycleHook(lifecycleHookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
-        let input = DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId)
-        return self.client.execute(action: "DeleteLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLifecycleHook(.init(lifecycleHookId: lifecycleHookId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除生命周期挂钩
@@ -69,7 +68,6 @@ extension As {
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable @discardableResult
     public func deleteLifecycleHook(lifecycleHookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
-        let input = DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId)
-        return try await self.client.execute(action: "DeleteLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLifecycleHook(.init(lifecycleHookId: lifecycleHookId), region: region, logger: logger, on: eventLoop)
     }
 }

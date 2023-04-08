@@ -74,8 +74,7 @@ extension Wedata {
     /// 质量报告-修改维度权限
     @inlinable
     public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDimensionWeightResponse> {
-        let input = ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh)
-        return self.client.execute(action: "ModifyDimensionWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDimensionWeight(.init(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改维度权重
@@ -83,7 +82,6 @@ extension Wedata {
     /// 质量报告-修改维度权限
     @inlinable
     public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
-        let input = ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh)
-        return try await self.client.execute(action: "ModifyDimensionWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDimensionWeight(.init(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), region: region, logger: logger, on: eventLoop)
     }
 }

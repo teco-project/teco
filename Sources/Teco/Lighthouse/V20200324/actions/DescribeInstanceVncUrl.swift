@@ -100,8 +100,7 @@ extension Lighthouse {
     /// ```
     @inlinable
     public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
-        let input = DescribeInstanceVncUrlRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceVncUrl(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例管理终端地址
@@ -121,7 +120,6 @@ extension Lighthouse {
     /// ```
     @inlinable
     public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
-        let input = DescribeInstanceVncUrlRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceVncUrl(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

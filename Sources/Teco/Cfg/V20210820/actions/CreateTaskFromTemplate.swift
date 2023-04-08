@@ -63,14 +63,12 @@ extension Cfg {
     /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(templateId: UInt64, taskConfig: TaskConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFromTemplateResponse> {
-        let input = CreateTaskFromTemplateRequest(templateId: templateId, taskConfig: taskConfig)
-        return self.client.execute(action: "CreateTaskFromTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTaskFromTemplate(.init(templateId: templateId, taskConfig: taskConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(templateId: UInt64, taskConfig: TaskConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {
-        let input = CreateTaskFromTemplateRequest(templateId: templateId, taskConfig: taskConfig)
-        return try await self.client.execute(action: "CreateTaskFromTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTaskFromTemplate(.init(templateId: templateId, taskConfig: taskConfig), region: region, logger: logger, on: eventLoop)
     }
 }

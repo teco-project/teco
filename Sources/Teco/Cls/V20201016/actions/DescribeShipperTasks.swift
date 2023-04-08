@@ -69,14 +69,12 @@ extension Cls {
     /// 获取投递任务列表
     @inlinable
     public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShipperTasksResponse> {
-        let input = DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeShipperTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeShipperTasks(.init(shipperId: shipperId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取投递任务列表
     @inlinable
     public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
-        let input = DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeShipperTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeShipperTasks(.init(shipperId: shipperId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

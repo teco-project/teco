@@ -65,8 +65,7 @@ extension Tcss {
     /// 添加编辑运行时异常进程策略
     @inlinable @discardableResult
     public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAbnormalProcessRuleResponse> {
-        let input = AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId)
-        return self.client.execute(action: "AddEditAbnormalProcessRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addEditAbnormalProcessRule(.init(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑异常进程策略
@@ -74,7 +73,6 @@ extension Tcss {
     /// 添加编辑运行时异常进程策略
     @inlinable @discardableResult
     public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
-        let input = AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId)
-        return try await self.client.execute(action: "AddEditAbnormalProcessRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addEditAbnormalProcessRule(.init(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

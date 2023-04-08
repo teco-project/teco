@@ -63,14 +63,12 @@ extension Tcr {
     /// 查询实例内网访问VPC链接
     @inlinable
     public func describeInternalEndpoints(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointsResponse> {
-        let input = DescribeInternalEndpointsRequest(registryId: registryId)
-        return self.client.execute(action: "DescribeInternalEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInternalEndpoints(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例内网访问VPC链接
     @inlinable
     public func describeInternalEndpoints(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointsResponse {
-        let input = DescribeInternalEndpointsRequest(registryId: registryId)
-        return try await self.client.execute(action: "DescribeInternalEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInternalEndpoints(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

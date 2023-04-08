@@ -78,14 +78,12 @@ extension Dnspod {
     /// 获取任务详情
     @inlinable
     public func describeBatchTask(jobId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskResponse> {
-        let input = DescribeBatchTaskRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBatchTask(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务详情
     @inlinable
     public func describeBatchTask(jobId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
-        let input = DescribeBatchTaskRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBatchTask(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

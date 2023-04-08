@@ -114,14 +114,12 @@ extension Iecp {
     /// 获取单元可视化配置信息
     @inlinable
     public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationVisualizationResponse> {
-        let input = DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeUnitApplicationVisualization(.init(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单元可视化配置信息
     @inlinable
     public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
-        let input = DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return try await self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeUnitApplicationVisualization(.init(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -116,8 +116,7 @@ extension Tcss {
     /// 镜像仓库镜像仓库列表
     @inlinable
     public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
-        let input = DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest)
-        return self.client.execute(action: "DescribeAssetImageRegistryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表
@@ -125,8 +124,7 @@ extension Tcss {
     /// 镜像仓库镜像仓库列表
     @inlinable
     public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
-        let input = DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表

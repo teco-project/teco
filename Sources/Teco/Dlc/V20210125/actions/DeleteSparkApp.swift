@@ -54,14 +54,12 @@ extension Dlc {
     /// 删除spark应用
     @inlinable @discardableResult
     public func deleteSparkApp(appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSparkAppResponse> {
-        let input = DeleteSparkAppRequest(appName: appName)
-        return self.client.execute(action: "DeleteSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSparkApp(.init(appName: appName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除spark应用
     @inlinable @discardableResult
     public func deleteSparkApp(appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
-        let input = DeleteSparkAppRequest(appName: appName)
-        return try await self.client.execute(action: "DeleteSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSparkApp(.init(appName: appName), region: region, logger: logger, on: eventLoop)
     }
 }

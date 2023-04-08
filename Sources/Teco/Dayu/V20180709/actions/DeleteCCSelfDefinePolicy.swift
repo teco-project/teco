@@ -68,14 +68,12 @@ extension Dayu {
     /// 删除CC自定义策略
     @inlinable
     public func deleteCCSelfDefinePolicy(business: String, id: String, setId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCSelfDefinePolicyResponse> {
-        let input = DeleteCCSelfDefinePolicyRequest(business: business, id: id, setId: setId)
-        return self.client.execute(action: "DeleteCCSelfDefinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCCSelfDefinePolicy(.init(business: business, id: id, setId: setId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC自定义策略
     @inlinable
     public func deleteCCSelfDefinePolicy(business: String, id: String, setId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCSelfDefinePolicyResponse {
-        let input = DeleteCCSelfDefinePolicyRequest(business: business, id: id, setId: setId)
-        return try await self.client.execute(action: "DeleteCCSelfDefinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCCSelfDefinePolicy(.init(business: business, id: id, setId: setId), region: region, logger: logger, on: eventLoop)
     }
 }

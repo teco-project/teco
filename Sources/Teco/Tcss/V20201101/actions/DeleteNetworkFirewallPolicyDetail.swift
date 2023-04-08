@@ -67,14 +67,12 @@ extension Tcss {
     /// 容器网络创建网络策略删除任务
     @inlinable
     public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkFirewallPolicyDetailResponse> {
-        let input = DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id)
-        return self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNetworkFirewallPolicyDetail(.init(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略删除任务
     @inlinable
     public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
-        let input = DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id)
-        return try await self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNetworkFirewallPolicyDetail(.init(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

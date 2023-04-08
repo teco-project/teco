@@ -60,8 +60,7 @@ extension Cws {
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable @discardableResult
     public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
-        let input = ModifyConfigAttributeRequest(noticeLevel: noticeLevel)
-        return self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyConfigAttribute(.init(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户配置的属性
@@ -69,7 +68,6 @@ extension Cws {
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable @discardableResult
     public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
-        let input = ModifyConfigAttributeRequest(noticeLevel: noticeLevel)
-        return try await self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyConfigAttribute(.init(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }
 }

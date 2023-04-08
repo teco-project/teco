@@ -59,14 +59,12 @@ extension Eiam {
     /// 从用户组中移除用户
     @inlinable @discardableResult
     public func removeUserFromUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromUserGroupResponse> {
-        let input = RemoveUserFromUserGroupRequest(userIds: userIds, userGroupId: userGroupId)
-        return self.client.execute(action: "RemoveUserFromUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeUserFromUserGroup(.init(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从用户组中移除用户
     @inlinable @discardableResult
     public func removeUserFromUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromUserGroupResponse {
-        let input = RemoveUserFromUserGroupRequest(userIds: userIds, userGroupId: userGroupId)
-        return try await self.client.execute(action: "RemoveUserFromUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeUserFromUserGroup(.init(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

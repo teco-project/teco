@@ -117,8 +117,7 @@ extension Dnspod {
     /// DNSPod商品下单
     @inlinable
     public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDealResponse> {
-        let input = CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType)
-        return self.client.execute(action: "CreateDeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDeal(.init(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 商品下单
@@ -126,7 +125,6 @@ extension Dnspod {
     /// DNSPod商品下单
     @inlinable
     public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
-        let input = CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType)
-        return try await self.client.execute(action: "CreateDeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDeal(.init(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), region: region, logger: logger, on: eventLoop)
     }
 }

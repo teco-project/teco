@@ -59,14 +59,12 @@ extension Msp {
     /// 更改迁移任务所属项目
     @inlinable @discardableResult
     public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskBelongToProjectResponse> {
-        let input = ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId)
-        return self.client.execute(action: "ModifyMigrationTaskBelongToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMigrationTaskBelongToProject(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改迁移任务所属项目
     @inlinable @discardableResult
     public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
-        let input = ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId)
-        return try await self.client.execute(action: "ModifyMigrationTaskBelongToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMigrationTaskBelongToProject(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

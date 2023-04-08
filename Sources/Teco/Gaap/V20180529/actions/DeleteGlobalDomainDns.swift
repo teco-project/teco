@@ -60,8 +60,7 @@ extension Gaap {
     /// 删除域名的某条解析记录
     @inlinable @discardableResult
     public func deleteGlobalDomainDns(dnsRecordId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainDnsResponse> {
-        let input = DeleteGlobalDomainDnsRequest(dnsRecordId: dnsRecordId)
-        return self.client.execute(action: "DeleteGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteGlobalDomainDns(.init(dnsRecordId: dnsRecordId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名解析记录
@@ -69,7 +68,6 @@ extension Gaap {
     /// 删除域名的某条解析记录
     @inlinable @discardableResult
     public func deleteGlobalDomainDns(dnsRecordId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
-        let input = DeleteGlobalDomainDnsRequest(dnsRecordId: dnsRecordId)
-        return try await self.client.execute(action: "DeleteGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteGlobalDomainDns(.init(dnsRecordId: dnsRecordId), region: region, logger: logger, on: eventLoop)
     }
 }

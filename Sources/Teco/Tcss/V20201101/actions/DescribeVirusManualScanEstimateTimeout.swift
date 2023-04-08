@@ -72,14 +72,12 @@ extension Tcss {
     /// 查询木马一键检测预估超时时间
     @inlinable
     public func describeVirusManualScanEstimateTimeout(scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusManualScanEstimateTimeoutResponse> {
-        let input = DescribeVirusManualScanEstimateTimeoutRequest(scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds)
-        return self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusManualScanEstimateTimeout(.init(scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马一键检测预估超时时间
     @inlinable
     public func describeVirusManualScanEstimateTimeout(scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusManualScanEstimateTimeoutResponse {
-        let input = DescribeVirusManualScanEstimateTimeoutRequest(scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds)
-        return try await self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusManualScanEstimateTimeout(.init(scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds), region: region, logger: logger, on: eventLoop)
     }
 }

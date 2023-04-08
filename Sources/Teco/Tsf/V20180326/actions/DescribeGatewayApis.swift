@@ -98,15 +98,13 @@ extension Tsf {
     /// 查询API分组下的Api列表信息
     @inlinable
     public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayApisResponse> {
-        let input = DescribeGatewayApisRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId)
-        return self.client.execute(action: "DescribeGatewayApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API分组下的Api列表信息
     @inlinable
     public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayApisResponse {
-        let input = DescribeGatewayApisRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId)
-        return try await self.client.execute(action: "DescribeGatewayApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API分组下的Api列表信息

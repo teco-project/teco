@@ -94,15 +94,13 @@ extension Cpdp {
     /// 智慧零售-查询管理端商户
     @inlinable
     public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantInfoForManagementResponse> {
-        let input = QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile)
-        return self.client.execute(action: "QueryMerchantInfoForManagement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMerchantInfoForManagement(.init(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询管理端商户
     @inlinable
     public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
-        let input = QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile)
-        return try await self.client.execute(action: "QueryMerchantInfoForManagement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMerchantInfoForManagement(.init(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询管理端商户

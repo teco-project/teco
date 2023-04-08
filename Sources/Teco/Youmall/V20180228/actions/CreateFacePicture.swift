@@ -97,8 +97,7 @@ extension Youmall {
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
     public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFacePictureResponse> {
-        let input = CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload)
-        return self.client.execute(action: "CreateFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFacePicture(.init(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传人脸图片
@@ -106,7 +105,6 @@ extension Youmall {
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
     public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
-        let input = CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload)
-        return try await self.client.execute(action: "CreateFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFacePicture(.init(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), region: region, logger: logger, on: eventLoop)
     }
 }

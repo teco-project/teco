@@ -68,8 +68,7 @@ extension Vpc {
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable @discardableResult
     public func enableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCcnRoutesResponse> {
-        let input = EnableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds)
-        return self.client.execute(action: "EnableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用云联网路由
@@ -78,7 +77,6 @@ extension Vpc {
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable @discardableResult
     public func enableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCcnRoutesResponse {
-        let input = EnableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds)
-        return try await self.client.execute(action: "EnableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

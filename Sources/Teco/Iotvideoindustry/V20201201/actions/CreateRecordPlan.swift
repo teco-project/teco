@@ -87,8 +87,7 @@ extension Iotvideoindustry {
     /// 请使用CreateRecordingPlan代替
     @inlinable
     public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordPlanResponse> {
-        let input = CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime)
-        return self.client.execute(action: "CreateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRecordPlan(.init(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划（旧）
@@ -97,7 +96,6 @@ extension Iotvideoindustry {
     /// 请使用CreateRecordingPlan代替
     @inlinable
     public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
-        let input = CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime)
-        return try await self.client.execute(action: "CreateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRecordPlan(.init(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Bmvpc {
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
-        let input = DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName)
-        return self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadCustomerGatewayConfiguration(.init(vpnConnectionId: vpnConnectionId, vendorName: vendorName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载VPN通道配置
@@ -78,7 +77,6 @@ extension Bmvpc {
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
-        let input = DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName)
-        return try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadCustomerGatewayConfiguration(.init(vpnConnectionId: vpnConnectionId, vendorName: vendorName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -56,8 +56,7 @@ extension Cwp {
     /// 查询可筛选操作系统列表.
     @inlinable
     public func describeMachineOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineOsListResponse> {
-        let input = DescribeMachineOsListRequest()
-        return self.client.execute(action: "DescribeMachineOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMachineOsList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机器操作系统列表
@@ -65,7 +64,6 @@ extension Cwp {
     /// 查询可筛选操作系统列表.
     @inlinable
     public func describeMachineOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
-        let input = DescribeMachineOsListRequest()
-        return try await self.client.execute(action: "DescribeMachineOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMachineOsList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Gs {
     /// 保存游戏存档
     @inlinable @discardableResult
     public func saveGameArchive(userId: String, gameId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveGameArchiveResponse> {
-        let input = SaveGameArchiveRequest(userId: userId, gameId: gameId)
-        return self.client.execute(action: "SaveGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.saveGameArchive(.init(userId: userId, gameId: gameId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存游戏存档
     @inlinable @discardableResult
     public func saveGameArchive(userId: String, gameId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveGameArchiveResponse {
-        let input = SaveGameArchiveRequest(userId: userId, gameId: gameId)
-        return try await self.client.execute(action: "SaveGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.saveGameArchive(.init(userId: userId, gameId: gameId), region: region, logger: logger, on: eventLoop)
     }
 }

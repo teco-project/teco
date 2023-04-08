@@ -65,8 +65,7 @@ extension Teo {
     /// 批量删除规则引擎规则。
     @inlinable @discardableResult
     public func deleteRules(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRulesResponse> {
-        let input = DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds)
-        return self.client.execute(action: "DeleteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRules(.init(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除规则引擎规则
@@ -74,7 +73,6 @@ extension Teo {
     /// 批量删除规则引擎规则。
     @inlinable @discardableResult
     public func deleteRules(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
-        let input = DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds)
-        return try await self.client.execute(action: "DeleteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRules(.init(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,8 +83,7 @@ extension Live {
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable @discardableResult
     public func modifyLiveDomainReferer(domainName: String, enable: Int64, type: Int64, allowEmpty: Int64, rules: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainRefererResponse> {
-        let input = ModifyLiveDomainRefererRequest(domainName: domainName, enable: enable, type: type, allowEmpty: allowEmpty, rules: rules)
-        return self.client.execute(action: "ModifyLiveDomainReferer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLiveDomainReferer(.init(domainName: domainName, enable: enable, type: type, allowEmpty: allowEmpty, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置直播域名 Referer 黑白名单
@@ -93,7 +92,6 @@ extension Live {
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable @discardableResult
     public func modifyLiveDomainReferer(domainName: String, enable: Int64, type: Int64, allowEmpty: Int64, rules: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainRefererResponse {
-        let input = ModifyLiveDomainRefererRequest(domainName: domainName, enable: enable, type: type, allowEmpty: allowEmpty, rules: rules)
-        return try await self.client.execute(action: "ModifyLiveDomainReferer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLiveDomainReferer(.init(domainName: domainName, enable: enable, type: type, allowEmpty: allowEmpty, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

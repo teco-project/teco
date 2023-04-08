@@ -104,8 +104,7 @@ extension Kms {
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
     public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeysResponse> {
-        let input = ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId)
-        return self.client.execute(action: "ListKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listKeys(.init(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥列表
@@ -113,8 +112,7 @@ extension Kms {
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
     public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
-        let input = ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId)
-        return try await self.client.execute(action: "ListKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listKeys(.init(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥列表

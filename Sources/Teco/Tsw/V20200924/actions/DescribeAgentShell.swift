@@ -51,14 +51,12 @@ extension Tsw {
     /// 获取服务接入信息
     @inlinable
     public func describeAgentShell(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentShellResponse> {
-        let input = DescribeAgentShellRequest()
-        return self.client.execute(action: "DescribeAgentShell", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAgentShell(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务接入信息
     @inlinable
     public func describeAgentShell(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
-        let input = DescribeAgentShellRequest()
-        return try await self.client.execute(action: "DescribeAgentShell", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAgentShell(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

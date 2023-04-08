@@ -121,8 +121,7 @@ extension Dayu {
     /// 开启或关闭DDoS防护，只支持基础防护产品；
     @inlinable
     public func modifyDDoSSwitch(business: String, method: String, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSSwitchResponse> {
-        let input = ModifyDDoSSwitchRequest(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status)
-        return self.client.execute(action: "ModifyDDoSSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSSwitch(.init(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭DDoS防护
@@ -130,7 +129,6 @@ extension Dayu {
     /// 开启或关闭DDoS防护，只支持基础防护产品；
     @inlinable
     public func modifyDDoSSwitch(business: String, method: String, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSwitchResponse {
-        let input = ModifyDDoSSwitchRequest(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status)
-        return try await self.client.execute(action: "ModifyDDoSSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSSwitch(.init(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

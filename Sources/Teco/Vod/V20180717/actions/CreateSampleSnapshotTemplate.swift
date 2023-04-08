@@ -131,8 +131,7 @@ extension Vod {
     /// 创建用户自定义采样截图模板，数量上限：16。
     @inlinable
     public func createSampleSnapshotTemplate(sampleType: String, sampleInterval: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSampleSnapshotTemplateResponse> {
-        let input = CreateSampleSnapshotTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
-        return self.client.execute(action: "CreateSampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSampleSnapshotTemplate(.init(sampleType: sampleType, sampleInterval: sampleInterval, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建采样截图模板
@@ -140,7 +139,6 @@ extension Vod {
     /// 创建用户自定义采样截图模板，数量上限：16。
     @inlinable
     public func createSampleSnapshotTemplate(sampleType: String, sampleInterval: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSampleSnapshotTemplateResponse {
-        let input = CreateSampleSnapshotTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
-        return try await self.client.execute(action: "CreateSampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSampleSnapshotTemplate(.init(sampleType: sampleType, sampleInterval: sampleInterval, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

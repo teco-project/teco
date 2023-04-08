@@ -101,14 +101,12 @@ extension Cpdp {
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
     public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
-        let input = QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment)
-        return self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankOrderDetailReceiptInfo(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
     public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
-        let input = QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment)
-        return try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankOrderDetailReceiptInfo(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

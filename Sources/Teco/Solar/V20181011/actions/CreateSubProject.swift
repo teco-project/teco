@@ -63,14 +63,12 @@ extension Solar {
     /// 创建子项目
     @inlinable
     public func createSubProject(projectId: String, subProjectName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubProjectResponse> {
-        let input = CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName)
-        return self.client.execute(action: "CreateSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSubProject(.init(projectId: projectId, subProjectName: subProjectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子项目
     @inlinable
     public func createSubProject(projectId: String, subProjectName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
-        let input = CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName)
-        return try await self.client.execute(action: "CreateSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSubProject(.init(projectId: projectId, subProjectName: subProjectName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -88,14 +88,12 @@ extension Organization {
     /// 获取企业组织成员
     @inlinable
     public func getOrganizationMember(memberUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationMemberResponse> {
-        let input = GetOrganizationMemberRequest(memberUin: memberUin)
-        return self.client.execute(action: "GetOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getOrganizationMember(.init(memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员
     @inlinable
     public func getOrganizationMember(memberUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
-        let input = GetOrganizationMemberRequest(memberUin: memberUin)
-        return try await self.client.execute(action: "GetOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getOrganizationMember(.init(memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -151,8 +151,7 @@ extension Vpc {
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
     public func describeVpcLimits(limitTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
-        let input = DescribeVpcLimitsRequest(limitTypes: limitTypes)
-        return self.client.execute(action: "DescribeVpcLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcLimits(.init(limitTypes: limitTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有网络配额
@@ -189,7 +188,6 @@ extension Vpc {
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
     public func describeVpcLimits(limitTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
-        let input = DescribeVpcLimitsRequest(limitTypes: limitTypes)
-        return try await self.client.execute(action: "DescribeVpcLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcLimits(.init(limitTypes: limitTypes), region: region, logger: logger, on: eventLoop)
     }
 }

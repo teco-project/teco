@@ -65,8 +65,7 @@ extension Cam {
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
     @inlinable @discardableResult
     public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
-        let input = DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin)
-        return self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachUserPolicy(.init(policyId: policyId, detachUin: detachUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除绑定到用户的策略
@@ -74,7 +73,6 @@ extension Cam {
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
     @inlinable @discardableResult
     public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
-        let input = DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin)
-        return try await self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachUserPolicy(.init(policyId: policyId, detachUin: detachUin), region: region, logger: logger, on: eventLoop)
     }
 }

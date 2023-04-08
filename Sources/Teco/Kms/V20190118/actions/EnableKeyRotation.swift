@@ -65,8 +65,7 @@ extension Kms {
     /// 对指定的CMK开启密钥轮换功能。
     @inlinable @discardableResult
     public func enableKeyRotation(keyId: String, rotateDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeyRotationResponse> {
-        let input = EnableKeyRotationRequest(keyId: keyId, rotateDays: rotateDays)
-        return self.client.execute(action: "EnableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableKeyRotation(.init(keyId: keyId, rotateDays: rotateDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启密钥轮换
@@ -74,7 +73,6 @@ extension Kms {
     /// 对指定的CMK开启密钥轮换功能。
     @inlinable @discardableResult
     public func enableKeyRotation(keyId: String, rotateDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyRotationResponse {
-        let input = EnableKeyRotationRequest(keyId: keyId, rotateDays: rotateDays)
-        return try await self.client.execute(action: "EnableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableKeyRotation(.init(keyId: keyId, rotateDays: rotateDays), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,8 +79,7 @@ extension Gaap {
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
     public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRealServersResponse> {
-        let input = AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet)
-        return self.client.execute(action: "AddRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addRealServers(.init(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加源站
@@ -88,7 +87,6 @@ extension Gaap {
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
     public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
-        let input = AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet)
-        return try await self.client.execute(action: "AddRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addRealServers(.init(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 }

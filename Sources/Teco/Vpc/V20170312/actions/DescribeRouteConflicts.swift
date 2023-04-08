@@ -69,8 +69,7 @@ extension Vpc {
     /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
     @inlinable
     public func describeRouteConflicts(routeTableId: String, destinationCidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteConflictsResponse> {
-        let input = DescribeRouteConflictsRequest(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks)
-        return self.client.execute(action: "DescribeRouteConflicts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRouteConflicts(.init(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询路由策略冲突列表
@@ -78,7 +77,6 @@ extension Vpc {
     /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
     @inlinable
     public func describeRouteConflicts(routeTableId: String, destinationCidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteConflictsResponse {
-        let input = DescribeRouteConflictsRequest(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks)
-        return try await self.client.execute(action: "DescribeRouteConflicts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRouteConflicts(.init(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 }

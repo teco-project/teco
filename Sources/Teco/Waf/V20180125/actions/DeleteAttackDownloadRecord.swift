@@ -54,14 +54,12 @@ extension Waf {
     /// 删除攻击日志下载任务记录
     @inlinable @discardableResult
     public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
-        let input = DeleteAttackDownloadRecordRequest(id: id)
-        return self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAttackDownloadRecord(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除攻击日志下载任务记录
     @inlinable @discardableResult
     public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
-        let input = DeleteAttackDownloadRecordRequest(id: id)
-        return try await self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAttackDownloadRecord(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

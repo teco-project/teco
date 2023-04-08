@@ -59,14 +59,12 @@ extension Ecm {
     /// 删除弹性网卡
     @inlinable @discardableResult
     public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkInterfaceResponse> {
-        let input = DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion)
-        return self.client.execute(action: "DeleteNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNetworkInterface(.init(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性网卡
     @inlinable @discardableResult
     public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
-        let input = DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion)
-        return try await self.client.execute(action: "DeleteNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNetworkInterface(.init(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

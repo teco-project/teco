@@ -64,14 +64,12 @@ extension Gaap {
     /// 创建域名解析记录
     @inlinable @discardableResult
     public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
-        let input = CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes)
-        return self.client.execute(action: "CreateGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGlobalDomainDns(.init(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建域名解析记录
     @inlinable @discardableResult
     public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
-        let input = CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes)
-        return try await self.client.execute(action: "CreateGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGlobalDomainDns(.init(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), region: region, logger: logger, on: eventLoop)
     }
 }

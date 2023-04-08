@@ -90,8 +90,7 @@ extension Tke {
     /// 更新镜像缓存接口
     @inlinable @discardableResult
     public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
-        let input = UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds)
-        return self.client.execute(action: "UpdateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateImageCache(.init(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像缓存
@@ -99,7 +98,6 @@ extension Tke {
     /// 更新镜像缓存接口
     @inlinable @discardableResult
     public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
-        let input = UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds)
-        return try await self.client.execute(action: "UpdateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateImageCache(.init(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

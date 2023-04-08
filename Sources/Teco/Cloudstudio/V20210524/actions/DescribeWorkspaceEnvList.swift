@@ -65,8 +65,7 @@ extension Cloudstudio {
     /// 环境列表接口返回信息
     @inlinable
     public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
-        let input = DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return self.client.execute(action: "DescribeWorkspaceEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWorkspaceEnvList(.init(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 环境列表接口
@@ -74,7 +73,6 @@ extension Cloudstudio {
     /// 环境列表接口返回信息
     @inlinable
     public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
-        let input = DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return try await self.client.execute(action: "DescribeWorkspaceEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWorkspaceEnvList(.init(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

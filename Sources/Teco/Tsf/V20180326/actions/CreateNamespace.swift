@@ -99,14 +99,12 @@ extension Tsf {
     /// 创建命名空间
     @inlinable
     public func createNamespace(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
-        let input = CreateNamespaceRequest(namespaceName: namespaceName, clusterId: clusterId, namespaceDesc: namespaceDesc, namespaceResourceType: namespaceResourceType, namespaceType: namespaceType, namespaceId: namespaceId, isHaEnable: isHaEnable, programId: programId, programIdList: programIdList)
-        return self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNamespace(.init(namespaceName: namespaceName, clusterId: clusterId, namespaceDesc: namespaceDesc, namespaceResourceType: namespaceResourceType, namespaceType: namespaceType, namespaceId: namespaceId, isHaEnable: isHaEnable, programId: programId, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
     @inlinable
     public func createNamespace(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        let input = CreateNamespaceRequest(namespaceName: namespaceName, clusterId: clusterId, namespaceDesc: namespaceDesc, namespaceResourceType: namespaceResourceType, namespaceType: namespaceType, namespaceId: namespaceId, isHaEnable: isHaEnable, programId: programId, programIdList: programIdList)
-        return try await self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNamespace(.init(namespaceName: namespaceName, clusterId: clusterId, namespaceDesc: namespaceDesc, namespaceResourceType: namespaceResourceType, namespaceType: namespaceType, namespaceId: namespaceId, isHaEnable: isHaEnable, programId: programId, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,14 +68,12 @@ extension Tcr {
     /// 删除实例公网访问白名单策略
     @inlinable
     public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
-        let input = DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion)
-        return self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问白名单策略
     @inlinable
     public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
-        let input = DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion)
-        return try await self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
     }
 }

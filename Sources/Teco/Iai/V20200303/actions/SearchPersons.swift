@@ -167,8 +167,7 @@ extension Iai {
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
     public func searchPersons(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchPersonsResponse> {
-        let input = SearchPersonsRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection)
-        return self.client.execute(action: "SearchPersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchPersons(.init(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员搜索
@@ -186,7 +185,6 @@ extension Iai {
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
     public func searchPersons(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsResponse {
-        let input = SearchPersonsRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection)
-        return try await self.client.execute(action: "SearchPersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchPersons(.init(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

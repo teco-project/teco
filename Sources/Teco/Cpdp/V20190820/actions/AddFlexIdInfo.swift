@@ -93,14 +93,12 @@ extension Cpdp {
     /// 灵云V2-补充证件信息
     @inlinable
     public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
-        let input = AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name)
-        return self.client.execute(action: "AddFlexIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addFlexIdInfo(.init(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-补充证件信息
     @inlinable
     public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
-        let input = AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name)
-        return try await self.client.execute(action: "AddFlexIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addFlexIdInfo(.init(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

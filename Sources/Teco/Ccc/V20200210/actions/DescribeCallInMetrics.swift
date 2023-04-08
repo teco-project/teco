@@ -82,14 +82,12 @@ extension Ccc {
     /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallInMetricsResponse> {
-        let input = DescribeCallInMetricsRequest(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber)
-        return self.client.execute(action: "DescribeCallInMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
-        let input = DescribeCallInMetricsRequest(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber)
-        return try await self.client.execute(action: "DescribeCallInMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber), region: region, logger: logger, on: eventLoop)
     }
 }

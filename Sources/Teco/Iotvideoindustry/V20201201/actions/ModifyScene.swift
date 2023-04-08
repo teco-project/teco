@@ -69,14 +69,12 @@ extension Iotvideoindustry {
     /// 修改场景
     @inlinable @discardableResult
     public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
-        let input = ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration)
-        return self.client.execute(action: "ModifyScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyScene(.init(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改场景
     @inlinable @discardableResult
     public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
-        let input = ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration)
-        return try await self.client.execute(action: "ModifyScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyScene(.init(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), region: region, logger: logger, on: eventLoop)
     }
 }

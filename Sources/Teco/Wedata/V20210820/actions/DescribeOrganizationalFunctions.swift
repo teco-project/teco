@@ -85,8 +85,7 @@ extension Wedata {
     /// 查询全量函数
     @inlinable
     public func describeOrganizationalFunctions(type: String, projectId: String, name: String? = nil, displayName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationalFunctionsResponse> {
-        let input = DescribeOrganizationalFunctionsRequest(type: type, projectId: projectId, name: name, displayName: displayName)
-        return self.client.execute(action: "DescribeOrganizationalFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganizationalFunctions(.init(type: type, projectId: projectId, name: name, displayName: displayName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全量函数（层级化）接口
@@ -94,7 +93,6 @@ extension Wedata {
     /// 查询全量函数
     @inlinable
     public func describeOrganizationalFunctions(type: String, projectId: String, name: String? = nil, displayName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationalFunctionsResponse {
-        let input = DescribeOrganizationalFunctionsRequest(type: type, projectId: projectId, name: name, displayName: displayName)
-        return try await self.client.execute(action: "DescribeOrganizationalFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganizationalFunctions(.init(type: type, projectId: projectId, name: name, displayName: displayName), region: region, logger: logger, on: eventLoop)
     }
 }

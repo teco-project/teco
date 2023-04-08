@@ -70,8 +70,7 @@ extension Bmvpc {
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
     @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
-        let input = ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor)
-        return self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石VPC属性
@@ -79,7 +78,6 @@ extension Bmvpc {
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
     @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        let input = ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor)
-        return try await self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), region: region, logger: logger, on: eventLoop)
     }
 }

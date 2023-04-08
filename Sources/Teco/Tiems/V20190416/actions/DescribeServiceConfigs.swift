@@ -96,29 +96,50 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeServiceConfigs(_ input: DescribeServiceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceConfigsResponse> {
-        self.client.execute(action: "DescribeServiceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeServiceConfigs is no longer available.")
     }
 
     /// 描述服务配置
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeServiceConfigs(_ input: DescribeServiceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceConfigsResponse {
-        try await self.client.execute(action: "DescribeServiceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeServiceConfigs is no longer available.")
     }
 
     /// 描述服务配置
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeServiceConfigs(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, pageByName: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceConfigsResponse> {
-        let input = DescribeServiceConfigsRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField, pageByName: pageByName)
-        return self.client.execute(action: "DescribeServiceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeServiceConfigs is no longer available.")
     }
 
     /// 描述服务配置
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeServiceConfigs(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, pageByName: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceConfigsResponse {
-        let input = DescribeServiceConfigsRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField, pageByName: pageByName)
-        return try await self.client.execute(action: "DescribeServiceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeServiceConfigs is no longer available.")
+    }
+
+    /// 描述服务配置
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeServiceConfigsPaginated(_ input: DescribeServiceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Config])> {
+        fatalError("DescribeServiceConfigs is no longer available.")
+    }
+
+    /// 描述服务配置
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable @discardableResult
+    public func describeServiceConfigsPaginated(_ input: DescribeServiceConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeServiceConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeServiceConfigs is no longer available.")
+    }
+
+    /// 描述服务配置
+    ///
+    /// - Returns: `AsyncSequence`s of `Config` and `DescribeServiceConfigsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeServiceConfigsPaginator(_ input: DescribeServiceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceConfigsRequest> {
+        fatalError("DescribeServiceConfigs is no longer available.")
     }
 }

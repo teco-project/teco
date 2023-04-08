@@ -85,8 +85,7 @@ extension Cr {
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
     public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
-        let input = UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId)
-        return self.client.execute(action: "UploadDataJson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadDataJson(.init(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传Json格式数据
@@ -94,7 +93,6 @@ extension Cr {
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
     public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
-        let input = UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId)
-        return try await self.client.execute(action: "UploadDataJson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadDataJson(.init(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

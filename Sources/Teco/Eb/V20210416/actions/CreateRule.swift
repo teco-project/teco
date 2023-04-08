@@ -78,14 +78,12 @@ extension Eb {
     /// 创建事件规则
     @inlinable
     public func createRule(eventPattern: String, eventBusId: String, ruleName: String, enable: Bool? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        let input = CreateRuleRequest(eventPattern: eventPattern, eventBusId: eventBusId, ruleName: ruleName, enable: enable, description: description)
-        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRule(.init(eventPattern: eventPattern, eventBusId: eventBusId, ruleName: ruleName, enable: enable, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件规则
     @inlinable
     public func createRule(eventPattern: String, eventBusId: String, ruleName: String, enable: Bool? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        let input = CreateRuleRequest(eventPattern: eventPattern, eventBusId: eventBusId, ruleName: ruleName, enable: enable, description: description)
-        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRule(.init(eventPattern: eventPattern, eventBusId: eventBusId, ruleName: ruleName, enable: enable, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Dts {
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
     @inlinable @discardableResult
     public func modifySubscribeName(subscribeId: String, subscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeNameResponse> {
-        let input = ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName)
-        return self.client.execute(action: "ModifySubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySubscribeName(.init(subscribeId: subscribeId, subscribeName: subscribeName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅实例的名称
@@ -74,7 +73,6 @@ extension Dts {
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
     @inlinable @discardableResult
     public func modifySubscribeName(subscribeId: String, subscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
-        let input = ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName)
-        return try await self.client.execute(action: "ModifySubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySubscribeName(.init(subscribeId: subscribeId, subscribeName: subscribeName), region: region, logger: logger, on: eventLoop)
     }
 }

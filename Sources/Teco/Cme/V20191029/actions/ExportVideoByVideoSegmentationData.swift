@@ -109,8 +109,7 @@ extension Cme {
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
     public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByVideoSegmentationDataResponse> {
-        let input = ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
-        return self.client.execute(action: "ExportVideoByVideoSegmentationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportVideoByVideoSegmentationData(.init(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用视频智能拆条数据导出视频
@@ -118,7 +117,6 @@ extension Cme {
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
     public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
-        let input = ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
-        return try await self.client.execute(action: "ExportVideoByVideoSegmentationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportVideoByVideoSegmentationData(.init(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

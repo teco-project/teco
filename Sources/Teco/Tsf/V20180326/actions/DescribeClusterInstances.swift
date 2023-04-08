@@ -104,15 +104,13 @@ extension Tsf {
     /// 查询集群实例
     @inlinable
     public func describeClusterInstances(clusterId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterInstances(.init(clusterId: clusterId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群实例
     @inlinable
     public func describeClusterInstances(clusterId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterInstances(.init(clusterId: clusterId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群实例

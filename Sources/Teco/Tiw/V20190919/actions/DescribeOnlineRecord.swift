@@ -132,8 +132,7 @@ extension Tiw {
     /// 查询录制任务状态与结果
     @inlinable
     public func describeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordResponse> {
-        let input = DescribeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return self.client.execute(action: "DescribeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOnlineRecord(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时录制任务
@@ -141,7 +140,6 @@ extension Tiw {
     /// 查询录制任务状态与结果
     @inlinable
     public func describeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordResponse {
-        let input = DescribeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return try await self.client.execute(action: "DescribeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOnlineRecord(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -103,15 +103,13 @@ extension Tcss {
     /// 查询集群策略列表
     @inlinable
     public func describeNetworkFirewallClusterList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallClusterListResponse> {
-        let input = DescribeNetworkFirewallClusterListRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeNetworkFirewallClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNetworkFirewallClusterList(.init(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群策略列表
     @inlinable
     public func describeNetworkFirewallClusterList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallClusterListResponse {
-        let input = DescribeNetworkFirewallClusterListRequest(offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeNetworkFirewallClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNetworkFirewallClusterList(.init(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群策略列表

@@ -110,15 +110,13 @@ extension Antiddos {
     /// 获取单IP告警阈值配置列表
     @inlinable
     public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
-        let input = DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname)
-        return self.client.execute(action: "DescribeListIPAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeListIPAlarmConfig(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单IP告警阈值配置列表
     @inlinable
     public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
-        let input = DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname)
-        return try await self.client.execute(action: "DescribeListIPAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeListIPAlarmConfig(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单IP告警阈值配置列表

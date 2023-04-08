@@ -69,8 +69,7 @@ extension Dcdb {
     /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
     @inlinable
     public func openDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBExtranetAccessResponse> {
-        let input = OpenDBExtranetAccessRequest(instanceId: instanceId, ipv6Flag: ipv6Flag)
-        return self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openDBExtranetAccess(.init(instanceId: instanceId, ipv6Flag: ipv6Flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通外网访问
@@ -78,7 +77,6 @@ extension Dcdb {
     /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
     @inlinable
     public func openDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
-        let input = OpenDBExtranetAccessRequest(instanceId: instanceId, ipv6Flag: ipv6Flag)
-        return try await self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openDBExtranetAccess(.init(instanceId: instanceId, ipv6Flag: ipv6Flag), region: region, logger: logger, on: eventLoop)
     }
 }

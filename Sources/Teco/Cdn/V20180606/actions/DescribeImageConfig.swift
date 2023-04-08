@@ -80,8 +80,7 @@ extension Cdn {
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
     public func describeImageConfig(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageConfigResponse> {
-        let input = DescribeImageConfigRequest(domain: domain)
-        return self.client.execute(action: "DescribeImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageConfig(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片优化的配置
@@ -89,7 +88,6 @@ extension Cdn {
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
     public func describeImageConfig(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
-        let input = DescribeImageConfigRequest(domain: domain)
-        return try await self.client.execute(action: "DescribeImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageConfig(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

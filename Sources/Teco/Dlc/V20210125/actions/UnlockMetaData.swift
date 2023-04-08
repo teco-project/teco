@@ -59,14 +59,12 @@ extension Dlc {
     /// 元数据解锁
     @inlinable @discardableResult
     public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockMetaDataResponse> {
-        let input = UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName)
-        return self.client.execute(action: "UnlockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unlockMetaData(.init(lockId: lockId, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 元数据解锁
     @inlinable @discardableResult
     public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockMetaDataResponse {
-        let input = UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName)
-        return try await self.client.execute(action: "UnlockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unlockMetaData(.init(lockId: lockId, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -73,14 +73,12 @@ extension Apigateway {
     /// 创建 API 文档
     @inlinable
     public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
-        let input = CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds)
-        return self.client.execute(action: "CreateAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAPIDoc(.init(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 API 文档
     @inlinable
     public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
-        let input = CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds)
-        return try await self.client.execute(action: "CreateAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAPIDoc(.init(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

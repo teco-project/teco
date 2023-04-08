@@ -92,8 +92,7 @@ extension Iotvideoindustry {
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
     public func describeChannelLocalRecordURL(deviceId: String, channelId: String, recordId: String, expireTime: Int64, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelLocalRecordURLResponse> {
-        let input = DescribeChannelLocalRecordURLRequest(deviceId: deviceId, channelId: channelId, recordId: recordId, expireTime: expireTime, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeChannelLocalRecordURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeChannelLocalRecordURL(.init(deviceId: deviceId, channelId: channelId, recordId: recordId, expireTime: expireTime, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道本地回放流地址
@@ -102,7 +101,6 @@ extension Iotvideoindustry {
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
     public func describeChannelLocalRecordURL(deviceId: String, channelId: String, recordId: String, expireTime: Int64, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLocalRecordURLResponse {
-        let input = DescribeChannelLocalRecordURLRequest(deviceId: deviceId, channelId: channelId, recordId: recordId, expireTime: expireTime, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeChannelLocalRecordURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeChannelLocalRecordURL(.init(deviceId: deviceId, channelId: channelId, recordId: recordId, expireTime: expireTime, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

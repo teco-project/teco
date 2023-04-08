@@ -61,7 +61,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
-        self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDepositInfo is no longer available.")
     }
 
     /// 存证基本信息查询
@@ -70,7 +70,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
-        try await self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDepositInfo is no longer available.")
     }
 
     /// 存证基本信息查询
@@ -79,8 +79,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
-        let input = GetDepositInfoRequest(evidenceId: evidenceId)
-        return self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDepositInfo is no longer available.")
     }
 
     /// 存证基本信息查询
@@ -89,7 +88,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
-        let input = GetDepositInfoRequest(evidenceId: evidenceId)
-        return try await self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDepositInfo is no longer available.")
     }
 }

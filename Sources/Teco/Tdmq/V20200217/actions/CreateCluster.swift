@@ -84,8 +84,7 @@ extension Tdmq {
     /// 创建用户的集群
     @inlinable
     public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
-        let input = CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled)
-        return self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCluster(.init(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群
@@ -93,7 +92,6 @@ extension Tdmq {
     /// 创建用户的集群
     @inlinable
     public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        let input = CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled)
-        return try await self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCluster(.init(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 }

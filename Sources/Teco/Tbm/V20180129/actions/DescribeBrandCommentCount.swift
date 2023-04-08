@@ -83,8 +83,7 @@ extension Tbm {
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
     public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandCommentCountResponse> {
-        let input = DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return self.client.execute(action: "DescribeBrandCommentCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBrandCommentCount(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌好差评数
@@ -92,7 +91,6 @@ extension Tbm {
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
     public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandCommentCountResponse {
-        let input = DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeBrandCommentCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBrandCommentCount(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

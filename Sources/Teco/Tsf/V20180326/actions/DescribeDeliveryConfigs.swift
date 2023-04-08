@@ -89,15 +89,13 @@ extension Tsf {
     /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
-        let input = DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeDeliveryConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
-        let input = DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeDeliveryConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置

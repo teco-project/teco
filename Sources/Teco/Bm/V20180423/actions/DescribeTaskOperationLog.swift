@@ -78,8 +78,7 @@ extension Bm {
     /// 获取维修任务操作日志
     @inlinable
     public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskOperationLogResponse> {
-        let input = DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order)
-        return self.client.execute(action: "DescribeTaskOperationLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskOperationLog(.init(taskId: taskId, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务操作日志获取
@@ -87,7 +86,6 @@ extension Bm {
     /// 获取维修任务操作日志
     @inlinable
     public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
-        let input = DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order)
-        return try await self.client.execute(action: "DescribeTaskOperationLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskOperationLog(.init(taskId: taskId, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

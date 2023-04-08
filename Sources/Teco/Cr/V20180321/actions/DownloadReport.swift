@@ -111,8 +111,7 @@ extension Cr {
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
     @inlinable
     public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReportResponse> {
-        let input = DownloadReportRequest(module: module, operation: operation, reportDate: reportDate, instId: instId)
-        return self.client.execute(action: "DownloadReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadReport(.init(module: module, operation: operation, reportDate: reportDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 报告下载
@@ -120,7 +119,6 @@ extension Cr {
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
     @inlinable
     public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReportResponse {
-        let input = DownloadReportRequest(module: module, operation: operation, reportDate: reportDate, instId: instId)
-        return try await self.client.execute(action: "DownloadReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadReport(.init(module: module, operation: operation, reportDate: reportDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 }

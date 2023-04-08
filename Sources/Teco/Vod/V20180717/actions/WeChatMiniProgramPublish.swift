@@ -77,8 +77,7 @@ extension Vod {
     /// 本接口支持发布原始视频和转码后视频，暂不支持发布自适应码流。
     @inlinable
     public func weChatMiniProgramPublish(fileId: String, subAppId: UInt64? = nil, sourceDefinition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WeChatMiniProgramPublishResponse> {
-        let input = WeChatMiniProgramPublishRequest(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition)
-        return self.client.execute(action: "WeChatMiniProgramPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.weChatMiniProgramPublish(.init(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 微信小程序视频发布
@@ -87,7 +86,6 @@ extension Vod {
     /// 本接口支持发布原始视频和转码后视频，暂不支持发布自适应码流。
     @inlinable
     public func weChatMiniProgramPublish(fileId: String, subAppId: UInt64? = nil, sourceDefinition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WeChatMiniProgramPublishResponse {
-        let input = WeChatMiniProgramPublishRequest(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition)
-        return try await self.client.execute(action: "WeChatMiniProgramPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.weChatMiniProgramPublish(.init(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition), region: region, logger: logger, on: eventLoop)
     }
 }

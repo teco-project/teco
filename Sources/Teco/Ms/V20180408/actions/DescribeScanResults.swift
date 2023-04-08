@@ -73,8 +73,7 @@ extension Ms {
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
     @inlinable
     public func describeScanResults(itemId: String, appMd5s: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultsResponse> {
-        let input = DescribeScanResultsRequest(itemId: itemId, appMd5s: appMd5s)
-        return self.client.execute(action: "DescribeScanResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanResults(.init(itemId: itemId, appMd5s: appMd5s), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询扫描结果
@@ -82,7 +81,6 @@ extension Ms {
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
     @inlinable
     public func describeScanResults(itemId: String, appMd5s: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
-        let input = DescribeScanResultsRequest(itemId: itemId, appMd5s: appMd5s)
-        return try await self.client.execute(action: "DescribeScanResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanResults(.init(itemId: itemId, appMd5s: appMd5s), region: region, logger: logger, on: eventLoop)
     }
 }

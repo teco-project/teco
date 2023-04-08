@@ -68,8 +68,7 @@ extension Asr {
     /// 用户通过本接口进行热词表的下载，获得词表权重文件形式的 base64 值，文件形式为通过 “|” 分割的词和权重，即 word|weight 的形式。
     @inlinable
     public func downloadAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadAsrVocabResponse> {
-        let input = DownloadAsrVocabRequest(vocabId: vocabId)
-        return self.client.execute(action: "DownloadAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadAsrVocab(.init(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载热词表
@@ -77,7 +76,6 @@ extension Asr {
     /// 用户通过本接口进行热词表的下载，获得词表权重文件形式的 base64 值，文件形式为通过 “|” 分割的词和权重，即 word|weight 的形式。
     @inlinable
     public func downloadAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadAsrVocabResponse {
-        let input = DownloadAsrVocabRequest(vocabId: vocabId)
-        return try await self.client.execute(action: "DownloadAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadAsrVocab(.init(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 }

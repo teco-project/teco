@@ -98,14 +98,12 @@ extension Tbaas {
     /// 查询交易
     @inlinable
     public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResponse> {
-        let input = QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args)
-        return self.client.execute(action: "Query", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.query(.init(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询交易
     @inlinable
     public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
-        let input = QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args)
-        return try await self.client.execute(action: "Query", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.query(.init(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), region: region, logger: logger, on: eventLoop)
     }
 }

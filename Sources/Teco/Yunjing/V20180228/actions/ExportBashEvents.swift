@@ -50,14 +50,12 @@ extension Yunjing {
     /// 导出高危命令事件
     @inlinable
     public func exportBashEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
-        let input = ExportBashEventsRequest()
-        return self.client.execute(action: "ExportBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportBashEvents(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出高危命令事件
     @inlinable
     public func exportBashEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
-        let input = ExportBashEventsRequest()
-        return try await self.client.execute(action: "ExportBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportBashEvents(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

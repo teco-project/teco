@@ -54,14 +54,12 @@ extension Cwp {
     /// 停止基线检测
     @inlinable @discardableResult
     public func stopBaselineDetect(taskIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBaselineDetectResponse> {
-        let input = StopBaselineDetectRequest(taskIds: taskIds)
-        return self.client.execute(action: "StopBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopBaselineDetect(.init(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止基线检测
     @inlinable @discardableResult
     public func stopBaselineDetect(taskIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
-        let input = StopBaselineDetectRequest(taskIds: taskIds)
-        return try await self.client.execute(action: "StopBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopBaselineDetect(.init(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }
 }

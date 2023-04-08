@@ -55,14 +55,12 @@ extension Ecm {
     /// 获取机型配置列表
     @inlinable
     public func describeInstanceTypeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigResponse> {
-        let input = DescribeInstanceTypeConfigRequest()
-        return self.client.execute(action: "DescribeInstanceTypeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceTypeConfig(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机型配置列表
     @inlinable
     public func describeInstanceTypeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
-        let input = DescribeInstanceTypeConfigRequest()
-        return try await self.client.execute(action: "DescribeInstanceTypeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceTypeConfig(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

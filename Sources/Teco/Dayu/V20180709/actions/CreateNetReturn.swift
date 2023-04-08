@@ -65,8 +65,7 @@ extension Dayu {
     /// 高防IP专业版一键切回源站
     @inlinable @discardableResult
     public func createNetReturn(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetReturnResponse> {
-        let input = CreateNetReturnRequest(business: business, id: id)
-        return self.client.execute(action: "CreateNetReturn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetReturn(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 一键切回
@@ -74,7 +73,6 @@ extension Dayu {
     /// 高防IP专业版一键切回源站
     @inlinable @discardableResult
     public func createNetReturn(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
-        let input = CreateNetReturnRequest(business: business, id: id)
-        return try await self.client.execute(action: "CreateNetReturn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetReturn(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

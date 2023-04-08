@@ -64,8 +64,7 @@ extension Lighthouse {
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
     public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateBlueprintResponse> {
-        let input = InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount)
-        return self.client.execute(action: "InquirePriceCreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquirePriceCreateBlueprint(.init(blueprintCount: blueprintCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像询价
@@ -73,7 +72,6 @@ extension Lighthouse {
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
     public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
-        let input = InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount)
-        return try await self.client.execute(action: "InquirePriceCreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquirePriceCreateBlueprint(.init(blueprintCount: blueprintCount), region: region, logger: logger, on: eventLoop)
     }
 }

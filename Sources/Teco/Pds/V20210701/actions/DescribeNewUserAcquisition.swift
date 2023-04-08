@@ -64,8 +64,7 @@ extension Pds {
     /// 判断新用户信誉值
     @inlinable
     public func describeNewUserAcquisition(serviceParams: UserInfos, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewUserAcquisitionResponse> {
-        let input = DescribeNewUserAcquisitionRequest(serviceParams: serviceParams)
-        return self.client.execute(action: "DescribeNewUserAcquisition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNewUserAcquisition(.init(serviceParams: serviceParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉新判断服务
@@ -73,7 +72,6 @@ extension Pds {
     /// 判断新用户信誉值
     @inlinable
     public func describeNewUserAcquisition(serviceParams: UserInfos, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewUserAcquisitionResponse {
-        let input = DescribeNewUserAcquisitionRequest(serviceParams: serviceParams)
-        return try await self.client.execute(action: "DescribeNewUserAcquisition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNewUserAcquisition(.init(serviceParams: serviceParams), region: region, logger: logger, on: eventLoop)
     }
 }

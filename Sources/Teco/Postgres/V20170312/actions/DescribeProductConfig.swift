@@ -72,8 +72,7 @@ extension Postgres {
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
     public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
-        let input = DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine)
-        return self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProductConfig(.init(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖规格配置
@@ -81,7 +80,6 @@ extension Postgres {
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
     public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        let input = DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine)
-        return try await self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProductConfig(.init(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -71,14 +71,12 @@ extension Cpdp {
     /// 云鉴-消费订单查询接口
     @inlinable
     public func queryMerchantOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantOrderResponse> {
-        let input = QueryMerchantOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
-        return self.client.execute(action: "QueryMerchantOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMerchantOrder(.init(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单查询接口
     @inlinable
     public func queryMerchantOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantOrderResponse {
-        let input = QueryMerchantOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
-        return try await self.client.execute(action: "QueryMerchantOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMerchantOrder(.init(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 }

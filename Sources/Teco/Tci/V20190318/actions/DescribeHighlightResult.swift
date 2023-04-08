@@ -72,8 +72,7 @@ extension Tci {
     /// 视频精彩集锦结果查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeHighlightResult(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHighlightResultResponse> {
-        let input = DescribeHighlightResultRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeHighlightResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHighlightResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频精彩集锦结果查询接口
@@ -81,7 +80,6 @@ extension Tci {
     /// 视频精彩集锦结果查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeHighlightResult(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHighlightResultResponse {
-        let input = DescribeHighlightResultRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeHighlightResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHighlightResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

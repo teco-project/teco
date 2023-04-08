@@ -85,8 +85,7 @@ extension Sslpod {
     /// 通过域名端口添加监控
     @inlinable @discardableResult
     public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
-        let input = CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags)
-        return self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDomain(.init(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名
@@ -94,7 +93,6 @@ extension Sslpod {
     /// 通过域名端口添加监控
     @inlinable @discardableResult
     public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        let input = CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags)
-        return try await self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDomain(.init(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

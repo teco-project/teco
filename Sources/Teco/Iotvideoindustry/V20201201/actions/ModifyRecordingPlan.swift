@@ -74,8 +74,7 @@ extension Iotvideoindustry {
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
     public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordingPlanResponse> {
-        let input = ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId)
-        return self.client.execute(action: "ModifyRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordingPlan(.init(planId: planId, name: name, timeTemplateId: timeTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划
@@ -83,7 +82,6 @@ extension Iotvideoindustry {
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
     public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
-        let input = ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId)
-        return try await self.client.execute(action: "ModifyRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordingPlan(.init(planId: planId, name: name, timeTemplateId: timeTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

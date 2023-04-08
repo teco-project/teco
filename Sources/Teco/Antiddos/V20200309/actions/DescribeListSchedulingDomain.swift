@@ -92,15 +92,13 @@ extension Antiddos {
     /// 获取智能调度域名列表
     @inlinable
     public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListSchedulingDomainResponse> {
-        let input = DescribeListSchedulingDomainRequest(offset: offset, limit: limit, filterDomain: filterDomain)
-        return self.client.execute(action: "DescribeListSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取智能调度域名列表
     @inlinable
     public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
-        let input = DescribeListSchedulingDomainRequest(offset: offset, limit: limit, filterDomain: filterDomain)
-        return try await self.client.execute(action: "DescribeListSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取智能调度域名列表

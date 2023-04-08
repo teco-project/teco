@@ -58,14 +58,12 @@ extension Dnspod {
     /// 创建域名分组
     @inlinable
     public func createDomainGroup(groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainGroupResponse> {
-        let input = CreateDomainGroupRequest(groupName: groupName)
-        return self.client.execute(action: "CreateDomainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDomainGroup(.init(groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建域名分组
     @inlinable
     public func createDomainGroup(groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainGroupResponse {
-        let input = CreateDomainGroupRequest(groupName: groupName)
-        return try await self.client.execute(action: "CreateDomainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDomainGroup(.init(groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 }

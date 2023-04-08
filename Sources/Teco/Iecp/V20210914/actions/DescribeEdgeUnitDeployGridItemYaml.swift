@@ -78,14 +78,12 @@ extension Iecp {
     /// 查询指定Grid下应用的Yaml
     @inlinable
     public func describeEdgeUnitDeployGridItemYaml(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridItemYamlResponse> {
-        let input = DescribeEdgeUnitDeployGridItemYamlRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace)
-        return self.client.execute(action: "DescribeEdgeUnitDeployGridItemYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeUnitDeployGridItemYaml(.init(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定Grid下应用的Yaml
     @inlinable
     public func describeEdgeUnitDeployGridItemYaml(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemYamlResponse {
-        let input = DescribeEdgeUnitDeployGridItemYamlRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace)
-        return try await self.client.execute(action: "DescribeEdgeUnitDeployGridItemYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeUnitDeployGridItemYaml(.init(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -110,8 +110,7 @@ extension Cwp {
     /// 专家服务-应急响应列表
     @inlinable
     public func describeEmergencyResponseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyResponseListResponse> {
-        let input = DescribeEmergencyResponseListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeEmergencyResponseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEmergencyResponseList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应急响应列表
@@ -119,8 +118,7 @@ extension Cwp {
     /// 专家服务-应急响应列表
     @inlinable
     public func describeEmergencyResponseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyResponseListResponse {
-        let input = DescribeEmergencyResponseListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeEmergencyResponseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEmergencyResponseList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应急响应列表

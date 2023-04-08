@@ -60,8 +60,7 @@ extension As {
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
     @inlinable @discardableResult
     public func deleteScheduledAction(scheduledActionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScheduledActionResponse> {
-        let input = DeleteScheduledActionRequest(scheduledActionId: scheduledActionId)
-        return self.client.execute(action: "DeleteScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteScheduledAction(.init(scheduledActionId: scheduledActionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除定时任务
@@ -69,7 +68,6 @@ extension As {
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
     @inlinable @discardableResult
     public func deleteScheduledAction(scheduledActionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledActionResponse {
-        let input = DeleteScheduledActionRequest(scheduledActionId: scheduledActionId)
-        return try await self.client.execute(action: "DeleteScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteScheduledAction(.init(scheduledActionId: scheduledActionId), region: region, logger: logger, on: eventLoop)
     }
 }

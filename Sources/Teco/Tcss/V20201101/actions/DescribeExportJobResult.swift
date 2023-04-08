@@ -73,14 +73,12 @@ extension Tcss {
     /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
-        let input = DescribeExportJobResultRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeExportJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExportJobResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
-        let input = DescribeExportJobResultRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeExportJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExportJobResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

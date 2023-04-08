@@ -89,7 +89,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createVideoDeposit(_ input: CreateVideoDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoDepositResponse> {
-        self.client.execute(action: "CreateVideoDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateVideoDeposit is no longer available.")
     }
 
     /// 视频文件存证
@@ -98,7 +98,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createVideoDeposit(_ input: CreateVideoDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoDepositResponse {
-        try await self.client.execute(action: "CreateVideoDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateVideoDeposit is no longer available.")
     }
 
     /// 视频文件存证
@@ -107,8 +107,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createVideoDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoDepositResponse> {
-        let input = CreateVideoDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription)
-        return self.client.execute(action: "CreateVideoDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateVideoDeposit is no longer available.")
     }
 
     /// 视频文件存证
@@ -117,7 +116,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createVideoDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoDepositResponse {
-        let input = CreateVideoDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription)
-        return try await self.client.execute(action: "CreateVideoDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateVideoDeposit is no longer available.")
     }
 }

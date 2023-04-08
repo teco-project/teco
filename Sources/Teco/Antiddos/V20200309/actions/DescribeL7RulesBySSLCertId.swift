@@ -69,8 +69,7 @@ extension Antiddos {
     /// 查询与证书ID对于域名匹配的七层规则
     @inlinable
     public func describeL7RulesBySSLCertId(status: String, certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesBySSLCertIdResponse> {
-        let input = DescribeL7RulesBySSLCertIdRequest(status: status, certIds: certIds)
-        return self.client.execute(action: "DescribeL7RulesBySSLCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeL7RulesBySSLCertId(.init(status: status, certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询与证书ID匹配的七层规则
@@ -78,7 +77,6 @@ extension Antiddos {
     /// 查询与证书ID对于域名匹配的七层规则
     @inlinable
     public func describeL7RulesBySSLCertId(status: String, certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesBySSLCertIdResponse {
-        let input = DescribeL7RulesBySSLCertIdRequest(status: status, certIds: certIds)
-        return try await self.client.execute(action: "DescribeL7RulesBySSLCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeL7RulesBySSLCertId(.init(status: status, certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 }

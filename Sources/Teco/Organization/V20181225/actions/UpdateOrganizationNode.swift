@@ -64,14 +64,12 @@ extension Organization {
     /// 更新企业组织单元
     @inlinable @discardableResult
     public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
-        let input = UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, parentNodeId: parentNodeId)
-        return self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateOrganizationNode(.init(nodeId: nodeId, name: name, parentNodeId: parentNodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新企业组织单元
     @inlinable @discardableResult
     public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
-        let input = UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, parentNodeId: parentNodeId)
-        return try await self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateOrganizationNode(.init(nodeId: nodeId, name: name, parentNodeId: parentNodeId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Wedata {
     /// 质量报告-质量分周期趋势
     @inlinable
     public func describeQualityScoreTrend(statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreTrendResponse> {
-        let input = DescribeQualityScoreTrendRequest(statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, projectId: projectId, datasourceId: datasourceId)
-        return self.client.execute(action: "DescribeQualityScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeQualityScoreTrend(.init(statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询质量分趋势
@@ -89,7 +88,6 @@ extension Wedata {
     /// 质量报告-质量分周期趋势
     @inlinable
     public func describeQualityScoreTrend(statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreTrendResponse {
-        let input = DescribeQualityScoreTrendRequest(statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, projectId: projectId, datasourceId: datasourceId)
-        return try await self.client.execute(action: "DescribeQualityScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeQualityScoreTrend(.init(statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
     }
 }

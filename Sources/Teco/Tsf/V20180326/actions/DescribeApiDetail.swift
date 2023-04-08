@@ -78,14 +78,12 @@ extension Tsf {
     /// 查询API详情
     @inlinable
     public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
-        let input = DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId)
-        return self.client.execute(action: "DescribeApiDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApiDetail(.init(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API详情
     @inlinable
     public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
-        let input = DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId)
-        return try await self.client.execute(action: "DescribeApiDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApiDetail(.init(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

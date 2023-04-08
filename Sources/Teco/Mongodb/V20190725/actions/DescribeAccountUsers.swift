@@ -64,8 +64,7 @@ extension Mongodb {
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
-        let input = DescribeAccountUsersRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccountUsers(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 全部账号列表
@@ -73,7 +72,6 @@ extension Mongodb {
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
-        let input = DescribeAccountUsersRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccountUsers(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

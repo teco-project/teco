@@ -73,8 +73,7 @@ extension Dayu {
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
     @inlinable
     public func describeIPProductInfo(business: String, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPProductInfoResponse> {
-        let input = DescribeIPProductInfoRequest(business: business, ipList: ipList)
-        return self.client.execute(action: "DescribeIPProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIPProductInfo(.init(business: business, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取独享包或共享包IP对应的云资产信息
@@ -82,7 +81,6 @@ extension Dayu {
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
     @inlinable
     public func describeIPProductInfo(business: String, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
-        let input = DescribeIPProductInfoRequest(business: business, ipList: ipList)
-        return try await self.client.execute(action: "DescribeIPProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIPProductInfo(.init(business: business, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

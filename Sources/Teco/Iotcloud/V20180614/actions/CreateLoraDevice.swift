@@ -111,8 +111,7 @@ extension Iotcloud {
     /// 创建lora类型的设备
     @inlinable
     public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoraDeviceResponse> {
-        let input = CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo)
-        return self.client.execute(action: "CreateLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLoraDevice(.init(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建lora设备
@@ -120,7 +119,6 @@ extension Iotcloud {
     /// 创建lora类型的设备
     @inlinable
     public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
-        let input = CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo)
-        return try await self.client.execute(action: "CreateLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLoraDevice(.init(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), region: region, logger: logger, on: eventLoop)
     }
 }

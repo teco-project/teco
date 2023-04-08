@@ -104,15 +104,13 @@ extension Iotcloud {
     /// 查询固件升级任务列表
     @inlinable
     public func describeFirmwareTasks(productId: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
-        let input = DescribeFirmwareTasksRequest(productId: productId, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFirmwareTasks(.init(productId: productId, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表
     @inlinable
     public func describeFirmwareTasks(productId: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
-        let input = DescribeFirmwareTasksRequest(productId: productId, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFirmwareTasks(.init(productId: productId, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表

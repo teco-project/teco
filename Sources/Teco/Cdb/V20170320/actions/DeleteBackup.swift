@@ -65,8 +65,7 @@ extension Cdb {
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable @discardableResult
     public func deleteBackup(instanceId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        let input = DeleteBackupRequest(instanceId: instanceId, backupId: backupId)
-        return self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBackup(.init(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库备份
@@ -74,7 +73,6 @@ extension Cdb {
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable @discardableResult
     public func deleteBackup(instanceId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        let input = DeleteBackupRequest(instanceId: instanceId, backupId: backupId)
-        return try await self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBackup(.init(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 }

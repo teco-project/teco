@@ -115,8 +115,7 @@ extension Eiam {
     /// 根据机构节点ID读取节点下用户
     @inlinable
     public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInOrgNodeResponse> {
-        let input = ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return self.client.execute(action: "ListUsersInOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listUsersInOrgNode(.init(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 读取节点下用户
@@ -124,7 +123,6 @@ extension Eiam {
     /// 根据机构节点ID读取节点下用户
     @inlinable
     public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
-        let input = ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListUsersInOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listUsersInOrgNode(.init(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -113,14 +113,12 @@ extension Billing {
     /// 按日期获取产品用量明细
     @inlinable
     public func describeDosageDetailByDate(startDate: String, endDate: String, productCode: String, domain: String, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageDetailByDateResponse> {
-        let input = DescribeDosageDetailByDateRequest(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID)
-        return self.client.execute(action: "DescribeDosageDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDosageDetailByDate(.init(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按日期获取产品用量明细
     @inlinable
     public func describeDosageDetailByDate(startDate: String, endDate: String, productCode: String, domain: String, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {
-        let input = DescribeDosageDetailByDateRequest(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID)
-        return try await self.client.execute(action: "DescribeDosageDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDosageDetailByDate(.init(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -114,8 +114,7 @@ extension Tcss {
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
     public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskListResponse> {
-        let input = DescribeRiskListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeRiskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRiskList(.init(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群风险项列表
@@ -123,8 +122,7 @@ extension Tcss {
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
     public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
-        let input = DescribeRiskListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeRiskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRiskList(.init(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群风险项列表

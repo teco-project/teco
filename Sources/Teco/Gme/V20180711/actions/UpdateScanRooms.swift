@@ -75,8 +75,7 @@ extension Gme {
     /// 更新自定义送检房间号
     @inlinable
     public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanRoomsResponse> {
-        let input = UpdateScanRoomsRequest(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex)
-        return self.client.execute(action: "UpdateScanRooms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateScanRooms(.init(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新送检房间号
@@ -84,7 +83,6 @@ extension Gme {
     /// 更新自定义送检房间号
     @inlinable
     public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
-        let input = UpdateScanRoomsRequest(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex)
-        return try await self.client.execute(action: "UpdateScanRooms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateScanRooms(.init(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Tke {
     /// 获取模板同步信息
     @inlinable
     public func describePrometheusTemplateSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTemplateSyncResponse> {
-        let input = DescribePrometheusTemplateSyncRequest(templateId: templateId)
-        return self.client.execute(action: "DescribePrometheusTemplateSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusTemplateSync(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模板同步信息
     @inlinable
     public func describePrometheusTemplateSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplateSyncResponse {
-        let input = DescribePrometheusTemplateSyncRequest(templateId: templateId)
-        return try await self.client.execute(action: "DescribePrometheusTemplateSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusTemplateSync(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

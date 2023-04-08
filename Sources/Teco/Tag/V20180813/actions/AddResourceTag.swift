@@ -70,8 +70,7 @@ extension Tag {
     /// 本接口用于给标签关联资源
     @inlinable @discardableResult
     public func addResourceTag(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddResourceTagResponse> {
-        let input = AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource)
-        return self.client.execute(action: "AddResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addResourceTag(.init(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标签关联资源
@@ -79,7 +78,6 @@ extension Tag {
     /// 本接口用于给标签关联资源
     @inlinable @discardableResult
     public func addResourceTag(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddResourceTagResponse {
-        let input = AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource)
-        return try await self.client.execute(action: "AddResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addResourceTag(.init(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 }

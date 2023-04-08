@@ -119,15 +119,13 @@ extension Ic {
     /// 查询短信列表
     @inlinable
     public func describeSms(sdkappid: Int64, iccid: String? = nil, msisdn: String? = nil, smsType: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsResponse> {
-        let input = DescribeSmsRequest(sdkappid: sdkappid, iccid: iccid, msisdn: msisdn, smsType: smsType, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSms(.init(sdkappid: sdkappid, iccid: iccid, msisdn: msisdn, smsType: smsType, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询短信列表
     @inlinable
     public func describeSms(sdkappid: Int64, iccid: String? = nil, msisdn: String? = nil, smsType: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsResponse {
-        let input = DescribeSmsRequest(sdkappid: sdkappid, iccid: iccid, msisdn: msisdn, smsType: smsType, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSms(.init(sdkappid: sdkappid, iccid: iccid, msisdn: msisdn, smsType: smsType, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询短信列表

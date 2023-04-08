@@ -74,8 +74,7 @@ extension Cvm {
     /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
     @inlinable @discardableResult
     public func renewHosts(hostIds: [String], hostChargePrepaid: ChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewHostsResponse> {
-        let input = RenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid)
-        return self.client.execute(action: "RenewHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewHosts(.init(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费CDH实例
@@ -86,7 +85,6 @@ extension Cvm {
     /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
     @inlinable @discardableResult
     public func renewHosts(hostIds: [String], hostChargePrepaid: ChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewHostsResponse {
-        let input = RenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid)
-        return try await self.client.execute(action: "RenewHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewHosts(.init(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

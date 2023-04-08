@@ -103,8 +103,7 @@ extension Cme {
     /// 指定导出的参数，创建一个视频编码配置
     @inlinable
     public func createVideoEncodingPreset(platform: String, name: String, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSetting? = nil, audioSetting: VideoEncodingPresetAudioSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoEncodingPresetResponse> {
-        let input = CreateVideoEncodingPresetRequest(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting)
-        return self.client.execute(action: "CreateVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVideoEncodingPreset(.init(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频编码配置
@@ -112,7 +111,6 @@ extension Cme {
     /// 指定导出的参数，创建一个视频编码配置
     @inlinable
     public func createVideoEncodingPreset(platform: String, name: String, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSetting? = nil, audioSetting: VideoEncodingPresetAudioSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoEncodingPresetResponse {
-        let input = CreateVideoEncodingPresetRequest(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting)
-        return try await self.client.execute(action: "CreateVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVideoEncodingPreset(.init(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }
 }

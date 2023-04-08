@@ -68,8 +68,7 @@ extension Cwp {
     /// 导出已忽略基线检测项信息
     @inlinable
     public func exportIgnoreBaselineRule(ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
-        let input = ExportIgnoreBaselineRuleRequest(ruleName: ruleName)
-        return self.client.execute(action: "ExportIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportIgnoreBaselineRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 已忽略基线检测项导出
@@ -77,7 +76,6 @@ extension Cwp {
     /// 导出已忽略基线检测项信息
     @inlinable
     public func exportIgnoreBaselineRule(ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
-        let input = ExportIgnoreBaselineRuleRequest(ruleName: ruleName)
-        return try await self.client.execute(action: "ExportIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportIgnoreBaselineRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

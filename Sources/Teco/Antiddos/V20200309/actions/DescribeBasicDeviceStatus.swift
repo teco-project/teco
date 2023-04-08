@@ -61,14 +61,12 @@ extension Antiddos {
     /// 获取基础防护攻击状态
     @inlinable
     public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
-        let input = DescribeBasicDeviceStatusRequest(ipList: ipList)
-        return self.client.execute(action: "DescribeBasicDeviceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBasicDeviceStatus(.init(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护攻击状态
     @inlinable
     public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
-        let input = DescribeBasicDeviceStatusRequest(ipList: ipList)
-        return try await self.client.execute(action: "DescribeBasicDeviceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBasicDeviceStatus(.init(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

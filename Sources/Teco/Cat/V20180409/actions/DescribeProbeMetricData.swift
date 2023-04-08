@@ -96,8 +96,7 @@ extension Cat {
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
     @inlinable
     public func describeProbeMetricData(analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeMetricDataResponse> {
-        let input = DescribeProbeMetricDataRequest(analyzeTaskType: analyzeTaskType, metricType: metricType, field: field, filter: filter, groupBy: groupBy, filters: filters)
-        return self.client.execute(action: "DescribeProbeMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProbeMetricData(.init(analyzeTaskType: analyzeTaskType, metricType: metricType, field: field, filter: filter, groupBy: groupBy, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出云拨测指标详细数据
@@ -105,7 +104,6 @@ extension Cat {
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
     @inlinable
     public func describeProbeMetricData(analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeMetricDataResponse {
-        let input = DescribeProbeMetricDataRequest(analyzeTaskType: analyzeTaskType, metricType: metricType, field: field, filter: filter, groupBy: groupBy, filters: filters)
-        return try await self.client.execute(action: "DescribeProbeMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProbeMetricData(.init(analyzeTaskType: analyzeTaskType, metricType: metricType, field: field, filter: filter, groupBy: groupBy, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

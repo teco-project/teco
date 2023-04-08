@@ -70,14 +70,12 @@ extension Lcic {
     /// 获取用户信息
     @inlinable
     public func describeUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
-        let input = DescribeUserRequest(userId: userId)
-        return self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUser(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户信息
     @inlinable
     public func describeUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        let input = DescribeUserRequest(userId: userId)
-        return try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUser(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

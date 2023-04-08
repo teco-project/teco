@@ -58,14 +58,12 @@ extension Cfw {
     /// 创建暴露数据库白名单规则
     @inlinable
     public func createDatabaseWhiteListRules(databaseWhiteListRuleData: [DatabaseWhiteListRuleData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseWhiteListRulesResponse> {
-        let input = CreateDatabaseWhiteListRulesRequest(databaseWhiteListRuleData: databaseWhiteListRuleData)
-        return self.client.execute(action: "CreateDatabaseWhiteListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDatabaseWhiteListRules(.init(databaseWhiteListRuleData: databaseWhiteListRuleData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建暴露数据库白名单规则
     @inlinable
     public func createDatabaseWhiteListRules(databaseWhiteListRuleData: [DatabaseWhiteListRuleData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseWhiteListRulesResponse {
-        let input = CreateDatabaseWhiteListRulesRequest(databaseWhiteListRuleData: databaseWhiteListRuleData)
-        return try await self.client.execute(action: "CreateDatabaseWhiteListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDatabaseWhiteListRules(.init(databaseWhiteListRuleData: databaseWhiteListRuleData), region: region, logger: logger, on: eventLoop)
     }
 }

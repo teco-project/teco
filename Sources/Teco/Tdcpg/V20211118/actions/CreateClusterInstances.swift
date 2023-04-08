@@ -84,8 +84,7 @@ extension Tdcpg {
     /// 在集群中新建实例
     @inlinable
     public func createClusterInstances(clusterId: String, cpu: UInt64, memory: UInt64, instanceName: String? = nil, instanceCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterInstancesResponse> {
-        let input = CreateClusterInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount)
-        return self.client.execute(action: "CreateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createClusterInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
@@ -93,7 +92,6 @@ extension Tdcpg {
     /// 在集群中新建实例
     @inlinable
     public func createClusterInstances(clusterId: String, cpu: UInt64, memory: UInt64, instanceName: String? = nil, instanceCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
-        let input = CreateClusterInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount)
-        return try await self.client.execute(action: "CreateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createClusterInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount), region: region, logger: logger, on: eventLoop)
     }
 }

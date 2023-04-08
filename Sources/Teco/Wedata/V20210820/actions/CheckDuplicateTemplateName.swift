@@ -69,14 +69,12 @@ extension Wedata {
     /// 检查规则模板名称是否重复
     @inlinable
     public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
-        let input = CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId)
-        return self.client.execute(action: "CheckDuplicateTemplateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkDuplicateTemplateName(.init(templateId: templateId, name: name, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查规则模板名称是否重复
     @inlinable
     public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
-        let input = CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId)
-        return try await self.client.execute(action: "CheckDuplicateTemplateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkDuplicateTemplateName(.init(templateId: templateId, name: name, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

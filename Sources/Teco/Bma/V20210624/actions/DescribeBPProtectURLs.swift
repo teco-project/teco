@@ -87,15 +87,13 @@ extension Bma {
     /// 查询保护网站
     @inlinable
     public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
-        let input = DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber)
-        return self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBPProtectURLs(.init(pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询保护网站
     @inlinable
     public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
-        let input = DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber)
-        return try await self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBPProtectURLs(.init(pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询保护网站

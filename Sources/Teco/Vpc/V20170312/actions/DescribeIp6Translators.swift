@@ -110,8 +110,7 @@ extension Vpc {
     /// 2. 支持过滤查询
     @inlinable
     public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorsResponse> {
-        let input = DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIp6Translators(.init(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6转换实例及其绑定规则信息
@@ -120,8 +119,7 @@ extension Vpc {
     /// 2. 支持过滤查询
     @inlinable
     public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
-        let input = DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIp6Translators(.init(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6转换实例及其绑定规则信息

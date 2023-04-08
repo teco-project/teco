@@ -65,8 +65,7 @@ extension Batch {
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable @discardableResult
     public func terminateComputeNodes(envId: String, computeNodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
-        let input = TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds)
-        return self.client.execute(action: "TerminateComputeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.terminateComputeNodes(.init(envId: envId, computeNodeIds: computeNodeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量销毁计算节点
@@ -74,7 +73,6 @@ extension Batch {
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable @discardableResult
     public func terminateComputeNodes(envId: String, computeNodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
-        let input = TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds)
-        return try await self.client.execute(action: "TerminateComputeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.terminateComputeNodes(.init(envId: envId, computeNodeIds: computeNodeIds), region: region, logger: logger, on: eventLoop)
     }
 }

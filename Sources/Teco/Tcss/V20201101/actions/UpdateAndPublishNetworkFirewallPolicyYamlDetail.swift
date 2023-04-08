@@ -77,14 +77,12 @@ extension Tcss {
     /// 容器网络更新Yaml网络策略并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyYamlDetail(clusterId: String, id: UInt64, yaml: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse> {
-        let input = UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, id: id, yaml: yaml, description: description)
-        return self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAndPublishNetworkFirewallPolicyYamlDetail(.init(clusterId: clusterId, id: id, yaml: yaml, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络更新Yaml网络策略并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyYamlDetail(clusterId: String, id: UInt64, yaml: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse {
-        let input = UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, id: id, yaml: yaml, description: description)
-        return try await self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAndPublishNetworkFirewallPolicyYamlDetail(.init(clusterId: clusterId, id: id, yaml: yaml, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -89,8 +89,7 @@ extension Captcha {
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
     public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataResponse> {
-        let input = DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type)
-        return self.client.execute(action: "DescribeCaptchaMiniData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCaptchaMiniData(.init(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件分类查询数据接口
@@ -98,7 +97,6 @@ extension Captcha {
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
     public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataResponse {
-        let input = DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type)
-        return try await self.client.execute(action: "DescribeCaptchaMiniData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCaptchaMiniData(.init(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

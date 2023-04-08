@@ -78,8 +78,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        let input = CreateVerifyRecordRequest(domain: domain)
-        return self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成解析记录
@@ -89,7 +88,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        let input = CreateVerifyRecordRequest(domain: domain)
-        return try await self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

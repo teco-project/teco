@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        let input = AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateSecurityGroups(.init(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        let input = AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateSecurityGroups(.init(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

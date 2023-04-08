@@ -68,8 +68,7 @@ extension Cws {
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
     public func verifySites(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
-        let input = VerifySitesRequest(urls: urls)
-        return self.client.execute(action: "VerifySites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifySites(.init(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证站点
@@ -77,7 +76,6 @@ extension Cws {
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
     public func verifySites(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
-        let input = VerifySitesRequest(urls: urls)
-        return try await self.client.execute(action: "VerifySites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifySites(.init(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

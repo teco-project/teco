@@ -115,8 +115,7 @@ extension Cloudhsm {
     /// 购买询价接口
     @inlinable
     public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
-        let input = InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType)
-        return self.client.execute(action: "InquiryPriceBuyVsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceBuyVsm(.init(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 询价
@@ -124,7 +123,6 @@ extension Cloudhsm {
     /// 购买询价接口
     @inlinable
     public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
-        let input = InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType)
-        return try await self.client.execute(action: "InquiryPriceBuyVsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceBuyVsm(.init(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 }

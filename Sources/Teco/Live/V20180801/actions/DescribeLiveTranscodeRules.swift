@@ -63,14 +63,12 @@ extension Live {
     /// 获取转码规则列表
     @inlinable
     public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
-        let input = DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames)
-        return self.client.execute(action: "DescribeLiveTranscodeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveTranscodeRules(.init(templateIds: templateIds, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转码规则列表
     @inlinable
     public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
-        let input = DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames)
-        return try await self.client.execute(action: "DescribeLiveTranscodeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveTranscodeRules(.init(templateIds: templateIds, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 }

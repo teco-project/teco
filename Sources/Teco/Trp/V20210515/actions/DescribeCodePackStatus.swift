@@ -64,14 +64,12 @@ extension Trp {
     /// 查询码包状态
     @inlinable
     public func describeCodePackStatus(packId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodePackStatusResponse> {
-        let input = DescribeCodePackStatusRequest(packId: packId, corpId: corpId)
-        return self.client.execute(action: "DescribeCodePackStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCodePackStatus(.init(packId: packId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询码包状态
     @inlinable
     public func describeCodePackStatus(packId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackStatusResponse {
-        let input = DescribeCodePackStatusRequest(packId: packId, corpId: corpId)
-        return try await self.client.execute(action: "DescribeCodePackStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCodePackStatus(.init(packId: packId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

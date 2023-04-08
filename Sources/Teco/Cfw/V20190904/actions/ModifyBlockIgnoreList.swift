@@ -97,8 +97,7 @@ extension Cfw {
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
     public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIgnoreListResponse> {
-        let input = ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "ModifyBlockIgnoreList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBlockIgnoreList(.init(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 封禁列表和放通列表批量操作接口
@@ -109,7 +108,6 @@ extension Cfw {
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
     public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
-        let input = ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "ModifyBlockIgnoreList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBlockIgnoreList(.init(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

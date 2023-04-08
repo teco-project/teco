@@ -75,8 +75,7 @@ extension Eb {
     /// 用于更新转换器
     @inlinable @discardableResult
     public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTransformationResponse> {
-        let input = UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations)
-        return self.client.execute(action: "UpdateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新转换器
@@ -84,7 +83,6 @@ extension Eb {
     /// 用于更新转换器
     @inlinable @discardableResult
     public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
-        let input = UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations)
-        return try await self.client.execute(action: "UpdateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 }

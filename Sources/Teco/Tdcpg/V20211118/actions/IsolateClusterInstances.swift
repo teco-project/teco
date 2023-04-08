@@ -74,8 +74,7 @@ extension Tdcpg {
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable @discardableResult
     public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
-        let input = IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.isolateClusterInstances(.init(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -86,7 +85,6 @@ extension Tdcpg {
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable @discardableResult
     public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
-        let input = IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.isolateClusterInstances(.init(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,14 +83,12 @@ extension Eb {
     /// 创建事件连接器
     @inlinable
     public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectionResponse> {
-        let input = CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type)
-        return self.client.execute(action: "CreateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConnection(.init(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件连接器
     @inlinable
     public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
-        let input = CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type)
-        return try await self.client.execute(action: "CreateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConnection(.init(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

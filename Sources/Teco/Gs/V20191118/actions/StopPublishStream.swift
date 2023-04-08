@@ -54,14 +54,12 @@ extension Gs {
     /// 停止云端推流
     @inlinable @discardableResult
     public func stopPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopPublishStreamResponse> {
-        let input = StopPublishStreamRequest(userId: userId)
-        return self.client.execute(action: "StopPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopPublishStream(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止云端推流
     @inlinable @discardableResult
     public func stopPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishStreamResponse {
-        let input = StopPublishStreamRequest(userId: userId)
-        return try await self.client.execute(action: "StopPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopPublishStream(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

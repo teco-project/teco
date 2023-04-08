@@ -64,8 +64,7 @@ extension Tcss {
     /// 安装检查组件，创建防护容器
     @inlinable
     public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
-        let input = CreateCheckComponentRequest(clusterInfoList: clusterInfoList)
-        return self.client.execute(action: "CreateCheckComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCheckComponent(.init(clusterInfoList: clusterInfoList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安装检查组件
@@ -73,7 +72,6 @@ extension Tcss {
     /// 安装检查组件，创建防护容器
     @inlinable
     public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
-        let input = CreateCheckComponentRequest(clusterInfoList: clusterInfoList)
-        return try await self.client.execute(action: "CreateCheckComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCheckComponent(.init(clusterInfoList: clusterInfoList), region: region, logger: logger, on: eventLoop)
     }
 }

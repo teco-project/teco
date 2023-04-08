@@ -50,14 +50,12 @@ extension Yunjing {
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
-        let input = ExportReverseShellEventsRequest()
-        return self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportReverseShellEvents(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
-        let input = ExportReverseShellEventsRequest()
-        return try await self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportReverseShellEvents(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

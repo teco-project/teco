@@ -69,14 +69,12 @@ extension Eiam {
     /// 获取用户组信息
     @inlinable
     public func describeUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupResponse> {
-        let input = DescribeUserGroupRequest(userGroupId: userGroupId)
-        return self.client.execute(action: "DescribeUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserGroup(.init(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户组信息
     @inlinable
     public func describeUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResponse {
-        let input = DescribeUserGroupRequest(userGroupId: userGroupId)
-        return try await self.client.execute(action: "DescribeUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserGroup(.init(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

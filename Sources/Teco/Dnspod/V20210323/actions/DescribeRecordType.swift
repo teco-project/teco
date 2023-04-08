@@ -60,14 +60,12 @@ extension Dnspod {
     /// 获取等级允许的记录类型
     @inlinable
     public func describeRecordType(domainGrade: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordTypeResponse> {
-        let input = DescribeRecordTypeRequest(domainGrade: domainGrade)
-        return self.client.execute(action: "DescribeRecordType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordType(.init(domainGrade: domainGrade), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取等级允许的记录类型
     @inlinable
     public func describeRecordType(domainGrade: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTypeResponse {
-        let input = DescribeRecordTypeRequest(domainGrade: domainGrade)
-        return try await self.client.execute(action: "DescribeRecordType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordType(.init(domainGrade: domainGrade), region: region, logger: logger, on: eventLoop)
     }
 }

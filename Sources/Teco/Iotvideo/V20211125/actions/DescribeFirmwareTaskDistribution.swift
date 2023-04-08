@@ -74,8 +74,7 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务状态分布
     @inlinable
     public func describeFirmwareTaskDistribution(productID: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
-        let input = DescribeFirmwareTaskDistributionRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId)
-        return self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFirmwareTaskDistribution(.init(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务状态分布
@@ -83,7 +82,6 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务状态分布
     @inlinable
     public func describeFirmwareTaskDistribution(productID: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
-        let input = DescribeFirmwareTaskDistributionRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId)
-        return try await self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFirmwareTaskDistribution(.init(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

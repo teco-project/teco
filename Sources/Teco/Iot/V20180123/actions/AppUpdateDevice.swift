@@ -79,8 +79,7 @@ extension Iot {
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
     public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
-        let input = AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName)
-        return self.client.execute(action: "AppUpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appUpdateDevice(.init(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备别名
@@ -88,7 +87,6 @@ extension Iot {
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
     public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
-        let input = AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName)
-        return try await self.client.execute(action: "AppUpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appUpdateDevice(.init(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), region: region, logger: logger, on: eventLoop)
     }
 }

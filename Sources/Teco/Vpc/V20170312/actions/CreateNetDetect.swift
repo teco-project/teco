@@ -106,8 +106,7 @@ extension Vpc {
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
     public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
-        let input = CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription)
-        return self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetDetect(.init(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网络探测
@@ -115,7 +114,6 @@ extension Vpc {
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
     public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
-        let input = CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription)
-        return try await self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetDetect(.init(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 }

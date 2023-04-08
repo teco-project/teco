@@ -73,8 +73,7 @@ extension Cdb {
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
     public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoMinScaleResponse> {
-        let input = DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId)
-        return self.client.execute(action: "DescribeRoMinScale", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRoMinScale(.init(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取只读实例购买或升级的最小规格
@@ -82,7 +81,6 @@ extension Cdb {
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
     public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
-        let input = DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId)
-        return try await self.client.execute(action: "DescribeRoMinScale", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRoMinScale(.init(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

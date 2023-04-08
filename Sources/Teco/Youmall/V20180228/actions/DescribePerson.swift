@@ -98,8 +98,7 @@ extension Youmall {
     /// 查询指定某一卖场的用户信息
     @inlinable
     public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        let input = DescribePersonRequest(mallId: mallId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePerson(.init(mallId: mallId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户信息
@@ -107,8 +106,7 @@ extension Youmall {
     /// 查询指定某一卖场的用户信息
     @inlinable
     public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        let input = DescribePersonRequest(mallId: mallId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePerson(.init(mallId: mallId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户信息

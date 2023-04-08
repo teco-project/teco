@@ -63,14 +63,12 @@ extension Ciam {
     /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
-        let input = CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList)
-        return self.client.execute(action: "CreateApiImportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createApiImportUserJob(.init(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
-        let input = CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList)
-        return try await self.client.execute(action: "CreateApiImportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createApiImportUserJob(.init(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), region: region, logger: logger, on: eventLoop)
     }
 }

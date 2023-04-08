@@ -60,8 +60,7 @@ extension Tcss {
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(policyAssetSetList: [CompliancePolicyAssetSetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyAssetSetFromWhitelistResponse> {
-        let input = DeleteCompliancePolicyAssetSetFromWhitelistRequest(policyAssetSetList: policyAssetSetList)
-        return self.client.execute(action: "DeleteCompliancePolicyAssetSetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCompliancePolicyAssetSetFromWhitelist(.init(policyAssetSetList: policyAssetSetList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除检测项+资产列表的白名单策略
@@ -69,7 +68,6 @@ extension Tcss {
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(policyAssetSetList: [CompliancePolicyAssetSetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyAssetSetFromWhitelistResponse {
-        let input = DeleteCompliancePolicyAssetSetFromWhitelistRequest(policyAssetSetList: policyAssetSetList)
-        return try await self.client.execute(action: "DeleteCompliancePolicyAssetSetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCompliancePolicyAssetSetFromWhitelist(.init(policyAssetSetList: policyAssetSetList), region: region, logger: logger, on: eventLoop)
     }
 }

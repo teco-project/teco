@@ -58,14 +58,12 @@ extension Iotexplorer {
     /// 查询项目详情
     @inlinable
     public func describeProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
-        let input = DescribeProjectRequest(projectId: projectId)
-        return self.client.execute(action: "DescribeProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目详情
     @inlinable
     public func describeProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
-        let input = DescribeProjectRequest(projectId: projectId)
-        return try await self.client.execute(action: "DescribeProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

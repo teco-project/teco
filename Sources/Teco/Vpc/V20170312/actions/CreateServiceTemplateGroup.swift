@@ -69,8 +69,7 @@ extension Vpc {
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
     public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
-        let input = CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds)
-        return self.client.execute(action: "CreateServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createServiceTemplateGroup(.init(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建协议端口模板集合
@@ -78,7 +77,6 @@ extension Vpc {
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
     public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
-        let input = CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds)
-        return try await self.client.execute(action: "CreateServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createServiceTemplateGroup(.init(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

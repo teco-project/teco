@@ -70,8 +70,7 @@ extension Iotexplorer {
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable @discardableResult
     public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
-        let input = CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege)
-        return self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTopicPolicy(.init(productId: productId, topicName: topicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Topic
@@ -79,7 +78,6 @@ extension Iotexplorer {
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable @discardableResult
     public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
-        let input = CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege)
-        return try await self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTopicPolicy(.init(productId: productId, topicName: topicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
     }
 }

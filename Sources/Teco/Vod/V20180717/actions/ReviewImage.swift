@@ -93,8 +93,7 @@ extension Vod {
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
     public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
-        let input = ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "ReviewImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reviewImage(.init(fileId: fileId, definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片审核
@@ -106,7 +105,6 @@ extension Vod {
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
     public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
-        let input = ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "ReviewImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reviewImage(.init(fileId: fileId, definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Taf {
     /// 流量反欺诈-流量验准
     @inlinable
     public func recognizeTargetAudience(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTargetAudienceResponse> {
-        let input = RecognizeTargetAudienceRequest(bspData: bspData, businessEncryptData: businessEncryptData)
-        return self.client.execute(action: "RecognizeTargetAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeTargetAudience(.init(bspData: bspData, businessEncryptData: businessEncryptData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流量反欺诈-流量验准
     @inlinable
     public func recognizeTargetAudience(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTargetAudienceResponse {
-        let input = RecognizeTargetAudienceRequest(bspData: bspData, businessEncryptData: businessEncryptData)
-        return try await self.client.execute(action: "RecognizeTargetAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeTargetAudience(.init(bspData: bspData, businessEncryptData: businessEncryptData), region: region, logger: logger, on: eventLoop)
     }
 }

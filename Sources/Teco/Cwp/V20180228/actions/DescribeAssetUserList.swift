@@ -127,15 +127,13 @@ extension Cwp {
     /// 获取账号列表
     @inlinable
     public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserListResponse> {
-        let input = DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeAssetUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetUserList(.init(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号列表
     @inlinable
     public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserListResponse {
-        let input = DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeAssetUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetUserList(.init(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号列表

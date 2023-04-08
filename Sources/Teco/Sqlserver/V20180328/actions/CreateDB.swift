@@ -69,8 +69,7 @@ extension Sqlserver {
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
     public func createDB(instanceId: String, dBs: [DBCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBResponse> {
-        let input = CreateDBRequest(instanceId: instanceId, dBs: dBs)
-        return self.client.execute(action: "CreateDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDB(.init(instanceId: instanceId, dBs: dBs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据库
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
     public func createDB(instanceId: String, dBs: [DBCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
-        let input = CreateDBRequest(instanceId: instanceId, dBs: dBs)
-        return try await self.client.execute(action: "CreateDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDB(.init(instanceId: instanceId, dBs: dBs), region: region, logger: logger, on: eventLoop)
     }
 }

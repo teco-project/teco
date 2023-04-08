@@ -70,8 +70,7 @@ extension Ses {
     /// 更新邮件模板，更新后需再次审核
     @inlinable @discardableResult
     public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
-        let input = UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName)
-        return self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateEmailTemplate(.init(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新邮件模板
@@ -79,7 +78,6 @@ extension Ses {
     /// 更新邮件模板，更新后需再次审核
     @inlinable @discardableResult
     public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
-        let input = UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName)
-        return try await self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateEmailTemplate(.init(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }
 }

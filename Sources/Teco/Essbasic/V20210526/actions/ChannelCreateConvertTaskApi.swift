@@ -83,14 +83,12 @@ extension Essbasic {
     /// 渠道创建文件转换任务
     @inlinable
     public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateConvertTaskApiResponse> {
-        let input = ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization)
-        return self.client.execute(action: "ChannelCreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.channelCreateConvertTaskApi(.init(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道创建文件转换任务
     @inlinable
     public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
-        let input = ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization)
-        return try await self.client.execute(action: "ChannelCreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.channelCreateConvertTaskApi(.init(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

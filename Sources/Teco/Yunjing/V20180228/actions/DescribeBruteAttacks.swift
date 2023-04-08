@@ -105,8 +105,7 @@ extension Yunjing {
     /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
     @inlinable
     public func describeBruteAttacks(uuid: String? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBruteAttacksResponse> {
-        let input = DescribeBruteAttacksRequest(uuid: uuid, offset: offset, filters: filters, limit: limit)
-        return self.client.execute(action: "DescribeBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBruteAttacks(.init(uuid: uuid, offset: offset, filters: filters, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云镜破解事件列表
@@ -114,8 +113,7 @@ extension Yunjing {
     /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
     @inlinable
     public func describeBruteAttacks(uuid: String? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttacksResponse {
-        let input = DescribeBruteAttacksRequest(uuid: uuid, offset: offset, filters: filters, limit: limit)
-        return try await self.client.execute(action: "DescribeBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBruteAttacks(.init(uuid: uuid, offset: offset, filters: filters, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云镜破解事件列表

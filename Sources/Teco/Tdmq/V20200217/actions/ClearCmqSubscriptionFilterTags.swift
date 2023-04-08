@@ -65,8 +65,7 @@ extension Tdmq {
     /// 清空订阅者消息标签
     @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
-        let input = ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.clearCmqSubscriptionFilterTags(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq订阅者消息标签
@@ -74,7 +73,6 @@ extension Tdmq {
     /// 清空订阅者消息标签
     @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
-        let input = ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return try await self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.clearCmqSubscriptionFilterTags(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -98,8 +98,7 @@ extension Lighthouse {
     /// 本接口(DescribeScenes)用于查看使用场景列表。
     @inlinable
     public func describeScenes(sceneIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenesResponse> {
-        let input = DescribeScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScenes(.init(sceneIds: sceneIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看使用场景列表
@@ -107,8 +106,7 @@ extension Lighthouse {
     /// 本接口(DescribeScenes)用于查看使用场景列表。
     @inlinable
     public func describeScenes(sceneIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
-        let input = DescribeScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScenes(.init(sceneIds: sceneIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看使用场景列表

@@ -88,15 +88,13 @@ extension Tcr {
     /// 查询个人版命名空间信息
     @inlinable
     public func describeNamespacePersonal(namespace: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacePersonalResponse> {
-        let input = DescribeNamespacePersonalRequest(namespace: namespace, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNamespacePersonal(.init(namespace: namespace, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版命名空间信息
     @inlinable
     public func describeNamespacePersonal(namespace: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacePersonalResponse {
-        let input = DescribeNamespacePersonalRequest(namespace: namespace, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNamespacePersonal(.init(namespace: namespace, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版命名空间信息

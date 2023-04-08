@@ -116,15 +116,13 @@ extension Tcss {
     /// 查询漏洞防御事件列表
     @inlinable
     public func describeVulDefenceEvent(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventResponse> {
-        let input = DescribeVulDefenceEventRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeVulDefenceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulDefenceEvent(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御事件列表
     @inlinable
     public func describeVulDefenceEvent(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventResponse {
-        let input = DescribeVulDefenceEventRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeVulDefenceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulDefenceEvent(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御事件列表

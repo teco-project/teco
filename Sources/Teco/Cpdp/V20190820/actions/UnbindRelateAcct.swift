@@ -107,8 +107,7 @@ extension Cpdp {
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
     public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRelateAcctResponse> {
-        let input = UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile)
-        return self.client.execute(action: "UnbindRelateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindRelateAcct(.init(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员解绑提现账户
@@ -116,7 +115,6 @@ extension Cpdp {
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
     public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
-        let input = UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile)
-        return try await self.client.execute(action: "UnbindRelateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindRelateAcct(.init(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

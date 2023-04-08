@@ -85,8 +85,7 @@ extension Cvm {
     /// * 只支持分享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSharePermissionResponse> {
-        let input = ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission)
-        return self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyImageSharePermission(.init(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像分享信息
@@ -99,7 +98,6 @@ extension Cvm {
     /// * 只支持分享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
-        let input = ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission)
-        return try await self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyImageSharePermission(.init(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -118,8 +118,7 @@ extension Trp {
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
     public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
-        let input = DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize)
-        return self.client.execute(action: "DescribeTraceDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTraceDataList(.init(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询溯源信息
@@ -127,8 +126,7 @@ extension Trp {
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
     public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
-        let input = DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeTraceDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTraceDataList(.init(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询溯源信息

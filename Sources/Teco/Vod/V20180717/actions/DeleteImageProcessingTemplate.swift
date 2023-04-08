@@ -65,8 +65,7 @@ extension Vod {
     /// 删除用户自定义图片处理模板。
     @inlinable @discardableResult
     public func deleteImageProcessingTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageProcessingTemplateResponse> {
-        let input = DeleteImageProcessingTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImageProcessingTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除图片即时处理模板
@@ -74,7 +73,6 @@ extension Vod {
     /// 删除用户自定义图片处理模板。
     @inlinable @discardableResult
     public func deleteImageProcessingTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageProcessingTemplateResponse {
-        let input = DeleteImageProcessingTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImageProcessingTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Lighthouse {
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
     @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
-        let input = ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName)
-        return self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySnapshotAttribute(.init(snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照信息
@@ -78,7 +77,6 @@ extension Lighthouse {
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
     @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
-        let input = ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName)
-        return try await self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySnapshotAttribute(.init(snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 }

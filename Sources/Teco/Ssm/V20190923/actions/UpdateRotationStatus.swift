@@ -87,8 +87,7 @@ extension Ssm {
     /// 轮转开始时间
     @inlinable @discardableResult
     public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
-        let input = UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime)
-        return self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateRotationStatus(.init(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置云产品凭据轮转策略
@@ -99,7 +98,6 @@ extension Ssm {
     /// 轮转开始时间
     @inlinable @discardableResult
     public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
-        let input = UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime)
-        return try await self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateRotationStatus(.init(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }
 }

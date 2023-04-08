@@ -138,14 +138,12 @@ extension Cfw {
     /// 查询新企业安全组规则
     @inlinable
     public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
-        let input = DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId)
-        return self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询新企业安全组规则
     @inlinable
     public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
-        let input = DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId)
-        return try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

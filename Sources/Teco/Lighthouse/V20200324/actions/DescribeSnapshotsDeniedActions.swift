@@ -64,8 +64,7 @@ extension Lighthouse {
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
     public func describeSnapshotsDeniedActions(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsDeniedActionsResponse> {
-        let input = DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds)
-        return self.client.execute(action: "DescribeSnapshotsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshotsDeniedActions(.init(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照操作限制列表
@@ -73,7 +72,6 @@ extension Lighthouse {
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
     public func describeSnapshotsDeniedActions(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
-        let input = DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds)
-        return try await self.client.execute(action: "DescribeSnapshotsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshotsDeniedActions(.init(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

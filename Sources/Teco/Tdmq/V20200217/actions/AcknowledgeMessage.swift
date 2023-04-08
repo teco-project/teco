@@ -75,8 +75,7 @@ extension Tdmq {
     /// 根据提供的 MessageID 确认指定 topic 中的消息
     @inlinable
     public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcknowledgeMessageResponse> {
-        let input = AcknowledgeMessageRequest(messageId: messageId, ackTopic: ackTopic, subName: subName)
-        return self.client.execute(action: "AcknowledgeMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.acknowledgeMessage(.init(messageId: messageId, ackTopic: ackTopic, subName: subName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 确认消息
@@ -84,7 +83,6 @@ extension Tdmq {
     /// 根据提供的 MessageID 确认指定 topic 中的消息
     @inlinable
     public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
-        let input = AcknowledgeMessageRequest(messageId: messageId, ackTopic: ackTopic, subName: subName)
-        return try await self.client.execute(action: "AcknowledgeMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.acknowledgeMessage(.init(messageId: messageId, ackTopic: ackTopic, subName: subName), region: region, logger: logger, on: eventLoop)
     }
 }

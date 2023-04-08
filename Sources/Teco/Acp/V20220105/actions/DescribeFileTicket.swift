@@ -83,8 +83,7 @@ extension Acp {
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
     public func describeFileTicket(source: Int64, platform: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileTicketResponse> {
-        let input = DescribeFileTicketRequest(source: source, platform: platform)
-        return self.client.execute(action: "DescribeFileTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFileTicket(.init(source: source, platform: platform), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用合规文件上传凭证接口
@@ -92,7 +91,6 @@ extension Acp {
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
     public func describeFileTicket(source: Int64, platform: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
-        let input = DescribeFileTicketRequest(source: source, platform: platform)
-        return try await self.client.execute(action: "DescribeFileTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFileTicket(.init(source: source, platform: platform), region: region, logger: logger, on: eventLoop)
     }
 }

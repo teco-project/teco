@@ -90,8 +90,7 @@ extension Tem {
     /// 编辑环境
     @inlinable
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        let input = ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel)
-        return self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNamespace(.init(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑命名空间
@@ -99,7 +98,6 @@ extension Tem {
     /// 编辑环境
     @inlinable
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        let input = ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNamespace(.init(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

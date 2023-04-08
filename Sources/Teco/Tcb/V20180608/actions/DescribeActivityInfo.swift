@@ -58,14 +58,12 @@ extension Tcb {
     /// 查询活动信息
     @inlinable
     public func describeActivityInfo(activityIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActivityInfoResponse> {
-        let input = DescribeActivityInfoRequest(activityIdList: activityIdList)
-        return self.client.execute(action: "DescribeActivityInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeActivityInfo(.init(activityIdList: activityIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询活动信息
     @inlinable
     public func describeActivityInfo(activityIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityInfoResponse {
-        let input = DescribeActivityInfoRequest(activityIdList: activityIdList)
-        return try await self.client.execute(action: "DescribeActivityInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeActivityInfo(.init(activityIdList: activityIdList), region: region, logger: logger, on: eventLoop)
     }
 }

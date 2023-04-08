@@ -74,8 +74,7 @@ extension Dayu {
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
     @inlinable
     public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4HealthResponse> {
-        let input = ModifyL4HealthRequest(business: business, id: id, healths: healths)
-        return self.client.execute(action: "ModifyL4Health", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyL4Health(.init(business: business, id: id, healths: healths), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改L4转发规则健康检查参数
@@ -83,7 +82,6 @@ extension Dayu {
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
     @inlinable
     public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
-        let input = ModifyL4HealthRequest(business: business, id: id, healths: healths)
-        return try await self.client.execute(action: "ModifyL4Health", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyL4Health(.init(business: business, id: id, healths: healths), region: region, logger: logger, on: eventLoop)
     }
 }

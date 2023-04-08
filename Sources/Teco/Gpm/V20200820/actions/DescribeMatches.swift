@@ -108,29 +108,50 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatches(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
-        self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatches is no longer available.")
     }
 
     /// 分页查询匹配列表
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatches(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
-        try await self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatches is no longer available.")
     }
 
     /// 分页查询匹配列表
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
-        let input = DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags)
-        return self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatches is no longer available.")
     }
 
     /// 分页查询匹配列表
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
-        let input = DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags)
-        return try await self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatches is no longer available.")
+    }
+
+    /// 分页查询匹配列表
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeMatchesPaginated(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MatchInfo])> {
+        fatalError("DescribeMatches is no longer available.")
+    }
+
+    /// 分页查询匹配列表
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeMatchesPaginated(_ input: DescribeMatchesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMatchesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeMatches is no longer available.")
+    }
+
+    /// 分页查询匹配列表
+    ///
+    /// - Returns: `AsyncSequence`s of `MatchInfo` and `DescribeMatchesResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeMatchesPaginator(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMatchesRequest> {
+        fatalError("DescribeMatches is no longer available.")
     }
 }

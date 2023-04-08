@@ -58,14 +58,12 @@ extension Bizlive {
     /// 查询空闲机器数量
     @inlinable
     public func describeWorkers(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkersResponse> {
-        let input = DescribeWorkersRequest()
-        return self.client.execute(action: "DescribeWorkers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWorkers(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询空闲机器数量
     @inlinable
     public func describeWorkers(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkersResponse {
-        let input = DescribeWorkersRequest()
-        return try await self.client.execute(action: "DescribeWorkers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWorkers(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

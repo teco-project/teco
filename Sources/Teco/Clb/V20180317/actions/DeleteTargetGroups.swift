@@ -54,14 +54,12 @@ extension Clb {
     /// 删除目标组
     @inlinable @discardableResult
     public func deleteTargetGroups(targetGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetGroupsResponse> {
-        let input = DeleteTargetGroupsRequest(targetGroupIds: targetGroupIds)
-        return self.client.execute(action: "DeleteTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTargetGroups(.init(targetGroupIds: targetGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除目标组
     @inlinable @discardableResult
     public func deleteTargetGroups(targetGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {
-        let input = DeleteTargetGroupsRequest(targetGroupIds: targetGroupIds)
-        return try await self.client.execute(action: "DeleteTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTargetGroups(.init(targetGroupIds: targetGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

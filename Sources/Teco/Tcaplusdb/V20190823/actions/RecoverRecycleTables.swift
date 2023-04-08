@@ -73,8 +73,7 @@ extension Tcaplusdb {
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
     public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverRecycleTablesResponse> {
-        let input = RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return self.client.execute(action: "RecoverRecycleTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recoverRecycleTables(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复回收站中的表
@@ -82,7 +81,6 @@ extension Tcaplusdb {
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
     public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
-        let input = RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return try await self.client.execute(action: "RecoverRecycleTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recoverRecycleTables(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

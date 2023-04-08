@@ -127,8 +127,7 @@ extension Essbasic {
     /// 对子客企业进行模板库中模板可见性的修改、删除操作。
     @inlinable
     public func operateChannelTemplate(agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateChannelTemplateResponse> {
-        let input = OperateChannelTemplateRequest(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`)
-        return self.client.execute(action: "OperateChannelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.operateChannelTemplate(.init(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 操作渠道模板
@@ -140,7 +139,6 @@ extension Essbasic {
     /// 对子客企业进行模板库中模板可见性的修改、删除操作。
     @inlinable
     public func operateChannelTemplate(agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateChannelTemplateResponse {
-        let input = OperateChannelTemplateRequest(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`)
-        return try await self.client.execute(action: "OperateChannelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.operateChannelTemplate(.init(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

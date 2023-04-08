@@ -74,8 +74,7 @@ extension Dlc {
     /// 本接口（DescribeTable），用于查询单个表的详细信息。
     @inlinable
     public func describeTable(tableName: String, databaseName: String, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableResponse> {
-        let input = DescribeTableRequest(tableName: tableName, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName)
-        return self.client.execute(action: "DescribeTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTable(.init(tableName: tableName, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表详情
@@ -83,7 +82,6 @@ extension Dlc {
     /// 本接口（DescribeTable），用于查询单个表的详细信息。
     @inlinable
     public func describeTable(tableName: String, databaseName: String, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableResponse {
-        let input = DescribeTableRequest(tableName: tableName, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName)
-        return try await self.client.execute(action: "DescribeTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTable(.init(tableName: tableName, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 }

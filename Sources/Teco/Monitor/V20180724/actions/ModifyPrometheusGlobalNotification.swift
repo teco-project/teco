@@ -59,14 +59,12 @@ extension Monitor {
     /// 修改全局告警通知渠道
     @inlinable @discardableResult
     public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusGlobalNotificationResponse> {
-        let input = ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification)
-        return self.client.execute(action: "ModifyPrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrometheusGlobalNotification(.init(instanceId: instanceId, notification: notification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改全局告警通知渠道
     @inlinable @discardableResult
     public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
-        let input = ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification)
-        return try await self.client.execute(action: "ModifyPrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrometheusGlobalNotification(.init(instanceId: instanceId, notification: notification), region: region, logger: logger, on: eventLoop)
     }
 }

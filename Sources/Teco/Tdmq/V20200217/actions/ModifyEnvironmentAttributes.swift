@@ -98,8 +98,7 @@ extension Tdmq {
     /// 修改指定命名空间的属性值
     @inlinable
     public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
-        let input = ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy)
-        return self.client.execute(action: "ModifyEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间属性
@@ -107,7 +106,6 @@ extension Tdmq {
     /// 修改指定命名空间的属性值
     @inlinable
     public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        let input = ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy)
-        return try await self.client.execute(action: "ModifyEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

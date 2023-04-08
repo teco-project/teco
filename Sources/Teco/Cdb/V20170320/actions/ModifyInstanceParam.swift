@@ -89,8 +89,7 @@ extension Cdb {
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
-        let input = ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr)
-        return self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceParam(.init(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例参数
@@ -98,7 +97,6 @@ extension Cdb {
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
-        let input = ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr)
-        return try await self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceParam(.init(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), region: region, logger: logger, on: eventLoop)
     }
 }

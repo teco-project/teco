@@ -113,8 +113,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeDevicesList接口
     @inlinable
     public func describeAllDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceIds: [String]? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllDeviceListResponse> {
-        let input = DescribeAllDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes)
-        return self.client.execute(action: "DescribeAllDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAllDeviceList(.init(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表（旧）
@@ -123,8 +122,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeDevicesList接口
     @inlinable
     public func describeAllDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceIds: [String]? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDeviceListResponse {
-        let input = DescribeAllDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes)
-        return try await self.client.execute(action: "DescribeAllDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAllDeviceList(.init(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表（旧）

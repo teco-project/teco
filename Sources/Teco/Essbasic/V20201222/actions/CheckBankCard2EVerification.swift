@@ -99,8 +99,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证银行卡二要素
     @inlinable
     public func checkBankCard2EVerification(caller: Caller, bankCard: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard2EVerificationResponse> {
-        let input = CheckBankCard2EVerificationRequest(caller: caller, bankCard: bankCard, name: name)
-        return self.client.execute(action: "CheckBankCard2EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkBankCard2EVerification(.init(caller: caller, bankCard: bankCard, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 银行卡二要素检测
@@ -108,7 +107,6 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证银行卡二要素
     @inlinable
     public func checkBankCard2EVerification(caller: Caller, bankCard: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard2EVerificationResponse {
-        let input = CheckBankCard2EVerificationRequest(caller: caller, bankCard: bankCard, name: name)
-        return try await self.client.execute(action: "CheckBankCard2EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkBankCard2EVerification(.init(caller: caller, bankCard: bankCard, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

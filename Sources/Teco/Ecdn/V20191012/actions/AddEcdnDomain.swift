@@ -126,8 +126,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEcdnDomainResponse> {
-        let input = AddEcdnDomainRequest(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket)
-        return self.client.execute(action: "AddEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addEcdnDomain(.init(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增加速域名
@@ -137,7 +136,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
-        let input = AddEcdnDomainRequest(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket)
-        return try await self.client.execute(action: "AddEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addEcdnDomain(.init(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket), region: region, logger: logger, on: eventLoop)
     }
 }

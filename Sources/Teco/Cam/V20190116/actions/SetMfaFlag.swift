@@ -64,14 +64,12 @@ extension Cam {
     /// 设置子用户的登录保护和敏感操作校验方式
     @inlinable @discardableResult
     public func setMfaFlag(opUin: UInt64? = nil, loginFlag: LoginActionMfaFlag? = nil, actionFlag: LoginActionMfaFlag? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMfaFlagResponse> {
-        let input = SetMfaFlagRequest(opUin: opUin, loginFlag: loginFlag, actionFlag: actionFlag)
-        return self.client.execute(action: "SetMfaFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setMfaFlag(.init(opUin: opUin, loginFlag: loginFlag, actionFlag: actionFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置子用户的登录保护和敏感操作校验方式
     @inlinable @discardableResult
     public func setMfaFlag(opUin: UInt64? = nil, loginFlag: LoginActionMfaFlag? = nil, actionFlag: LoginActionMfaFlag? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMfaFlagResponse {
-        let input = SetMfaFlagRequest(opUin: opUin, loginFlag: loginFlag, actionFlag: actionFlag)
-        return try await self.client.execute(action: "SetMfaFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setMfaFlag(.init(opUin: opUin, loginFlag: loginFlag, actionFlag: actionFlag), region: region, logger: logger, on: eventLoop)
     }
 }

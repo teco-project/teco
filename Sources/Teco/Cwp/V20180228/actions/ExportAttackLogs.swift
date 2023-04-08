@@ -79,14 +79,12 @@ extension Cwp {
     /// 导出网络攻击日志
     @inlinable
     public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
-        let input = ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid)
-        return self.client.execute(action: "ExportAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportAttackLogs(.init(filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出网络攻击日志
     @inlinable
     public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
-        let input = ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid)
-        return try await self.client.execute(action: "ExportAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportAttackLogs(.init(filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

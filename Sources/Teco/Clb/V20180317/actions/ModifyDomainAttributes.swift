@@ -108,8 +108,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func modifyDomainAttributes(loadBalancerId: String, listenerId: String, domain: String, newDomain: String? = nil, certificate: CertificateInput? = nil, http2: Bool? = nil, defaultServer: Bool? = nil, newDefaultServerDomain: String? = nil, newDomains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainAttributesResponse> {
-        let input = ModifyDomainAttributesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo)
-        return self.client.execute(action: "ModifyDomainAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDomainAttributes(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡七层监听器转发规则的域名级别属性
@@ -118,7 +117,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func modifyDomainAttributes(loadBalancerId: String, listenerId: String, domain: String, newDomain: String? = nil, certificate: CertificateInput? = nil, http2: Bool? = nil, defaultServer: Bool? = nil, newDefaultServerDomain: String? = nil, newDomains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainAttributesResponse {
-        let input = ModifyDomainAttributesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo)
-        return try await self.client.execute(action: "ModifyDomainAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDomainAttributes(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }
 }

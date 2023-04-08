@@ -97,15 +97,13 @@ extension Tdid {
     /// DID列表
     @inlinable
     public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
-        let input = GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId)
-        return self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDidList(.init(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// DID列表
     @inlinable
     public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        let input = GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId)
-        return try await self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDidList(.init(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// DID列表

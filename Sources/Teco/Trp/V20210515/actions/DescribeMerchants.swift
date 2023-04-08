@@ -104,15 +104,13 @@ extension Trp {
     /// 查询商户列表
     @inlinable
     public func describeMerchants(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantsResponse> {
-        let input = DescribeMerchantsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType)
-        return self.client.execute(action: "DescribeMerchants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMerchants(.init(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商户列表
     @inlinable
     public func describeMerchants(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantsResponse {
-        let input = DescribeMerchantsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType)
-        return try await self.client.execute(action: "DescribeMerchants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMerchants(.init(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商户列表

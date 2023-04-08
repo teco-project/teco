@@ -112,8 +112,7 @@ extension Iotcloud {
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
-        let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId)
-        return self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGatewayBindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表
@@ -121,8 +120,7 @@ extension Iotcloud {
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
-        let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId)
-        return try await self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGatewayBindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表

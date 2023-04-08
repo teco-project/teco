@@ -68,8 +68,7 @@ extension Cdb {
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
     public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
-        let input = DescribeRollbackRangeTimeRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeRollbackRangeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRollbackRangeTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可回档时间
@@ -77,7 +76,6 @@ extension Cdb {
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
     public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
-        let input = DescribeRollbackRangeTimeRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeRollbackRangeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRollbackRangeTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

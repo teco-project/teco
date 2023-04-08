@@ -79,8 +79,7 @@ extension Gaap {
     /// 该接口（OpenProxies）用于开启一条或者多条通道。
     @inlinable
     public func openProxies(instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxiesResponse> {
-        let input = OpenProxiesRequest(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds)
-        return self.client.execute(action: "OpenProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openProxies(.init(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启通道
@@ -88,7 +87,6 @@ extension Gaap {
     /// 该接口（OpenProxies）用于开启一条或者多条通道。
     @inlinable
     public func openProxies(instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxiesResponse {
-        let input = OpenProxiesRequest(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds)
-        return try await self.client.execute(action: "OpenProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openProxies(.init(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

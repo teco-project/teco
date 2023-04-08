@@ -78,8 +78,7 @@ extension As {
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
     public func detachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachInstancesResponse> {
-        let input = DetachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
-        return self.client.execute(action: "DetachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachInstances(.init(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从伸缩组移出 CVM 实例
@@ -90,7 +89,6 @@ extension As {
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
     public func detachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
-        let input = DetachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "DetachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachInstances(.init(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

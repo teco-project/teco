@@ -60,8 +60,7 @@ extension Ecm {
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
     @inlinable @discardableResult
     public func startInstances(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartInstancesResponse> {
-        let input = StartInstancesRequest(instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "StartInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startInstances(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启实例
@@ -69,7 +68,6 @@ extension Ecm {
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
     @inlinable @discardableResult
     public func startInstances(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
-        let input = StartInstancesRequest(instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "StartInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startInstances(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

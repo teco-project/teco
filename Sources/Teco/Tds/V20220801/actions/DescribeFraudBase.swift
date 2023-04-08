@@ -98,14 +98,12 @@ extension Tds {
     /// 查询设备风险
     @inlinable
     public func describeFraudBase(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudBaseResponse> {
-        let input = DescribeFraudBaseRequest(deviceToken: deviceToken)
-        return self.client.execute(action: "DescribeFraudBase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFraudBase(.init(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备风险
     @inlinable
     public func describeFraudBase(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
-        let input = DescribeFraudBaseRequest(deviceToken: deviceToken)
-        return try await self.client.execute(action: "DescribeFraudBase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFraudBase(.init(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 }

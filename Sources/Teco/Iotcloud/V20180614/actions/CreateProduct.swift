@@ -82,8 +82,7 @@ extension Iotcloud {
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
     public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        let input = CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey)
-        return self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProduct(.init(productName: productName, productProperties: productProperties, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
@@ -91,7 +90,6 @@ extension Iotcloud {
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
     public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        let input = CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey)
-        return try await self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProduct(.init(productName: productName, productProperties: productProperties, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 }

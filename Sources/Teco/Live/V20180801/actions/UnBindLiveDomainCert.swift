@@ -63,14 +63,12 @@ extension Live {
     /// 解绑域名证书
     @inlinable @discardableResult
     public func unBindLiveDomainCert(domainName: String, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindLiveDomainCertResponse> {
-        let input = UnBindLiveDomainCertRequest(domainName: domainName, type: type)
-        return self.client.execute(action: "UnBindLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unBindLiveDomainCert(.init(domainName: domainName, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑域名证书
     @inlinable @discardableResult
     public func unBindLiveDomainCert(domainName: String, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
-        let input = UnBindLiveDomainCertRequest(domainName: domainName, type: type)
-        return try await self.client.execute(action: "UnBindLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unBindLiveDomainCert(.init(domainName: domainName, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

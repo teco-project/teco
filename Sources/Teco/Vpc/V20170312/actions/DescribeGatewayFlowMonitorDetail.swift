@@ -139,8 +139,7 @@ extension Vpc {
     /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
     @inlinable
     public func describeGatewayFlowMonitorDetail(timePoint: Date, vpnId: String? = nil, directConnectGatewayId: String? = nil, peeringConnectionId: String? = nil, natId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayFlowMonitorDetailResponse> {
-        let input = DescribeGatewayFlowMonitorDetailRequest(timePoint: timePoint, vpnId: vpnId, directConnectGatewayId: directConnectGatewayId, peeringConnectionId: peeringConnectionId, natId: natId, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeGatewayFlowMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGatewayFlowMonitorDetail(.init(timePoint: timePoint, vpnId: vpnId, directConnectGatewayId: directConnectGatewayId, peeringConnectionId: peeringConnectionId, natId: natId, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关流量监控明细
@@ -150,8 +149,7 @@ extension Vpc {
     /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
     @inlinable
     public func describeGatewayFlowMonitorDetail(timePoint: Date, vpnId: String? = nil, directConnectGatewayId: String? = nil, peeringConnectionId: String? = nil, natId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowMonitorDetailResponse {
-        let input = DescribeGatewayFlowMonitorDetailRequest(timePoint: timePoint, vpnId: vpnId, directConnectGatewayId: directConnectGatewayId, peeringConnectionId: peeringConnectionId, natId: natId, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeGatewayFlowMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGatewayFlowMonitorDetail(.init(timePoint: timePoint, vpnId: vpnId, directConnectGatewayId: directConnectGatewayId, peeringConnectionId: peeringConnectionId, natId: natId, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关流量监控明细

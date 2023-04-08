@@ -64,8 +64,7 @@ extension Cis {
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
     public func deleteContainerInstance(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
-        let input = DeleteContainerInstanceRequest(instanceName: instanceName)
-        return self.client.execute(action: "DeleteContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteContainerInstance(.init(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除容器实例
@@ -73,7 +72,6 @@ extension Cis {
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
     public func deleteContainerInstance(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
-        let input = DeleteContainerInstanceRequest(instanceName: instanceName)
-        return try await self.client.execute(action: "DeleteContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteContainerInstance(.init(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

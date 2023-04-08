@@ -79,8 +79,7 @@ extension Sqlserver {
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
     public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        let input = CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName)
-        return self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建备份
@@ -88,7 +87,6 @@ extension Sqlserver {
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
     public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        let input = CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName)
-        return try await self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }
 }

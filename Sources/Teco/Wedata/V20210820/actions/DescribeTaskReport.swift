@@ -104,8 +104,7 @@ extension Wedata {
     /// 按起止日期统计离线任务的所有实例的运行指标总和
     @inlinable
     public func describeTaskReport(taskId: String, beginDate: Date, endDate: Date, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskReportResponse> {
-        let input = DescribeTaskReportRequest(taskId: taskId, beginDate: beginDate, endDate: endDate, projectId: projectId)
-        return self.client.execute(action: "DescribeTaskReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskReport(.init(taskId: taskId, beginDate: beginDate, endDate: endDate, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 离线任务周期统计总览
@@ -113,7 +112,6 @@ extension Wedata {
     /// 按起止日期统计离线任务的所有实例的运行指标总和
     @inlinable
     public func describeTaskReport(taskId: String, beginDate: Date, endDate: Date, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportResponse {
-        let input = DescribeTaskReportRequest(taskId: taskId, beginDate: beginDate, endDate: endDate, projectId: projectId)
-        return try await self.client.execute(action: "DescribeTaskReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskReport(.init(taskId: taskId, beginDate: beginDate, endDate: endDate, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Tke {
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
     public func describePrometheusTempSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
-        let input = DescribePrometheusTempSyncRequest(templateId: templateId)
-        return self.client.execute(action: "DescribePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusTempSync(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模板关联实例信息
@@ -74,7 +73,6 @@ extension Tke {
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
     public func describePrometheusTempSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
-        let input = DescribePrometheusTempSyncRequest(templateId: templateId)
-        return try await self.client.execute(action: "DescribePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusTempSync(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

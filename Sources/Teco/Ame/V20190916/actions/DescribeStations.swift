@@ -106,8 +106,7 @@ extension Ame {
     /// 该服务后续会停用，不再建议使用
     @inlinable
     public func describeStations(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStationsResponse> {
-        let input = DescribeStationsRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeStations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStations(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容（Station）列表
@@ -115,8 +114,7 @@ extension Ame {
     /// 该服务后续会停用，不再建议使用
     @inlinable
     public func describeStations(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
-        let input = DescribeStationsRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeStations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStations(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容（Station）列表

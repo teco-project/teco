@@ -69,8 +69,7 @@ extension Mariadb {
     /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
     @inlinable
     public func modifyDBSyncMode(instanceId: String, syncMode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBSyncModeResponse> {
-        let input = ModifyDBSyncModeRequest(instanceId: instanceId, syncMode: syncMode)
-        return self.client.execute(action: "ModifyDBSyncMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBSyncMode(.init(instanceId: instanceId, syncMode: syncMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改同步模式
@@ -78,7 +77,6 @@ extension Mariadb {
     /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
     @inlinable
     public func modifyDBSyncMode(instanceId: String, syncMode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBSyncModeResponse {
-        let input = ModifyDBSyncModeRequest(instanceId: instanceId, syncMode: syncMode)
-        return try await self.client.execute(action: "ModifyDBSyncMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBSyncMode(.init(instanceId: instanceId, syncMode: syncMode), region: region, logger: logger, on: eventLoop)
     }
 }

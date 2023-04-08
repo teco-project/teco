@@ -171,8 +171,7 @@ extension Live {
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
     public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordResponse> {
-        let input = CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam)
-        return self.client.execute(action: "CreateLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLiveRecord(.init(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务(已废弃,请使用新接口)
@@ -195,7 +194,6 @@ extension Live {
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
     public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
-        let input = CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam)
-        return try await self.client.execute(action: "CreateLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLiveRecord(.init(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), region: region, logger: logger, on: eventLoop)
     }
 }

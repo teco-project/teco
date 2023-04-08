@@ -69,14 +69,12 @@ extension Cwp {
     /// 获取服务器风险top列表
     @inlinable
     public func describeVulHostTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulHostTopResponse> {
-        let input = DescribeVulHostTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul)
-        return self.client.execute(action: "DescribeVulHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulHostTop(.init(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务器风险top列表
     @inlinable
     public func describeVulHostTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostTopResponse {
-        let input = DescribeVulHostTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul)
-        return try await self.client.execute(action: "DescribeVulHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulHostTop(.init(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
     }
 }

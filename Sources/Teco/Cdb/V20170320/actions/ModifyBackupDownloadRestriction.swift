@@ -80,8 +80,7 @@ extension Cdb {
     /// 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
     @inlinable @discardableResult
     public func modifyBackupDownloadRestriction(limitType: String, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupDownloadRestrictionResponse> {
-        let input = ModifyBackupDownloadRestrictionRequest(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp)
-        return self.client.execute(action: "ModifyBackupDownloadRestriction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBackupDownloadRestriction(.init(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份文件的限制下载来源
@@ -89,7 +88,6 @@ extension Cdb {
     /// 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
     @inlinable @discardableResult
     public func modifyBackupDownloadRestriction(limitType: String, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupDownloadRestrictionResponse {
-        let input = ModifyBackupDownloadRestrictionRequest(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp)
-        return try await self.client.execute(action: "ModifyBackupDownloadRestriction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBackupDownloadRestriction(.init(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), region: region, logger: logger, on: eventLoop)
     }
 }

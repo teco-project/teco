@@ -88,8 +88,7 @@ extension Essbasic {
     /// 此接口用于确认验证码是否正确
     @inlinable
     public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVerifyCodeMatchFlowIdResponse> {
-        let input = CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId)
-        return self.client.execute(action: "CheckVerifyCodeMatchFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkVerifyCodeMatchFlowId(.init(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 确认验证码
@@ -97,7 +96,6 @@ extension Essbasic {
     /// 此接口用于确认验证码是否正确
     @inlinable
     public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
-        let input = CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId)
-        return try await self.client.execute(action: "CheckVerifyCodeMatchFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkVerifyCodeMatchFlowId(.init(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

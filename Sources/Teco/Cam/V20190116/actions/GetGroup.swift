@@ -78,14 +78,12 @@ extension Cam {
     /// 查询用户组详情
     @inlinable
     public func getGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupResponse> {
-        let input = GetGroupRequest(groupId: groupId)
-        return self.client.execute(action: "GetGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户组详情
     @inlinable
     public func getGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
-        let input = GetGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "GetGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

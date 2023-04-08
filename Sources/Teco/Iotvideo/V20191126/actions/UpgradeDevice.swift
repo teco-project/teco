@@ -81,8 +81,7 @@ extension Iotvideo {
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
     public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
-        let input = UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow)
-        return self.client.execute(action: "UpgradeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDevice(.init(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备固件升级
@@ -92,7 +91,6 @@ extension Iotvideo {
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
     public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
-        let input = UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow)
-        return try await self.client.execute(action: "UpgradeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDevice(.init(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), region: region, logger: logger, on: eventLoop)
     }
 }

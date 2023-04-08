@@ -85,8 +85,7 @@ extension Dbbrain {
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable @discardableResult
     public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMailProfileResponse> {
-        let input = CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds)
-        return self.client.execute(action: "CreateMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMailProfile(.init(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建邮件配置
@@ -94,7 +93,6 @@ extension Dbbrain {
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable @discardableResult
     public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
-        let input = CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds)
-        return try await self.client.execute(action: "CreateMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMailProfile(.init(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

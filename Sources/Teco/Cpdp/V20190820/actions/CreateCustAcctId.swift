@@ -155,8 +155,7 @@ extension Cpdp {
     /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
     @inlinable
     public func createCustAcctId(functionFlag: String, fundSummaryAcctNo: String, tranNetMemberCode: String, memberProperty: String, mobile: String, mrchCode: String, selfBusiness: Bool, contactName: String, subAcctName: String, subAcctShortName: String, subAcctType: Int64, userNickname: String? = nil, email: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustAcctIdResponse> {
-        let input = CreateCustAcctIdRequest(functionFlag: functionFlag, fundSummaryAcctNo: fundSummaryAcctNo, tranNetMemberCode: tranNetMemberCode, memberProperty: memberProperty, mobile: mobile, mrchCode: mrchCode, selfBusiness: selfBusiness, contactName: contactName, subAcctName: subAcctName, subAcctShortName: subAcctShortName, subAcctType: subAcctType, userNickname: userNickname, email: email, reservedMsg: reservedMsg, profile: profile)
-        return self.client.execute(action: "CreateCustAcctId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCustAcctId(.init(functionFlag: functionFlag, fundSummaryAcctNo: fundSummaryAcctNo, tranNetMemberCode: tranNetMemberCode, memberProperty: memberProperty, mobile: mobile, mrchCode: mrchCode, selfBusiness: selfBusiness, contactName: contactName, subAcctName: subAcctName, subAcctShortName: subAcctShortName, subAcctType: subAcctType, userNickname: userNickname, email: email, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员子账户开立
@@ -165,7 +164,6 @@ extension Cpdp {
     /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
     @inlinable
     public func createCustAcctId(functionFlag: String, fundSummaryAcctNo: String, tranNetMemberCode: String, memberProperty: String, mobile: String, mrchCode: String, selfBusiness: Bool, contactName: String, subAcctName: String, subAcctShortName: String, subAcctType: Int64, userNickname: String? = nil, email: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustAcctIdResponse {
-        let input = CreateCustAcctIdRequest(functionFlag: functionFlag, fundSummaryAcctNo: fundSummaryAcctNo, tranNetMemberCode: tranNetMemberCode, memberProperty: memberProperty, mobile: mobile, mrchCode: mrchCode, selfBusiness: selfBusiness, contactName: contactName, subAcctName: subAcctName, subAcctShortName: subAcctShortName, subAcctType: subAcctType, userNickname: userNickname, email: email, reservedMsg: reservedMsg, profile: profile)
-        return try await self.client.execute(action: "CreateCustAcctId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCustAcctId(.init(functionFlag: functionFlag, fundSummaryAcctNo: fundSummaryAcctNo, tranNetMemberCode: tranNetMemberCode, memberProperty: memberProperty, mobile: mobile, mrchCode: mrchCode, selfBusiness: selfBusiness, contactName: contactName, subAcctName: subAcctName, subAcctShortName: subAcctShortName, subAcctType: subAcctType, userNickname: userNickname, email: email, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

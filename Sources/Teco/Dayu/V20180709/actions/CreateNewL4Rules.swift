@@ -79,8 +79,7 @@ extension Dayu {
     /// 添加L4转发规则
     @inlinable
     public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL4RulesResponse> {
-        let input = CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules)
-        return self.client.execute(action: "CreateNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNewL4Rules(.init(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加四层转发规则
@@ -88,7 +87,6 @@ extension Dayu {
     /// 添加L4转发规则
     @inlinable
     public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
-        let input = CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules)
-        return try await self.client.execute(action: "CreateNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNewL4Rules(.init(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

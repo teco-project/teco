@@ -88,8 +88,7 @@ extension Bma {
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
     public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRUserVerifyResponse> {
-        let input = CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type)
-        return self.client.execute(action: "CreateCRUserVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCRUserVerify(.init(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人认证
@@ -97,7 +96,6 @@ extension Bma {
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
     public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
-        let input = CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type)
-        return try await self.client.execute(action: "CreateCRUserVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCRUserVerify(.init(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -72,8 +72,7 @@ extension Iottid {
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
     public func verifyChipBurnInfo(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
-        let input = VerifyChipBurnInfoRequest(data: data)
-        return self.client.execute(action: "VerifyChipBurnInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyChipBurnInfo(.init(data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证芯片烧录TID信息
@@ -81,7 +80,6 @@ extension Iottid {
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
     public func verifyChipBurnInfo(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
-        let input = VerifyChipBurnInfoRequest(data: data)
-        return try await self.client.execute(action: "VerifyChipBurnInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyChipBurnInfo(.init(data: data), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,14 +69,12 @@ extension Tem {
     /// 修改服务基本信息
     @inlinable
     public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceInfoResponse> {
-        let input = ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel)
-        return self.client.execute(action: "ModifyServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyServiceInfo(.init(serviceId: serviceId, description: description, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务基本信息
     @inlinable
     public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
-        let input = ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "ModifyServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyServiceInfo(.init(serviceId: serviceId, description: description, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

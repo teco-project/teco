@@ -73,8 +73,7 @@ extension Monitor {
     /// 更新 Prometheus 报警策略状态
     @inlinable @discardableResult
     public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAlertRuleStateResponse> {
-        let input = UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState)
-        return self.client.execute(action: "UpdateAlertRuleState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAlertRuleState(.init(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新报警策略状态
@@ -82,7 +81,6 @@ extension Monitor {
     /// 更新 Prometheus 报警策略状态
     @inlinable @discardableResult
     public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
-        let input = UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState)
-        return try await self.client.execute(action: "UpdateAlertRuleState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAlertRuleState(.init(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }
 }

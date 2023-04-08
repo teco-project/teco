@@ -76,14 +76,12 @@ extension Iotvideoindustry {
     /// 获取X-P2P的统计数据
     @inlinable
     public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeXP2PDataResponse> {
-        let input = DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId)
-        return self.client.execute(action: "DescribeXP2PData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeXP2PData(.init(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取X-P2P的统计数据
     @inlinable
     public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
-        let input = DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId)
-        return try await self.client.execute(action: "DescribeXP2PData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeXP2PData(.init(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), region: region, logger: logger, on: eventLoop)
     }
 }

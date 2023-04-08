@@ -59,14 +59,12 @@ extension Monitor {
     /// 设置 Grafana 公网访问
     @inlinable @discardableResult
     public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaInternetResponse> {
-        let input = EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet)
-        return self.client.execute(action: "EnableGrafanaInternet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableGrafanaInternet(.init(instanceID: instanceID, enableInternet: enableInternet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置 Grafana 公网访问
     @inlinable @discardableResult
     public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
-        let input = EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet)
-        return try await self.client.execute(action: "EnableGrafanaInternet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableGrafanaInternet(.init(instanceID: instanceID, enableInternet: enableInternet), region: region, logger: logger, on: eventLoop)
     }
 }

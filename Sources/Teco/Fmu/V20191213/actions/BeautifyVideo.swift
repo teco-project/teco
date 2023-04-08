@@ -72,14 +72,12 @@ extension Fmu {
     /// 视频美颜
     @inlinable
     public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
-        let input = BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType)
-        return self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.beautifyVideo(.init(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频美颜
     @inlinable
     public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
-        let input = BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType)
-        return try await self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.beautifyVideo(.init(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)
     }
 }

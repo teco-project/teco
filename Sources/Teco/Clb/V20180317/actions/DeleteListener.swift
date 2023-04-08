@@ -68,8 +68,7 @@ extension Clb {
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenerResponse> {
-        let input = DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId)
-        return self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteListener(.init(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡监听器
@@ -78,7 +77,6 @@ extension Clb {
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
-        let input = DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId)
-        return try await self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteListener(.init(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 }

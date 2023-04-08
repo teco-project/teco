@@ -68,8 +68,7 @@ extension Cynosdb {
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
-        let input = DescribeClusterInstanceGrpsRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterInstanceGrps(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例组
@@ -77,7 +76,6 @@ extension Cynosdb {
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
-        let input = DescribeClusterInstanceGrpsRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterInstanceGrps(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -124,8 +124,7 @@ extension Dayu {
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
     public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
-        let input = DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip)
-        return self.client.execute(action: "DescribeBaradData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaradData(.init(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转发报表数据
@@ -133,7 +132,6 @@ extension Dayu {
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
     public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
-        let input = DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip)
-        return try await self.client.execute(action: "DescribeBaradData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaradData(.init(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

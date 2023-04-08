@@ -64,14 +64,12 @@ extension Cdb {
     /// 修改置放群组的名称或者描述
     @inlinable @discardableResult
     public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNameOrDescByDpIdResponse> {
-        let input = ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description)
-        return self.client.execute(action: "ModifyNameOrDescByDpId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNameOrDescByDpId(.init(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改置放群组的名称或者描述
     @inlinable @discardableResult
     public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
-        let input = ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description)
-        return try await self.client.execute(action: "ModifyNameOrDescByDpId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNameOrDescByDpId(.init(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

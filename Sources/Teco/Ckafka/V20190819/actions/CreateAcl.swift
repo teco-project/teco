@@ -93,14 +93,12 @@ extension Ckafka {
     /// 添加 ACL 策略
     @inlinable
     public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
-        let input = CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList)
-        return self.client.execute(action: "CreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAcl(.init(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加 ACL 策略
     @inlinable
     public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
-        let input = CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList)
-        return try await self.client.execute(action: "CreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAcl(.init(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), region: region, logger: logger, on: eventLoop)
     }
 }

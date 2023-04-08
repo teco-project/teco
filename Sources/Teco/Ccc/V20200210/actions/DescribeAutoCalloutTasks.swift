@@ -92,15 +92,13 @@ extension Ccc {
     /// 批量查询自动任务外呼
     @inlinable
     public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
-        let input = DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
-        return self.client.execute(action: "DescribeAutoCalloutTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoCalloutTasks(.init(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询自动任务外呼
     @inlinable
     public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
-        let input = DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
-        return try await self.client.execute(action: "DescribeAutoCalloutTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoCalloutTasks(.init(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询自动任务外呼

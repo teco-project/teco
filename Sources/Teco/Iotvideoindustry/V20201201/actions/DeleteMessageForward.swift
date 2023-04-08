@@ -54,14 +54,12 @@ extension Iotvideoindustry {
     /// 删除消息转发配置
     @inlinable @discardableResult
     public func deleteMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageForwardResponse> {
-        let input = DeleteMessageForwardRequest(intId: intId)
-        return self.client.execute(action: "DeleteMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMessageForward(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除消息转发配置
     @inlinable @discardableResult
     public func deleteMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
-        let input = DeleteMessageForwardRequest(intId: intId)
-        return try await self.client.execute(action: "DeleteMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMessageForward(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 }

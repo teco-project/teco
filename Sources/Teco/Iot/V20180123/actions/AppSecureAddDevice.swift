@@ -69,8 +69,7 @@ extension Iot {
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
     public func appSecureAddDevice(accessToken: String, deviceSignature: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppSecureAddDeviceResponse> {
-        let input = AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature)
-        return self.client.execute(action: "AppSecureAddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appSecureAddDevice(.init(accessToken: accessToken, deviceSignature: deviceSignature), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户绑定设备
@@ -78,7 +77,6 @@ extension Iot {
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
     public func appSecureAddDevice(accessToken: String, deviceSignature: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
-        let input = AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature)
-        return try await self.client.execute(action: "AppSecureAddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appSecureAddDevice(.init(accessToken: accessToken, deviceSignature: deviceSignature), region: region, logger: logger, on: eventLoop)
     }
 }

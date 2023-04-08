@@ -59,14 +59,12 @@ extension Tke {
     /// 查询边缘集群自定义参数
     @inlinable
     public func describeEdgeClusterExtraArgs(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterExtraArgsResponse> {
-        let input = DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeEdgeClusterExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeClusterExtraArgs(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群自定义参数
     @inlinable
     public func describeEdgeClusterExtraArgs(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
-        let input = DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeClusterExtraArgs(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

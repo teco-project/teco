@@ -63,14 +63,12 @@ extension Gaap {
     /// 关闭安全策略
     @inlinable
     public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSecurityPolicyResponse> {
-        let input = CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId)
-        return self.client.execute(action: "CloseSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeSecurityPolicy(.init(proxyId: proxyId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭安全策略
     @inlinable
     public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
-        let input = CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId)
-        return try await self.client.execute(action: "CloseSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeSecurityPolicy(.init(proxyId: proxyId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -84,8 +84,7 @@ extension Sqlserver {
     /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
     @inlinable
     public func modifyIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, isRecovery: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIncrementalMigrationResponse> {
-        let input = ModifyIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId, isRecovery: isRecovery, backupFiles: backupFiles)
-        return self.client.execute(action: "ModifyIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyIncrementalMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId, isRecovery: isRecovery, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改增量备份导入任务
@@ -93,7 +92,6 @@ extension Sqlserver {
     /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
     @inlinable
     public func modifyIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, isRecovery: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIncrementalMigrationResponse {
-        let input = ModifyIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId, isRecovery: isRecovery, backupFiles: backupFiles)
-        return try await self.client.execute(action: "ModifyIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyIncrementalMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId, isRecovery: isRecovery, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
     }
 }

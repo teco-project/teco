@@ -120,8 +120,7 @@ extension Tics {
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
     @inlinable
     public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThreatInfoResponse> {
-        let input = DescribeThreatInfoRequest(key: key, type: type, option: option)
-        return self.client.execute(action: "DescribeThreatInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeThreatInfo(.init(key: key, type: type, option: option), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询威胁情报
@@ -129,7 +128,6 @@ extension Tics {
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
     @inlinable
     public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
-        let input = DescribeThreatInfoRequest(key: key, type: type, option: option)
-        return try await self.client.execute(action: "DescribeThreatInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeThreatInfo(.init(key: key, type: type, option: option), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,14 +79,12 @@ extension Waf {
     /// Waf IP黑白名单Delete接口
     @inlinable
     public func deleteIpAccessControl(domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIpAccessControlResponse> {
-        let input = DeleteIpAccessControlRequest(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType)
-        return self.client.execute(action: "DeleteIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteIpAccessControl(.init(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Delete接口
     @inlinable
     public func deleteIpAccessControl(domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {
-        let input = DeleteIpAccessControlRequest(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType)
-        return try await self.client.execute(action: "DeleteIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteIpAccessControl(.init(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Ssl {
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
     public func modifyCertificateAlias(certificateId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAliasResponse> {
-        let input = ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias)
-        return self.client.execute(action: "ModifyCertificateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCertificateAlias(.init(certificateId: certificateId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改证书备注
@@ -78,7 +77,6 @@ extension Ssl {
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
     public func modifyCertificateAlias(certificateId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
-        let input = ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias)
-        return try await self.client.execute(action: "ModifyCertificateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCertificateAlias(.init(certificateId: certificateId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

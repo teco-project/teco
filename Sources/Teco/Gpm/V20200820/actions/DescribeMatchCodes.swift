@@ -83,29 +83,50 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
-        self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatchCodes is no longer available.")
     }
 
     /// 分页查询匹配Code
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
-        try await self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatchCodes is no longer available.")
     }
 
     /// 分页查询匹配Code
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
-        let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)
-        return self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatchCodes is no longer available.")
     }
 
     /// 分页查询匹配Code
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
-        let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)
-        return try await self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatchCodes is no longer available.")
+    }
+
+    /// 分页查询匹配Code
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeMatchCodesPaginated(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [MatchCodeAttr])> {
+        fatalError("DescribeMatchCodes is no longer available.")
+    }
+
+    /// 分页查询匹配Code
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeMatchCodesPaginated(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeMatchCodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeMatchCodes is no longer available.")
+    }
+
+    /// 分页查询匹配Code
+    ///
+    /// - Returns: `AsyncSequence`s of `MatchCodeAttr` and `DescribeMatchCodesResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeMatchCodesPaginator(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMatchCodesRequest> {
+        fatalError("DescribeMatchCodes is no longer available.")
     }
 }

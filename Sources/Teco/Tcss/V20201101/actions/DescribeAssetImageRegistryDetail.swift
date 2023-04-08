@@ -231,8 +231,7 @@ extension Tcss {
     /// 镜像仓库镜像仓库列表详情
     @inlinable
     public func describeAssetImageRegistryDetail(id: UInt64? = nil, imageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryDetailResponse> {
-        let input = DescribeAssetImageRegistryDetailRequest(id: id, imageId: imageId)
-        return self.client.execute(action: "DescribeAssetImageRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryDetail(.init(id: id, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库详情
@@ -240,7 +239,6 @@ extension Tcss {
     /// 镜像仓库镜像仓库列表详情
     @inlinable
     public func describeAssetImageRegistryDetail(id: UInt64? = nil, imageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryDetailResponse {
-        let input = DescribeAssetImageRegistryDetailRequest(id: id, imageId: imageId)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryDetail(.init(id: id, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

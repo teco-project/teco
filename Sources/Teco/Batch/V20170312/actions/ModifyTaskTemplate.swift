@@ -75,8 +75,7 @@ extension Batch {
     /// 用于修改任务模板
     @inlinable @discardableResult
     public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskTemplateResponse> {
-        let input = ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo)
-        return self.client.execute(action: "ModifyTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTaskTemplate(.init(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务模板
@@ -84,7 +83,6 @@ extension Batch {
     /// 用于修改任务模板
     @inlinable @discardableResult
     public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
-        let input = ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo)
-        return try await self.client.execute(action: "ModifyTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTaskTemplate(.init(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), region: region, logger: logger, on: eventLoop)
     }
 }

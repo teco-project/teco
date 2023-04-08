@@ -78,8 +78,7 @@ extension Cdb {
     /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
     public func describeAuditConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditConfigResponse> {
-        let input = DescribeAuditConfigRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuditConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计服务配置
@@ -87,7 +86,6 @@ extension Cdb {
     /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
     public func describeAuditConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditConfigResponse {
-        let input = DescribeAuditConfigRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuditConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

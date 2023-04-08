@@ -134,8 +134,7 @@ extension Mongodb {
     /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
     @inlinable
     public func describeCurrentOp(instanceId: String, ns: String? = nil, millisecondRunning: UInt64? = nil, op: String? = nil, replicaSetName: String? = nil, state: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCurrentOpResponse> {
-        let input = DescribeCurrentOpRequest(instanceId: instanceId, ns: ns, millisecondRunning: millisecondRunning, op: op, replicaSetName: replicaSetName, state: state, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return self.client.execute(action: "DescribeCurrentOp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCurrentOp(.init(instanceId: instanceId, ns: ns, millisecondRunning: millisecondRunning, op: op, replicaSetName: replicaSetName, state: state, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库实例当前正在执行的操作
@@ -143,8 +142,7 @@ extension Mongodb {
     /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
     @inlinable
     public func describeCurrentOp(instanceId: String, ns: String? = nil, millisecondRunning: UInt64? = nil, op: String? = nil, replicaSetName: String? = nil, state: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurrentOpResponse {
-        let input = DescribeCurrentOpRequest(instanceId: instanceId, ns: ns, millisecondRunning: millisecondRunning, op: op, replicaSetName: replicaSetName, state: state, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeCurrentOp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCurrentOp(.init(instanceId: instanceId, ns: ns, millisecondRunning: millisecondRunning, op: op, replicaSetName: replicaSetName, state: state, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库实例当前正在执行的操作

@@ -74,8 +74,7 @@ extension Ecm {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
     public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
-        let input = ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
-        return self.client.execute(action: "ReleaseIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.releaseIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
@@ -83,7 +82,6 @@ extension Ecm {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
     public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
-        let input = ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
-        return try await self.client.execute(action: "ReleaseIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.releaseIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 }

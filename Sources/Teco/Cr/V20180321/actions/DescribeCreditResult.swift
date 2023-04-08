@@ -121,8 +121,7 @@ extension Cr {
     /// 根据信审任务ID和请求日期，获取相关信审结果。
     @inlinable
     public func describeCreditResult(module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreditResultResponse> {
-        let input = DescribeCreditResultRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate)
-        return self.client.execute(action: "DescribeCreditResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCreditResult(.init(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取信审结果
@@ -130,7 +129,6 @@ extension Cr {
     /// 根据信审任务ID和请求日期，获取相关信审结果。
     @inlinable
     public func describeCreditResult(module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreditResultResponse {
-        let input = DescribeCreditResultRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate)
-        return try await self.client.execute(action: "DescribeCreditResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCreditResult(.init(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate), region: region, logger: logger, on: eventLoop)
     }
 }

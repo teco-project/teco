@@ -88,8 +88,7 @@ extension Cr {
     /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
     @inlinable
     public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadRecordListResponse> {
-        let input = DownloadRecordListRequest(module: module, operation: operation, bizDate: bizDate, instId: instId)
-        return self.client.execute(action: "DownloadRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadRecordList(.init(module: module, operation: operation, bizDate: bizDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 录音查询（文件）
@@ -98,7 +97,6 @@ extension Cr {
     /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
     @inlinable
     public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadRecordListResponse {
-        let input = DownloadRecordListRequest(module: module, operation: operation, bizDate: bizDate, instId: instId)
-        return try await self.client.execute(action: "DownloadRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadRecordList(.init(module: module, operation: operation, bizDate: bizDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Cdb {
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。
     @inlinable
     public func describeDBInstanceCharset(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceCharsetResponse> {
-        let input = DescribeDBInstanceCharsetRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeDBInstanceCharset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstanceCharset(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的字符集
@@ -73,7 +72,6 @@ extension Cdb {
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。
     @inlinable
     public func describeDBInstanceCharset(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceCharsetResponse {
-        let input = DescribeDBInstanceCharsetRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDBInstanceCharset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstanceCharset(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

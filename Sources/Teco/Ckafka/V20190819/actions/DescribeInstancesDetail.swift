@@ -124,8 +124,7 @@ extension Ckafka {
     /// 用户账户下获取实例列表详情
     @inlinable
     public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDetailResponse> {
-        let input = DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList)
-        return self.client.execute(action: "DescribeInstancesDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表详情
@@ -133,8 +132,7 @@ extension Ckafka {
     /// 用户账户下获取实例列表详情
     @inlinable
     public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
-        let input = DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList)
-        return try await self.client.execute(action: "DescribeInstancesDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表详情

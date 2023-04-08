@@ -104,8 +104,7 @@ extension Cdb {
     /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
     @inlinable
     public func describeAuditRules(ruleId: String? = nil, ruleName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditRulesResponse> {
-        let input = DescribeAuditRulesRequest(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeAuditRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuditRules(.init(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计规则
@@ -113,8 +112,7 @@ extension Cdb {
     /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
     @inlinable
     public func describeAuditRules(ruleId: String? = nil, ruleName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRulesResponse {
-        let input = DescribeAuditRulesRequest(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeAuditRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuditRules(.init(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计规则

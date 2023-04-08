@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
     public func describeProjectSecurityGroups(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        let input = DescribeProjectSecurityGroupsRequest(projectId: projectId)
-        return self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProjectSecurityGroups(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
     public func describeProjectSecurityGroups(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        let input = DescribeProjectSecurityGroupsRequest(projectId: projectId)
-        return try await self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProjectSecurityGroups(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

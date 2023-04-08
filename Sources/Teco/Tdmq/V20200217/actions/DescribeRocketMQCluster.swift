@@ -67,14 +67,12 @@ extension Tdmq {
     /// 获取单个RocketMQ集群信息
     @inlinable
     public func describeRocketMQCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQClusterResponse> {
-        let input = DescribeRocketMQClusterRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRocketMQCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个RocketMQ集群信息
     @inlinable
     public func describeRocketMQCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClusterResponse {
-        let input = DescribeRocketMQClusterRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRocketMQCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

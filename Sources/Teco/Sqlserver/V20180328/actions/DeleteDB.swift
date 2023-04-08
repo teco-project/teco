@@ -69,8 +69,7 @@ extension Sqlserver {
     /// 本接口(DeleteDB)用于删除数据库。
     @inlinable
     public func deleteDB(instanceId: String, names: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBResponse> {
-        let input = DeleteDBRequest(instanceId: instanceId, names: names)
-        return self.client.execute(action: "DeleteDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDB(.init(instanceId: instanceId, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除数据库
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 本接口(DeleteDB)用于删除数据库。
     @inlinable
     public func deleteDB(instanceId: String, names: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBResponse {
-        let input = DeleteDBRequest(instanceId: instanceId, names: names)
-        return try await self.client.execute(action: "DeleteDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDB(.init(instanceId: instanceId, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

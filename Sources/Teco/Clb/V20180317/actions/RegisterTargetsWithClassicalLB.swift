@@ -65,8 +65,7 @@ extension Clb {
     /// RegisterTargetsWithClassicalLB 接口用于绑定后端服务到传统型负载均衡。本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func registerTargetsWithClassicalLB(loadBalancerId: String, targets: [ClassicalTargetInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterTargetsWithClassicalLBResponse> {
-        let input = RegisterTargetsWithClassicalLBRequest(loadBalancerId: loadBalancerId, targets: targets)
-        return self.client.execute(action: "RegisterTargetsWithClassicalLB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.registerTargetsWithClassicalLB(.init(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定后端服务到传统型负载均衡
@@ -74,7 +73,6 @@ extension Clb {
     /// RegisterTargetsWithClassicalLB 接口用于绑定后端服务到传统型负载均衡。本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func registerTargetsWithClassicalLB(loadBalancerId: String, targets: [ClassicalTargetInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterTargetsWithClassicalLBResponse {
-        let input = RegisterTargetsWithClassicalLBRequest(loadBalancerId: loadBalancerId, targets: targets)
-        return try await self.client.execute(action: "RegisterTargetsWithClassicalLB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.registerTargetsWithClassicalLB(.init(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 }

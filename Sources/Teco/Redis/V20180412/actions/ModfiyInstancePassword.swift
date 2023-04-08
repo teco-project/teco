@@ -74,8 +74,7 @@ extension Redis {
     /// 修改redis密码
     @inlinable
     public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModfiyInstancePasswordResponse> {
-        let input = ModfiyInstancePasswordRequest(instanceId: instanceId, oldPassword: oldPassword, password: password)
-        return self.client.execute(action: "ModfiyInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modfiyInstancePassword(.init(instanceId: instanceId, oldPassword: oldPassword, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Redis密码
@@ -83,7 +82,6 @@ extension Redis {
     /// 修改redis密码
     @inlinable
     public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
-        let input = ModfiyInstancePasswordRequest(instanceId: instanceId, oldPassword: oldPassword, password: password)
-        return try await self.client.execute(action: "ModfiyInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modfiyInstancePassword(.init(instanceId: instanceId, oldPassword: oldPassword, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

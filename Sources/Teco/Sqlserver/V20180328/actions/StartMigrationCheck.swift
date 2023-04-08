@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
     public func startMigrationCheck(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
-        let input = StartMigrationCheckRequest(migrateId: migrateId)
-        return self.client.execute(action: "StartMigrationCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startMigrationCheck(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动迁移校验
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
     public func startMigrationCheck(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
-        let input = StartMigrationCheckRequest(migrateId: migrateId)
-        return try await self.client.execute(action: "StartMigrationCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startMigrationCheck(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

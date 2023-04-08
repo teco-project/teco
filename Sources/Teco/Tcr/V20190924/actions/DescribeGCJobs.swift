@@ -64,8 +64,7 @@ extension Tcr {
     /// GC 最近10条历史
     @inlinable
     public func describeGCJobs(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGCJobsResponse> {
-        let input = DescribeGCJobsRequest(registryId: registryId)
-        return self.client.execute(action: "DescribeGCJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGCJobs(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// GC 历史
@@ -73,7 +72,6 @@ extension Tcr {
     /// GC 最近10条历史
     @inlinable
     public func describeGCJobs(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGCJobsResponse {
-        let input = DescribeGCJobsRequest(registryId: registryId)
-        return try await self.client.execute(action: "DescribeGCJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGCJobs(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

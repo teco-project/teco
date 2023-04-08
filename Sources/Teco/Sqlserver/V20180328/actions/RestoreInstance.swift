@@ -84,8 +84,7 @@ extension Sqlserver {
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
     public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        let input = RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId)
-        return self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据备份文件恢复实例
@@ -93,7 +92,6 @@ extension Sqlserver {
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
     public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        let input = RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId)
-        return try await self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Thpc {
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
     @inlinable @discardableResult
     public func deleteNodes(clusterId: String, nodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodesResponse> {
-        let input = DeleteNodesRequest(clusterId: clusterId, nodeIds: nodeIds)
-        return self.client.execute(action: "DeleteNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNodes(.init(clusterId: clusterId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除节点
@@ -74,7 +73,6 @@ extension Thpc {
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
     @inlinable @discardableResult
     public func deleteNodes(clusterId: String, nodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodesResponse {
-        let input = DeleteNodesRequest(clusterId: clusterId, nodeIds: nodeIds)
-        return try await self.client.execute(action: "DeleteNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNodes(.init(clusterId: clusterId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
 }

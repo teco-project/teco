@@ -93,15 +93,13 @@ extension Yunjing {
     /// 获取反弹Shell列表
     @inlinable
     public func describeReverseShellEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellEventsResponse> {
-        let input = DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReverseShellEvents(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取反弹Shell列表
     @inlinable
     public func describeReverseShellEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
-        let input = DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReverseShellEvents(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取反弹Shell列表

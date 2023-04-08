@@ -65,8 +65,7 @@ extension Iotexplorer {
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
     @inlinable @discardableResult
     public func releaseStudioProduct(productId: String, devStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseStudioProductResponse> {
-        let input = ReleaseStudioProductRequest(productId: productId, devStatus: devStatus)
-        return self.client.execute(action: "ReleaseStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.releaseStudioProduct(.init(productId: productId, devStatus: devStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布产品
@@ -74,7 +73,6 @@ extension Iotexplorer {
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
     @inlinable @discardableResult
     public func releaseStudioProduct(productId: String, devStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseStudioProductResponse {
-        let input = ReleaseStudioProductRequest(productId: productId, devStatus: devStatus)
-        return try await self.client.execute(action: "ReleaseStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.releaseStudioProduct(.init(productId: productId, devStatus: devStatus), region: region, logger: logger, on: eventLoop)
     }
 }

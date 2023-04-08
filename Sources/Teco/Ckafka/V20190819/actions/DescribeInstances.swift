@@ -114,8 +114,7 @@ extension Ckafka {
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
     @inlinable
     public func describeInstances(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        let input = DescribeInstancesRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId)
-        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstances(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表信息
@@ -123,8 +122,7 @@ extension Ckafka {
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
     @inlinable
     public func describeInstances(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        let input = DescribeInstancesRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId)
-        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstances(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表信息

@@ -64,14 +64,12 @@ extension Wedata {
     /// 查询规则执行导出结果
     @inlinable
     public func describeRuleExecExportResult(projectId: String? = nil, ruleExecId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecExportResultResponse> {
-        let input = DescribeRuleExecExportResultRequest(projectId: projectId, ruleExecId: ruleExecId)
-        return self.client.execute(action: "DescribeRuleExecExportResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleExecExportResult(.init(projectId: projectId, ruleExecId: ruleExecId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则执行导出结果
     @inlinable
     public func describeRuleExecExportResult(projectId: String? = nil, ruleExecId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecExportResultResponse {
-        let input = DescribeRuleExecExportResultRequest(projectId: projectId, ruleExecId: ruleExecId)
-        return try await self.client.execute(action: "DescribeRuleExecExportResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleExecExportResult(.init(projectId: projectId, ruleExecId: ruleExecId), region: region, logger: logger, on: eventLoop)
     }
 }

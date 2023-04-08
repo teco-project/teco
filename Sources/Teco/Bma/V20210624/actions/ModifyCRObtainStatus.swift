@@ -69,14 +69,12 @@ extension Bma {
     /// 取证申请
     @inlinable @discardableResult
     public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
-        let input = ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl)
-        return self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCRObtainStatus(.init(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取证申请
     @inlinable @discardableResult
     public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
-        let input = ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl)
-        return try await self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCRObtainStatus(.init(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }
 }

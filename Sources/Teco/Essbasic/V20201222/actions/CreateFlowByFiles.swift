@@ -85,8 +85,7 @@ extension Essbasic {
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
     public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        let input = CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId)
-        return self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFlowByFiles(.init(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建流程
@@ -96,7 +95,6 @@ extension Essbasic {
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
     public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        let input = CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId)
-        return try await self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFlowByFiles(.init(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), region: region, logger: logger, on: eventLoop)
     }
 }

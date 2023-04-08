@@ -122,15 +122,13 @@ extension Tbaas {
     /// 获取合约编译日志
     @inlinable
     public func getChaincodeCompileLogForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeCompileLogForUserResponse> {
-        let input = GetChaincodeCompileLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, limit: limit, offset: offset)
-        return self.client.execute(action: "GetChaincodeCompileLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getChaincodeCompileLogForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取合约编译日志
     @inlinable
     public func getChaincodeCompileLogForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeCompileLogForUserResponse {
-        let input = GetChaincodeCompileLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, limit: limit, offset: offset)
-        return try await self.client.execute(action: "GetChaincodeCompileLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getChaincodeCompileLogForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取合约编译日志

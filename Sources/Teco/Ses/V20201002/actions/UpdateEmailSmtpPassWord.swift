@@ -65,8 +65,7 @@ extension Ses {
     /// 设置邮箱的smtp密码。若要通过smtp发送邮件，必须为邮箱设置smtp密码。初始时，邮箱没有设置smtp密码，不能使用smtp的方式发送邮件。设置smtp密码后，可以修改密码。
     @inlinable @discardableResult
     public func updateEmailSmtpPassWord(password: String, emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailSmtpPassWordResponse> {
-        let input = UpdateEmailSmtpPassWordRequest(password: password, emailAddress: emailAddress)
-        return self.client.execute(action: "UpdateEmailSmtpPassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateEmailSmtpPassWord(.init(password: password, emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置邮箱的smtp密码
@@ -74,7 +73,6 @@ extension Ses {
     /// 设置邮箱的smtp密码。若要通过smtp发送邮件，必须为邮箱设置smtp密码。初始时，邮箱没有设置smtp密码，不能使用smtp的方式发送邮件。设置smtp密码后，可以修改密码。
     @inlinable @discardableResult
     public func updateEmailSmtpPassWord(password: String, emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailSmtpPassWordResponse {
-        let input = UpdateEmailSmtpPassWordRequest(password: password, emailAddress: emailAddress)
-        return try await self.client.execute(action: "UpdateEmailSmtpPassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateEmailSmtpPassWord(.init(password: password, emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }
 }

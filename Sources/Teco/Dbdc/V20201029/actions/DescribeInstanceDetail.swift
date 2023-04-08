@@ -166,8 +166,7 @@ extension Dbdc {
     /// 本接口用于查询独享集群详情
     @inlinable
     public func describeInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDetailResponse> {
-        let input = DescribeInstanceDetailRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独享集群详情
@@ -175,7 +174,6 @@ extension Dbdc {
     /// 本接口用于查询独享集群详情
     @inlinable
     public func describeInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
-        let input = DescribeInstanceDetailRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

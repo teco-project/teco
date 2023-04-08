@@ -70,8 +70,7 @@ extension Ecm {
     /// 获取客户节点上的出入带宽月峰和计费带宽信息
     @inlinable
     public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthPeakNetworkResponse> {
-        let input = DescribeMonthPeakNetworkRequest(month: month, filters: filters)
-        return self.client.execute(action: "DescribeMonthPeakNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMonthPeakNetwork(.init(month: month, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取客户节点上的出入月峰和计费带宽
@@ -79,7 +78,6 @@ extension Ecm {
     /// 获取客户节点上的出入带宽月峰和计费带宽信息
     @inlinable
     public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
-        let input = DescribeMonthPeakNetworkRequest(month: month, filters: filters)
-        return try await self.client.execute(action: "DescribeMonthPeakNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMonthPeakNetwork(.init(month: month, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

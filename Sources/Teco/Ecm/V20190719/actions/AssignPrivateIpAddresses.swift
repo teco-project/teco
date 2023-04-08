@@ -74,14 +74,12 @@ extension Ecm {
     /// 弹性网卡申请内网 IP
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
-        let input = AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount)
-        return self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡申请内网 IP
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
-        let input = AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount)
-        return try await self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
     }
 }

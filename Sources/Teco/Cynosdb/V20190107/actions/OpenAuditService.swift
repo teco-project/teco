@@ -80,8 +80,7 @@ extension Cynosdb {
     /// TDSQL-C for MySQL实例开通审计服务
     @inlinable @discardableResult
     public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
-        let input = OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds)
-        return self.client.execute(action: "OpenAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例开通审计服务
@@ -89,7 +88,6 @@ extension Cynosdb {
     /// TDSQL-C for MySQL实例开通审计服务
     @inlinable @discardableResult
     public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
-        let input = OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds)
-        return try await self.client.execute(action: "OpenAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

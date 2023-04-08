@@ -58,14 +58,12 @@ extension Tcss {
     /// 获取ES字段聚合结果
     @inlinable
     public func describeESAggregations(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
-        let input = DescribeESAggregationsRequest(query: query)
-        return self.client.execute(action: "DescribeESAggregations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeESAggregations(.init(query: query), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ES字段聚合结果
     @inlinable
     public func describeESAggregations(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
-        let input = DescribeESAggregationsRequest(query: query)
-        return try await self.client.execute(action: "DescribeESAggregations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeESAggregations(.init(query: query), region: region, logger: logger, on: eventLoop)
     }
 }

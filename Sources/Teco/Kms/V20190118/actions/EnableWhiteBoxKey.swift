@@ -54,14 +54,12 @@ extension Kms {
     /// 启用白盒密钥
     @inlinable @discardableResult
     public func enableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
-        let input = EnableWhiteBoxKeyRequest(keyId: keyId)
-        return self.client.execute(action: "EnableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableWhiteBoxKey(.init(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用白盒密钥
     @inlinable @discardableResult
     public func enableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
-        let input = EnableWhiteBoxKeyRequest(keyId: keyId)
-        return try await self.client.execute(action: "EnableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableWhiteBoxKey(.init(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

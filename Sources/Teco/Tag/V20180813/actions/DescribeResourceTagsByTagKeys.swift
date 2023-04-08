@@ -120,15 +120,13 @@ extension Tag {
     /// 根据标签键获取资源标签
     @inlinable
     public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByTagKeysResponse> {
-        let input = DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeResourceTagsByTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceTagsByTagKeys(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据标签键获取资源标签
     @inlinable
     public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
-        let input = DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeResourceTagsByTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceTagsByTagKeys(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据标签键获取资源标签

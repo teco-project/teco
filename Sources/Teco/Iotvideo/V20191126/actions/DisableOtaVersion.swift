@@ -70,8 +70,7 @@ extension Iotvideo {
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable @discardableResult
     public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
-        let input = DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`)
-        return self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableOtaVersion(.init(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用固件版本
@@ -79,7 +78,6 @@ extension Iotvideo {
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable @discardableResult
     public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
-        let input = DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`)
-        return try await self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableOtaVersion(.init(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

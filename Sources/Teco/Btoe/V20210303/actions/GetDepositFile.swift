@@ -54,7 +54,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDepositFile is no longer available.")
     }
 
     /// 存证文件查询
@@ -64,7 +64,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        try await self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDepositFile is no longer available.")
     }
 
     /// 存证文件查询
@@ -74,8 +74,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        let input = GetDepositFileRequest(evidenceId: evidenceId)
-        return self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDepositFile is no longer available.")
     }
 
     /// 存证文件查询
@@ -85,7 +84,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        let input = GetDepositFileRequest(evidenceId: evidenceId)
-        return try await self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDepositFile is no longer available.")
     }
 }

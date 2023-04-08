@@ -100,8 +100,7 @@ extension Mariadb {
     /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
     @inlinable
     public func describeUpgradePrice(instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpgradePriceResponse> {
-        let input = DescribeUpgradePriceRequest(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit)
-        return self.client.execute(action: "DescribeUpgradePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUpgradePrice(.init(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 变配实例询价
@@ -109,7 +108,6 @@ extension Mariadb {
     /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
     @inlinable
     public func describeUpgradePrice(instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpgradePriceResponse {
-        let input = DescribeUpgradePriceRequest(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit)
-        return try await self.client.execute(action: "DescribeUpgradePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUpgradePrice(.init(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

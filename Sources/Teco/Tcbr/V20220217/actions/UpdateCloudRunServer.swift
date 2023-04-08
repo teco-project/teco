@@ -77,14 +77,12 @@ extension Tcbr {
     /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
-        let input = UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig)
-        return self.client.execute(action: "UpdateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateCloudRunServer(.init(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
-        let input = UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig)
-        return try await self.client.execute(action: "UpdateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateCloudRunServer(.init(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 }

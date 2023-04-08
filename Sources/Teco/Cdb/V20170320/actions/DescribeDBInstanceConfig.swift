@@ -86,8 +86,7 @@ extension Cdb {
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
     public func describeDBInstanceConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceConfigResponse> {
-        let input = DescribeDBInstanceConfigRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeDBInstanceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstanceConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的配置信息
@@ -95,7 +94,6 @@ extension Cdb {
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
     public func describeDBInstanceConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
-        let input = DescribeDBInstanceConfigRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDBInstanceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstanceConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

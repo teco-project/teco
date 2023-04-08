@@ -64,14 +64,12 @@ extension Tke {
     /// 将集群内节点移入节点池
     @inlinable @discardableResult
     public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNodeToNodePoolResponse> {
-        let input = AddNodeToNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds)
-        return self.client.execute(action: "AddNodeToNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addNodeToNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将集群内节点移入节点池
     @inlinable @discardableResult
     public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
-        let input = AddNodeToNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "AddNodeToNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addNodeToNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -89,8 +89,7 @@ extension Vpc {
     /// * 在弹性网卡上申请一个到多个辅助`IPv6`地址，接口会在弹性网卡所在子网段内返回指定数量的辅助`IPv6`地址。
     @inlinable
     public func assignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
-        let input = AssignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount)
-        return self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.assignIpv6Addresses(.init(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6地址
@@ -103,7 +102,6 @@ extension Vpc {
     /// * 在弹性网卡上申请一个到多个辅助`IPv6`地址，接口会在弹性网卡所在子网段内返回指定数量的辅助`IPv6`地址。
     @inlinable
     public func assignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        let input = AssignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount)
-        return try await self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.assignIpv6Addresses(.init(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -82,8 +82,7 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesBundleResponse> {
-        let input = ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher)
-        return self.client.execute(action: "ModifyInstancesBundle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstancesBundle(.init(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 
     /// 变更实例套餐
@@ -94,7 +93,6 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
-        let input = ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher)
-        return try await self.client.execute(action: "ModifyInstancesBundle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstancesBundle(.init(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 }

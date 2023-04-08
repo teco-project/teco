@@ -150,14 +150,12 @@ extension Tcss {
     /// 查询单个集群的详细信息
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
-        let input = DescribeClusterDetailRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterDetail(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个集群的详细信息
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        let input = DescribeClusterDetailRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterDetail(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

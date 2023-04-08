@@ -71,8 +71,7 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func detachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachClassicLinkVpcResponse> {
-        let input = DetachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return self.client.execute(action: "DetachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachClassicLinkVpc(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除基础网络互通
@@ -82,7 +81,6 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func detachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachClassicLinkVpcResponse {
-        let input = DetachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "DetachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachClassicLinkVpc(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Cls {
     /// 本接口用于创建投递任务
     @inlinable @discardableResult
     public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        let input = CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression)
-        return self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConsumer(.init(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建投递任务
@@ -89,7 +88,6 @@ extension Cls {
     /// 本接口用于创建投递任务
     @inlinable @discardableResult
     public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        let input = CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression)
-        return try await self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConsumer(.init(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 }

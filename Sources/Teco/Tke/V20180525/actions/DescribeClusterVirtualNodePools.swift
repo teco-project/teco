@@ -64,14 +64,12 @@ extension Tke {
     /// 查看虚拟节点池列表
     @inlinable
     public func describeClusterVirtualNodePools(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterVirtualNodePoolsResponse> {
-        let input = DescribeClusterVirtualNodePoolsRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeClusterVirtualNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterVirtualNodePools(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看虚拟节点池列表
     @inlinable
     public func describeClusterVirtualNodePools(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterVirtualNodePoolsResponse {
-        let input = DescribeClusterVirtualNodePoolsRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeClusterVirtualNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterVirtualNodePools(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

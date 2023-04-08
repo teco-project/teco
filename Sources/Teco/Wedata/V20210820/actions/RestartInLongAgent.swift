@@ -59,14 +59,12 @@ extension Wedata {
     /// 重启采集器
     @inlinable @discardableResult
     public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
-        let input = RestartInLongAgentRequest(agentId: agentId, projectId: projectId)
-        return self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartInLongAgent(.init(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启采集器
     @inlinable @discardableResult
     public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
-        let input = RestartInLongAgentRequest(agentId: agentId, projectId: projectId)
-        return try await self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartInLongAgent(.init(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

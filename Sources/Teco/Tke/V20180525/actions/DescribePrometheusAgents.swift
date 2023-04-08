@@ -92,15 +92,13 @@ extension Tke {
     /// 获取被关联集群列表
     @inlinable
     public func describePrometheusAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAgentsResponse> {
-        let input = DescribePrometheusAgentsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePrometheusAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusAgents(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取被关联集群列表
     @inlinable
     public func describePrometheusAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
-        let input = DescribePrometheusAgentsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePrometheusAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusAgents(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取被关联集群列表

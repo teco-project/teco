@@ -68,8 +68,7 @@ extension Gaap {
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
     public func describeSecurityRules(securityRuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRulesResponse> {
-        let input = DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds)
-        return self.client.execute(action: "DescribeSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityRules(.init(securityRuleIds: securityRuleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据安全规则ID查询安全规则详情列表
@@ -77,7 +76,6 @@ extension Gaap {
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
     public func describeSecurityRules(securityRuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
-        let input = DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds)
-        return try await self.client.execute(action: "DescribeSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityRules(.init(securityRuleIds: securityRuleIds), region: region, logger: logger, on: eventLoop)
     }
 }

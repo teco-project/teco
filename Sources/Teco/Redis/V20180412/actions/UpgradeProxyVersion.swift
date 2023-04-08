@@ -79,8 +79,7 @@ extension Redis {
     /// 实例proxy版本升级
     @inlinable
     public func upgradeProxyVersion(instanceId: String, currentProxyVersion: String, upgradeProxyVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeProxyVersionResponse> {
-        let input = UpgradeProxyVersionRequest(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow)
-        return self.client.execute(action: "UpgradeProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeProxyVersion(.init(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例proxy版本升级接口
@@ -88,7 +87,6 @@ extension Redis {
     /// 实例proxy版本升级
     @inlinable
     public func upgradeProxyVersion(instanceId: String, currentProxyVersion: String, upgradeProxyVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeProxyVersionResponse {
-        let input = UpgradeProxyVersionRequest(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow)
-        return try await self.client.execute(action: "UpgradeProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeProxyVersion(.init(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
     }
 }

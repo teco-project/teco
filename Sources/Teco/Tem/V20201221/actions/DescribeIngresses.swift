@@ -74,14 +74,12 @@ extension Tem {
     /// 查询 Ingress 规则列表
     @inlinable
     public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
-        let input = DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names)
-        return self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIngresses(.init(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 Ingress 规则列表
     @inlinable
     public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
-        let input = DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names)
-        return try await self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIngresses(.init(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

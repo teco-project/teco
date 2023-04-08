@@ -64,14 +64,12 @@ extension Trp {
     /// 查询商户信息
     @inlinable
     public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantByIdResponse> {
-        let input = DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId)
-        return self.client.execute(action: "DescribeMerchantById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMerchantById(.init(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商户信息
     @inlinable
     public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantByIdResponse {
-        let input = DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId)
-        return try await self.client.execute(action: "DescribeMerchantById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMerchantById(.init(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

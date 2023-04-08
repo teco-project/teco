@@ -97,8 +97,7 @@ extension Cdn {
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
     public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
-        let input = DescribeDiagnoseReportRequest(reportId: reportId)
-        return self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDiagnoseReport(.init(reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断报告
@@ -106,7 +105,6 @@ extension Cdn {
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
     public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
-        let input = DescribeDiagnoseReportRequest(reportId: reportId)
-        return try await self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDiagnoseReport(.init(reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 }

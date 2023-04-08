@@ -104,14 +104,12 @@ extension Tem {
     /// 创建环境
     @inlinable
     public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
-        let input = CreateEnvironmentRequest(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion)
-        return self.client.execute(action: "CreateEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEnvironment(.init(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建环境
     @inlinable
     public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        let input = CreateEnvironmentRequest(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion)
-        return try await self.client.execute(action: "CreateEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEnvironment(.init(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), region: region, logger: logger, on: eventLoop)
     }
 }

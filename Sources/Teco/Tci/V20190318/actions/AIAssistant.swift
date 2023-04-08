@@ -108,8 +108,7 @@ extension Tci {
     /// 提供 AI 助教基础版本功能接口
     @inlinable
     public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
-        let input = AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType)
-        return self.client.execute(action: "AIAssistant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.aiAssistant(.init(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// AI 助教标准接口
@@ -117,7 +116,6 @@ extension Tci {
     /// 提供 AI 助教基础版本功能接口
     @inlinable
     public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
-        let input = AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType)
-        return try await self.client.execute(action: "AIAssistant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.aiAssistant(.init(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 }

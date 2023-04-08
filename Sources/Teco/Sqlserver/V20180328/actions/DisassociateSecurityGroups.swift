@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
-        let input = DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disassociateSecurityGroups(.init(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量解绑云资源
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        let input = DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disassociateSecurityGroups(.init(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

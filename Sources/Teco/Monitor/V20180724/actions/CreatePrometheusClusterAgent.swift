@@ -65,8 +65,7 @@ extension Monitor {
     /// 与云监控融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
-        let input = CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents)
-        return self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPrometheusClusterAgent(.init(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 2.0实例关联集群
@@ -74,7 +73,6 @@ extension Monitor {
     /// 与云监控融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
-        let input = CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents)
-        return try await self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPrometheusClusterAgent(.init(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -108,8 +108,7 @@ extension Ckafka {
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
     public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicResponse> {
-        let input = DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName)
-        return self.client.execute(action: "DescribeTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopic(.init(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主题列表
@@ -118,8 +117,7 @@ extension Ckafka {
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
     public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
-        let input = DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName)
-        return try await self.client.execute(action: "DescribeTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopic(.init(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主题列表

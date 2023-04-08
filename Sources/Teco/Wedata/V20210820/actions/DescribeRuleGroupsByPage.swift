@@ -114,8 +114,7 @@ extension Wedata {
     /// {数据来源DatasourceId}
     @inlinable
     public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupsByPageResponse> {
-        let input = DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return self.client.execute(action: "DescribeRuleGroupsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleGroupsByPage(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则组接口
@@ -126,8 +125,7 @@ extension Wedata {
     /// {数据来源DatasourceId}
     @inlinable
     public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
-        let input = DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRuleGroupsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleGroupsByPage(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则组接口

@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
     public func runMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunMigrationResponse> {
-        let input = RunMigrationRequest(migrateId: migrateId)
-        return self.client.execute(action: "RunMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.runMigration(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行迁移任务
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
     public func runMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
-        let input = RunMigrationRequest(migrateId: migrateId)
-        return try await self.client.execute(action: "RunMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.runMigration(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

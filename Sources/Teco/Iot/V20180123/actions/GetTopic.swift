@@ -63,14 +63,12 @@ extension Iot {
     /// 获取Topic信息
     @inlinable
     public func getTopic(topicId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTopicResponse> {
-        let input = GetTopicRequest(topicId: topicId, productId: productId)
-        return self.client.execute(action: "GetTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getTopic(.init(topicId: topicId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic信息
     @inlinable
     public func getTopic(topicId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicResponse {
-        let input = GetTopicRequest(topicId: topicId, productId: productId)
-        return try await self.client.execute(action: "GetTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getTopic(.init(topicId: topicId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

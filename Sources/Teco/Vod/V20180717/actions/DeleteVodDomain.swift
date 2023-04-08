@@ -68,8 +68,7 @@ extension Vod {
     /// 1、域名删除前需要先关闭所有区域的加速。
     @inlinable @discardableResult
     public func deleteVodDomain(domain: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVodDomainResponse> {
-        let input = DeleteVodDomainRequest(domain: domain, subAppId: subAppId)
-        return self.client.execute(action: "DeleteVodDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteVodDomain(.init(domain: domain, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除点播加速域名
@@ -78,7 +77,6 @@ extension Vod {
     /// 1、域名删除前需要先关闭所有区域的加速。
     @inlinable @discardableResult
     public func deleteVodDomain(domain: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVodDomainResponse {
-        let input = DeleteVodDomainRequest(domain: domain, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteVodDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteVodDomain(.init(domain: domain, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

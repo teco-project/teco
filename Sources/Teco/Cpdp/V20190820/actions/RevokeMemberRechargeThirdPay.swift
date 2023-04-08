@@ -142,8 +142,7 @@ extension Cpdp {
     /// 撤销会员在途充值(经第三方支付渠道)
     @inlinable
     public func revokeMemberRechargeThirdPay(oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeMemberRechargeThirdPayResponse> {
-        let input = RevokeMemberRechargeThirdPayRequest(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
-        return self.client.execute(action: "RevokeMemberRechargeThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revokeMemberRechargeThirdPay(.init(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-撤销会员在途充值(经第三方支付渠道)
@@ -151,7 +150,6 @@ extension Cpdp {
     /// 撤销会员在途充值(经第三方支付渠道)
     @inlinable
     public func revokeMemberRechargeThirdPay(oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeMemberRechargeThirdPayResponse {
-        let input = RevokeMemberRechargeThirdPayRequest(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
-        return try await self.client.execute(action: "RevokeMemberRechargeThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revokeMemberRechargeThirdPay(.init(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

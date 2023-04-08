@@ -72,8 +72,7 @@ extension Bmvpc {
     /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
     @inlinable
     public func createSubnet(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        let input = CreateSubnetRequest(vpcId: vpcId, subnetSet: subnetSet)
-        return self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSubnet(.init(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石私有网络的子网
@@ -82,7 +81,6 @@ extension Bmvpc {
     /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
     @inlinable
     public func createSubnet(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        let input = CreateSubnetRequest(vpcId: vpcId, subnetSet: subnetSet)
-        return try await self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSubnet(.init(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
     }
 }

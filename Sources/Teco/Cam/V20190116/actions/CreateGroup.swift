@@ -63,14 +63,12 @@ extension Cam {
     /// 创建用户组
     @inlinable
     public func createGroup(groupName: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        let input = CreateGroupRequest(groupName: groupName, remark: remark)
-        return self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGroup(.init(groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户组
     @inlinable
     public func createGroup(groupName: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        let input = CreateGroupRequest(groupName: groupName, remark: remark)
-        return try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGroup(.init(groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

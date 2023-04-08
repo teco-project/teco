@@ -119,14 +119,12 @@ extension Cpdp {
     /// 云企付-子商户资质文件上传
     @inlinable
     public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
-        let input = UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment)
-        return self.client.execute(action: "UploadOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadOpenBankSubMerchantCredential(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户资质文件上传
     @inlinable
     public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
-        let input = UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment)
-        return try await self.client.execute(action: "UploadOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadOpenBankSubMerchantCredential(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

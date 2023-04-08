@@ -99,8 +99,7 @@ extension Scf {
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
     public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
-        let input = CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument)
-        return self.client.execute(action: "CreateTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置函数触发方式
@@ -108,7 +107,6 @@ extension Scf {
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
     public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
-        let input = CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument)
-        return try await self.client.execute(action: "CreateTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
     }
 }

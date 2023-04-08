@@ -59,14 +59,12 @@ extension Ecm {
     /// 修改路由表属性
     @inlinable @discardableResult
     public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableAttributeResponse> {
-        let input = ModifyRouteTableAttributeRequest(routeTableId: routeTableId, routeTableName: routeTableName)
-        return self.client.execute(action: "ModifyRouteTableAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRouteTableAttribute(.init(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表属性
     @inlinable @discardableResult
     public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
-        let input = ModifyRouteTableAttributeRequest(routeTableId: routeTableId, routeTableName: routeTableName)
-        return try await self.client.execute(action: "ModifyRouteTableAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRouteTableAttribute(.init(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,14 +83,12 @@ extension Tcss {
     /// 创建逃逸事件导出异步任务
     @inlinable
     public func createEscapeEventsExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEscapeEventsExportJobResponse> {
-        let input = CreateEscapeEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
-        return self.client.execute(action: "CreateEscapeEventsExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEscapeEventsExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建逃逸事件导出异步任务
     @inlinable
     public func createEscapeEventsExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeEventsExportJobResponse {
-        let input = CreateEscapeEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
-        return try await self.client.execute(action: "CreateEscapeEventsExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEscapeEventsExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

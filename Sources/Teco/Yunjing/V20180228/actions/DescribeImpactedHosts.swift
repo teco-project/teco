@@ -104,8 +104,7 @@ extension Yunjing {
     /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
     @inlinable
     public func describeImpactedHosts(vulId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImpactedHostsResponse> {
-        let input = DescribeImpactedHostsRequest(vulId: vulId, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImpactedHosts(.init(vulId: vulId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞受影响机器列表
@@ -113,8 +112,7 @@ extension Yunjing {
     /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
     @inlinable
     public func describeImpactedHosts(vulId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImpactedHostsResponse {
-        let input = DescribeImpactedHostsRequest(vulId: vulId, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImpactedHosts(.init(vulId: vulId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞受影响机器列表

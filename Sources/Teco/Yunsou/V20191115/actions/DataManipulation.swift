@@ -79,8 +79,7 @@ extension Yunsou {
     /// 上传云搜数据的API接口。
     @inlinable
     public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DataManipulationResponse> {
-        let input = DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId)
-        return self.client.execute(action: "DataManipulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.dataManipulation(.init(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云搜数据上传
@@ -88,7 +87,6 @@ extension Yunsou {
     /// 上传云搜数据的API接口。
     @inlinable
     public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
-        let input = DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId)
-        return try await self.client.execute(action: "DataManipulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.dataManipulation(.init(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

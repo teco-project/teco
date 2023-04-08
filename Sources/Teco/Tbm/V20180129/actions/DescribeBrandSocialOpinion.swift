@@ -129,8 +129,7 @@ extension Tbm {
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
     public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
-        let input = DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList)
-        return self.client.execute(action: "DescribeBrandSocialOpinion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBrandSocialOpinion(.init(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌社交渠道观点
@@ -138,8 +137,7 @@ extension Tbm {
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
     public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
-        let input = DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList)
-        return try await self.client.execute(action: "DescribeBrandSocialOpinion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBrandSocialOpinion(.init(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌社交渠道观点

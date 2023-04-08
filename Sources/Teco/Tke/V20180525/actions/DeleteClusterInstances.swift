@@ -90,8 +90,7 @@ extension Tke {
     /// 删除集群中的实例
     @inlinable
     public func deleteClusterInstances(clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
-        let input = DeleteClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceDeleteMode: instanceDeleteMode, forceDelete: forceDelete)
-        return self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterInstances(.init(clusterId: clusterId, instanceIds: instanceIds, instanceDeleteMode: instanceDeleteMode, forceDelete: forceDelete), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群中的节点
@@ -99,7 +98,6 @@ extension Tke {
     /// 删除集群中的实例
     @inlinable
     public func deleteClusterInstances(clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        let input = DeleteClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceDeleteMode: instanceDeleteMode, forceDelete: forceDelete)
-        return try await self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterInstances(.init(clusterId: clusterId, instanceIds: instanceIds, instanceDeleteMode: instanceDeleteMode, forceDelete: forceDelete), region: region, logger: logger, on: eventLoop)
     }
 }

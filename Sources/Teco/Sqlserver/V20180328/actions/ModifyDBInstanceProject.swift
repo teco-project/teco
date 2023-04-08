@@ -69,8 +69,7 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceProject）用于修改数据库实例所属项目。
     @inlinable
     public func modifyDBInstanceProject(instanceIdSet: [String], projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
-        let input = ModifyDBInstanceProjectRequest(instanceIdSet: instanceIdSet, projectId: projectId)
-        return self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceProject(.init(instanceIdSet: instanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库实例所属项目
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceProject）用于修改数据库实例所属项目。
     @inlinable
     public func modifyDBInstanceProject(instanceIdSet: [String], projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
-        let input = ModifyDBInstanceProjectRequest(instanceIdSet: instanceIdSet, projectId: projectId)
-        return try await self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceProject(.init(instanceIdSet: instanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

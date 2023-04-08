@@ -68,14 +68,12 @@ extension Tsf {
     /// 更新泳道信息
     @inlinable
     public func modifyLane(laneId: String, laneName: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneResponse> {
-        let input = ModifyLaneRequest(laneId: laneId, laneName: laneName, remark: remark)
-        return self.client.execute(action: "ModifyLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLane(.init(laneId: laneId, laneName: laneName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新泳道信息
     @inlinable
     public func modifyLane(laneId: String, laneName: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
-        let input = ModifyLaneRequest(laneId: laneId, laneName: laneName, remark: remark)
-        return try await self.client.execute(action: "ModifyLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLane(.init(laneId: laneId, laneName: laneName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

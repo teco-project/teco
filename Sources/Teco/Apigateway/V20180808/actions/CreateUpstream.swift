@@ -120,8 +120,7 @@ extension Apigateway {
     /// 用于创建创建后端通道
     @inlinable
     public func createUpstream(scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, upstreamType: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, tags: [Tag]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUpstreamResponse> {
-        let input = CreateUpstreamRequest(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService)
-        return self.client.execute(action: "CreateUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createUpstream(.init(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建后端通道
@@ -129,7 +128,6 @@ extension Apigateway {
     /// 用于创建创建后端通道
     @inlinable
     public func createUpstream(scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, upstreamType: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, tags: [Tag]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpstreamResponse {
-        let input = CreateUpstreamRequest(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService)
-        return try await self.client.execute(action: "CreateUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createUpstream(.init(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)
     }
 }

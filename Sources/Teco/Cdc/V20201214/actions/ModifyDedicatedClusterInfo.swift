@@ -74,14 +74,12 @@ extension Cdc {
     /// 修改本地专用集群信息
     @inlinable @discardableResult
     public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
-        let input = ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId)
-        return self.client.execute(action: "ModifyDedicatedClusterInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDedicatedClusterInfo(.init(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改本地专用集群信息
     @inlinable @discardableResult
     public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
-        let input = ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId)
-        return try await self.client.execute(action: "ModifyDedicatedClusterInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDedicatedClusterInfo(.init(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), region: region, logger: logger, on: eventLoop)
     }
 }

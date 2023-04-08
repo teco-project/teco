@@ -78,14 +78,12 @@ extension Iecp {
     /// 查询边缘单元额外信息
     @inlinable
     public func describeEdgeUnitExtra(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitExtraResponse> {
-        let input = DescribeEdgeUnitExtraRequest(edgeUnitId: edgeUnitId)
-        return self.client.execute(action: "DescribeEdgeUnitExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeUnitExtra(.init(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元额外信息
     @inlinable
     public func describeEdgeUnitExtra(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitExtraResponse {
-        let input = DescribeEdgeUnitExtraRequest(edgeUnitId: edgeUnitId)
-        return try await self.client.execute(action: "DescribeEdgeUnitExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeUnitExtra(.init(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }
 }

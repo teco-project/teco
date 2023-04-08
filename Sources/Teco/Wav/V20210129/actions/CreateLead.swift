@@ -132,14 +132,12 @@ extension Wav {
     /// 线索回收接口
     @inlinable
     public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
-        let input = CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark)
-        return self.client.execute(action: "CreateLead", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLead(.init(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 线索回收接口
     @inlinable
     public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
-        let input = CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark)
-        return try await self.client.execute(action: "CreateLead", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLead(.init(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,14 +83,12 @@ extension Cpdp {
     /// 灵云V2-平台账户余额查询
     @inlinable
     public func queryFlexPlatformAccountBalance(incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPlatformAccountBalanceResponse> {
-        let input = QueryFlexPlatformAccountBalanceRequest(incomeType: incomeType, environment: environment, snapshotDate: snapshotDate)
-        return self.client.execute(action: "QueryFlexPlatformAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexPlatformAccountBalance(.init(incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-平台账户余额查询
     @inlinable
     public func queryFlexPlatformAccountBalance(incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPlatformAccountBalanceResponse {
-        let input = QueryFlexPlatformAccountBalanceRequest(incomeType: incomeType, environment: environment, snapshotDate: snapshotDate)
-        return try await self.client.execute(action: "QueryFlexPlatformAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexPlatformAccountBalance(.init(incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 }

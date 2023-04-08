@@ -98,8 +98,7 @@ extension Asw {
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
     public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServicesResponse> {
-        let input = DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeFlowServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFlowServices(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机列表
@@ -107,8 +106,7 @@ extension Asw {
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
     public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
-        let input = DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeFlowServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFlowServices(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机列表

@@ -64,8 +64,7 @@ extension Asw {
     /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
     @inlinable
     public func describeExecutionHistory(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionHistoryResponse> {
-        let input = DescribeExecutionHistoryRequest(executionResourceName: executionResourceName)
-        return self.client.execute(action: "DescribeExecutionHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExecutionHistory(.init(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行的事件历史
@@ -73,7 +72,6 @@ extension Asw {
     /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
     @inlinable
     public func describeExecutionHistory(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionHistoryResponse {
-        let input = DescribeExecutionHistoryRequest(executionResourceName: executionResourceName)
-        return try await self.client.execute(action: "DescribeExecutionHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExecutionHistory(.init(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 }

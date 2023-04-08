@@ -64,8 +64,7 @@ extension Apcas {
     /// 获取日/月/周/总调用量统计数据
     @inlinable
     public func queryGeneralStat(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryGeneralStatResponse> {
-        let input = QueryGeneralStatRequest(type: type)
-        return self.client.execute(action: "QueryGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryGeneralStat(.init(type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 总统计数据
@@ -73,7 +72,6 @@ extension Apcas {
     /// 获取日/月/周/总调用量统计数据
     @inlinable
     public func queryGeneralStat(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
-        let input = QueryGeneralStatRequest(type: type)
-        return try await self.client.execute(action: "QueryGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryGeneralStat(.init(type: type), region: region, logger: logger, on: eventLoop)
     }
 }

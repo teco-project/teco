@@ -59,14 +59,12 @@ extension Iotvideo {
     /// 申请AI模型
     @inlinable @discardableResult
     public func applyAIModel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
-        let input = ApplyAIModelRequest(modelId: modelId, productId: productId)
-        return self.client.execute(action: "ApplyAIModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyAIModel(.init(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请AI模型
     @inlinable @discardableResult
     public func applyAIModel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
-        let input = ApplyAIModelRequest(modelId: modelId, productId: productId)
-        return try await self.client.execute(action: "ApplyAIModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyAIModel(.init(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Batch {
     /// 用于创建计算环境
     @inlinable
     public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComputeEnvResponse> {
-        let input = CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken)
-        return self.client.execute(action: "CreateComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createComputeEnv(.init(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建计算环境
@@ -83,7 +82,6 @@ extension Batch {
     /// 用于创建计算环境
     @inlinable
     public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
-        let input = CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken)
-        return try await self.client.execute(action: "CreateComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createComputeEnv(.init(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

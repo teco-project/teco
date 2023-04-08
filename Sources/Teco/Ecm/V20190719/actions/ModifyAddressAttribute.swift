@@ -69,14 +69,12 @@ extension Ecm {
     /// 修改弹性公网IP属性
     @inlinable @discardableResult
     public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        let input = ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection)
-        return self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAddressAttribute(.init(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
     @inlinable @discardableResult
     public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        let input = ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection)
-        return try await self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAddressAttribute(.init(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 }

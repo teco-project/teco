@@ -80,8 +80,7 @@ extension Vpc {
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
     @inlinable @discardableResult
     public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayAttributeResponse> {
-        let input = ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds)
-        return self.client.execute(action: "ModifyNatGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNatGatewayAttribute(.init(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改NAT网关的属性
@@ -89,7 +88,6 @@ extension Vpc {
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
     @inlinable @discardableResult
     public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayAttributeResponse {
-        let input = ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds)
-        return try await self.client.execute(action: "ModifyNatGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNatGatewayAttribute(.init(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

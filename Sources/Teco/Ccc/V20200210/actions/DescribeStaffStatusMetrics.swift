@@ -63,14 +63,12 @@ extension Ccc {
     /// 获取坐席实时状态统计指标
     @inlinable
     public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
-        let input = DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList)
-        return self.client.execute(action: "DescribeStaffStatusMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席实时状态统计指标
     @inlinable
     public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
-        let input = DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList)
-        return try await self.client.execute(action: "DescribeStaffStatusMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 }

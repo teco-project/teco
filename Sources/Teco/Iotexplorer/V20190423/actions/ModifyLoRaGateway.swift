@@ -93,14 +93,12 @@ extension Iotexplorer {
     /// 修改 LoRa 网关信息
     @inlinable
     public func modifyLoRaGateway(description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool? = nil, position: String? = nil, positionDetails: String? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoRaGatewayResponse> {
-        let input = ModifyLoRaGatewayRequest(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId)
-        return self.client.execute(action: "ModifyLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoRaGateway(.init(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 LoRa 网关信息
     @inlinable
     public func modifyLoRaGateway(description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool? = nil, position: String? = nil, positionDetails: String? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {
-        let input = ModifyLoRaGatewayRequest(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId)
-        return try await self.client.execute(action: "ModifyLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoRaGateway(.init(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
     }
 }

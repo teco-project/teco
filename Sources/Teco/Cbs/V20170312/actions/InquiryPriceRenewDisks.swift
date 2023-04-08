@@ -91,8 +91,7 @@ extension Cbs {
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
     @inlinable
     public func inquiryPriceRenewDisks(diskIds: [String], diskChargePrepaids: [DiskChargePrepaid]? = nil, newDeadline: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDisksResponse> {
-        let input = InquiryPriceRenewDisksRequest(diskIds: diskIds, diskChargePrepaids: diskChargePrepaids, newDeadline: newDeadline, projectId: projectId)
-        return self.client.execute(action: "InquiryPriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceRenewDisks(.init(diskIds: diskIds, diskChargePrepaids: diskChargePrepaids, newDeadline: newDeadline, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘询价
@@ -104,7 +103,6 @@ extension Cbs {
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
     @inlinable
     public func inquiryPriceRenewDisks(diskIds: [String], diskChargePrepaids: [DiskChargePrepaid]? = nil, newDeadline: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDisksResponse {
-        let input = InquiryPriceRenewDisksRequest(diskIds: diskIds, diskChargePrepaids: diskChargePrepaids, newDeadline: newDeadline, projectId: projectId)
-        return try await self.client.execute(action: "InquiryPriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceRenewDisks(.init(diskIds: diskIds, diskChargePrepaids: diskChargePrepaids, newDeadline: newDeadline, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -73,14 +73,12 @@ extension Tem {
     /// 删除 Ingress 规则
     @inlinable
     public func deleteIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIngressResponse> {
-        let input = DeleteIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel)
-        return self.client.execute(action: "DeleteIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteIngress(.init(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Ingress 规则
     @inlinable
     public func deleteIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
-        let input = DeleteIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "DeleteIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteIngress(.init(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

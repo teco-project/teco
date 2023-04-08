@@ -175,8 +175,7 @@ extension Vod {
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
     public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
-        let input = DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval)
-        return self.client.execute(action: "DescribeCDNStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCDNStatDetails(.init(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询点播域名的 CDN 统计数据
@@ -187,7 +186,6 @@ extension Vod {
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
     public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
-        let input = DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval)
-        return try await self.client.execute(action: "DescribeCDNStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCDNStatDetails(.init(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), region: region, logger: logger, on: eventLoop)
     }
 }

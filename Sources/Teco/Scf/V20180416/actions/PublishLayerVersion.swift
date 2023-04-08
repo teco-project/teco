@@ -84,8 +84,7 @@ extension Scf {
     /// 使用给定的zip文件或cos对象创建一个层的新版本，每次使用相同的层的名称调用本接口，都会生成一个新版本。
     @inlinable
     public func publishLayerVersion(layerName: String, compatibleRuntimes: [String], content: Code, description: String? = nil, licenseInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishLayerVersionResponse> {
-        let input = PublishLayerVersionRequest(layerName: layerName, compatibleRuntimes: compatibleRuntimes, content: content, description: description, licenseInfo: licenseInfo)
-        return self.client.execute(action: "PublishLayerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.publishLayerVersion(.init(layerName: layerName, compatibleRuntimes: compatibleRuntimes, content: content, description: description, licenseInfo: licenseInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布层版本
@@ -93,7 +92,6 @@ extension Scf {
     /// 使用给定的zip文件或cos对象创建一个层的新版本，每次使用相同的层的名称调用本接口，都会生成一个新版本。
     @inlinable
     public func publishLayerVersion(layerName: String, compatibleRuntimes: [String], content: Code, description: String? = nil, licenseInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishLayerVersionResponse {
-        let input = PublishLayerVersionRequest(layerName: layerName, compatibleRuntimes: compatibleRuntimes, content: content, description: description, licenseInfo: licenseInfo)
-        return try await self.client.execute(action: "PublishLayerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.publishLayerVersion(.init(layerName: layerName, compatibleRuntimes: compatibleRuntimes, content: content, description: description, licenseInfo: licenseInfo), region: region, logger: logger, on: eventLoop)
     }
 }

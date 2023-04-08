@@ -98,8 +98,7 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeTravelCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTravelCardOCRResponse> {
-        let input = RecognizeTravelCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "RecognizeTravelCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeTravelCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通信行程卡识别
@@ -109,7 +108,6 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeTravelCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTravelCardOCRResponse {
-        let input = RecognizeTravelCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "RecognizeTravelCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeTravelCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

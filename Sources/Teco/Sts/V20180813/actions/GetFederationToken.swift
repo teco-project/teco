@@ -81,14 +81,12 @@ extension Sts {
     /// 获取联合身份临时访问凭证
     @inlinable
     public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
-        let input = GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds)
-        return self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getFederationToken(.init(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联合身份临时访问凭证
     @inlinable
     public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
-        let input = GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds)
-        return try await self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getFederationToken(.init(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

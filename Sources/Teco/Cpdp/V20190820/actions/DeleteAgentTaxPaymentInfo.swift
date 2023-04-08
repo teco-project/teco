@@ -59,14 +59,12 @@ extension Cpdp {
     /// 直播平台-删除代理商完税信息
     @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfoResponse> {
-        let input = DeleteAgentTaxPaymentInfoRequest(batchNum: batchNum, profile: profile)
-        return self.client.execute(action: "DeleteAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAgentTaxPaymentInfo(.init(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-删除代理商完税信息
     @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfoResponse {
-        let input = DeleteAgentTaxPaymentInfoRequest(batchNum: batchNum, profile: profile)
-        return try await self.client.execute(action: "DeleteAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAgentTaxPaymentInfo(.init(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

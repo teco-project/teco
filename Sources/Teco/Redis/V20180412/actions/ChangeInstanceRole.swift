@@ -68,14 +68,12 @@ extension Redis {
     /// 复制组实例更换角色
     @inlinable
     public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeInstanceRoleResponse> {
-        let input = ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole)
-        return self.client.execute(action: "ChangeInstanceRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.changeInstanceRole(.init(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例更换角色
     @inlinable
     public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
-        let input = ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole)
-        return try await self.client.execute(action: "ChangeInstanceRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.changeInstanceRole(.init(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 }

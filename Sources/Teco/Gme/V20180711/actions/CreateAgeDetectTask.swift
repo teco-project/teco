@@ -106,8 +106,7 @@ extension Gme {
     /// </br>
     @inlinable
     public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
-        let input = CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback)
-        return self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAgeDetectTask(.init(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交年龄语音识别任务
@@ -125,7 +124,6 @@ extension Gme {
     /// </br>
     @inlinable
     public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
-        let input = CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback)
-        return try await self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAgeDetectTask(.init(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

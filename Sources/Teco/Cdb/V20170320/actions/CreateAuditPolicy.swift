@@ -86,8 +86,7 @@ extension Cdb {
     /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
     @inlinable
     public func createAuditPolicy(name: String, ruleId: String, instanceId: String, logExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditPolicyResponse> {
-        let input = CreateAuditPolicyRequest(name: name, ruleId: ruleId, instanceId: instanceId, logExpireDay: logExpireDay)
-        return self.client.execute(action: "CreateAuditPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAuditPolicy(.init(name: name, ruleId: ruleId, instanceId: instanceId, logExpireDay: logExpireDay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建审计策略
@@ -95,7 +94,6 @@ extension Cdb {
     /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
     @inlinable
     public func createAuditPolicy(name: String, ruleId: String, instanceId: String, logExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditPolicyResponse {
-        let input = CreateAuditPolicyRequest(name: name, ruleId: ruleId, instanceId: instanceId, logExpireDay: logExpireDay)
-        return try await self.client.execute(action: "CreateAuditPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAuditPolicy(.init(name: name, ruleId: ruleId, instanceId: instanceId, logExpireDay: logExpireDay), region: region, logger: logger, on: eventLoop)
     }
 }

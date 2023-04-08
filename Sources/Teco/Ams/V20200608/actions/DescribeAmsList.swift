@@ -107,8 +107,7 @@ extension Ams {
     /// 音频审核明细列表
     @inlinable
     public func describeAmsList(pageToken: String, limit: Int64, pageDirection: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAmsListResponse> {
-        let input = DescribeAmsListRequest(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters)
-        return self.client.execute(action: "DescribeAmsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAmsList(.init(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取音频审核明细数据
@@ -116,8 +115,7 @@ extension Ams {
     /// 音频审核明细列表
     @inlinable
     public func describeAmsList(pageToken: String, limit: Int64, pageDirection: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAmsListResponse {
-        let input = DescribeAmsListRequest(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters)
-        return try await self.client.execute(action: "DescribeAmsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAmsList(.init(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取音频审核明细数据

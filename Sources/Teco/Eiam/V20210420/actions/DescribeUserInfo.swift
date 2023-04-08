@@ -140,8 +140,7 @@ extension Eiam {
     /// 通过用户名或用户 id 搜索用户
     @inlinable
     public func describeUserInfo(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserInfoResponse> {
-        let input = DescribeUserInfoRequest(userName: userName, userId: userId)
-        return self.client.execute(action: "DescribeUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserInfo(.init(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户信息
@@ -149,7 +148,6 @@ extension Eiam {
     /// 通过用户名或用户 id 搜索用户
     @inlinable
     public func describeUserInfo(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInfoResponse {
-        let input = DescribeUserInfoRequest(userName: userName, userId: userId)
-        return try await self.client.execute(action: "DescribeUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserInfo(.init(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -102,15 +102,13 @@ extension Ssa {
     /// 合规管理-资产列表
     @inlinable
     public func describeComplianceAssetList(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetListResponse> {
-        let input = DescribeComplianceAssetListRequest(offset: offset, limit: limit, id: id, filter: filter, search: search)
-        return self.client.execute(action: "DescribeComplianceAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeComplianceAssetList(.init(offset: offset, limit: limit, id: id, filter: filter, search: search), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合规管理-资产列表
     @inlinable
     public func describeComplianceAssetList(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
-        let input = DescribeComplianceAssetListRequest(offset: offset, limit: limit, id: id, filter: filter, search: search)
-        return try await self.client.execute(action: "DescribeComplianceAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeComplianceAssetList(.init(offset: offset, limit: limit, id: id, filter: filter, search: search), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合规管理-资产列表

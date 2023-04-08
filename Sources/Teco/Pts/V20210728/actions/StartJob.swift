@@ -78,14 +78,12 @@ extension Pts {
     /// 创建并启动任务
     @inlinable
     public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartJobResponse> {
-        let input = StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note)
-        return self.client.execute(action: "StartJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startJob(.init(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并启动任务
     @inlinable
     public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
-        let input = StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note)
-        return try await self.client.execute(action: "StartJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startJob(.init(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

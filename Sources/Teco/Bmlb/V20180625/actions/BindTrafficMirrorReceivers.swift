@@ -69,8 +69,7 @@ extension Bmlb {
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
     public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindTrafficMirrorReceiversResponse> {
-        let input = BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet)
-        return self.client.execute(action: "BindTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindTrafficMirrorReceivers(.init(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定黑石物理服务器成为流量镜像接收机
@@ -78,7 +77,6 @@ extension Bmlb {
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
     public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
-        let input = BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet)
-        return try await self.client.execute(action: "BindTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindTrafficMirrorReceivers(.init(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 }

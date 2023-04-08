@@ -60,8 +60,7 @@ extension Mongodb {
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
     @inlinable @discardableResult
     public func terminateDBInstances(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstancesResponse> {
-        let input = TerminateDBInstancesRequest(instanceId: instanceId)
-        return self.client.execute(action: "TerminateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.terminateDBInstances(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 包年包月隔离接口
@@ -69,7 +68,6 @@ extension Mongodb {
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
     @inlinable @discardableResult
     public func terminateDBInstances(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
-        let input = TerminateDBInstancesRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "TerminateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.terminateDBInstances(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

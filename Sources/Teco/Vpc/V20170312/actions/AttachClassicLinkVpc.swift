@@ -77,8 +77,7 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
-        let input = AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachClassicLinkVpc(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建基础网络互通
@@ -90,7 +89,6 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
-        let input = AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachClassicLinkVpc(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

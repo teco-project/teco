@@ -79,8 +79,7 @@ extension Ecc {
     /// 异步任务结果查询接口
     @inlinable
     public func describeTask(taskId: String, eccAppid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResponse> {
-        let input = DescribeTaskRequest(taskId: taskId, eccAppid: eccAppid)
-        return self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTask(.init(taskId: taskId, eccAppid: eccAppid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务结果
@@ -88,7 +87,6 @@ extension Ecc {
     /// 异步任务结果查询接口
     @inlinable
     public func describeTask(taskId: String, eccAppid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        let input = DescribeTaskRequest(taskId: taskId, eccAppid: eccAppid)
-        return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTask(.init(taskId: taskId, eccAppid: eccAppid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Vod {
     /// 该接口用于创建点播子应用。
     @inlinable
     public func createSubAppId(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
-        let input = CreateSubAppIdRequest(name: name, description: description)
-        return self.client.execute(action: "CreateSubAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSubAppId(.init(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子应用
@@ -78,7 +77,6 @@ extension Vod {
     /// 该接口用于创建点播子应用。
     @inlinable
     public func createSubAppId(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
-        let input = CreateSubAppIdRequest(name: name, description: description)
-        return try await self.client.execute(action: "CreateSubAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSubAppId(.init(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

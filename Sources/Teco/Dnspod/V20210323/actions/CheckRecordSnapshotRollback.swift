@@ -74,14 +74,12 @@ extension Dnspod {
     /// 回滚前检查单条记录
     @inlinable
     public func checkRecordSnapshotRollback(domain: String, snapshotId: String, record: SnapshotRecord, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRecordSnapshotRollbackResponse> {
-        let input = CheckRecordSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, record: record, domainId: domainId)
-        return self.client.execute(action: "CheckRecordSnapshotRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkRecordSnapshotRollback(.init(domain: domain, snapshotId: snapshotId, record: record, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回滚前检查单条记录
     @inlinable
     public func checkRecordSnapshotRollback(domain: String, snapshotId: String, record: SnapshotRecord, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRecordSnapshotRollbackResponse {
-        let input = CheckRecordSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, record: record, domainId: domainId)
-        return try await self.client.execute(action: "CheckRecordSnapshotRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkRecordSnapshotRollback(.init(domain: domain, snapshotId: snapshotId, record: record, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -72,8 +72,7 @@ extension Iai {
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
     public func getPersonBaseInfo(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonBaseInfoResponse> {
-        let input = GetPersonBaseInfoRequest(personId: personId)
-        return self.client.execute(action: "GetPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getPersonBaseInfo(.init(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员基础信息
@@ -81,7 +80,6 @@ extension Iai {
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
     public func getPersonBaseInfo(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
-        let input = GetPersonBaseInfoRequest(personId: personId)
-        return try await self.client.execute(action: "GetPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getPersonBaseInfo(.init(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

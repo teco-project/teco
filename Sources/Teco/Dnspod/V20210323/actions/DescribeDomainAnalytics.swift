@@ -92,8 +92,7 @@ extension Dnspod {
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
     public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAnalyticsResponse> {
-        let input = DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId)
-        return self.client.execute(action: "DescribeDomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainAnalytics(.init(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名解析量统计
@@ -101,7 +100,6 @@ extension Dnspod {
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
     public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
-        let input = DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId)
-        return try await self.client.execute(action: "DescribeDomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainAnalytics(.init(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

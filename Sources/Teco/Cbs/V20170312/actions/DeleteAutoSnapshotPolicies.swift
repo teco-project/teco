@@ -66,8 +66,7 @@ extension Cbs {
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
-        let input = DeleteAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds)
-        return self.client.execute(action: "DeleteAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAutoSnapshotPolicies(.init(autoSnapshotPolicyIds: autoSnapshotPolicyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除定期快照策略
@@ -77,7 +76,6 @@ extension Cbs {
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
-        let input = DeleteAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds)
-        return try await self.client.execute(action: "DeleteAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAutoSnapshotPolicies(.init(autoSnapshotPolicyIds: autoSnapshotPolicyIds), region: region, logger: logger, on: eventLoop)
     }
 }

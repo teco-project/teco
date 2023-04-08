@@ -193,8 +193,7 @@ extension Tcss {
     /// 查询镜像详细信息
     @inlinable
     public func describeAssetImageDetail(imageID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageDetailResponse> {
-        let input = DescribeAssetImageDetailRequest(imageID: imageID)
-        return self.client.execute(action: "DescribeAssetImageDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageDetail(.init(imageID: imageID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
@@ -202,7 +201,6 @@ extension Tcss {
     /// 查询镜像详细信息
     @inlinable
     public func describeAssetImageDetail(imageID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
-        let input = DescribeAssetImageDetailRequest(imageID: imageID)
-        return try await self.client.execute(action: "DescribeAssetImageDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageDetail(.init(imageID: imageID), region: region, logger: logger, on: eventLoop)
     }
 }

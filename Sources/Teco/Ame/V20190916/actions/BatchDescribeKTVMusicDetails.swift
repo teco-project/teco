@@ -68,8 +68,7 @@ extension Ame {
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
     public func batchDescribeKTVMusicDetails(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
-        let input = BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds)
-        return self.client.execute(action: "BatchDescribeKTVMusicDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchDescribeKTVMusicDetails(.init(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取直播互动曲目详情
@@ -77,7 +76,6 @@ extension Ame {
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
     public func batchDescribeKTVMusicDetails(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        let input = BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds)
-        return try await self.client.execute(action: "BatchDescribeKTVMusicDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchDescribeKTVMusicDetails(.init(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 }

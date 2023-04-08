@@ -69,14 +69,12 @@ extension Wedata {
     /// 查询质量规则数据源
     @inlinable
     public func describeRuleDataSources(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDataSourcesResponse> {
-        let input = DescribeRuleDataSourcesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes)
-        return self.client.execute(action: "DescribeRuleDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleDataSources(.init(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询质量规则数据源
     @inlinable
     public func describeRuleDataSources(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDataSourcesResponse {
-        let input = DescribeRuleDataSourcesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes)
-        return try await self.client.execute(action: "DescribeRuleDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleDataSources(.init(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 }

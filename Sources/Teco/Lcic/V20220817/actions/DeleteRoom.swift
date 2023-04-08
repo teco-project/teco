@@ -54,14 +54,12 @@ extension Lcic {
     /// 删除房间
     @inlinable @discardableResult
     public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
-        let input = DeleteRoomRequest(roomId: roomId)
-        return self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRoom(.init(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除房间
     @inlinable @discardableResult
     public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
-        let input = DeleteRoomRequest(roomId: roomId)
-        return try await self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRoom(.init(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

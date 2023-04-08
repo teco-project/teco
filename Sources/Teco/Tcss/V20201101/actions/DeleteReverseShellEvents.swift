@@ -54,14 +54,12 @@ extension Tcss {
     /// 删除运行时反弹shell事件
     @inlinable @discardableResult
     public func deleteReverseShellEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
-        let input = DeleteReverseShellEventsRequest(eventIdSet: eventIdSet)
-        return self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteReverseShellEvents(.init(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时反弹shell事件
     @inlinable @discardableResult
     public func deleteReverseShellEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
-        let input = DeleteReverseShellEventsRequest(eventIdSet: eventIdSet)
-        return try await self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteReverseShellEvents(.init(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

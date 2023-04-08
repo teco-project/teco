@@ -64,14 +64,12 @@ extension Tke {
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable @discardableResult
     public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusRecordRuleYamlResponse> {
-        let input = ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content)
-        return self.client.execute(action: "ModifyPrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrometheusRecordRuleYaml(.init(instanceId: instanceId, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable @discardableResult
     public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
-        let input = ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content)
-        return try await self.client.execute(action: "ModifyPrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrometheusRecordRuleYaml(.init(instanceId: instanceId, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

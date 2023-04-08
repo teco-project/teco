@@ -70,8 +70,7 @@ extension Cfw {
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable @discardableResult
     public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
-        let input = ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId)
-        return self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyResourceGroup(.init(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组信息修改
@@ -79,7 +78,6 @@ extension Cfw {
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable @discardableResult
     public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
-        let input = ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId)
-        return try await self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyResourceGroup(.init(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }
 }

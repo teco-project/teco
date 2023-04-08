@@ -186,14 +186,12 @@ extension Dlc {
     /// DMS元数据获取表
     @inlinable
     public func describeDMSTable(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSTableResponse> {
-        let input = DescribeDMSTableRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type)
-        return self.client.execute(action: "DescribeDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDMSTable(.init(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据获取表
     @inlinable
     public func describeDMSTable(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {
-        let input = DescribeDMSTableRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type)
-        return try await self.client.execute(action: "DescribeDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDMSTable(.init(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

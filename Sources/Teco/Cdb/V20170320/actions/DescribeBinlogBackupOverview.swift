@@ -92,8 +92,7 @@ extension Cdb {
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
     public func describeBinlogBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogBackupOverviewResponse> {
-        let input = DescribeBinlogBackupOverviewRequest(product: product)
-        return self.client.execute(action: "DescribeBinlogBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBinlogBackupOverview(.init(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志备份概览
@@ -101,7 +100,6 @@ extension Cdb {
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
     public func describeBinlogBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
-        let input = DescribeBinlogBackupOverviewRequest(product: product)
-        return try await self.client.execute(action: "DescribeBinlogBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBinlogBackupOverview(.init(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

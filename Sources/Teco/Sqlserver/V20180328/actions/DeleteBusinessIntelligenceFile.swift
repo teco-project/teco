@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
     @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBusinessIntelligenceFileResponse> {
-        let input = DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet)
-        return self.client.execute(action: "DeleteBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBusinessIntelligenceFile(.init(instanceId: instanceId, fileNameSet: fileNameSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除商业智能文件
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
     @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
-        let input = DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet)
-        return try await self.client.execute(action: "DeleteBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBusinessIntelligenceFile(.init(instanceId: instanceId, fileNameSet: fileNameSet), region: region, logger: logger, on: eventLoop)
     }
 }

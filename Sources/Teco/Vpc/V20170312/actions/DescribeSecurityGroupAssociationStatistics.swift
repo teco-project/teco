@@ -64,8 +64,7 @@ extension Vpc {
     /// 本接口（DescribeSecurityGroupAssociationStatistics）用于查询安全组关联的实例统计。
     @inlinable
     public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
-        let input = DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds)
-        return self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityGroupAssociationStatistics(.init(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组关联实例统计
@@ -73,7 +72,6 @@ extension Vpc {
     /// 本接口（DescribeSecurityGroupAssociationStatistics）用于查询安全组关联的实例统计。
     @inlinable
     public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
-        let input = DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds)
-        return try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityGroupAssociationStatistics(.init(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

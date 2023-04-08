@@ -75,8 +75,7 @@ extension Ump {
     /// 上报所有服务器硬件监控信息
     @inlinable @discardableResult
     public func createServerState(groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerStateResponse> {
-        let input = CreateServerStateRequest(groupCode: groupCode, serverStateItems: serverStateItems, mallId: mallId, reportTime: reportTime)
-        return self.client.execute(action: "CreateServerState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createServerState(.init(groupCode: groupCode, serverStateItems: serverStateItems, mallId: mallId, reportTime: reportTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务器监控信息上报
@@ -84,7 +83,6 @@ extension Ump {
     /// 上报所有服务器硬件监控信息
     @inlinable @discardableResult
     public func createServerState(groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerStateResponse {
-        let input = CreateServerStateRequest(groupCode: groupCode, serverStateItems: serverStateItems, mallId: mallId, reportTime: reportTime)
-        return try await self.client.execute(action: "CreateServerState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createServerState(.init(groupCode: groupCode, serverStateItems: serverStateItems, mallId: mallId, reportTime: reportTime), region: region, logger: logger, on: eventLoop)
     }
 }

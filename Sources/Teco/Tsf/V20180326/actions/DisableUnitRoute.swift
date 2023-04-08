@@ -59,14 +59,12 @@ extension Tsf {
     /// 禁用单元化路由
     @inlinable
     public func disableUnitRoute(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUnitRouteResponse> {
-        let input = DisableUnitRouteRequest(id: id)
-        return self.client.execute(action: "DisableUnitRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableUnitRoute(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用单元化路由
     @inlinable
     public func disableUnitRoute(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRouteResponse {
-        let input = DisableUnitRouteRequest(id: id)
-        return try await self.client.execute(action: "DisableUnitRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableUnitRoute(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

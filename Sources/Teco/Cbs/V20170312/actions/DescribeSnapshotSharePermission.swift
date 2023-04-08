@@ -64,8 +64,7 @@ extension Cbs {
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
     public func describeSnapshotSharePermission(snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotSharePermissionResponse> {
-        let input = DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId)
-        return self.client.execute(action: "DescribeSnapshotSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshotSharePermission(.init(snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照分享信息
@@ -73,7 +72,6 @@ extension Cbs {
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
     public func describeSnapshotSharePermission(snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
-        let input = DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId)
-        return try await self.client.execute(action: "DescribeSnapshotSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshotSharePermission(.init(snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 }

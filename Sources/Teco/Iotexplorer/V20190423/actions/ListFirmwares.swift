@@ -103,8 +103,7 @@ extension Iotexplorer {
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
     public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFirmwaresResponse> {
-        let input = ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters)
-        return self.client.execute(action: "ListFirmwares", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listFirmwares(.init(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取固件列表
@@ -112,8 +111,7 @@ extension Iotexplorer {
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
     public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
-        let input = ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters)
-        return try await self.client.execute(action: "ListFirmwares", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listFirmwares(.init(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取固件列表

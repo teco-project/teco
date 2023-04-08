@@ -68,8 +68,7 @@ extension Clb {
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
     public func describeLoadBalancerOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerOverviewResponse> {
-        let input = DescribeLoadBalancerOverviewRequest()
-        return self.client.execute(action: "DescribeLoadBalancerOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoadBalancerOverview(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡状态统计数据
@@ -77,7 +76,6 @@ extension Clb {
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
     public func describeLoadBalancerOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
-        let input = DescribeLoadBalancerOverviewRequest()
-        return try await self.client.execute(action: "DescribeLoadBalancerOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoadBalancerOverview(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

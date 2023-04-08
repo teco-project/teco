@@ -60,8 +60,7 @@ extension Tcr {
     /// 用于个人版镜像仓库中删除
     @inlinable @discardableResult
     public func deleteRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryPersonalResponse> {
-        let input = DeleteRepositoryPersonalRequest(repoName: repoName)
-        return self.client.execute(action: "DeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRepositoryPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版镜像仓库
@@ -69,7 +68,6 @@ extension Tcr {
     /// 用于个人版镜像仓库中删除
     @inlinable @discardableResult
     public func deleteRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
-        let input = DeleteRepositoryPersonalRequest(repoName: repoName)
-        return try await self.client.execute(action: "DeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRepositoryPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

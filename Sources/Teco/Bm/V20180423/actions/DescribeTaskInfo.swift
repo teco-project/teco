@@ -170,8 +170,7 @@ extension Bm {
     /// 6：待确认-未恢复<br>
     @inlinable
     public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
-        let input = DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds)
-        return self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskInfo(.init(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务信息获取
@@ -187,8 +186,7 @@ extension Bm {
     /// 6：待确认-未恢复<br>
     @inlinable
     public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        let input = DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds)
-        return try await self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskInfo(.init(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务信息获取

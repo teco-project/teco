@@ -91,29 +91,50 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
-        self.client.execute(action: "DescribeRsgAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeRsgAsGroups is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {
-        try await self.client.execute(action: "DescribeRsgAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeRsgAsGroups is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
-        let input = DescribeRsgAsGroupsRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
-        return self.client.execute(action: "DescribeRsgAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeRsgAsGroups is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {
-        let input = DescribeRsgAsGroupsRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
-        return try await self.client.execute(action: "DescribeRsgAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeRsgAsGroups is no longer available.")
+    }
+
+    /// 查询资源组的伸缩组信息
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeRsgAsGroupsPaginated(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RsgAsGroup])> {
+        fatalError("DescribeRsgAsGroups is no longer available.")
+    }
+
+    /// 查询资源组的伸缩组信息
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable @discardableResult
+    public func describeRsgAsGroupsPaginated(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRsgAsGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeRsgAsGroups is no longer available.")
+    }
+
+    /// 查询资源组的伸缩组信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RsgAsGroup` and `DescribeRsgAsGroupsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeRsgAsGroupsPaginator(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRsgAsGroupsRequest> {
+        fatalError("DescribeRsgAsGroups is no longer available.")
     }
 }

@@ -110,8 +110,7 @@ extension Dts {
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
     public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, compareTaskId: String? = nil, status: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareTasksResponse> {
-        let input = DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status)
-        return self.client.execute(action: "DescribeCompareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCompareTasks(.init(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务列表
@@ -119,8 +118,7 @@ extension Dts {
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
     public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, compareTaskId: String? = nil, status: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
-        let input = DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status)
-        return try await self.client.execute(action: "DescribeCompareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCompareTasks(.init(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务列表

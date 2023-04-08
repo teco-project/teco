@@ -79,8 +79,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
     @inlinable
     public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdResultsResponse> {
-        let input = DescribeFaceIdResultsRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType)
-        return self.client.execute(action: "DescribeFaceIdResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFaceIdResults(.init(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慧眼人脸核身结果
@@ -88,7 +87,6 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
     @inlinable
     public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
-        let input = DescribeFaceIdResultsRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType)
-        return try await self.client.execute(action: "DescribeFaceIdResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFaceIdResults(.init(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 }

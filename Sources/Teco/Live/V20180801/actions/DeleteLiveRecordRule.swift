@@ -73,8 +73,7 @@ extension Live {
     /// 删除录制规则。
     @inlinable @discardableResult
     public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordRuleResponse> {
-        let input = DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return self.client.execute(action: "DeleteLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveRecordRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除录制规则
@@ -82,7 +81,6 @@ extension Live {
     /// 删除录制规则。
     @inlinable @discardableResult
     public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
-        let input = DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return try await self.client.execute(action: "DeleteLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveRecordRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

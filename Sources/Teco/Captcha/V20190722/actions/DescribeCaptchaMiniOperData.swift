@@ -83,14 +83,12 @@ extension Captcha {
     /// 安全验证码小程序插件用户操作数据查询
     @inlinable
     public func describeCaptchaMiniOperData(captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniOperDataResponse> {
-        let input = DescribeCaptchaMiniOperDataRequest(captchaAppId: captchaAppId, start: start, type: type, end: end)
-        return self.client.execute(action: "DescribeCaptchaMiniOperData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCaptchaMiniOperData(.init(captchaAppId: captchaAppId, start: start, type: type, end: end), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件用户操作数据查询
     @inlinable
     public func describeCaptchaMiniOperData(captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniOperDataResponse {
-        let input = DescribeCaptchaMiniOperDataRequest(captchaAppId: captchaAppId, start: start, type: type, end: end)
-        return try await self.client.execute(action: "DescribeCaptchaMiniOperData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCaptchaMiniOperData(.init(captchaAppId: captchaAppId, start: start, type: type, end: end), region: region, logger: logger, on: eventLoop)
     }
 }

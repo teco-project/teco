@@ -79,8 +79,7 @@ extension Gaap {
     /// 用来创建统一域名
     @inlinable
     public func createGlobalDomain(projectId: Int64, defaultValue: String, alias: String? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainResponse> {
-        let input = CreateGlobalDomainRequest(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet)
-        return self.client.execute(action: "CreateGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGlobalDomain(.init(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建域名
@@ -88,7 +87,6 @@ extension Gaap {
     /// 用来创建统一域名
     @inlinable
     public func createGlobalDomain(projectId: Int64, defaultValue: String, alias: String? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainResponse {
-        let input = CreateGlobalDomainRequest(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet)
-        return try await self.client.execute(action: "CreateGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGlobalDomain(.init(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 }

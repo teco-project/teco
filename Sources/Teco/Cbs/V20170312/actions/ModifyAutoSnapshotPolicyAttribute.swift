@@ -94,8 +94,7 @@ extension Cbs {
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult
     public func modifyAutoSnapshotPolicyAttribute(autoSnapshotPolicyId: String, isActivated: Bool? = nil, isPermanent: Bool? = nil, autoSnapshotPolicyName: String? = nil, policy: [Policy]? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoSnapshotPolicyAttributeResponse> {
-        let input = ModifyAutoSnapshotPolicyAttributeRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays)
-        return self.client.execute(action: "ModifyAutoSnapshotPolicyAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAutoSnapshotPolicyAttribute(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改定期快照策略信息
@@ -106,7 +105,6 @@ extension Cbs {
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult
     public func modifyAutoSnapshotPolicyAttribute(autoSnapshotPolicyId: String, isActivated: Bool? = nil, isPermanent: Bool? = nil, autoSnapshotPolicyName: String? = nil, policy: [Policy]? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoSnapshotPolicyAttributeResponse {
-        let input = ModifyAutoSnapshotPolicyAttributeRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays)
-        return try await self.client.execute(action: "ModifyAutoSnapshotPolicyAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAutoSnapshotPolicyAttribute(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
     }
 }

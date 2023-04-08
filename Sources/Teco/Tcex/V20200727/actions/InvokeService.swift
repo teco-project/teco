@@ -78,8 +78,7 @@ extension Tcex {
     @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeServiceResponse> {
-        let input = InvokeServiceRequest(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input)
-        return self.client.execute(action: "InvokeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.invokeService(.init(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调用服务
@@ -88,7 +87,6 @@ extension Tcex {
     @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
-        let input = InvokeServiceRequest(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input)
-        return try await self.client.execute(action: "InvokeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.invokeService(.init(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input), region: region, logger: logger, on: eventLoop)
     }
 }

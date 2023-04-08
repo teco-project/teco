@@ -132,15 +132,13 @@ extension Memcached {
     /// 获取Cmem实例列表
     @inlinable
     public func describeInstances(orderBy: String? = nil, searchKeys: [String]? = nil, uniqSubnetIds: [String]? = nil, vips: [String]? = nil, orderType: Int64? = nil, instanceNames: [String]? = nil, uniqVpcIds: [String]? = nil, projectIds: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        let input = DescribeInstancesRequest(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstances(.init(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Cmem实例列表
     @inlinable
     public func describeInstances(orderBy: String? = nil, searchKeys: [String]? = nil, uniqSubnetIds: [String]? = nil, vips: [String]? = nil, orderType: Int64? = nil, instanceNames: [String]? = nil, uniqVpcIds: [String]? = nil, projectIds: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        let input = DescribeInstancesRequest(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstances(.init(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Cmem实例列表

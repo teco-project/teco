@@ -127,15 +127,13 @@ extension Tbaas {
     /// 获取最新交易列表
     @inlinable
     public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
-        let input = GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit)
-        return self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getLatesdTransactionList(.init(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取最新交易列表
     @inlinable
     public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
-        let input = GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getLatesdTransactionList(.init(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取最新交易列表

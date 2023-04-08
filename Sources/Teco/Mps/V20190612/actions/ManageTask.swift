@@ -70,8 +70,7 @@ extension Mps {
     /// 对已发起的任务进行管理。
     @inlinable @discardableResult
     public func manageTask(operationType: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
-        let input = ManageTaskRequest(operationType: operationType, taskId: taskId)
-        return self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.manageTask(.init(operationType: operationType, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务管理
@@ -79,7 +78,6 @@ extension Mps {
     /// 对已发起的任务进行管理。
     @inlinable @discardableResult
     public func manageTask(operationType: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
-        let input = ManageTaskRequest(operationType: operationType, taskId: taskId)
-        return try await self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.manageTask(.init(operationType: operationType, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

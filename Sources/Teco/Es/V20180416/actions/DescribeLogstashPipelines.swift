@@ -68,8 +68,7 @@ extension Es {
     /// 用于获取Logstash实例管道列表
     @inlinable
     public func describeLogstashPipelines(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
-        let input = DescribeLogstashPipelinesRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogstashPipelines(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Logstash实例管道列表
@@ -77,7 +76,6 @@ extension Es {
     /// 用于获取Logstash实例管道列表
     @inlinable
     public func describeLogstashPipelines(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
-        let input = DescribeLogstashPipelinesRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogstashPipelines(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

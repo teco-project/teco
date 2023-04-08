@@ -114,8 +114,7 @@ extension Cms {
     /// 支持批量查询文本样本库。
     @inlinable
     public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextSampleResponse> {
-        let input = DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField)
-        return self.client.execute(action: "DescribeTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTextSample(.init(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文本样本库
@@ -125,8 +124,7 @@ extension Cms {
     /// 支持批量查询文本样本库。
     @inlinable
     public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
-        let input = DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField)
-        return try await self.client.execute(action: "DescribeTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTextSample(.init(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文本样本库

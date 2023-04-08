@@ -93,14 +93,12 @@ extension Trp {
     /// 修改批次
     @inlinable
     public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCodeBatchResponse> {
-        let input = ModifyCodeBatchRequest(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode)
-        return self.client.execute(action: "ModifyCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改批次
     @inlinable
     public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
-        let input = ModifyCodeBatchRequest(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode)
-        return try await self.client.execute(action: "ModifyCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 }

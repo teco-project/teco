@@ -72,8 +72,7 @@ extension Wedata {
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForceSucInstancesResponse> {
-        let input = ForceSucInstancesRequest(projectId: projectId, instances: instances)
-        return self.client.execute(action: "ForceSucInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.forceSucInstances(.init(projectId: projectId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例批量置成功【Beta版本】
@@ -82,7 +81,6 @@ extension Wedata {
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
-        let input = ForceSucInstancesRequest(projectId: projectId, instances: instances)
-        return try await self.client.execute(action: "ForceSucInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.forceSucInstances(.init(projectId: projectId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

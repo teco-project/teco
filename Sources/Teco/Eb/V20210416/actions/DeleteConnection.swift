@@ -59,14 +59,12 @@ extension Eb {
     /// 删除事件连接器
     @inlinable @discardableResult
     public func deleteConnection(connectionId: String, eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectionResponse> {
-        let input = DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId)
-        return self.client.execute(action: "DeleteConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteConnection(.init(connectionId: connectionId, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件连接器
     @inlinable @discardableResult
     public func deleteConnection(connectionId: String, eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
-        let input = DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId)
-        return try await self.client.execute(action: "DeleteConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteConnection(.init(connectionId: connectionId, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 }

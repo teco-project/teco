@@ -64,8 +64,7 @@ extension Kms {
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
     public func getKeyRotationStatus(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetKeyRotationStatusResponse> {
-        let input = GetKeyRotationStatusRequest(keyId: keyId)
-        return self.client.execute(action: "GetKeyRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getKeyRotationStatus(.init(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询密钥轮换状态
@@ -73,7 +72,6 @@ extension Kms {
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
     public func getKeyRotationStatus(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
-        let input = GetKeyRotationStatusRequest(keyId: keyId)
-        return try await self.client.execute(action: "GetKeyRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getKeyRotationStatus(.init(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

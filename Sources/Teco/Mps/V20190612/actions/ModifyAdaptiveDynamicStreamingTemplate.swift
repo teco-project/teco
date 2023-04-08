@@ -91,14 +91,12 @@ extension Mps {
     /// 修改转自适应码流模板
     @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAdaptiveDynamicStreamingTemplateResponse> {
-        let input = ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment)
-        return self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAdaptiveDynamicStreamingTemplate(.init(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改转自适应码流模板
     @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
-        let input = ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment)
-        return try await self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAdaptiveDynamicStreamingTemplate(.init(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

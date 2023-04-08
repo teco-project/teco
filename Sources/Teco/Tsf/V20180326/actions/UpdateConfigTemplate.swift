@@ -78,14 +78,12 @@ extension Tsf {
     /// 更新参数模板
     @inlinable
     public func updateConfigTemplate(configTemplateId: String, configTemplateName: String, configTemplateType: String, configTemplateValue: String, configTemplateDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateConfigTemplateResponse> {
-        let input = UpdateConfigTemplateRequest(configTemplateId: configTemplateId, configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc)
-        return self.client.execute(action: "UpdateConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateConfigTemplate(.init(configTemplateId: configTemplateId, configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新参数模板
     @inlinable
     public func updateConfigTemplate(configTemplateId: String, configTemplateName: String, configTemplateType: String, configTemplateValue: String, configTemplateDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConfigTemplateResponse {
-        let input = UpdateConfigTemplateRequest(configTemplateId: configTemplateId, configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc)
-        return try await self.client.execute(action: "UpdateConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateConfigTemplate(.init(configTemplateId: configTemplateId, configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc), region: region, logger: logger, on: eventLoop)
     }
 }

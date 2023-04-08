@@ -103,8 +103,7 @@ extension Cynosdb {
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
     public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
-        let input = DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName)
-        return self.client.execute(action: "DescribeAuditLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuditLogFiles(.init(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计日志文件
@@ -112,8 +111,7 @@ extension Cynosdb {
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
     public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
-        let input = DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName)
-        return try await self.client.execute(action: "DescribeAuditLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuditLogFiles(.init(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计日志文件

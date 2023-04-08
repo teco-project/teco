@@ -142,8 +142,7 @@ extension Iotcloud {
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
     public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, tlsCrt: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        let input = CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt)
-        return self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDevice(.init(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
@@ -151,7 +150,6 @@ extension Iotcloud {
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
     public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, tlsCrt: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        let input = CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt)
-        return try await self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDevice(.init(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt), region: region, logger: logger, on: eventLoop)
     }
 }

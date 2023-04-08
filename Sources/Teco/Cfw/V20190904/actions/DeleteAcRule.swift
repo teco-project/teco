@@ -78,14 +78,12 @@ extension Cfw {
     /// 删除规则
     @inlinable
     public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAcRuleResponse> {
-        let input = DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area)
-        return self.client.execute(action: "DeleteAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAcRule(.init(id: id, direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
     @inlinable
     public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
-        let input = DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area)
-        return try await self.client.execute(action: "DeleteAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAcRule(.init(id: id, direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

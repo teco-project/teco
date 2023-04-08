@@ -110,15 +110,13 @@ extension Cwp {
     /// 获取基线检测主机列表
     @inlinable
     public func describeBaselineHostDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostDetectListResponse> {
-        let input = DescribeBaselineHostDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeBaselineHostDetectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaselineHostDetectList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基线检测主机列表
     @inlinable
     public func describeBaselineHostDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostDetectListResponse {
-        let input = DescribeBaselineHostDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeBaselineHostDetectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaselineHostDetectList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基线检测主机列表

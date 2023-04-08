@@ -64,8 +64,7 @@ extension Monitor {
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容
     @inlinable
     public func describeGrafanaConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaConfigResponse> {
-        let input = DescribeGrafanaConfigRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGrafanaConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 的设置
@@ -73,7 +72,6 @@ extension Monitor {
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容
     @inlinable
     public func describeGrafanaConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
-        let input = DescribeGrafanaConfigRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGrafanaConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

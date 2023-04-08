@@ -93,8 +93,7 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
     @inlinable
     public func describeWeeklyReports(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportsResponse> {
-        let input = DescribeWeeklyReportsRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeWeeklyReports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWeeklyReports(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取周报列表
@@ -102,8 +101,7 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
     @inlinable
     public func describeWeeklyReports(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportsResponse {
-        let input = DescribeWeeklyReportsRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeWeeklyReports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWeeklyReports(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取周报列表

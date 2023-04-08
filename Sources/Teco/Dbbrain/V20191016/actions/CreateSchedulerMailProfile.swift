@@ -80,8 +80,7 @@ extension Dbbrain {
     /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
     @inlinable @discardableResult
     public func createSchedulerMailProfile(weekConfiguration: [Int64], profileInfo: ProfileInfo, profileName: String, bindInstanceId: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulerMailProfileResponse> {
-        let input = CreateSchedulerMailProfileRequest(weekConfiguration: weekConfiguration, profileInfo: profileInfo, profileName: profileName, bindInstanceId: bindInstanceId, product: product)
-        return self.client.execute(action: "CreateSchedulerMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSchedulerMailProfile(.init(weekConfiguration: weekConfiguration, profileInfo: profileInfo, profileName: profileName, bindInstanceId: bindInstanceId, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定期生成的邮件发送配置
@@ -89,7 +88,6 @@ extension Dbbrain {
     /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
     @inlinable @discardableResult
     public func createSchedulerMailProfile(weekConfiguration: [Int64], profileInfo: ProfileInfo, profileName: String, bindInstanceId: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulerMailProfileResponse {
-        let input = CreateSchedulerMailProfileRequest(weekConfiguration: weekConfiguration, profileInfo: profileInfo, profileName: profileName, bindInstanceId: bindInstanceId, product: product)
-        return try await self.client.execute(action: "CreateSchedulerMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSchedulerMailProfile(.init(weekConfiguration: weekConfiguration, profileInfo: profileInfo, profileName: profileName, bindInstanceId: bindInstanceId, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

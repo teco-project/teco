@@ -73,8 +73,7 @@ extension Iai {
     /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
     @inlinable
     public func deleteFace(personId: String, faceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
-        let input = DeleteFaceRequest(personId: personId, faceIds: faceIds)
-        return self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteFace(.init(personId: personId, faceIds: faceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除人脸
@@ -82,7 +81,6 @@ extension Iai {
     /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
     @inlinable
     public func deleteFace(personId: String, faceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        let input = DeleteFaceRequest(personId: personId, faceIds: faceIds)
-        return try await self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteFace(.init(personId: personId, faceIds: faceIds), region: region, logger: logger, on: eventLoop)
     }
 }

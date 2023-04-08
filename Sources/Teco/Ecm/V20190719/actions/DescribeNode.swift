@@ -63,14 +63,12 @@ extension Ecm {
     /// 获取节点列表
     @inlinable
     public func describeNode(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeResponse> {
-        let input = DescribeNodeRequest(filters: filters)
-        return self.client.execute(action: "DescribeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNode(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取节点列表
     @inlinable
     public func describeNode(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeResponse {
-        let input = DescribeNodeRequest(filters: filters)
-        return try await self.client.execute(action: "DescribeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNode(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

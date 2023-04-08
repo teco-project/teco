@@ -103,8 +103,7 @@ extension Antiddos {
     /// 获取边界防护CC防护等级列表
     @inlinable
     public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelListResponse> {
-        let input = DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId)
-        return self.client.execute(action: "DescribeCCLevelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCCLevelList(.init(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护等级列表
@@ -112,8 +111,7 @@ extension Antiddos {
     /// 获取边界防护CC防护等级列表
     @inlinable
     public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
-        let input = DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeCCLevelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCCLevelList(.init(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护等级列表

@@ -117,8 +117,7 @@ extension Iotvideo {
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
     public func refundStorageService(serviceId: String, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundStorageServiceResponse> {
-        let input = RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId)
-        return self.client.execute(action: "RefundStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.refundStorageService(.init(serviceId: serviceId, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退订已购买的云存服务
@@ -130,7 +129,6 @@ extension Iotvideo {
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
     public func refundStorageService(serviceId: String, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
-        let input = RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId)
-        return try await self.client.execute(action: "RefundStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.refundStorageService(.init(serviceId: serviceId, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

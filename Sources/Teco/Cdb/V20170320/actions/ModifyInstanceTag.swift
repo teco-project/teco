@@ -70,8 +70,7 @@ extension Cdb {
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable @discardableResult
     public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
-        let input = ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags)
-        return self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceTag(.init(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例标签
@@ -79,7 +78,6 @@ extension Cdb {
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable @discardableResult
     public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
-        let input = ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags)
-        return try await self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceTag(.init(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 }

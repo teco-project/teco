@@ -99,8 +99,7 @@ extension Postgres {
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
     public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
-        let input = CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList)
-        return self.client.execute(action: "CreateServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createServerlessDBInstance(.init(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建ServerlessDB实例
@@ -108,7 +107,6 @@ extension Postgres {
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
     public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
-        let input = CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList)
-        return try await self.client.execute(action: "CreateServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createServerlessDBInstance(.init(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 }

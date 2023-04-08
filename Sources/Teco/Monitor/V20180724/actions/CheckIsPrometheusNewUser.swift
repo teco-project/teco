@@ -52,8 +52,7 @@ extension Monitor {
     /// 判断用户是否为云原生监控新用户，即在任何地域下均未创建过监控实例的用户
     @inlinable @discardableResult
     public func checkIsPrometheusNewUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIsPrometheusNewUserResponse> {
-        let input = CheckIsPrometheusNewUserRequest()
-        return self.client.execute(action: "CheckIsPrometheusNewUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkIsPrometheusNewUser(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 判断用户是否为云原生监控新用户
@@ -61,7 +60,6 @@ extension Monitor {
     /// 判断用户是否为云原生监控新用户，即在任何地域下均未创建过监控实例的用户
     @inlinable @discardableResult
     public func checkIsPrometheusNewUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIsPrometheusNewUserResponse {
-        let input = CheckIsPrometheusNewUserRequest()
-        return try await self.client.execute(action: "CheckIsPrometheusNewUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkIsPrometheusNewUser(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

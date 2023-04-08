@@ -74,8 +74,7 @@ extension Vpc {
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
     @inlinable
     public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateResponse> {
-        let input = CreateAddressTemplateRequest(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra)
-        return self.client.execute(action: "CreateAddressTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAddressTemplate(.init(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建IP地址模板
@@ -83,7 +82,6 @@ extension Vpc {
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
     @inlinable
     public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
-        let input = CreateAddressTemplateRequest(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra)
-        return try await self.client.execute(action: "CreateAddressTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAddressTemplate(.init(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), region: region, logger: logger, on: eventLoop)
     }
 }

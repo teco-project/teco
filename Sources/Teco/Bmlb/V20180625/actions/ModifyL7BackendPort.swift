@@ -99,8 +99,7 @@ extension Bmlb {
     /// 修改黑石负载均衡七层转发路径后端实例端口。
     @inlinable
     public func modifyL7BackendPort(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7BackendPortResponse> {
-        let input = ModifyL7BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType)
-        return self.client.execute(action: "ModifyL7BackendPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyL7BackendPort(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径后端实例端口
@@ -108,7 +107,6 @@ extension Bmlb {
     /// 修改黑石负载均衡七层转发路径后端实例端口。
     @inlinable
     public func modifyL7BackendPort(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendPortResponse {
-        let input = ModifyL7BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType)
-        return try await self.client.execute(action: "ModifyL7BackendPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyL7BackendPort(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

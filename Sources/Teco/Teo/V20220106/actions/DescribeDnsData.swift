@@ -93,14 +93,12 @@ extension Teo {
     /// 获取DNS请求数统计曲线
     @inlinable
     public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsDataResponse> {
-        let input = DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval)
-        return self.client.execute(action: "DescribeDnsData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDnsData(.init(startTime: startTime, endTime: endTime, filters: filters, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DNS请求数统计曲线
     @inlinable
     public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
-        let input = DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval)
-        return try await self.client.execute(action: "DescribeDnsData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDnsData(.init(startTime: startTime, endTime: endTime, filters: filters, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

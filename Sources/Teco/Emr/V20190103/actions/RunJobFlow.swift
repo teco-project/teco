@@ -129,14 +129,12 @@ extension Emr {
     /// 创建流程作业
     @inlinable
     public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobFlowResponse> {
-        let input = RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance)
-        return self.client.execute(action: "RunJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.runJobFlow(.init(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建流程作业
     @inlinable
     public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
-        let input = RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance)
-        return try await self.client.execute(action: "RunJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.runJobFlow(.init(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), region: region, logger: logger, on: eventLoop)
     }
 }

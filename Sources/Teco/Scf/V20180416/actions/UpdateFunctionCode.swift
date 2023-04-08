@@ -115,8 +115,7 @@ extension Scf {
     /// 该接口根据传入参数更新函数代码。
     @inlinable @discardableResult
     public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionCodeResponse> {
-        let input = UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource)
-        return self.client.execute(action: "UpdateFunctionCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateFunctionCode(.init(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新函数代码
@@ -124,7 +123,6 @@ extension Scf {
     /// 该接口根据传入参数更新函数代码。
     @inlinable @discardableResult
     public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
-        let input = UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource)
-        return try await self.client.execute(action: "UpdateFunctionCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateFunctionCode(.init(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), region: region, logger: logger, on: eventLoop)
     }
 }

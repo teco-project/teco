@@ -73,8 +73,7 @@ extension Cdn {
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
     public func listScdnLogTasks(source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnLogTasksResponse> {
-        let input = ListScdnLogTasksRequest(source: source, area: area)
-        return self.client.execute(action: "ListScdnLogTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listScdnLogTasks(.init(source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN日志下载任务列表
@@ -82,7 +81,6 @@ extension Cdn {
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
     public func listScdnLogTasks(source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
-        let input = ListScdnLogTasksRequest(source: source, area: area)
-        return try await self.client.execute(action: "ListScdnLogTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listScdnLogTasks(.init(source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

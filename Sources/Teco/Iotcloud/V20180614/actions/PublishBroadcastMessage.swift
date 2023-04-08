@@ -73,14 +73,12 @@ extension Iotcloud {
     /// 发布广播消息
     @inlinable
     public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
-        let input = PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
-        return self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.publishBroadcastMessage(.init(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布广播消息
     @inlinable
     public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
-        let input = PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
-        return try await self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.publishBroadcastMessage(.init(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 }

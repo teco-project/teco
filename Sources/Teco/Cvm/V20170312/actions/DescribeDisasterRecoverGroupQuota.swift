@@ -72,8 +72,7 @@ extension Cvm {
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
     public func describeDisasterRecoverGroupQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupQuotaResponse> {
-        let input = DescribeDisasterRecoverGroupQuotaRequest()
-        return self.client.execute(action: "DescribeDisasterRecoverGroupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDisasterRecoverGroupQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询置放群组配额
@@ -81,7 +80,6 @@ extension Cvm {
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
     public func describeDisasterRecoverGroupQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
-        let input = DescribeDisasterRecoverGroupQuotaRequest()
-        return try await self.client.execute(action: "DescribeDisasterRecoverGroupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDisasterRecoverGroupQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

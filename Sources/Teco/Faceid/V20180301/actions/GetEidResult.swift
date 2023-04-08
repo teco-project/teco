@@ -102,8 +102,7 @@ extension Faceid {
     /// 完成验证后，用EidToken调用本接口获取结果信息，EidToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getEidResult(eidToken: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEidResultResponse> {
-        let input = GetEidResultRequest(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount)
-        return self.client.execute(action: "GetEidResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getEidResult(.init(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取E证通结果信息
@@ -111,7 +110,6 @@ extension Faceid {
     /// 完成验证后，用EidToken调用本接口获取结果信息，EidToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getEidResult(eidToken: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidResultResponse {
-        let input = GetEidResultRequest(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount)
-        return try await self.client.execute(action: "GetEidResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getEidResult(.init(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount), region: region, logger: logger, on: eventLoop)
     }
 }

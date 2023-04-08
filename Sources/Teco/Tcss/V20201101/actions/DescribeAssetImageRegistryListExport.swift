@@ -89,14 +89,12 @@ extension Tcss {
     /// 镜像仓库镜像列表导出
     @inlinable
     public func describeAssetImageRegistryListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListExportResponse> {
-        let input = DescribeAssetImageRegistryListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest)
-        return self.client.execute(action: "DescribeAssetImageRegistryListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryListExport(.init(exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库镜像列表导出
     @inlinable
     public func describeAssetImageRegistryListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListExportResponse {
-        let input = DescribeAssetImageRegistryListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryListExport(.init(exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 }

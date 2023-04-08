@@ -60,8 +60,7 @@ extension Cwp {
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable @discardableResult
     public func describeProVersionStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
-        let input = DescribeProVersionStatusRequest(uuid: uuid)
-        return self.client.execute(action: "DescribeProVersionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProVersionStatus(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版状态
@@ -69,7 +68,6 @@ extension Cwp {
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable @discardableResult
     public func describeProVersionStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
-        let input = DescribeProVersionStatusRequest(uuid: uuid)
-        return try await self.client.execute(action: "DescribeProVersionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProVersionStatus(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

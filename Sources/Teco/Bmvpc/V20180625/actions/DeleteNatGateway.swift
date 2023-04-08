@@ -63,14 +63,12 @@ extension Bmvpc {
     /// 删除NAT网关
     @inlinable
     public func deleteNatGateway(natId: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayResponse> {
-        let input = DeleteNatGatewayRequest(natId: natId, vpcId: vpcId)
-        return self.client.execute(action: "DeleteNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNatGateway(.init(natId: natId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除NAT网关
     @inlinable
     public func deleteNatGateway(natId: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
-        let input = DeleteNatGatewayRequest(natId: natId, vpcId: vpcId)
-        return try await self.client.execute(action: "DeleteNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNatGateway(.init(natId: natId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

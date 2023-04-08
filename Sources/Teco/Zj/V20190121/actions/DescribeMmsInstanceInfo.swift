@@ -63,14 +63,12 @@ extension Zj {
     /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(license: String, instanceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
-        let input = DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId)
-        return self.client.execute(action: "DescribeMmsInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMmsInstanceInfo(.init(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(license: String, instanceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
-        let input = DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeMmsInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMmsInstanceInfo(.init(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

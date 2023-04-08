@@ -63,14 +63,12 @@ extension Tdid {
     /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        let input = CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId)
-        return self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSelectiveCredential(.init(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        let input = CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId)
-        return try await self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSelectiveCredential(.init(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

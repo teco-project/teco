@@ -67,14 +67,12 @@ extension Tag {
     /// 创建项目
     @inlinable
     public func addProject(projectName: String, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddProjectResponse> {
-        let input = AddProjectRequest(projectName: projectName, info: info)
-        return self.client.execute(action: "AddProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addProject(.init(projectName: projectName, info: info), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建项目
     @inlinable
     public func addProject(projectName: String, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddProjectResponse {
-        let input = AddProjectRequest(projectName: projectName, info: info)
-        return try await self.client.execute(action: "AddProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addProject(.init(projectName: projectName, info: info), region: region, logger: logger, on: eventLoop)
     }
 }

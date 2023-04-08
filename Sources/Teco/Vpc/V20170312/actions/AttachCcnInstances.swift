@@ -73,8 +73,7 @@ extension Vpc {
     /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(ccnId: String, instances: [CcnInstance], ccnUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnInstancesResponse> {
-        let input = AttachCcnInstancesRequest(ccnId: ccnId, instances: instances, ccnUin: ccnUin)
-        return self.client.execute(action: "AttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachCcnInstances(.init(ccnId: ccnId, instances: instances, ccnUin: ccnUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云联网关联实例
@@ -83,7 +82,6 @@ extension Vpc {
     /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(ccnId: String, instances: [CcnInstance], ccnUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
-        let input = AttachCcnInstancesRequest(ccnId: ccnId, instances: instances, ccnUin: ccnUin)
-        return try await self.client.execute(action: "AttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachCcnInstances(.init(ccnId: ccnId, instances: instances, ccnUin: ccnUin), region: region, logger: logger, on: eventLoop)
     }
 }

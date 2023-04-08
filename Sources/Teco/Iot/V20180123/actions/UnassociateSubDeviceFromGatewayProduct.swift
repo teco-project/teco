@@ -59,14 +59,12 @@ extension Iot {
     /// 取消子设备产品与网关设备产品的关联
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
-        let input = UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId)
-        return self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unassociateSubDeviceFromGatewayProduct(.init(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消子设备产品与网关设备产品的关联
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        let input = UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId)
-        return try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unassociateSubDeviceFromGatewayProduct(.init(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
     }
 }

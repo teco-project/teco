@@ -117,15 +117,13 @@ extension Tione {
     /// 模型列表
     @inlinable
     public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelsResponse> {
-        let input = DescribeTrainingModelsRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeTrainingModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型列表
     @inlinable
     public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
-        let input = DescribeTrainingModelsRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeTrainingModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型列表

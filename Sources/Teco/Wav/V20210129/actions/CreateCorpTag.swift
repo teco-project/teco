@@ -74,8 +74,7 @@ extension Wav {
     /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
     @inlinable
     public func createCorpTag(groupName: String, tags: [TagInfo], sort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCorpTagResponse> {
-        let input = CreateCorpTagRequest(groupName: groupName, tags: tags, sort: sort)
-        return self.client.execute(action: "CreateCorpTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCorpTag(.init(groupName: groupName, tags: tags, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增标签库接口
@@ -83,7 +82,6 @@ extension Wav {
     /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
     @inlinable
     public func createCorpTag(groupName: String, tags: [TagInfo], sort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorpTagResponse {
-        let input = CreateCorpTagRequest(groupName: groupName, tags: tags, sort: sort)
-        return try await self.client.execute(action: "CreateCorpTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCorpTag(.init(groupName: groupName, tags: tags, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

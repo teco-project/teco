@@ -138,8 +138,7 @@ extension Cynosdb {
     /// 查询用户指定产品下的所有参数模板信息
     @inlinable
     public func describeParamTemplates(engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplatesResponse> {
-        let input = DescribeParamTemplatesRequest(engineVersions: engineVersions, templateNames: templateNames, templateIds: templateIds, dbModes: dbModes, offset: offset, limit: limit, products: products, templateTypes: templateTypes, engineTypes: engineTypes, orderBy: orderBy, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeParamTemplates(.init(engineVersions: engineVersions, templateNames: templateNames, templateIds: templateIds, dbModes: dbModes, offset: offset, limit: limit, products: products, templateTypes: templateTypes, engineTypes: engineTypes, orderBy: orderBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板信息
@@ -147,8 +146,7 @@ extension Cynosdb {
     /// 查询用户指定产品下的所有参数模板信息
     @inlinable
     public func describeParamTemplates(engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
-        let input = DescribeParamTemplatesRequest(engineVersions: engineVersions, templateNames: templateNames, templateIds: templateIds, dbModes: dbModes, offset: offset, limit: limit, products: products, templateTypes: templateTypes, engineTypes: engineTypes, orderBy: orderBy, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeParamTemplates(.init(engineVersions: engineVersions, templateNames: templateNames, templateIds: templateIds, dbModes: dbModes, offset: offset, limit: limit, products: products, templateTypes: templateTypes, engineTypes: engineTypes, orderBy: orderBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板信息

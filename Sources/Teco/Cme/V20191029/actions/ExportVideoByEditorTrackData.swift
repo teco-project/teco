@@ -111,8 +111,7 @@ extension Cme {
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
     public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByEditorTrackDataResponse> {
-        let input = ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
-        return self.client.execute(action: "ExportVideoByEditorTrackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportVideoByEditorTrackData(.init(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用视频合成协议导出视频
@@ -120,7 +119,6 @@ extension Cme {
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
     public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
-        let input = ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
-        return try await self.client.execute(action: "ExportVideoByEditorTrackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportVideoByEditorTrackData(.init(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

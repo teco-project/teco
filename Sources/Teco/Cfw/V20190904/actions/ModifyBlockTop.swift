@@ -65,8 +65,7 @@ extension Cfw {
     /// ModifyBlockTop取消置顶接口
     @inlinable @discardableResult
     public func modifyBlockTop(uniqueId: String, opeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockTopResponse> {
-        let input = ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType)
-        return self.client.execute(action: "ModifyBlockTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBlockTop(.init(uniqueId: uniqueId, opeType: opeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消阻断记录置顶接口
@@ -74,7 +73,6 @@ extension Cfw {
     /// ModifyBlockTop取消置顶接口
     @inlinable @discardableResult
     public func modifyBlockTop(uniqueId: String, opeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
-        let input = ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType)
-        return try await self.client.execute(action: "ModifyBlockTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBlockTop(.init(uniqueId: uniqueId, opeType: opeType), region: region, logger: logger, on: eventLoop)
     }
 }

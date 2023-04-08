@@ -105,14 +105,12 @@ extension Bpaas {
     /// 查看审批详情
     @inlinable
     public func getBpaasApproveDetail(approveId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBpaasApproveDetailResponse> {
-        let input = GetBpaasApproveDetailRequest(approveId: approveId)
-        return self.client.execute(action: "GetBpaasApproveDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBpaasApproveDetail(.init(approveId: approveId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看审批详情
     @inlinable
     public func getBpaasApproveDetail(approveId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
-        let input = GetBpaasApproveDetailRequest(approveId: approveId)
-        return try await self.client.execute(action: "GetBpaasApproveDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBpaasApproveDetail(.init(approveId: approveId), region: region, logger: logger, on: eventLoop)
     }
 }

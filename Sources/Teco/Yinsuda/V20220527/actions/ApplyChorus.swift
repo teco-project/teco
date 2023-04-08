@@ -89,8 +89,7 @@ extension Yinsuda {
     /// 申请合唱相关信息，用于标记用户的演唱是在合唱场景下。
     @inlinable
     public func applyChorus(appName: String, userId: String, roomId: String, musicId: String, maxChorusNum: UInt64? = nil, chorusUserIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChorusResponse> {
-        let input = ApplyChorusRequest(appName: appName, userId: userId, roomId: roomId, musicId: musicId, maxChorusNum: maxChorusNum, chorusUserIds: chorusUserIds)
-        return self.client.execute(action: "ApplyChorus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyChorus(.init(appName: appName, userId: userId, roomId: roomId, musicId: musicId, maxChorusNum: maxChorusNum, chorusUserIds: chorusUserIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请合唱
@@ -98,7 +97,6 @@ extension Yinsuda {
     /// 申请合唱相关信息，用于标记用户的演唱是在合唱场景下。
     @inlinable
     public func applyChorus(appName: String, userId: String, roomId: String, musicId: String, maxChorusNum: UInt64? = nil, chorusUserIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChorusResponse {
-        let input = ApplyChorusRequest(appName: appName, userId: userId, roomId: roomId, musicId: musicId, maxChorusNum: maxChorusNum, chorusUserIds: chorusUserIds)
-        return try await self.client.execute(action: "ApplyChorus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyChorus(.init(appName: appName, userId: userId, roomId: roomId, musicId: musicId, maxChorusNum: maxChorusNum, chorusUserIds: chorusUserIds), region: region, logger: logger, on: eventLoop)
     }
 }

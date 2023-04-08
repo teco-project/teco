@@ -87,8 +87,7 @@ extension Cdb {
     /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
     @inlinable
     public func describeDBInstanceInfo(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInfoResponse> {
-        let input = DescribeDBInstanceInfoRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeDBInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstanceInfo(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例基本信息
@@ -96,7 +95,6 @@ extension Cdb {
     /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
     @inlinable
     public func describeDBInstanceInfo(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInfoResponse {
-        let input = DescribeDBInstanceInfoRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDBInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstanceInfo(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

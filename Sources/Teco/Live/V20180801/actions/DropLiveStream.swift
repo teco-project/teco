@@ -73,8 +73,7 @@ extension Live {
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable @discardableResult
     public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
-        let input = DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName)
-        return self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.dropLiveStream(.init(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 断开直播推流
@@ -83,7 +82,6 @@ extension Live {
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable @discardableResult
     public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
-        let input = DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName)
-        return try await self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.dropLiveStream(.init(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 }

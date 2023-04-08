@@ -99,8 +99,7 @@ extension Cynosdb {
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
     public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, rollbackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollBackClusterResponse> {
-        let input = RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode)
-        return self.client.execute(action: "RollBackCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rollBackCluster(.init(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回档集群
@@ -108,7 +107,6 @@ extension Cynosdb {
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
     public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, rollbackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
-        let input = RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode)
-        return try await self.client.execute(action: "RollBackCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rollBackCluster(.init(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode), region: region, logger: logger, on: eventLoop)
     }
 }

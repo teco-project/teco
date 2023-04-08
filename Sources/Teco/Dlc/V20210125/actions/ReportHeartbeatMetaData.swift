@@ -64,14 +64,12 @@ extension Dlc {
     /// 上报元数据心跳
     @inlinable @discardableResult
     public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportHeartbeatMetaDataResponse> {
-        let input = ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId)
-        return self.client.execute(action: "ReportHeartbeatMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reportHeartbeatMetaData(.init(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报元数据心跳
     @inlinable @discardableResult
     public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
-        let input = ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId)
-        return try await self.client.execute(action: "ReportHeartbeatMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reportHeartbeatMetaData(.init(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), region: region, logger: logger, on: eventLoop)
     }
 }

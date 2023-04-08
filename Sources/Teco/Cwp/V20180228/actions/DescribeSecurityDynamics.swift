@@ -93,8 +93,7 @@ extension Cwp {
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
     public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityDynamicsResponse> {
-        let input = DescribeSecurityDynamicsRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityDynamics(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件动态消息
@@ -102,8 +101,7 @@ extension Cwp {
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
     public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
-        let input = DescribeSecurityDynamicsRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityDynamics(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件动态消息

@@ -63,14 +63,12 @@ extension Dayu {
     /// 获取DDoS高级策略
     @inlinable
     public func describeDDoSPolicy(business: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
-        let input = DescribeDDoSPolicyRequest(business: business, id: id)
-        return self.client.execute(action: "DescribeDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSPolicy(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS高级策略
     @inlinable
     public func describeDDoSPolicy(business: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
-        let input = DescribeDDoSPolicyRequest(business: business, id: id)
-        return try await self.client.execute(action: "DescribeDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSPolicy(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

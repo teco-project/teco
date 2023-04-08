@@ -58,14 +58,12 @@ extension Tsf {
     /// 删除配置项
     @inlinable
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
-        let input = DeleteConfigRequest(configId: configId)
-        return self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除配置项
     @inlinable
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        let input = DeleteConfigRequest(configId: configId)
-        return try await self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

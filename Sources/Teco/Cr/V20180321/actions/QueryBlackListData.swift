@@ -121,15 +121,13 @@ extension Cr {
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
-        let input = QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue)
-        return self.client.execute(action: "QueryBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryBlackListData(.init(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
-        let input = QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue)
-        return try await self.client.execute(action: "QueryBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryBlackListData(.init(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看黑名单数据列表

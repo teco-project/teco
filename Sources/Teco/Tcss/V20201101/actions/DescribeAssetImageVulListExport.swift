@@ -86,8 +86,7 @@ extension Tcss {
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
     public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
-        let input = DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeAssetImageVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageVulListExport(.init(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像漏洞列表导出
@@ -95,7 +94,6 @@ extension Tcss {
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
     public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
-        let input = DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeAssetImageVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageVulListExport(.init(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

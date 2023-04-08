@@ -97,15 +97,13 @@ extension Tdmq {
     /// 枚举cmq死信队列源队列
     @inlinable
     public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
-        let input = DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName)
-        return self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCmqDeadLetterSourceQueues(.init(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举cmq死信队列源队列
     @inlinable
     public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
-        let input = DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName)
-        return try await self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCmqDeadLetterSourceQueues(.init(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举cmq死信队列源队列

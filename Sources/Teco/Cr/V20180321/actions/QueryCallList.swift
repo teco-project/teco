@@ -90,14 +90,12 @@ extension Cr {
     /// 机器人任务查询
     @inlinable
     public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallListResponse> {
-        let input = QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName)
-        return self.client.execute(action: "QueryCallList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryCallList(.init(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 机器人任务查询
     @inlinable
     public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
-        let input = QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName)
-        return try await self.client.execute(action: "QueryCallList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryCallList(.init(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 }

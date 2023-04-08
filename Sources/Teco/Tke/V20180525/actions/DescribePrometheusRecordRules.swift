@@ -103,8 +103,7 @@ extension Tke {
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
     public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRulesResponse> {
-        let input = DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribePrometheusRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusRecordRules(.init(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取聚合规则列表，包含关联集群内的资源
@@ -112,8 +111,7 @@ extension Tke {
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
     public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRulesResponse {
-        let input = DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribePrometheusRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusRecordRules(.init(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取聚合规则列表，包含关联集群内的资源

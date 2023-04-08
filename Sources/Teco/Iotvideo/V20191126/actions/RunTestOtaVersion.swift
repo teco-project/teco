@@ -80,8 +80,7 @@ extension Iotvideo {
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable @discardableResult
     public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
-        let input = RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark)
-        return self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.runTestOtaVersion(.init(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 固件版本测试发布
@@ -89,7 +88,6 @@ extension Iotvideo {
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable @discardableResult
     public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
-        let input = RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark)
-        return try await self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.runTestOtaVersion(.init(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

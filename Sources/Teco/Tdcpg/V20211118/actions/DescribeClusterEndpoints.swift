@@ -68,8 +68,7 @@ extension Tdcpg {
     /// 查询集群接入点信息
     @inlinable
     public func describeClusterEndpoints(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointsResponse> {
-        let input = DescribeClusterEndpointsRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeClusterEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterEndpoints(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群接入点
@@ -77,7 +76,6 @@ extension Tdcpg {
     /// 查询集群接入点信息
     @inlinable
     public func describeClusterEndpoints(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
-        let input = DescribeClusterEndpointsRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeClusterEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterEndpoints(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

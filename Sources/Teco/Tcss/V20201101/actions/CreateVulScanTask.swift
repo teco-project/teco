@@ -87,14 +87,12 @@ extension Tcss {
     /// 创建漏洞扫描任务
     @inlinable
     public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulScanTaskResponse> {
-        let input = CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID)
-        return self.client.execute(action: "CreateVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVulScanTask(.init(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞扫描任务
     @inlinable
     public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
-        let input = CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID)
-        return try await self.client.execute(action: "CreateVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVulScanTask(.init(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 }

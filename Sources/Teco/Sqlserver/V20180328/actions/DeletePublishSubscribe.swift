@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable @discardableResult
     public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
-        let input = DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet)
-        return self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePublishSubscribe(.init(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发布订阅
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable @discardableResult
     public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
-        let input = DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet)
-        return try await self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePublishSubscribe(.init(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

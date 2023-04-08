@@ -87,14 +87,12 @@ extension Dayu {
     /// 下载攻击事件的pcap包
     @inlinable
     public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePcapResponse> {
-        let input = DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip)
-        return self.client.execute(action: "DescribePcap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePcap(.init(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载攻击事件的pcap包
     @inlinable
     public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
-        let input = DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip)
-        return try await self.client.execute(action: "DescribePcap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePcap(.init(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

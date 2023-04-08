@@ -63,14 +63,12 @@ extension Bmvpc {
     /// 创建黑石路由表的路由规则
     @inlinable
     public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutePoliciesResponse> {
-        let input = CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet)
-        return self.client.execute(action: "CreateRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRoutePolicies(.init(routeTableId: routeTableId, routePolicySet: routePolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石路由表的路由规则
     @inlinable
     public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
-        let input = CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet)
-        return try await self.client.execute(action: "CreateRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRoutePolicies(.init(routeTableId: routeTableId, routePolicySet: routePolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

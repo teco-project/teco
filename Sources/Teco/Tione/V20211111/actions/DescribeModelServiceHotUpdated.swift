@@ -70,8 +70,7 @@ extension Tione {
     /// 用于查询模型服务能否开启热更新
     @inlinable @discardableResult
     public func describeModelServiceHotUpdated(imageInfo: ImageInfo, modelInfo: ModelInfo? = nil, volumeMount: VolumeMount? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHotUpdatedResponse> {
-        let input = DescribeModelServiceHotUpdatedRequest(imageInfo: imageInfo, modelInfo: modelInfo, volumeMount: volumeMount)
-        return self.client.execute(action: "DescribeModelServiceHotUpdated", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelServiceHotUpdated(.init(imageInfo: imageInfo, modelInfo: modelInfo, volumeMount: volumeMount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模型服务能否开启热更新
@@ -79,7 +78,6 @@ extension Tione {
     /// 用于查询模型服务能否开启热更新
     @inlinable @discardableResult
     public func describeModelServiceHotUpdated(imageInfo: ImageInfo, modelInfo: ModelInfo? = nil, volumeMount: VolumeMount? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHotUpdatedResponse {
-        let input = DescribeModelServiceHotUpdatedRequest(imageInfo: imageInfo, modelInfo: modelInfo, volumeMount: volumeMount)
-        return try await self.client.execute(action: "DescribeModelServiceHotUpdated", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelServiceHotUpdated(.init(imageInfo: imageInfo, modelInfo: modelInfo, volumeMount: volumeMount), region: region, logger: logger, on: eventLoop)
     }
 }

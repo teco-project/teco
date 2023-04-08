@@ -65,8 +65,7 @@ extension Mongodb {
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable @discardableResult
     public func killOps(instanceId: String, operations: [Operation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillOpsResponse> {
-        let input = KillOpsRequest(instanceId: instanceId, operations: operations)
-        return self.client.execute(action: "KillOps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.killOps(.init(instanceId: instanceId, operations: operations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止数据库实例特定操作
@@ -74,7 +73,6 @@ extension Mongodb {
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable @discardableResult
     public func killOps(instanceId: String, operations: [Operation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
-        let input = KillOpsRequest(instanceId: instanceId, operations: operations)
-        return try await self.client.execute(action: "KillOps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.killOps(.init(instanceId: instanceId, operations: operations), region: region, logger: logger, on: eventLoop)
     }
 }

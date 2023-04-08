@@ -117,15 +117,13 @@ extension Tbaas {
     /// 获取区块内的交易列表
     @inlinable
     public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockTransactionListForUserResponse> {
-        let input = GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit)
-        return self.client.execute(action: "GetBlockTransactionListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBlockTransactionListForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区块内的交易列表
     @inlinable
     public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
-        let input = GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetBlockTransactionListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBlockTransactionListForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区块内的交易列表

@@ -82,14 +82,12 @@ extension Dnspod {
     /// 批量修改记录
     @inlinable
     public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordBatchResponse> {
-        let input = ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx)
-        return self.client.execute(action: "ModifyRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordBatch(.init(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改记录
     @inlinable
     public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
-        let input = ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx)
-        return try await self.client.execute(action: "ModifyRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordBatch(.init(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), region: region, logger: logger, on: eventLoop)
     }
 }

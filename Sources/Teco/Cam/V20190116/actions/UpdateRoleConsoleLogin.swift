@@ -70,8 +70,7 @@ extension Cam {
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable @discardableResult
     public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
-        let input = UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName)
-        return self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateRoleConsoleLogin(.init(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改角色是否可登录
@@ -79,7 +78,6 @@ extension Cam {
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable @discardableResult
     public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
-        let input = UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName)
-        return try await self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateRoleConsoleLogin(.init(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

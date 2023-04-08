@@ -88,8 +88,7 @@ extension Cwp {
     /// 查询定期检测的配置
     @inlinable
     public func describeScanVulSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanVulSettingResponse> {
-        let input = DescribeScanVulSettingRequest()
-        return self.client.execute(action: "DescribeScanVulSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanVulSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 定期检测配置查询
@@ -97,7 +96,6 @@ extension Cwp {
     /// 查询定期检测的配置
     @inlinable
     public func describeScanVulSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanVulSettingResponse {
-        let input = DescribeScanVulSettingRequest()
-        return try await self.client.execute(action: "DescribeScanVulSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanVulSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

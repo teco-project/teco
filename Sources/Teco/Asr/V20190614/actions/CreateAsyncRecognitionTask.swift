@@ -133,8 +133,7 @@ extension Asr {
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
-        let input = CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData)
-        return self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAsyncRecognitionTask(.init(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务创建
@@ -147,7 +146,6 @@ extension Asr {
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
-        let input = CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData)
-        return try await self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAsyncRecognitionTask(.init(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)
     }
 }

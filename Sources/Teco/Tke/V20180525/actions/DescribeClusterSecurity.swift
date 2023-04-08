@@ -93,14 +93,12 @@ extension Tke {
     /// 集群的密钥信息
     @inlinable
     public func describeClusterSecurity(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
-        let input = DescribeClusterSecurityRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeClusterSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterSecurity(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群的密钥信息
     @inlinable
     public func describeClusterSecurity(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
-        let input = DescribeClusterSecurityRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeClusterSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterSecurity(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

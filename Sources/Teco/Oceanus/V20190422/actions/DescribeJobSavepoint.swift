@@ -89,14 +89,12 @@ extension Oceanus {
     /// 查找Savepoint列表
     @inlinable
     public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSavepointResponse> {
-        let input = DescribeJobSavepointRequest(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DescribeJobSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJobSavepoint(.init(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查找Savepoint列表
     @inlinable
     public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSavepointResponse {
-        let input = DescribeJobSavepointRequest(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DescribeJobSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJobSavepoint(.init(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -82,8 +82,7 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
-        let input = DeleteLogExportRequest(id: id, exportID: exportID)
-        return self.client.execute(action: "DeleteLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLogExport(.init(id: id, exportID: exportID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
@@ -95,7 +94,6 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
-        let input = DeleteLogExportRequest(id: id, exportID: exportID)
-        return try await self.client.execute(action: "DeleteLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLogExport(.init(id: id, exportID: exportID), region: region, logger: logger, on: eventLoop)
     }
 }

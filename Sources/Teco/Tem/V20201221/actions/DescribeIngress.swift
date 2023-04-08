@@ -73,14 +73,12 @@ extension Tem {
     /// 查询 Ingress 规则
     @inlinable
     public func describeIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressResponse> {
-        let input = DescribeIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel)
-        return self.client.execute(action: "DescribeIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIngress(.init(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 Ingress 规则
     @inlinable
     public func describeIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
-        let input = DescribeIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "DescribeIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIngress(.init(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

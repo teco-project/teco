@@ -54,14 +54,12 @@ extension Dasb {
     /// 删除访问权限
     @inlinable @discardableResult
     public func deleteAcls(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
-        let input = DeleteAclsRequest(idSet: idSet)
-        return self.client.execute(action: "DeleteAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAcls(.init(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除访问权限
     @inlinable @discardableResult
     public func deleteAcls(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
-        let input = DeleteAclsRequest(idSet: idSet)
-        return try await self.client.execute(action: "DeleteAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAcls(.init(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 }

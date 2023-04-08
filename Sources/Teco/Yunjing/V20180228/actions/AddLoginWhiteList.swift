@@ -60,8 +60,7 @@ extension Yunjing {
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
     @inlinable @discardableResult
     public func addLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLoginWhiteListResponse> {
-        let input = AddLoginWhiteListRequest(rules: rules)
-        return self.client.execute(action: "AddLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addLoginWhiteList(.init(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增白名单规则
@@ -69,7 +68,6 @@ extension Yunjing {
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
     @inlinable @discardableResult
     public func addLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
-        let input = AddLoginWhiteListRequest(rules: rules)
-        return try await self.client.execute(action: "AddLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addLoginWhiteList(.init(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

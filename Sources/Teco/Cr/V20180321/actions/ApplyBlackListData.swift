@@ -64,14 +64,12 @@ extension Cr {
     /// 提交机器人黑名单申请
     @inlinable @discardableResult
     public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListDataResponse> {
-        let input = ApplyBlackListDataRequest(module: module, operation: operation, blackList: blackList)
-        return self.client.execute(action: "ApplyBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyBlackListData(.init(module: module, operation: operation, blackList: blackList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交机器人黑名单申请
     @inlinable @discardableResult
     public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
-        let input = ApplyBlackListDataRequest(module: module, operation: operation, blackList: blackList)
-        return try await self.client.execute(action: "ApplyBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyBlackListData(.init(module: module, operation: operation, blackList: blackList), region: region, logger: logger, on: eventLoop)
     }
 }

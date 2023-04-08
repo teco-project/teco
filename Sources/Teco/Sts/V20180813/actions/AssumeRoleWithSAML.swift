@@ -92,8 +92,7 @@ extension Sts {
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
     public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
-        let input = AssumeRoleWithSAMLRequest(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds)
-        return self.client.execute(action: "AssumeRoleWithSAML", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
+        self.assumeRoleWithSAML(.init(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据 SAML 断言申请角色临时凭证
@@ -101,7 +100,6 @@ extension Sts {
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
     public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
-        let input = AssumeRoleWithSAMLRequest(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds)
-        return try await self.client.execute(action: "AssumeRoleWithSAML", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
+        try await self.assumeRoleWithSAML(.init(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

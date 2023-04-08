@@ -74,8 +74,7 @@ extension Cdb {
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
     public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPasswordResponse> {
-        let input = ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts)
-        return self.client.execute(action: "ModifyAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccountPassword(.init(instanceId: instanceId, newPassword: newPassword, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的密码
@@ -83,7 +82,6 @@ extension Cdb {
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
     public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
-        let input = ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts)
-        return try await self.client.execute(action: "ModifyAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccountPassword(.init(instanceId: instanceId, newPassword: newPassword, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

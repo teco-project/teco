@@ -73,14 +73,12 @@ extension Ckafka {
     /// 批量修改消费组offset
     @inlinable
     public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
-        let input = BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName)
-        return self.client.execute(action: "BatchModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchModifyGroupOffsets(.init(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改消费组offset
     @inlinable
     public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
-        let input = BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName)
-        return try await self.client.execute(action: "BatchModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchModifyGroupOffsets(.init(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

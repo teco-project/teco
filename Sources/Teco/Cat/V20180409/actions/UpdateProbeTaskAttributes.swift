@@ -59,14 +59,12 @@ extension Cat {
     /// 更新探测任务属性
     @inlinable @discardableResult
     public func updateProbeTaskAttributes(taskId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
-        let input = UpdateProbeTaskAttributesRequest(taskId: taskId, name: name)
-        return self.client.execute(action: "UpdateProbeTaskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateProbeTaskAttributes(.init(taskId: taskId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新探测任务属性
     @inlinable @discardableResult
     public func updateProbeTaskAttributes(taskId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
-        let input = UpdateProbeTaskAttributesRequest(taskId: taskId, name: name)
-        return try await self.client.execute(action: "UpdateProbeTaskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateProbeTaskAttributes(.init(taskId: taskId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

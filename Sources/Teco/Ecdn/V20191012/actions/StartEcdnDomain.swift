@@ -66,8 +66,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func startEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEcdnDomainResponse> {
-        let input = StartEcdnDomainRequest(domain: domain)
-        return self.client.execute(action: "StartEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startEcdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
@@ -77,7 +76,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func startEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEcdnDomainResponse {
-        let input = StartEcdnDomainRequest(domain: domain)
-        return try await self.client.execute(action: "StartEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startEcdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

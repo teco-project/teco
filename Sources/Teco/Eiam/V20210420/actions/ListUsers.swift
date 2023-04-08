@@ -115,8 +115,7 @@ extension Eiam {
     /// 获取用户列表信息。
     @inlinable
     public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
-        let input = ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal)
-        return self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listUsers(.init(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息
@@ -124,8 +123,7 @@ extension Eiam {
     /// 获取用户列表信息。
     @inlinable
     public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
-        let input = ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal)
-        return try await self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listUsers(.init(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息

@@ -69,14 +69,12 @@ extension Gaap {
     /// 修改域名属性
     @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
-        let input = ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue)
-        return self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyGlobalDomainAttribute(.init(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名属性
     @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
-        let input = ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue)
-        return try await self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyGlobalDomainAttribute(.init(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }
 }

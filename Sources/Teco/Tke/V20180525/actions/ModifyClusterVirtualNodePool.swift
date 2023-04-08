@@ -79,14 +79,12 @@ extension Tke {
     /// 修改虚拟节点池
     @inlinable @discardableResult
     public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterVirtualNodePoolResponse> {
-        let input = ModifyClusterVirtualNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection)
-        return self.client.execute(action: "ModifyClusterVirtualNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改虚拟节点池
     @inlinable @discardableResult
     public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterVirtualNodePoolResponse {
-        let input = ModifyClusterVirtualNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection)
-        return try await self.client.execute(action: "ModifyClusterVirtualNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Live {
     /// 获取单个水印信息。
     @inlinable
     public func describeLiveWatermark(watermarkId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
-        let input = DescribeLiveWatermarkRequest(watermarkId: watermarkId)
-        return self.client.execute(action: "DescribeLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveWatermark(.init(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个水印
@@ -73,7 +72,6 @@ extension Live {
     /// 获取单个水印信息。
     @inlinable
     public func describeLiveWatermark(watermarkId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
-        let input = DescribeLiveWatermarkRequest(watermarkId: watermarkId)
-        return try await self.client.execute(action: "DescribeLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveWatermark(.init(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 }

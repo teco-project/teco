@@ -63,8 +63,7 @@ extension Tcss {
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable @discardableResult
     public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
-        let input = AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList)
-        return self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addComplianceAssetPolicySetToWhitelist(.init(assetPolicySetList: assetPolicySetList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规忽略资产+检测项列表
@@ -73,7 +72,6 @@ extension Tcss {
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable @discardableResult
     public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
-        let input = AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList)
-        return try await self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addComplianceAssetPolicySetToWhitelist(.init(assetPolicySetList: assetPolicySetList), region: region, logger: logger, on: eventLoop)
     }
 }

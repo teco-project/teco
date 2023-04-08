@@ -118,8 +118,7 @@ extension Vod {
     /// 修改用户自定义转动图模板。
     @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAnimatedGraphicsTemplateResponse> {
-        let input = ModifyAnimatedGraphicsTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment)
-        return self.client.execute(action: "ModifyAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAnimatedGraphicsTemplate(.init(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改转动图模板
@@ -127,7 +126,6 @@ extension Vod {
     /// 修改用户自定义转动图模板。
     @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
-        let input = ModifyAnimatedGraphicsTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment)
-        return try await self.client.execute(action: "ModifyAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAnimatedGraphicsTemplate(.init(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

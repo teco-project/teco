@@ -69,8 +69,7 @@ extension Ssm {
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
     public func updateDescription(secretName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
-        let input = UpdateDescriptionRequest(secretName: secretName, description: description)
-        return self.client.execute(action: "UpdateDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDescription(.init(secretName: secretName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新凭据描述信息
@@ -78,7 +77,6 @@ extension Ssm {
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
     public func updateDescription(secretName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
-        let input = UpdateDescriptionRequest(secretName: secretName, description: description)
-        return try await self.client.execute(action: "UpdateDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDescription(.init(secretName: secretName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

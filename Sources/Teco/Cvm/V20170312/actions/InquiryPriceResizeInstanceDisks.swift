@@ -83,8 +83,7 @@ extension Cvm {
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
     public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeInstanceDisksResponse> {
-        let input = InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop)
-        return self.client.execute(action: "InquiryPriceResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceResizeInstanceDisks(.init(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容实例磁盘询价
@@ -95,7 +94,6 @@ extension Cvm {
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
     public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
-        let input = InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop)
-        return try await self.client.execute(action: "InquiryPriceResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceResizeInstanceDisks(.init(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
 }

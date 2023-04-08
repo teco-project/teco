@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
-        let input = ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIdSet: securityGroupIdSet)
-        return self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceSecurityGroups(.init(instanceId: instanceId, securityGroupIdSet: securityGroupIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库安全组
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
-        let input = ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIdSet: securityGroupIdSet)
-        return try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceSecurityGroups(.init(instanceId: instanceId, securityGroupIdSet: securityGroupIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

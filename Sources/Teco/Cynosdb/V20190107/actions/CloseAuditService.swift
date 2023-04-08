@@ -60,8 +60,7 @@ extension Cynosdb {
     /// TDSQL-C for MySQL实例关闭审计服务
     @inlinable @discardableResult
     public func closeAuditService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseAuditServiceResponse> {
-        let input = CloseAuditServiceRequest(instanceId: instanceId)
-        return self.client.execute(action: "CloseAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeAuditService(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例关闭审计服务
@@ -69,7 +68,6 @@ extension Cynosdb {
     /// TDSQL-C for MySQL实例关闭审计服务
     @inlinable @discardableResult
     public func closeAuditService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAuditServiceResponse {
-        let input = CloseAuditServiceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CloseAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeAuditService(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

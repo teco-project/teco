@@ -79,14 +79,12 @@ extension Wedata {
     /// 批量删除集成任务
     @inlinable
     public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
-        let input = BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
-        return self.client.execute(action: "BatchDeleteIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除集成任务
     @inlinable
     public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
-        let input = BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
-        return try await self.client.execute(action: "BatchDeleteIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

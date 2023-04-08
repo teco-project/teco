@@ -64,14 +64,12 @@ extension Iotvideoindustry {
     /// 场景绑定解绑通道接口
     @inlinable @discardableResult
     public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
-        let input = ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels)
-        return self.client.execute(action: "ModifyBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBindSceneChannels(.init(sceneId: sceneId, type: type, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 场景绑定解绑通道接口
     @inlinable @discardableResult
     public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
-        let input = ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels)
-        return try await self.client.execute(action: "ModifyBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBindSceneChannels(.init(sceneId: sceneId, type: type, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,8 +79,7 @@ extension Live {
     /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable @discardableResult
     public func createLiveRecordRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordRuleResponse> {
-        let input = CreateLiveRecordRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName)
-        return self.client.execute(action: "CreateLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLiveRecordRule(.init(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制规则
@@ -89,7 +88,6 @@ extension Live {
     /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable @discardableResult
     public func createLiveRecordRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordRuleResponse {
-        let input = CreateLiveRecordRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName)
-        return try await self.client.execute(action: "CreateLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLiveRecordRule(.init(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

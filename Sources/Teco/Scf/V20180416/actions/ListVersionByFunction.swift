@@ -99,8 +99,7 @@ extension Scf {
     /// 该接口根据传入的参数查询函数的版本。
     @inlinable
     public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListVersionByFunctionResponse> {
-        let input = ListVersionByFunctionRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy)
-        return self.client.execute(action: "ListVersionByFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listVersionByFunction(.init(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询函数版本
@@ -108,7 +107,6 @@ extension Scf {
     /// 该接口根据传入的参数查询函数的版本。
     @inlinable
     public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
-        let input = ListVersionByFunctionRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy)
-        return try await self.client.execute(action: "ListVersionByFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listVersionByFunction(.init(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 }

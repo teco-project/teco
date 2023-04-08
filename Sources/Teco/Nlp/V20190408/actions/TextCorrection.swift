@@ -75,8 +75,7 @@ extension Nlp {
     /// 此功能是基于千亿级大规模互联网语料和LSTM、BERT等深度神经网络模型进行训练，并持续迭代更新，以保证效果不断提升，是搜索引擎、语音识别、内容审核等功能更好运行的基础之一。
     @inlinable
     public func textCorrection(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextCorrectionResponse> {
-        let input = TextCorrectionRequest(text: text)
-        return self.client.execute(action: "TextCorrection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textCorrection(.init(text: text), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本纠错
@@ -86,7 +85,6 @@ extension Nlp {
     /// 此功能是基于千亿级大规模互联网语料和LSTM、BERT等深度神经网络模型进行训练，并持续迭代更新，以保证效果不断提升，是搜索引擎、语音识别、内容审核等功能更好运行的基础之一。
     @inlinable
     public func textCorrection(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextCorrectionResponse {
-        let input = TextCorrectionRequest(text: text)
-        return try await self.client.execute(action: "TextCorrection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textCorrection(.init(text: text), region: region, logger: logger, on: eventLoop)
     }
 }

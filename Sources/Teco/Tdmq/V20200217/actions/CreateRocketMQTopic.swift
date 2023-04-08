@@ -79,14 +79,12 @@ extension Tdmq {
     /// 创建RocketMQ主题
     @inlinable @discardableResult
     public func createRocketMQTopic(topic: String, namespaces: [String], type: String, clusterId: String, remark: String? = nil, partitionNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQTopicResponse> {
-        let input = CreateRocketMQTopicRequest(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum)
-        return self.client.execute(action: "CreateRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRocketMQTopic(.init(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ主题
     @inlinable @discardableResult
     public func createRocketMQTopic(topic: String, namespaces: [String], type: String, clusterId: String, remark: String? = nil, partitionNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQTopicResponse {
-        let input = CreateRocketMQTopicRequest(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum)
-        return try await self.client.execute(action: "CreateRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRocketMQTopic(.init(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
     }
 }

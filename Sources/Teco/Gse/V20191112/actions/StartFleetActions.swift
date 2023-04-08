@@ -55,7 +55,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
-        self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("StartFleetActions is no longer available.")
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -64,7 +64,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
-        try await self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("StartFleetActions is no longer available.")
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -73,8 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
-        let input = StartFleetActionsRequest(fleetId: fleetId, actions: actions)
-        return self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("StartFleetActions is no longer available.")
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -83,7 +82,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
-        let input = StartFleetActionsRequest(fleetId: fleetId, actions: actions)
-        return try await self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("StartFleetActions is no longer available.")
     }
 }

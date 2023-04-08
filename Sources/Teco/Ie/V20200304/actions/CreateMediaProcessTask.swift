@@ -80,8 +80,7 @@ extension Ie {
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
     public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
-        let input = CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet)
-        return self.client.execute(action: "CreateMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMediaProcessTask(.init(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建编辑处理任务
@@ -89,7 +88,6 @@ extension Ie {
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
     public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
-        let input = CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet)
-        return try await self.client.execute(action: "CreateMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMediaProcessTask(.init(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), region: region, logger: logger, on: eventLoop)
     }
 }

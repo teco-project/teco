@@ -97,14 +97,12 @@ extension Tcb {
     /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
-        let input = DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion)
-        return self.client.execute(action: "DescribeEnvDealRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnvDealRegion(.init(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
-        let input = DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion)
-        return try await self.client.execute(action: "DescribeEnvDealRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnvDealRegion(.init(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), region: region, logger: logger, on: eventLoop)
     }
 }

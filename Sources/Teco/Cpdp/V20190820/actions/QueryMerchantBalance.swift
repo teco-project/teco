@@ -63,14 +63,12 @@ extension Cpdp {
     /// 跨境-对接方账户余额查询
     @inlinable
     public func queryMerchantBalance(currency: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantBalanceResponse> {
-        let input = QueryMerchantBalanceRequest(currency: currency, profile: profile)
-        return self.client.execute(action: "QueryMerchantBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMerchantBalance(.init(currency: currency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-对接方账户余额查询
     @inlinable
     public func queryMerchantBalance(currency: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
-        let input = QueryMerchantBalanceRequest(currency: currency, profile: profile)
-        return try await self.client.execute(action: "QueryMerchantBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMerchantBalance(.init(currency: currency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

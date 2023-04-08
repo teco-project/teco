@@ -54,14 +54,12 @@ extension Tcr {
     /// 修改个人用户登录密码
     @inlinable @discardableResult
     public func modifyUserPasswordPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserPasswordPersonalResponse> {
-        let input = ModifyUserPasswordPersonalRequest(password: password)
-        return self.client.execute(action: "ModifyUserPasswordPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUserPasswordPersonal(.init(password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改个人用户登录密码
     @inlinable @discardableResult
     public func modifyUserPasswordPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
-        let input = ModifyUserPasswordPersonalRequest(password: password)
-        return try await self.client.execute(action: "ModifyUserPasswordPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUserPasswordPersonal(.init(password: password), region: region, logger: logger, on: eventLoop)
     }
 }

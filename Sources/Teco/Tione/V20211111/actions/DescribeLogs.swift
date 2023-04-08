@@ -114,8 +114,7 @@ extension Tione {
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
     public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        let input = DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters)
-        return self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogs(.init(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志
@@ -123,7 +122,6 @@ extension Tione {
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
     public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        let input = DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters)
-        return try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogs(.init(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

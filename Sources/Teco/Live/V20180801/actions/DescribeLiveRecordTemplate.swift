@@ -64,8 +64,7 @@ extension Live {
     /// 获取单个录制模板。
     @inlinable
     public func describeLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplateResponse> {
-        let input = DescribeLiveRecordTemplateRequest(templateId: templateId)
-        return self.client.execute(action: "DescribeLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveRecordTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个录制模板
@@ -73,7 +72,6 @@ extension Live {
     /// 获取单个录制模板。
     @inlinable
     public func describeLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
-        let input = DescribeLiveRecordTemplateRequest(templateId: templateId)
-        return try await self.client.execute(action: "DescribeLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveRecordTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

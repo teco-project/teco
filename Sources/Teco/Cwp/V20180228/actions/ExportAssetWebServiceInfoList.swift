@@ -86,14 +86,12 @@ extension Cwp {
     /// 导出资产管理Web服务列表
     @inlinable
     public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetWebServiceInfoListResponse> {
-        let input = ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by)
-        return self.client.execute(action: "ExportAssetWebServiceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportAssetWebServiceInfoList(.init(quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出资产管理Web服务列表
     @inlinable
     public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
-        let input = ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by)
-        return try await self.client.execute(action: "ExportAssetWebServiceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportAssetWebServiceInfoList(.init(quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Tag {
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
     public func unTagResources(resourceList: [String], tagKeys: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
-        let input = UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys)
-        return self.client.execute(action: "UnTagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unTagResources(.init(resourceList: resourceList, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为资源解绑标签
@@ -83,7 +82,6 @@ extension Tag {
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
     public func unTagResources(resourceList: [String], tagKeys: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
-        let input = UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys)
-        return try await self.client.execute(action: "UnTagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unTagResources(.init(resourceList: resourceList, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 }

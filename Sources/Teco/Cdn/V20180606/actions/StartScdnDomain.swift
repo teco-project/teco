@@ -64,8 +64,7 @@ extension Cdn {
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
     public func startScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
-        let input = StartScdnDomainRequest(domain: domain)
-        return self.client.execute(action: "StartScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startScdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动SCDN域名安全防护
@@ -73,7 +72,6 @@ extension Cdn {
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
     public func startScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
-        let input = StartScdnDomainRequest(domain: domain)
-        return try await self.client.execute(action: "StartScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startScdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

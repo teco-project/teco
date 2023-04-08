@@ -70,8 +70,7 @@ extension Ecm {
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
     @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIpv6AddressesAttributeResponse> {
-        let input = ModifyIpv6AddressesAttributeRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
-        return self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyIpv6AddressesAttribute(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡IPv6地址属性
@@ -79,7 +78,6 @@ extension Ecm {
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
     @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
-        let input = ModifyIpv6AddressesAttributeRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
-        return try await self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyIpv6AddressesAttribute(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 }

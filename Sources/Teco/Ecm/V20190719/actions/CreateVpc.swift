@@ -99,8 +99,7 @@ extension Ecm {
     /// 创建私有网络
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
-        let input = CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description)
-        return self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建VPC
@@ -108,7 +107,6 @@ extension Ecm {
     /// 创建私有网络
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        let input = CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description)
-        return try await self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

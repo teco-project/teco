@@ -110,8 +110,7 @@ extension Live {
     /// 修改录制模板配置。
     @inlinable @discardableResult
     public func modifyLiveRecordTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordTemplateResponse> {
-        let input = ModifyLiveRecordTemplateRequest(templateId: templateId, templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam)
-        return self.client.execute(action: "ModifyLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLiveRecordTemplate(.init(templateId: templateId, templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播修改录制模板配置
@@ -119,7 +118,6 @@ extension Live {
     /// 修改录制模板配置。
     @inlinable @discardableResult
     public func modifyLiveRecordTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordTemplateResponse {
-        let input = ModifyLiveRecordTemplateRequest(templateId: templateId, templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam)
-        return try await self.client.execute(action: "ModifyLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLiveRecordTemplate(.init(templateId: templateId, templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), region: region, logger: logger, on: eventLoop)
     }
 }

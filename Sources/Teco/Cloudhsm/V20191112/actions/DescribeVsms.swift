@@ -108,15 +108,13 @@ extension Cloudhsm {
     /// 获取用户VSM列表
     @inlinable
     public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmsResponse> {
-        let input = DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType)
-        return self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVsms(.init(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户VSM列表
     @inlinable
     public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
-        let input = DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType)
-        return try await self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVsms(.init(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户VSM列表

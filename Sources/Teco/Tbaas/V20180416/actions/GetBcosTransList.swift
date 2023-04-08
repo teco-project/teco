@@ -113,8 +113,7 @@ extension Tbaas {
     /// Bcos分页查询当前群组的交易信息列表
     @inlinable
     public func getBcosTransList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransListResponse> {
-        let input = GetBcosTransListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash)
-        return self.client.execute(action: "GetBcosTransList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBcosTransList(.init(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos交易列表
@@ -122,8 +121,7 @@ extension Tbaas {
     /// Bcos分页查询当前群组的交易信息列表
     @inlinable
     public func getBcosTransList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransListResponse {
-        let input = GetBcosTransListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash)
-        return try await self.client.execute(action: "GetBcosTransList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBcosTransList(.init(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos交易列表

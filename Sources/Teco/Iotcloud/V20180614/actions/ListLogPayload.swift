@@ -87,14 +87,12 @@ extension Iotcloud {
     /// 获取日志内容列表
     @inlinable
     public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogPayloadResponse> {
-        let input = ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return self.client.execute(action: "ListLogPayload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listLogPayload(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志内容列表
     @inlinable
     public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
-        let input = ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return try await self.client.execute(action: "ListLogPayload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listLogPayload(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

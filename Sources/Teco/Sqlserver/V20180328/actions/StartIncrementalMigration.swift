@@ -74,8 +74,7 @@ extension Sqlserver {
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
     public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIncrementalMigrationResponse> {
-        let input = StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
-        return self.client.execute(action: "StartIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startIncrementalMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动增量备份导入任务
@@ -83,7 +82,6 @@ extension Sqlserver {
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
     public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
-        let input = StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
-        return try await self.client.execute(action: "StartIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startIncrementalMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

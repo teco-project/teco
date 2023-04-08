@@ -69,8 +69,7 @@ extension Iotcloud {
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
     public func describeDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
-        let input = DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName)
-        return self.client.execute(action: "DescribeDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceShadow(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备影子
@@ -78,7 +77,6 @@ extension Iotcloud {
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
     public func describeDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
-        let input = DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName)
-        return try await self.client.execute(action: "DescribeDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceShadow(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

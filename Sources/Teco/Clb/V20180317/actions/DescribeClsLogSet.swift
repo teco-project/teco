@@ -60,8 +60,7 @@ extension Clb {
     /// 获取用户的CLB专有日志集。
     @inlinable
     public func describeClsLogSet(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClsLogSetResponse> {
-        let input = DescribeClsLogSetRequest()
-        return self.client.execute(action: "DescribeClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClsLogSet(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户的CLB专有日志集
@@ -69,7 +68,6 @@ extension Clb {
     /// 获取用户的CLB专有日志集。
     @inlinable
     public func describeClsLogSet(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
-        let input = DescribeClsLogSetRequest()
-        return try await self.client.execute(action: "DescribeClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClsLogSet(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

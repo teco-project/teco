@@ -68,8 +68,7 @@ extension Partners {
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
     public func describeClientBalanceNew(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientBalanceNewResponse> {
-        let input = DescribeClientBalanceNewRequest(clientUin: clientUin)
-        return self.client.execute(action: "DescribeClientBalanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClientBalanceNew(.init(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户余额（新）
@@ -77,7 +76,6 @@ extension Partners {
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
     public func describeClientBalanceNew(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
-        let input = DescribeClientBalanceNewRequest(clientUin: clientUin)
-        return try await self.client.execute(action: "DescribeClientBalanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClientBalanceNew(.init(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

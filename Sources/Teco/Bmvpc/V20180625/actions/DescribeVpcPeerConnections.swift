@@ -104,15 +104,13 @@ extension Bmvpc {
     /// 获取对等连接列表
     @inlinable
     public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeerConnectionsResponse> {
-        let input = DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId)
-        return self.client.execute(action: "DescribeVpcPeerConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcPeerConnections(.init(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取对等连接列表
     @inlinable
     public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
-        let input = DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId)
-        return try await self.client.execute(action: "DescribeVpcPeerConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcPeerConnections(.init(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取对等连接列表

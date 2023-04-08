@@ -74,8 +74,7 @@ extension Cam {
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
     public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
-        let input = CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description)
-        return self.client.execute(action: "CreatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPolicy(.init(policyName: policyName, policyDocument: policyDocument, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建策略
@@ -83,7 +82,6 @@ extension Cam {
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
     public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
-        let input = CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description)
-        return try await self.client.execute(action: "CreatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPolicy(.init(policyName: policyName, policyDocument: policyDocument, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

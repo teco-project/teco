@@ -100,8 +100,7 @@ extension Cfw {
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
     public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstancesInfoResponse> {
-        let input = DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeNatFwInstancesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNatFwInstancesInfo(.init(filter: filter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取租户所有NAT实例卡片信息
@@ -109,8 +108,7 @@ extension Cfw {
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
     public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
-        let input = DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeNatFwInstancesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNatFwInstancesInfo(.init(filter: filter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取租户所有NAT实例卡片信息

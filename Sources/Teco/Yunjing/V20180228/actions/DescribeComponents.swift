@@ -110,8 +110,7 @@ extension Yunjing {
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
     @inlinable
     public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentsResponse> {
-        let input = DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeComponents(.init(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件列表
@@ -119,8 +118,7 @@ extension Yunjing {
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
     @inlinable
     public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
-        let input = DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeComponents(.init(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件列表

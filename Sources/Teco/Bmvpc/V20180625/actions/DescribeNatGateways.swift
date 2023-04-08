@@ -128,8 +128,7 @@ extension Bmvpc {
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
     public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
-        let input = DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeNatGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNatGateways(.init(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取NAT网关列表
@@ -137,8 +136,7 @@ extension Bmvpc {
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
     public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
-        let input = DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeNatGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNatGateways(.init(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取NAT网关列表

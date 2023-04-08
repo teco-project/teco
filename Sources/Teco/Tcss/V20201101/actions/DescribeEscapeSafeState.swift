@@ -56,8 +56,7 @@ extension Tcss {
     /// DescribeEscapeSafeState 查询容器逃逸安全状态
     @inlinable
     public func describeEscapeSafeState(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeSafeStateResponse> {
-        let input = DescribeEscapeSafeStateRequest()
-        return self.client.execute(action: "DescribeEscapeSafeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEscapeSafeState(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸安全状态
@@ -65,7 +64,6 @@ extension Tcss {
     /// DescribeEscapeSafeState 查询容器逃逸安全状态
     @inlinable
     public func describeEscapeSafeState(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeSafeStateResponse {
-        let input = DescribeEscapeSafeStateRequest()
-        return try await self.client.execute(action: "DescribeEscapeSafeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEscapeSafeState(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

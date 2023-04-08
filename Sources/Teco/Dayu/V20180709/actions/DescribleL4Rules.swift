@@ -92,8 +92,7 @@ extension Dayu {
     /// 获取四层转发规则
     @inlinable
     public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL4RulesResponse> {
-        let input = DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribleL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describleL4Rules(.init(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取L4转发规则
@@ -101,7 +100,6 @@ extension Dayu {
     /// 获取四层转发规则
     @inlinable
     public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
-        let input = DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribleL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describleL4Rules(.init(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

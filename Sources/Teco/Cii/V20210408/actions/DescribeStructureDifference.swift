@@ -81,8 +81,7 @@ extension Cii {
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
     public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureDifferenceResponse> {
-        let input = DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId)
-        return self.client.execute(action: "DescribeStructureDifference", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStructureDifference(.init(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结构化复核差异查询
@@ -90,7 +89,6 @@ extension Cii {
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
     public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureDifferenceResponse {
-        let input = DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId)
-        return try await self.client.execute(action: "DescribeStructureDifference", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStructureDifference(.init(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

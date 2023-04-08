@@ -69,14 +69,12 @@ extension Dlc {
     /// DMS元数据更新库
     @inlinable @discardableResult
     public func alterDMSDatabase(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSDatabaseResponse> {
-        let input = AlterDMSDatabaseRequest(currentName: currentName, schemaName: schemaName, location: location, asset: asset)
-        return self.client.execute(action: "AlterDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.alterDMSDatabase(.init(currentName: currentName, schemaName: schemaName, location: location, asset: asset), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新库
     @inlinable @discardableResult
     public func alterDMSDatabase(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSDatabaseResponse {
-        let input = AlterDMSDatabaseRequest(currentName: currentName, schemaName: schemaName, location: location, asset: asset)
-        return try await self.client.execute(action: "AlterDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.alterDMSDatabase(.init(currentName: currentName, schemaName: schemaName, location: location, asset: asset), region: region, logger: logger, on: eventLoop)
     }
 }

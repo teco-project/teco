@@ -149,14 +149,12 @@ extension Ams {
     /// 查看任务详情
     @inlinable
     public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        let input = DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments)
-        return self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskDetail(.init(taskId: taskId, showAllSegments: showAllSegments), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看任务详情
     @inlinable
     public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        let input = DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments)
-        return try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskDetail(.init(taskId: taskId, showAllSegments: showAllSegments), region: region, logger: logger, on: eventLoop)
     }
 }

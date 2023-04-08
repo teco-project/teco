@@ -78,14 +78,12 @@ extension Tcss {
     /// 镜像仓库查看定时任务
     @inlinable
     public func describeImageRegistryTimingScanTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRegistryTimingScanTaskResponse> {
-        let input = DescribeImageRegistryTimingScanTaskRequest()
-        return self.client.execute(action: "DescribeImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageRegistryTimingScanTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查看定时任务
     @inlinable
     public func describeImageRegistryTimingScanTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
-        let input = DescribeImageRegistryTimingScanTaskRequest()
-        return try await self.client.execute(action: "DescribeImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageRegistryTimingScanTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

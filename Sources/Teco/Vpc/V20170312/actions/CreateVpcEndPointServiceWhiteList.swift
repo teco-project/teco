@@ -70,8 +70,7 @@ extension Vpc {
     /// 创建终端服务白名单。
     @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
-        let input = CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description)
-        return self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建终端服务白名单
@@ -79,7 +78,6 @@ extension Vpc {
     /// 创建终端服务白名单。
     @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
-        let input = CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description)
-        return try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

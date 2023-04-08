@@ -60,8 +60,7 @@ extension Vpc {
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable @discardableResult
     public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
-        let input = DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId)
-        return self.client.execute(action: "DeleteServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteServiceTemplateGroup(.init(serviceTemplateGroupId: serviceTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板集合
@@ -69,7 +68,6 @@ extension Vpc {
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable @discardableResult
     public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
-        let input = DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId)
-        return try await self.client.execute(action: "DeleteServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteServiceTemplateGroup(.init(serviceTemplateGroupId: serviceTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

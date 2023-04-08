@@ -58,14 +58,12 @@ extension Redis {
     /// 查询实例安全组信息
     @inlinable
     public func describeInstanceSecurityGroup(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSecurityGroupResponse> {
-        let input = DescribeInstanceSecurityGroupRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceSecurityGroup(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例安全组信息
     @inlinable
     public func describeInstanceSecurityGroup(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSecurityGroupResponse {
-        let input = DescribeInstanceSecurityGroupRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceSecurityGroup(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

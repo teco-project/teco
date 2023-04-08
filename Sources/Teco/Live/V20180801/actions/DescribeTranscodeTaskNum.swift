@@ -68,14 +68,12 @@ extension Live {
     /// 查询转码任务数。
     @inlinable
     public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeTaskNumResponse> {
-        let input = DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains)
-        return self.client.execute(action: "DescribeTranscodeTaskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTranscodeTaskNum(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转码任务数。
     @inlinable
     public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
-        let input = DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains)
-        return try await self.client.execute(action: "DescribeTranscodeTaskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTranscodeTaskNum(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 }

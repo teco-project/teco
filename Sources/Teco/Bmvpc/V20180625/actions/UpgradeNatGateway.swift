@@ -74,8 +74,7 @@ extension Bmvpc {
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
     public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeNatGatewayResponse> {
-        let input = UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent)
-        return self.client.execute(action: "UpgradeNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeNatGateway(.init(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级NAT网关
@@ -83,7 +82,6 @@ extension Bmvpc {
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
     public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
-        let input = UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent)
-        return try await self.client.execute(action: "UpgradeNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeNatGateway(.init(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), region: region, logger: logger, on: eventLoop)
     }
 }

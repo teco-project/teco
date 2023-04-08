@@ -80,14 +80,12 @@ extension Ecm {
     /// 获取网络峰值数据
     @inlinable
     public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakNetworkOverviewResponse> {
-        let input = DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period)
-        return self.client.execute(action: "DescribePeakNetworkOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePeakNetworkOverview(.init(startTime: startTime, endTime: endTime, filters: filters, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网络峰值数据
     @inlinable
     public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
-        let input = DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period)
-        return try await self.client.execute(action: "DescribePeakNetworkOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePeakNetworkOverview(.init(startTime: startTime, endTime: endTime, filters: filters, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

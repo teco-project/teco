@@ -54,14 +54,12 @@ extension Cls {
     /// 关闭Kafka协议消费
     @inlinable @discardableResult
     public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
-        let input = CloseKafkaConsumerRequest(fromTopicId: fromTopicId)
-        return self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeKafkaConsumer(.init(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭Kafka协议消费
     @inlinable @discardableResult
     public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
-        let input = CloseKafkaConsumerRequest(fromTopicId: fromTopicId)
-        return try await self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeKafkaConsumer(.init(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Tcss {
     /// 容器安全主机资产刷新
     @inlinable
     public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
-        let input = ModifyAssetRequest(all: all, hosts: hosts)
-        return self.client.execute(action: "ModifyAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAsset(.init(all: all, hosts: hosts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 主机资产刷新
@@ -78,7 +77,6 @@ extension Tcss {
     /// 容器安全主机资产刷新
     @inlinable
     public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
-        let input = ModifyAssetRequest(all: all, hosts: hosts)
-        return try await self.client.execute(action: "ModifyAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAsset(.init(all: all, hosts: hosts), region: region, logger: logger, on: eventLoop)
     }
 }

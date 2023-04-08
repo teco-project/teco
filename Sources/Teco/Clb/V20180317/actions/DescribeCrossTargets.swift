@@ -102,8 +102,7 @@ extension Clb {
     /// 查询跨域2.0版本云联网后端子机和网卡信息。
     @inlinable
     public func describeCrossTargets(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossTargetsResponse> {
-        let input = DescribeCrossTargetsRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeCrossTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCrossTargets(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询跨域2.0版本云联网后端子机和网卡信息
@@ -111,8 +110,7 @@ extension Clb {
     /// 查询跨域2.0版本云联网后端子机和网卡信息。
     @inlinable
     public func describeCrossTargets(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossTargetsResponse {
-        let input = DescribeCrossTargetsRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeCrossTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCrossTargets(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询跨域2.0版本云联网后端子机和网卡信息

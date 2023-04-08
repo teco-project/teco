@@ -97,8 +97,7 @@ extension Dbbrain {
     /// 获取慢日志来源地址统计分布图。
     @inlinable
     public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogUserHostStatsResponse> {
-        let input = DescribeSlowLogUserHostStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5)
-        return self.client.execute(action: "DescribeSlowLogUserHostStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSlowLogUserHostStats(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志来源地址统计分布图
@@ -106,7 +105,6 @@ extension Dbbrain {
     /// 获取慢日志来源地址统计分布图。
     @inlinable
     public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogUserHostStatsResponse {
-        let input = DescribeSlowLogUserHostStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5)
-        return try await self.client.execute(action: "DescribeSlowLogUserHostStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSlowLogUserHostStats(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -77,8 +77,7 @@ extension Cvm {
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
-        let input = ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag)
-        return self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstancesRenewFlag(.init(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标识
@@ -90,7 +89,6 @@ extension Cvm {
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
-        let input = ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag)
-        return try await self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstancesRenewFlag(.init(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

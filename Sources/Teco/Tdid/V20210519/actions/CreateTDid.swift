@@ -68,14 +68,12 @@ extension Tdid {
     /// 创建机构DID
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        let input = CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation)
-        return self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTDid(.init(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机构DID
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        let input = CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation)
-        return try await self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTDid(.init(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -104,8 +104,7 @@ extension Tcss {
     /// 容器安全查询web服务列表
     @inlinable
     public func describeAssetWebServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceListResponse> {
-        let input = DescribeAssetWebServiceListRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeAssetWebServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetWebServiceList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询web服务列表
@@ -113,8 +112,7 @@ extension Tcss {
     /// 容器安全查询web服务列表
     @inlinable
     public func describeAssetWebServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceListResponse {
-        let input = DescribeAssetWebServiceListRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeAssetWebServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetWebServiceList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询web服务列表

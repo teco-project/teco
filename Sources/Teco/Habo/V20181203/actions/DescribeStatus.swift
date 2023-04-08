@@ -77,8 +77,7 @@ extension Habo {
     /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
     @inlinable
     public func describeStatus(pk: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatusResponse> {
-        let input = DescribeStatusRequest(pk: pk, md5: md5)
-        return self.client.execute(action: "DescribeStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStatus(.init(pk: pk, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分析结果
@@ -86,7 +85,6 @@ extension Habo {
     /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
     @inlinable
     public func describeStatus(pk: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatusResponse {
-        let input = DescribeStatusRequest(pk: pk, md5: md5)
-        return try await self.client.execute(action: "DescribeStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStatus(.init(pk: pk, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 }

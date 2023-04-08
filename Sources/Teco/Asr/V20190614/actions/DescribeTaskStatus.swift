@@ -79,8 +79,7 @@ extension Asr {
     /// <br>•   默认接口请求频率限制：50次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func describeTaskStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        let input = DescribeTaskStatusRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 录音文件识别结果查询
@@ -93,7 +92,6 @@ extension Asr {
     /// <br>•   默认接口请求频率限制：50次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func describeTaskStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        let input = DescribeTaskStatusRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

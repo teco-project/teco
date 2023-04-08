@@ -149,8 +149,7 @@ extension Pts {
     /// 查询场景配置并附带已经执行的任务内容
     @inlinable
     public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, scenarioType: String? = nil, owner: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenarioWithJobsResponse> {
-        let input = DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset, scenarioType: scenarioType, owner: owner)
-        return self.client.execute(action: "DescribeScenarioWithJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScenarioWithJobs(.init(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset, scenarioType: scenarioType, owner: owner), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询场景及对应的任务
@@ -158,8 +157,7 @@ extension Pts {
     /// 查询场景配置并附带已经执行的任务内容
     @inlinable
     public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, scenarioType: String? = nil, owner: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenarioWithJobsResponse {
-        let input = DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset, scenarioType: scenarioType, owner: owner)
-        return try await self.client.execute(action: "DescribeScenarioWithJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScenarioWithJobs(.init(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset, scenarioType: scenarioType, owner: owner), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询场景及对应的任务

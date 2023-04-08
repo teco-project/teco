@@ -152,15 +152,13 @@ extension Bmeip {
     /// 黑石EIP查询接口
     @inlinable
     public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
-        let input = DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl)
-        return self.client.execute(action: "DescribeEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEips(.init(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP查询接口
     @inlinable
     public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
-        let input = DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl)
-        return try await self.client.execute(action: "DescribeEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEips(.init(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP查询接口

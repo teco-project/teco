@@ -98,8 +98,7 @@ extension Lighthouse {
     /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
     @inlinable
     public func describeInstancesTrafficPackages(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesTrafficPackagesResponse> {
-        let input = DescribeInstancesTrafficPackagesRequest(instanceIds: instanceIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeInstancesTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesTrafficPackages(.init(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例流量包详情
@@ -107,8 +106,7 @@ extension Lighthouse {
     /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
     @inlinable
     public func describeInstancesTrafficPackages(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesTrafficPackagesResponse {
-        let input = DescribeInstancesTrafficPackagesRequest(instanceIds: instanceIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeInstancesTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesTrafficPackages(.init(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例流量包详情

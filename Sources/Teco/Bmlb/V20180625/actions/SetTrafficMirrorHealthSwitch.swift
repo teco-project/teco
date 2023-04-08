@@ -99,8 +99,7 @@ extension Bmlb {
     /// 设置流量镜像的健康检查参数。
     @inlinable
     public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorHealthSwitchResponse> {
-        let input = SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes)
-        return self.client.execute(action: "SetTrafficMirrorHealthSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setTrafficMirrorHealthSwitch(.init(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置流量镜像的健康检查参数
@@ -108,7 +107,6 @@ extension Bmlb {
     /// 设置流量镜像的健康检查参数。
     @inlinable
     public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
-        let input = SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes)
-        return try await self.client.execute(action: "SetTrafficMirrorHealthSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setTrafficMirrorHealthSwitch(.init(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), region: region, logger: logger, on: eventLoop)
     }
 }

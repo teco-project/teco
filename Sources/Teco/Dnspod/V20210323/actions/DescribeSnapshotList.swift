@@ -67,14 +67,12 @@ extension Dnspod {
     /// 查询快照列表
     @inlinable
     public func describeSnapshotList(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotListResponse> {
-        let input = DescribeSnapshotListRequest(domain: domain, domainId: domainId)
-        return self.client.execute(action: "DescribeSnapshotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshotList(.init(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
     @inlinable
     public func describeSnapshotList(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotListResponse {
-        let input = DescribeSnapshotListRequest(domain: domain, domainId: domainId)
-        return try await self.client.execute(action: "DescribeSnapshotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshotList(.init(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

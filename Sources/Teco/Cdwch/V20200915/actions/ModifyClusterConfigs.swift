@@ -78,8 +78,7 @@ extension Cdwch {
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
     public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterConfigsResponse> {
-        let input = ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark)
-        return self.client.execute(action: "ModifyClusterConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterConfigs(.init(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群配置文件接口
@@ -87,7 +86,6 @@ extension Cdwch {
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
     public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
-        let input = ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark)
-        return try await self.client.execute(action: "ModifyClusterConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterConfigs(.init(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

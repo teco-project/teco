@@ -56,8 +56,7 @@ extension Cfs {
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
     @inlinable
     public func describeCfsServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsServiceStatusResponse> {
-        let input = DescribeCfsServiceStatusRequest()
-        return self.client.execute(action: "DescribeCfsServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCfsServiceStatus(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询CFS服务状态
@@ -65,7 +64,6 @@ extension Cfs {
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
     @inlinable
     public func describeCfsServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsServiceStatusResponse {
-        let input = DescribeCfsServiceStatusRequest()
-        return try await self.client.execute(action: "DescribeCfsServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCfsServiceStatus(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

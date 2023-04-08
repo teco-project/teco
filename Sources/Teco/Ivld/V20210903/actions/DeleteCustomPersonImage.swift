@@ -73,8 +73,7 @@ extension Ivld {
     /// 删除自定义人脸数据
     @inlinable
     public func deleteCustomPersonImage(personId: String, imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
-        let input = DeleteCustomPersonImageRequest(personId: personId, imageId: imageId)
-        return self.client.execute(action: "DeleteCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCustomPersonImage(.init(personId: personId, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人脸
@@ -82,7 +81,6 @@ extension Ivld {
     /// 删除自定义人脸数据
     @inlinable
     public func deleteCustomPersonImage(personId: String, imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
-        let input = DeleteCustomPersonImageRequest(personId: personId, imageId: imageId)
-        return try await self.client.execute(action: "DeleteCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCustomPersonImage(.init(personId: personId, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

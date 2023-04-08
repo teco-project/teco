@@ -54,14 +54,12 @@ extension Iot {
     /// 启用规则
     @inlinable @discardableResult
     public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
-        let input = ActivateRuleRequest(ruleId: ruleId)
-        return self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.activateRule(.init(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用规则
     @inlinable @discardableResult
     public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
-        let input = ActivateRuleRequest(ruleId: ruleId)
-        return try await self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.activateRule(.init(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

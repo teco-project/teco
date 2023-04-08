@@ -104,14 +104,12 @@ extension Tsf {
     /// 创建API分组
     @inlinable
     public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiGroupResponse> {
-        let input = CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition)
-        return self.client.execute(action: "CreateApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createApiGroup(.init(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建API分组
     @inlinable
     public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
-        let input = CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition)
-        return try await self.client.execute(action: "CreateApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createApiGroup(.init(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), region: region, logger: logger, on: eventLoop)
     }
 }

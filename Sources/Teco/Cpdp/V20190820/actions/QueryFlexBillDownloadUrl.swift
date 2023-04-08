@@ -86,14 +86,12 @@ extension Cpdp {
     /// 灵云V2-查询对账单文件下载链接
     @inlinable
     public func queryFlexBillDownloadUrl(billDate: String, billType: String, serviceProviderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexBillDownloadUrlResponse> {
-        let input = QueryFlexBillDownloadUrlRequest(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment)
-        return self.client.execute(action: "QueryFlexBillDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexBillDownloadUrl(.init(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询对账单文件下载链接
     @inlinable
     public func queryFlexBillDownloadUrl(billDate: String, billType: String, serviceProviderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexBillDownloadUrlResponse {
-        let input = QueryFlexBillDownloadUrlRequest(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment)
-        return try await self.client.execute(action: "QueryFlexBillDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexBillDownloadUrl(.init(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -118,8 +118,7 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func imageTranslate(sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageTranslateResponse> {
-        let input = ImageTranslateRequest(sessionUuid: sessionUuid, scene: scene, data: data, source: source, target: target, projectId: projectId)
-        return self.client.execute(action: "ImageTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.imageTranslate(.init(sessionUuid: sessionUuid, scene: scene, data: data, source: source, target: target, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片翻译
@@ -128,7 +127,6 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func imageTranslate(sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageTranslateResponse {
-        let input = ImageTranslateRequest(sessionUuid: sessionUuid, scene: scene, data: data, source: source, target: target, projectId: projectId)
-        return try await self.client.execute(action: "ImageTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.imageTranslate(.init(sessionUuid: sessionUuid, scene: scene, data: data, source: source, target: target, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Vpc {
     /// 本接口（ModifyVpcEndPointServiceAttribute）用于修改终端节点服务属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceAttribute(endPointServiceId: String, vpcId: String, endPointServiceName: String? = nil, autoAcceptFlag: Bool? = nil, serviceInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceAttributeResponse> {
-        let input = ModifyVpcEndPointServiceAttributeRequest(endPointServiceId: endPointServiceId, vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId)
-        return self.client.execute(action: "ModifyVpcEndPointServiceAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpcEndPointServiceAttribute(.init(endPointServiceId: endPointServiceId, vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改终端节点服务属性
@@ -89,7 +88,6 @@ extension Vpc {
     /// 本接口（ModifyVpcEndPointServiceAttribute）用于修改终端节点服务属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceAttribute(endPointServiceId: String, vpcId: String, endPointServiceName: String? = nil, autoAcceptFlag: Bool? = nil, serviceInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointServiceAttributeResponse {
-        let input = ModifyVpcEndPointServiceAttributeRequest(endPointServiceId: endPointServiceId, vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId)
-        return try await self.client.execute(action: "ModifyVpcEndPointServiceAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpcEndPointServiceAttribute(.init(endPointServiceId: endPointServiceId, vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

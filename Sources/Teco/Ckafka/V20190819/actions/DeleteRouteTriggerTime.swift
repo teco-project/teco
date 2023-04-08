@@ -60,8 +60,7 @@ extension Ckafka {
     /// 修改删除路由延迟触发时间
     @inlinable @discardableResult
     public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
-        let input = DeleteRouteTriggerTimeRequest(delayTime: delayTime)
-        return self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRouteTriggerTime(.init(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路由触发时间
@@ -69,7 +68,6 @@ extension Ckafka {
     /// 修改删除路由延迟触发时间
     @inlinable @discardableResult
     public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
-        let input = DeleteRouteTriggerTimeRequest(delayTime: delayTime)
-        return try await self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRouteTriggerTime(.init(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }
 }

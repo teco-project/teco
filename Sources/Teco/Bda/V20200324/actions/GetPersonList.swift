@@ -102,8 +102,7 @@ extension Bda {
     /// 获取指定人体库中的人员列表。
     @inlinable
     public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListResponse> {
-        let input = GetPersonListRequest(groupId: groupId, offset: offset, limit: limit)
-        return self.client.execute(action: "GetPersonList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getPersonList(.init(groupId: groupId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表
@@ -111,8 +110,7 @@ extension Bda {
     /// 获取指定人体库中的人员列表。
     @inlinable
     public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
-        let input = GetPersonListRequest(groupId: groupId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetPersonList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getPersonList(.init(groupId: groupId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表

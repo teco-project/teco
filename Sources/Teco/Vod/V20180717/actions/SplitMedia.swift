@@ -89,8 +89,7 @@ extension Vod {
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
     public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
-        let input = SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority)
-        return self.client.execute(action: "SplitMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.splitMedia(.init(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频拆条
@@ -98,7 +97,6 @@ extension Vod {
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
     public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
-        let input = SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority)
-        return try await self.client.execute(action: "SplitMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.splitMedia(.init(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), region: region, logger: logger, on: eventLoop)
     }
 }

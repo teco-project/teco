@@ -92,15 +92,13 @@ extension Tke {
     /// 获取TMP实例关联集群列表
     @inlinable
     public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusClusterAgentsResponse> {
-        let input = DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePrometheusClusterAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusClusterAgents(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TMP实例关联集群列表
     @inlinable
     public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusClusterAgentsResponse {
-        let input = DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePrometheusClusterAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusClusterAgents(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TMP实例关联集群列表

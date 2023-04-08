@@ -58,14 +58,12 @@ extension Tsf {
     /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigByGroupIdResponse> {
-        let input = DescribeDeliveryConfigByGroupIdRequest(groupId: groupId)
-        return self.client.execute(action: "DescribeDeliveryConfigByGroupId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeliveryConfigByGroupId(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {
-        let input = DescribeDeliveryConfigByGroupIdRequest(groupId: groupId)
-        return try await self.client.execute(action: "DescribeDeliveryConfigByGroupId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeliveryConfigByGroupId(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

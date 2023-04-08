@@ -108,8 +108,7 @@ extension Sqlserver {
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
     public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
-        let input = DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType)
-        return self.client.execute(action: "DescribeDBs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
@@ -117,8 +116,7 @@ extension Sqlserver {
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
     public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
-        let input = DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeDBs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表

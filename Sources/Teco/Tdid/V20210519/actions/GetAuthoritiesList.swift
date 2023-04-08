@@ -92,15 +92,13 @@ extension Tdid {
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
-        let input = GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status)
-        return self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAuthoritiesList(.init(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        let input = GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status)
-        return try await self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAuthoritiesList(.init(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 权威机构列表

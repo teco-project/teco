@@ -84,14 +84,12 @@ extension Cpdp {
     /// 智慧零售-发票红冲V2
     @inlinable
     public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
-        let input = CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel)
-        return self.client.execute(action: "CreateRedInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRedInvoiceV2(.init(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票红冲V2
     @inlinable
     public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
-        let input = CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel)
-        return try await self.client.execute(action: "CreateRedInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRedInvoiceV2(.init(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

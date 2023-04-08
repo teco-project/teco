@@ -86,8 +86,7 @@ extension Tcss {
     /// DescribeProVersionInfo  查询专业版需购买信息
     @inlinable
     public func describeProVersionInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
-        let input = DescribeProVersionInfoRequest()
-        return self.client.execute(action: "DescribeProVersionInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProVersionInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专业版需购买信息
@@ -95,7 +94,6 @@ extension Tcss {
     /// DescribeProVersionInfo  查询专业版需购买信息
     @inlinable
     public func describeProVersionInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
-        let input = DescribeProVersionInfoRequest()
-        return try await self.client.execute(action: "DescribeProVersionInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProVersionInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

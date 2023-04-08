@@ -69,8 +69,7 @@ extension Rum {
     /// 转发monitor查询
     @inlinable
     public func describeData(query: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
-        let input = DescribeDataRequest(query: query, id: id)
-        return self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeData(.init(query: query, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取QueryData
@@ -78,7 +77,6 @@ extension Rum {
     /// 转发monitor查询
     @inlinable
     public func describeData(query: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
-        let input = DescribeDataRequest(query: query, id: id)
-        return try await self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeData(.init(query: query, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

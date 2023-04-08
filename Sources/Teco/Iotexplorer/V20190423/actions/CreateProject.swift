@@ -74,8 +74,7 @@ extension Iotexplorer {
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
     public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        let input = CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId)
-        return self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProject(.init(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建项目
@@ -83,7 +82,6 @@ extension Iotexplorer {
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
     public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        let input = CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId)
-        return try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProject(.init(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

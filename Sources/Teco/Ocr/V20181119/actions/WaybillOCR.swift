@@ -97,8 +97,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(imageBase64: String? = nil, imageUrl: String? = nil, enablePreDetect: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WaybillOCRResponse> {
-        let input = WaybillOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enablePreDetect: enablePreDetect, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return self.client.execute(action: "WaybillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.waybillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enablePreDetect: enablePreDetect, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运单识别
@@ -108,7 +107,6 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(imageBase64: String? = nil, imageUrl: String? = nil, enablePreDetect: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WaybillOCRResponse {
-        let input = WaybillOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enablePreDetect: enablePreDetect, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return try await self.client.execute(action: "WaybillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.waybillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enablePreDetect: enablePreDetect, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

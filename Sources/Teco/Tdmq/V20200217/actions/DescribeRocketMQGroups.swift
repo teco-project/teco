@@ -127,15 +127,13 @@ extension Tdmq {
     /// 获取RocketMQ消费组列表
     @inlinable
     public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, types: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
-        let input = DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types)
-        return self.client.execute(action: "DescribeRocketMQGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRocketMQGroups(.init(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ消费组列表
     @inlinable
     public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, types: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
-        let input = DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types)
-        return try await self.client.execute(action: "DescribeRocketMQGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRocketMQGroups(.init(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ消费组列表

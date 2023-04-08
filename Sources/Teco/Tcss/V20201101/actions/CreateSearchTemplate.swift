@@ -54,14 +54,12 @@ extension Tcss {
     /// 添加检索模板
     @inlinable @discardableResult
     public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
-        let input = CreateSearchTemplateRequest(searchTemplate: searchTemplate)
-        return self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSearchTemplate(.init(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加检索模板
     @inlinable @discardableResult
     public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
-        let input = CreateSearchTemplateRequest(searchTemplate: searchTemplate)
-        return try await self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSearchTemplate(.init(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }
 }

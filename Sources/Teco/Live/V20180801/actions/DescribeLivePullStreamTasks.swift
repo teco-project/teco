@@ -120,8 +120,7 @@ extension Live {
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
     public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePullStreamTasksResponse> {
-        let input = DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize)
-        return self.client.execute(action: "DescribeLivePullStreamTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLivePullStreamTasks(.init(taskId: taskId, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播拉流任务
@@ -130,8 +129,7 @@ extension Live {
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
     public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
-        let input = DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeLivePullStreamTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLivePullStreamTasks(.init(taskId: taskId, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播拉流任务

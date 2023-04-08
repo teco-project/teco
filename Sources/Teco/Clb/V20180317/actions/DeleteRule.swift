@@ -88,8 +88,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteRule(loadBalancerId: String, listenerId: String, locationIds: [String]? = nil, domain: String? = nil, url: String? = nil, newDefaultServerDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
-        let input = DeleteRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain)
-        return self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRule(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡七层监听器的转发规则
@@ -98,7 +97,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteRule(loadBalancerId: String, listenerId: String, locationIds: [String]? = nil, domain: String? = nil, url: String? = nil, newDefaultServerDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        let input = DeleteRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain)
-        return try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRule(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain), region: region, logger: logger, on: eventLoop)
     }
 }

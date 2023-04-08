@@ -65,8 +65,7 @@ extension Iotvideo {
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
     public func describeIotModels(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelsResponse> {
-        let input = DescribeIotModelsRequest(productId: productId)
-        return self.client.execute(action: "DescribeIotModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIotModels(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型历史版本列表
@@ -74,7 +73,6 @@ extension Iotvideo {
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
     public func describeIotModels(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
-        let input = DescribeIotModelsRequest(productId: productId)
-        return try await self.client.execute(action: "DescribeIotModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIotModels(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

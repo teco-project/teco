@@ -66,14 +66,12 @@ extension Tcss {
     /// 查询k8sapi异常事件统计
     @inlinable
     public func describeK8sApiAbnormalSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalSummaryResponse> {
-        let input = DescribeK8sApiAbnormalSummaryRequest()
-        return self.client.execute(action: "DescribeK8sApiAbnormalSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeK8sApiAbnormalSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常事件统计
     @inlinable
     public func describeK8sApiAbnormalSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalSummaryResponse {
-        let input = DescribeK8sApiAbnormalSummaryRequest()
-        return try await self.client.execute(action: "DescribeK8sApiAbnormalSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeK8sApiAbnormalSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

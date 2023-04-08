@@ -118,8 +118,7 @@ extension Tcss {
     /// 容器安全搜索查询主机列表
     @inlinable
     public func describeAssetHostList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostListResponse> {
-        let input = DescribeAssetHostListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeAssetHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetHostList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主机列表
@@ -127,8 +126,7 @@ extension Tcss {
     /// 容器安全搜索查询主机列表
     @inlinable
     public func describeAssetHostList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostListResponse {
-        let input = DescribeAssetHostListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeAssetHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetHostList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主机列表

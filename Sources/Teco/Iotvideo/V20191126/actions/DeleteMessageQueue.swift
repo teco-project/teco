@@ -60,8 +60,7 @@ extension Iotvideo {
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable @discardableResult
     public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
-        let input = DeleteMessageQueueRequest(productId: productId)
-        return self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMessageQueue(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除产品转发消息配置
@@ -69,7 +68,6 @@ extension Iotvideo {
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable @discardableResult
     public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
-        let input = DeleteMessageQueueRequest(productId: productId)
-        return try await self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMessageQueue(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
     @inlinable
     public func describeBinlogDownloadUrl(clusterId: String, binlogId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogDownloadUrlResponse> {
-        let input = DescribeBinlogDownloadUrlRequest(clusterId: clusterId, binlogId: binlogId)
-        return self.client.execute(action: "DescribeBinlogDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBinlogDownloadUrl(.init(clusterId: clusterId, binlogId: binlogId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Binlog下载地址
@@ -78,7 +77,6 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
     @inlinable
     public func describeBinlogDownloadUrl(clusterId: String, binlogId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogDownloadUrlResponse {
-        let input = DescribeBinlogDownloadUrlRequest(clusterId: clusterId, binlogId: binlogId)
-        return try await self.client.execute(action: "DescribeBinlogDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBinlogDownloadUrl(.init(clusterId: clusterId, binlogId: binlogId), region: region, logger: logger, on: eventLoop)
     }
 }

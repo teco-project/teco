@@ -122,8 +122,7 @@ extension Cdb {
     /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
     public func describeErrorLogData(instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorLogDataResponse> {
-        let input = DescribeErrorLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType)
-        return self.client.execute(action: "DescribeErrorLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeErrorLogData(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例错误日志详情
@@ -132,8 +131,7 @@ extension Cdb {
     /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
     public func describeErrorLogData(instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorLogDataResponse {
-        let input = DescribeErrorLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType)
-        return try await self.client.execute(action: "DescribeErrorLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeErrorLogData(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例错误日志详情

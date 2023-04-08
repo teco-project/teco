@@ -74,8 +74,7 @@ extension Ft {
     /// 查询人像渐变处理进度
     @inlinable
     public func queryFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
-        let input = QueryFaceMorphJobRequest(jobId: jobId)
-        return self.client.execute(action: "QueryFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFaceMorphJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询人像渐变任务
@@ -83,7 +82,6 @@ extension Ft {
     /// 查询人像渐变处理进度
     @inlinable
     public func queryFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
-        let input = QueryFaceMorphJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "QueryFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFaceMorphJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

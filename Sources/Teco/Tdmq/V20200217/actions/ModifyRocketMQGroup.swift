@@ -84,14 +84,12 @@ extension Tdmq {
     /// 更新RocketMQ消费组信息
     @inlinable @discardableResult
     public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
-        let input = ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes)
-        return self.client.execute(action: "ModifyRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRocketMQGroup(.init(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ消费组信息
     @inlinable @discardableResult
     public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
-        let input = ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes)
-        return try await self.client.execute(action: "ModifyRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRocketMQGroup(.init(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 }

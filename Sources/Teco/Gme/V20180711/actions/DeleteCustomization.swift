@@ -69,8 +69,7 @@ extension Gme {
     /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
-        let input = DeleteCustomizationRequest(modelId: modelId, bizId: bizId)
-        return self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCustomization(.init(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除语音消息转文本热句模型
@@ -78,7 +77,6 @@ extension Gme {
     /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
-        let input = DeleteCustomizationRequest(modelId: modelId, bizId: bizId)
-        return try await self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCustomization(.init(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

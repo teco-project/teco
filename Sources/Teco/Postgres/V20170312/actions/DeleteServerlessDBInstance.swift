@@ -65,8 +65,7 @@ extension Postgres {
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable @discardableResult
     public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
-        let input = DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId)
-        return self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteServerlessDBInstance(.init(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除ServerlessDB实例
@@ -74,7 +73,6 @@ extension Postgres {
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable @discardableResult
     public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
-        let input = DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId)
-        return try await self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteServerlessDBInstance(.init(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

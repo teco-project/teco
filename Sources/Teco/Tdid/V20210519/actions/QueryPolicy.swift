@@ -70,14 +70,12 @@ extension Tdid {
     /// 披露策略Policy查看
     @inlinable
     public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
-        let input = QueryPolicyRequest(policyIndex: policyIndex)
-        return self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryPolicy(.init(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy查看
     @inlinable
     public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
-        let input = QueryPolicyRequest(policyIndex: policyIndex)
-        return try await self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryPolicy(.init(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
     }
 }

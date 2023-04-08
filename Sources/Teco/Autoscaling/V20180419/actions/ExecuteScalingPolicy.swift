@@ -83,8 +83,7 @@ extension As {
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
     @inlinable
     public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteScalingPolicyResponse> {
-        let input = ExecuteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource)
-        return self.client.execute(action: "ExecuteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.executeScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 触发伸缩策略
@@ -95,7 +94,6 @@ extension As {
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
     @inlinable
     public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
-        let input = ExecuteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource)
-        return try await self.client.execute(action: "ExecuteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.executeScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), region: region, logger: logger, on: eventLoop)
     }
 }

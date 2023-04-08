@@ -148,8 +148,7 @@ extension Wedata {
     /// 创建数据源
     @inlinable
     public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
-        let input = CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion)
-        return self.client.execute(action: "CreateDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDataSource(.init(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-创建数据源【Beta版本】
@@ -158,7 +157,6 @@ extension Wedata {
     /// 创建数据源
     @inlinable
     public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
-        let input = CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion)
-        return try await self.client.execute(action: "CreateDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDataSource(.init(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
     }
 }

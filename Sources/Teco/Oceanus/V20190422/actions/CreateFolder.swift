@@ -79,8 +79,7 @@ extension Oceanus {
     /// 作业列表页面新建文件夹请求
     @inlinable
     public func createFolder(folderName: String, parentId: String, folderType: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
-        let input = CreateFolderRequest(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId)
-        return self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFolder(.init(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件夹
@@ -88,7 +87,6 @@ extension Oceanus {
     /// 作业列表页面新建文件夹请求
     @inlinable
     public func createFolder(folderName: String, parentId: String, folderType: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        let input = CreateFolderRequest(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFolder(.init(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

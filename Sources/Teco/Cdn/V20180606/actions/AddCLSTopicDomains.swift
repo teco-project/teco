@@ -75,8 +75,7 @@ extension Cdn {
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable @discardableResult
     public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
-        let input = AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel)
-        return self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addCLSTopicDomains(.init(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增日志主题下绑定的域名
@@ -84,7 +83,6 @@ extension Cdn {
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable @discardableResult
     public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
-        let input = AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel)
-        return try await self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addCLSTopicDomains(.init(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

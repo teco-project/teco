@@ -97,8 +97,7 @@ extension Essbasic {
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
     public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
-        let input = ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`)
-        return self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 电子签渠道版-根据签署流程id创建批量撤销url
@@ -111,7 +110,6 @@ extension Essbasic {
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
     public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
-        let input = ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`)
-        return try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -119,15 +119,13 @@ extension Tsf {
     /// 获取微服务列表
     @inlinable
     public func describeMicroservices(namespaceId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, status: [String]? = nil, microserviceIdList: [String]? = nil, microserviceNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMicroservicesResponse> {
-        let input = DescribeMicroservicesRequest(namespaceId: namespaceId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, status: status, microserviceIdList: microserviceIdList, microserviceNameList: microserviceNameList)
-        return self.client.execute(action: "DescribeMicroservices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMicroservices(.init(namespaceId: namespaceId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, status: status, microserviceIdList: microserviceIdList, microserviceNameList: microserviceNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取微服务列表
     @inlinable
     public func describeMicroservices(namespaceId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, status: [String]? = nil, microserviceIdList: [String]? = nil, microserviceNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroservicesResponse {
-        let input = DescribeMicroservicesRequest(namespaceId: namespaceId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, status: status, microserviceIdList: microserviceIdList, microserviceNameList: microserviceNameList)
-        return try await self.client.execute(action: "DescribeMicroservices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMicroservices(.init(namespaceId: namespaceId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, status: status, microserviceIdList: microserviceIdList, microserviceNameList: microserviceNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取微服务列表

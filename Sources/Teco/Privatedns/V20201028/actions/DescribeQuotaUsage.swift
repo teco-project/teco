@@ -50,14 +50,12 @@ extension Privatedns {
     /// 查询额度使用情况
     @inlinable
     public func describeQuotaUsage(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaUsageResponse> {
-        let input = DescribeQuotaUsageRequest()
-        return self.client.execute(action: "DescribeQuotaUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeQuotaUsage(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询额度使用情况
     @inlinable
     public func describeQuotaUsage(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaUsageResponse {
-        let input = DescribeQuotaUsageRequest()
-        return try await self.client.execute(action: "DescribeQuotaUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeQuotaUsage(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

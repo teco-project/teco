@@ -64,8 +64,7 @@ extension Cdb {
     /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
     @inlinable
     public func closeWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseWanServiceResponse> {
-        let input = CloseWanServiceRequest(instanceId: instanceId)
-        return self.client.execute(action: "CloseWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeWanService(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭实例外网访问
@@ -73,7 +72,6 @@ extension Cdb {
     /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
     @inlinable
     public func closeWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseWanServiceResponse {
-        let input = CloseWanServiceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CloseWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeWanService(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

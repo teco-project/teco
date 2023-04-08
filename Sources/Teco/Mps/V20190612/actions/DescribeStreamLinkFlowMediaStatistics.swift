@@ -96,8 +96,7 @@ extension Mps {
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
     public func describeStreamLinkFlowMediaStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowMediaStatisticsResponse> {
-        let input = DescribeStreamLinkFlowMediaStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStreamLinkFlowMediaStatistics(.init(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体质量数据
@@ -105,7 +104,6 @@ extension Mps {
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
     public func describeStreamLinkFlowMediaStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowMediaStatisticsResponse {
-        let input = DescribeStreamLinkFlowMediaStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStreamLinkFlowMediaStatistics(.init(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

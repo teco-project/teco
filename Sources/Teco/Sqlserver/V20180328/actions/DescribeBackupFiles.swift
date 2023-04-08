@@ -113,8 +113,7 @@ extension Sqlserver {
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
     public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
-        let input = DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy)
-        return self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupFiles(.init(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表
@@ -122,8 +121,7 @@ extension Sqlserver {
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
     public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
-        let input = DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy)
-        return try await self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupFiles(.init(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表

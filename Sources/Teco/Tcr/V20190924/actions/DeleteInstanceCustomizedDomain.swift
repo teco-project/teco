@@ -64,14 +64,12 @@ extension Tcr {
     /// 删除自定义域名
     @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceCustomizedDomainResponse> {
-        let input = DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId)
-        return self.client.execute(action: "DeleteInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteInstanceCustomizedDomain(.init(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义域名
     @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
-        let input = DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId)
-        return try await self.client.execute(action: "DeleteInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteInstanceCustomizedDomain(.init(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -151,8 +151,7 @@ extension Cme {
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
     public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
-        let input = HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`)
-        return self.client.execute(action: "HandleStreamConnectProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.handleStreamConnectProject(.init(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 操作云转推项目
@@ -175,7 +174,6 @@ extension Cme {
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
     public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
-        let input = HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`)
-        return try await self.client.execute(action: "HandleStreamConnectProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.handleStreamConnectProject(.init(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

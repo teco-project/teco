@@ -75,8 +75,7 @@ extension Chdfs {
     /// 查看挂载点列表。
     @inlinable
     public func describeMountPoints(fileSystemId: String? = nil, accessGroupId: String? = nil, ownerUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountPointsResponse> {
-        let input = DescribeMountPointsRequest(fileSystemId: fileSystemId, accessGroupId: accessGroupId, ownerUin: ownerUin)
-        return self.client.execute(action: "DescribeMountPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMountPoints(.init(fileSystemId: fileSystemId, accessGroupId: accessGroupId, ownerUin: ownerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看挂载点列表
@@ -84,7 +83,6 @@ extension Chdfs {
     /// 查看挂载点列表。
     @inlinable
     public func describeMountPoints(fileSystemId: String? = nil, accessGroupId: String? = nil, ownerUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
-        let input = DescribeMountPointsRequest(fileSystemId: fileSystemId, accessGroupId: accessGroupId, ownerUin: ownerUin)
-        return try await self.client.execute(action: "DescribeMountPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMountPoints(.init(fileSystemId: fileSystemId, accessGroupId: accessGroupId, ownerUin: ownerUin), region: region, logger: logger, on: eventLoop)
     }
 }

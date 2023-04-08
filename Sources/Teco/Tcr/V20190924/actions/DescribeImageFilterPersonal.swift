@@ -69,8 +69,7 @@ extension Tcr {
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
     public func describeImageFilterPersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageFilterPersonalResponse> {
-        let input = DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag)
-        return self.client.execute(action: "DescribeImageFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageFilterPersonal(.init(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版中与指定tag镜像内容相同的tag列表
@@ -78,7 +77,6 @@ extension Tcr {
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
     public func describeImageFilterPersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
-        let input = DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag)
-        return try await self.client.execute(action: "DescribeImageFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageFilterPersonal(.init(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Iotvideo {
     /// 修改数据转发
     @inlinable @discardableResult
     public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
-        let input = ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose)
-        return self.client.execute(action: "ModifyDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDataForward(.init(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据转发
     @inlinable @discardableResult
     public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
-        let input = ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose)
-        return try await self.client.execute(action: "ModifyDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDataForward(.init(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 }

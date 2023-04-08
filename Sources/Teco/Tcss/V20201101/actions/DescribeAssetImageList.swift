@@ -112,8 +112,7 @@ extension Tcss {
     /// 容器安全搜索查询镜像列表
     @inlinable
     public func describeAssetImageList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageListResponse> {
-        let input = DescribeAssetImageListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeAssetImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像列表
@@ -121,8 +120,7 @@ extension Tcss {
     /// 容器安全搜索查询镜像列表
     @inlinable
     public func describeAssetImageList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageListResponse {
-        let input = DescribeAssetImageListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeAssetImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像列表

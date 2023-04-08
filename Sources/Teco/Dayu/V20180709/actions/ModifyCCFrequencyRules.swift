@@ -103,14 +103,12 @@ extension Dayu {
     /// 修改CC防护的访问频率控制规则
     @inlinable
     public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesResponse> {
-        let input = ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie)
-        return self.client.execute(action: "ModifyCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCCFrequencyRules(.init(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC防护的访问频率控制规则
     @inlinable
     public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
-        let input = ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie)
-        return try await self.client.execute(action: "ModifyCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCCFrequencyRules(.init(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 }

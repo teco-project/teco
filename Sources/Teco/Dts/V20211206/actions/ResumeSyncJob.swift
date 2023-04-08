@@ -60,8 +60,7 @@ extension Dts {
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable @discardableResult
     public func resumeSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSyncJobResponse> {
-        let input = ResumeSyncJobRequest(jobId: jobId)
-        return self.client.execute(action: "ResumeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resumeSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试同步任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable @discardableResult
     public func resumeSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
-        let input = ResumeSyncJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "ResumeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resumeSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

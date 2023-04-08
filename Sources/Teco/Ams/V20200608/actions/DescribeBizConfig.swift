@@ -80,14 +80,12 @@ extension Ams {
     /// 查看单个配置
     @inlinable
     public func describeBizConfig(bizType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizConfigResponse> {
-        let input = DescribeBizConfigRequest(bizType: bizType)
-        return self.client.execute(action: "DescribeBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBizConfig(.init(bizType: bizType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看单个配置
     @inlinable
     public func describeBizConfig(bizType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
-        let input = DescribeBizConfigRequest(bizType: bizType)
-        return try await self.client.execute(action: "DescribeBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBizConfig(.init(bizType: bizType), region: region, logger: logger, on: eventLoop)
     }
 }

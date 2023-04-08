@@ -88,15 +88,13 @@ extension Tcr {
     /// 查询个人收藏仓库
     @inlinable
     public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
-        let input = DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeFavorRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFavorRepositoryPersonal(.init(repoName: repoName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人收藏仓库
     @inlinable
     public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
-        let input = DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeFavorRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFavorRepositoryPersonal(.init(repoName: repoName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人收藏仓库

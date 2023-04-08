@@ -82,14 +82,12 @@ extension Tdid {
     /// 获取权威机构信息
     @inlinable
     public func getAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthorityIssuerResponse> {
-        let input = GetAuthorityIssuerRequest(did: did)
-        return self.client.execute(action: "GetAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取权威机构信息
     @inlinable
     public func getAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthorityIssuerResponse {
-        let input = GetAuthorityIssuerRequest(did: did)
-        return try await self.client.execute(action: "GetAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
     }
 }

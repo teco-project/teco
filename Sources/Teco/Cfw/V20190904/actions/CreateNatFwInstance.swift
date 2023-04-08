@@ -98,14 +98,12 @@ extension Cfw {
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
     public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
-        let input = CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo)
-        return self.client.execute(action: "CreateNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNatFwInstance(.init(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
     public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
-        let input = CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo)
-        return try await self.client.execute(action: "CreateNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNatFwInstance(.init(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 }

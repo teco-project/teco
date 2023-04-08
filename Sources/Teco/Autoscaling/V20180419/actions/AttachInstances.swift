@@ -75,8 +75,7 @@ extension As {
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
     public func attachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        let input = AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
-        return self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachInstances(.init(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加 CVM 实例到伸缩组
@@ -86,7 +85,6 @@ extension As {
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
     public func attachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        let input = AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachInstances(.init(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

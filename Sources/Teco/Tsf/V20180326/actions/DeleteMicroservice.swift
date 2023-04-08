@@ -60,14 +60,12 @@ extension Tsf {
     /// 删除微服务
     @inlinable
     public func deleteMicroservice(microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
-        let input = DeleteMicroserviceRequest(microserviceId: microserviceId)
-        return self.client.execute(action: "DeleteMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMicroservice(.init(microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除微服务
     @inlinable
     public func deleteMicroservice(microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
-        let input = DeleteMicroserviceRequest(microserviceId: microserviceId)
-        return try await self.client.execute(action: "DeleteMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMicroservice(.init(microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 }

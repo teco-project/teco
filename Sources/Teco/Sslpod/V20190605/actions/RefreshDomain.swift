@@ -60,8 +60,7 @@ extension Sslpod {
     /// 强制重新检测域名
     @inlinable @discardableResult
     public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
-        let input = RefreshDomainRequest(domainId: domainId)
-        return self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.refreshDomain(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新检测域名
@@ -69,7 +68,6 @@ extension Sslpod {
     /// 强制重新检测域名
     @inlinable @discardableResult
     public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
-        let input = RefreshDomainRequest(domainId: domainId)
-        return try await self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.refreshDomain(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

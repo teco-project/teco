@@ -75,8 +75,7 @@ extension Tic {
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable @discardableResult
     public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
-        let input = UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description)
-        return self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateStackVersion(.init(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新资源栈版本的内容
@@ -84,7 +83,6 @@ extension Tic {
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable @discardableResult
     public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
-        let input = UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description)
-        return try await self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateStackVersion(.init(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

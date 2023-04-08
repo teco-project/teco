@@ -64,14 +64,12 @@ extension Tke {
     /// 删除虚拟节点
     @inlinable @discardableResult
     public func deleteClusterVirtualNode(clusterId: String, nodeNames: [String], force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterVirtualNodeResponse> {
-        let input = DeleteClusterVirtualNodeRequest(clusterId: clusterId, nodeNames: nodeNames, force: force)
-        return self.client.execute(action: "DeleteClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterVirtualNode(.init(clusterId: clusterId, nodeNames: nodeNames, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除虚拟节点
     @inlinable @discardableResult
     public func deleteClusterVirtualNode(clusterId: String, nodeNames: [String], force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterVirtualNodeResponse {
-        let input = DeleteClusterVirtualNodeRequest(clusterId: clusterId, nodeNames: nodeNames, force: force)
-        return try await self.client.execute(action: "DeleteClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterVirtualNode(.init(clusterId: clusterId, nodeNames: nodeNames, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

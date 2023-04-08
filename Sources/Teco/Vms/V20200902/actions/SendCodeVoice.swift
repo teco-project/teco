@@ -85,8 +85,7 @@ extension Vms {
     /// 给用户发语音验证码（仅支持数字）。
     @inlinable
     public func sendCodeVoice(codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCodeVoiceResponse> {
-        let input = SendCodeVoiceRequest(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext)
-        return self.client.execute(action: "SendCodeVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendCodeVoice(.init(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送语音验证码
@@ -94,7 +93,6 @@ extension Vms {
     /// 给用户发语音验证码（仅支持数字）。
     @inlinable
     public func sendCodeVoice(codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCodeVoiceResponse {
-        let input = SendCodeVoiceRequest(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext)
-        return try await self.client.execute(action: "SendCodeVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendCodeVoice(.init(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 }

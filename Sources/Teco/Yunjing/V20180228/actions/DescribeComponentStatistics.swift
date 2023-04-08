@@ -99,8 +99,7 @@ extension Yunjing {
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
     public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentStatisticsResponse> {
-        let input = DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeComponentStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeComponentStatistics(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件统计列表
@@ -108,8 +107,7 @@ extension Yunjing {
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
     public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
-        let input = DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeComponentStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeComponentStatistics(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件统计列表

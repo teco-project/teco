@@ -63,14 +63,12 @@ extension Gme {
     /// 新增自定义送检用户
     @inlinable
     public func createScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
-        let input = CreateScanUserRequest(bizId: bizId, userId: userId)
-        return self.client.execute(action: "CreateScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createScanUser(.init(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义送检用户
     @inlinable
     public func createScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
-        let input = CreateScanUserRequest(bizId: bizId, userId: userId)
-        return try await self.client.execute(action: "CreateScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createScanUser(.init(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

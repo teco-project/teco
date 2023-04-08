@@ -65,8 +65,7 @@ extension Clb {
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
     public func describeClassicalLBTargets(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
-        let input = DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId)
-        return self.client.execute(action: "DescribeClassicalLBTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClassicalLBTargets(.init(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡绑定的后端服务器列表
@@ -74,7 +73,6 @@ extension Clb {
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
     public func describeClassicalLBTargets(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
-        let input = DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId)
-        return try await self.client.execute(action: "DescribeClassicalLBTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClassicalLBTargets(.init(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 }

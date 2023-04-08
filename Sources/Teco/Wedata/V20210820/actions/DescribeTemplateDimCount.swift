@@ -64,14 +64,12 @@ extension Wedata {
     /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
-        let input = DescribeTemplateDimCountRequest(type: type, projectId: projectId)
-        return self.client.execute(action: "DescribeTemplateDimCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTemplateDimCount(.init(type: type, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
-        let input = DescribeTemplateDimCountRequest(type: type, projectId: projectId)
-        return try await self.client.execute(action: "DescribeTemplateDimCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTemplateDimCount(.init(type: type, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

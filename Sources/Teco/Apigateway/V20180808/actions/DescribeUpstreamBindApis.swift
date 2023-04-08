@@ -93,15 +93,13 @@ extension Apigateway {
     /// 查询后端通道所绑定的API列表
     @inlinable
     public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamBindApisResponse> {
-        let input = DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters)
-        return self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUpstreamBindApis(.init(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道所绑定的API列表
     @inlinable
     public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
-        let input = DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters)
-        return try await self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUpstreamBindApis(.init(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道所绑定的API列表

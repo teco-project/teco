@@ -65,8 +65,7 @@ extension Ecm {
     /// 禁用已启用的子网路由
     @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
-        let input = DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds)
-        return self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableRoutes(.init(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用子网路由
@@ -74,7 +73,6 @@ extension Ecm {
     /// 禁用已启用的子网路由
     @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
-        let input = DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds)
-        return try await self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableRoutes(.init(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

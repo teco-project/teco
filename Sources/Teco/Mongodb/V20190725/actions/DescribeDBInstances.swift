@@ -153,8 +153,7 @@ extension Mongodb {
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
     @inlinable
     public func describeDBInstances(instanceIds: [String]? = nil, instanceType: Int64? = nil, clusterType: Int64? = nil, status: [Int64]? = nil, vpcId: String? = nil, subnetId: String? = nil, payMode: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, projectIds: [UInt64]? = nil, searchKey: String? = nil, tags: TagInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
-        let input = DescribeDBInstancesRequest(instanceIds: instanceIds, instanceType: instanceType, clusterType: clusterType, status: status, vpcId: vpcId, subnetId: subnetId, payMode: payMode, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, projectIds: projectIds, searchKey: searchKey, tags: tags)
-        return self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstances(.init(instanceIds: instanceIds, instanceType: instanceType, clusterType: clusterType, status: status, vpcId: vpcId, subnetId: subnetId, payMode: payMode, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, projectIds: projectIds, searchKey: searchKey, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例列表
@@ -162,8 +161,7 @@ extension Mongodb {
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
     @inlinable
     public func describeDBInstances(instanceIds: [String]? = nil, instanceType: Int64? = nil, clusterType: Int64? = nil, status: [Int64]? = nil, vpcId: String? = nil, subnetId: String? = nil, payMode: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, projectIds: [UInt64]? = nil, searchKey: String? = nil, tags: TagInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        let input = DescribeDBInstancesRequest(instanceIds: instanceIds, instanceType: instanceType, clusterType: clusterType, status: status, vpcId: vpcId, subnetId: subnetId, payMode: payMode, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, projectIds: projectIds, searchKey: searchKey, tags: tags)
-        return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstances(.init(instanceIds: instanceIds, instanceType: instanceType, clusterType: clusterType, status: status, vpcId: vpcId, subnetId: subnetId, payMode: payMode, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, projectIds: projectIds, searchKey: searchKey, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例列表

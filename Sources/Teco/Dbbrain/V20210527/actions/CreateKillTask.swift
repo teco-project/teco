@@ -104,8 +104,7 @@ extension Dbbrain {
     /// 创建中断会话的任务。
     @inlinable
     public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKillTaskResponse> {
-        let input = CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product)
-        return self.client.execute(action: "CreateKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createKillTask(.init(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建中断会话的任务
@@ -113,7 +112,6 @@ extension Dbbrain {
     /// 创建中断会话的任务。
     @inlinable
     public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
-        let input = CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product)
-        return try await self.client.execute(action: "CreateKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createKillTask(.init(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

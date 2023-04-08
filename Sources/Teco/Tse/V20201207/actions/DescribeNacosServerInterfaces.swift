@@ -92,15 +92,13 @@ extension Tse {
     /// 查询nacos服务接口列表
     @inlinable
     public func describeNacosServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNacosServerInterfacesResponse> {
-        let input = DescribeNacosServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeNacosServerInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNacosServerInterfaces(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询nacos服务接口列表
     @inlinable
     public func describeNacosServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNacosServerInterfacesResponse {
-        let input = DescribeNacosServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeNacosServerInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNacosServerInterfaces(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询nacos服务接口列表

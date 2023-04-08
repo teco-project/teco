@@ -73,14 +73,12 @@ extension Cpdp {
     /// 直播平台-修改代理商完税信息
     @inlinable
     public func modifyAgentTaxPaymentInfo(batchNum: Int64, rawElectronicCertUrl: String, fileName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAgentTaxPaymentInfoResponse> {
-        let input = ModifyAgentTaxPaymentInfoRequest(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile)
-        return self.client.execute(action: "ModifyAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAgentTaxPaymentInfo(.init(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-修改代理商完税信息
     @inlinable
     public func modifyAgentTaxPaymentInfo(batchNum: Int64, rawElectronicCertUrl: String, fileName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAgentTaxPaymentInfoResponse {
-        let input = ModifyAgentTaxPaymentInfoRequest(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile)
-        return try await self.client.execute(action: "ModifyAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAgentTaxPaymentInfo(.init(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

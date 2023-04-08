@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
     public func restartDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
-        let input = RestartDBInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "RestartDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
     public func restartDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
-        let input = RestartDBInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "RestartDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

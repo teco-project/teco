@@ -58,14 +58,12 @@ extension Cwp {
     /// 检测基线
     @inlinable
     public func startBaselineDetect(param: BaselineDetectParam, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
-        let input = StartBaselineDetectRequest(param: param)
-        return self.client.execute(action: "StartBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startBaselineDetect(.init(param: param), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检测基线
     @inlinable
     public func startBaselineDetect(param: BaselineDetectParam, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
-        let input = StartBaselineDetectRequest(param: param)
-        return try await self.client.execute(action: "StartBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startBaselineDetect(.init(param: param), region: region, logger: logger, on: eventLoop)
     }
 }

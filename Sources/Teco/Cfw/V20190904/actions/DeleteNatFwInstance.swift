@@ -54,14 +54,12 @@ extension Cfw {
     /// 销毁防火墙实例
     @inlinable @discardableResult
     public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
-        let input = DeleteNatFwInstanceRequest(cfwInstance: cfwInstance)
-        return self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNatFwInstance(.init(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁防火墙实例
     @inlinable @discardableResult
     public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
-        let input = DeleteNatFwInstanceRequest(cfwInstance: cfwInstance)
-        return try await self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNatFwInstance(.init(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -84,8 +84,7 @@ extension Cfw {
     /// DescribeTLogIpList告警中心IP柱形图
     @inlinable
     public func describeTLogIpList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogIpListResponse> {
-        let input = DescribeTLogIpListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue)
-        return self.client.execute(action: "DescribeTLogIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTLogIpList(.init(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警中心IP柱形图
@@ -93,7 +92,6 @@ extension Cfw {
     /// DescribeTLogIpList告警中心IP柱形图
     @inlinable
     public func describeTLogIpList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogIpListResponse {
-        let input = DescribeTLogIpListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue)
-        return try await self.client.execute(action: "DescribeTLogIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTLogIpList(.init(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 }

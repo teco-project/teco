@@ -56,8 +56,7 @@ extension Cfs {
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
     public func describeAvailableZoneInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableZoneInfoResponse> {
-        let input = DescribeAvailableZoneInfoRequest()
-        return self.client.execute(action: "DescribeAvailableZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableZoneInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询区域可用情况
@@ -65,7 +64,6 @@ extension Cfs {
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
     public func describeAvailableZoneInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
-        let input = DescribeAvailableZoneInfoRequest()
-        return try await self.client.execute(action: "DescribeAvailableZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableZoneInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

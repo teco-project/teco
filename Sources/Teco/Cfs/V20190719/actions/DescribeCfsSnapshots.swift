@@ -122,8 +122,7 @@ extension Cfs {
     /// 查询文件系统快照列表
     @inlinable
     public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotsResponse> {
-        let input = DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order)
-        return self.client.execute(action: "DescribeCfsSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCfsSnapshots(.init(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
@@ -131,8 +130,7 @@ extension Cfs {
     /// 查询文件系统快照列表
     @inlinable
     public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
-        let input = DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order)
-        return try await self.client.execute(action: "DescribeCfsSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCfsSnapshots(.init(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表

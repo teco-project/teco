@@ -68,14 +68,12 @@ extension Tcss {
     /// 获取ES查询文档列表
     @inlinable
     public func describeESHits(query: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESHitsResponse> {
-        let input = DescribeESHitsRequest(query: query, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeESHits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeESHits(.init(query: query, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ES查询文档列表
     @inlinable
     public func describeESHits(query: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESHitsResponse {
-        let input = DescribeESHitsRequest(query: query, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeESHits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeESHits(.init(query: query, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

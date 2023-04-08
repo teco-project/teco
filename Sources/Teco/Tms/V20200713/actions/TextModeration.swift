@@ -128,8 +128,7 @@ extension Tms {
     /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别可能令人反感、不安全或不适宜的文本内容，同时支持用户配置词库黑白名单，打击自定义识别类型的图片。
     @inlinable
     public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
-        let input = TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device)
-        return self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textModeration(.init(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本内容安全
@@ -137,7 +136,6 @@ extension Tms {
     /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别可能令人反感、不安全或不适宜的文本内容，同时支持用户配置词库黑白名单，打击自定义识别类型的图片。
     @inlinable
     public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
-        let input = TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device)
-        return try await self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textModeration(.init(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
     }
 }

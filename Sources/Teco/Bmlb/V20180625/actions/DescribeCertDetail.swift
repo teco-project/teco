@@ -112,8 +112,7 @@ extension Bmlb {
     /// 获取黑石负载均衡证书详情。
     @inlinable
     public func describeCertDetail(certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
-        let input = DescribeCertDetailRequest(certId: certId)
-        return self.client.execute(action: "DescribeCertDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCertDetail(.init(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡证书详情
@@ -121,7 +120,6 @@ extension Bmlb {
     /// 获取黑石负载均衡证书详情。
     @inlinable
     public func describeCertDetail(certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
-        let input = DescribeCertDetailRequest(certId: certId)
-        return try await self.client.execute(action: "DescribeCertDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCertDetail(.init(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

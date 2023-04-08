@@ -80,8 +80,7 @@ extension Iot {
     /// 用户通过APP控制设备
     @inlinable @discardableResult
     public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppIssueDeviceControlResponse> {
-        let input = AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata)
-        return self.client.execute(action: "AppIssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appIssueDeviceControl(.init(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户控制设备
@@ -89,7 +88,6 @@ extension Iot {
     /// 用户通过APP控制设备
     @inlinable @discardableResult
     public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
-        let input = AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata)
-        return try await self.client.execute(action: "AppIssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appIssueDeviceControl(.init(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -93,8 +93,7 @@ extension Cpdp {
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
     public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
-        let input = QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo)
-        return self.client.execute(action: "QueryCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryCloudOrder(.init(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询订单
@@ -102,7 +101,6 @@ extension Cpdp {
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
     public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
-        let input = QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo)
-        return try await self.client.execute(action: "QueryCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryCloudOrder(.init(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), region: region, logger: logger, on: eventLoop)
     }
 }

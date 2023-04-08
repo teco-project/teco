@@ -102,15 +102,13 @@ extension Ccc {
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
     public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
-        let input = DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
-        return self.client.execute(action: "DescribeProtectedTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProtectedTelCdr(.init(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
     public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
-        let input = DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber)
-        return try await self.client.execute(action: "DescribeProtectedTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProtectedTelCdr(.init(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主被叫受保护的电话服务记录与录音

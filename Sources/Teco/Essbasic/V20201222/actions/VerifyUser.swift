@@ -81,8 +81,7 @@ extension Essbasic {
     /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func verifyUser(caller: Caller, userId: String, certificateRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyUserResponse> {
-        let input = VerifyUserRequest(caller: caller, userId: userId, certificateRequired: certificateRequired)
-        return self.client.execute(action: "VerifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyUser(.init(caller: caller, userId: userId, certificateRequired: certificateRequired), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人用户通过实名认证
@@ -92,7 +91,6 @@ extension Essbasic {
     /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func verifyUser(caller: Caller, userId: String, certificateRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyUserResponse {
-        let input = VerifyUserRequest(caller: caller, userId: userId, certificateRequired: certificateRequired)
-        return try await self.client.execute(action: "VerifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyUser(.init(caller: caller, userId: userId, certificateRequired: certificateRequired), region: region, logger: logger, on: eventLoop)
     }
 }

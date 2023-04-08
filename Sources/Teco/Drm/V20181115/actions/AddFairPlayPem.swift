@@ -98,8 +98,7 @@ extension Drm {
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
     public func addFairPlayPem(pem: String, ask: String, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFairPlayPemResponse> {
-        let input = AddFairPlayPemRequest(pem: pem, ask: ask, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority)
-        return self.client.execute(action: "AddFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addFairPlayPem(.init(pem: pem, ask: ask, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新设置fairplay方案所需私钥
@@ -108,7 +107,6 @@ extension Drm {
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
     public func addFairPlayPem(pem: String, ask: String, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFairPlayPemResponse {
-        let input = AddFairPlayPemRequest(pem: pem, ask: ask, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority)
-        return try await self.client.execute(action: "AddFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addFairPlayPem(.init(pem: pem, ask: ask, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

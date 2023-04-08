@@ -119,8 +119,7 @@ extension Teo {
     /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
     @inlinable
     public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackDataResponse> {
-        let input = DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area)
-        return self.client.execute(action: "DescribeDDoSAttackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSAttackData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS攻击时序数据
@@ -128,7 +127,6 @@ extension Teo {
     /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
     @inlinable
     public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
-        let input = DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area)
-        return try await self.client.execute(action: "DescribeDDoSAttackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSAttackData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

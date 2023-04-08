@@ -79,14 +79,12 @@ extension Scf {
     /// 更新别名的配置
     @inlinable @discardableResult
     public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
-        let input = UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description)
-        return self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAlias(.init(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新别名的配置
     @inlinable @discardableResult
     public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        let input = UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description)
-        return try await self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAlias(.init(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

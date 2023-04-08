@@ -96,8 +96,7 @@ extension Cii {
     /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
     @inlinable
     public func createAutoClassifyStructureTask(serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoClassifyStructureTaskResponse> {
-        let input = CreateAutoClassifyStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl)
-        return self.client.execute(action: "CreateAutoClassifyStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAutoClassifyStructureTask(.init(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建自动分类结构化任务
@@ -105,7 +104,6 @@ extension Cii {
     /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
     @inlinable
     public func createAutoClassifyStructureTask(serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoClassifyStructureTaskResponse {
-        let input = CreateAutoClassifyStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl)
-        return try await self.client.execute(action: "CreateAutoClassifyStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAutoClassifyStructureTask(.init(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

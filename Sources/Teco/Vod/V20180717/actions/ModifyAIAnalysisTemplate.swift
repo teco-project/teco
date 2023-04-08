@@ -106,8 +106,7 @@ extension Vod {
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
-        let input = ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure)
-        return self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAIAnalysisTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改音视频内容分析模板
@@ -117,7 +116,6 @@ extension Vod {
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
-        let input = ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure)
-        return try await self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAIAnalysisTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

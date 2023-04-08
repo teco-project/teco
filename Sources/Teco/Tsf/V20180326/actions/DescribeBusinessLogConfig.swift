@@ -59,14 +59,12 @@ extension Tsf {
     /// 查询业务日志配置项信息
     @inlinable
     public func describeBusinessLogConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigResponse> {
-        let input = DescribeBusinessLogConfigRequest(configId: configId)
-        return self.client.execute(action: "DescribeBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBusinessLogConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询业务日志配置项信息
     @inlinable
     public func describeBusinessLogConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
-        let input = DescribeBusinessLogConfigRequest(configId: configId)
-        return try await self.client.execute(action: "DescribeBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBusinessLogConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Ccc {
     /// 创建话机账号
     @inlinable @discardableResult
     public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
-        let input = CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName)
-        return self.client.execute(action: "CreateExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建话机账号
     @inlinable @discardableResult
     public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
-        let input = CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName)
-        return try await self.client.execute(action: "CreateExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
     }
 }

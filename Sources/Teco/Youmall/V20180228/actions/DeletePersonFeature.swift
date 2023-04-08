@@ -70,8 +70,7 @@ extension Youmall {
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable @discardableResult
     public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
-        let input = DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId)
-        return self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePersonFeature(.init(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除顾客特征
@@ -79,7 +78,6 @@ extension Youmall {
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable @discardableResult
     public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
-        let input = DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId)
-        return try await self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePersonFeature(.init(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

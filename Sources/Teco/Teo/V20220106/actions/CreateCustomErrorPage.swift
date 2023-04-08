@@ -79,8 +79,7 @@ extension Teo {
     /// 创建自定义规则的自定义页
     @inlinable
     public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomErrorPageResponse> {
-        let input = CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content)
-        return self.client.execute(action: "CreateCustomErrorPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCustomErrorPage(.init(zoneId: zoneId, entity: entity, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义页
@@ -88,7 +87,6 @@ extension Teo {
     /// 创建自定义规则的自定义页
     @inlinable
     public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
-        let input = CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content)
-        return try await self.client.execute(action: "CreateCustomErrorPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCustomErrorPage(.init(zoneId: zoneId, entity: entity, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

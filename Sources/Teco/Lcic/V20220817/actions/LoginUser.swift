@@ -62,14 +62,12 @@ extension Lcic {
     /// 登录
     @inlinable
     public func loginUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginUserResponse> {
-        let input = LoginUserRequest(userId: userId)
-        return self.client.execute(action: "LoginUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.loginUser(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 登录
     @inlinable
     public func loginUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
-        let input = LoginUserRequest(userId: userId)
-        return try await self.client.execute(action: "LoginUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.loginUser(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -118,8 +118,7 @@ extension Teo {
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsRecordsResponse> {
-        let input = DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId)
-        return self.client.execute(action: "DescribeDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDnsRecords(.init(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNS 记录列表
@@ -127,8 +126,7 @@ extension Teo {
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
-        let input = DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDnsRecords(.init(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNS 记录列表

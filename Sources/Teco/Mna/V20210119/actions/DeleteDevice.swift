@@ -60,8 +60,7 @@ extension Mna {
     /// 删除设备信息
     @inlinable @discardableResult
     public func deleteDevice(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
-        let input = DeleteDeviceRequest(deviceId: deviceId)
-        return self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDevice(.init(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除设备
@@ -69,7 +68,6 @@ extension Mna {
     /// 删除设备信息
     @inlinable @discardableResult
     public func deleteDevice(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        let input = DeleteDeviceRequest(deviceId: deviceId)
-        return try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDevice(.init(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

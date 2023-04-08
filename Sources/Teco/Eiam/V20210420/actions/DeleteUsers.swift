@@ -70,8 +70,7 @@ extension Eiam {
     /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
     @inlinable
     public func deleteUsers(deleteIdList: [String]? = nil, deleteNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
-        let input = DeleteUsersRequest(deleteIdList: deleteIdList, deleteNameList: deleteNameList)
-        return self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUsers(.init(deleteIdList: deleteIdList, deleteNameList: deleteNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除用户
@@ -79,7 +78,6 @@ extension Eiam {
     /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
     @inlinable
     public func deleteUsers(deleteIdList: [String]? = nil, deleteNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        let input = DeleteUsersRequest(deleteIdList: deleteIdList, deleteNameList: deleteNameList)
-        return try await self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUsers(.init(deleteIdList: deleteIdList, deleteNameList: deleteNameList), region: region, logger: logger, on: eventLoop)
     }
 }

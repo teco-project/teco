@@ -68,14 +68,12 @@ extension Cpdp {
     /// 跨境-查询汇率
     @inlinable
     public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExchangeRateResponse> {
-        let input = QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile)
-        return self.client.execute(action: "QueryExchangeRate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryExchangeRate(.init(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-查询汇率
     @inlinable
     public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
-        let input = QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile)
-        return try await self.client.execute(action: "QueryExchangeRate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryExchangeRate(.init(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

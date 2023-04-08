@@ -80,8 +80,7 @@ extension Redis {
     /// 模拟故障
     @inlinable
     public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
-        let input = KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds)
-        return self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.killMasterGroup(.init(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模拟故障接口
@@ -89,7 +88,6 @@ extension Redis {
     /// 模拟故障
     @inlinable
     public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
-        let input = KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds)
-        return try await self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.killMasterGroup(.init(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Ckafka {
     /// 用于查看ckafka的可用区列表
     @inlinable
     public func describeCkafkaZone(cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkafkaZoneResponse> {
-        let input = DescribeCkafkaZoneRequest(cdcId: cdcId)
-        return self.client.execute(action: "DescribeCkafkaZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCkafkaZone(.init(cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看可用区列表
@@ -73,7 +72,6 @@ extension Ckafka {
     /// 用于查看ckafka的可用区列表
     @inlinable
     public func describeCkafkaZone(cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
-        let input = DescribeCkafkaZoneRequest(cdcId: cdcId)
-        return try await self.client.execute(action: "DescribeCkafkaZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCkafkaZone(.init(cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 }

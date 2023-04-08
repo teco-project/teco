@@ -105,14 +105,12 @@ extension Cpdp {
     /// 灵云V2-冻结余额
     @inlinable
     public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
-        let input = FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment)
-        return self.client.execute(action: "FreezeFlexBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.freezeFlexBalance(.init(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-冻结余额
     @inlinable
     public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
-        let input = FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment)
-        return try await self.client.execute(action: "FreezeFlexBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.freezeFlexBalance(.init(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

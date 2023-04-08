@@ -84,14 +84,12 @@ extension Tcss {
     /// 新增或编辑本地镜像自动授权规则
     @inlinable @discardableResult
     public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditImageAutoAuthorizedRuleResponse> {
-        let input = AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet)
-        return self.client.execute(action: "AddEditImageAutoAuthorizedRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addEditImageAutoAuthorizedRule(.init(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑本地镜像自动授权规则
     @inlinable @discardableResult
     public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {
-        let input = AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet)
-        return try await self.client.execute(action: "AddEditImageAutoAuthorizedRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addEditImageAutoAuthorizedRule(.init(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Ic {
     /// 编辑卡片备注
     @inlinable @discardableResult
     public func modifyUserCardRemark(sdkappid: Int64, iccid: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCardRemarkResponse> {
-        let input = ModifyUserCardRemarkRequest(sdkappid: sdkappid, iccid: iccid, remark: remark)
-        return self.client.execute(action: "ModifyUserCardRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUserCardRemark(.init(sdkappid: sdkappid, iccid: iccid, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑卡片备注
     @inlinable @discardableResult
     public func modifyUserCardRemark(sdkappid: Int64, iccid: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCardRemarkResponse {
-        let input = ModifyUserCardRemarkRequest(sdkappid: sdkappid, iccid: iccid, remark: remark)
-        return try await self.client.execute(action: "ModifyUserCardRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUserCardRemark(.init(sdkappid: sdkappid, iccid: iccid, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Live {
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable @discardableResult
     public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
-        let input = DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`)
-        return self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLivePullStreamTask(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除直播拉流任务
@@ -86,7 +85,6 @@ extension Live {
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable @discardableResult
     public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
-        let input = DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`)
-        return try await self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLivePullStreamTask(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

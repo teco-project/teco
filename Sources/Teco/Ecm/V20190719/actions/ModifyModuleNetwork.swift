@@ -64,14 +64,12 @@ extension Ecm {
     /// 修改模块默认带宽上限
     @inlinable @discardableResult
     public func modifyModuleNetwork(moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNetworkResponse> {
-        let input = ModifyModuleNetworkRequest(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn)
-        return self.client.execute(action: "ModifyModuleNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModuleNetwork(.init(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块默认带宽上限
     @inlinable @discardableResult
     public func modifyModuleNetwork(moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNetworkResponse {
-        let input = ModifyModuleNetworkRequest(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn)
-        return try await self.client.execute(action: "ModifyModuleNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModuleNetwork(.init(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn), region: region, logger: logger, on: eventLoop)
     }
 }

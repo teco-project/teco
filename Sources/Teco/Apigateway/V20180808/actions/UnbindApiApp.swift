@@ -80,8 +80,7 @@ extension Apigateway {
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
     public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiAppResponse> {
-        let input = UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId)
-        return self.client.execute(action: "UnbindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindApiApp(.init(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除应用和API绑定关系
@@ -89,7 +88,6 @@ extension Apigateway {
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
     public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
-        let input = UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId)
-        return try await self.client.execute(action: "UnbindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindApiApp(.init(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

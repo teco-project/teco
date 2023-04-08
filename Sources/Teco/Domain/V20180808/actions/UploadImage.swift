@@ -64,8 +64,7 @@ extension Domain {
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
     public func uploadImage(imageFile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
-        let input = UploadImageRequest(imageFile: imageFile)
-        return self.client.execute(action: "UploadImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadImage(.init(imageFile: imageFile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 证件图片上传
@@ -73,7 +72,6 @@ extension Domain {
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
     public func uploadImage(imageFile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
-        let input = UploadImageRequest(imageFile: imageFile)
-        return try await self.client.execute(action: "UploadImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadImage(.init(imageFile: imageFile), region: region, logger: logger, on: eventLoop)
     }
 }

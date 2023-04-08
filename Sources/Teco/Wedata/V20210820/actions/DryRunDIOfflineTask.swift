@@ -89,14 +89,12 @@ extension Wedata {
     /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
-        let input = DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId)
-        return self.client.execute(action: "DryRunDIOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.dryRunDIOfflineTask(.init(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
-        let input = DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId)
-        return try await self.client.execute(action: "DryRunDIOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.dryRunDIOfflineTask(.init(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), region: region, logger: logger, on: eventLoop)
     }
 }

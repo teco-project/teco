@@ -80,8 +80,7 @@ extension Vpc {
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
     public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIp6RulesResponse> {
-        let input = AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName)
-        return self.client.execute(action: "AddIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addIp6Rules(.init(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加IPV6转换规则
@@ -91,7 +90,6 @@ extension Vpc {
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
     public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
-        let input = AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName)
-        return try await self.client.execute(action: "AddIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addIp6Rules(.init(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), region: region, logger: logger, on: eventLoop)
     }
 }

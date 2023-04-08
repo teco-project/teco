@@ -54,14 +54,12 @@ extension Oceanus {
     /// 查询树状结构资源列表
     @inlinable @discardableResult
     public func describeTreeResources(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeResourcesResponse> {
-        let input = DescribeTreeResourcesRequest(workSpaceId: workSpaceId)
-        return self.client.execute(action: "DescribeTreeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTreeResources(.init(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询树状结构资源列表
     @inlinable @discardableResult
     public func describeTreeResources(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
-        let input = DescribeTreeResourcesRequest(workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DescribeTreeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTreeResources(.init(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

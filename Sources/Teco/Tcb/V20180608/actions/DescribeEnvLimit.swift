@@ -108,8 +108,7 @@ extension Tcb {
     /// 查询环境个数上限
     @inlinable
     public func describeEnvLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvLimitResponse> {
-        let input = DescribeEnvLimitRequest()
-        return self.client.execute(action: "DescribeEnvLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnvLimit(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境个数上限接口
@@ -117,7 +116,6 @@ extension Tcb {
     /// 查询环境个数上限
     @inlinable
     public func describeEnvLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvLimitResponse {
-        let input = DescribeEnvLimitRequest()
-        return try await self.client.execute(action: "DescribeEnvLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnvLimit(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

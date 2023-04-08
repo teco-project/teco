@@ -59,14 +59,12 @@ extension Tcss {
     /// 运行时文件扫描超时设置查询
     @inlinable
     public func describeVirusScanTimeoutSetting(scanType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanTimeoutSettingResponse> {
-        let input = DescribeVirusScanTimeoutSettingRequest(scanType: scanType)
-        return self.client.execute(action: "DescribeVirusScanTimeoutSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusScanTimeoutSetting(.init(scanType: scanType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件扫描超时设置查询
     @inlinable
     public func describeVirusScanTimeoutSetting(scanType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTimeoutSettingResponse {
-        let input = DescribeVirusScanTimeoutSettingRequest(scanType: scanType)
-        return try await self.client.execute(action: "DescribeVirusScanTimeoutSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusScanTimeoutSetting(.init(scanType: scanType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Cvm {
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
     public func describeImportImageOs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportImageOsResponse> {
-        let input = DescribeImportImageOsRequest()
-        return self.client.execute(action: "DescribeImportImageOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImportImageOs(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部导入镜像支持的OS列表
@@ -69,7 +68,6 @@ extension Cvm {
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
     public func describeImportImageOs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
-        let input = DescribeImportImageOsRequest()
-        return try await self.client.execute(action: "DescribeImportImageOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImportImageOs(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -72,8 +72,7 @@ extension Ses {
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
     @inlinable
     public func updateEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailIdentityResponse> {
-        let input = UpdateEmailIdentityRequest(emailIdentity: emailIdentity)
-        return self.client.execute(action: "UpdateEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateEmailIdentity(.init(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 请求验证
@@ -81,7 +80,6 @@ extension Ses {
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
     @inlinable
     public func updateEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailIdentityResponse {
-        let input = UpdateEmailIdentityRequest(emailIdentity: emailIdentity)
-        return try await self.client.execute(action: "UpdateEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateEmailIdentity(.init(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 }

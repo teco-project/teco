@@ -60,8 +60,7 @@ extension Tke {
     /// 在tke@edge集群的边缘节点上安装日志采集组件
     @inlinable @discardableResult
     public func installEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallEdgeLogAgentResponse> {
-        let input = InstallEdgeLogAgentRequest(clusterId: clusterId)
-        return self.client.execute(action: "InstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.installEdgeLogAgent(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安装边缘日志采集组件
@@ -69,7 +68,6 @@ extension Tke {
     /// 在tke@edge集群的边缘节点上安装日志采集组件
     @inlinable @discardableResult
     public func installEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallEdgeLogAgentResponse {
-        let input = InstallEdgeLogAgentRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "InstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.installEdgeLogAgent(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

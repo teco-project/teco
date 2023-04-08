@@ -75,8 +75,7 @@ extension Ecm {
     /// 修改负载均衡实例的属性。
     @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, internetChargeInfo: LoadBalancerInternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
-        let input = ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget)
-        return self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡实例的属性
@@ -84,7 +83,6 @@ extension Ecm {
     /// 修改负载均衡实例的属性。
     @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, internetChargeInfo: LoadBalancerInternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
-        let input = ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget)
-        return try await self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
     }
 }

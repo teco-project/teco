@@ -65,8 +65,7 @@ extension Iotvideoindustry {
     /// 本接口(DeleteDeviceGroup)用于删除分组。
     @inlinable
     public func deleteDeviceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupResponse> {
-        let input = DeleteDeviceGroupRequest(groupId: groupId)
-        return self.client.execute(action: "DeleteDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDeviceGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除分组
@@ -74,7 +73,6 @@ extension Iotvideoindustry {
     /// 本接口(DeleteDeviceGroup)用于删除分组。
     @inlinable
     public func deleteDeviceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupResponse {
-        let input = DeleteDeviceGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "DeleteDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDeviceGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

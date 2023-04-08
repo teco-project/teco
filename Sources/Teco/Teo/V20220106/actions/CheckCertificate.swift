@@ -59,14 +59,12 @@ extension Teo {
     /// 校验证书
     @inlinable @discardableResult
     public func checkCertificate(certificate: String, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateResponse> {
-        let input = CheckCertificateRequest(certificate: certificate, privateKey: privateKey)
-        return self.client.execute(action: "CheckCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkCertificate(.init(certificate: certificate, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验证书
     @inlinable @discardableResult
     public func checkCertificate(certificate: String, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
-        let input = CheckCertificateRequest(certificate: certificate, privateKey: privateKey)
-        return try await self.client.execute(action: "CheckCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkCertificate(.init(certificate: certificate, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 }

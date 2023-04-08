@@ -104,8 +104,7 @@ extension Tci {
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
     public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
-        let input = SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
-        return self.client.execute(action: "SubmitHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.submitHighlights(.init(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起视频生成精彩集锦接口
@@ -113,7 +112,6 @@ extension Tci {
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
     public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
-        let input = SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
-        return try await self.client.execute(action: "SubmitHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.submitHighlights(.init(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

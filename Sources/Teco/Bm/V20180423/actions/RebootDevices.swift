@@ -58,14 +58,12 @@ extension Bm {
     /// 重启机器
     @inlinable
     public func rebootDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootDevicesResponse> {
-        let input = RebootDevicesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "RebootDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rebootDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启机器
     @inlinable
     public func rebootDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootDevicesResponse {
-        let input = RebootDevicesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "RebootDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rebootDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

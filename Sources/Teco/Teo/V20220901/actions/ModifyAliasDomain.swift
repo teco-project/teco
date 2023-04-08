@@ -83,8 +83,7 @@ extension Teo {
     /// 修改别称域名。
     @inlinable @discardableResult
     public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainResponse> {
-        let input = ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId)
-        return self.client.execute(action: "ModifyAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAliasDomain(.init(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改别称域名
@@ -92,7 +91,6 @@ extension Teo {
     /// 修改别称域名。
     @inlinable @discardableResult
     public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
-        let input = ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId)
-        return try await self.client.execute(action: "ModifyAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAliasDomain(.init(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

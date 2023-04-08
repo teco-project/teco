@@ -64,14 +64,12 @@ extension Tcr {
     /// 删除镜像不可变规则
     @inlinable @discardableResult
     public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImmutableTagRulesResponse> {
-        let input = DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId)
-        return self.client.execute(action: "DeleteImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImmutableTagRules(.init(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像不可变规则
     @inlinable @discardableResult
     public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
-        let input = DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId)
-        return try await self.client.execute(action: "DeleteImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImmutableTagRules(.init(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

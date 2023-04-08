@@ -60,8 +60,7 @@ extension Tcss {
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable @discardableResult
     public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
-        let input = ModifyEscapeRuleRequest(ruleSet: ruleSet)
-        return self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEscapeRule(.init(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改容器逃逸扫描规则信息
@@ -69,7 +68,6 @@ extension Tcss {
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable @discardableResult
     public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
-        let input = ModifyEscapeRuleRequest(ruleSet: ruleSet)
-        return try await self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEscapeRule(.init(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 }

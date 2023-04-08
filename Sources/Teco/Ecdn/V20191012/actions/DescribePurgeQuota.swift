@@ -66,8 +66,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
-        let input = DescribePurgeQuotaRequest()
-        return self.client.execute(action: "DescribePurgeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePurgeQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询刷新用量配额
@@ -77,7 +76,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
-        let input = DescribePurgeQuotaRequest()
-        return try await self.client.execute(action: "DescribePurgeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePurgeQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

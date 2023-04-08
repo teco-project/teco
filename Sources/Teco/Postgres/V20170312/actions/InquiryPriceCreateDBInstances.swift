@@ -116,8 +116,7 @@ extension Postgres {
     /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64? = nil, instanceChargeType: String? = nil, instanceType: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
-        let input = InquiryPriceCreateDBInstancesRequest(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine)
-        return self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceCreateDBInstances(.init(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖价格
@@ -125,7 +124,6 @@ extension Postgres {
     /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64? = nil, instanceChargeType: String? = nil, instanceType: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
-        let input = InquiryPriceCreateDBInstancesRequest(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine)
-        return try await self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceCreateDBInstances(.init(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -66,8 +66,7 @@ extension Ivld {
     /// **请注意，本接口仅删除媒资文件，媒资文件对应的视频分析结果不会被删除**。如您需要删除结构化分析结果，请调用DeleteTask接口。
     @inlinable @discardableResult
     public func deleteMedia(mediaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMediaResponse> {
-        let input = DeleteMediaRequest(mediaId: mediaId)
-        return self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMedia(.init(mediaId: mediaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除媒资文件
@@ -77,7 +76,6 @@ extension Ivld {
     /// **请注意，本接口仅删除媒资文件，媒资文件对应的视频分析结果不会被删除**。如您需要删除结构化分析结果，请调用DeleteTask接口。
     @inlinable @discardableResult
     public func deleteMedia(mediaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
-        let input = DeleteMediaRequest(mediaId: mediaId)
-        return try await self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMedia(.init(mediaId: mediaId), region: region, logger: logger, on: eventLoop)
     }
 }

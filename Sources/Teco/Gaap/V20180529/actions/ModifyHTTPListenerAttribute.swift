@@ -73,8 +73,7 @@ extension Gaap {
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
     @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(listenerId: String, listenerName: String, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHTTPListenerAttributeResponse> {
-        let input = ModifyHTTPListenerAttributeRequest(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId)
-        return self.client.execute(action: "ModifyHTTPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyHTTPListenerAttribute(.init(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改HTTP监听器配置
@@ -83,7 +82,6 @@ extension Gaap {
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
     @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(listenerId: String, listenerName: String, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPListenerAttributeResponse {
-        let input = ModifyHTTPListenerAttributeRequest(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId)
-        return try await self.client.execute(action: "ModifyHTTPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyHTTPListenerAttribute(.init(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 }

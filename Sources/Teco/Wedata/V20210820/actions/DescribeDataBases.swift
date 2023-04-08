@@ -69,14 +69,12 @@ extension Wedata {
     /// 查询数据来源列表
     @inlinable
     public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBasesResponse> {
-        let input = DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes)
-        return self.client.execute(action: "DescribeDataBases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataBases(.init(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据来源列表
     @inlinable
     public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
-        let input = DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes)
-        return try await self.client.execute(action: "DescribeDataBases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataBases(.init(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 }

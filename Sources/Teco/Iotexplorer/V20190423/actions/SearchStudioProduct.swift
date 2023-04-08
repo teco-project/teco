@@ -113,8 +113,7 @@ extension Iotexplorer {
     /// 提供根据产品名称查找产品的能力
     @inlinable
     public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
-        let input = SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId)
-        return self.client.execute(action: "SearchStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchStudioProduct(.init(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索产品
@@ -122,8 +121,7 @@ extension Iotexplorer {
     /// 提供根据产品名称查找产品的能力
     @inlinable
     public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
-        let input = SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId)
-        return try await self.client.execute(action: "SearchStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchStudioProduct(.init(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索产品

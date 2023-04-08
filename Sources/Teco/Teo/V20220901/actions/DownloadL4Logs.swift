@@ -122,8 +122,7 @@ extension Teo {
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
     public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL4LogsResponse> {
-        let input = DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset)
-        return self.client.execute(action: "DownloadL4Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadL4Logs(.init(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载四层离线日志
@@ -131,8 +130,7 @@ extension Teo {
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
     public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL4LogsResponse {
-        let input = DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DownloadL4Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadL4Logs(.init(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载四层离线日志

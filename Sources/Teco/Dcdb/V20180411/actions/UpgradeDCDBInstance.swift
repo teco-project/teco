@@ -103,8 +103,7 @@ extension Dcdb {
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
     public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDCDBInstanceResponse> {
-        let input = UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones)
-        return self.client.execute(action: "UpgradeDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDCDBInstance(.init(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级分布式数据库
@@ -112,7 +111,6 @@ extension Dcdb {
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
     public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDCDBInstanceResponse {
-        let input = UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones)
-        return try await self.client.execute(action: "UpgradeDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDCDBInstance(.init(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 }

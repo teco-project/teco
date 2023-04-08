@@ -83,8 +83,7 @@ extension Ba {
     /// 只有指定的网站信息字段能被同步
     @inlinable @discardableResult
     public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncIcpOrderWebInfoResponse> {
-        let input = SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson)
-        return self.client.execute(action: "SyncIcpOrderWebInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.syncIcpOrderWebInfo(.init(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步备案ICP订单网站信息
@@ -93,7 +92,6 @@ extension Ba {
     /// 只有指定的网站信息字段能被同步
     @inlinable @discardableResult
     public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
-        let input = SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson)
-        return try await self.client.execute(action: "SyncIcpOrderWebInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.syncIcpOrderWebInfo(.init(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), region: region, logger: logger, on: eventLoop)
     }
 }

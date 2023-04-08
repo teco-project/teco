@@ -85,8 +85,7 @@ extension Scf {
     /// 该接口根据参数传入删除已有的触发方式。
     @inlinable @discardableResult
     public func deleteTrigger(functionName: String, triggerName: String, type: String, namespace: String? = nil, triggerDesc: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTriggerResponse> {
-        let input = DeleteTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier)
-        return self.client.execute(action: "DeleteTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除触发器
@@ -94,7 +93,6 @@ extension Scf {
     /// 该接口根据参数传入删除已有的触发方式。
     @inlinable @discardableResult
     public func deleteTrigger(functionName: String, triggerName: String, type: String, namespace: String? = nil, triggerDesc: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTriggerResponse {
-        let input = DeleteTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier)
-        return try await self.client.execute(action: "DeleteTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

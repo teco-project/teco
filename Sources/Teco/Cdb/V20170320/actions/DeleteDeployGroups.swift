@@ -60,8 +60,7 @@ extension Cdb {
     /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
     @inlinable @discardableResult
     public func deleteDeployGroups(deployGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeployGroupsResponse> {
-        let input = DeleteDeployGroupsRequest(deployGroupIds: deployGroupIds)
-        return self.client.execute(action: "DeleteDeployGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDeployGroups(.init(deployGroupIds: deployGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除置放群组
@@ -69,7 +68,6 @@ extension Cdb {
     /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
     @inlinable @discardableResult
     public func deleteDeployGroups(deployGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeployGroupsResponse {
-        let input = DeleteDeployGroupsRequest(deployGroupIds: deployGroupIds)
-        return try await self.client.execute(action: "DeleteDeployGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDeployGroups(.init(deployGroupIds: deployGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

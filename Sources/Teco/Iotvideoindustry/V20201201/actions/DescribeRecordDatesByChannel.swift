@@ -100,8 +100,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeRecordDatesByChannel)用于查询设备含有录像文件的日期列表。
     @inlinable
     public func describeRecordDatesByChannel(deviceId: String, channelId: String, type: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordDatesByChannelResponse> {
-        let input = DescribeRecordDatesByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeRecordDatesByChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordDatesByChannel(.init(deviceId: deviceId, channelId: channelId, type: type, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备录像日期列表
@@ -109,8 +108,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeRecordDatesByChannel)用于查询设备含有录像文件的日期列表。
     @inlinable
     public func describeRecordDatesByChannel(deviceId: String, channelId: String, type: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByChannelResponse {
-        let input = DescribeRecordDatesByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeRecordDatesByChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordDatesByChannel(.init(deviceId: deviceId, channelId: channelId, type: type, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备录像日期列表

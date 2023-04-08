@@ -74,14 +74,12 @@ extension Wedata {
     /// 数据集成大屏采集器状态分布统计
     @inlinable
     public func describeIntegrationStatisticsAgentStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsAgentStatusResponse> {
-        let input = DescribeIntegrationStatisticsAgentStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId)
-        return self.client.execute(action: "DescribeIntegrationStatisticsAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIntegrationStatisticsAgentStatus(.init(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据集成大屏采集器状态分布统计
     @inlinable
     public func describeIntegrationStatisticsAgentStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsAgentStatusResponse {
-        let input = DescribeIntegrationStatisticsAgentStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId)
-        return try await self.client.execute(action: "DescribeIntegrationStatisticsAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIntegrationStatisticsAgentStatus(.init(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

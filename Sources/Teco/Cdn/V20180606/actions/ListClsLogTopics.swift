@@ -74,8 +74,7 @@ extension Cdn {
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
     @inlinable
     public func listClsLogTopics(channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsLogTopicsResponse> {
-        let input = ListClsLogTopicsRequest(channel: channel)
-        return self.client.execute(action: "ListClsLogTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listClsLogTopics(.init(channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 显示日志主题列表
@@ -83,7 +82,6 @@ extension Cdn {
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
     @inlinable
     public func listClsLogTopics(channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsLogTopicsResponse {
-        let input = ListClsLogTopicsRequest(channel: channel)
-        return try await self.client.execute(action: "ListClsLogTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listClsLogTopics(.init(channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

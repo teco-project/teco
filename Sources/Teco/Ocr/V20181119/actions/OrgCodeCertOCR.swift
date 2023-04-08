@@ -88,8 +88,7 @@ extension Ocr {
     /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
     @inlinable
     public func orgCodeCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OrgCodeCertOCRResponse> {
-        let input = OrgCodeCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "OrgCodeCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.orgCodeCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 组织机构代码证识别
@@ -97,7 +96,6 @@ extension Ocr {
     /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
     @inlinable
     public func orgCodeCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OrgCodeCertOCRResponse {
-        let input = OrgCodeCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "OrgCodeCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.orgCodeCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Vpc {
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
     @inlinable @discardableResult
     public func disassociateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDirectConnectGatewayNatGatewayResponse> {
-        let input = DisassociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId)
-        return self.client.execute(action: "DisassociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disassociateDirectConnectGatewayNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 专线网关解绑NAT网关
@@ -79,7 +78,6 @@ extension Vpc {
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
     @inlinable @discardableResult
     public func disassociateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDirectConnectGatewayNatGatewayResponse {
-        let input = DisassociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId)
-        return try await self.client.execute(action: "DisassociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disassociateDirectConnectGatewayNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

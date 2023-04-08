@@ -69,14 +69,12 @@ extension Gaap {
     /// 修改域名解析记录
     @inlinable @discardableResult
     public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainDnsResponse> {
-        let input = ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList)
-        return self.client.execute(action: "ModifyGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyGlobalDomainDns(.init(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名解析记录
     @inlinable @discardableResult
     public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
-        let input = ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList)
-        return try await self.client.execute(action: "ModifyGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyGlobalDomainDns(.init(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), region: region, logger: logger, on: eventLoop)
     }
 }

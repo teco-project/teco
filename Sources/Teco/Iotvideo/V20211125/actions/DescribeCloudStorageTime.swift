@@ -83,14 +83,12 @@ extension Iotvideo {
     /// 获取某一天云存时间轴
     @inlinable
     public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
-        let input = DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId)
-        return self.client.execute(action: "DescribeCloudStorageTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某一天云存时间轴
     @inlinable
     public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
-        let input = DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId)
-        return try await self.client.execute(action: "DescribeCloudStorageTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

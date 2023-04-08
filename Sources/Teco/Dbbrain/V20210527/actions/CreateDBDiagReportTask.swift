@@ -104,8 +104,7 @@ extension Dbbrain {
     /// 创建健康报告，并可以选择是否发送邮件。
     @inlinable
     public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportTaskResponse> {
-        let input = CreateDBDiagReportTaskRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product)
-        return self.client.execute(action: "CreateDBDiagReportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDBDiagReportTask(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建健康报告生成任务
@@ -113,7 +112,6 @@ extension Dbbrain {
     /// 创建健康报告，并可以选择是否发送邮件。
     @inlinable
     public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportTaskResponse {
-        let input = CreateDBDiagReportTaskRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product)
-        return try await self.client.execute(action: "CreateDBDiagReportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDBDiagReportTask(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

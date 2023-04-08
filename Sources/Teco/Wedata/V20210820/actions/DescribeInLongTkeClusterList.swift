@@ -132,15 +132,13 @@ extension Wedata {
     /// 获取TKE集群列表
     @inlinable
     public func describeInLongTkeClusterList(projectId: String, tkeRegion: String, clusterName: String? = nil, status: String? = nil, hasAgent: Bool? = nil, clusterType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongTkeClusterListResponse> {
-        let input = DescribeInLongTkeClusterListRequest(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize)
-        return self.client.execute(action: "DescribeInLongTkeClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInLongTkeClusterList(.init(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TKE集群列表
     @inlinable
     public func describeInLongTkeClusterList(projectId: String, tkeRegion: String, clusterName: String? = nil, status: String? = nil, hasAgent: Bool? = nil, clusterType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongTkeClusterListResponse {
-        let input = DescribeInLongTkeClusterListRequest(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeInLongTkeClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInLongTkeClusterList(.init(projectId: projectId, tkeRegion: tkeRegion, clusterName: clusterName, status: status, hasAgent: hasAgent, clusterType: clusterType, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TKE集群列表

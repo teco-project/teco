@@ -85,8 +85,7 @@ extension Ame {
     /// 获取已购曲库包列表接口
     @inlinable
     public func describePackages(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackagesResponse> {
-        let input = DescribePackagesRequest(offset: offset, length: length)
-        return self.client.execute(action: "DescribePackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePackages(.init(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取已购曲库包列表
@@ -94,8 +93,7 @@ extension Ame {
     /// 获取已购曲库包列表接口
     @inlinable
     public func describePackages(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
-        let input = DescribePackagesRequest(offset: offset, length: length)
-        return try await self.client.execute(action: "DescribePackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePackages(.init(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取已购曲库包列表

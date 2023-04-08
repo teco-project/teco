@@ -87,14 +87,12 @@ extension Cpdp {
     /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
-        let input = ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum)
-        return self.client.execute(action: "ModifyBindedAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBindedAccount(.init(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
-        let input = ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum)
-        return try await self.client.execute(action: "ModifyBindedAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBindedAccount(.init(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 }

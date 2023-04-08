@@ -134,14 +134,12 @@ extension Tcss {
     /// 查询容器安全概览信息
     @inlinable
     public func describeTcssSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTcssSummaryResponse> {
-        let input = DescribeTcssSummaryRequest()
-        return self.client.execute(action: "DescribeTcssSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTcssSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全概览信息
     @inlinable
     public func describeTcssSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTcssSummaryResponse {
-        let input = DescribeTcssSummaryRequest()
-        return try await self.client.execute(action: "DescribeTcssSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTcssSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

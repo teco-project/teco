@@ -109,15 +109,13 @@ extension Tsf {
     /// 查询配置项列表
     @inlinable
     public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigsResponse> {
-        let input = DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion)
-        return self.client.execute(action: "DescribeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeConfigs(.init(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置项列表
     @inlinable
     public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
-        let input = DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion)
-        return try await self.client.execute(action: "DescribeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeConfigs(.init(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置项列表

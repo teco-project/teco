@@ -98,14 +98,12 @@ extension Tcss {
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
     public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
-        let input = DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id)
-        return self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
     public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
-        let input = DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

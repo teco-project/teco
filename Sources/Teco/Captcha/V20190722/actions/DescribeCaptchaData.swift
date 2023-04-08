@@ -89,8 +89,7 @@ extension Captcha {
     /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
     @inlinable
     public func describeCaptchaData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataResponse> {
-        let input = DescribeCaptchaDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type)
-        return self.client.execute(action: "DescribeCaptchaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCaptchaData(.init(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码分类查询数据接口
@@ -98,7 +97,6 @@ extension Captcha {
     /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
     @inlinable
     public func describeCaptchaData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataResponse {
-        let input = DescribeCaptchaDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type)
-        return try await self.client.execute(action: "DescribeCaptchaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCaptchaData(.init(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

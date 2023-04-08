@@ -64,14 +64,12 @@ extension Solar {
     /// 复制活动渠道的策略
     @inlinable @discardableResult
     public func copyActivityChannel(activityId: String, channelFrom: String, channelTo: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyActivityChannelResponse> {
-        let input = CopyActivityChannelRequest(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo)
-        return self.client.execute(action: "CopyActivityChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copyActivityChannel(.init(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制活动渠道的策略
     @inlinable @discardableResult
     public func copyActivityChannel(activityId: String, channelFrom: String, channelTo: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {
-        let input = CopyActivityChannelRequest(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo)
-        return try await self.client.execute(action: "CopyActivityChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copyActivityChannel(.init(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo), region: region, logger: logger, on: eventLoop)
     }
 }

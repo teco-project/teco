@@ -109,8 +109,7 @@ extension Youmall {
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
     public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonFeatureInfoResponse> {
-        let input = ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId)
-        return self.client.execute(action: "ModifyPersonFeatureInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPersonFeatureInfo(.init(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客特征信息
@@ -118,7 +117,6 @@ extension Youmall {
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
     public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
-        let input = ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId)
-        return try await self.client.execute(action: "ModifyPersonFeatureInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPersonFeatureInfo(.init(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 }

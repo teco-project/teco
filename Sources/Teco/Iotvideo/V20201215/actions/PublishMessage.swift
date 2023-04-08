@@ -85,8 +85,7 @@ extension Iotvideo {
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable @discardableResult
     public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
-        let input = PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
-        return self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.publishMessage(.init(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备透传指令控制
@@ -94,7 +93,6 @@ extension Iotvideo {
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable @discardableResult
     public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
-        let input = PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
-        return try await self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.publishMessage(.init(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 }

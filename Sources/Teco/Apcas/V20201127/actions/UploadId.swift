@@ -74,8 +74,7 @@ extension Apcas {
     /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
     @inlinable
     public func uploadId(type: UInt64, taskName: String, idListBase64: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadIdResponse> {
-        let input = UploadIdRequest(type: type, taskName: taskName, idListBase64: idListBase64)
-        return self.client.execute(action: "UploadId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadId(.init(type: type, taskName: taskName, idListBase64: idListBase64), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传群体画像的ID列表
@@ -83,7 +82,6 @@ extension Apcas {
     /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
     @inlinable
     public func uploadId(type: UInt64, taskName: String, idListBase64: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadIdResponse {
-        let input = UploadIdRequest(type: type, taskName: taskName, idListBase64: idListBase64)
-        return try await self.client.execute(action: "UploadId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadId(.init(type: type, taskName: taskName, idListBase64: idListBase64), region: region, logger: logger, on: eventLoop)
     }
 }

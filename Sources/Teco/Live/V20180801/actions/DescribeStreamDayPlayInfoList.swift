@@ -129,8 +129,7 @@ extension Live {
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
-        let input = DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName)
-        return self.client.execute(action: "DescribeStreamDayPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStreamDayPlayInfoList(.init(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有流的流量数据
@@ -138,8 +137,7 @@ extension Live {
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
-        let input = DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName)
-        return try await self.client.execute(action: "DescribeStreamDayPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStreamDayPlayInfoList(.init(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有流的流量数据

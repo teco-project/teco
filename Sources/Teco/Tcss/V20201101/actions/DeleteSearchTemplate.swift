@@ -54,14 +54,12 @@ extension Tcss {
     /// 删除检索模板
     @inlinable @discardableResult
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSearchTemplateResponse> {
-        let input = DeleteSearchTemplateRequest(id: id)
-        return self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSearchTemplate(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除检索模板
     @inlinable @discardableResult
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
-        let input = DeleteSearchTemplateRequest(id: id)
-        return try await self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSearchTemplate(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Monitor {
     /// 删除 Grafana 集成配置
     @inlinable @discardableResult
     public func deleteGrafanaIntegration(instanceId: String, integrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaIntegrationResponse> {
-        let input = DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId)
-        return self.client.execute(action: "DeleteGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteGrafanaIntegration(.init(instanceId: instanceId, integrationId: integrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 集成配置
     @inlinable @discardableResult
     public func deleteGrafanaIntegration(instanceId: String, integrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaIntegrationResponse {
-        let input = DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId)
-        return try await self.client.execute(action: "DeleteGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteGrafanaIntegration(.init(instanceId: instanceId, integrationId: integrationId), region: region, logger: logger, on: eventLoop)
     }
 }

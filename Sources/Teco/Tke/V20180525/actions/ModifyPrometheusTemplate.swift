@@ -65,8 +65,7 @@ extension Tke {
     /// 修改模板内容
     @inlinable @discardableResult
     public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTemplateResponse> {
-        let input = ModifyPrometheusTemplateRequest(templateId: templateId, template: template)
-        return self.client.execute(action: "ModifyPrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrometheusTemplate(.init(templateId: templateId, template: template), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模板
@@ -74,7 +73,6 @@ extension Tke {
     /// 修改模板内容
     @inlinable @discardableResult
     public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTemplateResponse {
-        let input = ModifyPrometheusTemplateRequest(templateId: templateId, template: template)
-        return try await self.client.execute(action: "ModifyPrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrometheusTemplate(.init(templateId: templateId, template: template), region: region, logger: logger, on: eventLoop)
     }
 }

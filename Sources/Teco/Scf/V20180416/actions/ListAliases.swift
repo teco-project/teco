@@ -89,8 +89,7 @@ extension Scf {
     /// 返回一个函数下的全部别名，可以根据特定函数版本过滤。
     @inlinable
     public func listAliases(functionName: String, namespace: String? = nil, functionVersion: String? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        let input = ListAliasesRequest(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit)
-        return self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAliases(.init(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取别名列表
@@ -98,7 +97,6 @@ extension Scf {
     /// 返回一个函数下的全部别名，可以根据特定函数版本过滤。
     @inlinable
     public func listAliases(functionName: String, namespace: String? = nil, functionVersion: String? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        let input = ListAliasesRequest(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAliases(.init(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

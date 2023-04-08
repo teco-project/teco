@@ -104,8 +104,7 @@ extension Thpc {
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable @discardableResult
     public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
-        let input = BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun)
-        return self.client.execute(action: "BindAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindAutoScalingGroup(.init(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性伸缩组
@@ -113,7 +112,6 @@ extension Thpc {
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable @discardableResult
     public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
-        let input = BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun)
-        return try await self.client.execute(action: "BindAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindAutoScalingGroup(.init(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

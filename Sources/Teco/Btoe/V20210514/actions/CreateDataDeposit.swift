@@ -89,8 +89,7 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
-        let input = CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
-        return self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDataDeposit(.init(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 业务数据明文存证
@@ -98,7 +97,6 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        let input = CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
-        return try await self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDataDeposit(.init(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Monitor {
     /// 删除2.0实例告警策略
     @inlinable @discardableResult
     public func deletePrometheusAlertPolicy(instanceId: String, alertIds: [String], names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertPolicyResponse> {
-        let input = DeletePrometheusAlertPolicyRequest(instanceId: instanceId, alertIds: alertIds, names: names)
-        return self.client.execute(action: "DeletePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePrometheusAlertPolicy(.init(instanceId: instanceId, alertIds: alertIds, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除2.0实例告警策略
     @inlinable @discardableResult
     public func deletePrometheusAlertPolicy(instanceId: String, alertIds: [String], names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertPolicyResponse {
-        let input = DeletePrometheusAlertPolicyRequest(instanceId: instanceId, alertIds: alertIds, names: names)
-        return try await self.client.execute(action: "DeletePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePrometheusAlertPolicy(.init(instanceId: instanceId, alertIds: alertIds, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

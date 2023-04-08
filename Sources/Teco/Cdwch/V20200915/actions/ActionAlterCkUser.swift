@@ -71,8 +71,7 @@ extension Cdwch {
     /// 新增和修改用户接口
     @inlinable
     public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
-        let input = ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType)
-        return self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.actionAlterCkUser(.init(userInfo: userInfo, apiType: apiType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改ck用户接口
@@ -80,7 +79,6 @@ extension Cdwch {
     /// 新增和修改用户接口
     @inlinable
     public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
-        let input = ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType)
-        return try await self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.actionAlterCkUser(.init(userInfo: userInfo, apiType: apiType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -99,8 +99,7 @@ extension Tiw {
     /// 查询互动白板质量数据
     @inlinable
     public func describeQualityMetrics(sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityMetricsResponse> {
-        let input = DescribeQualityMetricsRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval)
-        return self.client.execute(action: "DescribeQualityMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeQualityMetrics(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询质量数据
@@ -108,7 +107,6 @@ extension Tiw {
     /// 查询互动白板质量数据
     @inlinable
     public func describeQualityMetrics(sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityMetricsResponse {
-        let input = DescribeQualityMetricsRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval)
-        return try await self.client.execute(action: "DescribeQualityMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeQualityMetrics(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

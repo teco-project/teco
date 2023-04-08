@@ -127,8 +127,7 @@ extension Dayu {
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
     public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDefendStatusResponse> {
-        let input = DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion)
-        return self.client.execute(action: "DescribeDDoSDefendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSDefendStatus(.init(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护状态
@@ -136,7 +135,6 @@ extension Dayu {
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
     public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
-        let input = DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion)
-        return try await self.client.execute(action: "DescribeDDoSDefendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSDefendStatus(.init(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), region: region, logger: logger, on: eventLoop)
     }
 }

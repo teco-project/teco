@@ -69,8 +69,7 @@ extension Dcdb {
     /// 本接口（ModifyDBInstanceName）用于修改实例名字
     @inlinable
     public func modifyDBInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNameResponse> {
-        let input = ModifyDBInstanceNameRequest(instanceId: instanceId, instanceName: instanceName)
-        return self.client.execute(action: "ModifyDBInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceName(.init(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名字
@@ -78,7 +77,6 @@ extension Dcdb {
     /// 本接口（ModifyDBInstanceName）用于修改实例名字
     @inlinable
     public func modifyDBInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
-        let input = ModifyDBInstanceNameRequest(instanceId: instanceId, instanceName: instanceName)
-        return try await self.client.execute(action: "ModifyDBInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceName(.init(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -73,14 +73,12 @@ extension Essbasic {
     /// 合同文件验签
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
-        let input = ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`)
-        return self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合同文件验签
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
-        let input = ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`)
-        return try await self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

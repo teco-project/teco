@@ -74,8 +74,7 @@ extension Lighthouse {
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(instanceId: String, snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInstanceSnapshotResponse> {
-        let input = ApplyInstanceSnapshotRequest(instanceId: instanceId, snapshotId: snapshotId)
-        return self.client.execute(action: "ApplyInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyInstanceSnapshot(.init(instanceId: instanceId, snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回滚实例快照
@@ -86,7 +85,6 @@ extension Lighthouse {
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(instanceId: String, snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInstanceSnapshotResponse {
-        let input = ApplyInstanceSnapshotRequest(instanceId: instanceId, snapshotId: snapshotId)
-        return try await self.client.execute(action: "ApplyInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyInstanceSnapshot(.init(instanceId: instanceId, snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 }

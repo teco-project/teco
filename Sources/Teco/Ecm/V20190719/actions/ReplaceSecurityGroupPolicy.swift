@@ -65,8 +65,7 @@ extension Ecm {
     /// 替换单条安全组路由规则, 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
     @inlinable @discardableResult
     public func replaceSecurityGroupPolicy(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceSecurityGroupPolicyResponse> {
-        let input = ReplaceSecurityGroupPolicyRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet)
-        return self.client.execute(action: "ReplaceSecurityGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.replaceSecurityGroupPolicy(.init(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换单条安全组路由规则
@@ -74,7 +73,6 @@ extension Ecm {
     /// 替换单条安全组路由规则, 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
     @inlinable @discardableResult
     public func replaceSecurityGroupPolicy(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceSecurityGroupPolicyResponse {
-        let input = ReplaceSecurityGroupPolicyRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet)
-        return try await self.client.execute(action: "ReplaceSecurityGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.replaceSecurityGroupPolicy(.init(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

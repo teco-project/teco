@@ -68,14 +68,12 @@ extension Afc {
     /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudVipResponse> {
-        let input = GetAntiFraudVipRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return self.client.execute(action: "GetAntiFraudVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAntiFraudVip(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {
-        let input = GetAntiFraudVipRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return try await self.client.execute(action: "GetAntiFraudVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAntiFraudVip(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 }

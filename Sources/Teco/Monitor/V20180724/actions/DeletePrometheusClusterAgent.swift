@@ -59,14 +59,12 @@ extension Monitor {
     /// 解除TMP实例的集群关联
     @inlinable @discardableResult
     public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusClusterAgentResponse> {
-        let input = DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId)
-        return self.client.execute(action: "DeletePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePrometheusClusterAgent(.init(agents: agents, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除TMP实例的集群关联
     @inlinable @discardableResult
     public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
-        let input = DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId)
-        return try await self.client.execute(action: "DeletePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePrometheusClusterAgent(.init(agents: agents, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

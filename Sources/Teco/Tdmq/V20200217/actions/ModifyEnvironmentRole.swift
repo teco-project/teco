@@ -75,8 +75,7 @@ extension Tdmq {
     /// 修改环境角色授权。
     @inlinable @discardableResult
     public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
-        let input = ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId)
-        return self.client.execute(action: "ModifyEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改环境角色授权
@@ -84,7 +83,6 @@ extension Tdmq {
     /// 修改环境角色授权。
     @inlinable @discardableResult
     public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
-        let input = ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId)
-        return try await self.client.execute(action: "ModifyEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

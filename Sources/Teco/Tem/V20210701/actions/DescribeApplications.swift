@@ -113,15 +113,13 @@ extension Tem {
     /// 获取运行服务列表
     @inlinable
     public func describeApplications(environmentId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, keyword: String? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
-        let input = DescribeApplicationsRequest(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo)
-        return self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplications(.init(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行服务列表
     @inlinable
     public func describeApplications(environmentId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, keyword: String? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        let input = DescribeApplicationsRequest(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo)
-        return try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplications(.init(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行服务列表

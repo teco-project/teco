@@ -79,14 +79,12 @@ extension Yunjing {
     /// 新增或修改本地提权规则
     @inlinable @discardableResult
     public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditPrivilegeRuleResponse> {
-        let input = EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal)
-        return self.client.execute(action: "EditPrivilegeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.editPrivilegeRule(.init(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改本地提权规则
     @inlinable @discardableResult
     public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
-        let input = EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal)
-        return try await self.client.execute(action: "EditPrivilegeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.editPrivilegeRule(.init(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

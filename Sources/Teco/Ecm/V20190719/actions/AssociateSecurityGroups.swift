@@ -59,14 +59,12 @@ extension Ecm {
     /// 绑定安全组
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        let input = AssociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds)
-        return self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateSecurityGroups(.init(securityGroupIds: securityGroupIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定安全组
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        let input = AssociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds)
-        return try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateSecurityGroups(.init(securityGroupIds: securityGroupIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

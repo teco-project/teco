@@ -99,8 +99,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
-        let input = DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId)
-        return self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroups(.init(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询图片库
@@ -111,8 +110,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        let input = DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId)
-        return try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroups(.init(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询图片库

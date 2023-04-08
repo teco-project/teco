@@ -54,14 +54,12 @@ extension Privatedns {
     /// 创建私有域解析账号
     @inlinable @discardableResult
     public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
-        let input = CreatePrivateDNSAccountRequest(account: account)
-        return self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPrivateDNSAccount(.init(account: account), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域解析账号
     @inlinable @discardableResult
     public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
-        let input = CreatePrivateDNSAccountRequest(account: account)
-        return try await self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPrivateDNSAccount(.init(account: account), region: region, logger: logger, on: eventLoop)
     }
 }

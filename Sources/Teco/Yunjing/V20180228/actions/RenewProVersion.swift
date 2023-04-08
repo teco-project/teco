@@ -65,8 +65,7 @@ extension Yunjing {
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable @discardableResult
     public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
-        let input = RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid)
-        return self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewProVersion(.init(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费专业版
@@ -74,7 +73,6 @@ extension Yunjing {
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable @discardableResult
     public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
-        let input = RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid)
-        return try await self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewProVersion(.init(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

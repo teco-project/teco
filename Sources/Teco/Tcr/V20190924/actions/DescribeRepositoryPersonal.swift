@@ -58,14 +58,12 @@ extension Tcr {
     /// 查询个人版仓库信息
     @inlinable
     public func describeRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
-        let input = DescribeRepositoryPersonalRequest(repoName: repoName)
-        return self.client.execute(action: "DescribeRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRepositoryPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版仓库信息
     @inlinable
     public func describeRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
-        let input = DescribeRepositoryPersonalRequest(repoName: repoName)
-        return try await self.client.execute(action: "DescribeRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRepositoryPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

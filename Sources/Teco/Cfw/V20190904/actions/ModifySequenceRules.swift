@@ -74,14 +74,12 @@ extension Cfw {
     /// 修改规则执行顺序
     @inlinable
     public func modifySequenceRules(edgeId: String? = nil, data: [SequenceData]? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySequenceRulesResponse> {
-        let input = ModifySequenceRulesRequest(edgeId: edgeId, data: data, area: area, direction: direction)
-        return self.client.execute(action: "ModifySequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySequenceRules(.init(edgeId: edgeId, data: data, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则执行顺序
     @inlinable
     public func modifySequenceRules(edgeId: String? = nil, data: [SequenceData]? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySequenceRulesResponse {
-        let input = ModifySequenceRulesRequest(edgeId: edgeId, data: data, area: area, direction: direction)
-        return try await self.client.execute(action: "ModifySequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySequenceRules(.init(edgeId: edgeId, data: data, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 }

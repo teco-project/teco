@@ -117,8 +117,7 @@ extension Bmvpc {
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
     public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoutePoliciesResponse> {
-        let input = DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRoutePolicies(.init(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石路由表条目
@@ -126,8 +125,7 @@ extension Bmvpc {
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
     public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
-        let input = DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRoutePolicies(.init(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石路由表条目

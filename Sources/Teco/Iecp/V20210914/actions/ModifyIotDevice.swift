@@ -74,14 +74,12 @@ extension Iecp {
     /// 修改设备信息
     @inlinable @discardableResult
     public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
-        let input = ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel)
-        return self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyIotDevice(.init(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
     @inlinable @discardableResult
     public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
-        let input = ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel)
-        return try await self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyIotDevice(.init(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 }

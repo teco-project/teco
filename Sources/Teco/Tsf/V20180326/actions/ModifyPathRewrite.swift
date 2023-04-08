@@ -78,14 +78,12 @@ extension Tsf {
     /// 修改路径重写
     @inlinable
     public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
-        let input = ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order)
-        return self.client.execute(action: "ModifyPathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPathRewrite(.init(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路径重写
     @inlinable
     public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
-        let input = ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order)
-        return try await self.client.execute(action: "ModifyPathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPathRewrite(.init(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

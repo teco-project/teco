@@ -74,14 +74,12 @@ extension Cfw {
     /// 防火墙实例重新选择vpc或nat
     @inlinable @discardableResult
     public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatFwReSelectResponse> {
-        let input = ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo)
-        return self.client.execute(action: "ModifyNatFwReSelect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNatFwReSelect(.init(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 防火墙实例重新选择vpc或nat
     @inlinable @discardableResult
     public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
-        let input = ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo)
-        return try await self.client.execute(action: "ModifyNatFwReSelect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNatFwReSelect(.init(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 }

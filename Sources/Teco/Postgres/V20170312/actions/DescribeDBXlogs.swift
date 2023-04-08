@@ -116,8 +116,7 @@ extension Postgres {
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
     public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
-        let input = DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBXlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例Xlog列表
@@ -125,8 +124,7 @@ extension Postgres {
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
     public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
-        let input = DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBXlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例Xlog列表

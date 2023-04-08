@@ -96,8 +96,7 @@ extension Vod {
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable @discardableResult
     public func resetProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
-        let input = ResetProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask)
-        return self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetProcedureTemplate(.init(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重设任务流模板
@@ -105,7 +104,6 @@ extension Vod {
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable @discardableResult
     public func resetProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
-        let input = ResetProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask)
-        return try await self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetProcedureTemplate(.init(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Dts {
     /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
     @inlinable @discardableResult
     public func resizeSyncJob(jobId: String, newInstanceClass: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResizeSyncJobResponse> {
-        let input = ResizeSyncJobRequest(jobId: jobId, newInstanceClass: newInstanceClass)
-        return self.client.execute(action: "ResizeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resizeSyncJob(.init(jobId: jobId, newInstanceClass: newInstanceClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整同步任务规格
@@ -74,7 +73,6 @@ extension Dts {
     /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
     @inlinable @discardableResult
     public func resizeSyncJob(jobId: String, newInstanceClass: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeSyncJobResponse {
-        let input = ResizeSyncJobRequest(jobId: jobId, newInstanceClass: newInstanceClass)
-        return try await self.client.execute(action: "ResizeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resizeSyncJob(.init(jobId: jobId, newInstanceClass: newInstanceClass), region: region, logger: logger, on: eventLoop)
     }
 }

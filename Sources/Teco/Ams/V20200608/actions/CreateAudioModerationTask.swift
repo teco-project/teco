@@ -154,8 +154,7 @@ extension Ams {
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
     public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        let input = CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks)
-        return self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAudioModerationTask(.init(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -186,7 +185,6 @@ extension Ams {
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
     public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        let input = CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks)
-        return try await self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAudioModerationTask(.init(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), region: region, logger: logger, on: eventLoop)
     }
 }

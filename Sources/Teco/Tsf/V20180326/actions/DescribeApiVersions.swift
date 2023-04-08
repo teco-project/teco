@@ -74,8 +74,7 @@ extension Tsf {
     /// 查询API 版本
     @inlinable
     public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiVersionsResponse> {
-        let input = DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method)
-        return self.client.execute(action: "DescribeApiVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApiVersions(.init(microserviceId: microserviceId, path: path, method: method), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API版本
@@ -83,7 +82,6 @@ extension Tsf {
     /// 查询API 版本
     @inlinable
     public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
-        let input = DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method)
-        return try await self.client.execute(action: "DescribeApiVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApiVersions(.init(microserviceId: microserviceId, path: path, method: method), region: region, logger: logger, on: eventLoop)
     }
 }

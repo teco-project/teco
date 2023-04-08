@@ -89,8 +89,7 @@ extension Cdn {
     /// CreateScdnDomain 用于创建 SCDN 加速域名
     @inlinable
     public func createScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnDomainResponse> {
-        let input = CreateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot)
-        return self.client.execute(action: "CreateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createScdnDomain(.init(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建SCDN域名
@@ -98,7 +97,6 @@ extension Cdn {
     /// CreateScdnDomain 用于创建 SCDN 加速域名
     @inlinable
     public func createScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnDomainResponse {
-        let input = CreateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot)
-        return try await self.client.execute(action: "CreateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createScdnDomain(.init(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 }

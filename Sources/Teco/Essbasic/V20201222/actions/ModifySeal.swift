@@ -96,8 +96,7 @@ extension Essbasic {
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
-        let input = ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId)
-        return self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySeal(.init(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新电子印章
@@ -107,7 +106,6 @@ extension Essbasic {
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
-        let input = ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId)
-        return try await self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySeal(.init(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

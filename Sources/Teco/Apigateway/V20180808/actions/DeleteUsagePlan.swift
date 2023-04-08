@@ -65,8 +65,7 @@ extension Apigateway {
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
     public func deleteUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
-        let input = DeleteUsagePlanRequest(usagePlanId: usagePlanId)
-        return self.client.execute(action: "DeleteUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUsagePlan(.init(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除使用计划
@@ -74,7 +73,6 @@ extension Apigateway {
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
     public func deleteUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
-        let input = DeleteUsagePlanRequest(usagePlanId: usagePlanId)
-        return try await self.client.execute(action: "DeleteUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUsagePlan(.init(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 }

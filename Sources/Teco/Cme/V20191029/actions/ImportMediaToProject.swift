@@ -110,8 +110,7 @@ extension Cme {
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
     public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaToProjectResponse> {
-        let input = ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`)
-        return self.client.execute(action: "ImportMediaToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.importMediaToProject(.init(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 在项目中导入媒体
@@ -119,7 +118,6 @@ extension Cme {
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
     public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
-        let input = ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`)
-        return try await self.client.execute(action: "ImportMediaToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.importMediaToProject(.init(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

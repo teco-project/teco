@@ -115,8 +115,7 @@ extension Iotexplorer {
     /// 用于查询某个产品下的设备列表
     @inlinable
     public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceListResponse> {
-        let input = GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId)
-        return self.client.execute(action: "GetDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDeviceList(.init(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品的设备列表
@@ -124,8 +123,7 @@ extension Iotexplorer {
     /// 用于查询某个产品下的设备列表
     @inlinable
     public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
-        let input = GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId)
-        return try await self.client.execute(action: "GetDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDeviceList(.init(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品的设备列表

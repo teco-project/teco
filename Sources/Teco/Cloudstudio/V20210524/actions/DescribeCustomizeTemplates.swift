@@ -59,14 +59,12 @@ extension Cloudstudio {
     /// 获取所有模板列表
     @inlinable
     public func describeCustomizeTemplates(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesResponse> {
-        let input = DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return self.client.execute(action: "DescribeCustomizeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCustomizeTemplates(.init(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有模板列表
     @inlinable
     public func describeCustomizeTemplates(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
-        let input = DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return try await self.client.execute(action: "DescribeCustomizeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCustomizeTemplates(.init(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

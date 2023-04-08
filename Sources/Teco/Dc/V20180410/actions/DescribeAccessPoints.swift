@@ -94,15 +94,13 @@ extension Dc {
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessPointsResponse> {
-        let input = DescribeAccessPointsRequest(regionId: regionId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAccessPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccessPoints(.init(regionId: regionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
-        let input = DescribeAccessPointsRequest(regionId: regionId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAccessPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccessPoints(.init(regionId: regionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理专线接入点

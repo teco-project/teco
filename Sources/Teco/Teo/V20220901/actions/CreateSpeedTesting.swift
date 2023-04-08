@@ -65,8 +65,7 @@ extension Teo {
     /// 对用户指定的域名进行一次站点拨测
     @inlinable @discardableResult
     public func createSpeedTesting(zoneId: String, host: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSpeedTestingResponse> {
-        let input = CreateSpeedTestingRequest(zoneId: zoneId, host: host)
-        return self.client.execute(action: "CreateSpeedTesting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSpeedTesting(.init(zoneId: zoneId, host: host), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建站点拨测任务
@@ -74,7 +73,6 @@ extension Teo {
     /// 对用户指定的域名进行一次站点拨测
     @inlinable @discardableResult
     public func createSpeedTesting(zoneId: String, host: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
-        let input = CreateSpeedTestingRequest(zoneId: zoneId, host: host)
-        return try await self.client.execute(action: "CreateSpeedTesting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSpeedTesting(.init(zoneId: zoneId, host: host), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -98,15 +98,13 @@ extension Kms {
     /// 获取白盒密钥列表
     @inlinable
     public func describeWhiteBoxKeyDetails(keyStatus: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxKeyDetailsResponse> {
-        let input = DescribeWhiteBoxKeyDetailsRequest(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeWhiteBoxKeyDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWhiteBoxKeyDetails(.init(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒密钥列表
     @inlinable
     public func describeWhiteBoxKeyDetails(keyStatus: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {
-        let input = DescribeWhiteBoxKeyDetailsRequest(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeWhiteBoxKeyDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWhiteBoxKeyDetails(.init(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒密钥列表

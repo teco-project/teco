@@ -72,8 +72,7 @@ extension Bmvpc {
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
     public func deleteSubnet(vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
-        let input = DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId)
-        return self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSubnet(.init(vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除子网
@@ -82,7 +81,6 @@ extension Bmvpc {
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
     public func deleteSubnet(vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
-        let input = DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId)
-        return try await self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSubnet(.init(vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

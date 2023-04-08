@@ -65,8 +65,7 @@ extension Tke {
     /// 在TKE集群中安装CLS日志采集组件
     @inlinable @discardableResult
     public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallLogAgentResponse> {
-        let input = InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir)
-        return self.client.execute(action: "InstallLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.installLogAgent(.init(clusterId: clusterId, kubeletRootDir: kubeletRootDir), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安装日志采集组件
@@ -74,7 +73,6 @@ extension Tke {
     /// 在TKE集群中安装CLS日志采集组件
     @inlinable @discardableResult
     public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallLogAgentResponse {
-        let input = InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir)
-        return try await self.client.execute(action: "InstallLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.installLogAgent(.init(clusterId: clusterId, kubeletRootDir: kubeletRootDir), region: region, logger: logger, on: eventLoop)
     }
 }

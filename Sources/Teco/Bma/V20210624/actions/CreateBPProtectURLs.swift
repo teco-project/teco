@@ -74,14 +74,12 @@ extension Bma {
     /// 添加保护网站
     @inlinable @discardableResult
     public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPProtectURLsResponse> {
-        let input = CreateBPProtectURLsRequest(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs)
-        return self.client.execute(action: "CreateBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBPProtectURLs(.init(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加保护网站
     @inlinable @discardableResult
     public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
-        let input = CreateBPProtectURLsRequest(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs)
-        return try await self.client.execute(action: "CreateBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBPProtectURLs(.init(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs), region: region, logger: logger, on: eventLoop)
     }
 }

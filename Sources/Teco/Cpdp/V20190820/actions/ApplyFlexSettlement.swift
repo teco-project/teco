@@ -98,14 +98,12 @@ extension Cpdp {
     /// 灵云V2-结算
     @inlinable
     public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexSettlementResponse> {
-        let input = ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment)
-        return self.client.execute(action: "ApplyFlexSettlement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyFlexSettlement(.init(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-结算
     @inlinable
     public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexSettlementResponse {
-        let input = ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment)
-        return try await self.client.execute(action: "ApplyFlexSettlement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyFlexSettlement(.init(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

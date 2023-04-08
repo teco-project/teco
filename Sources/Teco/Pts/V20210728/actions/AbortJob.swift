@@ -69,14 +69,12 @@ extension Pts {
     /// 停止任务
     @inlinable @discardableResult
     public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortJobResponse> {
-        let input = AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason)
-        return self.client.execute(action: "AbortJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.abortJob(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止任务
     @inlinable @discardableResult
     public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
-        let input = AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason)
-        return try await self.client.execute(action: "AbortJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.abortJob(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), region: region, logger: logger, on: eventLoop)
     }
 }

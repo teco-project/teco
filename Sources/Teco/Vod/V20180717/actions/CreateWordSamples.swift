@@ -78,8 +78,7 @@ extension Vod {
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable @discardableResult
     public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
-        let input = CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId)
-        return self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createWordSamples(.init(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建关键词样本
@@ -87,7 +86,6 @@ extension Vod {
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable @discardableResult
     public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
-        let input = CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId)
-        return try await self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createWordSamples(.init(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

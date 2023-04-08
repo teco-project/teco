@@ -74,14 +74,12 @@ extension Antiddos {
     /// 新建cc防护的地域封禁配置
     @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
-        let input = CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig)
-        return self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCcGeoIPBlockConfig(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建cc防护的地域封禁配置
     @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
-        let input = CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig)
-        return try await self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCcGeoIPBlockConfig(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 }

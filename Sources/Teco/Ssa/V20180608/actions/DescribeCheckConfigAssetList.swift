@@ -103,15 +103,13 @@ extension Ssa {
     /// 云安全配置管理资产组列表
     @inlinable
     public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigAssetListResponse> {
-        let input = DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter)
-        return self.client.execute(action: "DescribeCheckConfigAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCheckConfigAssetList(.init(id: id, offset: offset, limit: limit, search: search, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置管理资产组列表
     @inlinable
     public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
-        let input = DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter)
-        return try await self.client.execute(action: "DescribeCheckConfigAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCheckConfigAssetList(.init(id: id, offset: offset, limit: limit, search: search, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置管理资产组列表

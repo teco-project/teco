@@ -87,14 +87,12 @@ extension Ciam {
     /// 查询用户列表
     @inlinable
     public func listUser(userStoreId: String, pageable: Pageable, filters: [Filter]? = nil, original: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserResponse> {
-        let input = ListUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original)
-        return self.client.execute(action: "ListUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listUser(.init(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
     @inlinable
     public func listUser(userStoreId: String, pageable: Pageable, filters: [Filter]? = nil, original: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserResponse {
-        let input = ListUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original)
-        return try await self.client.execute(action: "ListUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listUser(.init(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original), region: region, logger: logger, on: eventLoop)
     }
 }

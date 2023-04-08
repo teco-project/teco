@@ -57,8 +57,7 @@ extension Waf {
     /// 在CDC场景下，负载均衡型WAF的添加、编辑域名配置的时候，需要展示CDC负载均衡型WAF（cdc-clb-waf)支持的地域列表，通过DescribeUserCdcClbWafRegions既可以获得当前对客户已经开放的地域列表
     @inlinable
     public func describeUserCdcClbWafRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCdcClbWafRegionsResponse> {
-        let input = DescribeUserCdcClbWafRegionsRequest()
-        return self.client.execute(action: "DescribeUserCdcClbWafRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserCdcClbWafRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CDC场景下对客户已经开放的负载均衡型WAF(cdc-clb-waf)的地域
@@ -66,7 +65,6 @@ extension Waf {
     /// 在CDC场景下，负载均衡型WAF的添加、编辑域名配置的时候，需要展示CDC负载均衡型WAF（cdc-clb-waf)支持的地域列表，通过DescribeUserCdcClbWafRegions既可以获得当前对客户已经开放的地域列表
     @inlinable
     public func describeUserCdcClbWafRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCdcClbWafRegionsResponse {
-        let input = DescribeUserCdcClbWafRegionsRequest()
-        return try await self.client.execute(action: "DescribeUserCdcClbWafRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserCdcClbWafRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

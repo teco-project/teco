@@ -91,14 +91,12 @@ extension Monitor {
     /// 列出用户所有的 Grafana 服务
     @inlinable
     public func describeGrafanaInstances(offset: Int64, limit: Int64, instanceIds: [String]? = nil, instanceName: String? = nil, instanceStatus: [Int64]? = nil, tagFilters: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaInstancesResponse> {
-        let input = DescribeGrafanaInstancesRequest(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeGrafanaInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGrafanaInstances(.init(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出用户所有的 Grafana 服务
     @inlinable
     public func describeGrafanaInstances(offset: Int64, limit: Int64, instanceIds: [String]? = nil, instanceName: String? = nil, instanceStatus: [Int64]? = nil, tagFilters: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaInstancesResponse {
-        let input = DescribeGrafanaInstancesRequest(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeGrafanaInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGrafanaInstances(.init(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 }

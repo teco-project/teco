@@ -87,8 +87,7 @@ extension Tbm {
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
     public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
-        let input = DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return self.client.execute(action: "DescribeBrandExposure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBrandExposure(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌总热度
@@ -96,7 +95,6 @@ extension Tbm {
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
     public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
-        let input = DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeBrandExposure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBrandExposure(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

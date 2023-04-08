@@ -70,8 +70,7 @@ extension Vpc {
     /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
     @inlinable @discardableResult
     public func resetAttachCcnInstances(ccnId: String, ccnUin: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnInstancesResponse> {
-        let input = ResetAttachCcnInstancesRequest(ccnId: ccnId, ccnUin: ccnUin, instances: instances)
-        return self.client.execute(action: "ResetAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetAttachCcnInstances(.init(ccnId: ccnId, ccnUin: ccnUin, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新申请关联实例
@@ -79,7 +78,6 @@ extension Vpc {
     /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
     @inlinable @discardableResult
     public func resetAttachCcnInstances(ccnId: String, ccnUin: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnInstancesResponse {
-        let input = ResetAttachCcnInstancesRequest(ccnId: ccnId, ccnUin: ccnUin, instances: instances)
-        return try await self.client.execute(action: "ResetAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetAttachCcnInstances(.init(ccnId: ccnId, ccnUin: ccnUin, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

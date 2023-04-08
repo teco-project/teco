@@ -97,8 +97,7 @@ extension Cls {
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
     public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogContextResponse> {
-        let input = DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs)
-        return self.client.execute(action: "DescribeLogContext", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogContext(.init(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上下文检索
@@ -106,7 +105,6 @@ extension Cls {
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
     public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
-        let input = DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs)
-        return try await self.client.execute(action: "DescribeLogContext", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogContext(.init(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), region: region, logger: logger, on: eventLoop)
     }
 }

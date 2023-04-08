@@ -80,8 +80,7 @@ extension Vpc {
     /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
     @inlinable
     public func describeAddressTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressTemplateGroupsResponse> {
-        let input = DescribeAddressTemplateGroupsRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAddressTemplateGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAddressTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IP地址模板集合
@@ -89,7 +88,6 @@ extension Vpc {
     /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
     @inlinable
     public func describeAddressTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplateGroupsResponse {
-        let input = DescribeAddressTemplateGroupsRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAddressTemplateGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAddressTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Dcdb {
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
     @inlinable @discardableResult
     public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
-        let input = FlushBinlogRequest(instanceId: instanceId)
-        return self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.flushBinlog(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切分Binlog
@@ -69,7 +68,6 @@ extension Dcdb {
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
     @inlinable @discardableResult
     public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
-        let input = FlushBinlogRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.flushBinlog(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -86,14 +86,12 @@ extension Bma {
     /// 查询企业信息
     @inlinable
     public func describeBPCompanyInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPCompanyInfoResponse> {
-        let input = DescribeBPCompanyInfoRequest()
-        return self.client.execute(action: "DescribeBPCompanyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBPCompanyInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业信息
     @inlinable
     public func describeBPCompanyInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
-        let input = DescribeBPCompanyInfoRequest()
-        return try await self.client.execute(action: "DescribeBPCompanyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBPCompanyInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

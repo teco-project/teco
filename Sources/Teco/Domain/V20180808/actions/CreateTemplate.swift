@@ -69,8 +69,7 @@ extension Domain {
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
     public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTemplateResponse> {
-        let input = CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo)
-        return self.client.execute(action: "CreateTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTemplate(.init(contactInfo: contactInfo, certificateInfo: certificateInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名信息模板
@@ -78,7 +77,6 @@ extension Domain {
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
     public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
-        let input = CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo)
-        return try await self.client.execute(action: "CreateTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTemplate(.init(contactInfo: contactInfo, certificateInfo: certificateInfo), region: region, logger: logger, on: eventLoop)
     }
 }

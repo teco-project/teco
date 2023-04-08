@@ -118,14 +118,12 @@ extension Emr {
     /// 查询集群节点信息
     @inlinable
     public func describeClusterNodes(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodesResponse> {
-        let input = DescribeClusterNodesRequest(instanceId: instanceId, nodeFlag: nodeFlag, offset: offset, limit: limit, hardwareResourceType: hardwareResourceType, searchFields: searchFields, orderField: orderField, asc: asc)
-        return self.client.execute(action: "DescribeClusterNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterNodes(.init(instanceId: instanceId, nodeFlag: nodeFlag, offset: offset, limit: limit, hardwareResourceType: hardwareResourceType, searchFields: searchFields, orderField: orderField, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群节点信息
     @inlinable
     public func describeClusterNodes(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodesResponse {
-        let input = DescribeClusterNodesRequest(instanceId: instanceId, nodeFlag: nodeFlag, offset: offset, limit: limit, hardwareResourceType: hardwareResourceType, searchFields: searchFields, orderField: orderField, asc: asc)
-        return try await self.client.execute(action: "DescribeClusterNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterNodes(.init(instanceId: instanceId, nodeFlag: nodeFlag, offset: offset, limit: limit, hardwareResourceType: hardwareResourceType, searchFields: searchFields, orderField: orderField, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 }

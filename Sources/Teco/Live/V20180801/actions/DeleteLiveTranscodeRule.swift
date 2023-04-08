@@ -78,8 +78,7 @@ extension Live {
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
     @inlinable @discardableResult
     public func deleteLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeRuleResponse> {
-        let input = DeleteLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId)
-        return self.client.execute(action: "DeleteLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveTranscodeRule(.init(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转码规则
@@ -88,7 +87,6 @@ extension Live {
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
     @inlinable @discardableResult
     public func deleteLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeRuleResponse {
-        let input = DeleteLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId)
-        return try await self.client.execute(action: "DeleteLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveTranscodeRule(.init(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

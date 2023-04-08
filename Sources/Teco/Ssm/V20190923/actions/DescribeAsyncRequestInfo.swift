@@ -62,14 +62,12 @@ extension Ssm {
     /// 查询异步任务的执行结果
     @inlinable
     public func describeAsyncRequestInfo(flowID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRequestInfoResponse> {
-        let input = DescribeAsyncRequestInfoRequest(flowID: flowID)
-        return self.client.execute(action: "DescribeAsyncRequestInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAsyncRequestInfo(.init(flowID: flowID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务的执行结果
     @inlinable
     public func describeAsyncRequestInfo(flowID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        let input = DescribeAsyncRequestInfoRequest(flowID: flowID)
-        return try await self.client.execute(action: "DescribeAsyncRequestInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAsyncRequestInfo(.init(flowID: flowID), region: region, logger: logger, on: eventLoop)
     }
 }

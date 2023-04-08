@@ -82,8 +82,7 @@ extension Wedata {
     /// 提交任务
     @inlinable
     public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTaskResponse> {
-        let input = SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling)
-        return self.client.execute(action: "SubmitTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.submitTask(.init(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交任务【Beta版本】
@@ -92,7 +91,6 @@ extension Wedata {
     /// 提交任务
     @inlinable
     public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
-        let input = SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling)
-        return try await self.client.execute(action: "SubmitTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.submitTask(.init(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 }

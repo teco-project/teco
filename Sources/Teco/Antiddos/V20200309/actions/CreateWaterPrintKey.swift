@@ -54,14 +54,12 @@ extension Antiddos {
     /// 添加DDoS防护的水印防护密钥
     @inlinable @discardableResult
     public func createWaterPrintKey(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintKeyResponse> {
-        let input = CreateWaterPrintKeyRequest(instanceId: instanceId)
-        return self.client.execute(action: "CreateWaterPrintKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createWaterPrintKey(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的水印防护密钥
     @inlinable @discardableResult
     public func createWaterPrintKey(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
-        let input = CreateWaterPrintKeyRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CreateWaterPrintKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createWaterPrintKey(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

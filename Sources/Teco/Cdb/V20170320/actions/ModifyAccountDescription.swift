@@ -74,8 +74,7 @@ extension Cdb {
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
     public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
-        let input = ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description)
-        return self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccountDescription(.init(instanceId: instanceId, accounts: accounts, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的备注信息
@@ -83,7 +82,6 @@ extension Cdb {
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
     public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        let input = ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description)
-        return try await self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccountDescription(.init(instanceId: instanceId, accounts: accounts, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

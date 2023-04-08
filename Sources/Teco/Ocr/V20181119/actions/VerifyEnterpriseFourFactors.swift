@@ -85,8 +85,7 @@ extension Ocr {
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
     public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
-        let input = VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark)
-        return self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyEnterpriseFourFactors(.init(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业四要素核验
@@ -94,7 +93,6 @@ extension Ocr {
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
     public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
-        let input = VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark)
-        return try await self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyEnterpriseFourFactors(.init(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
     }
 }

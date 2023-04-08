@@ -101,8 +101,7 @@ extension Mongodb {
     /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
     @inlinable
     public func describeDBInstanceNodeProperty(instanceId: String, nodeIds: [String]? = nil, roles: [String]? = nil, onlyHidden: Bool? = nil, priority: Int64? = nil, votes: Int64? = nil, tags: [NodeTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceNodePropertyResponse> {
-        let input = DescribeDBInstanceNodePropertyRequest(instanceId: instanceId, nodeIds: nodeIds, roles: roles, onlyHidden: onlyHidden, priority: priority, votes: votes, tags: tags)
-        return self.client.execute(action: "DescribeDBInstanceNodeProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstanceNodeProperty(.init(instanceId: instanceId, nodeIds: nodeIds, roles: roles, onlyHidden: onlyHidden, priority: priority, votes: votes, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点属性
@@ -110,7 +109,6 @@ extension Mongodb {
     /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
     @inlinable
     public func describeDBInstanceNodeProperty(instanceId: String, nodeIds: [String]? = nil, roles: [String]? = nil, onlyHidden: Bool? = nil, priority: Int64? = nil, votes: Int64? = nil, tags: [NodeTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceNodePropertyResponse {
-        let input = DescribeDBInstanceNodePropertyRequest(instanceId: instanceId, nodeIds: nodeIds, roles: roles, onlyHidden: onlyHidden, priority: priority, votes: votes, tags: tags)
-        return try await self.client.execute(action: "DescribeDBInstanceNodeProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstanceNodeProperty(.init(instanceId: instanceId, nodeIds: nodeIds, roles: roles, onlyHidden: onlyHidden, priority: priority, votes: votes, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

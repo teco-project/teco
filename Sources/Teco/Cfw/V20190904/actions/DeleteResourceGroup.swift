@@ -60,8 +60,7 @@ extension Cfw {
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable @discardableResult
     public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
-        let input = DeleteResourceGroupRequest(groupId: groupId)
-        return self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteResourceGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组删除
@@ -69,7 +68,6 @@ extension Cfw {
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable @discardableResult
     public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
-        let input = DeleteResourceGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteResourceGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

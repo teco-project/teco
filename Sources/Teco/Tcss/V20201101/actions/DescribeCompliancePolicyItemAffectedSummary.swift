@@ -64,8 +64,7 @@ extension Tcss {
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
     public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
-        let input = DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId)
-        return self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCompliancePolicyItemAffectedSummary(.init(customerPolicyItemId: customerPolicyItemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某检测项影响的信息
@@ -73,7 +72,6 @@ extension Tcss {
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
     public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
-        let input = DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId)
-        return try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCompliancePolicyItemAffectedSummary(.init(customerPolicyItemId: customerPolicyItemId), region: region, logger: logger, on: eventLoop)
     }
 }

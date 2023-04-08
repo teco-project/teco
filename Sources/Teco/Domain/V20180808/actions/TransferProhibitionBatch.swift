@@ -71,8 +71,7 @@ extension Domain {
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
     public func transferProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferProhibitionBatchResponse> {
-        let input = TransferProhibitionBatchRequest(domains: domains, status: status)
-        return self.client.execute(action: "TransferProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.transferProhibitionBatch(.init(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止转移锁
@@ -80,7 +79,6 @@ extension Domain {
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
     public func transferProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
-        let input = TransferProhibitionBatchRequest(domains: domains, status: status)
-        return try await self.client.execute(action: "TransferProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.transferProhibitionBatch(.init(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

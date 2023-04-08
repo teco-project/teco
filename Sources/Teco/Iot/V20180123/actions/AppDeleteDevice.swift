@@ -70,8 +70,7 @@ extension Iot {
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable @discardableResult
     public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppDeleteDeviceResponse> {
-        let input = AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName)
-        return self.client.execute(action: "AppDeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appDeleteDevice(.init(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户解绑设备
@@ -79,7 +78,6 @@ extension Iot {
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable @discardableResult
     public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
-        let input = AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName)
-        return try await self.client.execute(action: "AppDeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appDeleteDevice(.init(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

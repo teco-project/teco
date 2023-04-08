@@ -90,14 +90,12 @@ extension Tcb {
     /// 查询用户活动信息
     @inlinable
     public func describeUserActivityInfo(activityId: Int64, channelToken: String? = nil, channel: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserActivityInfoResponse> {
-        let input = DescribeUserActivityInfoRequest(activityId: activityId, channelToken: channelToken, channel: channel, groupId: groupId)
-        return self.client.execute(action: "DescribeUserActivityInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserActivityInfo(.init(activityId: activityId, channelToken: channelToken, channel: channel, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户活动信息
     @inlinable
     public func describeUserActivityInfo(activityId: Int64, channelToken: String? = nil, channel: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserActivityInfoResponse {
-        let input = DescribeUserActivityInfoRequest(activityId: activityId, channelToken: channelToken, channel: channel, groupId: groupId)
-        return try await self.client.execute(action: "DescribeUserActivityInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserActivityInfo(.init(activityId: activityId, channelToken: channelToken, channel: channel, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

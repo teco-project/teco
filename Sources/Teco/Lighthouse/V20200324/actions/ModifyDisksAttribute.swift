@@ -65,8 +65,7 @@ extension Lighthouse {
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
     @inlinable @discardableResult
     public func modifyDisksAttribute(diskIds: [String], diskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksAttributeResponse> {
-        let input = ModifyDisksAttributeRequest(diskIds: diskIds, diskName: diskName)
-        return self.client.execute(action: "ModifyDisksAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDisksAttribute(.init(diskIds: diskIds, diskName: diskName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘属性
@@ -74,7 +73,6 @@ extension Lighthouse {
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
     @inlinable @discardableResult
     public func modifyDisksAttribute(diskIds: [String], diskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksAttributeResponse {
-        let input = ModifyDisksAttributeRequest(diskIds: diskIds, diskName: diskName)
-        return try await self.client.execute(action: "ModifyDisksAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDisksAttribute(.init(diskIds: diskIds, diskName: diskName), region: region, logger: logger, on: eventLoop)
     }
 }

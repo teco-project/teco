@@ -162,8 +162,7 @@ extension Faceid {
     /// 解析SDK获取到的证件NFC数据，接口传入SDK返回的ReqId，返回证件信息（个别字段为特定证件类型特有）。SDK生成的ReqId五分钟内有效，重复查询仅收一次费。支持身份证类证件（二代身份证、港澳居住证、台湾居住证、外国人永居证）以及旅行类证件（港澳通行证、台湾通行证、台胞证、回乡证）的NFC识别及核验。
     @inlinable
     public func parseNfcData(reqId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNfcDataResponse> {
-        let input = ParseNfcDataRequest(reqId: reqId)
-        return self.client.execute(action: "ParseNfcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.parseNfcData(.init(reqId: reqId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证件NFC结果
@@ -171,7 +170,6 @@ extension Faceid {
     /// 解析SDK获取到的证件NFC数据，接口传入SDK返回的ReqId，返回证件信息（个别字段为特定证件类型特有）。SDK生成的ReqId五分钟内有效，重复查询仅收一次费。支持身份证类证件（二代身份证、港澳居住证、台湾居住证、外国人永居证）以及旅行类证件（港澳通行证、台湾通行证、台胞证、回乡证）的NFC识别及核验。
     @inlinable
     public func parseNfcData(reqId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNfcDataResponse {
-        let input = ParseNfcDataRequest(reqId: reqId)
-        return try await self.client.execute(action: "ParseNfcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.parseNfcData(.init(reqId: reqId), region: region, logger: logger, on: eventLoop)
     }
 }

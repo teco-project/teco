@@ -121,8 +121,7 @@ extension Ses {
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
     public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
-        let input = ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID)
-        return self.client.execute(action: "ListBlackEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listBlackEmailAddress(.init(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑名单邮箱地址
@@ -130,8 +129,7 @@ extension Ses {
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
     public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
-        let input = ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID)
-        return try await self.client.execute(action: "ListBlackEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listBlackEmailAddress(.init(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑名单邮箱地址

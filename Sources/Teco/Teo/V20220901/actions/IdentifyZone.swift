@@ -68,8 +68,7 @@ extension Teo {
     /// 用于验证站点所有权。
     @inlinable
     public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
-        let input = IdentifyZoneRequest(zoneName: zoneName)
-        return self.client.execute(action: "IdentifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.identifyZone(.init(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 认证站点
@@ -77,7 +76,6 @@ extension Teo {
     /// 用于验证站点所有权。
     @inlinable
     public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
-        let input = IdentifyZoneRequest(zoneName: zoneName)
-        return try await self.client.execute(action: "IdentifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.identifyZone(.init(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 }

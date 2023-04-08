@@ -65,8 +65,7 @@ extension Emr {
     /// 删除用户列表（用户管理）
     @inlinable @discardableResult
     public func deleteUserManagerUserList(instanceId: String, userNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserManagerUserListResponse> {
-        let input = DeleteUserManagerUserListRequest(instanceId: instanceId, userNameList: userNameList)
-        return self.client.execute(action: "DeleteUserManagerUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户列表
@@ -74,7 +73,6 @@ extension Emr {
     /// 删除用户列表（用户管理）
     @inlinable @discardableResult
     public func deleteUserManagerUserList(instanceId: String, userNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
-        let input = DeleteUserManagerUserListRequest(instanceId: instanceId, userNameList: userNameList)
-        return try await self.client.execute(action: "DeleteUserManagerUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -108,8 +108,7 @@ extension Ssm {
     /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
     @inlinable
     public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
-        let input = CreateSecretRequest(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags)
-        return self.client.execute(action: "CreateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建凭据
@@ -117,7 +116,6 @@ extension Ssm {
     /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
     @inlinable
     public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        let input = CreateSecretRequest(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags)
-        return try await self.client.execute(action: "CreateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Mgobe {
     /// 通过game_id、room_id解散房间
     @inlinable @discardableResult
     public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
-        let input = DismissRoomRequest(gameId: gameId, roomId: roomId)
-        return self.client.execute(action: "DismissRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.dismissRoom(.init(gameId: gameId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解散房间
@@ -74,7 +73,6 @@ extension Mgobe {
     /// 通过game_id、room_id解散房间
     @inlinable @discardableResult
     public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        let input = DismissRoomRequest(gameId: gameId, roomId: roomId)
-        return try await self.client.execute(action: "DismissRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.dismissRoom(.init(gameId: gameId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

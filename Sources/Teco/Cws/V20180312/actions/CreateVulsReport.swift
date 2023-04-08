@@ -69,8 +69,7 @@ extension Cws {
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
     public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
-        let input = CreateVulsReportRequest(siteId: siteId, monitorId: monitorId)
-        return self.client.execute(action: "CreateVulsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVulsReport(.init(siteId: siteId, monitorId: monitorId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成漏洞报告
@@ -78,7 +77,6 @@ extension Cws {
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
     public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
-        let input = CreateVulsReportRequest(siteId: siteId, monitorId: monitorId)
-        return try await self.client.execute(action: "CreateVulsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVulsReport(.init(siteId: siteId, monitorId: monitorId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -75,8 +75,7 @@ extension Fmu {
     /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
     @inlinable
     public func createModel(lutFile: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelResponse> {
-        let input = CreateModelRequest(lutFile: lutFile, description: description)
-        return self.client.execute(action: "CreateModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createModel(.init(lutFile: lutFile, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传唇色素材
@@ -86,7 +85,6 @@ extension Fmu {
     /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
     @inlinable
     public func createModel(lutFile: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
-        let input = CreateModelRequest(lutFile: lutFile, description: description)
-        return try await self.client.execute(action: "CreateModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createModel(.init(lutFile: lutFile, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

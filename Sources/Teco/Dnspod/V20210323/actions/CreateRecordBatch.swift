@@ -67,14 +67,12 @@ extension Dnspod {
     /// 批量添加记录
     @inlinable
     public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordBatchResponse> {
-        let input = CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList)
-        return self.client.execute(action: "CreateRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRecordBatch(.init(domainIdList: domainIdList, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量添加记录
     @inlinable
     public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
-        let input = CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList)
-        return try await self.client.execute(action: "CreateRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRecordBatch(.init(domainIdList: domainIdList, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 }

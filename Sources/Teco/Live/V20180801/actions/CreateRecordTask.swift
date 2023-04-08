@@ -128,8 +128,7 @@ extension Live {
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
     public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordTaskResponse> {
-        let input = CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`)
-        return self.client.execute(action: "CreateRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRecordTask(.init(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务（新）
@@ -146,7 +145,6 @@ extension Live {
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
     public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
-        let input = CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`)
-        return try await self.client.execute(action: "CreateRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRecordTask(.init(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 }

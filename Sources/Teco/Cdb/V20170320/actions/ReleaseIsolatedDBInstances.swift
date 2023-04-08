@@ -64,8 +64,7 @@ extension Cdb {
     /// 本接口（ReleaseIsolatedDBInstances）用于恢复已隔离云数据库实例。
     @inlinable
     public func releaseIsolatedDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIsolatedDBInstancesResponse> {
-        let input = ReleaseIsolatedDBInstancesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "ReleaseIsolatedDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.releaseIsolatedDBInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解隔离云数据库实例
@@ -73,7 +72,6 @@ extension Cdb {
     /// 本接口（ReleaseIsolatedDBInstances）用于恢复已隔离云数据库实例。
     @inlinable
     public func releaseIsolatedDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIsolatedDBInstancesResponse {
-        let input = ReleaseIsolatedDBInstancesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "ReleaseIsolatedDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.releaseIsolatedDBInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

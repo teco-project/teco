@@ -67,8 +67,7 @@ extension Bm {
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
-        let input = DeleteCustomImagesRequest(imageIds: imageIds)
-        return self.client.execute(action: "DeleteCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCustomImages(.init(imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义镜像
@@ -77,7 +76,6 @@ extension Bm {
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
-        let input = DeleteCustomImagesRequest(imageIds: imageIds)
-        return try await self.client.execute(action: "DeleteCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCustomImages(.init(imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 }

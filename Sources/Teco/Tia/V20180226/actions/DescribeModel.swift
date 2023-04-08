@@ -74,8 +74,7 @@ extension Tia {
     /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
     public func describeModel(name: String, cluster: String? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelResponse> {
-        let input = DescribeModelRequest(name: name, cluster: cluster, servType: servType)
-        return self.client.execute(action: "DescribeModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModel(.init(name: name, cluster: cluster, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述Model
@@ -83,7 +82,6 @@ extension Tia {
     /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
     public func describeModel(name: String, cluster: String? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelResponse {
-        let input = DescribeModelRequest(name: name, cluster: cluster, servType: servType)
-        return try await self.client.execute(action: "DescribeModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModel(.init(name: name, cluster: cluster, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 }

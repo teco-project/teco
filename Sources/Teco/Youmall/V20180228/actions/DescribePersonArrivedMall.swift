@@ -91,8 +91,7 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
     @inlinable
     public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonArrivedMallResponse> {
-        let input = DescribePersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribePersonArrivedMall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePersonArrivedMall(.init(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户到场信息
@@ -100,7 +99,6 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
     @inlinable
     public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
-        let input = DescribePersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribePersonArrivedMall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePersonArrivedMall(.init(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

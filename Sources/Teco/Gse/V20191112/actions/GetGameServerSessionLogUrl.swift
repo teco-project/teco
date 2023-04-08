@@ -50,7 +50,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
-        self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetGameServerSessionLogUrl is no longer available.")
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -59,7 +59,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
-        try await self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetGameServerSessionLogUrl is no longer available.")
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -68,8 +68,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerSessionLogUrl(gameServerSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
-        let input = GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId)
-        return self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetGameServerSessionLogUrl is no longer available.")
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -78,7 +77,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerSessionLogUrl(gameServerSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
-        let input = GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId)
-        return try await self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetGameServerSessionLogUrl is no longer available.")
     }
 }

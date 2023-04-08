@@ -69,14 +69,12 @@ extension Tcss {
     /// 停止漏洞扫描任务
     @inlinable @discardableResult
     public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVulScanTaskResponse> {
-        let input = StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID)
-        return self.client.execute(action: "StopVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopVulScanTask(.init(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止漏洞扫描任务
     @inlinable @discardableResult
     public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
-        let input = StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID)
-        return try await self.client.execute(action: "StopVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopVulScanTask(.init(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 }

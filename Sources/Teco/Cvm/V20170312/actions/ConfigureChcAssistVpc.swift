@@ -80,8 +80,7 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable @discardableResult
     public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
-        let input = ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds)
-        return self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.configureChcAssistVpc(.init(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置CHC物理服务器的带外和部署网络
@@ -89,7 +88,6 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable @discardableResult
     public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
-        let input = ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds)
-        return try await self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.configureChcAssistVpc(.init(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -110,8 +110,7 @@ extension Iotvideo {
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
     public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: [UInt64]? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataHistoryResponse> {
-        let input = DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context)
-        return self.client.execute(action: "DescribeDeviceDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceDataHistory(.init(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
@@ -119,7 +118,6 @@ extension Iotvideo {
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
     public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: [UInt64]? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
-        let input = DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context)
-        return try await self.client.execute(action: "DescribeDeviceDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceDataHistory(.init(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 }

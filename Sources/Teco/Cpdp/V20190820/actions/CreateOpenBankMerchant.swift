@@ -103,14 +103,12 @@ extension Cpdp {
     /// 云企付-创建商户
     @inlinable
     public func createOpenBankMerchant(outMerchantId: String, channelName: String, outMerchantName: String, externalMerchantInfo: String, outMerchantShortName: String? = nil, outMerchantDescription: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankMerchantResponse> {
-        let input = CreateOpenBankMerchantRequest(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment)
-        return self.client.execute(action: "CreateOpenBankMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createOpenBankMerchant(.init(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-创建商户
     @inlinable
     public func createOpenBankMerchant(outMerchantId: String, channelName: String, outMerchantName: String, externalMerchantInfo: String, outMerchantShortName: String? = nil, outMerchantDescription: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankMerchantResponse {
-        let input = CreateOpenBankMerchantRequest(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment)
-        return try await self.client.execute(action: "CreateOpenBankMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createOpenBankMerchant(.init(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

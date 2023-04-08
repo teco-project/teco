@@ -97,8 +97,7 @@ extension Ocr {
     /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
     @inlinable
     public func businessCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusinessCardOCRResponse> {
-        let input = BusinessCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config)
-        return self.client.execute(action: "BusinessCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.businessCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 名片识别
@@ -106,7 +105,6 @@ extension Ocr {
     /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
     @inlinable
     public func businessCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusinessCardOCRResponse {
-        let input = BusinessCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config)
-        return try await self.client.execute(action: "BusinessCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.businessCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

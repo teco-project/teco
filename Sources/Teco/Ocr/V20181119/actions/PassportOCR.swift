@@ -133,8 +133,7 @@ extension Ocr {
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
     public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PassportOCRResponse> {
-        let input = PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type)
-        return self.client.execute(action: "PassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.passportOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 护照识别（中国大陆地区护照）
@@ -142,7 +141,6 @@ extension Ocr {
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
     public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
-        let input = PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type)
-        return try await self.client.execute(action: "PassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.passportOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

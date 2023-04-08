@@ -63,14 +63,12 @@ extension Zj {
     /// 删除超级短信样例
     @inlinable
     public func deleteMmsInstance(license: String, instanceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMmsInstanceResponse> {
-        let input = DeleteMmsInstanceRequest(license: license, instanceId: instanceId)
-        return self.client.execute(action: "DeleteMmsInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMmsInstance(.init(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除超级短信样例
     @inlinable
     public func deleteMmsInstance(license: String, instanceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
-        let input = DeleteMmsInstanceRequest(license: license, instanceId: instanceId)
-        return try await self.client.execute(action: "DeleteMmsInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMmsInstance(.init(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

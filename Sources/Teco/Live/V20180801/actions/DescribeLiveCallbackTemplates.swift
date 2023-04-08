@@ -50,14 +50,12 @@ extension Live {
     /// 获取回调模板列表
     @inlinable
     public func describeLiveCallbackTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplatesResponse> {
-        let input = DescribeLiveCallbackTemplatesRequest()
-        return self.client.execute(action: "DescribeLiveCallbackTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveCallbackTemplates(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取回调模板列表
     @inlinable
     public func describeLiveCallbackTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
-        let input = DescribeLiveCallbackTemplatesRequest()
-        return try await self.client.execute(action: "DescribeLiveCallbackTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveCallbackTemplates(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

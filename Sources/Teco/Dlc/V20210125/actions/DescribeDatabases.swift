@@ -113,8 +113,7 @@ extension Dlc {
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
     public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        let input = DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc)
-        return self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDatabases(.init(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
@@ -122,8 +121,7 @@ extension Dlc {
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
     public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        let input = DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc)
-        return try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDatabases(.init(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表

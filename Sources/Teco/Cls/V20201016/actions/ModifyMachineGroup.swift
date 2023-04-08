@@ -89,14 +89,12 @@ extension Cls {
     /// 修改机器组
     @inlinable @discardableResult
     public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
-        let input = ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging)
-        return self.client.execute(action: "ModifyMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改机器组
     @inlinable @discardableResult
     public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
-        let input = ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging)
-        return try await self.client.execute(action: "ModifyMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 }

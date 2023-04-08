@@ -60,8 +60,7 @@ extension Sslpod {
     /// 通过域名ID删除监控的域名
     @inlinable @discardableResult
     public func deleteDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
-        let input = DeleteDomainRequest(domainId: domainId)
-        return self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDomain(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
@@ -69,7 +68,6 @@ extension Sslpod {
     /// 通过域名ID删除监控的域名
     @inlinable @discardableResult
     public func deleteDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        let input = DeleteDomainRequest(domainId: domainId)
-        return try await self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDomain(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

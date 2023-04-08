@@ -90,8 +90,7 @@ extension Scf {
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
     public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
-        let input = GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "GetRequestStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRequestStatus(.init(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数单个请求运行状态
@@ -99,7 +98,6 @@ extension Scf {
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
     public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
-        let input = GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "GetRequestStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRequestStatus(.init(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

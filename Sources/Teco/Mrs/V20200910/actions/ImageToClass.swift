@@ -80,8 +80,7 @@ extension Mrs {
     /// 图片分类
     @inlinable
     public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToClassResponse> {
-        let input = ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType)
-        return self.client.execute(action: "ImageToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.imageToClass(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片分类接口
@@ -89,7 +88,6 @@ extension Mrs {
     /// 图片分类
     @inlinable
     public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
-        let input = ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType)
-        return try await self.client.execute(action: "ImageToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.imageToClass(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -109,8 +109,7 @@ extension Teo {
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
-        let input = DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort)
-        return self.client.execute(action: "DescribeHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHostsCertificate(.init(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名证书列表
@@ -118,8 +117,7 @@ extension Teo {
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
     public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
-        let input = DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort)
-        return try await self.client.execute(action: "DescribeHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHostsCertificate(.init(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名证书列表

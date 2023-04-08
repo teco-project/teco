@@ -133,14 +133,12 @@ extension Monitor {
     /// 获取基础策略组详情
     @inlinable
     public func describePolicyGroupInfo(module: String, groupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupInfoResponse> {
-        let input = DescribePolicyGroupInfoRequest(module: module, groupId: groupId)
-        return self.client.execute(action: "DescribePolicyGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePolicyGroupInfo(.init(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础策略组详情
     @inlinable
     public func describePolicyGroupInfo(module: String, groupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
-        let input = DescribePolicyGroupInfoRequest(module: module, groupId: groupId)
-        return try await self.client.execute(action: "DescribePolicyGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePolicyGroupInfo(.init(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

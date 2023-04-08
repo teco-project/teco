@@ -99,8 +99,7 @@ extension Ds {
     /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
     public func createContractByUpload(module: String, operation: String, signInfos: [SignInfo], contractFile: String, contractName: String, remarks: String? = nil, initiator: String? = nil, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContractByUploadResponse> {
-        let input = CreateContractByUploadRequest(module: module, operation: operation, signInfos: signInfos, contractFile: contractFile, contractName: contractName, remarks: remarks, initiator: initiator, expireTime: expireTime)
-        return self.client.execute(action: "CreateContractByUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createContractByUpload(.init(module: module, operation: operation, signInfos: signInfos, contractFile: contractFile, contractName: contractName, remarks: remarks, initiator: initiator, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过上传创建合同
@@ -108,7 +107,6 @@ extension Ds {
     /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
     public func createContractByUpload(module: String, operation: String, signInfos: [SignInfo], contractFile: String, contractName: String, remarks: String? = nil, initiator: String? = nil, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContractByUploadResponse {
-        let input = CreateContractByUploadRequest(module: module, operation: operation, signInfos: signInfos, contractFile: contractFile, contractName: contractName, remarks: remarks, initiator: initiator, expireTime: expireTime)
-        return try await self.client.execute(action: "CreateContractByUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createContractByUpload(.init(module: module, operation: operation, signInfos: signInfos, contractFile: contractFile, contractName: contractName, remarks: remarks, initiator: initiator, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 }

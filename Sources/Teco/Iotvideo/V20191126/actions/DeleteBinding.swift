@@ -70,8 +70,7 @@ extension Iotvideo {
     /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
     @inlinable @discardableResult
     public func deleteBinding(accessId: String, tid: String, role: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBindingResponse> {
-        let input = DeleteBindingRequest(accessId: accessId, tid: tid, role: role)
-        return self.client.execute(action: "DeleteBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBinding(.init(accessId: accessId, tid: tid, role: role), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终端用户解绑设备
@@ -79,7 +78,6 @@ extension Iotvideo {
     /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
     @inlinable @discardableResult
     public func deleteBinding(accessId: String, tid: String, role: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBindingResponse {
-        let input = DeleteBindingRequest(accessId: accessId, tid: tid, role: role)
-        return try await self.client.execute(action: "DeleteBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBinding(.init(accessId: accessId, tid: tid, role: role), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Cam {
     /// 删除子用户
     @inlinable @discardableResult
     public func deleteUser(name: String, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserResponse> {
-        let input = DeleteUserRequest(name: name, force: force)
-        return self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUser(.init(name: name, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除子用户
     @inlinable @discardableResult
     public func deleteUser(name: String, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
-        let input = DeleteUserRequest(name: name, force: force)
-        return try await self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUser(.init(name: name, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

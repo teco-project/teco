@@ -59,14 +59,12 @@ extension Cwp {
     /// 根据策略名查询策略是否存在
     @inlinable
     public func describeStrategyExist(strategyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategyExistResponse> {
-        let input = DescribeStrategyExistRequest(strategyName: strategyName)
-        return self.client.execute(action: "DescribeStrategyExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStrategyExist(.init(strategyName: strategyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据策略名查询策略是否存在
     @inlinable
     public func describeStrategyExist(strategyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategyExistResponse {
-        let input = DescribeStrategyExistRequest(strategyName: strategyName)
-        return try await self.client.execute(action: "DescribeStrategyExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStrategyExist(.init(strategyName: strategyName), region: region, logger: logger, on: eventLoop)
     }
 }

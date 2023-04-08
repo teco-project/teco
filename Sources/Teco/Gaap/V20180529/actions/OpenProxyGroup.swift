@@ -68,8 +68,7 @@ extension Gaap {
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
     public func openProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxyGroupResponse> {
-        let input = OpenProxyGroupRequest(groupId: groupId)
-        return self.client.execute(action: "OpenProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openProxyGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启通道组
@@ -77,7 +76,6 @@ extension Gaap {
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
     public func openProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
-        let input = OpenProxyGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "OpenProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openProxyGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

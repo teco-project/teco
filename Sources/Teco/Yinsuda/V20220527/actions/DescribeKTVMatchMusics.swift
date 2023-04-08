@@ -78,8 +78,7 @@ extension Yinsuda {
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
     public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMatchMusicsResponse> {
-        let input = DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules)
-        return self.client.execute(action: "DescribeKTVMatchMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVMatchMusics(.init(appName: appName, userId: userId, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 匹配歌曲
@@ -87,7 +86,6 @@ extension Yinsuda {
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
     public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
-        let input = DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules)
-        return try await self.client.execute(action: "DescribeKTVMatchMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVMatchMusics(.init(appName: appName, userId: userId, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -97,8 +97,7 @@ extension Wedata {
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
-        let input = RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType)
-        return self.client.execute(action: "RerunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rerunInstances(.init(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例批量重跑【Beta版本】
@@ -107,7 +106,6 @@ extension Wedata {
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
-        let input = RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType)
-        return try await self.client.execute(action: "RerunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rerunInstances(.init(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), region: region, logger: logger, on: eventLoop)
     }
 }

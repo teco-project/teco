@@ -59,14 +59,12 @@ extension Iecp {
     /// 删除应用列表
     @inlinable @discardableResult
     public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
-        let input = DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs)
-        return self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEdgeUnitApplications(.init(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用列表
     @inlinable @discardableResult
     public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
-        let input = DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs)
-        return try await self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEdgeUnitApplications(.init(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }
 }

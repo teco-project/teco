@@ -59,14 +59,12 @@ extension Tdcpg {
     /// 修改集群名字
     @inlinable @discardableResult
     public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
-        let input = ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName)
-        return self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterName(.init(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群名字
     @inlinable @discardableResult
     public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
-        let input = ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName)
-        return try await self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterName(.init(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }
 }

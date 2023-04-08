@@ -94,14 +94,12 @@ extension Dayu {
     /// 添加或删除CC的IP黑白名单
     @inlinable
     public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCIpAllowDenyResponse> {
-        let input = ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId)
-        return self.client.execute(action: "ModifyCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCCIpAllowDeny(.init(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的IP黑白名单
     @inlinable
     public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
-        let input = ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId)
-        return try await self.client.execute(action: "ModifyCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCCIpAllowDeny(.init(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Vod {
     /// 删除用户自定义转码模板。
     @inlinable @discardableResult
     public func deleteTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
-        let input = DeleteTranscodeTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTranscodeTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转码模板
@@ -74,7 +73,6 @@ extension Vod {
     /// 删除用户自定义转码模板。
     @inlinable @discardableResult
     public func deleteTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
-        let input = DeleteTranscodeTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTranscodeTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

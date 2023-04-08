@@ -81,8 +81,7 @@ extension Nlp {
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
     public func textSimilarityPro(srcText: String, targetText: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextSimilarityProResponse> {
-        let input = TextSimilarityProRequest(srcText: srcText, targetText: targetText)
-        return self.client.execute(action: "TextSimilarityPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textSimilarityPro(.init(srcText: srcText, targetText: targetText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 句子相似度高级版
@@ -94,7 +93,6 @@ extension Nlp {
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
     public func textSimilarityPro(srcText: String, targetText: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityProResponse {
-        let input = TextSimilarityProRequest(srcText: srcText, targetText: targetText)
-        return try await self.client.execute(action: "TextSimilarityPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textSimilarityPro(.init(srcText: srcText, targetText: targetText), region: region, logger: logger, on: eventLoop)
     }
 }

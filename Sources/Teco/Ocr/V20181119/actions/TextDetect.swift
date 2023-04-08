@@ -76,8 +76,7 @@ extension Ocr {
     /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
     @inlinable
     public func textDetect(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextDetectResponse> {
-        let input = TextDetectRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "TextDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textDetect(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 快速文本检测
@@ -85,7 +84,6 @@ extension Ocr {
     /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
     @inlinable
     public func textDetect(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextDetectResponse {
-        let input = TextDetectRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "TextDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textDetect(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

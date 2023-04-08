@@ -74,8 +74,7 @@ extension Bmlb {
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
     public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesResponse> {
-        let input = DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds)
-        return self.client.execute(action: "DescribeL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeL7Rules(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层转发规则
@@ -83,7 +82,6 @@ extension Bmlb {
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
     public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
-        let input = DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds)
-        return try await self.client.execute(action: "DescribeL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeL7Rules(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), region: region, logger: logger, on: eventLoop)
     }
 }

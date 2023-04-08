@@ -95,8 +95,7 @@ extension Dbbrain {
     /// 查询SQL模板。
     @inlinable
     public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlTemplateResponse> {
-        let input = DescribeSqlTemplateRequest(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product)
-        return self.client.execute(action: "DescribeSqlTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSqlTemplate(.init(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SQL模板
@@ -104,7 +103,6 @@ extension Dbbrain {
     /// 查询SQL模板。
     @inlinable
     public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlTemplateResponse {
-        let input = DescribeSqlTemplateRequest(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product)
-        return try await self.client.execute(action: "DescribeSqlTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSqlTemplate(.init(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

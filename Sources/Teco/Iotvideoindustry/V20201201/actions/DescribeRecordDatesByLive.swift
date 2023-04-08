@@ -84,15 +84,13 @@ extension Iotvideoindustry {
     /// 直播录像存储日期列表
     @inlinable
     public func describeRecordDatesByLive(liveChannelId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordDatesByLiveResponse> {
-        let input = DescribeRecordDatesByLiveRequest(liveChannelId: liveChannelId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeRecordDatesByLive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordDatesByLive(.init(liveChannelId: liveChannelId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录像存储日期列表
     @inlinable
     public func describeRecordDatesByLive(liveChannelId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {
-        let input = DescribeRecordDatesByLiveRequest(liveChannelId: liveChannelId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeRecordDatesByLive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordDatesByLive(.init(liveChannelId: liveChannelId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录像存储日期列表

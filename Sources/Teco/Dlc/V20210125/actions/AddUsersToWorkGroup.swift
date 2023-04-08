@@ -54,14 +54,12 @@ extension Dlc {
     /// 添加用户到工作组
     @inlinable @discardableResult
     public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
-        let input = AddUsersToWorkGroupRequest(addInfo: addInfo)
-        return self.client.execute(action: "AddUsersToWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addUsersToWorkGroup(.init(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加用户到工作组
     @inlinable @discardableResult
     public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
-        let input = AddUsersToWorkGroupRequest(addInfo: addInfo)
-        return try await self.client.execute(action: "AddUsersToWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addUsersToWorkGroup(.init(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 }

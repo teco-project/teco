@@ -74,14 +74,12 @@ extension Pts {
     /// 批量查询指标矩阵
     @inlinable
     public func describeSampleMatrixBatchQuery(jobId: String, projectId: String, scenarioId: String, queries: [InternalMetricQuery], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixBatchQueryResponse> {
-        let input = DescribeSampleMatrixBatchQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, queries: queries)
-        return self.client.execute(action: "DescribeSampleMatrixBatchQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSampleMatrixBatchQuery(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId, queries: queries), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询指标矩阵
     @inlinable
     public func describeSampleMatrixBatchQuery(jobId: String, projectId: String, scenarioId: String, queries: [InternalMetricQuery], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixBatchQueryResponse {
-        let input = DescribeSampleMatrixBatchQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, queries: queries)
-        return try await self.client.execute(action: "DescribeSampleMatrixBatchQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSampleMatrixBatchQuery(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId, queries: queries), region: region, logger: logger, on: eventLoop)
     }
 }

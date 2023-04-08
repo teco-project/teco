@@ -120,8 +120,7 @@ extension Tke {
     /// 修改边缘计算集群名称等属性
     @inlinable @discardableResult
     public func updateTKEEdgeCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTKEEdgeClusterResponse> {
-        let input = UpdateTKEEdgeClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel)
-        return self.client.execute(action: "UpdateTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateTKEEdgeCluster(.init(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘计算的集群
@@ -129,7 +128,6 @@ extension Tke {
     /// 修改边缘计算集群名称等属性
     @inlinable @discardableResult
     public func updateTKEEdgeCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTKEEdgeClusterResponse {
-        let input = UpdateTKEEdgeClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel)
-        return try await self.client.execute(action: "UpdateTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateTKEEdgeCluster(.init(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 }

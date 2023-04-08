@@ -54,14 +54,12 @@ extension Tdid {
     /// 删除合约
     @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
-        let input = RemoveHashRequest(hash: hash)
-        return self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除合约
     @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
-        let input = RemoveHashRequest(hash: hash)
-        return try await self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 }

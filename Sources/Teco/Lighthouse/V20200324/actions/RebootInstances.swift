@@ -75,8 +75,7 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func rebootInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootInstancesResponse> {
-        let input = RebootInstancesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "RebootInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rebootInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -89,7 +88,6 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func rebootInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootInstancesResponse {
-        let input = RebootInstancesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "RebootInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rebootInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

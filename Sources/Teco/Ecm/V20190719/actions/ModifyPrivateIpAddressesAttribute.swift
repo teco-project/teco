@@ -70,8 +70,7 @@ extension Ecm {
     /// 用于修改弹性网卡内网IP属性。
     @inlinable @discardableResult
     public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateIpAddressesAttributeResponse> {
-        let input = ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion)
-        return self.client.execute(action: "ModifyPrivateIpAddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrivateIpAddressesAttribute(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡内网IP信息
@@ -79,7 +78,6 @@ extension Ecm {
     /// 用于修改弹性网卡内网IP属性。
     @inlinable @discardableResult
     public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
-        let input = ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion)
-        return try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrivateIpAddressesAttribute(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

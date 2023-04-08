@@ -84,14 +84,12 @@ extension Cdc {
     /// 创建专用集群订单
     @inlinable
     public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterOrderResponse> {
-        let input = CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId)
-        return self.client.execute(action: "CreateDedicatedClusterOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDedicatedClusterOrder(.init(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专用集群订单
     @inlinable
     public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
-        let input = CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId)
-        return try await self.client.execute(action: "CreateDedicatedClusterOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDedicatedClusterOrder(.init(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

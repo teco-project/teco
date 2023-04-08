@@ -93,14 +93,12 @@ extension Cpdp {
     /// 云支付-分账授权申请接口
     @inlinable
     public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditTlinxResponse> {
-        let input = DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile)
-        return self.client.execute(action: "DistributeAccreditTlinx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.distributeAccreditTlinx(.init(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账授权申请接口
     @inlinable
     public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
-        let input = DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile)
-        return try await self.client.execute(action: "DistributeAccreditTlinx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.distributeAccreditTlinx(.init(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

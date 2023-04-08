@@ -98,14 +98,12 @@ extension Tbaas {
     /// 创建并安装合约
     @inlinable @discardableResult
     public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
-        let input = CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode)
-        return self.client.execute(action: "CreateChaincodeAndInstallForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createChaincodeAndInstallForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并安装合约
     @inlinable @discardableResult
     public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
-        let input = CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode)
-        return try await self.client.execute(action: "CreateChaincodeAndInstallForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createChaincodeAndInstallForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), region: region, logger: logger, on: eventLoop)
     }
 }

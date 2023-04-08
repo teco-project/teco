@@ -64,8 +64,7 @@ extension Rce {
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
     public func describeRiskTrends(businessSecurityData: InputFrontRisk, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskTrendsResponse> {
-        let input = DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData)
-        return self.client.execute(action: "DescribeRiskTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRiskTrends(.init(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 风险趋势统计
@@ -73,7 +72,6 @@ extension Rce {
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
     public func describeRiskTrends(businessSecurityData: InputFrontRisk, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
-        let input = DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData)
-        return try await self.client.execute(action: "DescribeRiskTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRiskTrends(.init(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 }

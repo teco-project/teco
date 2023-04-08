@@ -64,14 +64,12 @@ extension Tione {
     /// 查询训练自定义指标
     @inlinable
     public func describeTrainingMetrics(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingMetricsResponse> {
-        let input = DescribeTrainingMetricsRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrainingMetrics(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询训练自定义指标
     @inlinable
     public func describeTrainingMetrics(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingMetricsResponse {
-        let input = DescribeTrainingMetricsRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrainingMetrics(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

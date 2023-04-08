@@ -65,8 +65,7 @@ extension Live {
     /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
     @inlinable @discardableResult
     public func modifyPullStreamStatus(configIds: [String], status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamStatusResponse> {
-        let input = ModifyPullStreamStatusRequest(configIds: configIds, status: status)
-        return self.client.execute(action: "ModifyPullStreamStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPullStreamStatus(.init(configIds: configIds, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改拉流配置状态(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
@@ -74,7 +73,6 @@ extension Live {
     /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
     @inlinable @discardableResult
     public func modifyPullStreamStatus(configIds: [String], status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamStatusResponse {
-        let input = ModifyPullStreamStatusRequest(configIds: configIds, status: status)
-        return try await self.client.execute(action: "ModifyPullStreamStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPullStreamStatus(.init(configIds: configIds, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -54,14 +54,12 @@ extension Iotcloud {
     /// 删除私有CA证书
     @inlinable @discardableResult
     public func deletePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
-        let input = DeletePrivateCARequest(certName: certName)
-        return self.client.execute(action: "DeletePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePrivateCA(.init(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除私有CA证书
     @inlinable @discardableResult
     public func deletePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
-        let input = DeletePrivateCARequest(certName: certName)
-        return try await self.client.execute(action: "DeletePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePrivateCA(.init(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -102,8 +102,7 @@ extension Iotvideo {
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
     public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
-        let input = DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type)
-        return self.client.execute(action: "DescribeDeviceCommLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceCommLog(.init(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通讯日志
@@ -111,7 +110,6 @@ extension Iotvideo {
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
     public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
-        let input = DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type)
-        return try await self.client.execute(action: "DescribeDeviceCommLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceCommLog(.init(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

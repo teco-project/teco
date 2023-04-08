@@ -68,8 +68,7 @@ extension Vpc {
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
-        let input = DetachCcnInstancesRequest(ccnId: ccnId, instances: instances)
-        return self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachCcnInstances(.init(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云联网解关联实例
@@ -78,7 +77,6 @@ extension Vpc {
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
-        let input = DetachCcnInstancesRequest(ccnId: ccnId, instances: instances)
-        return try await self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachCcnInstances(.init(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

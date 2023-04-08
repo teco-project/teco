@@ -81,14 +81,12 @@ extension Cpdp {
     /// 灵云V2-查询付款订单状态
     @inlinable
     public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderStatusResponse> {
-        let input = QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment)
-        return self.client.execute(action: "QueryFlexPaymentOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexPaymentOrderStatus(.init(outOrderId: outOrderId, orderId: orderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询付款订单状态
     @inlinable
     public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
-        let input = QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment)
-        return try await self.client.execute(action: "QueryFlexPaymentOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexPaymentOrderStatus(.init(outOrderId: outOrderId, orderId: orderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Nlp {
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
     public func searchWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchWordItemsResponse> {
-        let input = SearchWordItemsRequest(dictId: dictId, wordItems: wordItems)
-        return self.client.execute(action: "SearchWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchWordItems(.init(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索词条
@@ -79,7 +78,6 @@ extension Nlp {
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
     public func searchWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
-        let input = SearchWordItemsRequest(dictId: dictId, wordItems: wordItems)
-        return try await self.client.execute(action: "SearchWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchWordItems(.init(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 }

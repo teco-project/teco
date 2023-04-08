@@ -56,8 +56,7 @@ extension Faceid {
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
     public func getLiveCode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
-        let input = GetLiveCodeRequest()
-        return self.client.execute(action: "GetLiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getLiveCode(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数字验证码
@@ -65,7 +64,6 @@ extension Faceid {
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
     public func getLiveCode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
-        let input = GetLiveCodeRequest()
-        return try await self.client.execute(action: "GetLiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getLiveCode(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

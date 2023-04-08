@@ -119,8 +119,7 @@ extension Waf {
     /// 描述WAF自动封禁IP详情,对齐自动封堵状态
     @inlinable
     public func describeAutoDenyIP(domain: String, ip: String? = nil, count: Int64? = nil, category: String? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoDenyIPResponse> {
-        let input = DescribeAutoDenyIPRequest(domain: domain, ip: ip, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort)
-        return self.client.execute(action: "DescribeAutoDenyIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoDenyIP(.init(domain: domain, ip: ip, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF自动封禁IP详情
@@ -128,7 +127,6 @@ extension Waf {
     /// 描述WAF自动封禁IP详情,对齐自动封堵状态
     @inlinable
     public func describeAutoDenyIP(domain: String, ip: String? = nil, count: Int64? = nil, category: String? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoDenyIPResponse {
-        let input = DescribeAutoDenyIPRequest(domain: domain, ip: ip, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort)
-        return try await self.client.execute(action: "DescribeAutoDenyIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoDenyIP(.init(domain: domain, ip: ip, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

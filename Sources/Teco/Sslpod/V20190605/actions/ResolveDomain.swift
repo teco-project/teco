@@ -64,8 +64,7 @@ extension Sslpod {
     /// 解析域名获得多个IP地址
     @inlinable
     public func resolveDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveDomainResponse> {
-        let input = ResolveDomainRequest(domain: domain)
-        return self.client.execute(action: "ResolveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resolveDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名解析
@@ -73,7 +72,6 @@ extension Sslpod {
     /// 解析域名获得多个IP地址
     @inlinable
     public func resolveDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
-        let input = ResolveDomainRequest(domain: domain)
-        return try await self.client.execute(action: "ResolveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resolveDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -92,15 +92,13 @@ extension Organization {
     /// 获取邀请信息列表
     @inlinable
     public func listOrganizationInvitations(invited: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationInvitationsResponse> {
-        let input = ListOrganizationInvitationsRequest(invited: invited, offset: offset, limit: limit)
-        return self.client.execute(action: "ListOrganizationInvitations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listOrganizationInvitations(.init(invited: invited, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取邀请信息列表
     @inlinable
     public func listOrganizationInvitations(invited: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationInvitationsResponse {
-        let input = ListOrganizationInvitationsRequest(invited: invited, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListOrganizationInvitations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listOrganizationInvitations(.init(invited: invited, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取邀请信息列表

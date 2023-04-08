@@ -58,14 +58,12 @@ extension Cynosdb {
     /// 重启实例
     @inlinable
     public func restartInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
-        let input = RestartInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     @inlinable
     public func restartInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
-        let input = RestartInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

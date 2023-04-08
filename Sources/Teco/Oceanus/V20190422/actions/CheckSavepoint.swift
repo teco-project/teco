@@ -82,14 +82,12 @@ extension Oceanus {
     /// 检查快照是否可用
     @inlinable
     public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
-        let input = CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId)
-        return self.client.execute(action: "CheckSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkSavepoint(.init(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查快照是否可用
     @inlinable
     public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
-        let input = CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "CheckSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkSavepoint(.init(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

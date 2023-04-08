@@ -85,8 +85,7 @@ extension Essbasic {
     /// 目前该接口只支持B2C，不建议使用，将会废弃。
     @inlinable
     public func prepareFlows(agent: Agent, flowInfos: [FlowInfo], jumpUrl: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PrepareFlowsResponse> {
-        let input = PrepareFlowsRequest(agent: agent, flowInfos: flowInfos, jumpUrl: jumpUrl, operator: `operator`)
-        return self.client.execute(action: "PrepareFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.prepareFlows(.init(agent: agent, flowInfos: flowInfos, jumpUrl: jumpUrl, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 准备待发起文件
@@ -96,7 +95,6 @@ extension Essbasic {
     /// 目前该接口只支持B2C，不建议使用，将会废弃。
     @inlinable
     public func prepareFlows(agent: Agent, flowInfos: [FlowInfo], jumpUrl: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PrepareFlowsResponse {
-        let input = PrepareFlowsRequest(agent: agent, flowInfos: flowInfos, jumpUrl: jumpUrl, operator: `operator`)
-        return try await self.client.execute(action: "PrepareFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.prepareFlows(.init(agent: agent, flowInfos: flowInfos, jumpUrl: jumpUrl, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -78,14 +78,12 @@ extension Ssa {
     /// 获取安全事件详情
     @inlinable
     public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
-        let input = DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name)
-        return self.client.execute(action: "DescribeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEventDetail(.init(index: index, id: id, source: source, subEventType: subEventType, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件详情
     @inlinable
     public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
-        let input = DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name)
-        return try await self.client.execute(action: "DescribeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEventDetail(.init(index: index, id: id, source: source, subEventType: subEventType, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

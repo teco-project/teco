@@ -58,14 +58,12 @@ extension Cloudaudit {
     /// 查询AttributeKey的有效取值范围
     @inlinable
     public func getAttributeKey(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttributeKeyResponse> {
-        let input = GetAttributeKeyRequest(websiteType: websiteType)
-        return self.client.execute(action: "GetAttributeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAttributeKey(.init(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询AttributeKey的有效取值范围
     @inlinable
     public func getAttributeKey(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
-        let input = GetAttributeKeyRequest(websiteType: websiteType)
-        return try await self.client.execute(action: "GetAttributeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAttributeKey(.init(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 }

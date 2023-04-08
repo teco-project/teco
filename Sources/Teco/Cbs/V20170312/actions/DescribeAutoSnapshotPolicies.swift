@@ -122,8 +122,7 @@ extension Cbs {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
     public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
-        let input = DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField)
-        return self.client.execute(action: "DescribeAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoSnapshotPolicies(.init(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询定期快照策略
@@ -134,8 +133,7 @@ extension Cbs {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
     public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
-        let input = DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField)
-        return try await self.client.execute(action: "DescribeAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoSnapshotPolicies(.init(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询定期快照策略

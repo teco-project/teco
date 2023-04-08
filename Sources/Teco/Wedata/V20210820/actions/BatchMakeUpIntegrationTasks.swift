@@ -92,8 +92,7 @@ extension Wedata {
     /// 对集成离线任务执行批量补数据操作
     @inlinable
     public func batchMakeUpIntegrationTasks(taskIds: [String], taskType: Int64, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchMakeUpIntegrationTasksResponse> {
-        let input = BatchMakeUpIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId)
-        return self.client.execute(action: "BatchMakeUpIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchMakeUpIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量补数据
@@ -101,7 +100,6 @@ extension Wedata {
     /// 对集成离线任务执行批量补数据操作
     @inlinable
     public func batchMakeUpIntegrationTasks(taskIds: [String], taskType: Int64, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchMakeUpIntegrationTasksResponse {
-        let input = BatchMakeUpIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId)
-        return try await self.client.execute(action: "BatchMakeUpIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchMakeUpIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

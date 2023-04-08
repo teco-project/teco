@@ -69,8 +69,7 @@ extension Cls {
     /// 打开Kafka协议消费功能
     @inlinable
     public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenKafkaConsumerResponse> {
-        let input = OpenKafkaConsumerRequest(fromTopicId: fromTopicId, compression: compression)
-        return self.client.execute(action: "OpenKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 
     /// 打开Kafka协议消费
@@ -78,7 +77,6 @@ extension Cls {
     /// 打开Kafka协议消费功能
     @inlinable
     public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
-        let input = OpenKafkaConsumerRequest(fromTopicId: fromTopicId, compression: compression)
-        return try await self.client.execute(action: "OpenKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 }

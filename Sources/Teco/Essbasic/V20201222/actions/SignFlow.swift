@@ -110,8 +110,7 @@ extension Essbasic {
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
     public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignFlowResponse> {
-        let input = SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId)
-        return self.client.execute(action: "SignFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.signFlow(.init(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 签署流程
@@ -119,7 +118,6 @@ extension Essbasic {
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
     public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
-        let input = SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId)
-        return try await self.client.execute(action: "SignFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.signFlow(.init(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -126,8 +126,7 @@ extension As {
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
     public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingActivitiesResponse> {
-        let input = DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeAutoScalingActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoScalingActivities(.init(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩活动
@@ -135,8 +134,7 @@ extension As {
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
     public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
-        let input = DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeAutoScalingActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoScalingActivities(.init(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩活动

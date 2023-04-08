@@ -64,14 +64,12 @@ extension Tdmq {
     /// 删除Amqp路由关系
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
-        let input = DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId)
-        return self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp路由关系
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        let input = DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId)
-        return try await self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
     }
 }

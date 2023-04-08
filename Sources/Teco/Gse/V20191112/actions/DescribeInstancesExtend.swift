@@ -90,7 +90,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
-        self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeInstancesExtend is no longer available.")
     }
 
     /// 查询实例扩展信息列表
@@ -99,7 +99,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        try await self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeInstancesExtend is no longer available.")
     }
 
     /// 查询实例扩展信息列表
@@ -108,8 +108,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
-        let input = DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress)
-        return self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeInstancesExtend is no longer available.")
     }
 
     /// 查询实例扩展信息列表
@@ -118,7 +117,35 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        let input = DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress)
-        return try await self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeInstancesExtend is no longer available.")
+    }
+
+    /// 查询实例扩展信息列表
+    ///
+    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeInstancesExtendPaginated(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceExtend])> {
+        fatalError("DescribeInstancesExtend is no longer available.")
+    }
+
+    /// 查询实例扩展信息列表
+    ///
+    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeInstancesExtendPaginated(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesExtendResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeInstancesExtend is no longer available.")
+    }
+
+    /// 查询实例扩展信息列表
+    ///
+    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceExtend` and `DescribeInstancesExtendResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeInstancesExtendPaginator(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesExtendRequest> {
+        fatalError("DescribeInstancesExtend is no longer available.")
     }
 }

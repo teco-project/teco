@@ -102,8 +102,7 @@ extension Sqlserver {
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
     public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadIncrementalInfoResponse> {
-        let input = DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
-        return self.client.execute(action: "DescribeUploadIncrementalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUploadIncrementalInfo(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询增量备份上传权限
@@ -111,7 +110,6 @@ extension Sqlserver {
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
     public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
-        let input = DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
-        return try await self.client.execute(action: "DescribeUploadIncrementalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUploadIncrementalInfo(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

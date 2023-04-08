@@ -58,14 +58,12 @@ extension Teo {
     /// 查询站点拨测配额
     @inlinable
     public func describeSpeedTestingQuota(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingQuotaResponse> {
-        let input = DescribeSpeedTestingQuotaRequest(zoneId: zoneId)
-        return self.client.execute(action: "DescribeSpeedTestingQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSpeedTestingQuota(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点拨测配额
     @inlinable
     public func describeSpeedTestingQuota(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingQuotaResponse {
-        let input = DescribeSpeedTestingQuotaRequest(zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeSpeedTestingQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSpeedTestingQuota(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

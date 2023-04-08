@@ -54,14 +54,12 @@ extension Ecm {
     /// 删除镜像
     @inlinable @discardableResult
     public func deleteImage(imageIDSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageResponse> {
-        let input = DeleteImageRequest(imageIDSet: imageIDSet)
-        return self.client.execute(action: "DeleteImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImage(.init(imageIDSet: imageIDSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像
     @inlinable @discardableResult
     public func deleteImage(imageIDSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
-        let input = DeleteImageRequest(imageIDSet: imageIDSet)
-        return try await self.client.execute(action: "DeleteImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImage(.init(imageIDSet: imageIDSet), region: region, logger: logger, on: eventLoop)
     }
 }

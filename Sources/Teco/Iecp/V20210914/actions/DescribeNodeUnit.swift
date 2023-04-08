@@ -108,15 +108,13 @@ extension Iecp {
     /// 查询边缘单元NodeUnit列表
     @inlinable
     public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeUnitResponse> {
-        let input = DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter)
-        return self.client.execute(action: "DescribeNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNodeUnit(.init(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元NodeUnit列表
     @inlinable
     public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
-        let input = DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter)
-        return try await self.client.execute(action: "DescribeNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNodeUnit(.init(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元NodeUnit列表

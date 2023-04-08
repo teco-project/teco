@@ -140,8 +140,7 @@ extension Live {
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
-        let input = DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage)
-        return self.client.execute(action: "DescribeTopClientIpSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopClientIpSumInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某段时间top n客户端ip汇总信息
@@ -149,8 +148,7 @@ extension Live {
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
-        let input = DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage)
-        return try await self.client.execute(action: "DescribeTopClientIpSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopClientIpSumInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某段时间top n客户端ip汇总信息

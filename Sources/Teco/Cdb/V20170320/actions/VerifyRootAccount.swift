@@ -69,8 +69,7 @@ extension Cdb {
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
     public func verifyRootAccount(instanceId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyRootAccountResponse> {
-        let input = VerifyRootAccountRequest(instanceId: instanceId, password: password)
-        return self.client.execute(action: "VerifyRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyRootAccount(.init(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证root账号权限
@@ -78,7 +77,6 @@ extension Cdb {
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
     public func verifyRootAccount(instanceId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
-        let input = VerifyRootAccountRequest(instanceId: instanceId, password: password)
-        return try await self.client.execute(action: "VerifyRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyRootAccount(.init(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

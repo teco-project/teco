@@ -79,8 +79,7 @@ extension Iai {
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
-        let input = CopyPersonRequest(personId: personId, groupIds: groupIds)
-        return self.client.execute(action: "CopyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copyPerson(.init(personId: personId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制人员
@@ -90,7 +89,6 @@ extension Iai {
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
-        let input = CopyPersonRequest(personId: personId, groupIds: groupIds)
-        return try await self.client.execute(action: "CopyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copyPerson(.init(personId: personId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 }

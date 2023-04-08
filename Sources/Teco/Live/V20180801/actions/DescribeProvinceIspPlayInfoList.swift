@@ -119,8 +119,7 @@ extension Live {
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, ipType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProvinceIspPlayInfoListResponse> {
-        let input = DescribeProvinceIspPlayInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea, ipType: ipType)
-        return self.client.execute(action: "DescribeProvinceIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProvinceIspPlayInfoList(.init(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea, ipType: ipType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按省份运营商查询播放信息
@@ -128,7 +127,6 @@ extension Live {
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, ipType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProvinceIspPlayInfoListResponse {
-        let input = DescribeProvinceIspPlayInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea, ipType: ipType)
-        return try await self.client.execute(action: "DescribeProvinceIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProvinceIspPlayInfoList(.init(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea, ipType: ipType), region: region, logger: logger, on: eventLoop)
     }
 }

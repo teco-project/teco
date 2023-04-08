@@ -79,8 +79,7 @@ extension Apigateway {
     /// 修改API网关插件。
     @inlinable
     public func modifyPlugin(pluginId: String, pluginName: String? = nil, description: String? = nil, pluginData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPluginResponse> {
-        let input = ModifyPluginRequest(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData)
-        return self.client.execute(action: "ModifyPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPlugin(.init(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改插件
@@ -88,7 +87,6 @@ extension Apigateway {
     /// 修改API网关插件。
     @inlinable
     public func modifyPlugin(pluginId: String, pluginName: String? = nil, description: String? = nil, pluginData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPluginResponse {
-        let input = ModifyPluginRequest(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData)
-        return try await self.client.execute(action: "ModifyPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPlugin(.init(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -85,8 +85,7 @@ extension Dts {
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable @discardableResult
     public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, options: CompareOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
-        let input = ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options)
-        return self.client.execute(action: "ModifyCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCompareTask(.init(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务
@@ -94,7 +93,6 @@ extension Dts {
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable @discardableResult
     public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, options: CompareOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
-        let input = ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options)
-        return try await self.client.execute(action: "ModifyCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCompareTask(.init(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options), region: region, logger: logger, on: eventLoop)
     }
 }

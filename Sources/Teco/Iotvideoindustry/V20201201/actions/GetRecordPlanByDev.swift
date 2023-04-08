@@ -65,8 +65,7 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
     public func getRecordPlanByDev(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
-        let input = GetRecordPlanByDevRequest(deviceId: deviceId)
-        return self.client.execute(action: "GetRecordPlanByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRecordPlanByDev(.init(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备绑定的录制计划
@@ -74,7 +73,6 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
     public func getRecordPlanByDev(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
-        let input = GetRecordPlanByDevRequest(deviceId: deviceId)
-        return try await self.client.execute(action: "GetRecordPlanByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRecordPlanByDev(.init(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

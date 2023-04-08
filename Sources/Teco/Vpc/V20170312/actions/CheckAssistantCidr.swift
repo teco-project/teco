@@ -83,8 +83,7 @@ extension Vpc {
     /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
     @inlinable
     public func checkAssistantCidr(vpcId: String, newCidrBlocks: [String]? = nil, oldCidrBlocks: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAssistantCidrResponse> {
-        let input = CheckAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks)
-        return self.client.execute(action: "CheckAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkAssistantCidr(.init(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查辅助CIDR冲突
@@ -95,7 +94,6 @@ extension Vpc {
     /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
     @inlinable
     public func checkAssistantCidr(vpcId: String, newCidrBlocks: [String]? = nil, oldCidrBlocks: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAssistantCidrResponse {
-        let input = CheckAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks)
-        return try await self.client.execute(action: "CheckAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkAssistantCidr(.init(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 }

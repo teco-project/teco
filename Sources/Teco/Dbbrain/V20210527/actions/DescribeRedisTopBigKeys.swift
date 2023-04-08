@@ -99,8 +99,7 @@ extension Dbbrain {
     /// 查询redis实例大key列表。
     @inlinable
     public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopBigKeysResponse> {
-        let input = DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit)
-        return self.client.execute(action: "DescribeRedisTopBigKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRedisTopBigKeys(.init(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询redis实例大key列表
@@ -108,7 +107,6 @@ extension Dbbrain {
     /// 查询redis实例大key列表。
     @inlinable
     public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
-        let input = DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit)
-        return try await self.client.execute(action: "DescribeRedisTopBigKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRedisTopBigKeys(.init(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

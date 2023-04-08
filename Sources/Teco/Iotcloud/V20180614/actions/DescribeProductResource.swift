@@ -70,8 +70,7 @@ extension Iotcloud {
     /// 本接口（DescribeProductResource）用于查询产品资源详情。
     @inlinable
     public func describeProductResource(productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourceResponse> {
-        let input = DescribeProductResourceRequest(productID: productID, name: name)
-        return self.client.execute(action: "DescribeProductResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProductResource(.init(productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品资源详情
@@ -79,7 +78,6 @@ extension Iotcloud {
     /// 本接口（DescribeProductResource）用于查询产品资源详情。
     @inlinable
     public func describeProductResource(productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourceResponse {
-        let input = DescribeProductResourceRequest(productID: productID, name: name)
-        return try await self.client.execute(action: "DescribeProductResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProductResource(.init(productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

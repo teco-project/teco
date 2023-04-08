@@ -70,8 +70,7 @@ extension Ump {
     /// 上报当前场内所有相机的当前状态
     @inlinable @discardableResult
     public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
-        let input = CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates)
-        return self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCameraState(.init(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }
 
     /// 相机状态上报接口
@@ -79,7 +78,6 @@ extension Ump {
     /// 上报当前场内所有相机的当前状态
     @inlinable @discardableResult
     public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
-        let input = CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates)
-        return try await self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCameraState(.init(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }
 }

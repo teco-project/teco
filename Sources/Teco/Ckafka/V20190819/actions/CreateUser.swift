@@ -68,14 +68,12 @@ extension Ckafka {
     /// 添加用户
     @inlinable
     public func createUser(instanceId: String, name: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        let input = CreateUserRequest(instanceId: instanceId, name: name, password: password)
-        return self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createUser(.init(instanceId: instanceId, name: name, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加用户
     @inlinable
     public func createUser(instanceId: String, name: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        let input = CreateUserRequest(instanceId: instanceId, name: name, password: password)
-        return try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createUser(.init(instanceId: instanceId, name: name, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -89,8 +89,7 @@ extension Iotcloud {
     /// 本接口（CreateTask）用于创建一个批量任务。目前此接口可以创建批量更新影子以及批量下发消息的任务
     @inlinable
     public func createTask(taskType: String, productId: String, deviceNameFilter: String, scheduleTimeInSeconds: UInt64, tasks: Task, maxExecutionTimeInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
-        let input = CreateTaskRequest(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds)
-        return self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTask(.init(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建任务
@@ -98,7 +97,6 @@ extension Iotcloud {
     /// 本接口（CreateTask）用于创建一个批量任务。目前此接口可以创建批量更新影子以及批量下发消息的任务
     @inlinable
     public func createTask(taskType: String, productId: String, deviceNameFilter: String, scheduleTimeInSeconds: UInt64, tasks: Task, maxExecutionTimeInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        let input = CreateTaskRequest(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds)
-        return try await self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTask(.init(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

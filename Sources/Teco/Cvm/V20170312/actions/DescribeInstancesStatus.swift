@@ -107,8 +107,7 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     @inlinable
     public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesStatusResponse> {
-        let input = DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesStatus(.init(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例状态列表
@@ -119,8 +118,7 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     @inlinable
     public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesStatusResponse {
-        let input = DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesStatus(.init(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例状态列表

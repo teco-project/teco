@@ -69,14 +69,12 @@ extension Tcb {
     /// 查询环境1分钱抵扣信息
     @inlinable
     public func describeSpecialCostItems(envId: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecialCostItemsResponse> {
-        let input = DescribeSpecialCostItemsRequest(envId: envId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeSpecialCostItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSpecialCostItems(.init(envId: envId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境1分钱抵扣信息
     @inlinable
     public func describeSpecialCostItems(envId: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecialCostItemsResponse {
-        let input = DescribeSpecialCostItemsRequest(envId: envId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeSpecialCostItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSpecialCostItems(.init(envId: envId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

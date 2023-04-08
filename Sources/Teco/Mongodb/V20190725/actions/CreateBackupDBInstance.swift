@@ -68,14 +68,12 @@ extension Mongodb {
     /// 备份实例接口
     @inlinable
     public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
-        let input = CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark)
-        return self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBackupDBInstance(.init(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 备份实例接口
     @inlinable
     public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
-        let input = CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark)
-        return try await self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBackupDBInstance(.init(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)
     }
 }

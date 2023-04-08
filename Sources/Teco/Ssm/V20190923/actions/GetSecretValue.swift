@@ -87,8 +87,7 @@ extension Ssm {
     /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
     @inlinable
     public func getSecretValue(secretName: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecretValueResponse> {
-        let input = GetSecretValueRequest(secretName: secretName, versionId: versionId)
-        return self.client.execute(action: "GetSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getSecretValue(.init(secretName: secretName, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取凭据明文
@@ -97,7 +96,6 @@ extension Ssm {
     /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
     @inlinable
     public func getSecretValue(secretName: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecretValueResponse {
-        let input = GetSecretValueRequest(secretName: secretName, versionId: versionId)
-        return try await self.client.execute(action: "GetSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getSecretValue(.init(secretName: secretName, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

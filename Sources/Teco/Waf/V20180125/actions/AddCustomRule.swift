@@ -108,14 +108,12 @@ extension Waf {
     /// 增加访问控制（自定义策略）
     @inlinable
     public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomRuleResponse> {
-        let input = AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId)
-        return self.client.execute(action: "AddCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addCustomRule(.init(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加访问控制（自定义策略）
     @inlinable
     public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
-        let input = AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId)
-        return try await self.client.execute(action: "AddCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addCustomRule(.init(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

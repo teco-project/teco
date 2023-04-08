@@ -64,8 +64,7 @@ extension Lighthouse {
     /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
     @inlinable
     public func describeInstancesDeniedActions(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDeniedActionsResponse> {
-        let input = DescribeInstancesDeniedActionsRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeInstancesDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesDeniedActions(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例操作限制列表
@@ -73,7 +72,6 @@ extension Lighthouse {
     /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
     @inlinable
     public func describeInstancesDeniedActions(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
-        let input = DescribeInstancesDeniedActionsRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeInstancesDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesDeniedActions(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

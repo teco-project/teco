@@ -64,14 +64,12 @@ extension Tke {
     /// 修改节点池关联伸缩组的期望实例数
     @inlinable @discardableResult
     public func modifyNodePoolDesiredCapacityAboutAsg(clusterId: String, nodePoolId: String, desiredCapacity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodePoolDesiredCapacityAboutAsgResponse> {
-        let input = ModifyNodePoolDesiredCapacityAboutAsgRequest(clusterId: clusterId, nodePoolId: nodePoolId, desiredCapacity: desiredCapacity)
-        return self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNodePoolDesiredCapacityAboutAsg(.init(clusterId: clusterId, nodePoolId: nodePoolId, desiredCapacity: desiredCapacity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改节点池关联伸缩组的期望实例数
     @inlinable @discardableResult
     public func modifyNodePoolDesiredCapacityAboutAsg(clusterId: String, nodePoolId: String, desiredCapacity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolDesiredCapacityAboutAsgResponse {
-        let input = ModifyNodePoolDesiredCapacityAboutAsgRequest(clusterId: clusterId, nodePoolId: nodePoolId, desiredCapacity: desiredCapacity)
-        return try await self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNodePoolDesiredCapacityAboutAsg(.init(clusterId: clusterId, nodePoolId: nodePoolId, desiredCapacity: desiredCapacity), region: region, logger: logger, on: eventLoop)
     }
 }

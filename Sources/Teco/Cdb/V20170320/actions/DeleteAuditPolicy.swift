@@ -65,8 +65,7 @@ extension Cdb {
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
     @inlinable @discardableResult
     public func deleteAuditPolicy(policyId: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditPolicyResponse> {
-        let input = DeleteAuditPolicyRequest(policyId: policyId, instanceId: instanceId)
-        return self.client.execute(action: "DeleteAuditPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAuditPolicy(.init(policyId: policyId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除审计策略
@@ -74,7 +73,6 @@ extension Cdb {
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
     @inlinable @discardableResult
     public func deleteAuditPolicy(policyId: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditPolicyResponse {
-        let input = DeleteAuditPolicyRequest(policyId: policyId, instanceId: instanceId)
-        return try await self.client.execute(action: "DeleteAuditPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAuditPolicy(.init(policyId: policyId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

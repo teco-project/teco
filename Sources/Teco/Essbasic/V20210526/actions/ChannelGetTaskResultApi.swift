@@ -102,14 +102,12 @@ extension Essbasic {
     /// 渠道版查询转换任务状态
     @inlinable
     public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelGetTaskResultApiResponse> {
-        let input = ChannelGetTaskResultApiRequest(agent: agent, taskId: taskId, operator: `operator`, organization: organization)
-        return self.client.execute(action: "ChannelGetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.channelGetTaskResultApi(.init(agent: agent, taskId: taskId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道版查询转换任务状态
     @inlinable
     public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
-        let input = ChannelGetTaskResultApiRequest(agent: agent, taskId: taskId, operator: `operator`, organization: organization)
-        return try await self.client.execute(action: "ChannelGetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.channelGetTaskResultApi(.init(agent: agent, taskId: taskId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

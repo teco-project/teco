@@ -90,8 +90,7 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
-        let input = MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`)
-        return self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.moveResource(.init(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动资源
@@ -104,7 +103,6 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
-        let input = MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`)
-        return try await self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.moveResource(.init(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

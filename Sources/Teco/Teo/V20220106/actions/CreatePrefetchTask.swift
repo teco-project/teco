@@ -80,14 +80,12 @@ extension Teo {
     /// 创建预热任务
     @inlinable
     public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
-        let input = CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers)
-        return self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPrefetchTask(.init(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建预热任务
     @inlinable
     public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
-        let input = CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers)
-        return try await self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPrefetchTask(.init(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 }

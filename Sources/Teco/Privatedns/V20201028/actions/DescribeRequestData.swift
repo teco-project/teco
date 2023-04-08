@@ -72,14 +72,12 @@ extension Privatedns {
     /// 获取私有域解析请求量
     @inlinable
     public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestDataResponse> {
-        let input = DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd)
-        return self.client.execute(action: "DescribeRequestData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRequestData(.init(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析请求量
     @inlinable
     public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
-        let input = DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd)
-        return try await self.client.execute(action: "DescribeRequestData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRequestData(.init(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), region: region, logger: logger, on: eventLoop)
     }
 }

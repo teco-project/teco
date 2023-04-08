@@ -68,8 +68,7 @@ extension Domain {
     /// 获取域名实名信息详情
     @inlinable
     public func describeDomainSimpleInfo(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
-        let input = DescribeDomainSimpleInfoRequest(domainName: domainName)
-        return self.client.execute(action: "DescribeDomainSimpleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainSimpleInfo(.init(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名实名信息
@@ -77,7 +76,6 @@ extension Domain {
     /// 获取域名实名信息详情
     @inlinable
     public func describeDomainSimpleInfo(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
-        let input = DescribeDomainSimpleInfoRequest(domainName: domainName)
-        return try await self.client.execute(action: "DescribeDomainSimpleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainSimpleInfo(.init(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

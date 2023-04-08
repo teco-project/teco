@@ -64,14 +64,12 @@ extension Pts {
     /// 更新关联文件场景
     @inlinable @discardableResult
     public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFileScenarioRelationResponse> {
-        let input = UpdateFileScenarioRelationRequest(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds)
-        return self.client.execute(action: "UpdateFileScenarioRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateFileScenarioRelation(.init(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新关联文件场景
     @inlinable @discardableResult
     public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
-        let input = UpdateFileScenarioRelationRequest(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds)
-        return try await self.client.execute(action: "UpdateFileScenarioRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateFileScenarioRelation(.init(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds), region: region, logger: logger, on: eventLoop)
     }
 }

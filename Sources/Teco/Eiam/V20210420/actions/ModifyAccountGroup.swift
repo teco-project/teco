@@ -64,14 +64,12 @@ extension Eiam {
     /// 修改账号组
     @inlinable @discardableResult
     public func modifyAccountGroup(accountGroupId: String, groupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountGroupResponse> {
-        let input = ModifyAccountGroupRequest(accountGroupId: accountGroupId, groupName: groupName, description: description)
-        return self.client.execute(action: "ModifyAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccountGroup(.init(accountGroupId: accountGroupId, groupName: groupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号组
     @inlinable @discardableResult
     public func modifyAccountGroup(accountGroupId: String, groupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountGroupResponse {
-        let input = ModifyAccountGroupRequest(accountGroupId: accountGroupId, groupName: groupName, description: description)
-        return try await self.client.execute(action: "ModifyAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccountGroup(.init(accountGroupId: accountGroupId, groupName: groupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

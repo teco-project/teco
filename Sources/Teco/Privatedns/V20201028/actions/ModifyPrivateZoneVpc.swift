@@ -76,14 +76,12 @@ extension Privatedns {
     /// 修改私有域关联的VPC
     @inlinable
     public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
-        let input = ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet)
-        return self.client.execute(action: "ModifyPrivateZoneVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrivateZoneVpc(.init(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域关联的VPC
     @inlinable
     public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
-        let input = ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet)
-        return try await self.client.execute(action: "ModifyPrivateZoneVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrivateZoneVpc(.init(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), region: region, logger: logger, on: eventLoop)
     }
 }

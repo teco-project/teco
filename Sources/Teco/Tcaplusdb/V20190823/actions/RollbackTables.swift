@@ -83,14 +83,12 @@ extension Tcaplusdb {
     /// 表格数据回档
     @inlinable
     public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackTablesResponse> {
-        let input = RollbackTablesRequest(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode)
-        return self.client.execute(action: "RollbackTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rollbackTables(.init(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 表格数据回档
     @inlinable
     public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
-        let input = RollbackTablesRequest(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode)
-        return try await self.client.execute(action: "RollbackTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rollbackTables(.init(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 }

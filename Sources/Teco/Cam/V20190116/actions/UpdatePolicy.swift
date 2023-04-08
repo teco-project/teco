@@ -88,8 +88,7 @@ extension Cam {
     /// 如果已存在策略版本，本接口会直接更新策略的默认版本，不会创建新版本，如果不存在任何策略版本，则直接创建一个默认版本。
     @inlinable
     public func updatePolicy(policyId: UInt64? = nil, policyName: String? = nil, description: String? = nil, policyDocument: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePolicyResponse> {
-        let input = UpdatePolicyRequest(policyId: policyId, policyName: policyName, description: description, policyDocument: policyDocument, alias: alias)
-        return self.client.execute(action: "UpdatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updatePolicy(.init(policyId: policyId, policyName: policyName, description: description, policyDocument: policyDocument, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新策略信息
@@ -98,7 +97,6 @@ extension Cam {
     /// 如果已存在策略版本，本接口会直接更新策略的默认版本，不会创建新版本，如果不存在任何策略版本，则直接创建一个默认版本。
     @inlinable
     public func updatePolicy(policyId: UInt64? = nil, policyName: String? = nil, description: String? = nil, policyDocument: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePolicyResponse {
-        let input = UpdatePolicyRequest(policyId: policyId, policyName: policyName, description: description, policyDocument: policyDocument, alias: alias)
-        return try await self.client.execute(action: "UpdatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updatePolicy(.init(policyId: policyId, policyName: policyName, description: description, policyDocument: policyDocument, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

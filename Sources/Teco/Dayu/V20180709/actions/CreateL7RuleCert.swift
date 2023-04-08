@@ -94,8 +94,7 @@ extension Dayu {
     /// 配置7层转发规则的证书
     @inlinable
     public func createL7RuleCert(business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertResponse> {
-        let input = CreateL7RuleCertRequest(business: business, id: id, ruleId: ruleId, certType: certType, sslId: sslId, cert: cert, privateKey: privateKey)
-        return self.client.execute(action: "CreateL7RuleCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createL7RuleCert(.init(business: business, id: id, ruleId: ruleId, certType: certType, sslId: sslId, cert: cert, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置L7转发规则的证书
@@ -103,7 +102,6 @@ extension Dayu {
     /// 配置7层转发规则的证书
     @inlinable
     public func createL7RuleCert(business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertResponse {
-        let input = CreateL7RuleCertRequest(business: business, id: id, ruleId: ruleId, certType: certType, sslId: sslId, cert: cert, privateKey: privateKey)
-        return try await self.client.execute(action: "CreateL7RuleCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createL7RuleCert(.init(business: business, id: id, ruleId: ruleId, certType: certType, sslId: sslId, cert: cert, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 }

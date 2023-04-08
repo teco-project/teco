@@ -60,8 +60,7 @@ extension Dts {
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable @discardableResult
     public func destroySyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySyncJobResponse> {
-        let input = DestroySyncJobRequest(jobId: jobId)
-        return self.client.execute(action: "DestroySyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroySyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线同步任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable @discardableResult
     public func destroySyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySyncJobResponse {
-        let input = DestroySyncJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "DestroySyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroySyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

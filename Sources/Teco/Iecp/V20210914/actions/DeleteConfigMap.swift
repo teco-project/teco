@@ -64,14 +64,12 @@ extension Iecp {
     /// 删除ConfigMap
     @inlinable @discardableResult
     public func deleteConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigMapResponse> {
-        let input = DeleteConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace)
-        return self.client.execute(action: "DeleteConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteConfigMap(.init(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除ConfigMap
     @inlinable @discardableResult
     public func deleteConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigMapResponse {
-        let input = DeleteConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace)
-        return try await self.client.execute(action: "DeleteConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteConfigMap(.init(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 }

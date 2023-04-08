@@ -64,8 +64,7 @@ extension Tcss {
     /// DescribeValueAddedSrvInfo查询增值服务需购买信息
     @inlinable
     public func describeValueAddedSrvInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeValueAddedSrvInfoResponse> {
-        let input = DescribeValueAddedSrvInfoRequest()
-        return self.client.execute(action: "DescribeValueAddedSrvInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeValueAddedSrvInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询增值服务需购买信息
@@ -73,7 +72,6 @@ extension Tcss {
     /// DescribeValueAddedSrvInfo查询增值服务需购买信息
     @inlinable
     public func describeValueAddedSrvInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeValueAddedSrvInfoResponse {
-        let input = DescribeValueAddedSrvInfoRequest()
-        return try await self.client.execute(action: "DescribeValueAddedSrvInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeValueAddedSrvInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

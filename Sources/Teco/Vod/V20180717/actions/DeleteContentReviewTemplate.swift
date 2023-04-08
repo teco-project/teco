@@ -68,8 +68,7 @@ extension Vod {
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
-        let input = DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteContentReviewTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除音视频内容审核模板
@@ -78,7 +77,6 @@ extension Vod {
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
-        let input = DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteContentReviewTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

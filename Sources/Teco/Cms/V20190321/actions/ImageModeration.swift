@@ -78,8 +78,7 @@ extension Cms {
     /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别涉黄、涉恐、涉政、涉毒等有害内容，同时支持用户配置图片黑名单，打击自定义的违规图片。
     @inlinable
     public func imageModeration(fileContent: String? = nil, fileMD5: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
-        let input = ImageModerationRequest(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl)
-        return self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.imageModeration(.init(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片内容检测
@@ -87,7 +86,6 @@ extension Cms {
     /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别涉黄、涉恐、涉政、涉毒等有害内容，同时支持用户配置图片黑名单，打击自定义的违规图片。
     @inlinable
     public func imageModeration(fileContent: String? = nil, fileMD5: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
-        let input = ImageModerationRequest(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl)
-        return try await self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.imageModeration(.init(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -104,8 +104,7 @@ extension Oceanus {
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable @discardableResult
     public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyJobResponse> {
-        let input = ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId)
-        return self.client.execute(action: "ModifyJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyJob(.init(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新作业
@@ -121,7 +120,6 @@ extension Oceanus {
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable @discardableResult
     public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
-        let input = ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "ModifyJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyJob(.init(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

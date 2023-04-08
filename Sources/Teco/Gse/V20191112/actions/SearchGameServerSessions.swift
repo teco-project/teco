@@ -137,7 +137,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
-        self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("SearchGameServerSessions is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -146,7 +146,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
-        try await self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("SearchGameServerSessions is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -155,8 +155,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
-        let input = SearchGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, limit: limit, nextToken: nextToken, filterExpression: filterExpression, sortExpression: sortExpression)
-        return self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("SearchGameServerSessions is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -165,7 +164,35 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
-        let input = SearchGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, limit: limit, nextToken: nextToken, filterExpression: filterExpression, sortExpression: sortExpression)
-        return try await self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("SearchGameServerSessions is no longer available.")
+    }
+
+    /// 搜索游戏服务器会话列表
+    ///
+    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func searchGameServerSessionsPaginated(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [GameServerSession])> {
+        fatalError("SearchGameServerSessions is no longer available.")
+    }
+
+    /// 搜索游戏服务器会话列表
+    ///
+    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func searchGameServerSessionsPaginated(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, onResponse: @escaping (SearchGameServerSessionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("SearchGameServerSessions is no longer available.")
+    }
+
+    /// 搜索游戏服务器会话列表
+    ///
+    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `GameServerSession` and `SearchGameServerSessionsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func searchGameServerSessionsPaginator(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchGameServerSessionsRequest> {
+        fatalError("SearchGameServerSessions is no longer available.")
     }
 }

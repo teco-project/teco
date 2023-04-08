@@ -70,8 +70,7 @@ extension Iotcloud {
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
     @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
-        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName, skey: skey)
-        return self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDevice(.init(productId: productId, deviceName: deviceName, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除设备
@@ -79,7 +78,6 @@ extension Iotcloud {
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
     @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName, skey: skey)
-        return try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDevice(.init(productId: productId, deviceName: deviceName, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -94,8 +94,7 @@ extension Monitor {
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
     public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
-        let input = CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId)
-        return self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPrometheusMultiTenantInstancePostPayMode(.init(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建按量 Prometheus 实例
@@ -103,7 +102,6 @@ extension Monitor {
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
     public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
-        let input = CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId)
-        return try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPrometheusMultiTenantInstancePostPayMode(.init(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

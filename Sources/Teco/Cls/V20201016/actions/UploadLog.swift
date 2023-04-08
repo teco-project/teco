@@ -532,8 +532,7 @@ extension Cls {
     /// 将生成的 cls.pb.h 头文件引入代码中，调用接口进行数据格式封装。
     @inlinable @discardableResult
     public func uploadLog(topicId: String, hashKey: String? = nil, compressType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadLogResponse> {
-        let input = UploadLogRequest(topicId: topicId, hashKey: hashKey, compressType: compressType)
-        return self.client.execute(action: "UploadLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadLog(.init(topicId: topicId, hashKey: hashKey, compressType: compressType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传日志
@@ -695,7 +694,6 @@ extension Cls {
     /// 将生成的 cls.pb.h 头文件引入代码中，调用接口进行数据格式封装。
     @inlinable @discardableResult
     public func uploadLog(topicId: String, hashKey: String? = nil, compressType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadLogResponse {
-        let input = UploadLogRequest(topicId: topicId, hashKey: hashKey, compressType: compressType)
-        return try await self.client.execute(action: "UploadLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadLog(.init(topicId: topicId, hashKey: hashKey, compressType: compressType), region: region, logger: logger, on: eventLoop)
     }
 }

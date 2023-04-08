@@ -73,14 +73,12 @@ extension Wedata {
     /// 提交集成任务
     @inlinable
     public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitIntegrationTaskResponse> {
-        let input = CommitIntegrationTaskRequest(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType)
-        return self.client.execute(action: "CommitIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交集成任务
     @inlinable
     public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitIntegrationTaskResponse {
-        let input = CommitIntegrationTaskRequest(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType)
-        return try await self.client.execute(action: "CommitIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

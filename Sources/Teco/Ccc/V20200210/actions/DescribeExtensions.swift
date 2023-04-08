@@ -107,15 +107,13 @@ extension Ccc {
     /// 查询话机列表信息
     @inlinable
     public func describeExtensions(sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]? = nil, pageSize: Int64? = nil, fuzzingKeyWord: String? = nil, isNeedStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionsResponse> {
-        let input = DescribeExtensionsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus)
-        return self.client.execute(action: "DescribeExtensions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExtensions(.init(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询话机列表信息
     @inlinable
     public func describeExtensions(sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]? = nil, pageSize: Int64? = nil, fuzzingKeyWord: String? = nil, isNeedStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {
-        let input = DescribeExtensionsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus)
-        return try await self.client.execute(action: "DescribeExtensions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExtensions(.init(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询话机列表信息

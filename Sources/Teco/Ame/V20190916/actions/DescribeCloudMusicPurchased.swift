@@ -65,8 +65,7 @@ extension Ame {
     /// 获取授权项目下已购云音乐列表
     @inlinable
     public func describeCloudMusicPurchased(authInfoId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicPurchasedResponse> {
-        let input = DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId)
-        return self.client.execute(action: "DescribeCloudMusicPurchased", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudMusicPurchased(.init(authInfoId: authInfoId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目已购云音乐列表
@@ -74,7 +73,6 @@ extension Ame {
     /// 获取授权项目下已购云音乐列表
     @inlinable
     public func describeCloudMusicPurchased(authInfoId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
-        let input = DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId)
-        return try await self.client.execute(action: "DescribeCloudMusicPurchased", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudMusicPurchased(.init(authInfoId: authInfoId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -41,7 +41,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypesResponse> {
-        self.client.execute(action: "DescribeInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeInstanceTypes is no longer available.")
     }
 
     /// 获取服务器实例类型列表
@@ -50,7 +50,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeInstanceTypes is no longer available.")
     }
 
     /// 获取服务器实例类型列表
@@ -59,8 +59,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceTypes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypesResponse> {
-        let input = DescribeInstanceTypesRequest()
-        return self.client.execute(action: "DescribeInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeInstanceTypes is no longer available.")
     }
 
     /// 获取服务器实例类型列表
@@ -69,7 +68,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceTypes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypesResponse {
-        let input = DescribeInstanceTypesRequest()
-        return try await self.client.execute(action: "DescribeInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeInstanceTypes is no longer available.")
     }
 }

@@ -107,15 +107,13 @@ extension Tdmq {
     /// 获取RocketMQ主题列表
     @inlinable
     public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQTopicsResponse> {
-        let input = DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName)
-        return self.client.execute(action: "DescribeRocketMQTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRocketMQTopics(.init(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ主题列表
     @inlinable
     public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
-        let input = DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName)
-        return try await self.client.execute(action: "DescribeRocketMQTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRocketMQTopics(.init(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ主题列表

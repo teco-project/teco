@@ -92,8 +92,7 @@ extension Cls {
     /// 本接口用于构建日志数量直方图
     @inlinable
     public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
-        let input = DescribeLogHistogramRequest(from: from, to: to, query: query, topicId: topicId, interval: interval)
-        return self.client.execute(action: "DescribeLogHistogram", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志数量直方图
@@ -101,7 +100,6 @@ extension Cls {
     /// 本接口用于构建日志数量直方图
     @inlinable
     public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        let input = DescribeLogHistogramRequest(from: from, to: to, query: query, topicId: topicId, interval: interval)
-        return try await self.client.execute(action: "DescribeLogHistogram", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

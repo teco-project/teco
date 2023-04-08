@@ -145,8 +145,7 @@ extension Cdn {
     /// DescribeBillingData 用于查询实际计费数据明细。
     @inlinable
     public func describeBillingData(startTime: Date, endTime: Date, interval: String? = nil, domain: String? = nil, project: Int64? = nil, area: String? = nil, district: Int64? = nil, metric: String? = nil, product: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingDataResponse> {
-        let input = DescribeBillingDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone)
-        return self.client.execute(action: "DescribeBillingData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillingData(.init(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 计费数据查询
@@ -154,7 +153,6 @@ extension Cdn {
     /// DescribeBillingData 用于查询实际计费数据明细。
     @inlinable
     public func describeBillingData(startTime: Date, endTime: Date, interval: String? = nil, domain: String? = nil, project: Int64? = nil, area: String? = nil, district: Int64? = nil, metric: String? = nil, product: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingDataResponse {
-        let input = DescribeBillingDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone)
-        return try await self.client.execute(action: "DescribeBillingData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillingData(.init(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -152,8 +152,7 @@ extension Apigateway {
     /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。
     @inlinable
     public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceResponse> {
-        let input = CreateServiceRequest(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId)
-        return self.client.execute(action: "CreateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建服务
@@ -162,7 +161,6 @@ extension Apigateway {
     /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。
     @inlinable
     public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
-        let input = CreateServiceRequest(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId)
-        return try await self.client.execute(action: "CreateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 }

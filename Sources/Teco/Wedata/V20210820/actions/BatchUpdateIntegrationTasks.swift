@@ -87,8 +87,7 @@ extension Wedata {
     /// 批量更新集成任务（暂时仅支持批量更新责任人）
     @inlinable
     public func batchUpdateIntegrationTasks(taskIds: [String], incharge: String, taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateIntegrationTasksResponse> {
-        let input = BatchUpdateIntegrationTasksRequest(taskIds: taskIds, incharge: incharge, taskType: taskType, projectId: projectId)
-        return self.client.execute(action: "BatchUpdateIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchUpdateIntegrationTasks(.init(taskIds: taskIds, incharge: incharge, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量更新集成任务
@@ -96,7 +95,6 @@ extension Wedata {
     /// 批量更新集成任务（暂时仅支持批量更新责任人）
     @inlinable
     public func batchUpdateIntegrationTasks(taskIds: [String], incharge: String, taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateIntegrationTasksResponse {
-        let input = BatchUpdateIntegrationTasksRequest(taskIds: taskIds, incharge: incharge, taskType: taskType, projectId: projectId)
-        return try await self.client.execute(action: "BatchUpdateIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchUpdateIntegrationTasks(.init(taskIds: taskIds, incharge: incharge, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

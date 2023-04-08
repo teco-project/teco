@@ -121,8 +121,7 @@ extension Vod {
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
     public func describeWordSamples(subAppId: UInt64? = nil, usages: [String]? = nil, keywords: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordSamplesResponse> {
-        let input = DescribeWordSamplesRequest(subAppId: subAppId, usages: usages, keywords: keywords, tags: tags, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWordSamples(.init(subAppId: subAppId, usages: usages, keywords: keywords, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取关键词样本列表
@@ -130,8 +129,7 @@ extension Vod {
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
     public func describeWordSamples(subAppId: UInt64? = nil, usages: [String]? = nil, keywords: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
-        let input = DescribeWordSamplesRequest(subAppId: subAppId, usages: usages, keywords: keywords, tags: tags, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWordSamples(.init(subAppId: subAppId, usages: usages, keywords: keywords, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取关键词样本列表

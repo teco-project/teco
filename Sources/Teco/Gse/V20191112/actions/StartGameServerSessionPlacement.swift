@@ -84,7 +84,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
-        self.client.execute(action: "StartGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("StartGameServerSessionPlacement is no longer available.")
     }
 
     /// 开始放置游戏服务器会话
@@ -93,7 +93,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
-        try await self.client.execute(action: "StartGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("StartGameServerSessionPlacement is no longer available.")
     }
 
     /// 开始放置游戏服务器会话
@@ -102,8 +102,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
-        let input = StartGameServerSessionPlacementRequest(placementId: placementId, gameServerSessionQueueName: gameServerSessionQueueName, maximumPlayerSessionCount: maximumPlayerSessionCount, desiredPlayerSessions: desiredPlayerSessions, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionName: gameServerSessionName, playerLatencies: playerLatencies)
-        return self.client.execute(action: "StartGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("StartGameServerSessionPlacement is no longer available.")
     }
 
     /// 开始放置游戏服务器会话
@@ -112,7 +111,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
-        let input = StartGameServerSessionPlacementRequest(placementId: placementId, gameServerSessionQueueName: gameServerSessionQueueName, maximumPlayerSessionCount: maximumPlayerSessionCount, desiredPlayerSessions: desiredPlayerSessions, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionName: gameServerSessionName, playerLatencies: playerLatencies)
-        return try await self.client.execute(action: "StartGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("StartGameServerSessionPlacement is no longer available.")
     }
 }

@@ -69,14 +69,12 @@ extension Antiddos {
     /// 删除CC清洗阈值策略
     @inlinable @discardableResult
     public func deleteCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCThresholdPolicyResponse> {
-        let input = DeleteCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return self.client.execute(action: "DeleteCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCCThresholdPolicy(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC清洗阈值策略
     @inlinable @discardableResult
     public func deleteCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCThresholdPolicyResponse {
-        let input = DeleteCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return try await self.client.execute(action: "DeleteCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCCThresholdPolicy(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

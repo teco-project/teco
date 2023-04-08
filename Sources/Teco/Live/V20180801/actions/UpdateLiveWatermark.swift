@@ -94,8 +94,7 @@ extension Live {
     /// 更新水印。
     @inlinable @discardableResult
     public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
-        let input = UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height)
-        return self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新水印
@@ -103,7 +102,6 @@ extension Live {
     /// 更新水印。
     @inlinable @discardableResult
     public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
-        let input = UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height)
-        return try await self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 }

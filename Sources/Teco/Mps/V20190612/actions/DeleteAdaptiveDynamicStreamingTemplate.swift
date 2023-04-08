@@ -54,14 +54,12 @@ extension Mps {
     /// 删除转自适应码流模板
     @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAdaptiveDynamicStreamingTemplateResponse> {
-        let input = DeleteAdaptiveDynamicStreamingTemplateRequest(definition: definition)
-        return self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAdaptiveDynamicStreamingTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转自适应码流模板
     @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
-        let input = DeleteAdaptiveDynamicStreamingTemplateRequest(definition: definition)
-        return try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAdaptiveDynamicStreamingTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 }

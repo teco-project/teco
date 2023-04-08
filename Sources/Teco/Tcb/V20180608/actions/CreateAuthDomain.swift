@@ -59,14 +59,12 @@ extension Tcb {
     /// 增加安全域名
     @inlinable @discardableResult
     public func createAuthDomain(envId: String, domains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuthDomainResponse> {
-        let input = CreateAuthDomainRequest(envId: envId, domains: domains)
-        return self.client.execute(action: "CreateAuthDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAuthDomain(.init(envId: envId, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加安全域名
     @inlinable @discardableResult
     public func createAuthDomain(envId: String, domains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
-        let input = CreateAuthDomainRequest(envId: envId, domains: domains)
-        return try await self.client.execute(action: "CreateAuthDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAuthDomain(.init(envId: envId, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

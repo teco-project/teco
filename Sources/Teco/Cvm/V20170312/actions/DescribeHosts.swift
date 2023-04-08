@@ -108,8 +108,7 @@ extension Cvm {
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     @inlinable
     public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsResponse> {
-        let input = DescribeHostsRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHosts(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看CDH实例列表
@@ -117,8 +116,7 @@ extension Cvm {
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     @inlinable
     public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
-        let input = DescribeHostsRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHosts(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看CDH实例列表

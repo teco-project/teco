@@ -128,8 +128,7 @@ extension Faceid {
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
     public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessRecognitionResponse> {
-        let input = LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption)
-        return self.client.execute(action: "LivenessRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.livenessRecognition(.init(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸核身
@@ -137,7 +136,6 @@ extension Faceid {
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
     public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
-        let input = LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption)
-        return try await self.client.execute(action: "LivenessRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.livenessRecognition(.init(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

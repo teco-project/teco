@@ -94,8 +94,7 @@ extension Scf {
     /// 该接口用于运行函数。
     @inlinable
     public func invoke(functionName: String, invocationType: String? = nil, qualifier: String? = nil, clientContext: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeResponse> {
-        let input = InvokeRequest(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey)
-        return self.client.execute(action: "Invoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.invoke(.init(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行函数
@@ -103,7 +102,6 @@ extension Scf {
     /// 该接口用于运行函数。
     @inlinable
     public func invoke(functionName: String, invocationType: String? = nil, qualifier: String? = nil, clientContext: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
-        let input = InvokeRequest(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey)
-        return try await self.client.execute(action: "Invoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.invoke(.init(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
     }
 }

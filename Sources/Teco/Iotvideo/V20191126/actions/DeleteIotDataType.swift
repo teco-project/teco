@@ -60,8 +60,7 @@ extension Iotvideo {
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable @discardableResult
     public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
-        let input = DeleteIotDataTypeRequest(typeId: typeId)
-        return self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteIotDataType(.init(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义物模型数据类型
@@ -69,7 +68,6 @@ extension Iotvideo {
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable @discardableResult
     public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
-        let input = DeleteIotDataTypeRequest(typeId: typeId)
-        return try await self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteIotDataType(.init(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 }

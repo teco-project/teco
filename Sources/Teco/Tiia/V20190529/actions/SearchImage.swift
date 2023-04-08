@@ -186,8 +186,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
-        let input = SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId)
-        return self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchImage(.init(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索图片
@@ -198,8 +197,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
-        let input = SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId)
-        return try await self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchImage(.init(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索图片

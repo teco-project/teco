@@ -87,8 +87,7 @@ extension Cme {
     /// 修改团队成员信息，包括成员备注、角色等。
     @inlinable @discardableResult
     public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamMemberResponse> {
-        let input = ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`)
-        return self.client.execute(action: "ModifyTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTeamMember(.init(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改团队成员
@@ -96,7 +95,6 @@ extension Cme {
     /// 修改团队成员信息，包括成员备注、角色等。
     @inlinable @discardableResult
     public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamMemberResponse {
-        let input = ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`)
-        return try await self.client.execute(action: "ModifyTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTeamMember(.init(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

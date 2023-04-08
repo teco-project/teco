@@ -104,14 +104,12 @@ extension Wedata {
     /// 查询实时任务日志列表
     @inlinable
     public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamTaskLogListResponse> {
-        let input = DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId)
-        return self.client.execute(action: "DescribeStreamTaskLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStreamTaskLogList(.init(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时任务日志列表
     @inlinable
     public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
-        let input = DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId)
-        return try await self.client.execute(action: "DescribeStreamTaskLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStreamTaskLogList(.init(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

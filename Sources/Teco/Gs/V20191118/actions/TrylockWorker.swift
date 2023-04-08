@@ -79,14 +79,12 @@ extension Gs {
     /// 尝试锁定机器
     @inlinable @discardableResult
     public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
-        let input = TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId)
-        return self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.trylockWorker(.init(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 尝试锁定机器
     @inlinable @discardableResult
     public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
-        let input = TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId)
-        return try await self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.trylockWorker(.init(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

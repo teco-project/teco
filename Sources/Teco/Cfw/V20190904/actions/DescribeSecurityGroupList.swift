@@ -121,15 +121,13 @@ extension Cfw {
     /// 查询安全组规则列表
     @inlinable
     public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupListResponse> {
-        let input = DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter)
-        return self.client.execute(action: "DescribeSecurityGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityGroupList(.init(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则列表
     @inlinable
     public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
-        let input = DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter)
-        return try await self.client.execute(action: "DescribeSecurityGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityGroupList(.init(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则列表

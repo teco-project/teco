@@ -62,14 +62,12 @@ extension Dlc {
     /// DMS元数据新增分区
     @inlinable
     public func addDMSPartitions(partitions: [DMSPartition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
-        let input = AddDMSPartitionsRequest(partitions: partitions)
-        return self.client.execute(action: "AddDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addDMSPartitions(.init(partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据新增分区
     @inlinable
     public func addDMSPartitions(partitions: [DMSPartition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
-        let input = AddDMSPartitionsRequest(partitions: partitions)
-        return try await self.client.execute(action: "AddDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addDMSPartitions(.init(partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 }

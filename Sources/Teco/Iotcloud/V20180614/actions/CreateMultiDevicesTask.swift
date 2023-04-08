@@ -89,8 +89,7 @@ extension Iotcloud {
     /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
     @inlinable
     public func createMultiDevicesTask(productId: String, parametersType: String, fileName: String? = nil, fileSize: UInt64? = nil, batchCount: UInt64? = nil, hash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDevicesTaskResponse> {
-        let input = CreateMultiDevicesTaskRequest(productId: productId, parametersType: parametersType, fileName: fileName, fileSize: fileSize, batchCount: batchCount, hash: hash)
-        return self.client.execute(action: "CreateMultiDevicesTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMultiDevicesTask(.init(productId: productId, parametersType: parametersType, fileName: fileName, fileSize: fileSize, batchCount: batchCount, hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建批量创建设备任务
@@ -98,7 +97,6 @@ extension Iotcloud {
     /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
     @inlinable
     public func createMultiDevicesTask(productId: String, parametersType: String, fileName: String? = nil, fileSize: UInt64? = nil, batchCount: UInt64? = nil, hash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDevicesTaskResponse {
-        let input = CreateMultiDevicesTaskRequest(productId: productId, parametersType: parametersType, fileName: fileName, fileSize: fileSize, batchCount: batchCount, hash: hash)
-        return try await self.client.execute(action: "CreateMultiDevicesTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMultiDevicesTask(.init(productId: productId, parametersType: parametersType, fileName: fileName, fileSize: fileSize, batchCount: batchCount, hash: hash), region: region, logger: logger, on: eventLoop)
     }
 }

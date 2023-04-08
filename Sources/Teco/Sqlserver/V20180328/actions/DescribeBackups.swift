@@ -156,8 +156,7 @@ extension Sqlserver {
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
     public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
-        let input = DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat)
-        return self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表
@@ -165,8 +164,7 @@ extension Sqlserver {
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
     public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        let input = DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat)
-        return try await self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表

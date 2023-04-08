@@ -73,14 +73,12 @@ extension Billing {
     /// 获取按地域汇总费用分布
     @inlinable
     public func describeBillSummaryByRegion(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByRegionResponse> {
-        let input = DescribeBillSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
-        return self.client.execute(action: "DescribeBillSummaryByRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillSummaryByRegion(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按地域汇总费用分布
     @inlinable
     public func describeBillSummaryByRegion(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByRegionResponse {
-        let input = DescribeBillSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
-        return try await self.client.execute(action: "DescribeBillSummaryByRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillSummaryByRegion(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 }

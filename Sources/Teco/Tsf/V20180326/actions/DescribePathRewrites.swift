@@ -93,15 +93,13 @@ extension Tsf {
     /// 查询路径重写列表
     @inlinable
     public func describePathRewrites(gatewayGroupId: String, searchWord: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePathRewritesResponse> {
-        let input = DescribePathRewritesRequest(gatewayGroupId: gatewayGroupId, searchWord: searchWord, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePathRewrites(.init(gatewayGroupId: gatewayGroupId, searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询路径重写列表
     @inlinable
     public func describePathRewrites(gatewayGroupId: String, searchWord: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewritesResponse {
-        let input = DescribePathRewritesRequest(gatewayGroupId: gatewayGroupId, searchWord: searchWord, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePathRewrites(.init(gatewayGroupId: gatewayGroupId, searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询路径重写列表

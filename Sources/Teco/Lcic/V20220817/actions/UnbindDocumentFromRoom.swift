@@ -59,14 +59,12 @@ extension Lcic {
     /// 文档从房间解绑
     @inlinable @discardableResult
     public func unbindDocumentFromRoom(roomId: UInt64, documentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDocumentFromRoomResponse> {
-        let input = UnbindDocumentFromRoomRequest(roomId: roomId, documentId: documentId)
-        return self.client.execute(action: "UnbindDocumentFromRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindDocumentFromRoom(.init(roomId: roomId, documentId: documentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文档从房间解绑
     @inlinable @discardableResult
     public func unbindDocumentFromRoom(roomId: UInt64, documentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDocumentFromRoomResponse {
-        let input = UnbindDocumentFromRoomRequest(roomId: roomId, documentId: documentId)
-        return try await self.client.execute(action: "UnbindDocumentFromRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindDocumentFromRoom(.init(roomId: roomId, documentId: documentId), region: region, logger: logger, on: eventLoop)
     }
 }

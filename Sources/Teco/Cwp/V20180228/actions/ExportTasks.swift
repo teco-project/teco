@@ -68,8 +68,7 @@ extension Cwp {
     /// 用于异步导出数据量大的日志文件
     @inlinable
     public func exportTasks(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
-        let input = ExportTasksRequest(taskId: taskId)
-        return self.client.execute(action: "ExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportTasks(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 异步导出任务
@@ -77,7 +76,6 @@ extension Cwp {
     /// 用于异步导出数据量大的日志文件
     @inlinable
     public func exportTasks(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
-        let input = ExportTasksRequest(taskId: taskId)
-        return try await self.client.execute(action: "ExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportTasks(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

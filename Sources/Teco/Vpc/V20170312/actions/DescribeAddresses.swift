@@ -120,8 +120,7 @@ extension Vpc {
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
     @inlinable
     public func describeAddresses(addressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressesResponse> {
-        let input = DescribeAddressesRequest(addressIds: addressIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAddresses(.init(addressIds: addressIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP列表
@@ -130,8 +129,7 @@ extension Vpc {
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
     @inlinable
     public func describeAddresses(addressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
-        let input = DescribeAddressesRequest(addressIds: addressIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAddresses(.init(addressIds: addressIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP列表

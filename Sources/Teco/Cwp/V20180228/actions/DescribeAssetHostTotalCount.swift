@@ -78,14 +78,12 @@ extension Cwp {
     /// 获取主机所有资源数量
     @inlinable
     public func describeAssetHostTotalCount(uuid: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
-        let input = DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid)
-        return self.client.execute(action: "DescribeAssetHostTotalCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetHostTotalCount(.init(uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机所有资源数量
     @inlinable
     public func describeAssetHostTotalCount(uuid: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
-        let input = DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid)
-        return try await self.client.execute(action: "DescribeAssetHostTotalCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetHostTotalCount(.init(uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Gme {
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
     public func modifyAppStatus(bizId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppStatusResponse> {
-        let input = ModifyAppStatusRequest(bizId: bizId, status: status)
-        return self.client.execute(action: "ModifyAppStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAppStatus(.init(bizId: bizId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用开关状态
@@ -78,7 +77,6 @@ extension Gme {
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
     public func modifyAppStatus(bizId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
-        let input = ModifyAppStatusRequest(bizId: bizId, status: status)
-        return try await self.client.execute(action: "ModifyAppStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAppStatus(.init(bizId: bizId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

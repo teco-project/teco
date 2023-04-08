@@ -94,14 +94,12 @@ extension Cpdp {
     /// 智能代发-单笔代发转账查询接口
     @inlinable
     public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferResultResponse> {
-        let input = QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile)
-        return self.client.execute(action: "QueryTransferResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryTransferResult(.init(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能代发-单笔代发转账查询接口
     @inlinable
     public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferResultResponse {
-        let input = QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile)
-        return try await self.client.execute(action: "QueryTransferResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryTransferResult(.init(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

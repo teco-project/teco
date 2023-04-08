@@ -65,8 +65,7 @@ extension Vod {
     /// 该接口用于批量删除关键词样本。
     @inlinable @discardableResult
     public func deleteWordSamples(keywords: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
-        let input = DeleteWordSamplesRequest(keywords: keywords, subAppId: subAppId)
-        return self.client.execute(action: "DeleteWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteWordSamples(.init(keywords: keywords, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除关键词样本
@@ -74,7 +73,6 @@ extension Vod {
     /// 该接口用于批量删除关键词样本。
     @inlinable @discardableResult
     public func deleteWordSamples(keywords: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
-        let input = DeleteWordSamplesRequest(keywords: keywords, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteWordSamples(.init(keywords: keywords, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

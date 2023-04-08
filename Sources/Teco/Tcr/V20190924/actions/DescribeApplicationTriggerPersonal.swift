@@ -99,8 +99,7 @@ extension Tcr {
     /// 用于查询应用更新触发器
     @inlinable
     public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerPersonalResponse> {
-        let input = DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationTriggerPersonal(.init(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器
@@ -108,8 +107,7 @@ extension Tcr {
     /// 用于查询应用更新触发器
     @inlinable
     public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
-        let input = DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationTriggerPersonal(.init(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器

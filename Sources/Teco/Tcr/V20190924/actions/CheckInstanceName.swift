@@ -58,14 +58,12 @@ extension Tcr {
     /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(registryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
-        let input = CheckInstanceNameRequest(registryName: registryName)
-        return self.client.execute(action: "CheckInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkInstanceName(.init(registryName: registryName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(registryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
-        let input = CheckInstanceNameRequest(registryName: registryName)
-        return try await self.client.execute(action: "CheckInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkInstanceName(.init(registryName: registryName), region: region, logger: logger, on: eventLoop)
     }
 }

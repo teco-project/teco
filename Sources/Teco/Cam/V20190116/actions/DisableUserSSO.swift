@@ -46,14 +46,12 @@ extension Cam {
     /// 禁用用户SSO
     @inlinable @discardableResult
     public func disableUserSSO(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserSSOResponse> {
-        let input = DisableUserSSORequest()
-        return self.client.execute(action: "DisableUserSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableUserSSO(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用用户SSO
     @inlinable @discardableResult
     public func disableUserSSO(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserSSOResponse {
-        let input = DisableUserSSORequest()
-        return try await self.client.execute(action: "DisableUserSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableUserSSO(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

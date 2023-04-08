@@ -117,8 +117,7 @@ extension Essbasic {
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
     public func describeFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
-        let input = DescribeFlowRequest(caller: caller, flowId: flowId)
-        return self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFlow(.init(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程信息
@@ -126,7 +125,6 @@ extension Essbasic {
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
     public func describeFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
-        let input = DescribeFlowRequest(caller: caller, flowId: flowId)
-        return try await self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFlow(.init(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

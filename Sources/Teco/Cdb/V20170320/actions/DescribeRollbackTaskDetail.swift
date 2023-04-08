@@ -104,8 +104,7 @@ extension Cdb {
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
     public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTaskDetailResponse> {
-        let input = DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeRollbackTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRollbackTaskDetail(.init(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询回档任务详情
@@ -113,8 +112,7 @@ extension Cdb {
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
     public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
-        let input = DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeRollbackTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRollbackTaskDetail(.init(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询回档任务详情

@@ -54,14 +54,12 @@ extension Tcss {
     /// 删除逃逸白名单
     @inlinable @discardableResult
     public func deleteEscapeWhiteList(idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
-        let input = DeleteEscapeWhiteListRequest(idSet: idSet)
-        return self.client.execute(action: "DeleteEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEscapeWhiteList(.init(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除逃逸白名单
     @inlinable @discardableResult
     public func deleteEscapeWhiteList(idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
-        let input = DeleteEscapeWhiteListRequest(idSet: idSet)
-        return try await self.client.execute(action: "DeleteEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEscapeWhiteList(.init(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 }

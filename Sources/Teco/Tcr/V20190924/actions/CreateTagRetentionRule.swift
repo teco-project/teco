@@ -74,14 +74,12 @@ extension Tcr {
     /// 创建版本保留规则
     @inlinable @discardableResult
     public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
-        let input = CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled)
-        return self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTagRetentionRule(.init(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建版本保留规则
     @inlinable @discardableResult
     public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
-        let input = CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled)
-        return try await self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTagRetentionRule(.init(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 }

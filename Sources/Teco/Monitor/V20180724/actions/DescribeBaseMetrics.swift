@@ -68,14 +68,12 @@ extension Monitor {
     /// 获取基础指标属性
     @inlinable
     public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseMetricsResponse> {
-        let input = DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions)
-        return self.client.execute(action: "DescribeBaseMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaseMetrics(.init(namespace: namespace, metricName: metricName, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础指标属性
     @inlinable
     public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
-        let input = DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions)
-        return try await self.client.execute(action: "DescribeBaseMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaseMetrics(.init(namespace: namespace, metricName: metricName, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 }

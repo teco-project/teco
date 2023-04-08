@@ -68,8 +68,7 @@ extension Tcss {
     /// 获取受影响的集群数量，返回数量
     @inlinable
     public func describeAffectedClusterCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
-        let input = DescribeAffectedClusterCountRequest()
-        return self.client.execute(action: "DescribeAffectedClusterCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAffectedClusterCount(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取受影响的集群数量
@@ -77,7 +76,6 @@ extension Tcss {
     /// 获取受影响的集群数量，返回数量
     @inlinable
     public func describeAffectedClusterCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
-        let input = DescribeAffectedClusterCountRequest()
-        return try await self.client.execute(action: "DescribeAffectedClusterCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAffectedClusterCount(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

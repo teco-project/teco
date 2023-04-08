@@ -78,8 +78,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteRewrite(loadBalancerId: String, sourceListenerId: String, targetListenerId: String, rewriteInfos: [RewriteLocationMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRewriteResponse> {
-        let input = DeleteRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos)
-        return self.client.execute(action: "DeleteRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRewrite(.init(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡转发规则之间的重定向关系
@@ -88,7 +87,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteRewrite(loadBalancerId: String, sourceListenerId: String, targetListenerId: String, rewriteInfos: [RewriteLocationMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRewriteResponse {
-        let input = DeleteRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos)
-        return try await self.client.execute(action: "DeleteRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRewrite(.init(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos), region: region, logger: logger, on: eventLoop)
     }
 }

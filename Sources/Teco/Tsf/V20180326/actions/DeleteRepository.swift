@@ -59,14 +59,12 @@ extension Tsf {
     /// 删除仓库
     @inlinable
     public func deleteRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
-        let input = DeleteRepositoryRequest(repositoryId: repositoryId)
-        return self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRepository(.init(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除仓库
     @inlinable
     public func deleteRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
-        let input = DeleteRepositoryRequest(repositoryId: repositoryId)
-        return try await self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRepository(.init(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

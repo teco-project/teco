@@ -72,14 +72,12 @@ extension Tdid {
     /// 凭证模版列表
     @inlinable
     public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
-        let input = GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType)
-        return self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getCptList(.init(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版列表
     @inlinable
     public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        let input = GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType)
-        return try await self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getCptList(.init(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
     }
 }

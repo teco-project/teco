@@ -92,8 +92,7 @@ extension Cdb {
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
     public func describeTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeWindowResponse> {
-        let input = DescribeTimeWindowRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTimeWindow(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维护时间窗口
@@ -101,7 +100,6 @@ extension Cdb {
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
     public func describeTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
-        let input = DescribeTimeWindowRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTimeWindow(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

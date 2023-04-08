@@ -59,14 +59,12 @@ extension Dasb {
     /// 添加资产组成员
     @inlinable @discardableResult
     public func addDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceGroupMembersResponse> {
-        let input = AddDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet)
-        return self.client.execute(action: "AddDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addDeviceGroupMembers(.init(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加资产组成员
     @inlinable @discardableResult
     public func addDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceGroupMembersResponse {
-        let input = AddDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet)
-        return try await self.client.execute(action: "AddDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addDeviceGroupMembers(.init(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

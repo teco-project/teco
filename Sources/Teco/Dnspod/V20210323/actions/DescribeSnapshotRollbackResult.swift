@@ -113,14 +113,12 @@ extension Dnspod {
     /// 查询快照回滚结果
     @inlinable
     public func describeSnapshotRollbackResult(domain: String, taskId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotRollbackResultResponse> {
-        let input = DescribeSnapshotRollbackResultRequest(domain: domain, taskId: taskId, domainId: domainId)
-        return self.client.execute(action: "DescribeSnapshotRollbackResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshotRollbackResult(.init(domain: domain, taskId: taskId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照回滚结果
     @inlinable
     public func describeSnapshotRollbackResult(domain: String, taskId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotRollbackResultResponse {
-        let input = DescribeSnapshotRollbackResultRequest(domain: domain, taskId: taskId, domainId: domainId)
-        return try await self.client.execute(action: "DescribeSnapshotRollbackResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshotRollbackResult(.init(domain: domain, taskId: taskId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

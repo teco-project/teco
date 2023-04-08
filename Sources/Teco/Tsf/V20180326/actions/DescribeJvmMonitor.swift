@@ -95,8 +95,7 @@ extension Tsf {
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
     public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJvmMonitorResponse> {
-        let input = DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag)
-        return self.client.execute(action: "DescribeJvmMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJvmMonitor(.init(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询java实例jvm监控数据
@@ -104,7 +103,6 @@ extension Tsf {
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
     public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
-        let input = DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag)
-        return try await self.client.execute(action: "DescribeJvmMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJvmMonitor(.init(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

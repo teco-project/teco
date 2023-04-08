@@ -66,8 +66,7 @@ extension Dayu {
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
     public func describeDDoSUsedStatis(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSUsedStatisResponse> {
-        let input = DescribeDDoSUsedStatisRequest(business: business)
-        return self.client.execute(action: "DescribeDDoSUsedStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSUsedStatis(.init(business: business), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护使用统计
@@ -75,7 +74,6 @@ extension Dayu {
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
     public func describeDDoSUsedStatis(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
-        let input = DescribeDDoSUsedStatisRequest(business: business)
-        return try await self.client.execute(action: "DescribeDDoSUsedStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSUsedStatis(.init(business: business), region: region, logger: logger, on: eventLoop)
     }
 }

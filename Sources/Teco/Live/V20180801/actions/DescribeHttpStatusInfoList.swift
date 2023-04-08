@@ -80,8 +80,7 @@ extension Live {
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
     public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
-        let input = DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains)
-        return self.client.execute(action: "DescribeHttpStatusInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHttpStatusInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http状态码明细数据
@@ -90,7 +89,6 @@ extension Live {
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
     public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
-        let input = DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains)
-        return try await self.client.execute(action: "DescribeHttpStatusInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHttpStatusInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 }

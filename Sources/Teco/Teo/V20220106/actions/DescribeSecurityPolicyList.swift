@@ -58,14 +58,12 @@ extension Teo {
     /// 查询全部安全实例
     @inlinable
     public func describeSecurityPolicyList(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyListResponse> {
-        let input = DescribeSecurityPolicyListRequest(zoneId: zoneId)
-        return self.client.execute(action: "DescribeSecurityPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityPolicyList(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全部安全实例
     @inlinable
     public func describeSecurityPolicyList(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyListResponse {
-        let input = DescribeSecurityPolicyListRequest(zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeSecurityPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityPolicyList(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Iotexplorer {
     /// 无
     @inlinable
     public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
-        let input = GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire)
-        return self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.genSingleDeviceSignatureOfPublic(.init(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成单个设备绑定的签名
@@ -83,7 +82,6 @@ extension Iotexplorer {
     /// 无
     @inlinable
     public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
-        let input = GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire)
-        return try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.genSingleDeviceSignatureOfPublic(.init(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 }

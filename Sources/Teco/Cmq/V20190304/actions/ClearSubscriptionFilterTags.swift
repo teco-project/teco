@@ -59,14 +59,12 @@ extension Cmq {
     /// 清空订阅者消息标签
     @inlinable @discardableResult
     public func clearSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearSubscriptionFilterTagsResponse> {
-        let input = ClearSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return self.client.execute(action: "ClearSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.clearSubscriptionFilterTags(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空订阅者消息标签
     @inlinable @discardableResult
     public func clearSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearSubscriptionFilterTagsResponse {
-        let input = ClearSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return try await self.client.execute(action: "ClearSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.clearSubscriptionFilterTags(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 }

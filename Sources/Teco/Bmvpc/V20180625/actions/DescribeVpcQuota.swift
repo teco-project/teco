@@ -64,8 +64,7 @@ extension Bmvpc {
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
     public func describeVpcQuota(typeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcQuotaResponse> {
-        let input = DescribeVpcQuotaRequest(typeIds: typeIds)
-        return self.client.execute(action: "DescribeVpcQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcQuota(.init(typeIds: typeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石私有网络的配额
@@ -73,7 +72,6 @@ extension Bmvpc {
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
     public func describeVpcQuota(typeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
-        let input = DescribeVpcQuotaRequest(typeIds: typeIds)
-        return try await self.client.execute(action: "DescribeVpcQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcQuota(.init(typeIds: typeIds), region: region, logger: logger, on: eventLoop)
     }
 }

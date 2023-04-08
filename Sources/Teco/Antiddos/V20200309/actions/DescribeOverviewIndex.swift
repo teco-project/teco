@@ -99,14 +99,12 @@ extension Antiddos {
     /// 拉取防护概览指标
     @inlinable
     public func describeOverviewIndex(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewIndexResponse> {
-        let input = DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeOverviewIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOverviewIndex(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取防护概览指标
     @inlinable
     public func describeOverviewIndex(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
-        let input = DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeOverviewIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOverviewIndex(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

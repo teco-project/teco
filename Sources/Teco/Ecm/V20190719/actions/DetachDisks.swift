@@ -74,8 +74,7 @@ extension Ecm {
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult
     public func detachDisks(diskIds: [String], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
-        let input = DetachDisksRequest(diskIds: diskIds, instanceId: instanceId)
-        return self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachDisks(.init(diskIds: diskIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载云硬盘
@@ -86,7 +85,6 @@ extension Ecm {
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult
     public func detachDisks(diskIds: [String], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
-        let input = DetachDisksRequest(diskIds: diskIds, instanceId: instanceId)
-        return try await self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachDisks(.init(diskIds: diskIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

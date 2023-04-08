@@ -74,14 +74,12 @@ extension Iecp {
     /// 修改边缘单元Grid部署应用副本数
     @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
-        let input = ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace)
-        return self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEdgeUnitDeployGridItem(.init(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元Grid部署应用副本数
     @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
-        let input = ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace)
-        return try await self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEdgeUnitDeployGridItem(.init(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

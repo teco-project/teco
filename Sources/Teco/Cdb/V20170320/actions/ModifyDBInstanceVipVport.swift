@@ -90,8 +90,7 @@ extension Cdb {
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
     public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceVipVportResponse> {
-        let input = ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration)
-        return self.client.execute(action: "ModifyDBInstanceVipVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceVipVport(.init(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的IP和端口号
@@ -99,7 +98,6 @@ extension Cdb {
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
     public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
-        let input = ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration)
-        return try await self.client.execute(action: "ModifyDBInstanceVipVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceVipVport(.init(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }
 }

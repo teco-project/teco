@@ -78,14 +78,12 @@ extension Wedata {
     /// 更新集成节点
     @inlinable
     public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
-        let input = ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode)
-        return self.client.execute(action: "ModifyIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyIntegrationNode(.init(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新集成节点
     @inlinable
     public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
-        let input = ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode)
-        return try await self.client.execute(action: "ModifyIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyIntegrationNode(.init(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 }

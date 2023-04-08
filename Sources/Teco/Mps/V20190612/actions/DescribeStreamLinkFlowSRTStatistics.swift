@@ -96,8 +96,7 @@ extension Mps {
     /// 查询媒体传输流的SRT质量数据。
     @inlinable
     public func describeStreamLinkFlowSRTStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, startTime: String, endTime: String, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowSRTStatisticsResponse> {
-        let input = DescribeStreamLinkFlowSRTStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, startTime: startTime, endTime: endTime, period: period)
-        return self.client.execute(action: "DescribeStreamLinkFlowSRTStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStreamLinkFlowSRTStatistics(.init(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SRT数据信息
@@ -105,7 +104,6 @@ extension Mps {
     /// 查询媒体传输流的SRT质量数据。
     @inlinable
     public func describeStreamLinkFlowSRTStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, startTime: String, endTime: String, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowSRTStatisticsResponse {
-        let input = DescribeStreamLinkFlowSRTStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, startTime: startTime, endTime: endTime, period: period)
-        return try await self.client.execute(action: "DescribeStreamLinkFlowSRTStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStreamLinkFlowSRTStatistics(.init(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

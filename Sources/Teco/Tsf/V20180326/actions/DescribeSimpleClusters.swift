@@ -104,15 +104,13 @@ extension Tsf {
     /// 查询简单集群列表
     @inlinable
     public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleClustersResponse> {
-        let input = DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
-        return self.client.execute(action: "DescribeSimpleClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSimpleClusters(.init(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询简单集群列表
     @inlinable
     public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
-        let input = DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
-        return try await self.client.execute(action: "DescribeSimpleClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSimpleClusters(.init(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询简单集群列表

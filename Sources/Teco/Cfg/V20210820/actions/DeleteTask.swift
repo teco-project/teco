@@ -54,14 +54,12 @@ extension Cfg {
     /// 删除任务
     @inlinable @discardableResult
     public func deleteTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskResponse> {
-        let input = DeleteTaskRequest(taskId: taskId)
-        return self.client.execute(action: "DeleteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除任务
     @inlinable @discardableResult
     public func deleteTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
-        let input = DeleteTaskRequest(taskId: taskId)
-        return try await self.client.execute(action: "DeleteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

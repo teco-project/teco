@@ -90,8 +90,7 @@ extension Tdmq {
     /// 获取消息生产概览信息
     @inlinable
     public func describePublisherSummary(clusterId: String, namespace: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
-        let input = DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic)
-        return self.client.execute(action: "DescribePublisherSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublisherSummary(.init(clusterId: clusterId, namespace: namespace, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消息生产概览
@@ -99,7 +98,6 @@ extension Tdmq {
     /// 获取消息生产概览信息
     @inlinable
     public func describePublisherSummary(clusterId: String, namespace: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
-        let input = DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic)
-        return try await self.client.execute(action: "DescribePublisherSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublisherSummary(.init(clusterId: clusterId, namespace: namespace, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 }

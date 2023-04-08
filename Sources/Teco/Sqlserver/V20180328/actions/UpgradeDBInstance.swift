@@ -109,8 +109,7 @@ extension Sqlserver {
     /// 本接口（UpgradeDBInstance）用于升级实例
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64? = nil, storage: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, cpu: Int64? = nil, dbVersion: String? = nil, haType: String? = nil, multiZones: String? = nil, waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, cpu: cpu, dbVersion: dbVersion, haType: haType, multiZones: multiZones, waitSwitch: waitSwitch)
-        return self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, cpu: cpu, dbVersion: dbVersion, haType: haType, multiZones: multiZones, waitSwitch: waitSwitch), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例
@@ -118,7 +117,6 @@ extension Sqlserver {
     /// 本接口（UpgradeDBInstance）用于升级实例
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64? = nil, storage: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, cpu: Int64? = nil, dbVersion: String? = nil, haType: String? = nil, multiZones: String? = nil, waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, cpu: cpu, dbVersion: dbVersion, haType: haType, multiZones: multiZones, waitSwitch: waitSwitch)
-        return try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, cpu: cpu, dbVersion: dbVersion, haType: haType, multiZones: multiZones, waitSwitch: waitSwitch), region: region, logger: logger, on: eventLoop)
     }
 }

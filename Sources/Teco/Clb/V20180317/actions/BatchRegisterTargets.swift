@@ -70,8 +70,7 @@ extension Clb {
     /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
     public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterTargetsResponse> {
-        let input = BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets)
-        return self.client.execute(action: "BatchRegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchRegisterTargets(.init(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定虚拟主机或弹性网卡
@@ -79,7 +78,6 @@ extension Clb {
     /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
     public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
-        let input = BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets)
-        return try await self.client.execute(action: "BatchRegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchRegisterTargets(.init(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 }

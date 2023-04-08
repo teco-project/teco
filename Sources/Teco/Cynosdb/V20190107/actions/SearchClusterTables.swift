@@ -83,8 +83,7 @@ extension Cynosdb {
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
     public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClusterTablesResponse> {
-        let input = SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType)
-        return self.client.execute(action: "SearchClusterTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchClusterTables(.init(clusterId: clusterId, database: database, table: table, tableType: tableType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索集群数据表列表
@@ -92,7 +91,6 @@ extension Cynosdb {
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
     public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterTablesResponse {
-        let input = SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType)
-        return try await self.client.execute(action: "SearchClusterTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchClusterTables(.init(clusterId: clusterId, database: database, table: table, tableType: tableType), region: region, logger: logger, on: eventLoop)
     }
 }

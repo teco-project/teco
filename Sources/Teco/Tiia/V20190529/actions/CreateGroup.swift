@@ -172,8 +172,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        let input = CreateGroupRequest(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType)
-        return self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGroup(.init(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建图片库
@@ -207,7 +206,6 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        let input = CreateGroupRequest(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType)
-        return try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGroup(.init(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType), region: region, logger: logger, on: eventLoop)
     }
 }

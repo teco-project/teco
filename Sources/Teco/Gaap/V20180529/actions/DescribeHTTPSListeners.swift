@@ -132,8 +132,7 @@ extension Gaap {
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
     @inlinable
     public func describeHTTPSListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPSListenersResponse> {
-        let input = DescribeHTTPSListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId, http3Supported: http3Supported)
-        return self.client.execute(action: "DescribeHTTPSListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHTTPSListeners(.init(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTPS监听器信息
@@ -141,8 +140,7 @@ extension Gaap {
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
     @inlinable
     public func describeHTTPSListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPSListenersResponse {
-        let input = DescribeHTTPSListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId, http3Supported: http3Supported)
-        return try await self.client.execute(action: "DescribeHTTPSListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHTTPSListeners(.init(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTPS监听器信息

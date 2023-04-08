@@ -97,15 +97,13 @@ extension Antiddos {
     /// 获取DDoS防护的协议封禁配置列表
     @inlinable
     public func describeListProtocolBlockConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListProtocolBlockConfigResponse> {
-        let input = DescribeListProtocolBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
-        return self.client.execute(action: "DescribeListProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeListProtocolBlockConfig(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的协议封禁配置列表
     @inlinable
     public func describeListProtocolBlockConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtocolBlockConfigResponse {
-        let input = DescribeListProtocolBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
-        return try await self.client.execute(action: "DescribeListProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeListProtocolBlockConfig(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的协议封禁配置列表

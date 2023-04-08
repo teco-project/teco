@@ -95,8 +95,7 @@ extension Cwp {
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
     public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportMachinesResponse> {
-        let input = DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds)
-        return self.client.execute(action: "DescribeExportMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExportMachines(.init(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出区域主机列表
@@ -104,7 +103,6 @@ extension Cwp {
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
     public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
-        let input = DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds)
-        return try await self.client.execute(action: "DescribeExportMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExportMachines(.init(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), region: region, logger: logger, on: eventLoop)
     }
 }

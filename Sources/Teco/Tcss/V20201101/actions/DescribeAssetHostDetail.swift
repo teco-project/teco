@@ -164,8 +164,7 @@ extension Tcss {
     /// 查询主机详细信息
     @inlinable
     public func describeAssetHostDetail(hostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostDetailResponse> {
-        let input = DescribeAssetHostDetailRequest(hostId: hostId)
-        return self.client.execute(action: "DescribeAssetHostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetHostDetail(.init(hostId: hostId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主机信息
@@ -173,7 +172,6 @@ extension Tcss {
     /// 查询主机详细信息
     @inlinable
     public func describeAssetHostDetail(hostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
-        let input = DescribeAssetHostDetailRequest(hostId: hostId)
-        return try await self.client.execute(action: "DescribeAssetHostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetHostDetail(.init(hostId: hostId), region: region, logger: logger, on: eventLoop)
     }
 }

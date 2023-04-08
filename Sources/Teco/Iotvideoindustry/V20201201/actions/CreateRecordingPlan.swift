@@ -79,8 +79,7 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
     public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingPlanResponse> {
-        let input = CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime)
-        return self.client.execute(action: "CreateRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRecordingPlan(.init(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划
@@ -88,7 +87,6 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
     public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
-        let input = CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime)
-        return try await self.client.execute(action: "CreateRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRecordingPlan(.init(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 }

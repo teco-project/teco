@@ -74,8 +74,7 @@ extension Clb {
     /// DescribeRewrite 接口可根据负载均衡实例ID，查询一个负载均衡实例下转发规则的重定向关系。如果不指定监听器ID或转发规则ID，则返回该负载均衡实例下的所有重定向关系。
     @inlinable
     public func describeRewrite(loadBalancerId: String, sourceListenerIds: [String]? = nil, sourceLocationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRewriteResponse> {
-        let input = DescribeRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerIds: sourceListenerIds, sourceLocationIds: sourceLocationIds)
-        return self.client.execute(action: "DescribeRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRewrite(.init(loadBalancerId: loadBalancerId, sourceListenerIds: sourceListenerIds, sourceLocationIds: sourceLocationIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡转发规则的重定向关系
@@ -83,7 +82,6 @@ extension Clb {
     /// DescribeRewrite 接口可根据负载均衡实例ID，查询一个负载均衡实例下转发规则的重定向关系。如果不指定监听器ID或转发规则ID，则返回该负载均衡实例下的所有重定向关系。
     @inlinable
     public func describeRewrite(loadBalancerId: String, sourceListenerIds: [String]? = nil, sourceLocationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRewriteResponse {
-        let input = DescribeRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerIds: sourceListenerIds, sourceLocationIds: sourceLocationIds)
-        return try await self.client.execute(action: "DescribeRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRewrite(.init(loadBalancerId: loadBalancerId, sourceListenerIds: sourceListenerIds, sourceLocationIds: sourceLocationIds), region: region, logger: logger, on: eventLoop)
     }
 }

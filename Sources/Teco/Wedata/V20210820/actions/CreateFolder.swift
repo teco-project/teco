@@ -78,8 +78,7 @@ extension Wedata {
     /// 创建文件夹
     @inlinable
     public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
-        let input = CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId)
-        return self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFolder(.init(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件夹【Beta版本】
@@ -88,7 +87,6 @@ extension Wedata {
     /// 创建文件夹
     @inlinable
     public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        let input = CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId)
-        return try await self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFolder(.init(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
     }
 }

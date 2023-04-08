@@ -82,8 +82,7 @@ extension Live {
     /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
     @inlinable
     public func describeLiveTimeShiftBillInfoList(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTimeShiftBillInfoListResponse> {
-        let input = DescribeLiveTimeShiftBillInfoListRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains)
-        return self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveTimeShiftBillInfoList(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播时移计费信息查询
@@ -91,7 +90,6 @@ extension Live {
     /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
     @inlinable
     public func describeLiveTimeShiftBillInfoList(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTimeShiftBillInfoListResponse {
-        let input = DescribeLiveTimeShiftBillInfoListRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains)
-        return try await self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveTimeShiftBillInfoList(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 }

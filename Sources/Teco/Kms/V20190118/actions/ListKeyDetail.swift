@@ -134,8 +134,7 @@ extension Kms {
     /// 根据指定Offset和Limit获取主密钥列表详情。
     @inlinable
     public func listKeyDetail(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, orderType: UInt64? = nil, keyState: UInt64? = nil, searchKeyAlias: String? = nil, origin: String? = nil, keyUsage: String? = nil, tagFilters: [TagFilter]? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeyDetailResponse> {
-        let input = ListKeyDetailRequest(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId)
-        return self.client.execute(action: "ListKeyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listKeyDetail(.init(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥列表详情
@@ -143,8 +142,7 @@ extension Kms {
     /// 根据指定Offset和Limit获取主密钥列表详情。
     @inlinable
     public func listKeyDetail(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, orderType: UInt64? = nil, keyState: UInt64? = nil, searchKeyAlias: String? = nil, origin: String? = nil, keyUsage: String? = nil, tagFilters: [TagFilter]? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyDetailResponse {
-        let input = ListKeyDetailRequest(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId)
-        return try await self.client.execute(action: "ListKeyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listKeyDetail(.init(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥列表详情

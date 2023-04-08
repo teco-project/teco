@@ -70,8 +70,7 @@ extension Wedata {
     /// 资源管理删除资源
     @inlinable
     public func deleteResource(projectId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
-        let input = DeleteResourceRequest(projectId: projectId, resourceId: resourceId)
-        return self.client.execute(action: "DeleteResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteResource(.init(projectId: projectId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源
@@ -79,7 +78,6 @@ extension Wedata {
     /// 资源管理删除资源
     @inlinable
     public func deleteResource(projectId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
-        let input = DeleteResourceRequest(projectId: projectId, resourceId: resourceId)
-        return try await self.client.execute(action: "DeleteResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteResource(.init(projectId: projectId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

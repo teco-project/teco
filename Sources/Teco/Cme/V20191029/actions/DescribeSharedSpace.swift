@@ -78,8 +78,7 @@ extension Cme {
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
     public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSharedSpaceResponse> {
-        let input = DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`)
-        return self.client.execute(action: "DescribeSharedSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSharedSpace(.init(platform: platform, authorizee: authorizee, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取共享空间
@@ -87,7 +86,6 @@ extension Cme {
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
     public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
-        let input = DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`)
-        return try await self.client.execute(action: "DescribeSharedSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSharedSpace(.init(platform: platform, authorizee: authorizee, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

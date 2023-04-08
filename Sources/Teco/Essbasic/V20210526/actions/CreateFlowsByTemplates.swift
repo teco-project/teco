@@ -110,8 +110,7 @@ extension Essbasic {
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
-        let input = CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`)
-        return self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用多个模板批量创建签署流程
@@ -121,7 +120,6 @@ extension Essbasic {
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
-        let input = CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`)
-        return try await self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

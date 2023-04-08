@@ -74,14 +74,12 @@ extension Tem {
     /// 查询 Ingress 规则列表
     @inlinable
     public func describeIngresses(environmentId: String? = nil, clusterNamespace: String? = nil, sourceChannel: Int64? = nil, ingressNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
-        let input = DescribeIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, ingressNames: ingressNames)
-        return self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIngresses(.init(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, ingressNames: ingressNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 Ingress 规则列表
     @inlinable
     public func describeIngresses(environmentId: String? = nil, clusterNamespace: String? = nil, sourceChannel: Int64? = nil, ingressNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
-        let input = DescribeIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, ingressNames: ingressNames)
-        return try await self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIngresses(.init(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, ingressNames: ingressNames), region: region, logger: logger, on: eventLoop)
     }
 }

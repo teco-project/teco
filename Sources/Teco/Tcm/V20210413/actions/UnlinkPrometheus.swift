@@ -54,14 +54,12 @@ extension Tcm {
     /// 解除关联Prometheus
     @inlinable @discardableResult
     public func unlinkPrometheus(meshID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkPrometheusResponse> {
-        let input = UnlinkPrometheusRequest(meshID: meshID)
-        return self.client.execute(action: "UnlinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unlinkPrometheus(.init(meshID: meshID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除关联Prometheus
     @inlinable @discardableResult
     public func unlinkPrometheus(meshID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkPrometheusResponse {
-        let input = UnlinkPrometheusRequest(meshID: meshID)
-        return try await self.client.execute(action: "UnlinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unlinkPrometheus(.init(meshID: meshID), region: region, logger: logger, on: eventLoop)
     }
 }

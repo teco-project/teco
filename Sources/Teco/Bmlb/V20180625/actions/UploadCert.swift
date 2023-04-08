@@ -79,8 +79,7 @@ extension Bmlb {
     /// 创建黑石负载均衡证书。
     @inlinable
     public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        let input = UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key)
-        return self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadCert(.init(certType: certType, cert: cert, alias: alias, key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石负载均衡证书
@@ -88,7 +87,6 @@ extension Bmlb {
     /// 创建黑石负载均衡证书。
     @inlinable
     public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        let input = UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key)
-        return try await self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadCert(.init(certType: certType, cert: cert, alias: alias, key: key), region: region, logger: logger, on: eventLoop)
     }
 }

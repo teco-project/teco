@@ -69,14 +69,12 @@ extension Cynosdb {
     /// 批量回收账号权限
     @inlinable @discardableResult
     public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeAccountPrivilegesResponse> {
-        let input = RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables)
-        return self.client.execute(action: "RevokeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revokeAccountPrivileges(.init(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量回收账号权限
     @inlinable @discardableResult
     public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
-        let input = RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables)
-        return try await self.client.execute(action: "RevokeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revokeAccountPrivileges(.init(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 }

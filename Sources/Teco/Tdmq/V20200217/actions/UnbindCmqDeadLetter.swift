@@ -54,14 +54,12 @@ extension Tdmq {
     /// 解绑cmq死信队列
     @inlinable @discardableResult
     public func unbindCmqDeadLetter(sourceQueueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCmqDeadLetterResponse> {
-        let input = UnbindCmqDeadLetterRequest(sourceQueueName: sourceQueueName)
-        return self.client.execute(action: "UnbindCmqDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindCmqDeadLetter(.init(sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑cmq死信队列
     @inlinable @discardableResult
     public func unbindCmqDeadLetter(sourceQueueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCmqDeadLetterResponse {
-        let input = UnbindCmqDeadLetterRequest(sourceQueueName: sourceQueueName)
-        return try await self.client.execute(action: "UnbindCmqDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindCmqDeadLetter(.init(sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Cam {
     /// 更新用户组
     @inlinable @discardableResult
     public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGroupResponse> {
-        let input = UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark)
-        return self.client.execute(action: "UpdateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateGroup(.init(groupId: groupId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新用户组
     @inlinable @discardableResult
     public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
-        let input = UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark)
-        return try await self.client.execute(action: "UpdateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateGroup(.init(groupId: groupId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

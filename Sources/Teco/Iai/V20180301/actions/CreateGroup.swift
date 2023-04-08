@@ -113,8 +113,7 @@ extension Iai {
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(groupName: String, groupId: String, groupExDescriptions: [String]? = nil, tag: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        let input = CreateGroupRequest(groupName: groupName, groupId: groupId, groupExDescriptions: groupExDescriptions, tag: tag, faceModelVersion: faceModelVersion)
-        return self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGroup(.init(groupName: groupName, groupId: groupId, groupExDescriptions: groupExDescriptions, tag: tag, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人员库
@@ -127,7 +126,6 @@ extension Iai {
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(groupName: String, groupId: String, groupExDescriptions: [String]? = nil, tag: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        let input = CreateGroupRequest(groupName: groupName, groupId: groupId, groupExDescriptions: groupExDescriptions, tag: tag, faceModelVersion: faceModelVersion)
-        return try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGroup(.init(groupName: groupName, groupId: groupId, groupExDescriptions: groupExDescriptions, tag: tag, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

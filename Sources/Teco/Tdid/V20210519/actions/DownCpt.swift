@@ -54,14 +54,12 @@ extension Tdid {
     /// 凭证模版下载
     @inlinable @discardableResult
     public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
-        let input = DownCptRequest(cptIndex: cptIndex)
-        return self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downCpt(.init(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版下载
     @inlinable @discardableResult
     public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        let input = DownCptRequest(cptIndex: cptIndex)
-        return try await self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downCpt(.init(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,8 +83,7 @@ extension Iot {
     /// 查询某段时间范围内产品的在线、激活设备数
     @inlinable
     public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceStatisticsResponse> {
-        let input = GetDeviceStatisticsRequest(products: products, startDate: startDate, endDate: endDate)
-        return self.client.execute(action: "GetDeviceStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDeviceStatistics(.init(products: products, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备统计指标
@@ -92,7 +91,6 @@ extension Iot {
     /// 查询某段时间范围内产品的在线、激活设备数
     @inlinable
     public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
-        let input = GetDeviceStatisticsRequest(products: products, startDate: startDate, endDate: endDate)
-        return try await self.client.execute(action: "GetDeviceStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDeviceStatistics(.init(products: products, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

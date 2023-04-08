@@ -103,15 +103,13 @@ extension Hasim {
     /// 查询订单列表
     @inlinable
     public func describeOrders(dealName: String? = nil, auditStatus: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, beginTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        let input = DescribeOrdersRequest(dealName: dealName, auditStatus: auditStatus, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
-        return self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrders(.init(dealName: dealName, auditStatus: auditStatus, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单列表
     @inlinable
     public func describeOrders(dealName: String? = nil, auditStatus: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, beginTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        let input = DescribeOrdersRequest(dealName: dealName, auditStatus: auditStatus, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrders(.init(dealName: dealName, auditStatus: auditStatus, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单列表

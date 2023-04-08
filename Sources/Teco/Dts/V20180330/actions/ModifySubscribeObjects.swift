@@ -74,8 +74,7 @@ extension Dts {
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
     public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeObjectsResponse> {
-        let input = ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects)
-        return self.client.execute(action: "ModifySubscribeObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySubscribeObjects(.init(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅通道的订阅规则
@@ -83,7 +82,6 @@ extension Dts {
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
     public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeObjectsResponse {
-        let input = ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects)
-        return try await self.client.execute(action: "ModifySubscribeObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySubscribeObjects(.init(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 }

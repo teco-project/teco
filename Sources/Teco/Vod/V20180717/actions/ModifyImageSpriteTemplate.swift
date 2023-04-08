@@ -133,8 +133,7 @@ extension Vod {
     /// 修改用户自定义雪碧图模板。
     @inlinable @discardableResult
     public func modifyImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, rowCount: UInt64? = nil, columnCount: UInt64? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSpriteTemplateResponse> {
-        let input = ModifyImageSpriteTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format)
-        return self.client.execute(action: "ModifyImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyImageSpriteTemplate(.init(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改雪碧图模板
@@ -142,7 +141,6 @@ extension Vod {
     /// 修改用户自定义雪碧图模板。
     @inlinable @discardableResult
     public func modifyImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, rowCount: UInt64? = nil, columnCount: UInt64? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSpriteTemplateResponse {
-        let input = ModifyImageSpriteTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format)
-        return try await self.client.execute(action: "ModifyImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyImageSpriteTemplate(.init(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 }

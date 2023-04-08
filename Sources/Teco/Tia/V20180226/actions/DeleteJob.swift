@@ -65,8 +65,7 @@ extension Tia {
     /// 删除训练任务
     @inlinable @discardableResult
     public func deleteJob(name: String, cluster: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteJobResponse> {
-        let input = DeleteJobRequest(name: name, cluster: cluster)
-        return self.client.execute(action: "DeleteJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteJob(.init(name: name, cluster: cluster), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Job
@@ -74,7 +73,6 @@ extension Tia {
     /// 删除训练任务
     @inlinable @discardableResult
     public func deleteJob(name: String, cluster: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
-        let input = DeleteJobRequest(name: name, cluster: cluster)
-        return try await self.client.execute(action: "DeleteJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteJob(.init(name: name, cluster: cluster), region: region, logger: logger, on: eventLoop)
     }
 }

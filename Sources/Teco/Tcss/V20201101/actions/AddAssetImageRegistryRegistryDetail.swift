@@ -114,14 +114,12 @@ extension Tcss {
     /// 新增单个镜像仓库详细信息
     @inlinable
     public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAssetImageRegistryRegistryDetailResponse> {
-        let input = AddAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure)
-        return self.client.execute(action: "AddAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增单个镜像仓库详细信息
     @inlinable
     public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAssetImageRegistryRegistryDetailResponse {
-        let input = AddAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure)
-        return try await self.client.execute(action: "AddAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
     }
 }

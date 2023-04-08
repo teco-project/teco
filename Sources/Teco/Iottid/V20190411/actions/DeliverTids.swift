@@ -74,8 +74,7 @@ extension Iottid {
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
     public func deliverTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
-        let input = DeliverTidsRequest(orderId: orderId, quantity: quantity)
-        return self.client.execute(action: "DeliverTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deliverTids(.init(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 请求空发TID信息
@@ -83,7 +82,6 @@ extension Iottid {
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
     public func deliverTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
-        let input = DeliverTidsRequest(orderId: orderId, quantity: quantity)
-        return try await self.client.execute(action: "DeliverTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deliverTids(.init(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 }

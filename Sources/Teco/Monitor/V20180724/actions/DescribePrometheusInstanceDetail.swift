@@ -137,14 +137,12 @@ extension Monitor {
     /// 获取TMP实例详情
     @inlinable
     public func describePrometheusInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceDetailResponse> {
-        let input = DescribePrometheusInstanceDetailRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribePrometheusInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TMP实例详情
     @inlinable
     public func describePrometheusInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceDetailResponse {
-        let input = DescribePrometheusInstanceDetailRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribePrometheusInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

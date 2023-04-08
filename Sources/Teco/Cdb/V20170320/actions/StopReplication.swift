@@ -65,8 +65,7 @@ extension Cdb {
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
     public func stopReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
-        let input = StopReplicationRequest(instanceId: instanceId)
-        return self.client.execute(action: "StopReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopReplication(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止复制
@@ -74,7 +73,6 @@ extension Cdb {
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
     public func stopReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
-        let input = StopReplicationRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "StopReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopReplication(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

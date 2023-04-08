@@ -54,14 +54,12 @@ extension Dlc {
     /// 删除工作组
     @inlinable @discardableResult
     public func deleteWorkGroup(workGroupIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
-        let input = DeleteWorkGroupRequest(workGroupIds: workGroupIds)
-        return self.client.execute(action: "DeleteWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteWorkGroup(.init(workGroupIds: workGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除工作组
     @inlinable @discardableResult
     public func deleteWorkGroup(workGroupIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
-        let input = DeleteWorkGroupRequest(workGroupIds: workGroupIds)
-        return try await self.client.execute(action: "DeleteWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteWorkGroup(.init(workGroupIds: workGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

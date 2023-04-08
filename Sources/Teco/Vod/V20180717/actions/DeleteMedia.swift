@@ -76,8 +76,7 @@ extension Vod {
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
     @inlinable @discardableResult
     public func deleteMedia(fileId: String, subAppId: UInt64? = nil, deleteParts: [MediaDeleteItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMediaResponse> {
-        let input = DeleteMediaRequest(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts)
-        return self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMedia(.init(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体
@@ -87,7 +86,6 @@ extension Vod {
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
     @inlinable @discardableResult
     public func deleteMedia(fileId: String, subAppId: UInt64? = nil, deleteParts: [MediaDeleteItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
-        let input = DeleteMediaRequest(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts)
-        return try await self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMedia(.init(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts), region: region, logger: logger, on: eventLoop)
     }
 }

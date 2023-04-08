@@ -76,8 +76,7 @@ extension Domain {
     /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
     @inlinable
     public func batchModifyDomainInfo(domains: [String], templateId: String, lockTransfer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyDomainInfoResponse> {
-        let input = BatchModifyDomainInfoRequest(domains: domains, templateId: templateId, lockTransfer: lockTransfer)
-        return self.client.execute(action: "BatchModifyDomainInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchModifyDomainInfo(.init(domains: domains, templateId: templateId, lockTransfer: lockTransfer), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量域名信息修改
@@ -85,7 +84,6 @@ extension Domain {
     /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
     @inlinable
     public func batchModifyDomainInfo(domains: [String], templateId: String, lockTransfer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyDomainInfoResponse {
-        let input = BatchModifyDomainInfoRequest(domains: domains, templateId: templateId, lockTransfer: lockTransfer)
-        return try await self.client.execute(action: "BatchModifyDomainInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchModifyDomainInfo(.init(domains: domains, templateId: templateId, lockTransfer: lockTransfer), region: region, logger: logger, on: eventLoop)
     }
 }

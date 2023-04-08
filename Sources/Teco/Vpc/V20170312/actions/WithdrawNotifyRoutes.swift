@@ -65,8 +65,7 @@ extension Vpc {
     /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
     @inlinable @discardableResult
     public func withdrawNotifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WithdrawNotifyRoutesResponse> {
-        let input = WithdrawNotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds)
-        return self.client.execute(action: "WithdrawNotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.withdrawNotifyRoutes(.init(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从云联网撤销路由
@@ -74,7 +73,6 @@ extension Vpc {
     /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
     @inlinable @discardableResult
     public func withdrawNotifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawNotifyRoutesResponse {
-        let input = WithdrawNotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds)
-        return try await self.client.execute(action: "WithdrawNotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.withdrawNotifyRoutes(.init(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 }

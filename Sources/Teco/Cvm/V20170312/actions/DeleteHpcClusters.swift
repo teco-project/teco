@@ -60,8 +60,7 @@ extension Cvm {
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
     @inlinable @discardableResult
     public func deleteHpcClusters(hpcClusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHpcClustersResponse> {
-        let input = DeleteHpcClustersRequest(hpcClusterIds: hpcClusterIds)
-        return self.client.execute(action: "DeleteHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteHpcClusters(.init(hpcClusterIds: hpcClusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除高性能计算集群
@@ -69,7 +68,6 @@ extension Cvm {
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
     @inlinable @discardableResult
     public func deleteHpcClusters(hpcClusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHpcClustersResponse {
-        let input = DeleteHpcClustersRequest(hpcClusterIds: hpcClusterIds)
-        return try await self.client.execute(action: "DeleteHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteHpcClusters(.init(hpcClusterIds: hpcClusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

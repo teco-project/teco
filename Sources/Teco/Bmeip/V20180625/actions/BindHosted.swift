@@ -69,8 +69,7 @@ extension Bmeip {
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
     public func bindHosted(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
-        let input = BindHostedRequest(eipId: eipId, instanceId: instanceId)
-        return self.client.execute(action: "BindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindHosted(.init(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器绑定EIP
@@ -78,7 +77,6 @@ extension Bmeip {
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
     public func bindHosted(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
-        let input = BindHostedRequest(eipId: eipId, instanceId: instanceId)
-        return try await self.client.execute(action: "BindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindHosted(.init(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

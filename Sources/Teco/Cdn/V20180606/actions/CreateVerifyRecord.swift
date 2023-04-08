@@ -87,8 +87,7 @@ extension Cdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        let input = CreateVerifyRecordRequest(domain: domain)
-        return self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成解析记录
@@ -96,7 +95,6 @@ extension Cdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        let input = CreateVerifyRecordRequest(domain: domain)
-        return try await self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -62,14 +62,12 @@ extension Tcb {
     /// 获取增值包计费相关信息
     @inlinable
     public func describeExtraPkgBillingInfo(envId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
-        let input = DescribeExtraPkgBillingInfoRequest(envId: envId)
-        return self.client.execute(action: "DescribeExtraPkgBillingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExtraPkgBillingInfo(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取增值包计费相关信息
     @inlinable
     public func describeExtraPkgBillingInfo(envId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
-        let input = DescribeExtraPkgBillingInfoRequest(envId: envId)
-        return try await self.client.execute(action: "DescribeExtraPkgBillingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExtraPkgBillingInfo(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Redis {
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
     public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
-        let input = ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId)
-        return self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.changeReplicaToMaster(.init(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 副本组提主
@@ -78,7 +77,6 @@ extension Redis {
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
     public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
-        let input = ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId)
-        return try await self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.changeReplicaToMaster(.init(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

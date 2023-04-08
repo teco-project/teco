@@ -54,14 +54,12 @@ extension Tione {
     /// 删除模型加速任务
     @inlinable @discardableResult
     public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
-        let input = DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
-        return self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型加速任务
     @inlinable @discardableResult
     public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
-        let input = DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
-        return try await self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Tsf {
     /// 查询单元化规则详情
     @inlinable
     public func describeUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnitRuleResponse> {
-        let input = DescribeUnitRuleRequest(id: id)
-        return self.client.execute(action: "DescribeUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUnitRule(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单元化规则详情
     @inlinable
     public func describeUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitRuleResponse {
-        let input = DescribeUnitRuleRequest(id: id)
-        return try await self.client.execute(action: "DescribeUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUnitRule(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

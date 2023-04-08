@@ -87,8 +87,7 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
     public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutSecretValueResponse> {
-        let input = PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString)
-        return self.client.execute(action: "PutSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.putSecretValue(.init(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加新版本凭据
@@ -97,7 +96,6 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
     public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
-        let input = PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString)
-        return try await self.client.execute(action: "PutSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.putSecretValue(.init(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 }

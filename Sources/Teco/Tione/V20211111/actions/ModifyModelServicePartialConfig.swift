@@ -74,8 +74,7 @@ extension Tione {
     /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
     @inlinable
     public func modifyModelServicePartialConfig(serviceId: String, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelServicePartialConfigResponse> {
-        let input = ModifyModelServicePartialConfigRequest(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit)
-        return self.client.execute(action: "ModifyModelServicePartialConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModelServicePartialConfig(.init(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增量修改模型服务
@@ -83,7 +82,6 @@ extension Tione {
     /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
     @inlinable
     public func modifyModelServicePartialConfig(serviceId: String, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServicePartialConfigResponse {
-        let input = ModifyModelServicePartialConfigRequest(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit)
-        return try await self.client.execute(action: "ModifyModelServicePartialConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModelServicePartialConfig(.init(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit), region: region, logger: logger, on: eventLoop)
     }
 }

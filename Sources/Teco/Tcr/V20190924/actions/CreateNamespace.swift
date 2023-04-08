@@ -75,8 +75,7 @@ extension Tcr {
     /// 用于在企业版中创建命名空间
     @inlinable @discardableResult
     public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
-        let input = CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification)
-        return self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
@@ -84,7 +83,6 @@ extension Tcr {
     /// 用于在企业版中创建命名空间
     @inlinable @discardableResult
     public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        let input = CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification)
-        return try await self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

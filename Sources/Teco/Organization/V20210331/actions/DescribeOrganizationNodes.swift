@@ -89,15 +89,13 @@ extension Organization {
     /// 获取组织节点列表
     @inlinable
     public func describeOrganizationNodes(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
-        let input = DescribeOrganizationNodesRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganizationNodes(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织节点列表
     @inlinable
     public func describeOrganizationNodes(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
-        let input = DescribeOrganizationNodesRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganizationNodes(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织节点列表

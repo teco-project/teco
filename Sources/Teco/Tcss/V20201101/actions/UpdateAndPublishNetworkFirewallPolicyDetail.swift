@@ -109,14 +109,12 @@ extension Tcss {
     /// 容器网络创建网络策略更新并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyDetail(clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAndPublishNetworkFirewallPolicyDetailResponse> {
-        let input = UpdateAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy)
-        return self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAndPublishNetworkFirewallPolicyDetail(.init(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略更新并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyDetail(clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAndPublishNetworkFirewallPolicyDetailResponse {
-        let input = UpdateAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy)
-        return try await self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAndPublishNetworkFirewallPolicyDetail(.init(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

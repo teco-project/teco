@@ -82,8 +82,7 @@ extension Vpc {
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
     public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclResponse> {
-        let input = CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags)
-        return self.client.execute(action: "CreateNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetworkAcl(.init(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网络ACL
@@ -92,7 +91,6 @@ extension Vpc {
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
     public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
-        let input = CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags)
-        return try await self.client.execute(action: "CreateNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetworkAcl(.init(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

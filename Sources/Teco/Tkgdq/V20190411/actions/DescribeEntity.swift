@@ -64,8 +64,7 @@ extension Tkgdq {
     /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
     @inlinable
     public func describeEntity(entityName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEntityResponse> {
-        let input = DescribeEntityRequest(entityName: entityName)
-        return self.client.execute(action: "DescribeEntity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEntity(.init(entityName: entityName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实体信息查询
@@ -73,7 +72,6 @@ extension Tkgdq {
     /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
     @inlinable
     public func describeEntity(entityName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEntityResponse {
-        let input = DescribeEntityRequest(entityName: entityName)
-        return try await self.client.execute(action: "DescribeEntity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEntity(.init(entityName: entityName), region: region, logger: logger, on: eventLoop)
     }
 }

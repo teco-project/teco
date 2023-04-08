@@ -79,8 +79,7 @@ extension Ckafka {
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
     public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePreResponse> {
-        let input = ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition)
-        return self.client.execute(action: "ModifyInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstancePre(.init(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预付费实例变配接口
@@ -88,7 +87,6 @@ extension Ckafka {
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
     public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
-        let input = ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition)
-        return try await self.client.execute(action: "ModifyInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstancePre(.init(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 }

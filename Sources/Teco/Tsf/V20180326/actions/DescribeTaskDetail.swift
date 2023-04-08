@@ -63,14 +63,12 @@ extension Tsf {
     /// 查询任务详情
     @inlinable
     public func describeTaskDetail(taskId: String, taskLogId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        let input = DescribeTaskDetailRequest(taskId: taskId, taskLogId: taskLogId)
-        return self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskDetail(.init(taskId: taskId, taskLogId: taskLogId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务详情
     @inlinable
     public func describeTaskDetail(taskId: String, taskLogId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        let input = DescribeTaskDetailRequest(taskId: taskId, taskLogId: taskLogId)
-        return try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskDetail(.init(taskId: taskId, taskLogId: taskLogId), region: region, logger: logger, on: eventLoop)
     }
 }

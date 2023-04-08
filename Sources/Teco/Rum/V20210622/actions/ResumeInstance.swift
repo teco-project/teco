@@ -60,8 +60,7 @@ extension Rum {
     /// 恢复 RUM 业务系统，恢复后，用户可以正常使用和上报数据
     @inlinable @discardableResult
     public func resumeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeInstanceResponse> {
-        let input = ResumeInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "ResumeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resumeInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复 RUM 业务系统
@@ -69,7 +68,6 @@ extension Rum {
     /// 恢复 RUM 业务系统，恢复后，用户可以正常使用和上报数据
     @inlinable @discardableResult
     public func resumeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
-        let input = ResumeInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "ResumeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resumeInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

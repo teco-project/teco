@@ -65,8 +65,7 @@ extension Vod {
     /// * 获得用户的所有分类信息。
     @inlinable
     public func describeAllClass(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllClassResponse> {
-        let input = DescribeAllClassRequest(subAppId: subAppId)
-        return self.client.execute(action: "DescribeAllClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAllClass(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有分类
@@ -74,7 +73,6 @@ extension Vod {
     /// * 获得用户的所有分类信息。
     @inlinable
     public func describeAllClass(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
-        let input = DescribeAllClassRequest(subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeAllClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAllClass(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

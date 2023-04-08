@@ -85,8 +85,7 @@ extension Yinsuda {
     /// 创建机器人，支持进入 RTC 房间，播放曲库歌曲。
     @inlinable
     public func createKTVRobot(appName: String, userId: String, rtcSystem: String, joinRoomInput: JoinRoomInput, syncRobotCommands: [SyncRobotCommand]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKTVRobotResponse> {
-        let input = CreateKTVRobotRequest(appName: appName, userId: userId, rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, syncRobotCommands: syncRobotCommands)
-        return self.client.execute(action: "CreateKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createKTVRobot(.init(appName: appName, userId: userId, rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机器人
@@ -94,7 +93,6 @@ extension Yinsuda {
     /// 创建机器人，支持进入 RTC 房间，播放曲库歌曲。
     @inlinable
     public func createKTVRobot(appName: String, userId: String, rtcSystem: String, joinRoomInput: JoinRoomInput, syncRobotCommands: [SyncRobotCommand]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
-        let input = CreateKTVRobotRequest(appName: appName, userId: userId, rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, syncRobotCommands: syncRobotCommands)
-        return try await self.client.execute(action: "CreateKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createKTVRobot(.init(appName: appName, userId: userId, rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
     }
 }

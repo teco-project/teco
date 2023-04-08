@@ -95,8 +95,7 @@ extension Essbasic {
     /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
     @inlinable
     public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
-        let input = ModifyUserRequest(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name)
-        return self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUser(.init(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新个人用户信息
@@ -106,7 +105,6 @@ extension Essbasic {
     /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
     @inlinable
     public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        let input = ModifyUserRequest(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name)
-        return try await self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUser(.init(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

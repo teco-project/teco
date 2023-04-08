@@ -135,8 +135,7 @@ extension Cpdp {
     /// 微信商户发起批量转账
     @inlinable
     public func createTransferBatch(merchantId: String, transferDetails: [TransferDetailRequest], merchantAppId: String, merchantBatchNo: String, batchName: String, batchRemark: String, totalAmount: UInt64, totalNum: UInt64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransferBatchResponse> {
-        let input = CreateTransferBatchRequest(merchantId: merchantId, transferDetails: transferDetails, merchantAppId: merchantAppId, merchantBatchNo: merchantBatchNo, batchName: batchName, batchRemark: batchRemark, totalAmount: totalAmount, totalNum: totalNum, profile: profile)
-        return self.client.execute(action: "CreateTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTransferBatch(.init(merchantId: merchantId, transferDetails: transferDetails, merchantAppId: merchantAppId, merchantBatchNo: merchantBatchNo, batchName: batchName, batchRemark: batchRemark, totalAmount: totalAmount, totalNum: totalNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧薪酬-发起批量转账
@@ -144,7 +143,6 @@ extension Cpdp {
     /// 微信商户发起批量转账
     @inlinable
     public func createTransferBatch(merchantId: String, transferDetails: [TransferDetailRequest], merchantAppId: String, merchantBatchNo: String, batchName: String, batchRemark: String, totalAmount: UInt64, totalNum: UInt64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransferBatchResponse {
-        let input = CreateTransferBatchRequest(merchantId: merchantId, transferDetails: transferDetails, merchantAppId: merchantAppId, merchantBatchNo: merchantBatchNo, batchName: batchName, batchRemark: batchRemark, totalAmount: totalAmount, totalNum: totalNum, profile: profile)
-        return try await self.client.execute(action: "CreateTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTransferBatch(.init(merchantId: merchantId, transferDetails: transferDetails, merchantAppId: merchantAppId, merchantBatchNo: merchantBatchNo, batchName: batchName, batchRemark: batchRemark, totalAmount: totalAmount, totalNum: totalNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

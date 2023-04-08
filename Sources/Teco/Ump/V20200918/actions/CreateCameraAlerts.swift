@@ -60,8 +60,7 @@ extension Ump {
     /// 上报相机移动、遮挡等告警信息
     @inlinable @discardableResult
     public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
-        let input = CreateCameraAlertsRequest(alerts: alerts)
-        return self.client.execute(action: "CreateCameraAlerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCameraAlerts(.init(alerts: alerts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报相机告警信息
@@ -69,7 +68,6 @@ extension Ump {
     /// 上报相机移动、遮挡等告警信息
     @inlinable @discardableResult
     public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
-        let input = CreateCameraAlertsRequest(alerts: alerts)
-        return try await self.client.execute(action: "CreateCameraAlerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCameraAlerts(.init(alerts: alerts), region: region, logger: logger, on: eventLoop)
     }
 }

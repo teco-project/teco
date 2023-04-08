@@ -68,14 +68,12 @@ extension Tem {
     /// 销毁配置
     @inlinable
     public func destroyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyConfigDataResponse> {
-        let input = DestroyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel)
-        return self.client.execute(action: "DestroyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyConfigData(.init(environmentId: environmentId, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁配置
     @inlinable
     public func destroyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyConfigDataResponse {
-        let input = DestroyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "DestroyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyConfigData(.init(environmentId: environmentId, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

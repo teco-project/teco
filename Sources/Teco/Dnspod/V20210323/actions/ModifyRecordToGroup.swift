@@ -69,14 +69,12 @@ extension Dnspod {
     /// 将记录添加到分组
     @inlinable @discardableResult
     public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
-        let input = ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId)
-        return self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordToGroup(.init(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将记录添加到分组
     @inlinable @discardableResult
     public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
-        let input = ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId)
-        return try await self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordToGroup(.init(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

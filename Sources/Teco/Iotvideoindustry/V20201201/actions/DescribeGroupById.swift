@@ -65,8 +65,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
     public func describeGroupById(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByIdResponse> {
-        let input = DescribeGroupByIdRequest(groupId: groupId)
-        return self.client.execute(action: "DescribeGroupById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroupById(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据分组ID查询分组
@@ -74,7 +73,6 @@ extension Iotvideoindustry {
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
     public func describeGroupById(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
-        let input = DescribeGroupByIdRequest(groupId: groupId)
-        return try await self.client.execute(action: "DescribeGroupById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroupById(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

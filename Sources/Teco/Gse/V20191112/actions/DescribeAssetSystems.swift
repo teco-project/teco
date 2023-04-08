@@ -54,7 +54,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
-        self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAssetSystems is no longer available.")
     }
 
     /// 获取生成包支持的操作系统列表
@@ -63,7 +63,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
-        try await self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAssetSystems is no longer available.")
     }
 
     /// 获取生成包支持的操作系统列表
@@ -72,8 +72,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
-        let input = DescribeAssetSystemsRequest(osType: osType, osBit: osBit)
-        return self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAssetSystems is no longer available.")
     }
 
     /// 获取生成包支持的操作系统列表
@@ -82,7 +81,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
-        let input = DescribeAssetSystemsRequest(osType: osType, osBit: osBit)
-        return try await self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAssetSystems is no longer available.")
     }
 }

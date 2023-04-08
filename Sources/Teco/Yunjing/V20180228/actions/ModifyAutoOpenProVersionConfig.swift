@@ -62,8 +62,7 @@ extension Yunjing {
     /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
     @inlinable @discardableResult
     public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
-        let input = ModifyAutoOpenProVersionConfigRequest(status: status)
-        return self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAutoOpenProVersionConfig(.init(status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置新增主机自动开通专业版配置
@@ -71,7 +70,6 @@ extension Yunjing {
     /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
     @inlinable @discardableResult
     public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        let input = ModifyAutoOpenProVersionConfigRequest(status: status)
-        return try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAutoOpenProVersionConfig(.init(status: status), region: region, logger: logger, on: eventLoop)
     }
 }

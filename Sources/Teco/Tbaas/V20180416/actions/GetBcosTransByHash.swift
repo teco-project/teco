@@ -74,8 +74,7 @@ extension Tbaas {
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
     public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransByHashResponse> {
-        let input = GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash)
-        return self.client.execute(action: "GetBcosTransByHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBcosTransByHash(.init(clusterId: clusterId, groupId: groupId, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用交易哈希查询Bcos交易信息
@@ -83,7 +82,6 @@ extension Tbaas {
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
     public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
-        let input = GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash)
-        return try await self.client.execute(action: "GetBcosTransByHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBcosTransByHash(.init(clusterId: clusterId, groupId: groupId, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 }

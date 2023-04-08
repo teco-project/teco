@@ -118,8 +118,7 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
     public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTraceResponse> {
-        let input = SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold)
-        return self.client.execute(action: "SearchTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchTrace(.init(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人体搜索
@@ -134,7 +133,6 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
     public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
-        let input = SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold)
-        return try await self.client.execute(action: "SearchTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchTrace(.init(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

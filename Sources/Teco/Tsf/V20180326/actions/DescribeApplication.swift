@@ -59,14 +59,12 @@ extension Tsf {
     /// 获取应用详情
     @inlinable
     public func describeApplication(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationResponse> {
-        let input = DescribeApplicationRequest(applicationId: applicationId)
-        return self.client.execute(action: "DescribeApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplication(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用详情
     @inlinable
     public func describeApplication(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
-        let input = DescribeApplicationRequest(applicationId: applicationId)
-        return try await self.client.execute(action: "DescribeApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplication(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

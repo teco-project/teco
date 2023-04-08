@@ -68,8 +68,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeRecordingPlanById接口
     @inlinable
     public func getRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByIdResponse> {
-        let input = GetRecordPlanByIdRequest(planId: planId)
-        return self.client.execute(action: "GetRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRecordPlanById(.init(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取录制计划（旧）
@@ -78,7 +77,6 @@ extension Iotvideoindustry {
     /// 请使用DescribeRecordingPlanById接口
     @inlinable
     public func getRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByIdResponse {
-        let input = GetRecordPlanByIdRequest(planId: planId)
-        return try await self.client.execute(action: "GetRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRecordPlanById(.init(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

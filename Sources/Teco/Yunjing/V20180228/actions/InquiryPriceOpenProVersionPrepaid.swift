@@ -73,8 +73,7 @@ extension Yunjing {
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
     public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
-        let input = InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines)
-        return self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceOpenProVersionPrepaid(.init(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版询价(预付费)
@@ -82,7 +81,6 @@ extension Yunjing {
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
     public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
-        let input = InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines)
-        return try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceOpenProVersionPrepaid(.init(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 }

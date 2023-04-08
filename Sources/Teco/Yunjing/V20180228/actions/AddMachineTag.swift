@@ -69,14 +69,12 @@ extension Yunjing {
     /// 增加机器关联标签
     @inlinable @discardableResult
     public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineTagResponse> {
-        let input = AddMachineTagRequest(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea)
-        return self.client.execute(action: "AddMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addMachineTag(.init(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加机器关联标签
     @inlinable @discardableResult
     public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
-        let input = AddMachineTagRequest(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea)
-        return try await self.client.execute(action: "AddMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addMachineTag(.init(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -66,8 +66,7 @@ extension Cls {
     /// 用于删除机器组信息
     @inlinable @discardableResult
     public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
-        let input = DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType)
-        return self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMachineGroupInfo(.init(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组信息
@@ -75,7 +74,6 @@ extension Cls {
     /// 用于删除机器组信息
     @inlinable @discardableResult
     public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
-        let input = DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType)
-        return try await self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMachineGroupInfo(.init(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
 }

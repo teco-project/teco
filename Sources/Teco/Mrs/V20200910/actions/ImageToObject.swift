@@ -91,8 +91,7 @@ extension Mrs {
     /// 图片转结构化对象
     @inlinable
     public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
-        let input = ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType)
-        return self.client.execute(action: "ImageToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片结构化接口
@@ -100,7 +99,6 @@ extension Mrs {
     /// 图片转结构化对象
     @inlinable
     public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
-        let input = ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType)
-        return try await self.client.execute(action: "ImageToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

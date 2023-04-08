@@ -98,8 +98,7 @@ extension Cdb {
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
     public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadedFilesResponse> {
-        let input = DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeUploadedFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUploadedFiles(.init(path: path, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导入SQL文件列表 （已废弃）
@@ -107,8 +106,7 @@ extension Cdb {
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
     public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
-        let input = DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeUploadedFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUploadedFiles(.init(path: path, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导入SQL文件列表 （已废弃）

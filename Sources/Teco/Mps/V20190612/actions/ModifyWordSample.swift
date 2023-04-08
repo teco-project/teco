@@ -78,8 +78,7 @@ extension Mps {
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable @discardableResult
     public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
-        let input = ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo)
-        return self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyWordSample(.init(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改关键词样本
@@ -87,7 +86,6 @@ extension Mps {
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable @discardableResult
     public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
-        let input = ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo)
-        return try await self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyWordSample(.init(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }
 }

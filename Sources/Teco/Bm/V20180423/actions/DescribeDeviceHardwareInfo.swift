@@ -64,8 +64,7 @@ extension Bm {
     /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
     @inlinable
     public func describeDeviceHardwareInfo(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceHardwareInfoResponse> {
-        let input = DescribeDeviceHardwareInfoRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeDeviceHardwareInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceHardwareInfo(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备硬件配置信息
@@ -73,7 +72,6 @@ extension Bm {
     /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
     @inlinable
     public func describeDeviceHardwareInfo(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceHardwareInfoResponse {
-        let input = DescribeDeviceHardwareInfoRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeDeviceHardwareInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceHardwareInfo(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

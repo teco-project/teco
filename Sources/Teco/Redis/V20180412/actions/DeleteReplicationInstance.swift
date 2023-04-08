@@ -74,8 +74,7 @@ extension Redis {
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
     public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        let input = DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType)
-        return self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteReplicationInstance(.init(groupId: groupId, instanceId: instanceId, syncType: syncType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除复制组成员
@@ -83,7 +82,6 @@ extension Redis {
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
     public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        let input = DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType)
-        return try await self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteReplicationInstance(.init(groupId: groupId, instanceId: instanceId, syncType: syncType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -103,8 +103,7 @@ extension Wedata {
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
-        let input = DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters)
-        return self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataSourceList(.init(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
@@ -113,8 +112,7 @@ extension Wedata {
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        let input = DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters)
-        return try await self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataSourceList(.init(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-查询数据源分页列表【Beta版本】

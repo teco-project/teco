@@ -95,8 +95,7 @@ extension Vod {
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
     public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyPlayStatFileListResponse> {
-        let input = DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
-        return self.client.execute(action: "DescribeDailyPlayStatFileList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDailyPlayStatFileList(.init(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放统计文件下载列表
@@ -111,7 +110,6 @@ extension Vod {
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
     public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
-        let input = DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeDailyPlayStatFileList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDailyPlayStatFileList(.init(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -122,8 +122,7 @@ extension Vod {
     /// <li>标准存储</li>
     @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
-        let input = ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier)
-        return self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMediaStorageClass(.init(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体文件存储类型
@@ -143,7 +142,6 @@ extension Vod {
     /// <li>标准存储</li>
     @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
-        let input = ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier)
-        return try await self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMediaStorageClass(.init(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 }

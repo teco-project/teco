@@ -105,8 +105,7 @@ extension Vpc {
     /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
     @inlinable
     public func describeAssistantCidr(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssistantCidrResponse> {
-        let input = DescribeAssistantCidrRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssistantCidr(.init(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询辅助CIDR列表
@@ -114,8 +113,7 @@ extension Vpc {
     /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
     @inlinable
     public func describeAssistantCidr(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssistantCidrResponse {
-        let input = DescribeAssistantCidrRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssistantCidr(.init(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询辅助CIDR列表

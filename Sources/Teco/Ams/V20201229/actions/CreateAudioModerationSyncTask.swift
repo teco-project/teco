@@ -192,8 +192,7 @@ extension Ams {
     /// - 接口**默认超时为10s**，请求如超过该时长则接口会报错。
     @inlinable
     public func createAudioModerationSyncTask(bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationSyncTaskResponse> {
-        let input = CreateAudioModerationSyncTaskRequest(bizType: bizType, dataId: dataId, fileFormat: fileFormat, name: name, fileContent: fileContent, fileUrl: fileUrl)
-        return self.client.execute(action: "CreateAudioModerationSyncTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAudioModerationSyncTask(.init(bizType: bizType, dataId: dataId, fileFormat: fileFormat, name: name, fileContent: fileContent, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短音频审核同步接口
@@ -213,7 +212,6 @@ extension Ams {
     /// - 接口**默认超时为10s**，请求如超过该时长则接口会报错。
     @inlinable
     public func createAudioModerationSyncTask(bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationSyncTaskResponse {
-        let input = CreateAudioModerationSyncTaskRequest(bizType: bizType, dataId: dataId, fileFormat: fileFormat, name: name, fileContent: fileContent, fileUrl: fileUrl)
-        return try await self.client.execute(action: "CreateAudioModerationSyncTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAudioModerationSyncTask(.init(bizType: bizType, dataId: dataId, fileFormat: fileFormat, name: name, fileContent: fileContent, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 }

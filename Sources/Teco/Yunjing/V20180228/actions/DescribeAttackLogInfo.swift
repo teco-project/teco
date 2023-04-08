@@ -118,14 +118,12 @@ extension Yunjing {
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogInfoResponse> {
-        let input = DescribeAttackLogInfoRequest(id: id)
-        return self.client.execute(action: "DescribeAttackLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAttackLogInfo(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {
-        let input = DescribeAttackLogInfoRequest(id: id)
-        return try await self.client.execute(action: "DescribeAttackLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAttackLogInfo(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

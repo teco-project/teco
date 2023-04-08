@@ -92,8 +92,7 @@ extension Drm {
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
     public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseResponse> {
-        let input = CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy)
-        return self.client.execute(action: "CreateLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLicense(.init(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成DRM的播放许可证
@@ -102,7 +101,6 @@ extension Drm {
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
     public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
-        let input = CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy)
-        return try await self.client.execute(action: "CreateLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLicense(.init(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

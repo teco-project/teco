@@ -88,14 +88,12 @@ extension Cpdp {
     /// 灵云V2-收款用户账户余额查询
     @inlinable
     public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountBalanceResponse> {
-        let input = QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate)
-        return self.client.execute(action: "QueryFlexPayeeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexPayeeAccountBalance(.init(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户余额查询
     @inlinable
     public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
-        let input = QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate)
-        return try await self.client.execute(action: "QueryFlexPayeeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexPayeeAccountBalance(.init(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 }

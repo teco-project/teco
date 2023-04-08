@@ -100,8 +100,7 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
     public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceResponse> {
-        let input = DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribePersonTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePersonTrace(.init(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户单次到场轨迹
@@ -109,7 +108,6 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
     public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
-        let input = DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribePersonTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePersonTrace(.init(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Yunjing {
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
     public func describeOpenPortTaskStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortTaskStatusResponse> {
-        let input = DescribeOpenPortTaskStatusRequest(uuid: uuid)
-        return self.client.execute(action: "DescribeOpenPortTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOpenPortTaskStatus(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实时拉取端口任务状态
@@ -77,7 +76,6 @@ extension Yunjing {
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
     public func describeOpenPortTaskStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
-        let input = DescribeOpenPortTaskStatusRequest(uuid: uuid)
-        return try await self.client.execute(action: "DescribeOpenPortTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOpenPortTaskStatus(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

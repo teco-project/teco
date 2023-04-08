@@ -69,8 +69,7 @@ extension Gaap {
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
     public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
-        let input = DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds)
-        return self.client.execute(action: "DescribeProxiesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProxiesStatus(.init(instanceIds: instanceIds, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道状态列表
@@ -78,7 +77,6 @@ extension Gaap {
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
     public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
-        let input = DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds)
-        return try await self.client.execute(action: "DescribeProxiesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProxiesStatus(.init(instanceIds: instanceIds, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

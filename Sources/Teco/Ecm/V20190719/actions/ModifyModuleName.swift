@@ -59,14 +59,12 @@ extension Ecm {
     /// 修改模块名称
     @inlinable @discardableResult
     public func modifyModuleName(moduleId: String, moduleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
-        let input = ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName)
-        return self.client.execute(action: "ModifyModuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModuleName(.init(moduleId: moduleId, moduleName: moduleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块名称
     @inlinable @discardableResult
     public func modifyModuleName(moduleId: String, moduleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
-        let input = ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName)
-        return try await self.client.execute(action: "ModifyModuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModuleName(.init(moduleId: moduleId, moduleName: moduleName), region: region, logger: logger, on: eventLoop)
     }
 }

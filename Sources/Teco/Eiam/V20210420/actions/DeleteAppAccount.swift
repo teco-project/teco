@@ -54,14 +54,12 @@ extension Eiam {
     /// 删除应用账号
     @inlinable @discardableResult
     public func deleteAppAccount(accountIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppAccountResponse> {
-        let input = DeleteAppAccountRequest(accountIdList: accountIdList)
-        return self.client.execute(action: "DeleteAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAppAccount(.init(accountIdList: accountIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用账号
     @inlinable @discardableResult
     public func deleteAppAccount(accountIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppAccountResponse {
-        let input = DeleteAppAccountRequest(accountIdList: accountIdList)
-        return try await self.client.execute(action: "DeleteAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAppAccount(.init(accountIdList: accountIdList), region: region, logger: logger, on: eventLoop)
     }
 }

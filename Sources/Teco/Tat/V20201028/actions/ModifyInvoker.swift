@@ -95,8 +95,7 @@ extension Tat {
     /// 此接口用于修改执行器。
     @inlinable @discardableResult
     public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInvokerResponse> {
-        let input = ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings)
-        return self.client.execute(action: "ModifyInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInvoker(.init(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改执行器
@@ -104,7 +103,6 @@ extension Tat {
     /// 此接口用于修改执行器。
     @inlinable @discardableResult
     public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
-        let input = ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings)
-        return try await self.client.execute(action: "ModifyInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInvoker(.init(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }
 }

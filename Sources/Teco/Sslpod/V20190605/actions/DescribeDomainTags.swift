@@ -56,8 +56,7 @@ extension Sslpod {
     /// 获取账号下所有tag
     @inlinable
     public func describeDomainTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
-        let input = DescribeDomainTagsRequest()
-        return self.client.execute(action: "DescribeDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainTags(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号的tags
@@ -65,7 +64,6 @@ extension Sslpod {
     /// 获取账号下所有tag
     @inlinable
     public func describeDomainTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
-        let input = DescribeDomainTagsRequest()
-        return try await self.client.execute(action: "DescribeDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainTags(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

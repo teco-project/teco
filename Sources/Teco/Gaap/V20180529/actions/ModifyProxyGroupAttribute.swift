@@ -70,8 +70,7 @@ extension Gaap {
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
     @inlinable @discardableResult
     public func modifyProxyGroupAttribute(groupId: String, groupName: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxyGroupAttributeResponse> {
-        let input = ModifyProxyGroupAttributeRequest(groupId: groupId, groupName: groupName, projectId: projectId)
-        return self.client.execute(action: "ModifyProxyGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyProxyGroupAttribute(.init(groupId: groupId, groupName: groupName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通道组属性
@@ -79,7 +78,6 @@ extension Gaap {
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
     @inlinable @discardableResult
     public func modifyProxyGroupAttribute(groupId: String, groupName: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyGroupAttributeResponse {
-        let input = ModifyProxyGroupAttributeRequest(groupId: groupId, groupName: groupName, projectId: projectId)
-        return try await self.client.execute(action: "ModifyProxyGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyProxyGroupAttribute(.init(groupId: groupId, groupName: groupName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

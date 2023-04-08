@@ -69,8 +69,7 @@ extension Redis {
     /// 清空Redis实例的实例数据。
     @inlinable
     public func clearInstance(instanceId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearInstanceResponse> {
-        let input = ClearInstanceRequest(instanceId: instanceId, password: password)
-        return self.client.execute(action: "ClearInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.clearInstance(.init(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空Redis实例
@@ -78,7 +77,6 @@ extension Redis {
     /// 清空Redis实例的实例数据。
     @inlinable
     public func clearInstance(instanceId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
-        let input = ClearInstanceRequest(instanceId: instanceId, password: password)
-        return try await self.client.execute(action: "ClearInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.clearInstance(.init(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

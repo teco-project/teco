@@ -152,14 +152,12 @@ extension Teo {
     /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
-        let input = CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority)
-        return self.client.execute(action: "CreateDnsRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDnsRecord(.init(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
-        let input = CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority)
-        return try await self.client.execute(action: "CreateDnsRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDnsRecord(.init(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

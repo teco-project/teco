@@ -117,8 +117,7 @@ extension Ecc {
     /// 多图像识别批改接口
     @inlinable
     public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CorrectMultiImageResponse> {
-        let input = CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync)
-        return self.client.execute(action: "CorrectMultiImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.correctMultiImage(.init(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多图像识别批改
@@ -127,7 +126,6 @@ extension Ecc {
     /// 多图像识别批改接口
     @inlinable
     public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
-        let input = CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync)
-        return try await self.client.execute(action: "CorrectMultiImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.correctMultiImage(.init(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
     }
 }

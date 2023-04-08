@@ -108,15 +108,13 @@ extension Iecp {
     /// 查询边缘单元Grid列表
     @inlinable
     public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
-        let input = DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order)
-        return self.client.execute(action: "DescribeEdgeUnitDeployGrid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeUnitDeployGrid(.init(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid列表
     @inlinable
     public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
-        let input = DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order)
-        return try await self.client.execute(action: "DescribeEdgeUnitDeployGrid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeUnitDeployGrid(.init(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid列表

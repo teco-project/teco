@@ -54,14 +54,12 @@ extension Tcss {
     /// 查询未完成的刷新资产任务信息
     @inlinable
     public func describeUnfinishRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnfinishRefreshTaskResponse> {
-        let input = DescribeUnfinishRefreshTaskRequest()
-        return self.client.execute(action: "DescribeUnfinishRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUnfinishRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询未完成的刷新资产任务信息
     @inlinable
     public func describeUnfinishRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {
-        let input = DescribeUnfinishRefreshTaskRequest()
-        return try await self.client.execute(action: "DescribeUnfinishRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUnfinishRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

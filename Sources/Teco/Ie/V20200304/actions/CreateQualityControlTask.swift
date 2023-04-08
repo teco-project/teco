@@ -75,8 +75,7 @@ extension Ie {
     /// 通过接口可以智能检测视频画面中抖动重影、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等在内的多个场景，还可以自动检测视频无音频异常、无声音片段。
     @inlinable
     public func createQualityControlTask(qualityControlInfo: QualityControlInfo, downInfo: DownInfo, callbackInfo: CallbackInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQualityControlTaskResponse> {
-        let input = CreateQualityControlTaskRequest(qualityControlInfo: qualityControlInfo, downInfo: downInfo, callbackInfo: callbackInfo)
-        return self.client.execute(action: "CreateQualityControlTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createQualityControlTask(.init(qualityControlInfo: qualityControlInfo, downInfo: downInfo, callbackInfo: callbackInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体质检任务
@@ -84,7 +83,6 @@ extension Ie {
     /// 通过接口可以智能检测视频画面中抖动重影、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等在内的多个场景，还可以自动检测视频无音频异常、无声音片段。
     @inlinable
     public func createQualityControlTask(qualityControlInfo: QualityControlInfo, downInfo: DownInfo, callbackInfo: CallbackInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQualityControlTaskResponse {
-        let input = CreateQualityControlTaskRequest(qualityControlInfo: qualityControlInfo, downInfo: downInfo, callbackInfo: callbackInfo)
-        return try await self.client.execute(action: "CreateQualityControlTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createQualityControlTask(.init(qualityControlInfo: qualityControlInfo, downInfo: downInfo, callbackInfo: callbackInfo), region: region, logger: logger, on: eventLoop)
     }
 }

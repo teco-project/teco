@@ -94,14 +94,12 @@ extension Faceid {
     /// 活体检测
     @inlinable
     public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessResponse> {
-        let input = LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional)
-        return self.client.execute(action: "Liveness", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.liveness(.init(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活体检测
     @inlinable
     public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
-        let input = LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional)
-        return try await self.client.execute(action: "Liveness", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.liveness(.init(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), region: region, logger: logger, on: eventLoop)
     }
 }

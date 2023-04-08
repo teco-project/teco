@@ -97,8 +97,7 @@ extension Tsf {
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
     public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadInfoResponse> {
-        let input = DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId)
-        return self.client.execute(action: "DescribeUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUploadInfo(.init(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取上传程序包信息
@@ -107,7 +106,6 @@ extension Tsf {
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
     public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadInfoResponse {
-        let input = DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId)
-        return try await self.client.execute(action: "DescribeUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUploadInfo(.init(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

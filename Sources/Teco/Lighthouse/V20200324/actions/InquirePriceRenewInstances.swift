@@ -93,8 +93,7 @@ extension Lighthouse {
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
     public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
-        let input = InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime)
-        return self.client.execute(action: "InquirePriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquirePriceRenewInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -102,7 +101,6 @@ extension Lighthouse {
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
     public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
-        let input = InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime)
-        return try await self.client.execute(action: "InquirePriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquirePriceRenewInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 }

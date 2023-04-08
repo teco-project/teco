@@ -64,8 +64,7 @@ extension Tcr {
     /// 查询个人版用户命名空间是否存在
     @inlinable
     public func validateNamespaceExistPersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateNamespaceExistPersonalResponse> {
-        let input = ValidateNamespaceExistPersonalRequest(namespace: namespace)
-        return self.client.execute(action: "ValidateNamespaceExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.validateNamespaceExistPersonal(.init(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证个人版命名空间是否存在
@@ -73,7 +72,6 @@ extension Tcr {
     /// 查询个人版用户命名空间是否存在
     @inlinable
     public func validateNamespaceExistPersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
-        let input = ValidateNamespaceExistPersonalRequest(namespace: namespace)
-        return try await self.client.execute(action: "ValidateNamespaceExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.validateNamespaceExistPersonal(.init(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

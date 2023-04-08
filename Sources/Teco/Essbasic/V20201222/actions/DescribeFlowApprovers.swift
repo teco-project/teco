@@ -83,8 +83,7 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
     public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowApproversResponse> {
-        let input = DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId)
-        return self.client.execute(action: "DescribeFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFlowApprovers(.init(caller: caller, flowId: flowId, userId: userId, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程参与者信息
@@ -92,7 +91,6 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
     public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
-        let input = DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId)
-        return try await self.client.execute(action: "DescribeFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFlowApprovers(.init(caller: caller, flowId: flowId, userId: userId, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

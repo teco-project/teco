@@ -80,14 +80,12 @@ extension Tcss {
     /// 创建漏洞防御主机导出任务
     @inlinable
     public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulDefenceHostExportJobResponse> {
-        let input = CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "CreateVulDefenceHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVulDefenceHostExportJob(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞防御主机导出任务
     @inlinable
     public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceHostExportJobResponse {
-        let input = CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "CreateVulDefenceHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVulDefenceHostExportJob(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

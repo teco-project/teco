@@ -86,14 +86,12 @@ extension Cpdp {
     /// 云企付-退款结果查询
     @inlinable
     public func queryOpenBankRefundOrder(channelMerchantId: String, outRefundId: String? = nil, channelRefundId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankRefundOrderResponse> {
-        let input = QueryOpenBankRefundOrderRequest(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment)
-        return self.client.execute(action: "QueryOpenBankRefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankRefundOrder(.init(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-退款结果查询
     @inlinable
     public func queryOpenBankRefundOrder(channelMerchantId: String, outRefundId: String? = nil, channelRefundId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankRefundOrderResponse {
-        let input = QueryOpenBankRefundOrderRequest(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment)
-        return try await self.client.execute(action: "QueryOpenBankRefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankRefundOrder(.init(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,14 +69,12 @@ extension Tdmq {
     /// 创建环境角色授权
     @inlinable @discardableResult
     public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
-        let input = CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId)
-        return self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建环境角色授权
     @inlinable @discardableResult
     public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
-        let input = CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId)
-        return try await self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

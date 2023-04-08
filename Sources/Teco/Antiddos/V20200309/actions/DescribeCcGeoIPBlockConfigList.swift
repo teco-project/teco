@@ -112,15 +112,13 @@ extension Antiddos {
     /// 获取CC防护的区域封禁配置列表
     @inlinable
     public func describeCcGeoIPBlockConfigList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcGeoIPBlockConfigListResponse> {
-        let input = DescribeCcGeoIPBlockConfigListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return self.client.execute(action: "DescribeCcGeoIPBlockConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCcGeoIPBlockConfigList(.init(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护的区域封禁配置列表
     @inlinable
     public func describeCcGeoIPBlockConfigList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcGeoIPBlockConfigListResponse {
-        let input = DescribeCcGeoIPBlockConfigListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return try await self.client.execute(action: "DescribeCcGeoIPBlockConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCcGeoIPBlockConfigList(.init(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护的区域封禁配置列表

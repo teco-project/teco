@@ -65,8 +65,7 @@ extension Waf {
     /// 本接口用于删除访问日志导出
     @inlinable @discardableResult
     public func deleteAccessExport(exportId: String, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessExportResponse> {
-        let input = DeleteAccessExportRequest(exportId: exportId, topicId: topicId)
-        return self.client.execute(action: "DeleteAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAccessExport(.init(exportId: exportId, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除访问日志导出
@@ -74,7 +73,6 @@ extension Waf {
     /// 本接口用于删除访问日志导出
     @inlinable @discardableResult
     public func deleteAccessExport(exportId: String, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
-        let input = DeleteAccessExportRequest(exportId: exportId, topicId: topicId)
-        return try await self.client.execute(action: "DeleteAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAccessExport(.init(exportId: exportId, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

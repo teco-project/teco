@@ -110,15 +110,13 @@ extension Tione {
     /// 列举在线推理服务组
     @inlinable
     public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceGroupsResponse> {
-        let input = DescribeModelServiceGroupsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeModelServiceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举在线推理服务组
     @inlinable
     public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
-        let input = DescribeModelServiceGroupsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeModelServiceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举在线推理服务组

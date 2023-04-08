@@ -104,8 +104,7 @@ extension Cdn {
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
     @inlinable
     public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsConfigResponse> {
-        let input = DescribeDomainsConfigRequest(offset: offset, limit: limit, filters: filters, sort: sort)
-        return self.client.execute(action: "DescribeDomainsConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainsConfig(.init(offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名详细配置
@@ -113,8 +112,7 @@ extension Cdn {
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
     @inlinable
     public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsConfigResponse {
-        let input = DescribeDomainsConfigRequest(offset: offset, limit: limit, filters: filters, sort: sort)
-        return try await self.client.execute(action: "DescribeDomainsConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainsConfig(.init(offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名详细配置

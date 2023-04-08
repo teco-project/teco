@@ -56,8 +56,7 @@ extension Cds {
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
     public func describeDbauditInstanceType(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditInstanceTypeResponse> {
-        let input = DescribeDbauditInstanceTypeRequest()
-        return self.client.execute(action: "DescribeDbauditInstanceType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDbauditInstanceType(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品规格信息列表
@@ -65,7 +64,6 @@ extension Cds {
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
     public func describeDbauditInstanceType(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
-        let input = DescribeDbauditInstanceTypeRequest()
-        return try await self.client.execute(action: "DescribeDbauditInstanceType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDbauditInstanceType(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -115,15 +115,13 @@ extension Tag {
     /// 按顺序查看资源关联的标签
     @inlinable
     public func describeResourceTagsByResourceIdsSeq(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByResourceIdsSeqResponse> {
-        let input = DescribeResourceTagsByResourceIdsSeqRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceTagsByResourceIdsSeq(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按顺序查看资源关联的标签
     @inlinable
     public func describeResourceTagsByResourceIdsSeq(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsSeqResponse {
-        let input = DescribeResourceTagsByResourceIdsSeqRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceTagsByResourceIdsSeq(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按顺序查看资源关联的标签

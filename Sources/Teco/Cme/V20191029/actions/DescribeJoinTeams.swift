@@ -103,8 +103,7 @@ extension Cme {
     /// 获取用户所加入的团队列表
     @inlinable
     public func describeJoinTeams(platform: String, memberId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJoinTeamsResponse> {
-        let input = DescribeJoinTeamsRequest(platform: platform, memberId: memberId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeJoinTeams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJoinTeams(.init(platform: platform, memberId: memberId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取成员加入的团队列表
@@ -112,8 +111,7 @@ extension Cme {
     /// 获取用户所加入的团队列表
     @inlinable
     public func describeJoinTeams(platform: String, memberId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJoinTeamsResponse {
-        let input = DescribeJoinTeamsRequest(platform: platform, memberId: memberId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeJoinTeams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJoinTeams(.init(platform: platform, memberId: memberId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取成员加入的团队列表

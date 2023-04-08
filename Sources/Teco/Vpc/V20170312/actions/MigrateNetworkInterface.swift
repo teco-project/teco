@@ -78,8 +78,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func migrateNetworkInterface(networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateNetworkInterfaceResponse> {
-        let input = MigrateNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId, attachType: attachType)
-        return self.client.execute(action: "MigrateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.migrateNetworkInterface(.init(networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡迁移
@@ -88,7 +87,6 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func migrateNetworkInterface(networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
-        let input = MigrateNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId, attachType: attachType)
-        return try await self.client.execute(action: "MigrateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.migrateNetworkInterface(.init(networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 }

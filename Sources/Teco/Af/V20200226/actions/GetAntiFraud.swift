@@ -68,14 +68,12 @@ extension Af {
     /// 反欺诈评分接口
     @inlinable
     public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudResponse> {
-        let input = GetAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return self.client.execute(action: "GetAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAntiFraud(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 反欺诈评分接口
     @inlinable
     public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudResponse {
-        let input = GetAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return try await self.client.execute(action: "GetAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAntiFraud(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 }

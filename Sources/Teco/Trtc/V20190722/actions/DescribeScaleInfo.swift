@@ -81,8 +81,7 @@ extension Trtc {
     /// 可查询SdkAppId每天的房间数和用户数，按天统计，可查询最近14天的数据。当天未结束，数据未统计完成，无法查到当天的房间数与用户数。（同老接口DescribeHistoryScale）
     @inlinable
     public func describeScaleInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScaleInfoResponse> {
-        let input = DescribeScaleInfoRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeScaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScaleInfo(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询历史房间和用户数
@@ -90,7 +89,6 @@ extension Trtc {
     /// 可查询SdkAppId每天的房间数和用户数，按天统计，可查询最近14天的数据。当天未结束，数据未统计完成，无法查到当天的房间数与用户数。（同老接口DescribeHistoryScale）
     @inlinable
     public func describeScaleInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScaleInfoResponse {
-        let input = DescribeScaleInfoRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeScaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScaleInfo(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

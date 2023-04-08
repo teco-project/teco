@@ -69,14 +69,12 @@ extension Iotexplorer {
     /// 创建围栏
     @inlinable @discardableResult
     public func createPositionFence(spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePositionFenceResponse> {
-        let input = CreatePositionFenceRequest(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc)
-        return self.client.execute(action: "CreatePositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPositionFence(.init(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建围栏
     @inlinable @discardableResult
     public func createPositionFence(spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionFenceResponse {
-        let input = CreatePositionFenceRequest(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc)
-        return try await self.client.execute(action: "CreatePositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPositionFence(.init(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc), region: region, logger: logger, on: eventLoop)
     }
 }

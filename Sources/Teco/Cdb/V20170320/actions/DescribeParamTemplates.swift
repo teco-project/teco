@@ -83,8 +83,7 @@ extension Cdb {
     /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
     @inlinable
     public func describeParamTemplates(engineVersions: [String]? = nil, engineTypes: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplatesResponse> {
-        let input = DescribeParamTemplatesRequest(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds)
-        return self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeParamTemplates(.init(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板列表
@@ -92,7 +91,6 @@ extension Cdb {
     /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
     @inlinable
     public func describeParamTemplates(engineVersions: [String]? = nil, engineTypes: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
-        let input = DescribeParamTemplatesRequest(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds)
-        return try await self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeParamTemplates(.init(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds), region: region, logger: logger, on: eventLoop)
     }
 }

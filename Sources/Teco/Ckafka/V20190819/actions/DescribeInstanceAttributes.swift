@@ -58,14 +58,12 @@ extension Ckafka {
     /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
-        let input = DescribeInstanceAttributesRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceAttributes(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
-        let input = DescribeInstanceAttributesRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceAttributes(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

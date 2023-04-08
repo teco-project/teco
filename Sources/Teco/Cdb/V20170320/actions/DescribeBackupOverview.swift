@@ -91,8 +91,7 @@ extension Cdb {
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
     public func describeBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
-        let input = DescribeBackupOverviewRequest(product: product)
-        return self.client.execute(action: "DescribeBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupOverview(.init(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份概览
@@ -100,7 +99,6 @@ extension Cdb {
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
     public func describeBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
-        let input = DescribeBackupOverviewRequest(product: product)
-        return try await self.client.execute(action: "DescribeBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupOverview(.init(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

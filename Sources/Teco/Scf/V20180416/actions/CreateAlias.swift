@@ -88,8 +88,7 @@ extension Scf {
     /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
     @inlinable @discardableResult
     public func createAlias(name: String, functionName: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
-        let input = CreateAliasRequest(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description)
-        return self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAlias(.init(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建函数版本别名
@@ -98,7 +97,6 @@ extension Scf {
     /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
     @inlinable @discardableResult
     public func createAlias(name: String, functionName: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
-        let input = CreateAliasRequest(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description)
-        return try await self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAlias(.init(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

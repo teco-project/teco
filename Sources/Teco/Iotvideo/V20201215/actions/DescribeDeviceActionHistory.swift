@@ -109,8 +109,7 @@ extension Iotvideo {
     /// 为用户提供获取动作历史的能力。
     @inlinable
     public func describeDeviceActionHistory(productId: String, deviceName: String, minTime: UInt64, maxTime: UInt64, actionId: String? = nil, limit: UInt64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceActionHistoryResponse> {
-        let input = DescribeDeviceActionHistoryRequest(productId: productId, deviceName: deviceName, minTime: minTime, maxTime: maxTime, actionId: actionId, limit: limit, context: context)
-        return self.client.execute(action: "DescribeDeviceActionHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceActionHistory(.init(productId: productId, deviceName: deviceName, minTime: minTime, maxTime: maxTime, actionId: actionId, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备动作历史
@@ -118,7 +117,6 @@ extension Iotvideo {
     /// 为用户提供获取动作历史的能力。
     @inlinable
     public func describeDeviceActionHistory(productId: String, deviceName: String, minTime: UInt64, maxTime: UInt64, actionId: String? = nil, limit: UInt64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceActionHistoryResponse {
-        let input = DescribeDeviceActionHistoryRequest(productId: productId, deviceName: deviceName, minTime: minTime, maxTime: maxTime, actionId: actionId, limit: limit, context: context)
-        return try await self.client.execute(action: "DescribeDeviceActionHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceActionHistory(.init(productId: productId, deviceName: deviceName, minTime: minTime, maxTime: maxTime, actionId: actionId, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 }

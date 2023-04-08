@@ -60,8 +60,7 @@ extension Lighthouse {
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable @discardableResult
     public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
-        let input = AttachCcnRequest(ccnId: ccnId)
-        return self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联云联网
@@ -69,7 +68,6 @@ extension Lighthouse {
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable @discardableResult
     public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
-        let input = AttachCcnRequest(ccnId: ccnId)
-        return try await self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

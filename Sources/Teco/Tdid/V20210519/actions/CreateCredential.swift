@@ -73,14 +73,12 @@ extension Tdid {
     /// 创建凭证
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        let input = CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned)
-        return self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCredential(.init(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建凭证
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        let input = CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned)
-        return try await self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCredential(.init(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
     }
 }

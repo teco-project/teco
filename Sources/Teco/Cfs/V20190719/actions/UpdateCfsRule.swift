@@ -109,8 +109,7 @@ extension Cfs {
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
     public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsRuleResponse> {
-        let input = UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority)
-        return self.client.execute(action: "UpdateCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateCfsRule(.init(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组规则
@@ -118,7 +117,6 @@ extension Cfs {
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
     public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
-        let input = UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority)
-        return try await self.client.execute(action: "UpdateCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateCfsRule(.init(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

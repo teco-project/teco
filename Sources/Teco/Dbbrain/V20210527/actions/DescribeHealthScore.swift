@@ -80,8 +80,7 @@ extension Dbbrain {
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
     public func describeHealthScore(instanceId: String, time: Date, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHealthScoreResponse> {
-        let input = DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product)
-        return self.client.execute(action: "DescribeHealthScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHealthScore(.init(instanceId: instanceId, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取健康得分
@@ -89,7 +88,6 @@ extension Dbbrain {
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
     public func describeHealthScore(instanceId: String, time: Date, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
-        let input = DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product)
-        return try await self.client.execute(action: "DescribeHealthScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHealthScore(.init(instanceId: instanceId, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

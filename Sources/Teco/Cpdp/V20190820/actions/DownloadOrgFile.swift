@@ -88,14 +88,12 @@ extension Cpdp {
     /// 云支付-下载机构文件接口
     @inlinable
     public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadOrgFileResponse> {
-        let input = DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile)
-        return self.client.execute(action: "DownloadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadOrgFile(.init(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-下载机构文件接口
     @inlinable
     public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
-        let input = DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile)
-        return try await self.client.execute(action: "DownloadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadOrgFile(.init(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

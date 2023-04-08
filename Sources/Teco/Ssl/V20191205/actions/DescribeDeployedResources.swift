@@ -63,14 +63,12 @@ extension Ssl {
     /// 证书查询关联资源
     @inlinable
     public func describeDeployedResources(certificateIds: [String], resourceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployedResourcesResponse> {
-        let input = DescribeDeployedResourcesRequest(certificateIds: certificateIds, resourceType: resourceType)
-        return self.client.execute(action: "DescribeDeployedResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeployedResources(.init(certificateIds: certificateIds, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 证书查询关联资源
     @inlinable
     public func describeDeployedResources(certificateIds: [String], resourceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployedResourcesResponse {
-        let input = DescribeDeployedResourcesRequest(certificateIds: certificateIds, resourceType: resourceType)
-        return try await self.client.execute(action: "DescribeDeployedResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeployedResources(.init(certificateIds: certificateIds, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 }

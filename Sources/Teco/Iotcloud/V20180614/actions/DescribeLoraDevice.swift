@@ -89,8 +89,7 @@ extension Iotcloud {
     /// 获取lora类型设备的详细信息
     @inlinable
     public func describeLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoraDeviceResponse> {
-        let input = DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName)
-        return self.client.execute(action: "DescribeLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoraDevice(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取lora设备详情
@@ -98,7 +97,6 @@ extension Iotcloud {
     /// 获取lora类型设备的详细信息
     @inlinable
     public func describeLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoraDeviceResponse {
-        let input = DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName)
-        return try await self.client.execute(action: "DescribeLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoraDevice(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

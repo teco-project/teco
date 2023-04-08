@@ -110,8 +110,7 @@ extension Ess {
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
     public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        let input = UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls)
-        return self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多文件上传
@@ -121,7 +120,6 @@ extension Ess {
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
     public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        let input = UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls)
-        return try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
     }
 }

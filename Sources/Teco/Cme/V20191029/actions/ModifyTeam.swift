@@ -78,8 +78,7 @@ extension Cme {
     /// <li>修改团队名称。</li>
     @inlinable @discardableResult
     public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
-        let input = ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`)
-        return self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTeam(.init(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改团队信息
@@ -88,7 +87,6 @@ extension Cme {
     /// <li>修改团队名称。</li>
     @inlinable @discardableResult
     public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
-        let input = ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`)
-        return try await self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTeam(.init(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

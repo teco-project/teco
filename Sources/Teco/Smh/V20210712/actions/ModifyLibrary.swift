@@ -75,8 +75,7 @@ extension Smh {
     /// 修改 PaaS 服务媒体库配置项
     @inlinable @discardableResult
     public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLibraryResponse> {
-        let input = ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension)
-        return self.client.execute(action: "ModifyLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLibrary(.init(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体库配置项
@@ -84,7 +83,6 @@ extension Smh {
     /// 修改 PaaS 服务媒体库配置项
     @inlinable @discardableResult
     public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
-        let input = ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension)
-        return try await self.client.execute(action: "ModifyLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLibrary(.init(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 }

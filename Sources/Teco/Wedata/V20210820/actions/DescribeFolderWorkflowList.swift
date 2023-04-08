@@ -108,8 +108,7 @@ extension Wedata {
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderWorkflowListResponse> {
-        let input = DescribeFolderWorkflowListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
-        return self.client.execute(action: "DescribeFolderWorkflowList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFolderWorkflowList(.init(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取文件夹下的工作流【Beta版本】
@@ -118,8 +117,7 @@ extension Wedata {
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
-        let input = DescribeFolderWorkflowListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeFolderWorkflowList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFolderWorkflowList(.init(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取文件夹下的工作流【Beta版本】

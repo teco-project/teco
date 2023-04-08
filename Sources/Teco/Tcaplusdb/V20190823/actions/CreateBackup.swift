@@ -80,8 +80,7 @@ extension Tcaplusdb {
     /// 用户创建备份任务
     @inlinable
     public func createBackup(clusterId: String, selectedTables: [SelectedTableInfoNew], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        let input = CreateBackupRequest(clusterId: clusterId, selectedTables: selectedTables, remark: remark)
-        return self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBackup(.init(clusterId: clusterId, selectedTables: selectedTables, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建备份
@@ -89,7 +88,6 @@ extension Tcaplusdb {
     /// 用户创建备份任务
     @inlinable
     public func createBackup(clusterId: String, selectedTables: [SelectedTableInfoNew], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        let input = CreateBackupRequest(clusterId: clusterId, selectedTables: selectedTables, remark: remark)
-        return try await self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBackup(.init(clusterId: clusterId, selectedTables: selectedTables, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

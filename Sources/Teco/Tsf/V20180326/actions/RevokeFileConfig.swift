@@ -59,14 +59,12 @@ extension Tsf {
     /// 撤回已发布的文件配置
     @inlinable
     public func revokeFileConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeFileConfigResponse> {
-        let input = RevokeFileConfigRequest(configReleaseId: configReleaseId)
-        return self.client.execute(action: "RevokeFileConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revokeFileConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤回已发布的文件配置
     @inlinable
     public func revokeFileConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeFileConfigResponse {
-        let input = RevokeFileConfigRequest(configReleaseId: configReleaseId)
-        return try await self.client.execute(action: "RevokeFileConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revokeFileConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 }

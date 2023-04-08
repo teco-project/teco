@@ -65,8 +65,7 @@ extension Teo {
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable @discardableResult
     public func bindZoneToPlan(zoneId: String, planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindZoneToPlanResponse> {
-        let input = BindZoneToPlanRequest(zoneId: zoneId, planId: planId)
-        return self.client.execute(action: "BindZoneToPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindZoneToPlan(.init(zoneId: zoneId, planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为站点绑定套餐
@@ -74,7 +73,6 @@ extension Teo {
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable @discardableResult
     public func bindZoneToPlan(zoneId: String, planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
-        let input = BindZoneToPlanRequest(zoneId: zoneId, planId: planId)
-        return try await self.client.execute(action: "BindZoneToPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindZoneToPlan(.init(zoneId: zoneId, planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

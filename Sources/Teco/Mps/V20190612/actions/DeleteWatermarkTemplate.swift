@@ -60,8 +60,7 @@ extension Mps {
     /// 删除用户自定义水印模板。
     @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
-        let input = DeleteWatermarkTemplateRequest(definition: definition)
-        return self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteWatermarkTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除水印模板
@@ -69,7 +68,6 @@ extension Mps {
     /// 删除用户自定义水印模板。
     @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
-        let input = DeleteWatermarkTemplateRequest(definition: definition)
-        return try await self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteWatermarkTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 }

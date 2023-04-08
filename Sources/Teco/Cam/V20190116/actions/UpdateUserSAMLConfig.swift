@@ -59,14 +59,12 @@ extension Cam {
     /// 修改用户SAML配置
     @inlinable @discardableResult
     public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
-        let input = UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument)
-        return self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
     @inlinable @discardableResult
     public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
-        let input = UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument)
-        return try await self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 }

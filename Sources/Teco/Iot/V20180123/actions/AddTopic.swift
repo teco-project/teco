@@ -69,8 +69,7 @@ extension Iot {
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
     public func addTopic(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTopicResponse> {
-        let input = AddTopicRequest(productId: productId, topicName: topicName)
-        return self.client.execute(action: "AddTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addTopic(.init(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增Topic
@@ -78,7 +77,6 @@ extension Iot {
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
     public func addTopic(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
-        let input = AddTopicRequest(productId: productId, topicName: topicName)
-        return try await self.client.execute(action: "AddTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addTopic(.init(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

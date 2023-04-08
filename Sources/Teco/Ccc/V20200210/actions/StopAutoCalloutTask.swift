@@ -59,14 +59,12 @@ extension Ccc {
     /// 停止自动外呼任务
     @inlinable @discardableResult
     public func stopAutoCalloutTask(sdkAppId: UInt64, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoCalloutTaskResponse> {
-        let input = StopAutoCalloutTaskRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return self.client.execute(action: "StopAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopAutoCalloutTask(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止自动外呼任务
     @inlinable @discardableResult
     public func stopAutoCalloutTask(sdkAppId: UInt64, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoCalloutTaskResponse {
-        let input = StopAutoCalloutTaskRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return try await self.client.execute(action: "StopAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopAutoCalloutTask(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

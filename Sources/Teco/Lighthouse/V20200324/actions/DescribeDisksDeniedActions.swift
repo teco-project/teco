@@ -64,8 +64,7 @@ extension Lighthouse {
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
     public func describeDisksDeniedActions(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
-        let input = DescribeDisksDeniedActionsRequest(diskIds: diskIds)
-        return self.client.execute(action: "DescribeDisksDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDisksDeniedActions(.init(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘操作限制列表信息
@@ -73,7 +72,6 @@ extension Lighthouse {
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
     public func describeDisksDeniedActions(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
-        let input = DescribeDisksDeniedActionsRequest(diskIds: diskIds)
-        return try await self.client.execute(action: "DescribeDisksDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDisksDeniedActions(.init(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

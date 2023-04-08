@@ -84,8 +84,7 @@ extension Redis {
     /// 在通过DTS支持跨可用区灾备的场景中，通过该接口交换实例VIP完成实例灾备切换。交换VIP后目标实例可写，源和目标实例VIP互换，同时源与目标实例间DTS同步任务断开
     @inlinable
     public func switchInstanceVip(srcInstanceId: String, dstInstanceId: String, timeDelay: Int64? = nil, forceSwitch: Int64? = nil, switchTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchInstanceVipResponse> {
-        let input = SwitchInstanceVipRequest(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime)
-        return self.client.execute(action: "SwitchInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.switchInstanceVip(.init(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 交换实例VIP
@@ -93,7 +92,6 @@ extension Redis {
     /// 在通过DTS支持跨可用区灾备的场景中，通过该接口交换实例VIP完成实例灾备切换。交换VIP后目标实例可写，源和目标实例VIP互换，同时源与目标实例间DTS同步任务断开
     @inlinable
     public func switchInstanceVip(srcInstanceId: String, dstInstanceId: String, timeDelay: Int64? = nil, forceSwitch: Int64? = nil, switchTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchInstanceVipResponse {
-        let input = SwitchInstanceVipRequest(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime)
-        return try await self.client.execute(action: "SwitchInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.switchInstanceVip(.init(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime), region: region, logger: logger, on: eventLoop)
     }
 }

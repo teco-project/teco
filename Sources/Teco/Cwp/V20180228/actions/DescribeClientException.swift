@@ -102,15 +102,13 @@ extension Cwp {
     /// 获取客户端异常事件
     @inlinable
     public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
-        let input = DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeClientException", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClientException(.init(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取客户端异常事件
     @inlinable
     public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
-        let input = DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeClientException", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClientException(.init(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取客户端异常事件

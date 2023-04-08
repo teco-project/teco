@@ -70,8 +70,7 @@ extension Nlp {
     /// 修改自定义词库元数据信息，包括名称、描述。
     @inlinable @discardableResult
     public func updateDict(dictId: String, description: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictResponse> {
-        let input = UpdateDictRequest(dictId: dictId, description: description, name: name)
-        return self.client.execute(action: "UpdateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDict(.init(dictId: dictId, description: description, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义词库
@@ -79,7 +78,6 @@ extension Nlp {
     /// 修改自定义词库元数据信息，包括名称、描述。
     @inlinable @discardableResult
     public func updateDict(dictId: String, description: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
-        let input = UpdateDictRequest(dictId: dictId, description: description, name: name)
-        return try await self.client.execute(action: "UpdateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDict(.init(dictId: dictId, description: description, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Ssl {
     /// 提交证书订单。
     @inlinable
     public func commitCertificateInformation(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitCertificateInformationResponse> {
-        let input = CommitCertificateInformationRequest(certificateId: certificateId)
-        return self.client.execute(action: "CommitCertificateInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.commitCertificateInformation(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交证书订单
@@ -77,7 +76,6 @@ extension Ssl {
     /// 提交证书订单。
     @inlinable
     public func commitCertificateInformation(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
-        let input = CommitCertificateInformationRequest(certificateId: certificateId)
-        return try await self.client.execute(action: "CommitCertificateInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.commitCertificateInformation(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

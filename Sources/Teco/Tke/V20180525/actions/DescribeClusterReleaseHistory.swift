@@ -85,8 +85,7 @@ extension Tke {
     /// 查询集群在应用市场中某个已安装应用的版本历史
     @inlinable
     public func describeClusterReleaseHistory(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleaseHistoryResponse> {
-        let input = DescribeClusterReleaseHistoryRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType)
-        return self.client.execute(action: "DescribeClusterReleaseHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterReleaseHistory(.init(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用版本历史
@@ -94,7 +93,6 @@ extension Tke {
     /// 查询集群在应用市场中某个已安装应用的版本历史
     @inlinable
     public func describeClusterReleaseHistory(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseHistoryResponse {
-        let input = DescribeClusterReleaseHistoryRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType)
-        return try await self.client.execute(action: "DescribeClusterReleaseHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterReleaseHistory(.init(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -95,8 +95,7 @@ extension Cdb {
     /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
     @inlinable
     public func createDBImportJob(instanceId: String, user: String, fileName: String? = nil, password: String? = nil, dbName: String? = nil, cosUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBImportJobResponse> {
-        let input = CreateDBImportJobRequest(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl)
-        return self.client.execute(action: "CreateDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDBImportJob(.init(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据导入任务
@@ -106,7 +105,6 @@ extension Cdb {
     /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
     @inlinable
     public func createDBImportJob(instanceId: String, user: String, fileName: String? = nil, password: String? = nil, dbName: String? = nil, cosUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBImportJobResponse {
-        let input = CreateDBImportJobRequest(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl)
-        return try await self.client.execute(action: "CreateDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDBImportJob(.init(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl), region: region, logger: logger, on: eventLoop)
     }
 }

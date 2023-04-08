@@ -69,8 +69,7 @@ extension As {
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
     public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerTargetAttributesResponse> {
-        let input = ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers)
-        return self.client.execute(action: "ModifyLoadBalancerTargetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoadBalancerTargetAttributes(.init(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡器目标规则属性
@@ -78,7 +77,6 @@ extension As {
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
     public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerTargetAttributesResponse {
-        let input = ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers)
-        return try await self.client.execute(action: "ModifyLoadBalancerTargetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoadBalancerTargetAttributes(.init(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 }

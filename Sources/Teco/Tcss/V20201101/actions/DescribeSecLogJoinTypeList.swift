@@ -50,14 +50,12 @@ extension Tcss {
     /// 查询安全日志接入列表
     @inlinable
     public func describeSecLogJoinTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
-        let input = DescribeSecLogJoinTypeListRequest()
-        return self.client.execute(action: "DescribeSecLogJoinTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecLogJoinTypeList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志接入列表
     @inlinable
     public func describeSecLogJoinTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
-        let input = DescribeSecLogJoinTypeListRequest()
-        return try await self.client.execute(action: "DescribeSecLogJoinTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecLogJoinTypeList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Tcb {
     /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
     @inlinable
     public func createStaticStore(envId: String, enableUnion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStaticStoreResponse> {
-        let input = CreateStaticStoreRequest(envId: envId, enableUnion: enableUnion)
-        return self.client.execute(action: "CreateStaticStore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStaticStore(.init(envId: envId, enableUnion: enableUnion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建静态托管资源
@@ -79,7 +78,6 @@ extension Tcb {
     /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
     @inlinable
     public func createStaticStore(envId: String, enableUnion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaticStoreResponse {
-        let input = CreateStaticStoreRequest(envId: envId, enableUnion: enableUnion)
-        return try await self.client.execute(action: "CreateStaticStore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStaticStore(.init(envId: envId, enableUnion: enableUnion), region: region, logger: logger, on: eventLoop)
     }
 }

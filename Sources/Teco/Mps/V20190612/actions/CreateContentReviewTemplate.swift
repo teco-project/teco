@@ -97,8 +97,7 @@ extension Mps {
     /// 创建用户自定义内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
-        let input = CreateContentReviewTemplateRequest(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure)
-        return self.client.execute(action: "CreateContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createContentReviewTemplate(.init(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建内容审核模板
@@ -106,7 +105,6 @@ extension Mps {
     /// 创建用户自定义内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
-        let input = CreateContentReviewTemplateRequest(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure)
-        return try await self.client.execute(action: "CreateContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createContentReviewTemplate(.init(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

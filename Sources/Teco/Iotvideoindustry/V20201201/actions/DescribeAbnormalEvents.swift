@@ -64,14 +64,12 @@ extension Iotvideoindustry {
     /// 获取异常事件统计
     @inlinable
     public func describeAbnormalEvents(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
-        let input = DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeAbnormalEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAbnormalEvents(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取异常事件统计
     @inlinable
     public func describeAbnormalEvents(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
-        let input = DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeAbnormalEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAbnormalEvents(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -114,8 +114,7 @@ extension Gaap {
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
     @inlinable @discardableResult
     public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAuthenticationResponse> {
-        let input = SetAuthenticationRequest(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds)
-        return self.client.execute(action: "SetAuthentication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setAuthentication(.init(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 认证高级配置
@@ -123,7 +122,6 @@ extension Gaap {
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
     @inlinable @discardableResult
     public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
-        let input = SetAuthenticationRequest(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds)
-        return try await self.client.execute(action: "SetAuthentication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setAuthentication(.init(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds), region: region, logger: logger, on: eventLoop)
     }
 }

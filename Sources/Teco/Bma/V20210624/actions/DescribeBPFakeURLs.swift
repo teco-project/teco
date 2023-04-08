@@ -96,15 +96,13 @@ extension Bma {
     /// 查询仿冒链接
     @inlinable
     public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPFakeURLsResponse> {
-        let input = DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
-        return self.client.execute(action: "DescribeBPFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBPFakeURLs(.init(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询仿冒链接
     @inlinable
     public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
-        let input = DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
-        return try await self.client.execute(action: "DescribeBPFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBPFakeURLs(.init(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询仿冒链接

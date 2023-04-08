@@ -107,15 +107,13 @@ extension Bm {
     /// 获取自定义脚本任务详细信息
     @inlinable
     public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTaskInfoResponse> {
-        let input = DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
-        return self.client.execute(action: "DescribeUserCmdTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserCmdTaskInfo(.init(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义脚本任务详细信息
     @inlinable
     public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
-        let input = DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
-        return try await self.client.execute(action: "DescribeUserCmdTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserCmdTaskInfo(.init(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义脚本任务详细信息

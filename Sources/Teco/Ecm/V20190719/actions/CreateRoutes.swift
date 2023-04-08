@@ -68,14 +68,12 @@ extension Ecm {
     /// 创建路由策略
     @inlinable
     public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
-        let input = CreateRoutesRequest(routeTableId: routeTableId, routes: routes)
-        return self.client.execute(action: "CreateRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRoutes(.init(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建路由策略
     @inlinable
     public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
-        let input = CreateRoutesRequest(routeTableId: routeTableId, routes: routes)
-        return try await self.client.execute(action: "CreateRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRoutes(.init(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

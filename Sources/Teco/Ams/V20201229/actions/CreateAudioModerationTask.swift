@@ -178,8 +178,7 @@ extension Ams {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        let input = CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl)
-        return self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAudioModerationTask(.init(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -218,7 +217,6 @@ extension Ams {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        let input = CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl)
-        return try await self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAudioModerationTask(.init(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

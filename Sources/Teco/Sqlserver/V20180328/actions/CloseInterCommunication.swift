@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（CloseInterCommunication）用于关闭实例互通。
     @inlinable
     public func closeInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseInterCommunicationResponse> {
-        let input = CloseInterCommunicationRequest(instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "CloseInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeInterCommunication(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭实例互通
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（CloseInterCommunication）用于关闭实例互通。
     @inlinable
     public func closeInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseInterCommunicationResponse {
-        let input = CloseInterCommunicationRequest(instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "CloseInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeInterCommunication(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,14 +69,12 @@ extension Eiam {
     /// 修改应用账号
     @inlinable @discardableResult
     public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppAccountResponse> {
-        let input = ModifyAppAccountRequest(accountId: accountId, accountName: accountName, password: password, description: description)
-        return self.client.execute(action: "ModifyAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAppAccount(.init(accountId: accountId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用账号
     @inlinable @discardableResult
     public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
-        let input = ModifyAppAccountRequest(accountId: accountId, accountName: accountName, password: password, description: description)
-        return try await self.client.execute(action: "ModifyAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAppAccount(.init(accountId: accountId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

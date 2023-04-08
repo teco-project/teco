@@ -74,14 +74,12 @@ extension Pts {
     /// 更新项目
     @inlinable @discardableResult
     public func updateProject(projectId: String, name: String? = nil, description: String? = nil, status: Int64? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
-        let input = UpdateProjectRequest(projectId: projectId, name: name, description: description, status: status, tags: tags)
-        return self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateProject(.init(projectId: projectId, name: name, description: description, status: status, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新项目
     @inlinable @discardableResult
     public func updateProject(projectId: String, name: String? = nil, description: String? = nil, status: Int64? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        let input = UpdateProjectRequest(projectId: projectId, name: name, description: description, status: status, tags: tags)
-        return try await self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateProject(.init(projectId: projectId, name: name, description: description, status: status, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

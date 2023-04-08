@@ -115,8 +115,7 @@ extension Bmlb {
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
     public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
-        let input = DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeL7ListenersEx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeL7ListenersEx(.init(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定VPC下的7层监听器
@@ -124,8 +123,7 @@ extension Bmlb {
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
     public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
-        let input = DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeL7ListenersEx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeL7ListenersEx(.init(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定VPC下的7层监听器

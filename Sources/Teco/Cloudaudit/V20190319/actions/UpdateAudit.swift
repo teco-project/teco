@@ -136,8 +136,7 @@ extension Cloudaudit {
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
     public func updateAudit(auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAuditResponse> {
-        let input = UpdateAuditRequest(auditName: auditName, isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, keyId: keyId, cosRegion: cosRegion, cmqQueueName: cmqQueueName, isCreateNewBucket: isCreateNewBucket, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cosBucketName: cosBucketName, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue)
-        return self.client.execute(action: "UpdateAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAudit(.init(auditName: auditName, isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, keyId: keyId, cosRegion: cosRegion, cmqQueueName: cmqQueueName, isCreateNewBucket: isCreateNewBucket, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cosBucketName: cosBucketName, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新跟踪集
@@ -149,7 +148,6 @@ extension Cloudaudit {
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
     public func updateAudit(auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAuditResponse {
-        let input = UpdateAuditRequest(auditName: auditName, isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, keyId: keyId, cosRegion: cosRegion, cmqQueueName: cmqQueueName, isCreateNewBucket: isCreateNewBucket, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cosBucketName: cosBucketName, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue)
-        return try await self.client.execute(action: "UpdateAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAudit(.init(auditName: auditName, isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, keyId: keyId, cosRegion: cosRegion, cmqQueueName: cmqQueueName, isCreateNewBucket: isCreateNewBucket, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cosBucketName: cosBucketName, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), region: region, logger: logger, on: eventLoop)
     }
 }

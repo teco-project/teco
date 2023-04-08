@@ -64,14 +64,12 @@ extension Organization {
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable @discardableResult
     public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationMemberAuthAccountResponse> {
-        let input = CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin)
-        return self.client.execute(action: "CancelOrganizationMemberAuthAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cancelOrganizationMemberAuthAccount(.init(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable @discardableResult
     public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
-        let input = CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin)
-        return try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cancelOrganizationMemberAuthAccount(.init(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 }

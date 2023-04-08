@@ -89,8 +89,7 @@ extension Cfs {
     /// 更新定期自动快照策略
     @inlinable
     public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAutoSnapshotPolicyResponse> {
-        let input = UpdateAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated)
-        return self.client.execute(action: "UpdateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新定期快照策略
@@ -98,7 +97,6 @@ extension Cfs {
     /// 更新定期自动快照策略
     @inlinable
     public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
-        let input = UpdateAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated)
-        return try await self.client.execute(action: "UpdateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -109,8 +109,7 @@ extension Postgres {
     /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
     @inlinable
     public func describeSlowQueryList(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderByType: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryListResponse> {
-        let input = DescribeSlowQueryListRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderByType: orderByType, orderBy: orderBy, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeSlowQueryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSlowQueryList(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderByType: orderByType, orderBy: orderBy, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢查询列表
@@ -118,7 +117,6 @@ extension Postgres {
     /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
     @inlinable
     public func describeSlowQueryList(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderByType: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryListResponse {
-        let input = DescribeSlowQueryListRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderByType: orderByType, orderBy: orderBy, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeSlowQueryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSlowQueryList(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderByType: orderByType, orderBy: orderBy, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

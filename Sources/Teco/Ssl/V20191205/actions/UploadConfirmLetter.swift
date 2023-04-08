@@ -73,8 +73,7 @@ extension Ssl {
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
     public func uploadConfirmLetter(certificateId: String, confirmLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadConfirmLetterResponse> {
-        let input = UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter)
-        return self.client.execute(action: "UploadConfirmLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadConfirmLetter(.init(certificateId: certificateId, confirmLetter: confirmLetter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书确认函
@@ -82,7 +81,6 @@ extension Ssl {
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
     public func uploadConfirmLetter(certificateId: String, confirmLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
-        let input = UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter)
-        return try await self.client.execute(action: "UploadConfirmLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadConfirmLetter(.init(certificateId: certificateId, confirmLetter: confirmLetter), region: region, logger: logger, on: eventLoop)
     }
 }

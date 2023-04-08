@@ -119,15 +119,13 @@ extension Tione {
     /// 查询资源组详情
     @inlinable
     public func describeBillingResourceGroups(type: String, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, dontShowInstanceSet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingResourceGroupsResponse> {
-        let input = DescribeBillingResourceGroupsRequest(type: type, filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, searchWord: searchWord, dontShowInstanceSet: dontShowInstanceSet)
-        return self.client.execute(action: "DescribeBillingResourceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillingResourceGroups(.init(type: type, filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, searchWord: searchWord, dontShowInstanceSet: dontShowInstanceSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资源组详情
     @inlinable
     public func describeBillingResourceGroups(type: String, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, dontShowInstanceSet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingResourceGroupsResponse {
-        let input = DescribeBillingResourceGroupsRequest(type: type, filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, searchWord: searchWord, dontShowInstanceSet: dontShowInstanceSet)
-        return try await self.client.execute(action: "DescribeBillingResourceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillingResourceGroups(.init(type: type, filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, searchWord: searchWord, dontShowInstanceSet: dontShowInstanceSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资源组详情

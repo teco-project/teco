@@ -74,14 +74,12 @@ extension Tem {
     /// 绑定云资源
     @inlinable
     public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        let input = CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel)
-        return self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createResource(.init(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定云资源
     @inlinable
     public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        let input = CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createResource(.init(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

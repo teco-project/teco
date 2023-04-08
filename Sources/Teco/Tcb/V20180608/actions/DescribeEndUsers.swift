@@ -97,15 +97,13 @@ extension Tcb {
     /// 获取终端用户列表
     @inlinable
     public func describeEndUsers(envId: String, offset: UInt64? = nil, limit: UInt64? = nil, uuIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUsersResponse> {
-        let input = DescribeEndUsersRequest(envId: envId, offset: offset, limit: limit, uuIds: uuIds)
-        return self.client.execute(action: "DescribeEndUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEndUsers(.init(envId: envId, offset: offset, limit: limit, uuIds: uuIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取终端用户列表
     @inlinable
     public func describeEndUsers(envId: String, offset: UInt64? = nil, limit: UInt64? = nil, uuIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUsersResponse {
-        let input = DescribeEndUsersRequest(envId: envId, offset: offset, limit: limit, uuIds: uuIds)
-        return try await self.client.execute(action: "DescribeEndUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEndUsers(.init(envId: envId, offset: offset, limit: limit, uuIds: uuIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取终端用户列表

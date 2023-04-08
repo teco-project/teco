@@ -93,8 +93,7 @@ extension Essbasic {
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
     public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
-        let input = ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`)
-        return self.client.execute(action: "ChannelCreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过多文件创建合同组签署流程
@@ -102,7 +101,6 @@ extension Essbasic {
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
     public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
-        let input = ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`)
-        return try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Vpc {
     /// 本接口（ModifySnapshotPolicies）用于修改快照策略。
     @inlinable @discardableResult
     public func modifySnapshotPolicies(snapshotPoliciesInfo: [BatchModifySnapshotPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotPoliciesResponse> {
-        let input = ModifySnapshotPoliciesRequest(snapshotPoliciesInfo: snapshotPoliciesInfo)
-        return self.client.execute(action: "ModifySnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySnapshotPolicies(.init(snapshotPoliciesInfo: snapshotPoliciesInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照策略
@@ -69,7 +68,6 @@ extension Vpc {
     /// 本接口（ModifySnapshotPolicies）用于修改快照策略。
     @inlinable @discardableResult
     public func modifySnapshotPolicies(snapshotPoliciesInfo: [BatchModifySnapshotPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotPoliciesResponse {
-        let input = ModifySnapshotPoliciesRequest(snapshotPoliciesInfo: snapshotPoliciesInfo)
-        return try await self.client.execute(action: "ModifySnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySnapshotPolicies(.init(snapshotPoliciesInfo: snapshotPoliciesInfo), region: region, logger: logger, on: eventLoop)
     }
 }

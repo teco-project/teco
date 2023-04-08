@@ -87,8 +87,7 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，不能对云产品凭据操作。
     @inlinable
     public func updateSecret(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSecretResponse> {
-        let input = UpdateSecretRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString)
-        return self.client.execute(action: "UpdateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateSecret(.init(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新凭据内容
@@ -97,7 +96,6 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，不能对云产品凭据操作。
     @inlinable
     public func updateSecret(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSecretResponse {
-        let input = UpdateSecretRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString)
-        return try await self.client.execute(action: "UpdateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateSecret(.init(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 }

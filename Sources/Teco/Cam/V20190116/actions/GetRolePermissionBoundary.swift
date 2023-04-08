@@ -79,14 +79,12 @@ extension Cam {
     /// 获取角色权限边界
     @inlinable
     public func getRolePermissionBoundary(roleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRolePermissionBoundaryResponse> {
-        let input = GetRolePermissionBoundaryRequest(roleId: roleId)
-        return self.client.execute(action: "GetRolePermissionBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRolePermissionBoundary(.init(roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色权限边界
     @inlinable
     public func getRolePermissionBoundary(roleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {
-        let input = GetRolePermissionBoundaryRequest(roleId: roleId)
-        return try await self.client.execute(action: "GetRolePermissionBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRolePermissionBoundary(.init(roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 }

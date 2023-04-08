@@ -81,8 +81,7 @@ extension Tcss {
     /// 查询运行时反弹shell事件详细信息
     @inlinable
     public func describeReverseShellDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellDetailResponse> {
-        let input = DescribeReverseShellDetailRequest(eventId: eventId)
-        return self.client.execute(action: "DescribeReverseShellDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReverseShellDetail(.init(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell事件详细信息
@@ -90,7 +89,6 @@ extension Tcss {
     /// 查询运行时反弹shell事件详细信息
     @inlinable
     public func describeReverseShellDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
-        let input = DescribeReverseShellDetailRequest(eventId: eventId)
-        return try await self.client.execute(action: "DescribeReverseShellDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReverseShellDetail(.init(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -78,8 +78,7 @@ extension Gme {
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
     public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultListResponse> {
-        let input = DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit)
-        return self.client.execute(action: "DescribeScanResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanResultList(.init(bizId: bizId, taskIdList: taskIdList, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询语音检测结果
@@ -88,7 +87,6 @@ extension Gme {
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
     public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
-        let input = DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit)
-        return try await self.client.execute(action: "DescribeScanResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanResultList(.init(bizId: bizId, taskIdList: taskIdList, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

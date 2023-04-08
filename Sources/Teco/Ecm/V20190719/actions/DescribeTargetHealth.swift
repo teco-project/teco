@@ -65,8 +65,7 @@ extension Ecm {
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
     public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
-        let input = DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds)
-        return self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTargetHealth(.init(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡后端服务的健康检查状态
@@ -74,7 +73,6 @@ extension Ecm {
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
     public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
-        let input = DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds)
-        return try await self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTargetHealth(.init(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 }

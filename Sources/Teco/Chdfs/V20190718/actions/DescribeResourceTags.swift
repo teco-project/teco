@@ -67,8 +67,7 @@ extension Chdfs {
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeResourceTags(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsResponse> {
-        let input = DescribeResourceTagsRequest(fileSystemId: fileSystemId)
-        return self.client.execute(action: "DescribeResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceTags(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看资源标签列表
@@ -77,7 +76,6 @@ extension Chdfs {
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeResourceTags(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
-        let input = DescribeResourceTagsRequest(fileSystemId: fileSystemId)
-        return try await self.client.execute(action: "DescribeResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceTags(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

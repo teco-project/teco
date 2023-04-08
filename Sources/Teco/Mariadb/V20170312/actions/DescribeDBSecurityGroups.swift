@@ -79,8 +79,7 @@ extension Mariadb {
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
     @inlinable
     public func describeDBSecurityGroups(product: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
-        let input = DescribeDBSecurityGroupsRequest(product: product, instanceId: instanceId)
-        return self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBSecurityGroups(.init(product: product, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例安全组信息
@@ -88,7 +87,6 @@ extension Mariadb {
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
     @inlinable
     public func describeDBSecurityGroups(product: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
-        let input = DescribeDBSecurityGroupsRequest(product: product, instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBSecurityGroups(.init(product: product, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

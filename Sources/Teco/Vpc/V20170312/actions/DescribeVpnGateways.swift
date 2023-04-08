@@ -110,8 +110,7 @@ extension Vpc {
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
     @inlinable
     public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [FilterObject]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaysResponse> {
-        let input = DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeVpnGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpnGateways(.init(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN网关
@@ -119,8 +118,7 @@ extension Vpc {
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
     @inlinable
     public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [FilterObject]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
-        let input = DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeVpnGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpnGateways(.init(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN网关

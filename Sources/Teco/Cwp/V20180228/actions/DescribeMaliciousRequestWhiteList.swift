@@ -96,15 +96,13 @@ extension Cwp {
     /// 查询恶意请求白名单列表
     @inlinable
     public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestWhiteListResponse> {
-        let input = DescribeMaliciousRequestWhiteListRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeMaliciousRequestWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询恶意请求白名单列表
     @inlinable
     public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
-        let input = DescribeMaliciousRequestWhiteListRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeMaliciousRequestWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询恶意请求白名单列表

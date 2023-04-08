@@ -65,8 +65,7 @@ extension Teo {
     /// 当客户取回站定的同时会取回此站点下关联的别称域名，此时入参为ZoneId；当客户接入站点发现已被别称域名接入时通过验证之后可取回域名，此时入参为ZoneName。
     @inlinable @discardableResult
     public func reclaimAliasDomain(zoneId: String? = nil, zoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimAliasDomainResponse> {
-        let input = ReclaimAliasDomainRequest(zoneId: zoneId, zoneName: zoneName)
-        return self.client.execute(action: "ReclaimAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reclaimAliasDomain(.init(zoneId: zoneId, zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取回别称域名
@@ -74,7 +73,6 @@ extension Teo {
     /// 当客户取回站定的同时会取回此站点下关联的别称域名，此时入参为ZoneId；当客户接入站点发现已被别称域名接入时通过验证之后可取回域名，此时入参为ZoneName。
     @inlinable @discardableResult
     public func reclaimAliasDomain(zoneId: String? = nil, zoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimAliasDomainResponse {
-        let input = ReclaimAliasDomainRequest(zoneId: zoneId, zoneName: zoneName)
-        return try await self.client.execute(action: "ReclaimAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reclaimAliasDomain(.init(zoneId: zoneId, zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 }

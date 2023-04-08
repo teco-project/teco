@@ -66,8 +66,7 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新校验并通过后, 才能开始迁移
     @inlinable @discardableResult
     public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
-        let input = CreateMigrateCheckJobRequest(jobId: jobId)
-        return self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验迁移任务
@@ -77,7 +76,6 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新校验并通过后, 才能开始迁移
     @inlinable @discardableResult
     public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
-        let input = CreateMigrateCheckJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

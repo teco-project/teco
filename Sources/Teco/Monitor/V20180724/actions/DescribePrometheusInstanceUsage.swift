@@ -69,14 +69,12 @@ extension Monitor {
     /// 查询Prometheus按量实例用量
     @inlinable
     public func describePrometheusInstanceUsage(instanceIds: [String], startCalcDate: String, endCalcDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceUsageResponse> {
-        let input = DescribePrometheusInstanceUsageRequest(instanceIds: instanceIds, startCalcDate: startCalcDate, endCalcDate: endCalcDate)
-        return self.client.execute(action: "DescribePrometheusInstanceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusInstanceUsage(.init(instanceIds: instanceIds, startCalcDate: startCalcDate, endCalcDate: endCalcDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Prometheus按量实例用量
     @inlinable
     public func describePrometheusInstanceUsage(instanceIds: [String], startCalcDate: String, endCalcDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceUsageResponse {
-        let input = DescribePrometheusInstanceUsageRequest(instanceIds: instanceIds, startCalcDate: startCalcDate, endCalcDate: endCalcDate)
-        return try await self.client.execute(action: "DescribePrometheusInstanceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusInstanceUsage(.init(instanceIds: instanceIds, startCalcDate: startCalcDate, endCalcDate: endCalcDate), region: region, logger: logger, on: eventLoop)
     }
 }

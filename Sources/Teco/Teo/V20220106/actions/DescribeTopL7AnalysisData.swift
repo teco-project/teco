@@ -119,8 +119,7 @@ extension Teo {
     /// 查询top类流量数据
     @inlinable
     public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7AnalysisDataResponse> {
-        let input = DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
-        return self.client.execute(action: "DescribeTopL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopL7AnalysisData(.init(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 七层数据分析类top流量数据接口
@@ -128,7 +127,6 @@ extension Teo {
     /// 查询top类流量数据
     @inlinable
     public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
-        let input = DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
-        return try await self.client.execute(action: "DescribeTopL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopL7AnalysisData(.init(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -98,8 +98,7 @@ extension Tat {
     /// 此接口用于查询执行器的执行记录。
     @inlinable
     public func describeInvokerRecords(invokerIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvokerRecordsResponse> {
-        let input = DescribeInvokerRecordsRequest(invokerIds: invokerIds, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeInvokerRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInvokerRecords(.init(invokerIds: invokerIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行器执行记录
@@ -107,8 +106,7 @@ extension Tat {
     /// 此接口用于查询执行器的执行记录。
     @inlinable
     public func describeInvokerRecords(invokerIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokerRecordsResponse {
-        let input = DescribeInvokerRecordsRequest(invokerIds: invokerIds, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeInvokerRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInvokerRecords(.init(invokerIds: invokerIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行器执行记录

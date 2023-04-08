@@ -80,8 +80,7 @@ extension Mariadb {
     /// 本接口（RenewDBInstance）用于续费云数据库实例。
     @inlinable
     public func renewDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
-        let input = RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
-        return self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewDBInstance(.init(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -89,7 +88,6 @@ extension Mariadb {
     /// 本接口（RenewDBInstance）用于续费云数据库实例。
     @inlinable
     public func renewDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        let input = RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
-        return try await self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewDBInstance(.init(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }
 }

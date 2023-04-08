@@ -59,14 +59,12 @@ extension Iecp {
     /// 批量解绑单元设备
     @inlinable @discardableResult
     public func deleteEdgeUnitDevices(edgeUnitId: Int64, devices: [DeleteEdgeUnitDevicesDevice], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDevicesResponse> {
-        let input = DeleteEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, devices: devices)
-        return self.client.execute(action: "DeleteEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEdgeUnitDevices(.init(edgeUnitId: edgeUnitId, devices: devices), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑单元设备
     @inlinable @discardableResult
     public func deleteEdgeUnitDevices(edgeUnitId: Int64, devices: [DeleteEdgeUnitDevicesDevice], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDevicesResponse {
-        let input = DeleteEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, devices: devices)
-        return try await self.client.execute(action: "DeleteEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEdgeUnitDevices(.init(edgeUnitId: edgeUnitId, devices: devices), region: region, logger: logger, on: eventLoop)
     }
 }

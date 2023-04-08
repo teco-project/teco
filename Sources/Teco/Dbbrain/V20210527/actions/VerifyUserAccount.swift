@@ -79,8 +79,7 @@ extension Dbbrain {
     /// 验证用户数据库账号权限，获取会话token。
     @inlinable
     public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyUserAccountResponse> {
-        let input = VerifyUserAccountRequest(instanceId: instanceId, user: user, password: password, product: product)
-        return self.client.execute(action: "VerifyUserAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyUserAccount(.init(instanceId: instanceId, user: user, password: password, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证用户数据库账号权限
@@ -88,7 +87,6 @@ extension Dbbrain {
     /// 验证用户数据库账号权限，获取会话token。
     @inlinable
     public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyUserAccountResponse {
-        let input = VerifyUserAccountRequest(instanceId: instanceId, user: user, password: password, product: product)
-        return try await self.client.execute(action: "VerifyUserAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyUserAccount(.init(instanceId: instanceId, user: user, password: password, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

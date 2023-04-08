@@ -89,14 +89,12 @@ extension Tione {
     /// 批量创建模型加速任务
     @inlinable
     public func createBatchModelAccTasks(modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]? = nil, optimizationLevel: String? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchModelAccTasksResponse> {
-        let input = CreateBatchModelAccTasksRequest(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter)
-        return self.client.execute(action: "CreateBatchModelAccTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBatchModelAccTasks(.init(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建模型加速任务
     @inlinable
     public func createBatchModelAccTasks(modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]? = nil, optimizationLevel: String? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchModelAccTasksResponse {
-        let input = CreateBatchModelAccTasksRequest(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter)
-        return try await self.client.execute(action: "CreateBatchModelAccTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBatchModelAccTasks(.init(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter), region: region, logger: logger, on: eventLoop)
     }
 }

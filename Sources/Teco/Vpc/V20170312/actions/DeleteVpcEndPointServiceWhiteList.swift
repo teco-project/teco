@@ -65,8 +65,7 @@ extension Vpc {
     /// 删除终端节点服务白名单。
     @inlinable @discardableResult
     public func deleteVpcEndPointServiceWhiteList(userUin: [String], endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceWhiteListResponse> {
-        let input = DeleteVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId)
-        return self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除终端节点服务白名单
@@ -74,7 +73,6 @@ extension Vpc {
     /// 删除终端节点服务白名单。
     @inlinable @discardableResult
     public func deleteVpcEndPointServiceWhiteList(userUin: [String], endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceWhiteListResponse {
-        let input = DeleteVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId)
-        return try await self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }
 }

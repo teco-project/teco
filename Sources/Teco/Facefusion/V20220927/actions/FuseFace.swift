@@ -118,8 +118,7 @@ extension Facefusion {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
-        let input = FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam)
-        return self.client.execute(action: "FuseFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片人脸融合
@@ -131,7 +130,6 @@ extension Facefusion {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
-        let input = FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam)
-        return try await self.client.execute(action: "FuseFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam), region: region, logger: logger, on: eventLoop)
     }
 }

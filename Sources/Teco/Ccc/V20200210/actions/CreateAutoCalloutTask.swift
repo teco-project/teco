@@ -103,14 +103,12 @@ extension Ccc {
     /// 创建自动外呼任务
     @inlinable
     public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
-        let input = CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables)
-        return self.client.execute(action: "CreateAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自动外呼任务
     @inlinable
     public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
-        let input = CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables)
-        return try await self.client.execute(action: "CreateAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
     }
 }

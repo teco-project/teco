@@ -90,8 +90,7 @@ extension Tcr {
     /// 创建镜像签名策略
     @inlinable @discardableResult
     public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
-        let input = CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled)
-        return self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSignaturePolicy(.init(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建签名策略
@@ -99,7 +98,6 @@ extension Tcr {
     /// 创建镜像签名策略
     @inlinable @discardableResult
     public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
-        let input = CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled)
-        return try await self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSignaturePolicy(.init(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 }

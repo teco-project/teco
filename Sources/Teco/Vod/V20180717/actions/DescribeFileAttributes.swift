@@ -95,8 +95,7 @@ extension Vod {
     /// - 对输入文件为 HLS 或 DASH 的情况，仅获取索引文件的属性。
     @inlinable
     public func describeFileAttributes(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileAttributesResponse> {
-        let input = DescribeFileAttributesRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo)
-        return self.client.execute(action: "DescribeFileAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFileAttributes(.init(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取文件属性
@@ -106,7 +105,6 @@ extension Vod {
     /// - 对输入文件为 HLS 或 DASH 的情况，仅获取索引文件的属性。
     @inlinable
     public func describeFileAttributes(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileAttributesResponse {
-        let input = DescribeFileAttributesRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo)
-        return try await self.client.execute(action: "DescribeFileAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFileAttributes(.init(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

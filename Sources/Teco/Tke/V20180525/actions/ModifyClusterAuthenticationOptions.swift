@@ -64,14 +64,12 @@ extension Tke {
     /// 修改集群认证配置
     @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAuthenticationOptionsResponse> {
-        let input = ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig)
-        return self.client.execute(action: "ModifyClusterAuthenticationOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterAuthenticationOptions(.init(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群认证配置
     @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
-        let input = ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig)
-        return try await self.client.execute(action: "ModifyClusterAuthenticationOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterAuthenticationOptions(.init(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), region: region, logger: logger, on: eventLoop)
     }
 }

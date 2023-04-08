@@ -74,8 +74,7 @@ extension Bmlb {
     /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
     @inlinable
     public func modifyLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, domainPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerResponse> {
-        let input = ModifyLoadBalancerRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, domainPrefix: domainPrefix)
-        return self.client.execute(action: "ModifyLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoadBalancer(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, domainPrefix: domainPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡实例的基本配置信息
@@ -83,7 +82,6 @@ extension Bmlb {
     /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
     @inlinable
     public func modifyLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, domainPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerResponse {
-        let input = ModifyLoadBalancerRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, domainPrefix: domainPrefix)
-        return try await self.client.execute(action: "ModifyLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoadBalancer(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, domainPrefix: domainPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

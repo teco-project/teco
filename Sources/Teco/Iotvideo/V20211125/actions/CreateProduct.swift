@@ -110,14 +110,12 @@ extension Iotvideo {
     /// 创建产品
     @inlinable
     public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        let input = CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType)
-        return self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProduct(.init(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
     @inlinable
     public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        let input = CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType)
-        return try await self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProduct(.init(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), region: region, logger: logger, on: eventLoop)
     }
 }

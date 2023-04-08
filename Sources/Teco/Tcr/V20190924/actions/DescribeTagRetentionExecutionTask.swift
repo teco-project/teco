@@ -102,15 +102,13 @@ extension Tcr {
     /// 查询版本保留执行任务
     @inlinable
     public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionExecutionTaskResponse> {
-        let input = DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeTagRetentionExecutionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTagRetentionExecutionTask(.init(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留执行任务
     @inlinable
     public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionTaskResponse {
-        let input = DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeTagRetentionExecutionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTagRetentionExecutionTask(.init(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留执行任务

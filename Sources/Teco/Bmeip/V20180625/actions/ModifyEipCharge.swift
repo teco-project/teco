@@ -68,14 +68,12 @@ extension Bmeip {
     /// 黑石EIP修改计费方式
     @inlinable
     public func modifyEipCharge(payMode: String, eipIds: [String]? = nil, bandwidth: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipChargeResponse> {
-        let input = ModifyEipChargeRequest(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth)
-        return self.client.execute(action: "ModifyEipCharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEipCharge(.init(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP修改计费方式
     @inlinable
     public func modifyEipCharge(payMode: String, eipIds: [String]? = nil, bandwidth: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {
-        let input = ModifyEipChargeRequest(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth)
-        return try await self.client.execute(action: "ModifyEipCharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEipCharge(.init(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth), region: region, logger: logger, on: eventLoop)
     }
 }

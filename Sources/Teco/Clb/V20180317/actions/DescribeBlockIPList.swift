@@ -102,8 +102,7 @@ extension Clb {
     /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
     @inlinable
     public func describeBlockIPList(loadBalancerId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockIPListResponse> {
-        let input = DescribeBlockIPListRequest(loadBalancerId: loadBalancerId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeBlockIPList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBlockIPList(.init(loadBalancerId: loadBalancerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一个负载均衡所封禁的IP列表（黑名单）
@@ -111,8 +110,7 @@ extension Clb {
     /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
     @inlinable
     public func describeBlockIPList(loadBalancerId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockIPListResponse {
-        let input = DescribeBlockIPListRequest(loadBalancerId: loadBalancerId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeBlockIPList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBlockIPList(.init(loadBalancerId: loadBalancerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一个负载均衡所封禁的IP列表（黑名单）

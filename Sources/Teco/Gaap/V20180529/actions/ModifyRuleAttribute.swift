@@ -114,8 +114,7 @@ extension Gaap {
     /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
     @inlinable @discardableResult
     public func modifyRuleAttribute(listenerId: String, ruleId: String, scheduler: String? = nil, healthCheck: UInt64? = nil, checkParams: RuleCheckParams? = nil, path: String? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleAttributeResponse> {
-        let input = ModifyRuleAttributeRequest(listenerId: listenerId, ruleId: ruleId, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, path: path, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect)
-        return self.client.execute(action: "ModifyRuleAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRuleAttribute(.init(listenerId: listenerId, ruleId: ruleId, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, path: path, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改转发规则信息
@@ -123,7 +122,6 @@ extension Gaap {
     /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
     @inlinable @discardableResult
     public func modifyRuleAttribute(listenerId: String, ruleId: String, scheduler: String? = nil, healthCheck: UInt64? = nil, checkParams: RuleCheckParams? = nil, path: String? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleAttributeResponse {
-        let input = ModifyRuleAttributeRequest(listenerId: listenerId, ruleId: ruleId, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, path: path, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect)
-        return try await self.client.execute(action: "ModifyRuleAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRuleAttribute(.init(listenerId: listenerId, ruleId: ruleId, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, path: path, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect), region: region, logger: logger, on: eventLoop)
     }
 }

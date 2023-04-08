@@ -64,8 +64,7 @@ extension Iotexplorer {
     /// 查询产品配置的数据模板信息
     @inlinable
     public func describeModelDefinition(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDefinitionResponse> {
-        let input = DescribeModelDefinitionRequest(productId: productId)
-        return self.client.execute(action: "DescribeModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelDefinition(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品数据模板
@@ -73,7 +72,6 @@ extension Iotexplorer {
     /// 查询产品配置的数据模板信息
     @inlinable
     public func describeModelDefinition(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDefinitionResponse {
-        let input = DescribeModelDefinitionRequest(productId: productId)
-        return try await self.client.execute(action: "DescribeModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelDefinition(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

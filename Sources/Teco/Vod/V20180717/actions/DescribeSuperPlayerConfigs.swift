@@ -113,8 +113,7 @@ extension Vod {
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(subAppId: UInt64? = nil, names: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSuperPlayerConfigsResponse> {
-        let input = DescribeSuperPlayerConfigsRequest(subAppId: subAppId, names: names, offset: offset, limit: limit, type: type)
-        return self.client.execute(action: "DescribeSuperPlayerConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSuperPlayerConfigs(.init(subAppId: subAppId, names: names, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取播放器配置列表
@@ -123,8 +122,7 @@ extension Vod {
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(subAppId: UInt64? = nil, names: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSuperPlayerConfigsResponse {
-        let input = DescribeSuperPlayerConfigsRequest(subAppId: subAppId, names: names, offset: offset, limit: limit, type: type)
-        return try await self.client.execute(action: "DescribeSuperPlayerConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSuperPlayerConfigs(.init(subAppId: subAppId, names: names, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取播放器配置列表

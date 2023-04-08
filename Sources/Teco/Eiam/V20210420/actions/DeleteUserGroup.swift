@@ -60,8 +60,7 @@ extension Eiam {
     /// 删除一个用户组
     @inlinable @discardableResult
     public func deleteUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupResponse> {
-        let input = DeleteUserGroupRequest(userGroupId: userGroupId)
-        return self.client.execute(action: "DeleteUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUserGroup(.init(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组
@@ -69,7 +68,6 @@ extension Eiam {
     /// 删除一个用户组
     @inlinable @discardableResult
     public func deleteUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
-        let input = DeleteUserGroupRequest(userGroupId: userGroupId)
-        return try await self.client.execute(action: "DeleteUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUserGroup(.init(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

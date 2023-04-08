@@ -63,14 +63,12 @@ extension Cfw {
     /// 企业安全组规则快速排序
     @inlinable
     public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupSequenceRulesResponse> {
-        let input = ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data)
-        return self.client.execute(action: "ModifySecurityGroupSequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySecurityGroupSequenceRules(.init(direction: direction, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业安全组规则快速排序
     @inlinable
     public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
-        let input = ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data)
-        return try await self.client.execute(action: "ModifySecurityGroupSequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySecurityGroupSequenceRules(.init(direction: direction, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

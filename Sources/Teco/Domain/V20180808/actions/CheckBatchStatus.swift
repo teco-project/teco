@@ -64,8 +64,7 @@ extension Domain {
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
     public func checkBatchStatus(logIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
-        let input = CheckBatchStatusRequest(logIds: logIds)
-        return self.client.execute(action: "CheckBatchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkBatchStatus(.init(logIds: logIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志状态
@@ -73,7 +72,6 @@ extension Domain {
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
     public func checkBatchStatus(logIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
-        let input = CheckBatchStatusRequest(logIds: logIds)
-        return try await self.client.execute(action: "CheckBatchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkBatchStatus(.init(logIds: logIds), region: region, logger: logger, on: eventLoop)
     }
 }

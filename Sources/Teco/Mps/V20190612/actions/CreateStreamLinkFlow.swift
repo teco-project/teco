@@ -79,8 +79,7 @@ extension Mps {
     /// 创建媒体传输的传输流配置。
     @inlinable
     public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
-        let input = CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId)
-        return self.client.execute(action: "CreateStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStreamLinkFlow(.init(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输流
@@ -88,7 +87,6 @@ extension Mps {
     /// 创建媒体传输的传输流配置。
     @inlinable
     public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
-        let input = CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId)
-        return try await self.client.execute(action: "CreateStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStreamLinkFlow(.init(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -172,8 +172,7 @@ extension Rum {
     /// 页面加载性能之Web Vitals。性能关键点
     @inlinable
     public func describeDataWebVitalsPage(startTime: Int64, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, type: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataWebVitalsPageResponse> {
-        let input = DescribeDataWebVitalsPageRequest(startTime: startTime, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, type: type, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env)
-        return self.client.execute(action: "DescribeDataWebVitalsPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataWebVitalsPage(.init(startTime: startTime, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, type: type, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DescribeDataWebVitalsPage信息
@@ -182,7 +181,6 @@ extension Rum {
     /// 页面加载性能之Web Vitals。性能关键点
     @inlinable
     public func describeDataWebVitalsPage(startTime: Int64, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, type: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataWebVitalsPageResponse {
-        let input = DescribeDataWebVitalsPageRequest(startTime: startTime, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, type: type, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env)
-        return try await self.client.execute(action: "DescribeDataWebVitalsPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataWebVitalsPage(.init(startTime: startTime, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, type: type, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Ecm {
     /// 弹性网卡绑定云主机
     @inlinable @discardableResult
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
-        let input = AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion)
-        return self.client.execute(action: "AttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡绑定云主机
     @inlinable @discardableResult
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
-        let input = AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion)
-        return try await self.client.execute(action: "AttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

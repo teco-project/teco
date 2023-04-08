@@ -68,14 +68,12 @@ extension Waf {
     /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
-        let input = DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId)
-        return self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainDetailsSaas(.init(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
-        let input = DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainDetailsSaas(.init(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

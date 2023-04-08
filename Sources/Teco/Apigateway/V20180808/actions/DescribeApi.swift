@@ -69,8 +69,7 @@ extension Apigateway {
     /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiResponse> {
-        let input = DescribeApiRequest(serviceId: serviceId, apiId: apiId)
-        return self.client.execute(action: "DescribeApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApi(.init(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API详情
@@ -78,7 +77,6 @@ extension Apigateway {
     /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiResponse {
-        let input = DescribeApiRequest(serviceId: serviceId, apiId: apiId)
-        return try await self.client.execute(action: "DescribeApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApi(.init(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

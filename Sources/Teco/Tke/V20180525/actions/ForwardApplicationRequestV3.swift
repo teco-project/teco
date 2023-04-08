@@ -88,14 +88,12 @@ extension Tke {
     /// 操作TKE集群的addon
     @inlinable
     public func forwardApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardApplicationRequestV3Response> {
-        let input = ForwardApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody)
-        return self.client.execute(action: "ForwardApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.forwardApplicationRequestV3(.init(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
     }
 
     /// 操作TKE集群的addon
     @inlinable
     public func forwardApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardApplicationRequestV3Response {
-        let input = ForwardApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody)
-        return try await self.client.execute(action: "ForwardApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.forwardApplicationRequestV3(.init(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
     }
 }

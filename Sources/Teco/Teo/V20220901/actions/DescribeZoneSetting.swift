@@ -65,8 +65,7 @@ extension Teo {
     /// 用于查询站点的所有配置信息。
     @inlinable
     public func describeZoneSetting(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneSettingResponse> {
-        let input = DescribeZoneSettingRequest(zoneId: zoneId)
-        return self.client.execute(action: "DescribeZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZoneSetting(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点配置
@@ -74,7 +73,6 @@ extension Teo {
     /// 用于查询站点的所有配置信息。
     @inlinable
     public func describeZoneSetting(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
-        let input = DescribeZoneSettingRequest(zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZoneSetting(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -106,8 +106,7 @@ extension Vpc {
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
-        let input = DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeVpcIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表
@@ -116,8 +115,7 @@ extension Vpc {
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
-        let input = DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeVpcIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表

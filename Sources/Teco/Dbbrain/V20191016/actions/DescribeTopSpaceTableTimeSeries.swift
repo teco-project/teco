@@ -98,8 +98,7 @@ extension Dbbrain {
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
     public func describeTopSpaceTableTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceTableTimeSeriesResponse> {
-        let input = DescribeTopSpaceTableTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product)
-        return self.client.execute(action: "DescribeTopSpaceTableTimeSeries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopSpaceTableTimeSeries(.init(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Top表在指定时间段内的每日空间统计信息
@@ -107,7 +106,6 @@ extension Dbbrain {
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
     public func describeTopSpaceTableTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTableTimeSeriesResponse {
-        let input = DescribeTopSpaceTableTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product)
-        return try await self.client.execute(action: "DescribeTopSpaceTableTimeSeries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopSpaceTableTimeSeries(.init(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

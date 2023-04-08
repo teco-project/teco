@@ -133,8 +133,7 @@ extension Dlc {
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
     public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        let input = DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName)
-        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTasks(.init(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
@@ -142,8 +141,7 @@ extension Dlc {
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
     public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        let input = DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName)
-        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTasks(.init(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表

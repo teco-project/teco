@@ -104,8 +104,7 @@ extension Apigateway {
     /// 展示API上已绑定的插件列表。
     @inlinable
     public func describePluginsByApi(apiId: String, serviceId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginsByApiResponse> {
-        let input = DescribePluginsByApiRequest(apiId: apiId, serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribePluginsByApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePluginsByApi(.init(apiId: apiId, serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// API上已绑定的插件
@@ -113,8 +112,7 @@ extension Apigateway {
     /// 展示API上已绑定的插件列表。
     @inlinable
     public func describePluginsByApi(apiId: String, serviceId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsByApiResponse {
-        let input = DescribePluginsByApiRequest(apiId: apiId, serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribePluginsByApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePluginsByApi(.init(apiId: apiId, serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// API上已绑定的插件

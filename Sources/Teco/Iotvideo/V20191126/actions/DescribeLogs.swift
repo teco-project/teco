@@ -122,8 +122,7 @@ extension Iotvideo {
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
     public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        let input = DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime)
-        return self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogs(.init(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志列表
@@ -132,8 +131,7 @@ extension Iotvideo {
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
     public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        let input = DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime)
-        return try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogs(.init(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志列表

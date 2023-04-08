@@ -115,8 +115,7 @@ extension Tke {
     /// 在应用市场中查询正在安装中的应用列表
     @inlinable
     public func describeClusterPendingReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterPendingReleasesResponse> {
-        let input = DescribeClusterPendingReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType)
-        return self.client.execute(action: "DescribeClusterPendingReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterPendingReleases(.init(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群安装中的应用列表
@@ -124,8 +123,7 @@ extension Tke {
     /// 在应用市场中查询正在安装中的应用列表
     @inlinable
     public func describeClusterPendingReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPendingReleasesResponse {
-        let input = DescribeClusterPendingReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType)
-        return try await self.client.execute(action: "DescribeClusterPendingReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterPendingReleases(.init(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群安装中的应用列表

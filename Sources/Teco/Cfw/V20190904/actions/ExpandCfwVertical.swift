@@ -64,14 +64,12 @@ extension Cfw {
     /// 防火墙垂直扩容
     @inlinable @discardableResult
     public func expandCfwVertical(fwType: String, width: UInt64, cfwInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandCfwVerticalResponse> {
-        let input = ExpandCfwVerticalRequest(fwType: fwType, width: width, cfwInstance: cfwInstance)
-        return self.client.execute(action: "ExpandCfwVertical", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.expandCfwVertical(.init(fwType: fwType, width: width, cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 防火墙垂直扩容
     @inlinable @discardableResult
     public func expandCfwVertical(fwType: String, width: UInt64, cfwInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {
-        let input = ExpandCfwVerticalRequest(fwType: fwType, width: width, cfwInstance: cfwInstance)
-        return try await self.client.execute(action: "ExpandCfwVertical", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.expandCfwVertical(.init(fwType: fwType, width: width, cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -75,8 +75,7 @@ extension Tdmq {
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable @discardableResult
     public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMsgResponse> {
-        let input = SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId)
-        return self.client.execute(action: "SendMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendMsg(.init(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送消息
@@ -84,7 +83,6 @@ extension Tdmq {
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable @discardableResult
     public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
-        let input = SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId)
-        return try await self.client.execute(action: "SendMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendMsg(.init(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

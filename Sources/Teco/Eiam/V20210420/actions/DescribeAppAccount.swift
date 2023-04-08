@@ -104,15 +104,13 @@ extension Eiam {
     /// 查询应用账号列表
     @inlinable
     public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppAccountResponse> {
-        let input = DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAppAccount(.init(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用账号列表
     @inlinable
     public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
-        let input = DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAppAccount(.init(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用账号列表

@@ -60,8 +60,7 @@ extension Live {
     /// 删除录制模板。
     @inlinable @discardableResult
     public func deleteLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordTemplateResponse> {
-        let input = DeleteLiveRecordTemplateRequest(templateId: templateId)
-        return self.client.execute(action: "DeleteLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveRecordTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除录制模板
@@ -69,7 +68,6 @@ extension Live {
     /// 删除录制模板。
     @inlinable @discardableResult
     public func deleteLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
-        let input = DeleteLiveRecordTemplateRequest(templateId: templateId)
-        return try await self.client.execute(action: "DeleteLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveRecordTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

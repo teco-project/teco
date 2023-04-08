@@ -65,8 +65,7 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip的属性。
     @inlinable @discardableResult
     public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleDisableWanIpResponse> {
-        let input = ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp)
-        return self.client.execute(action: "ModifyModuleDisableWanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModuleDisableWanIp(.init(moduleId: moduleId, disableWanIp: disableWanIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块是否禁止分配外网ip
@@ -74,7 +73,6 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip的属性。
     @inlinable @discardableResult
     public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
-        let input = ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp)
-        return try await self.client.execute(action: "ModifyModuleDisableWanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModuleDisableWanIp(.init(moduleId: moduleId, disableWanIp: disableWanIp), region: region, logger: logger, on: eventLoop)
     }
 }

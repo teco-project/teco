@@ -79,8 +79,7 @@ extension Teo {
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
     public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSetsResponse> {
-        let input = DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName)
-        return self.client.execute(action: "DescribeLogSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogSets(.init(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志集列表
@@ -88,7 +87,6 @@ extension Teo {
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
     public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
-        let input = DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName)
-        return try await self.client.execute(action: "DescribeLogSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogSets(.init(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), region: region, logger: logger, on: eventLoop)
     }
 }

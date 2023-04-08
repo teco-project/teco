@@ -138,8 +138,7 @@ extension Sqlserver {
     /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
     @inlinable
     public func describeBackupMigration(instanceId: String, backupMigrationId: String? = nil, migrationName: String? = nil, backupFileName: String? = nil, statusSet: [Int64]? = nil, recoveryType: String? = nil, uploadType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupMigrationResponse> {
-        let input = DescribeBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return self.client.execute(action: "DescribeBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份导入任务
@@ -147,8 +146,7 @@ extension Sqlserver {
     /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
     @inlinable
     public func describeBackupMigration(instanceId: String, backupMigrationId: String? = nil, migrationName: String? = nil, backupFileName: String? = nil, statusSet: [Int64]? = nil, recoveryType: String? = nil, uploadType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupMigrationResponse {
-        let input = DescribeBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份导入任务

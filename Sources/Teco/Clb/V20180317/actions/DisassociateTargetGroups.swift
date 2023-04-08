@@ -63,8 +63,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func disassociateTargetGroups(associations: [TargetGroupAssociation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateTargetGroupsResponse> {
-        let input = DisassociateTargetGroupsRequest(associations: associations)
-        return self.client.execute(action: "DisassociateTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disassociateTargetGroups(.init(associations: associations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除规则的目标组关联关系
@@ -73,7 +72,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func disassociateTargetGroups(associations: [TargetGroupAssociation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
-        let input = DisassociateTargetGroupsRequest(associations: associations)
-        return try await self.client.execute(action: "DisassociateTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disassociateTargetGroups(.init(associations: associations), region: region, logger: logger, on: eventLoop)
     }
 }

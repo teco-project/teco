@@ -70,8 +70,7 @@ extension Apigateway {
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
     public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiAppResponse> {
-        let input = CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc)
-        return self.client.execute(action: "CreateApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createApiApp(.init(apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用
@@ -79,7 +78,6 @@ extension Apigateway {
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
     public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
-        let input = CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc)
-        return try await self.client.execute(action: "CreateApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createApiApp(.init(apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 }

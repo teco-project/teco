@@ -108,14 +108,12 @@ extension Tke {
     /// 创建弹性集群
     @inlinable
     public func createEKSCluster(k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, extraParam: String? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil, subnetInfos: [SubnetInfos]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEKSClusterResponse> {
-        let input = CreateEKSClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos)
-        return self.client.execute(action: "CreateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEKSCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性集群
     @inlinable
     public func createEKSCluster(k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, extraParam: String? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil, subnetInfos: [SubnetInfos]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSClusterResponse {
-        let input = CreateEKSClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos)
-        return try await self.client.execute(action: "CreateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEKSCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos), region: region, logger: logger, on: eventLoop)
     }
 }

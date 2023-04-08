@@ -73,8 +73,7 @@ extension Clb {
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
-        let input = CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number)
-        return self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLoadBalancerSnatIps(.init(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加SnatIp
@@ -83,7 +82,6 @@ extension Clb {
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
-        let input = CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number)
-        return try await self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLoadBalancerSnatIps(.init(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }
 }

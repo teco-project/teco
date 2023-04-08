@@ -114,15 +114,13 @@ extension Tcb {
     /// 获取云开发项目列表
     @inlinable
     public func describeCloudBaseProjectLatestVersionList(offset: Int64, pageSize: Int64, envId: String? = nil, projectName: String? = nil, projectType: String? = nil, tags: [String]? = nil, ciId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectLatestVersionListResponse> {
-        let input = DescribeCloudBaseProjectLatestVersionListRequest(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId)
-        return self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseProjectLatestVersionList(.init(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云开发项目列表
     @inlinable
     public func describeCloudBaseProjectLatestVersionList(offset: Int64, pageSize: Int64, envId: String? = nil, projectName: String? = nil, projectType: String? = nil, tags: [String]? = nil, ciId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectLatestVersionListResponse {
-        let input = DescribeCloudBaseProjectLatestVersionListRequest(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId)
-        return try await self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseProjectLatestVersionList(.init(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云开发项目列表

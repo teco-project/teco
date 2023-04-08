@@ -96,8 +96,7 @@ extension Cvm {
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
     public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstanceResponse> {
-        let input = InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService)
-        return self.client.execute(action: "InquiryPriceResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceResetInstance(.init(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重装实例询价
@@ -109,7 +108,6 @@ extension Cvm {
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
     public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
-        let input = InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService)
-        return try await self.client.execute(action: "InquiryPriceResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceResetInstance(.init(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), region: region, logger: logger, on: eventLoop)
     }
 }

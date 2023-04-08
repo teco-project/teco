@@ -84,15 +84,13 @@ extension Dlc {
     /// 查询任务结果
     @inlinable
     public func describeTaskResult(taskId: String, nextToken: String? = nil, maxResults: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
-        let input = DescribeTaskResultRequest(taskId: taskId, nextToken: nextToken, maxResults: maxResults)
-        return self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskResult(.init(taskId: taskId, nextToken: nextToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务结果
     @inlinable
     public func describeTaskResult(taskId: String, nextToken: String? = nil, maxResults: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
-        let input = DescribeTaskResultRequest(taskId: taskId, nextToken: nextToken, maxResults: maxResults)
-        return try await self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskResult(.init(taskId: taskId, nextToken: nextToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务结果

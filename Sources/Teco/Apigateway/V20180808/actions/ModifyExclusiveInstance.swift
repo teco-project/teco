@@ -79,8 +79,7 @@ extension Apigateway {
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
-        let input = ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters)
-        return self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyExclusiveInstance(.init(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改独享实例
@@ -88,7 +87,6 @@ extension Apigateway {
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
-        let input = ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters)
-        return try await self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyExclusiveInstance(.init(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)
     }
 }

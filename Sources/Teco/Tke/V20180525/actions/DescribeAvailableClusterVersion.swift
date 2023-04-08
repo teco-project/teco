@@ -69,14 +69,12 @@ extension Tke {
     /// 获取集群可以升级的所有版本
     @inlinable
     public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableClusterVersionResponse> {
-        let input = DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds)
-        return self.client.execute(action: "DescribeAvailableClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableClusterVersion(.init(clusterId: clusterId, clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群可以升级的所有版本
     @inlinable
     public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
-        let input = DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds)
-        return try await self.client.execute(action: "DescribeAvailableClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableClusterVersion(.init(clusterId: clusterId, clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

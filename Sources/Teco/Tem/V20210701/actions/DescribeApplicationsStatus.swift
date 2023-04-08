@@ -63,14 +63,12 @@ extension Tem {
     /// 单环境下所有应用状态查看
     @inlinable
     public func describeApplicationsStatus(sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsStatusResponse> {
-        let input = DescribeApplicationsStatusRequest(sourceChannel: sourceChannel, environmentId: environmentId)
-        return self.client.execute(action: "DescribeApplicationsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationsStatus(.init(sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 单环境下所有应用状态查看
     @inlinable
     public func describeApplicationsStatus(sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsStatusResponse {
-        let input = DescribeApplicationsStatusRequest(sourceChannel: sourceChannel, environmentId: environmentId)
-        return try await self.client.execute(action: "DescribeApplicationsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationsStatus(.init(sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 }

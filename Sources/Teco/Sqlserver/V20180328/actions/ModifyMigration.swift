@@ -94,8 +94,7 @@ extension Sqlserver {
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
     @inlinable
     public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationResponse> {
-        let input = ModifyMigrationRequest(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet)
-        return self.client.execute(action: "ModifyMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMigration(.init(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改迁移任务
@@ -103,7 +102,6 @@ extension Sqlserver {
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
     @inlinable
     public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
-        let input = ModifyMigrationRequest(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet)
-        return try await self.client.execute(action: "ModifyMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMigration(.init(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -99,15 +99,13 @@ extension Tsf {
     /// 获取容器事件列表
     @inlinable
     public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerEventsResponse> {
-        let input = DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId)
-        return self.client.execute(action: "DescribeContainerEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeContainerEvents(.init(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取容器事件列表
     @inlinable
     public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
-        let input = DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId)
-        return try await self.client.execute(action: "DescribeContainerEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeContainerEvents(.init(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取容器事件列表

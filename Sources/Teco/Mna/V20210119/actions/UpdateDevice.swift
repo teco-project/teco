@@ -75,8 +75,7 @@ extension Mna {
     /// 更新设备信息
     @inlinable @discardableResult
     public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
-        let input = UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo)
-        return self.client.execute(action: "UpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDevice(.init(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备
@@ -84,7 +83,6 @@ extension Mna {
     /// 更新设备信息
     @inlinable @discardableResult
     public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
-        let input = UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo)
-        return try await self.client.execute(action: "UpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDevice(.init(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), region: region, logger: logger, on: eventLoop)
     }
 }

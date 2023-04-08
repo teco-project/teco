@@ -65,8 +65,7 @@ extension Tcss {
     /// 修改运行时访问控制策略的状态，启用或者禁用
     @inlinable @discardableResult
     public func modifyAccessControlRuleStatus(ruleIdSet: [String], isEnable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlRuleStatusResponse> {
-        let input = ModifyAccessControlRuleStatusRequest(ruleIdSet: ruleIdSet, isEnable: isEnable)
-        return self.client.execute(action: "ModifyAccessControlRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccessControlRuleStatus(.init(ruleIdSet: ruleIdSet, isEnable: isEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改运行时访问控制策略状态
@@ -74,7 +73,6 @@ extension Tcss {
     /// 修改运行时访问控制策略的状态，启用或者禁用
     @inlinable @discardableResult
     public func modifyAccessControlRuleStatus(ruleIdSet: [String], isEnable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlRuleStatusResponse {
-        let input = ModifyAccessControlRuleStatusRequest(ruleIdSet: ruleIdSet, isEnable: isEnable)
-        return try await self.client.execute(action: "ModifyAccessControlRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccessControlRuleStatus(.init(ruleIdSet: ruleIdSet, isEnable: isEnable), region: region, logger: logger, on: eventLoop)
     }
 }

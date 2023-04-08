@@ -171,8 +171,7 @@ extension Cdn {
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
     public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginDataResponse> {
-        let input = DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone)
-        return self.client.execute(action: "DescribeOriginData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOriginData(.init(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回源数据查询
@@ -190,7 +189,6 @@ extension Cdn {
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
     public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
-        let input = DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone)
-        return try await self.client.execute(action: "DescribeOriginData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOriginData(.init(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

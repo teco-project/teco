@@ -83,14 +83,12 @@ extension Zj {
     /// 添加短信人群包信息
     @inlinable
     public func addCrowdPackInfo(license: String, name: String, fileName: String, desc: String, cosUrl: String, phoneNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCrowdPackInfoResponse> {
-        let input = AddCrowdPackInfoRequest(license: license, name: name, fileName: fileName, desc: desc, cosUrl: cosUrl, phoneNum: phoneNum)
-        return self.client.execute(action: "AddCrowdPackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addCrowdPackInfo(.init(license: license, name: name, fileName: fileName, desc: desc, cosUrl: cosUrl, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加短信人群包信息
     @inlinable
     public func addCrowdPackInfo(license: String, name: String, fileName: String, desc: String, cosUrl: String, phoneNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCrowdPackInfoResponse {
-        let input = AddCrowdPackInfoRequest(license: license, name: name, fileName: fileName, desc: desc, cosUrl: cosUrl, phoneNum: phoneNum)
-        return try await self.client.execute(action: "AddCrowdPackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addCrowdPackInfo(.init(license: license, name: name, fileName: fileName, desc: desc, cosUrl: cosUrl, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 }

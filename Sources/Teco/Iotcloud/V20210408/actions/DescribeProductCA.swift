@@ -58,14 +58,12 @@ extension Iotcloud {
     /// 查询产品绑定的CA证书
     @inlinable
     public func describeProductCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductCAResponse> {
-        let input = DescribeProductCARequest(productId: productId)
-        return self.client.execute(action: "DescribeProductCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProductCA(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品绑定的CA证书
     @inlinable
     public func describeProductCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
-        let input = DescribeProductCARequest(productId: productId)
-        return try await self.client.execute(action: "DescribeProductCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProductCA(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

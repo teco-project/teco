@@ -65,8 +65,7 @@ extension Eiam {
     /// 通过机构节点ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToOrgNodeResponse> {
-        let input = ListAuthorizedApplicationsToOrgNodeRequest(orgNodeId: orgNodeId)
-        return self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAuthorizedApplicationsToOrgNode(.init(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机构节点被授权访问的应用列表
@@ -74,7 +73,6 @@ extension Eiam {
     /// 通过机构节点ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToOrgNodeResponse {
-        let input = ListAuthorizedApplicationsToOrgNodeRequest(orgNodeId: orgNodeId)
-        return try await self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAuthorizedApplicationsToOrgNode(.init(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }
 }

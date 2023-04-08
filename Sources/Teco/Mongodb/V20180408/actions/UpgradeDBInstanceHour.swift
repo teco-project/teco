@@ -79,8 +79,7 @@ extension Mongodb {
     /// 本接口(UpgradeDBInstanceHour)用于升级按量计费的MongoDB云数据库实例，可以扩容内存、存储以及oplog
     @inlinable
     public func upgradeDBInstanceHour(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceHourResponse> {
-        let input = UpgradeDBInstanceHourRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize)
-        return self.client.execute(action: "UpgradeDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDBInstanceHour(.init(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级云数据库实例（按量计费）
@@ -88,7 +87,6 @@ extension Mongodb {
     /// 本接口(UpgradeDBInstanceHour)用于升级按量计费的MongoDB云数据库实例，可以扩容内存、存储以及oplog
     @inlinable
     public func upgradeDBInstanceHour(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceHourResponse {
-        let input = UpgradeDBInstanceHourRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize)
-        return try await self.client.execute(action: "UpgradeDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDBInstanceHour(.init(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize), region: region, logger: logger, on: eventLoop)
     }
 }

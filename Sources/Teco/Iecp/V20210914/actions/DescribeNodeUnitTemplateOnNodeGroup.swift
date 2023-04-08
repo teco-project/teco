@@ -113,15 +113,13 @@ extension Iecp {
     /// 查询指定NodeGroup下NodeUnit模板列表
     @inlinable
     public func describeNodeUnitTemplateOnNodeGroup(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitNamePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeUnitTemplateOnNodeGroupResponse> {
-        let input = DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order)
-        return self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNodeUnitTemplateOnNodeGroup(.init(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定NodeGroup下NodeUnit模板列表
     @inlinable
     public func describeNodeUnitTemplateOnNodeGroup(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitNamePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitTemplateOnNodeGroupResponse {
-        let input = DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order)
-        return try await self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNodeUnitTemplateOnNodeGroup(.init(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定NodeGroup下NodeUnit模板列表

@@ -79,14 +79,12 @@ extension Trp {
     /// 修改自定义码规则
     @inlinable
     public func modifyCustomRule(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleResponse> {
-        let input = ModifyCustomRuleRequest(customId: customId, name: name, codeLength: codeLength, codeParts: codeParts, corpId: corpId)
-        return self.client.execute(action: "ModifyCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCustomRule(.init(customId: customId, name: name, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义码规则
     @inlinable
     public func modifyCustomRule(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleResponse {
-        let input = ModifyCustomRuleRequest(customId: customId, name: name, codeLength: codeLength, codeParts: codeParts, corpId: corpId)
-        return try await self.client.execute(action: "ModifyCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCustomRule(.init(customId: customId, name: name, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

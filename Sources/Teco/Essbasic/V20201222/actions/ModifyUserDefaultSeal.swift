@@ -75,8 +75,7 @@ extension Essbasic {
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable @discardableResult
     public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
-        let input = ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp)
-        return self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUserDefaultSeal(.init(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改个人默认印章
@@ -84,7 +83,6 @@ extension Essbasic {
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable @discardableResult
     public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
-        let input = ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp)
-        return try await self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUserDefaultSeal(.init(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -85,8 +85,7 @@ extension Cam {
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
     public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEntitiesForPolicyResponse> {
-        let input = ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter)
-        return self.client.execute(action: "ListEntitiesForPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listEntitiesForPolicy(.init(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询策略关联的实体列表
@@ -94,7 +93,6 @@ extension Cam {
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
     public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
-        let input = ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter)
-        return try await self.client.execute(action: "ListEntitiesForPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listEntitiesForPolicy(.init(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), region: region, logger: logger, on: eventLoop)
     }
 }

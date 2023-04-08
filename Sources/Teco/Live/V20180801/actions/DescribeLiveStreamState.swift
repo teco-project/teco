@@ -104,8 +104,7 @@ extension Live {
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
     public func describeLiveStreamState(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
-        let input = DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName)
-        return self.client.execute(action: "DescribeLiveStreamState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveStreamState(.init(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流状态
@@ -122,7 +121,6 @@ extension Live {
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
     public func describeLiveStreamState(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
-        let input = DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName)
-        return try await self.client.execute(action: "DescribeLiveStreamState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveStreamState(.init(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

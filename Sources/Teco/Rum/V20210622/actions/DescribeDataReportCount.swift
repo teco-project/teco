@@ -84,8 +84,7 @@ extension Rum {
     /// 获取项目上报量
     @inlinable
     public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataReportCountResponse> {
-        let input = DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID)
-        return self.client.execute(action: "DescribeDataReportCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataReportCount(.init(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取上报量
@@ -93,7 +92,6 @@ extension Rum {
     /// 获取项目上报量
     @inlinable
     public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
-        let input = DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID)
-        return try await self.client.execute(action: "DescribeDataReportCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataReportCount(.init(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 }

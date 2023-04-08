@@ -104,15 +104,13 @@ extension Iotvideoindustry {
     /// 直播列表接口
     @inlinable
     public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelListResponse> {
-        let input = DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName)
-        return self.client.execute(action: "DescribeLiveChannelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveChannelList(.init(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播列表接口
     @inlinable
     public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
-        let input = DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName)
-        return try await self.client.execute(action: "DescribeLiveChannelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveChannelList(.init(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播列表接口

@@ -128,8 +128,7 @@ extension Tbaas {
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
     public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockListResponse> {
-        let input = GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit)
-        return self.client.execute(action: "GetBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBlockList(.init(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询区块列表
@@ -137,8 +136,7 @@ extension Tbaas {
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
     public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
-        let input = GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBlockList(.init(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询区块列表

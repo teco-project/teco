@@ -58,14 +58,12 @@ extension Tcss {
     /// 查询漏洞Top排名列表
     @inlinable
     public func describeVulTopRanking(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopRankingResponse> {
-        let input = DescribeVulTopRankingRequest(categoryType: categoryType)
-        return self.client.execute(action: "DescribeVulTopRanking", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulTopRanking(.init(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞Top排名列表
     @inlinable
     public func describeVulTopRanking(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
-        let input = DescribeVulTopRankingRequest(categoryType: categoryType)
-        return try await self.client.execute(action: "DescribeVulTopRanking", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulTopRanking(.init(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 }

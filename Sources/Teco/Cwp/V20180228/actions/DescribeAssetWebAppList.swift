@@ -124,15 +124,13 @@ extension Cwp {
     /// 获取资产管理Web应用列表
     @inlinable
     public func describeAssetWebAppList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebAppListResponse> {
-        let input = DescribeAssetWebAppListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
-        return self.client.execute(action: "DescribeAssetWebAppList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetWebAppList(.init(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理Web应用列表
     @inlinable
     public func describeAssetWebAppList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppListResponse {
-        let input = DescribeAssetWebAppListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
-        return try await self.client.execute(action: "DescribeAssetWebAppList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetWebAppList(.init(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理Web应用列表

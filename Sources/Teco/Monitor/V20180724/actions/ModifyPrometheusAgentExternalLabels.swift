@@ -64,14 +64,12 @@ extension Monitor {
     /// 修改被关联集群的external labels
     @inlinable @discardableResult
     public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAgentExternalLabelsResponse> {
-        let input = ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels)
-        return self.client.execute(action: "ModifyPrometheusAgentExternalLabels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrometheusAgentExternalLabels(.init(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改被关联集群的external labels
     @inlinable @discardableResult
     public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
-        let input = ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels)
-        return try await self.client.execute(action: "ModifyPrometheusAgentExternalLabels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrometheusAgentExternalLabels(.init(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), region: region, logger: logger, on: eventLoop)
     }
 }

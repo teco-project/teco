@@ -123,8 +123,7 @@ extension Smh {
     /// 查询官方云盘实例
     @inlinable
     public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialInstancesResponse> {
-        let input = DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone)
-        return self.client.execute(action: "DescribeOfficialInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOfficialInstances(.init(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例
@@ -132,8 +131,7 @@ extension Smh {
     /// 查询官方云盘实例
     @inlinable
     public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
-        let input = DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone)
-        return try await self.client.execute(action: "DescribeOfficialInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOfficialInstances(.init(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例

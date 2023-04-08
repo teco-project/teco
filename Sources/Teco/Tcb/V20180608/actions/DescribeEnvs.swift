@@ -79,8 +79,7 @@ extension Tcb {
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
     public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvsResponse> {
-        let input = DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels)
-        return self.client.execute(action: "DescribeEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnvs(.init(envId: envId, isVisible: isVisible, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境列表
@@ -88,7 +87,6 @@ extension Tcb {
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
     public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
-        let input = DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels)
-        return try await self.client.execute(action: "DescribeEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnvs(.init(envId: envId, isVisible: isVisible, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

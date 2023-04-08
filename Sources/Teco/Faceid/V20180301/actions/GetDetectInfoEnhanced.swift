@@ -132,8 +132,7 @@ extension Faceid {
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getDetectInfoEnhanced(bizToken: String, ruleId: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, isCutIdCardImage: Bool? = nil, isNeedIdCardAvatar: Bool? = nil, isEncrypt: Bool? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDetectInfoEnhancedResponse> {
-        let input = GetDetectInfoEnhancedRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType, bestFramesCount: bestFramesCount, isCutIdCardImage: isCutIdCardImage, isNeedIdCardAvatar: isNeedIdCardAvatar, isEncrypt: isEncrypt, encryption: encryption)
-        return self.client.execute(action: "GetDetectInfoEnhanced", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDetectInfoEnhanced(.init(bizToken: bizToken, ruleId: ruleId, infoType: infoType, bestFramesCount: bestFramesCount, isCutIdCardImage: isCutIdCardImage, isNeedIdCardAvatar: isNeedIdCardAvatar, isEncrypt: isEncrypt, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实名核身结果信息增强版
@@ -141,7 +140,6 @@ extension Faceid {
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getDetectInfoEnhanced(bizToken: String, ruleId: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, isCutIdCardImage: Bool? = nil, isNeedIdCardAvatar: Bool? = nil, isEncrypt: Bool? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoEnhancedResponse {
-        let input = GetDetectInfoEnhancedRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType, bestFramesCount: bestFramesCount, isCutIdCardImage: isCutIdCardImage, isNeedIdCardAvatar: isNeedIdCardAvatar, isEncrypt: isEncrypt, encryption: encryption)
-        return try await self.client.execute(action: "GetDetectInfoEnhanced", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDetectInfoEnhanced(.init(bizToken: bizToken, ruleId: ruleId, infoType: infoType, bestFramesCount: bestFramesCount, isCutIdCardImage: isCutIdCardImage, isNeedIdCardAvatar: isNeedIdCardAvatar, isEncrypt: isEncrypt, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

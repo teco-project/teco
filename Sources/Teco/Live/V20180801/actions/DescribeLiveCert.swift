@@ -58,14 +58,12 @@ extension Live {
     /// 获取证书信息
     @inlinable
     public func describeLiveCert(certId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
-        let input = DescribeLiveCertRequest(certId: certId)
-        return self.client.execute(action: "DescribeLiveCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveCert(.init(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书信息
     @inlinable
     public func describeLiveCert(certId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
-        let input = DescribeLiveCertRequest(certId: certId)
-        return try await self.client.execute(action: "DescribeLiveCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveCert(.init(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

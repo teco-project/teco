@@ -73,8 +73,7 @@ extension Cfs {
     /// 本接口（UpdateCfsFileSystemPGroup）用于更新文件系统所使用的权限组
     @inlinable
     public func updateCfsFileSystemPGroup(pGroupId: String, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsFileSystemPGroupResponse> {
-        let input = UpdateCfsFileSystemPGroupRequest(pGroupId: pGroupId, fileSystemId: fileSystemId)
-        return self.client.execute(action: "UpdateCfsFileSystemPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateCfsFileSystemPGroup(.init(pGroupId: pGroupId, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新文件系统的权限组
@@ -82,7 +81,6 @@ extension Cfs {
     /// 本接口（UpdateCfsFileSystemPGroup）用于更新文件系统所使用的权限组
     @inlinable
     public func updateCfsFileSystemPGroup(pGroupId: String, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemPGroupResponse {
-        let input = UpdateCfsFileSystemPGroupRequest(pGroupId: pGroupId, fileSystemId: fileSystemId)
-        return try await self.client.execute(action: "UpdateCfsFileSystemPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateCfsFileSystemPGroup(.init(pGroupId: pGroupId, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -124,8 +124,7 @@ extension Lighthouse {
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
     public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
-        let input = DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones)
-        return self.client.execute(action: "DescribeBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBundles(.init(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐
@@ -133,8 +132,7 @@ extension Lighthouse {
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
     public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
-        let input = DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones)
-        return try await self.client.execute(action: "DescribeBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBundles(.init(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐

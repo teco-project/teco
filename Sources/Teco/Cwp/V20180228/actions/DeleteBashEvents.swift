@@ -60,8 +60,7 @@ extension Cwp {
     /// 根据Ids删除高危命令事件
     @inlinable @discardableResult
     public func deleteBashEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashEventsResponse> {
-        let input = DeleteBashEventsRequest(ids: ids)
-        return self.client.execute(action: "DeleteBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBashEvents(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除高危命令事件
@@ -69,7 +68,6 @@ extension Cwp {
     /// 根据Ids删除高危命令事件
     @inlinable @discardableResult
     public func deleteBashEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
-        let input = DeleteBashEventsRequest(ids: ids)
-        return try await self.client.execute(action: "DeleteBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBashEvents(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Monitor {
     /// SSO单点登录时，设置是否cam鉴权
     @inlinable @discardableResult
     public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSSOCamCheckResponse> {
-        let input = EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck)
-        return self.client.execute(action: "EnableSSOCamCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableSSOCamCheck(.init(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置SSO登录是否鉴权
@@ -74,7 +73,6 @@ extension Monitor {
     /// SSO单点登录时，设置是否cam鉴权
     @inlinable @discardableResult
     public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
-        let input = EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck)
-        return try await self.client.execute(action: "EnableSSOCamCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableSSOCamCheck(.init(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), region: region, logger: logger, on: eventLoop)
     }
 }

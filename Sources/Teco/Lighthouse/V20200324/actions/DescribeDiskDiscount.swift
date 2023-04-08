@@ -78,8 +78,7 @@ extension Lighthouse {
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
     public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskDiscountResponse> {
-        let input = DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota)
-        return self.client.execute(action: "DescribeDiskDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDiskDiscount(.init(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘折扣信息
@@ -87,7 +86,6 @@ extension Lighthouse {
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
     public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
-        let input = DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota)
-        return try await self.client.execute(action: "DescribeDiskDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDiskDiscount(.init(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

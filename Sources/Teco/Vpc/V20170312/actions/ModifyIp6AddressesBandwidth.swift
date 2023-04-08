@@ -74,8 +74,7 @@ extension Vpc {
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
     public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6AddressesBandwidthResponse> {
-        let input = ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds)
-        return self.client.execute(action: "ModifyIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyIp6AddressesBandwidth(.init(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改IPV6访问internet的带宽
@@ -83,7 +82,6 @@ extension Vpc {
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
     public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
-        let input = ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds)
-        return try await self.client.execute(action: "ModifyIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyIp6AddressesBandwidth(.init(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
     }
 }

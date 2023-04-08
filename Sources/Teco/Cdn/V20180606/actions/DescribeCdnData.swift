@@ -239,8 +239,7 @@ extension Cdn {
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
     public func describeCdnData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, isp: Int64? = nil, district: Int64? = nil, protocol: String? = nil, dataSource: String? = nil, ipProtocol: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnDataResponse> {
-        let input = DescribeCdnDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, isp: isp, district: district, protocol: `protocol`, dataSource: dataSource, ipProtocol: ipProtocol, area: area, areaType: areaType, product: product, timeZone: timeZone)
-        return self.client.execute(action: "DescribeCdnData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCdnData(.init(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, isp: isp, district: district, protocol: `protocol`, dataSource: dataSource, ipProtocol: ipProtocol, area: area, areaType: areaType, product: product, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 访问数据查询
@@ -260,7 +259,6 @@ extension Cdn {
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
     public func describeCdnData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, isp: Int64? = nil, district: Int64? = nil, protocol: String? = nil, dataSource: String? = nil, ipProtocol: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDataResponse {
-        let input = DescribeCdnDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, isp: isp, district: district, protocol: `protocol`, dataSource: dataSource, ipProtocol: ipProtocol, area: area, areaType: areaType, product: product, timeZone: timeZone)
-        return try await self.client.execute(action: "DescribeCdnData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCdnData(.init(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, isp: isp, district: district, protocol: `protocol`, dataSource: dataSource, ipProtocol: ipProtocol, area: area, areaType: areaType, product: product, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

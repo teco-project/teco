@@ -75,8 +75,7 @@ extension Tcr {
     /// 为一个镜像版本创建签名
     @inlinable @discardableResult
     public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
-        let input = CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion)
-        return self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSignature(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像签名
@@ -84,7 +83,6 @@ extension Tcr {
     /// 为一个镜像版本创建签名
     @inlinable @discardableResult
     public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
-        let input = CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion)
-        return try await self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSignature(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Redis {
     /// 关闭SSL
     @inlinable
     public func closeSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
-        let input = CloseSSLRequest(instanceId: instanceId)
-        return self.client.execute(action: "CloseSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeSSL(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭SSL
     @inlinable
     public func closeSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
-        let input = CloseSSLRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CloseSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeSSL(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

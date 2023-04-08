@@ -134,8 +134,7 @@ extension Live {
     /// 推流计费会先取全球推流用量和全球播放用量进行比较，满足计费条件后再按各地区用量出账。详情参见[计费文档](https://cloud.tencent.com/document/product/267/34175)。
     @inlinable
     public func describePushBandwidthAndFluxList(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, regionNames: [String]? = nil, countryNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushBandwidthAndFluxListResponse> {
-        let input = DescribePushBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, regionNames: regionNames, countryNames: countryNames)
-        return self.client.execute(action: "DescribePushBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePushBandwidthAndFluxList(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, regionNames: regionNames, countryNames: countryNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播推流带宽和流量数据查询
@@ -144,7 +143,6 @@ extension Live {
     /// 推流计费会先取全球推流用量和全球播放用量进行比较，满足计费条件后再按各地区用量出账。详情参见[计费文档](https://cloud.tencent.com/document/product/267/34175)。
     @inlinable
     public func describePushBandwidthAndFluxList(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, regionNames: [String]? = nil, countryNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushBandwidthAndFluxListResponse {
-        let input = DescribePushBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, regionNames: regionNames, countryNames: countryNames)
-        return try await self.client.execute(action: "DescribePushBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePushBandwidthAndFluxList(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, regionNames: regionNames, countryNames: countryNames), region: region, logger: logger, on: eventLoop)
     }
 }

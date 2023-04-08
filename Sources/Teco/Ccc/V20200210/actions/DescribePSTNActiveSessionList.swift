@@ -98,8 +98,7 @@ extension Ccc {
     /// 获取当前正在通话的会话列表
     @inlinable
     public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePSTNActiveSessionListResponse> {
-        let input = DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePSTNActiveSessionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePSTNActiveSessionList(.init(sdkAppId: sdkAppId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 活动会话列表
@@ -107,8 +106,7 @@ extension Ccc {
     /// 获取当前正在通话的会话列表
     @inlinable
     public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
-        let input = DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePSTNActiveSessionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePSTNActiveSessionList(.init(sdkAppId: sdkAppId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 活动会话列表

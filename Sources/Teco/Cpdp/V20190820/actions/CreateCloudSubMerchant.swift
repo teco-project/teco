@@ -118,8 +118,7 @@ extension Cpdp {
     /// 创建子商户
     @inlinable
     public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudSubMerchantResponse> {
-        let input = CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId)
-        return self.client.execute(action: "CreateCloudSubMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCloudSubMerchant(.init(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-创建子商户
@@ -127,7 +126,6 @@ extension Cpdp {
     /// 创建子商户
     @inlinable
     public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
-        let input = CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId)
-        return try await self.client.execute(action: "CreateCloudSubMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCloudSubMerchant(.init(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 }

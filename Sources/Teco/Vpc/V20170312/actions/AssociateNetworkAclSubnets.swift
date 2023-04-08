@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
     @inlinable @discardableResult
     public func associateNetworkAclSubnets(networkAclId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNetworkAclSubnetsResponse> {
-        let input = AssociateNetworkAclSubnetsRequest(networkAclId: networkAclId, subnetIds: subnetIds)
-        return self.client.execute(action: "AssociateNetworkAclSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateNetworkAclSubnets(.init(networkAclId: networkAclId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网络ACL关联子网
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
     @inlinable @discardableResult
     public func associateNetworkAclSubnets(networkAclId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkAclSubnetsResponse {
-        let input = AssociateNetworkAclSubnetsRequest(networkAclId: networkAclId, subnetIds: subnetIds)
-        return try await self.client.execute(action: "AssociateNetworkAclSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateNetworkAclSubnets(.init(networkAclId: networkAclId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 }

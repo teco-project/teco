@@ -68,8 +68,7 @@ extension Wedata {
     /// 删除数据源
     @inlinable
     public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
-        let input = DeleteDataSourcesRequest(ids: ids)
-        return self.client.execute(action: "DeleteDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDataSources(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-删除数据源【Beta版本】
@@ -78,7 +77,6 @@ extension Wedata {
     /// 删除数据源
     @inlinable
     public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
-        let input = DeleteDataSourcesRequest(ids: ids)
-        return try await self.client.execute(action: "DeleteDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDataSources(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

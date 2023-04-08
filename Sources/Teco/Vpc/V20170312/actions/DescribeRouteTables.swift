@@ -89,8 +89,7 @@ extension Vpc {
     /// 本接口（DescribeRouteTables）用于查询路由表。
     @inlinable
     public func describeRouteTables(filters: [Filter]? = nil, routeTableIds: [String]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteTablesResponse> {
-        let input = DescribeRouteTablesRequest(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeRouteTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRouteTables(.init(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询路由列表
@@ -98,7 +97,6 @@ extension Vpc {
     /// 本接口（DescribeRouteTables）用于查询路由表。
     @inlinable
     public func describeRouteTables(filters: [Filter]? = nil, routeTableIds: [String]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
-        let input = DescribeRouteTablesRequest(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeRouteTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRouteTables(.init(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

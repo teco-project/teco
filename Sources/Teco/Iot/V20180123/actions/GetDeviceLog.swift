@@ -116,8 +116,7 @@ extension Iot {
     /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
     @inlinable
     public func getDeviceLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLogResponse> {
-        let input = GetDeviceLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type)
-        return self.client.execute(action: "GetDeviceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDeviceLog(.init(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备日志
@@ -125,7 +124,6 @@ extension Iot {
     /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
     @inlinable
     public func getDeviceLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLogResponse {
-        let input = GetDeviceLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type)
-        return try await self.client.execute(action: "GetDeviceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDeviceLog(.init(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

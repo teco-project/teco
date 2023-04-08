@@ -70,8 +70,7 @@ extension Live {
     /// 恢复某条流的推流。
     @inlinable @discardableResult
     public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
-        let input = ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName)
-        return self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resumeLiveStream(.init(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复直播推流
@@ -79,7 +78,6 @@ extension Live {
     /// 恢复某条流的推流。
     @inlinable @discardableResult
     public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
-        let input = ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName)
-        return try await self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resumeLiveStream(.init(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -73,14 +73,12 @@ extension Wedata {
     /// 离线任务实例详情
     @inlinable
     public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceResponse> {
-        let input = DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate)
-        return self.client.execute(action: "DescribeTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskInstance(.init(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 离线任务实例详情
     @inlinable
     public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
-        let input = DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate)
-        return try await self.client.execute(action: "DescribeTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskInstance(.init(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 }

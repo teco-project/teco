@@ -133,8 +133,7 @@ extension Dbdc {
     /// 根据不同地域不同用户，获取集群列表信息
     @inlinable
     public func describeInstances(instanceTypes: [Int64]? = nil, productIds: [Int64]? = nil, instanceIds: [String]? = nil, fenceFlag: Bool? = nil, instanceName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, instanceStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        let input = DescribeInstancesRequest(instanceTypes: instanceTypes, productIds: productIds, instanceIds: instanceIds, fenceFlag: fenceFlag, instanceName: instanceName, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType, instanceStatus: instanceStatus)
-        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstances(.init(instanceTypes: instanceTypes, productIds: productIds, instanceIds: instanceIds, fenceFlag: fenceFlag, instanceName: instanceName, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType, instanceStatus: instanceStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独享集群列表
@@ -142,8 +141,7 @@ extension Dbdc {
     /// 根据不同地域不同用户，获取集群列表信息
     @inlinable
     public func describeInstances(instanceTypes: [Int64]? = nil, productIds: [Int64]? = nil, instanceIds: [String]? = nil, fenceFlag: Bool? = nil, instanceName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, instanceStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        let input = DescribeInstancesRequest(instanceTypes: instanceTypes, productIds: productIds, instanceIds: instanceIds, fenceFlag: fenceFlag, instanceName: instanceName, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType, instanceStatus: instanceStatus)
-        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstances(.init(instanceTypes: instanceTypes, productIds: productIds, instanceIds: instanceIds, fenceFlag: fenceFlag, instanceName: instanceName, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType, instanceStatus: instanceStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独享集群列表

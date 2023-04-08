@@ -54,14 +54,12 @@ extension Tione {
     /// 停止训练任务
     @inlinable @discardableResult
     public func stopTrainingJob(trainingJobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingJobResponse> {
-        let input = StopTrainingJobRequest(trainingJobName: trainingJobName)
-        return self.client.execute(action: "StopTrainingJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopTrainingJob(.init(trainingJobName: trainingJobName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止训练任务
     @inlinable @discardableResult
     public func stopTrainingJob(trainingJobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingJobResponse {
-        let input = StopTrainingJobRequest(trainingJobName: trainingJobName)
-        return try await self.client.execute(action: "StopTrainingJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopTrainingJob(.init(trainingJobName: trainingJobName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Iot {
     /// 为APP提供用户注册功能
     @inlinable
     public func appAddUser(userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppAddUserResponse> {
-        let input = AppAddUserRequest(userName: userName, password: password)
-        return self.client.execute(action: "AppAddUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appAddUser(.init(userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户注册
@@ -78,7 +77,6 @@ extension Iot {
     /// 为APP提供用户注册功能
     @inlinable
     public func appAddUser(userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppAddUserResponse {
-        let input = AppAddUserRequest(userName: userName, password: password)
-        return try await self.client.execute(action: "AppAddUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appAddUser(.init(userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

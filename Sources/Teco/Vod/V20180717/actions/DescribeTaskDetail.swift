@@ -184,8 +184,7 @@ extension Vod {
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
     @inlinable
     public func describeTaskDetail(taskId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        let input = DescribeTaskDetailRequest(taskId: taskId, subAppId: subAppId)
-        return self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskDetail(.init(taskId: taskId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务详情
@@ -193,7 +192,6 @@ extension Vod {
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
     @inlinable
     public func describeTaskDetail(taskId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        let input = DescribeTaskDetailRequest(taskId: taskId, subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskDetail(.init(taskId: taskId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

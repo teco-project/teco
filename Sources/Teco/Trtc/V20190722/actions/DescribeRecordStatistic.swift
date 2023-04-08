@@ -99,8 +99,7 @@ extension Trtc {
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
     public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStatisticResponse> {
-        let input = DescribeRecordStatisticRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
-        return self.client.execute(action: "DescribeRecordStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordStatistic(.init(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云端录制计费时长（旧）
@@ -113,7 +112,6 @@ extension Trtc {
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
     public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStatisticResponse {
-        let input = DescribeRecordStatisticRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
-        return try await self.client.execute(action: "DescribeRecordStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordStatistic(.init(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

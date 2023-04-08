@@ -99,8 +99,7 @@ extension Ocr {
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
     @inlinable
     public func propOwnerCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PropOwnerCertOCRResponse> {
-        let input = PropOwnerCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "PropOwnerCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.propOwnerCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 房产证识别
@@ -109,7 +108,6 @@ extension Ocr {
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
     @inlinable
     public func propOwnerCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PropOwnerCertOCRResponse {
-        let input = PropOwnerCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "PropOwnerCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.propOwnerCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

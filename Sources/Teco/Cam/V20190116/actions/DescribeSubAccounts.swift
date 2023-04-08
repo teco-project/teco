@@ -58,14 +58,12 @@ extension Cam {
     /// 通过子用户UIN列表查询子用户
     @inlinable
     public func describeSubAccounts(filterSubAccountUin: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAccountsResponse> {
-        let input = DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin)
-        return self.client.execute(action: "DescribeSubAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSubAccounts(.init(filterSubAccountUin: filterSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过子用户UIN列表查询子用户
     @inlinable
     public func describeSubAccounts(filterSubAccountUin: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
-        let input = DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin)
-        return try await self.client.execute(action: "DescribeSubAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSubAccounts(.init(filterSubAccountUin: filterSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 }

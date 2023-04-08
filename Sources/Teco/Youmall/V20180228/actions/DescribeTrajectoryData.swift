@@ -107,14 +107,12 @@ extension Youmall {
     /// 获取动线轨迹信息
     @inlinable
     public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrajectoryDataResponse> {
-        let input = DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender)
-        return self.client.execute(action: "DescribeTrajectoryData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrajectoryData(.init(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取动线轨迹信息
     @inlinable
     public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
-        let input = DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender)
-        return try await self.client.execute(action: "DescribeTrajectoryData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrajectoryData(.init(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 }

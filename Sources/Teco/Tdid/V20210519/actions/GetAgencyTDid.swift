@@ -51,29 +51,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
-        self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetAgencyTDid is no longer available.")
     }
 
     /// 本机构DID详情
     @available(*, unavailable, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
-        try await self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetAgencyTDid is no longer available.")
     }
 
     /// 本机构DID详情
     @available(*, unavailable, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
-        let input = GetAgencyTDidRequest(clusterId: clusterId)
-        return self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetAgencyTDid is no longer available.")
     }
 
     /// 本机构DID详情
     @available(*, unavailable, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
-        let input = GetAgencyTDidRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetAgencyTDid is no longer available.")
     }
 }

@@ -95,8 +95,7 @@ extension Postgres {
     /// 本接口（DescribeParameterTemplateAttributes）用于查询某个参数模板的具体内容，包括基本信息和参数信息。
     @inlinable
     public func describeParameterTemplateAttributes(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParameterTemplateAttributesResponse> {
-        let input = DescribeParameterTemplateAttributesRequest(templateId: templateId)
-        return self.client.execute(action: "DescribeParameterTemplateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeParameterTemplateAttributes(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板详情
@@ -104,7 +103,6 @@ extension Postgres {
     /// 本接口（DescribeParameterTemplateAttributes）用于查询某个参数模板的具体内容，包括基本信息和参数信息。
     @inlinable
     public func describeParameterTemplateAttributes(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParameterTemplateAttributesResponse {
-        let input = DescribeParameterTemplateAttributesRequest(templateId: templateId)
-        return try await self.client.execute(action: "DescribeParameterTemplateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeParameterTemplateAttributes(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -90,8 +90,7 @@ extension Cam {
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
     public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
-        let input = CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags)
-        return self.client.execute(action: "CreateRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRole(.init(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建角色
@@ -99,7 +98,6 @@ extension Cam {
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
     public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
-        let input = CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags)
-        return try await self.client.execute(action: "CreateRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRole(.init(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

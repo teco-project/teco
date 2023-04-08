@@ -64,14 +64,12 @@ extension Live {
     /// 删除水印规则
     @inlinable @discardableResult
     public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkRuleResponse> {
-        let input = DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return self.client.execute(action: "DeleteLiveWatermarkRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveWatermarkRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除水印规则
     @inlinable @discardableResult
     public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkRuleResponse {
-        let input = DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return try await self.client.execute(action: "DeleteLiveWatermarkRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveWatermarkRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

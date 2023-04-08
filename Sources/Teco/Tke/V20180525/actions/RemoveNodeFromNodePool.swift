@@ -70,8 +70,7 @@ extension Tke {
     /// 移出节点池节点，但保留在集群内
     @inlinable @discardableResult
     public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
-        let input = RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds)
-        return self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeNodeFromNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移出节点池节点
@@ -79,7 +78,6 @@ extension Tke {
     /// 移出节点池节点，但保留在集群内
     @inlinable @discardableResult
     public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
-        let input = RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeNodeFromNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

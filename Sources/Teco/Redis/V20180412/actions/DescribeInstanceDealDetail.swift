@@ -58,14 +58,12 @@ extension Redis {
     /// 查询订单信息
     @inlinable
     public func describeInstanceDealDetail(dealIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDealDetailResponse> {
-        let input = DescribeInstanceDealDetailRequest(dealIds: dealIds)
-        return self.client.execute(action: "DescribeInstanceDealDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceDealDetail(.init(dealIds: dealIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
     @inlinable
     public func describeInstanceDealDetail(dealIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
-        let input = DescribeInstanceDealDetailRequest(dealIds: dealIds)
-        return try await self.client.execute(action: "DescribeInstanceDealDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceDealDetail(.init(dealIds: dealIds), region: region, logger: logger, on: eventLoop)
     }
 }

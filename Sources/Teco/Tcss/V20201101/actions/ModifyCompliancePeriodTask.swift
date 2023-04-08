@@ -70,8 +70,7 @@ extension Tcss {
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable @discardableResult
     public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
-        let input = ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings)
-        return self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCompliancePeriodTask(.init(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规编辑定时任务
@@ -79,7 +78,6 @@ extension Tcss {
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable @discardableResult
     public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
-        let input = ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings)
-        return try await self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCompliancePeriodTask(.init(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }
 }

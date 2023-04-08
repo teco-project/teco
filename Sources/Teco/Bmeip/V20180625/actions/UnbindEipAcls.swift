@@ -54,14 +54,12 @@ extension Bmeip {
     /// 解绑弹性公网IP ACL
     @inlinable @discardableResult
     public func unbindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEipAclsResponse> {
-        let input = UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList)
-        return self.client.execute(action: "UnbindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindEipAcls(.init(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑弹性公网IP ACL
     @inlinable @discardableResult
     public func unbindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
-        let input = UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList)
-        return try await self.client.execute(action: "UnbindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindEipAcls(.init(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
 }

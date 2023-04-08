@@ -58,14 +58,12 @@ extension Tcb {
     /// 描述扩展上传文件信息
     @inlinable
     public func describeExtensionUploadInfo(extensionFiles: [ExtensionFile], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionUploadInfoResponse> {
-        let input = DescribeExtensionUploadInfoRequest(extensionFiles: extensionFiles)
-        return self.client.execute(action: "DescribeExtensionUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExtensionUploadInfo(.init(extensionFiles: extensionFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述扩展上传文件信息
     @inlinable
     public func describeExtensionUploadInfo(extensionFiles: [ExtensionFile], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionUploadInfoResponse {
-        let input = DescribeExtensionUploadInfoRequest(extensionFiles: extensionFiles)
-        return try await self.client.execute(action: "DescribeExtensionUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExtensionUploadInfo(.init(extensionFiles: extensionFiles), region: region, logger: logger, on: eventLoop)
     }
 }

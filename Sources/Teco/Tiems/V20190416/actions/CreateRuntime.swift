@@ -67,29 +67,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRuntime(_ input: CreateRuntimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuntimeResponse> {
-        self.client.execute(action: "CreateRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateRuntime is no longer available.")
     }
 
     /// 创建运行环境
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRuntime(_ input: CreateRuntimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuntimeResponse {
-        try await self.client.execute(action: "CreateRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateRuntime is no longer available.")
     }
 
     /// 创建运行环境
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRuntime(name: String, image: String, framework: String? = nil, description: String? = nil, healthCheckOn: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuntimeResponse> {
-        let input = CreateRuntimeRequest(name: name, image: image, framework: framework, description: description, healthCheckOn: healthCheckOn)
-        return self.client.execute(action: "CreateRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateRuntime is no longer available.")
     }
 
     /// 创建运行环境
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRuntime(name: String, image: String, framework: String? = nil, description: String? = nil, healthCheckOn: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuntimeResponse {
-        let input = CreateRuntimeRequest(name: name, image: image, framework: framework, description: description, healthCheckOn: healthCheckOn)
-        return try await self.client.execute(action: "CreateRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateRuntime is no longer available.")
     }
 }

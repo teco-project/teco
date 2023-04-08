@@ -130,8 +130,7 @@ extension Cdn {
     /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
     @inlinable
     public func getDisableRecords(url: String? = nil, startTime: Date? = nil, endTime: Date? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDisableRecordsResponse> {
-        let input = GetDisableRecordsRequest(url: url, startTime: startTime, endTime: endTime, status: status, offset: offset, limit: limit, taskId: taskId)
-        return self.client.execute(action: "GetDisableRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDisableRecords(.init(url: url, startTime: startTime, endTime: endTime, status: status, offset: offset, limit: limit, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用历史查询
@@ -139,8 +138,7 @@ extension Cdn {
     /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
     @inlinable
     public func getDisableRecords(url: String? = nil, startTime: Date? = nil, endTime: Date? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDisableRecordsResponse {
-        let input = GetDisableRecordsRequest(url: url, startTime: startTime, endTime: endTime, status: status, offset: offset, limit: limit, taskId: taskId)
-        return try await self.client.execute(action: "GetDisableRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDisableRecords(.init(url: url, startTime: startTime, endTime: endTime, status: status, offset: offset, limit: limit, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用历史查询

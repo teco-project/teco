@@ -100,8 +100,7 @@ extension Ivld {
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
     public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPersonResponse> {
-        let input = CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image)
-        return self.client.execute(action: "CreateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCustomPerson(.init(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物
@@ -113,7 +112,6 @@ extension Ivld {
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
     public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
-        let input = CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image)
-        return try await self.client.execute(action: "CreateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCustomPerson(.init(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 }

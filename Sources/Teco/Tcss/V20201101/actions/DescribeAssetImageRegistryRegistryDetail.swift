@@ -98,14 +98,12 @@ extension Tcss {
     /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(registryId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryRegistryDetailResponse> {
-        let input = DescribeAssetImageRegistryRegistryDetailRequest(registryId: registryId)
-        return self.client.execute(action: "DescribeAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRegistryRegistryDetail(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(registryId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryDetailResponse {
-        let input = DescribeAssetImageRegistryRegistryDetailRequest(registryId: registryId)
-        return try await self.client.execute(action: "DescribeAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRegistryRegistryDetail(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

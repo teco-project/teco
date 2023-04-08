@@ -65,8 +65,7 @@ extension Cdb {
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
     public func startReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartReplicationResponse> {
-        let input = StartReplicationRequest(instanceId: instanceId)
-        return self.client.execute(action: "StartReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startReplication(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启复制
@@ -74,7 +73,6 @@ extension Cdb {
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
     public func startReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
-        let input = StartReplicationRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "StartReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startReplication(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,14 +74,12 @@ extension Cloudstudio {
     /// 修改工作空间的名称和描述
     @inlinable @discardableResult
     public func modifyWorkspaceAttributes(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkspaceAttributesResponse> {
-        let input = ModifyWorkspaceAttributesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, workspaceId: workspaceId, name: name, description: description, priceId: priceId)
-        return self.client.execute(action: "ModifyWorkspaceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyWorkspaceAttributes(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, workspaceId: workspaceId, name: name, description: description, priceId: priceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改工作空间的名称和描述
     @inlinable @discardableResult
     public func modifyWorkspaceAttributes(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkspaceAttributesResponse {
-        let input = ModifyWorkspaceAttributesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, workspaceId: workspaceId, name: name, description: description, priceId: priceId)
-        return try await self.client.execute(action: "ModifyWorkspaceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyWorkspaceAttributes(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, workspaceId: workspaceId, name: name, description: description, priceId: priceId), region: region, logger: logger, on: eventLoop)
     }
 }

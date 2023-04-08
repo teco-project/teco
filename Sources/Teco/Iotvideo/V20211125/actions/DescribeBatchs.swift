@@ -92,15 +92,13 @@ extension Iotvideo {
     /// 获取批次列表
     @inlinable
     public func describeBatchs(productId: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchsResponse> {
-        let input = DescribeBatchsRequest(productId: productId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeBatchs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBatchs(.init(productId: productId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取批次列表
     @inlinable
     public func describeBatchs(productId: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchsResponse {
-        let input = DescribeBatchsRequest(productId: productId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeBatchs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBatchs(.init(productId: productId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取批次列表

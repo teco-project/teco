@@ -73,8 +73,7 @@ extension Cfs {
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
     public func deleteCfsRule(pGroupId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
-        let input = DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId)
-        return self.client.execute(action: "DeleteCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCfsRule(.init(pGroupId: pGroupId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除权限组规则
@@ -82,7 +81,6 @@ extension Cfs {
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
     public func deleteCfsRule(pGroupId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
-        let input = DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId)
-        return try await self.client.execute(action: "DeleteCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCfsRule(.init(pGroupId: pGroupId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

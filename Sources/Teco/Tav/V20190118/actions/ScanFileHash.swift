@@ -89,8 +89,7 @@ extension Tav {
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
     public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
-        let input = ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel)
-        return self.client.execute(action: "ScanFileHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.scanFileHash(.init(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 公有云查
@@ -98,7 +97,6 @@ extension Tav {
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
     public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
-        let input = ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel)
-        return try await self.client.execute(action: "ScanFileHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.scanFileHash(.init(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Cdc {
     /// 查询专用集群支持的实例规格列表
     @inlinable
     public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterInstanceTypesResponse> {
-        let input = DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId)
-        return self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDedicatedClusterInstanceTypes(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群支持的实例规格列表
     @inlinable
     public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
-        let input = DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId)
-        return try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDedicatedClusterInstanceTypes(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

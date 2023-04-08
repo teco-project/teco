@@ -69,8 +69,7 @@ extension Cfw {
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
     public func describeResourceGroup(queryType: String, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
-        let input = DescribeResourceGroupRequest(queryType: queryType, groupId: groupId)
-        return self.client.execute(action: "DescribeResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceGroup(.init(queryType: queryType, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询
@@ -78,7 +77,6 @@ extension Cfw {
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
     public func describeResourceGroup(queryType: String, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
-        let input = DescribeResourceGroupRequest(queryType: queryType, groupId: groupId)
-        return try await self.client.execute(action: "DescribeResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceGroup(.init(queryType: queryType, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

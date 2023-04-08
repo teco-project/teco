@@ -109,8 +109,7 @@ extension Faceid {
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
     public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
-        let input = BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption)
-        return self.client.execute(action: "BankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bankCardVerification(.init(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 银行卡三要素核验
@@ -118,7 +117,6 @@ extension Faceid {
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
     public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
-        let input = BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption)
-        return try await self.client.execute(action: "BankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bankCardVerification(.init(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

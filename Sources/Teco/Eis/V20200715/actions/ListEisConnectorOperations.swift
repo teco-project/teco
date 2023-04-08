@@ -63,14 +63,12 @@ extension Eis {
     /// 获取连接器操作列表
     @inlinable
     public func listEisConnectorOperations(connectorName: String, connectorVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEisConnectorOperationsResponse> {
-        let input = ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion)
-        return self.client.execute(action: "ListEisConnectorOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listEisConnectorOperations(.init(connectorName: connectorName, connectorVersion: connectorVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取连接器操作列表
     @inlinable
     public func listEisConnectorOperations(connectorName: String, connectorVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
-        let input = ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion)
-        return try await self.client.execute(action: "ListEisConnectorOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listEisConnectorOperations(.init(connectorName: connectorName, connectorVersion: connectorVersion), region: region, logger: logger, on: eventLoop)
     }
 }

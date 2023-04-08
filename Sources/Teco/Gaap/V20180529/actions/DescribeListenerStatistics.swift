@@ -96,8 +96,7 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300秒, 3600秒和86400秒的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeListenerStatistics(listenerId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenerStatisticsResponse> {
-        let input = DescribeListenerStatisticsRequest(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity)
-        return self.client.execute(action: "DescribeListenerStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeListenerStatistics(.init(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询监听器统计数据
@@ -105,7 +104,6 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300秒, 3600秒和86400秒的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeListenerStatistics(listenerId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerStatisticsResponse {
-        let input = DescribeListenerStatisticsRequest(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity)
-        return try await self.client.execute(action: "DescribeListenerStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeListenerStatistics(.init(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 }

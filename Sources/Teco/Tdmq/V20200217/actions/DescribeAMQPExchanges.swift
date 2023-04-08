@@ -112,15 +112,13 @@ extension Tdmq {
     /// 获取AMQP Exchange列表
     @inlinable
     public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPExchangesResponse> {
-        let input = DescribeAMQPExchangesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal)
-        return self.client.execute(action: "DescribeAMQPExchanges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAMQPExchanges(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取AMQP Exchange列表
     @inlinable
     public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
-        let input = DescribeAMQPExchangesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal)
-        return try await self.client.execute(action: "DescribeAMQPExchanges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAMQPExchanges(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取AMQP Exchange列表

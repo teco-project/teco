@@ -64,8 +64,7 @@ extension Ms {
     /// 删除一个或者多个app扫描信息
     @inlinable
     public func deleteScanInstances(appSids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
-        let input = DeleteScanInstancesRequest(appSids: appSids)
-        return self.client.execute(action: "DeleteScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteScanInstances(.init(appSids: appSids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app扫描信息
@@ -73,7 +72,6 @@ extension Ms {
     /// 删除一个或者多个app扫描信息
     @inlinable
     public func deleteScanInstances(appSids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
-        let input = DeleteScanInstancesRequest(appSids: appSids)
-        return try await self.client.execute(action: "DeleteScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteScanInstances(.init(appSids: appSids), region: region, logger: logger, on: eventLoop)
     }
 }

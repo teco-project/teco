@@ -100,8 +100,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
     public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
-        let input = CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType)
-        return self.client.execute(action: "CheckMobileVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkMobileVerification(.init(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验
@@ -109,7 +108,6 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
     public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
-        let input = CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType)
-        return try await self.client.execute(action: "CheckMobileVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkMobileVerification(.init(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 }

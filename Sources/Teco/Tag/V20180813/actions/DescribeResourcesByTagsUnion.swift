@@ -125,15 +125,13 @@ extension Tag {
     /// 通过标签查询资源列表并集
     @inlinable
     public func describeResourcesByTagsUnion(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagsUnionResponse> {
-        let input = DescribeResourcesByTagsUnionRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
-        return self.client.execute(action: "DescribeResourcesByTagsUnion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourcesByTagsUnion(.init(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过标签查询资源列表并集
     @inlinable
     public func describeResourcesByTagsUnion(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsUnionResponse {
-        let input = DescribeResourcesByTagsUnionRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
-        return try await self.client.execute(action: "DescribeResourcesByTagsUnion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourcesByTagsUnion(.init(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过标签查询资源列表并集
