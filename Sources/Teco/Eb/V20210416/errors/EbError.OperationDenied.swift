@@ -57,10 +57,12 @@ extension TCEbError {
             OperationDenied(.defaultCLSResourceUnsupported)
         }
 
+        /// 不支持操作当前ES版本。
         public static var esVersionUnsupported: OperationDenied {
             OperationDenied(.esVersionUnsupported)
         }
 
+        /// 技术架构升级，该资源临时锁定中，预计持续3~5分钟，事件推送流程无影响。
         public static var eventBusResourceIsLocked: OperationDenied {
             OperationDenied(.eventBusResourceIsLocked)
         }

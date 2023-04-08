@@ -75,6 +75,7 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_ZoneBindForwardRule = "ResourceInUse.ZoneBindForwardRule"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_Balance = "ResourceInsufficient.Balance"
         case resourceNotFound = "ResourceNotFound"
@@ -95,7 +96,7 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
 
     /// Error domains affliated to ``TCPrivatednsError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -157,6 +158,8 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         TCPrivatednsError(.failedOperation_CreateZoneFailed)
     }
 
+    /// 数据异常。
+    ///
     /// 数据异常，联系后台处理。
     public static var failedOperation_DataError: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_DataError)
@@ -167,6 +170,8 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         TCPrivatednsError(.failedOperation_DeleteLastBindVpcRecordFailed)
     }
 
+    /// 记录删除失败。
+    ///
     /// 其他原因导致删除失败，可能需要联系后台帮忙处理
     public static var failedOperation_DeleteRecordFailed: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_DeleteRecordFailed)
@@ -387,11 +392,19 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         TCPrivatednsError(.resourceInUse)
     }
 
+    /// 当前私有域已转发至其他DNS服务。
+    ///
+    /// 当前私有域已转发至其他DNS服务，如需删除请先解绑规则。
+    public static var resourceInUse_ZoneBindForwardRule: TCPrivatednsError {
+        TCPrivatednsError(.resourceInUse_ZoneBindForwardRule)
+    }
+
     /// 资源不足。
     public static var resourceInsufficient: TCPrivatednsError {
         TCPrivatednsError(.resourceInsufficient)
     }
 
+    /// 余额不足。
     public static var resourceInsufficient_Balance: TCPrivatednsError {
         TCPrivatednsError(.resourceInsufficient_Balance)
     }

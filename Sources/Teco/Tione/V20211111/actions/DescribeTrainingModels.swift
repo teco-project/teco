@@ -21,11 +21,11 @@ extension Tione {
     public struct DescribeTrainingModelsRequest: TCPaginatedRequest {
         /// 过滤器
         /// Filter.Name: 枚举值:
-        ///     keyword (模型名称)
-        ///     TrainingModelId (模型ID)
-        ///     ModelVersionType (模型版本类型) 其值Filter.Values支持: NORMAL(通用) ACCELERATE (加速)
-        ///     TrainingModelSource (模型来源)  其值Filter.Values支持： JOB/COS
-        ///     ModelFormat（模型格式）其值Filter.Values支持：
+        /// keyword (模型名称)
+        /// TrainingModelId (模型ID)
+        /// ModelVersionType (模型版本类型) 其值Filter.Values支持: NORMAL(通用) ACCELERATE (加速)
+        /// TrainingModelSource (模型来源) 其值Filter.Values支持： JOB/COS
+        /// ModelFormat（模型格式）其值Filter.Values支持：
         /// PYTORCH/TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML/MMDETECTION/ONNX/HUGGING_FACE
         /// Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
         /// 每次请求的Filters的上限为10，Filter.Values的上限为100
@@ -47,13 +47,17 @@ extension Tione {
         /// 标签过滤
         public let tagFilters: [TagFilter]?
 
-        public init(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil) {
+        /// 是否同时返回模型版本列表
+        public let withModelVersions: Bool?
+
+        public init(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, withModelVersions: Bool? = nil) {
             self.filters = filters
             self.orderField = orderField
             self.order = order
             self.offset = offset
             self.limit = limit
             self.tagFilters = tagFilters
+            self.withModelVersions = withModelVersions
         }
 
         enum CodingKeys: String, CodingKey {
@@ -63,6 +67,7 @@ extension Tione {
             case offset = "Offset"
             case limit = "Limit"
             case tagFilters = "TagFilters"
+            case withModelVersions = "WithModelVersions"
         }
 
         /// Compute the next request based on API response.
@@ -70,7 +75,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrainingModelsRequest(filters: self.filters, orderField: self.orderField, order: self.order, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters)
+            return DescribeTrainingModelsRequest(filters: self.filters, orderField: self.orderField, order: self.order, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters, withModelVersions: self.withModelVersions)
         }
     }
 
@@ -116,14 +121,14 @@ extension Tione {
 
     /// 模型列表
     @inlinable
-    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelsResponse> {
-        self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, withModelVersions: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelsResponse> {
+        self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters, withModelVersions: withModelVersions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型列表
     @inlinable
-    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
-        try await self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, withModelVersions: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
+        try await self.describeTrainingModels(.init(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters, withModelVersions: withModelVersions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型列表

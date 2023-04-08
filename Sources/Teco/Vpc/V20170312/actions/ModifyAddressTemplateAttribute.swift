@@ -56,7 +56,7 @@ extension Vpc {
 
     /// 修改IP地址模板
     ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板。
     @inlinable @discardableResult
     public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressTemplateAttributeResponse> {
         self.client.execute(action: "ModifyAddressTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -64,7 +64,7 @@ extension Vpc {
 
     /// 修改IP地址模板
     ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板。
     @inlinable @discardableResult
     public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateAttributeResponse {
         try await self.client.execute(action: "ModifyAddressTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -72,7 +72,7 @@ extension Vpc {
 
     /// 修改IP地址模板
     ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板。
     @inlinable @discardableResult
     public func modifyAddressTemplateAttribute(addressTemplateId: String, addressTemplateName: String? = nil, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressTemplateAttributeResponse> {
         self.modifyAddressTemplateAttribute(.init(addressTemplateId: addressTemplateId, addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), region: region, logger: logger, on: eventLoop)
@@ -80,7 +80,7 @@ extension Vpc {
 
     /// 修改IP地址模板
     ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板。
     @inlinable @discardableResult
     public func modifyAddressTemplateAttribute(addressTemplateId: String, addressTemplateName: String? = nil, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateAttributeResponse {
         try await self.modifyAddressTemplateAttribute(.init(addressTemplateId: addressTemplateId, addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), region: region, logger: logger, on: eventLoop)

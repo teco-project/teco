@@ -49,6 +49,7 @@ extension TCCvmError {
             OperationDenied(.chcInstallCloudImageWithoutDeployNetwork)
         }
 
+        /// 禁止管控账号操作。
         public static var innerUserProhibitAction: OperationDenied {
             OperationDenied(.innerUserProhibitAction)
         }

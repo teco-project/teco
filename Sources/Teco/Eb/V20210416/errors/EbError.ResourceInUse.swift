@@ -49,7 +49,7 @@ extension TCEbError {
             ResourceInUse(.defaultEventBus)
         }
 
-        /// 事件集下有规则或者连接器，无法删除，请删除所有规则和连接器后重试。
+        /// 无法删除，因事件集下存在规则、连接器或归档，请删除所有规则、连接器和归档后重试。
         public static var eventBus: ResourceInUse {
             ResourceInUse(.eventBus)
         }

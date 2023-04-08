@@ -44,26 +44,30 @@ extension Tdid {
     }
 
     /// 获取DID服务详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
-        self.client.execute(action: "GetDidServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceDetail is no longer available.")
     }
 
     /// 获取DID服务详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
-        try await self.client.execute(action: "GetDidServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidServiceDetail is no longer available.")
     }
 
     /// 获取DID服务详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceDetail(serviceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
-        self.getDidServiceDetail(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceDetail is no longer available.")
     }
 
     /// 获取DID服务详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceDetail(serviceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
-        try await self.getDidServiceDetail(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceDetail is no longer available.")
     }
 }

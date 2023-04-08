@@ -48,7 +48,8 @@ extension Lighthouse {
         public let displayVersion: String
 
         /// 镜像描述信息。
-        public let description: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
 
         /// 操作系统名称。
         public let osName: String
@@ -102,6 +103,10 @@ extension Lighthouse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneIdSet: [String]?
 
+        /// Docker版本号。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dockerVersion: String?
+
         enum CodingKeys: String, CodingKey {
             case blueprintId = "BlueprintId"
             case displayTitle = "DisplayTitle"
@@ -122,6 +127,7 @@ extension Lighthouse {
             case communityUrl = "CommunityUrl"
             case guideUrl = "GuideUrl"
             case sceneIdSet = "SceneIdSet"
+            case dockerVersion = "DockerVersion"
         }
     }
 
@@ -152,7 +158,7 @@ extension Lighthouse {
         public let originalPrice: Float
 
         /// 折扣。
-        public let discount: Int64
+        public let discount: Float
 
         /// 镜像折扣后总价。单位元。
         public let discountPrice: Float
@@ -386,7 +392,7 @@ extension Lighthouse {
         public let realTotalCost: Float
 
         /// 折扣。
-        public let discount: Int64
+        public let discount: Float
 
         /// 具体折扣详情。
         public let policyDetail: PolicyDetail
@@ -460,10 +466,11 @@ extension Lighthouse {
 
         /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdTime: Date
+        @TCTimestampISO8601Encoding public var createdTime: Date?
 
         /// 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
@@ -1086,7 +1093,7 @@ extension Lighthouse {
         public let originalPrice: Float?
 
         /// 折扣。
-        public let discount: Int64?
+        public let discount: Float?
 
         /// 折后价。
         public let discountPrice: Float?
@@ -1466,10 +1473,11 @@ extension Lighthouse {
         public let latestOperationRequestId: String?
 
         /// 快照的创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdTime: Date
+        @TCTimestampISO8601Encoding public var createdTime: Date?
 
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"

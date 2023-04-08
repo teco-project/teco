@@ -35,6 +35,8 @@ extension TCTkeError {
             case promInstanceNotFound = "InvalidParameter.PromInstanceNotFound"
             case resourceNotFound = "InvalidParameter.ResourceNotFound"
             case routeTableNotEmpty = "InvalidParameter.RouteTableNotEmpty"
+            case subnetInvalidError = "InvalidParameter.SubnetInvalidError"
+            case subnetNotExist = "InvalidParameter.SubnetNotExist"
             case other = "InvalidParameter"
         }
 
@@ -124,6 +126,8 @@ extension TCTkeError {
             InvalidParameter(.invalidPrivateNetworkCIDR)
         }
 
+        /// 镜像OS不支持。
+        ///
         /// 请向腾讯云提工单寻求支持。
         public static var osNotSupport: InvalidParameter {
             InvalidParameter(.osNotSupport)
@@ -152,6 +156,20 @@ extension TCTkeError {
         /// 路由表非空。
         public static var routeTableNotEmpty: InvalidParameter {
             InvalidParameter(.routeTableNotEmpty)
+        }
+
+        /// 子网不合法。
+        ///
+        /// 请更换子网重试。
+        public static var subnetInvalidError: InvalidParameter {
+            InvalidParameter(.subnetInvalidError)
+        }
+
+        /// 子网不存在。
+        ///
+        /// 请检查子网是否存在，或更换子网进行重试。
+        public static var subnetNotExist: InvalidParameter {
+            InvalidParameter(.subnetNotExist)
         }
 
         /// 参数错误。
@@ -198,6 +216,10 @@ extension TCTkeError {
                 code = .invalidParameter_ResourceNotFound
             case .routeTableNotEmpty:
                 code = .invalidParameter_RouteTableNotEmpty
+            case .subnetInvalidError:
+                code = .invalidParameter_SubnetInvalidError
+            case .subnetNotExist:
+                code = .invalidParameter_SubnetNotExist
             case .other:
                 code = .invalidParameter
             }

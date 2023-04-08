@@ -30,6 +30,7 @@ public struct TCMemcachedError: TCMemcachedErrorType {
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
         case missingParameter_EmptyParam = "MissingParameter.EmptyParam"
         case resourceNotFound_AccountDoesNotExists = "ResourceNotFound.AccountDoesNotExists"
+        case resourceNotFound_InstanceNotExists = "ResourceNotFound.InstanceNotExists"
         case unauthorizedOperation_NoCAMAuthed = "UnauthorizedOperation.NoCAMAuthed"
     }
 
@@ -88,6 +89,11 @@ public struct TCMemcachedError: TCMemcachedErrorType {
     /// 未提供有效的账号
     public static var resourceNotFound_AccountDoesNotExists: TCMemcachedError {
         TCMemcachedError(.resourceNotFound_AccountDoesNotExists)
+    }
+
+    /// 请求的实例不存在
+    public static var resourceNotFound_InstanceNotExists: TCMemcachedError {
+        TCMemcachedError(.resourceNotFound_InstanceNotExists)
     }
 
     /// Cam鉴权失败

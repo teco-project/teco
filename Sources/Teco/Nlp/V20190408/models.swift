@@ -48,35 +48,27 @@ extension Nlp {
         public let secondClassName: String?
 
         /// 一级分类概率
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstClassProbability: Float?
 
         /// 二级分类概率
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secondClassProbability: Float?
 
         /// 三级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdClassName: String?
 
         /// 三级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdClassProbability: Float?
 
         /// 四级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fourthClassName: String?
 
         /// 四级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fourthClassProbability: Float?
 
         /// 五级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fifthClassName: String?
 
         /// 五级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fifthClassProbability: Float?
 
         public init(firstClassName: String? = nil, secondClassName: String? = nil, firstClassProbability: Float? = nil, secondClassProbability: Float? = nil, thirdClassName: String? = nil, thirdClassProbability: Float? = nil, fourthClassName: String? = nil, fourthClassProbability: Float? = nil, fifthClassName: String? = nil, fifthClassProbability: Float? = nil) {
@@ -115,15 +107,12 @@ extension Nlp {
         public let id: String
 
         /// 自定义词库描述信息。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
         /// 自定义词库修改时间，形式为:yyyy-mm-dd hh:mm:ss。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
 
         /// 自定义词库创建时间，形式为:yyyy-mm-dd hh:mm:ss。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
 
         public init(name: String, id: String, description: String? = nil, updateTime: String? = nil, createTime: String? = nil) {
@@ -146,19 +135,15 @@ extension Nlp {
     /// 句法依存分析结果，包括基础词，基础词的序号，当前词父节点的序号，句法依存关系的类型
     public struct DpToken: TCInputModel {
         /// 句法依存关系的类型
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relation: String?
 
         /// 当前词父节点的序号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headId: UInt64?
 
         /// 基础词
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let word: String?
 
         /// 基础词的序号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
 
         public init(relation: String? = nil, headId: UInt64? = nil, word: String? = nil, id: UInt64? = nil) {
@@ -248,11 +233,9 @@ extension Nlp {
         public let isExist: UInt64
 
         /// 匹配到的词条文本。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchText: String?
 
         /// 词条的词性。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pos: String?
 
         public init(text: String, isExist: UInt64, matchText: String, pos: String? = nil) {
@@ -298,7 +281,6 @@ extension Nlp {
         public let createTime: String?
 
         /// 词条的词性。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pos: String?
 
         public init(text: String, createTime: String? = nil, pos: String? = nil) {

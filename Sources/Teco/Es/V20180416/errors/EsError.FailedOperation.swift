@@ -98,7 +98,7 @@ extension TCEsError {
             FailedOperation(.unsupportResetNodeTypeAndScaleoutDisk)
         }
 
-        /// 不支持滚动缩容计算资源同时修改磁盘大小。
+        /// 不支持在滚动重启缩容计算资源同时修改磁盘大小
         public static var unsupportResetScaledownAndModifyDisk: FailedOperation {
             FailedOperation(.unsupportResetScaledownAndModifyDisk)
         }

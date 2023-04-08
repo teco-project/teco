@@ -35,10 +35,10 @@ extension Captcha {
         /// 验证码应用密钥。登录 [验证码控制台](https://console.cloud.tencent.com/captcha/graphical)，在验证列表的【密钥】列，即可查看到AppSecretKey。AppSecretKey属于服务器端校验验证码票据的密钥，请妥善保密，请勿泄露给第三方。
         public let appSecretKey: String
 
-        /// 业务 ID，网站或应用在多个业务中使用此服务，通过此 ID 区分统计数据
+        /// 预留字段
         public let businessId: UInt64?
 
-        /// 场景 ID，网站或应用的业务下有多个场景使用此服务，通过此 ID 区分统计数据
+        /// 预留字段
         public let sceneId: UInt64?
 
         /// mac 地址或设备唯一标识
@@ -105,6 +105,13 @@ extension Captcha {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let getCaptchaTime: Int64?
 
+        /// 拦截类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let evilBitmap: Int64?
+
+        /// 提交验证码时间
+        public let submitCaptchaTime: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -113,6 +120,8 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case evilLevel = "EvilLevel"
             case getCaptchaTime = "GetCaptchaTime"
+            case evilBitmap = "EvilBitmap"
+            case submitCaptchaTime = "SubmitCaptchaTime"
             case requestId = "RequestId"
         }
     }

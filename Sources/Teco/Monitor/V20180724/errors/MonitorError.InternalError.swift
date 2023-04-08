@@ -18,12 +18,17 @@ extension TCMonitorError {
     public struct InternalError: TCMonitorErrorType {
         enum Code: String {
             case callbackFail = "InternalError.CallbackFail"
+            case db = "InternalError.Db"
+            case dbRecordNotFound = "InternalError.DbRecordNotFound"
             case dependsApi = "InternalError.DependsApi"
             case dependsDb = "InternalError.DependsDb"
             case dependsMq = "InternalError.DependsMq"
             case exeTimeout = "InternalError.ExeTimeout"
+            case param = "InternalError.Param"
             case system = "InternalError.System"
+            case taskNotFound = "InternalError.TaskNotFound"
             case taskResultFormat = "InternalError.TaskResultFormat"
+            case unexpectedInternal = "InternalError.UnexpectedInternal"
             case other = "InternalError"
         }
 
@@ -54,6 +59,16 @@ extension TCMonitorError {
             InternalError(.callbackFail)
         }
 
+        /// InternalError.Db
+        public static var db: InternalError {
+            InternalError(.db)
+        }
+
+        /// InternalError.DbRecordNotFound
+        public static var dbRecordNotFound: InternalError {
+            InternalError(.dbRecordNotFound)
+        }
+
         /// 依赖的其他api出错。
         public static var dependsApi: InternalError {
             InternalError(.dependsApi)
@@ -74,14 +89,29 @@ extension TCMonitorError {
             InternalError(.exeTimeout)
         }
 
+        /// InternalError.Param
+        public static var param: InternalError {
+            InternalError(.param)
+        }
+
         /// 系统错误。
         public static var system: InternalError {
             InternalError(.system)
         }
 
+        /// InternalError.TaskNotFound
+        public static var taskNotFound: InternalError {
+            InternalError(.taskNotFound)
+        }
+
         /// 任务结果解析错误。
         public static var taskResultFormat: InternalError {
             InternalError(.taskResultFormat)
+        }
+
+        /// InternalError.UnexpectedInternal
+        public static var unexpectedInternal: InternalError {
+            InternalError(.unexpectedInternal)
         }
 
         /// 内部错误。
@@ -94,6 +124,10 @@ extension TCMonitorError {
             switch self.error {
             case .callbackFail:
                 code = .internalError_CallbackFail
+            case .db:
+                code = .internalError_Db
+            case .dbRecordNotFound:
+                code = .internalError_DbRecordNotFound
             case .dependsApi:
                 code = .internalError_DependsApi
             case .dependsDb:
@@ -102,10 +136,16 @@ extension TCMonitorError {
                 code = .internalError_DependsMq
             case .exeTimeout:
                 code = .internalError_ExeTimeout
+            case .param:
+                code = .internalError_Param
             case .system:
                 code = .internalError_System
+            case .taskNotFound:
+                code = .internalError_TaskNotFound
             case .taskResultFormat:
                 code = .internalError_TaskResultFormat
+            case .unexpectedInternal:
+                code = .internalError_UnexpectedInternal
             case .other:
                 code = .internalError
             }

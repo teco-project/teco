@@ -24,6 +24,7 @@ extension Vpc {
         public let endPointId: [String]
 
         /// 是否接受终端节点连接请求。
+        /// <li> true：自动接受。</li> <li> false：不自动接受。</li>
         public let acceptFlag: Bool
 
         public init(endPointServiceId: String, endPointId: [String], acceptFlag: Bool) {
@@ -51,7 +52,7 @@ extension Vpc {
 
     /// 是否接受终端节点连接请求
     ///
-    /// 是否接受终端节点连接请求。
+    /// 本接口（EnableVpcEndPointConnect）用于是否接受终端节点连接请求。
     @inlinable @discardableResult
     public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
         self.client.execute(action: "EnableVpcEndPointConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +60,7 @@ extension Vpc {
 
     /// 是否接受终端节点连接请求
     ///
-    /// 是否接受终端节点连接请求。
+    /// 本接口（EnableVpcEndPointConnect）用于是否接受终端节点连接请求。
     @inlinable @discardableResult
     public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
         try await self.client.execute(action: "EnableVpcEndPointConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +68,7 @@ extension Vpc {
 
     /// 是否接受终端节点连接请求
     ///
-    /// 是否接受终端节点连接请求。
+    /// 本接口（EnableVpcEndPointConnect）用于是否接受终端节点连接请求。
     @inlinable @discardableResult
     public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
         self.enableVpcEndPointConnect(.init(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), region: region, logger: logger, on: eventLoop)
@@ -75,7 +76,7 @@ extension Vpc {
 
     /// 是否接受终端节点连接请求
     ///
-    /// 是否接受终端节点连接请求。
+    /// 本接口（EnableVpcEndPointConnect）用于是否接受终端节点连接请求。
     @inlinable @discardableResult
     public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
         try await self.enableVpcEndPointConnect(.init(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), region: region, logger: logger, on: eventLoop)

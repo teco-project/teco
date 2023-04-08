@@ -83,46 +83,53 @@ extension Tdid {
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidList(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
-        self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidList(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        try await self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
-        self.getDidList(.init(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        try await self.getDidList(.init(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidListPaginated(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [DidData])> {
-        self.client.paginate(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func getDidListPaginated(_ input: GetDidListRequest, region: TCRegion? = nil, onResponse: @escaping (GetDidListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.getDidList, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 
     /// DID列表
     ///
     /// - Returns: `AsyncSequence`s of `DidData` and `GetDidListResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidListPaginator(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDidListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)
+        fatalError("GetDidList is no longer available.")
     }
 }

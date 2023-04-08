@@ -174,7 +174,7 @@ public struct TCFmuError: TCFmuErrorType {
         TCFmuError(.failedOperation_ImageNotSupported)
     }
 
-    /// 图片分辨率过大。
+    /// 图片分辨率过大，超过2000*2000。
     public static var failedOperation_ImageResolutionExceed: TCFmuError {
         TCFmuError(.failedOperation_ImageResolutionExceed)
     }

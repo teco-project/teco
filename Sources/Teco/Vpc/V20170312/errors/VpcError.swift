@@ -57,6 +57,7 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_AddressIpNotFound = "InvalidParameterValue.AddressIpNotFound"
         case invalidParameterValue_AddressIpNotInVpc = "InvalidParameterValue.AddressIpNotInVpc"
         case invalidParameterValue_AddressIpNotPublic = "InvalidParameterValue.AddressIpNotPublic"
+        case invalidParameterValue_AddressIpsNotFound = "InvalidParameterValue.AddressIpsNotFound"
         case invalidParameterValue_AddressNotApplicable = "InvalidParameterValue.AddressNotApplicable"
         case invalidParameterValue_AddressNotCalcIP = "InvalidParameterValue.AddressNotCalcIP"
         case invalidParameterValue_AddressNotEIP = "InvalidParameterValue.AddressNotEIP"
@@ -96,11 +97,16 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_LBAlreadyBindEip = "InvalidParameterValue.LBAlreadyBindEip"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
         case invalidParameterValue_Malformed = "InvalidParameterValue.Malformed"
+        case invalidParameterValue_MemberApprovalApplicationIdMismatch = "InvalidParameterValue.MemberApprovalApplicationIdMismatch"
+        case invalidParameterValue_MemberApprovalApplicationNotApproved = "InvalidParameterValue.MemberApprovalApplicationNotApproved"
+        case invalidParameterValue_MemberApprovalApplicationRejected = "InvalidParameterValue.MemberApprovalApplicationRejected"
+        case invalidParameterValue_MemberApprovalApplicationStarted = "InvalidParameterValue.MemberApprovalApplicationStarted"
         case invalidParameterValue_MissingAssociateEntity = "InvalidParameterValue.MissingAssociateEntity"
         case invalidParameterValue_MixedAddressIpSetType = "InvalidParameterValue.MixedAddressIpSetType"
         case invalidParameterValue_NatGatewayDnatRuleExisted = "InvalidParameterValue.NatGatewayDnatRuleExisted"
         case invalidParameterValue_NatGatewayDnatRuleNotExists = "InvalidParameterValue.NatGatewayDnatRuleNotExists"
         case invalidParameterValue_NatGatewayDnatRulePipNeedVm = "InvalidParameterValue.NatGatewayDnatRulePipNeedVm"
+        case invalidParameterValue_NatGatewayDnatRuleRepeated = "InvalidParameterValue.NatGatewayDnatRuleRepeated"
         case invalidParameterValue_NatGatewaySnatRuleNotExists = "InvalidParameterValue.NatGatewaySnatRuleNotExists"
         case invalidParameterValue_NatSnatRuleExists = "InvalidParameterValue.NatSnatRuleExists"
         case invalidParameterValue_NetDetectInVpc = "InvalidParameterValue.NetDetectInVpc"
@@ -109,6 +115,7 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_NetworkInterfaceIdMalformed = "InvalidParameterValue.NetworkInterfaceIdMalformed"
         case invalidParameterValue_NetworkInterfaceNotFound = "InvalidParameterValue.NetworkInterfaceNotFound"
         case invalidParameterValue_OnlySupportedForMasterNetworkCard = "InvalidParameterValue.OnlySupportedForMasterNetworkCard"
+        case invalidParameterValue_ParameterMismatch = "InvalidParameterValue.ParameterMismatch"
         case invalidParameterValue_Range = "InvalidParameterValue.Range"
         case invalidParameterValue_Reserved = "InvalidParameterValue.Reserved"
         case invalidParameterValue_ResourceAlreadyExisted = "InvalidParameterValue.ResourceAlreadyExisted"
@@ -117,6 +124,7 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_ResourceNotExisted = "InvalidParameterValue.ResourceNotExisted"
         case invalidParameterValue_ResourceNotFound = "InvalidParameterValue.ResourceNotFound"
         case invalidParameterValue_ResourceNotSupport = "InvalidParameterValue.ResourceNotSupport"
+        case invalidParameterValue_SslCcnVpnServerCidrConflict = "InvalidParameterValue.SslCcnVpnServerCidrConflict"
         case invalidParameterValue_SubnetConflict = "InvalidParameterValue.SubnetConflict"
         case invalidParameterValue_SubnetOverlap = "InvalidParameterValue.SubnetOverlap"
         case invalidParameterValue_SubnetOverlapAssistCidr = "InvalidParameterValue.SubnetOverlapAssistCidr"
@@ -141,6 +149,7 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_VpnConnCidrConflict = "InvalidParameterValue.VpnConnCidrConflict"
         case invalidParameterValue_VpnConnHealthCheckIpConflict = "InvalidParameterValue.VpnConnHealthCheckIpConflict"
         case invalidParameterValue_ZoneConflict = "InvalidParameterValue.ZoneConflict"
+        case invalidParameter_AclTypeMismatch = "InvalidParameter.AclTypeMismatch"
         case invalidParameter_Coexist = "InvalidParameter.Coexist"
         case invalidParameter_FilterInvalidKey = "InvalidParameter.FilterInvalidKey"
         case invalidParameter_FilterNotDict = "InvalidParameter.FilterNotDict"
@@ -182,6 +191,7 @@ public struct TCVpcError: TCVpcErrorType {
         case limitExceeded_TagQuota = "LimitExceeded.TagQuota"
         case limitExceeded_TagQuotaExceeded = "LimitExceeded.TagQuotaExceeded"
         case limitExceeded_TagTagsExceeded = "LimitExceeded.TagTagsExceeded"
+        case limitExceeded_TrafficPackageQuota = "LimitExceeded.TrafficPackageQuota"
         case missingParameter = "MissingParameter"
         case operationDenied_AddressInArrears = "OperationDenied.AddressInArrears"
         case operationDenied_MutexTaskRunning = "OperationDenied.MutexTaskRunning"
@@ -203,6 +213,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unknownParameter = "UnknownParameter"
         case unknownParameter_WithGuess = "UnknownParameter.WithGuess"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_AccountNotSupported = "UnsupportedOperation.AccountNotSupported"
         case unsupportedOperation_ActionNotFound = "UnsupportedOperation.ActionNotFound"
         case unsupportedOperation_AddressIpInArrear = "UnsupportedOperation.AddressIpInArrear"
         case unsupportedOperation_AddressIpInternetChargeTypeNotPermit = "UnsupportedOperation.AddressIpInternetChargeTypeNotPermit"
@@ -211,6 +222,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_AddressStatusNotPermit = "UnsupportedOperation.AddressStatusNotPermit"
         case unsupportedOperation_AppIdMismatch = "UnsupportedOperation.AppIdMismatch"
         case unsupportedOperation_AppIdNotFound = "UnsupportedOperation.AppIdNotFound"
+        case unsupportedOperation_AssociatedVpcOfCcnHadNatRoute = "UnsupportedOperation.AssociatedVpcOfCcnHadNatRoute"
         case unsupportedOperation_AttachmentAlreadyExists = "UnsupportedOperation.AttachmentAlreadyExists"
         case unsupportedOperation_AttachmentNotFound = "UnsupportedOperation.AttachmentNotFound"
         case unsupportedOperation_BandwidthNotExpired = "UnsupportedOperation.BandwidthNotExpired"
@@ -225,6 +237,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_CcnRouteTableNotExist = "UnsupportedOperation.CcnRouteTableNotExist"
         case unsupportedOperation_CdcSubnetNotSupportUnLocalGateway = "UnsupportedOperation.CdcSubnetNotSupportUnLocalGateway"
         case unsupportedOperation_ClassicInstanceIdAlreadyExists = "UnsupportedOperation.ClassicInstanceIdAlreadyExists"
+        case unsupportedOperation_ClbPolicyExceedLimit = "UnsupportedOperation.ClbPolicyExceedLimit"
         case unsupportedOperation_ClbPolicyLimit = "UnsupportedOperation.ClbPolicyLimit"
         case unsupportedOperation_ConflictWithDockerRoute = "UnsupportedOperation.ConflictWithDockerRoute"
         case unsupportedOperation_CurrentAccountIsNotUnicomAccount = "UnsupportedOperation.CurrentAccountIsNotUnicomAccount"
@@ -233,8 +246,10 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_DcGatewaysNotFoundInVpc = "UnsupportedOperation.DcGatewaysNotFoundInVpc"
         case unsupportedOperation_DelDefaultRoute = "UnsupportedOperation.DelDefaultRoute"
         case unsupportedOperation_DelRouteWithSubnet = "UnsupportedOperation.DelRouteWithSubnet"
+        case unsupportedOperation_DeleteVpnConnInvalidState = "UnsupportedOperation.DeleteVpnConnInvalidState"
         case unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity = "UnsupportedOperation.DirectConnectGatewayIsUpdatingCommunity"
         case unsupportedOperation_DisabledNotifyCcn = "UnsupportedOperation.DisabledNotifyCcn"
+        case unsupportedOperation_DpdkNatFlowLogOnlySupportAllTrafficType = "UnsupportedOperation.DpdkNatFlowLogOnlySupportAllTrafficType"
         case unsupportedOperation_DuplicatePolicy = "UnsupportedOperation.DuplicatePolicy"
         case unsupportedOperation_Ecmp = "UnsupportedOperation.Ecmp"
         case unsupportedOperation_EcmpWithCcnRoute = "UnsupportedOperation.EcmpWithCcnRoute"
@@ -259,6 +274,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_IsNotFinanceAccount = "UnsupportedOperation.IsNotFinanceAccount"
         case unsupportedOperation_IspNotSupported = "UnsupportedOperation.IspNotSupported"
         case unsupportedOperation_LocalGatewayAlreadyExists = "UnsupportedOperation.LocalGatewayAlreadyExists"
+        case unsupportedOperation_LockedResources = "UnsupportedOperation.LockedResources"
         case unsupportedOperation_ModifyAddressAttribute = "UnsupportedOperation.ModifyAddressAttribute"
         case unsupportedOperation_MutexOperationTaskRunning = "UnsupportedOperation.MutexOperationTaskRunning"
         case unsupportedOperation_NatGatewayEipNotExists = "UnsupportedOperation.NatGatewayEipNotExists"
@@ -268,10 +284,13 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_NatNotSupported = "UnsupportedOperation.NatNotSupported"
         case unsupportedOperation_NormalSubnetNotSupportLocalGateway = "UnsupportedOperation.NormalSubnetNotSupportLocalGateway"
         case unsupportedOperation_NotLockedInstanceOperation = "UnsupportedOperation.NotLockedInstanceOperation"
+        case unsupportedOperation_NotMatchTargetService = "UnsupportedOperation.NotMatchTargetService"
         case unsupportedOperation_NotPendingCcnInstance = "UnsupportedOperation.NotPendingCcnInstance"
         case unsupportedOperation_NotPostpaidCcnOperation = "UnsupportedOperation.NotPostpaidCcnOperation"
         case unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance = "UnsupportedOperation.NotSupportAttachEdgeAndCrossBorderInstance"
         case unsupportedOperation_NotSupportDeleteDefaultRouteTable = "UnsupportedOperation.NotSupportDeleteDefaultRouteTable"
+        case unsupportedOperation_NotSupportedAddressIpsChargeType = "UnsupportedOperation.NotSupportedAddressIpsChargeType"
+        case unsupportedOperation_NotSupportedPurchaseCenterEgressResource = "UnsupportedOperation.NotSupportedPurchaseCenterEgressResource"
         case unsupportedOperation_NotSupportedUpdateCcnRoutePublish = "UnsupportedOperation.NotSupportedUpdateCcnRoutePublish"
         case unsupportedOperation_NotifyCcn = "UnsupportedOperation.NotifyCcn"
         case unsupportedOperation_OfflineChargeType = "UnsupportedOperation.OfflineChargeType"
@@ -288,6 +307,13 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_ResourceMismatch = "UnsupportedOperation.ResourceMismatch"
         case unsupportedOperation_RoleNotFound = "UnsupportedOperation.RoleNotFound"
         case unsupportedOperation_RouteTableHasSubnetRule = "UnsupportedOperation.RouteTableHasSubnetRule"
+        case unsupportedOperation_SnapshotAttached = "UnsupportedOperation.SnapshotAttached"
+        case unsupportedOperation_SnapshotBackupTypeModify = "UnsupportedOperation.SnapshotBackupTypeModify"
+        case unsupportedOperation_SnapshotFileFailed = "UnsupportedOperation.SnapshotFileFailed"
+        case unsupportedOperation_SnapshotFileNoExist = "UnsupportedOperation.SnapshotFileNoExist"
+        case unsupportedOperation_SnapshotFileProcessing = "UnsupportedOperation.SnapshotFileProcessing"
+        case unsupportedOperation_SnapshotInstanceRegionDiff = "UnsupportedOperation.SnapshotInstanceRegionDiff"
+        case unsupportedOperation_SnapshotNotAttached = "UnsupportedOperation.SnapshotNotAttached"
         case unsupportedOperation_SnatSubnet = "UnsupportedOperation.SnatSubnet"
         case unsupportedOperation_SpecialEndPointService = "UnsupportedOperation.SpecialEndPointService"
         case unsupportedOperation_SslVpnClientIdNotFound = "UnsupportedOperation.SslVpnClientIdNotFound"
@@ -309,6 +335,8 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_UserAndCcnChargeTypeNotMatch = "UnsupportedOperation.UserAndCcnChargeTypeNotMatch"
         case unsupportedOperation_VersionMismatch = "UnsupportedOperation.VersionMismatch"
         case unsupportedOperation_VpcMismatch = "UnsupportedOperation.VpcMismatch"
+        case unsupportedOperation_VpnConnInvalidState = "UnsupportedOperation.VpnConnInvalidState"
+        case unsupportedOperation_VpnGwVpcIdMustHave = "UnsupportedOperation.VpnGwVpcIdMustHave"
         case unsupportedOperation_ZoneMismatch = "UnsupportedOperation.ZoneMismatch"
         case vpcLimitExceeded = "VpcLimitExceeded"
     }
@@ -360,6 +388,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.failedOperation_AddressEniInfoNotFound)
     }
 
+    /// 账户余额不足。
     public static var failedOperation_BalanceInsufficient: TCVpcError {
         TCVpcError(.failedOperation_BalanceInsufficient)
     }
@@ -379,7 +408,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.failedOperation_NetDetectTimeOut)
     }
 
-    /// DES任务失败。
+    /// 任务执行失败。
     public static var failedOperation_TaskFailed: TCVpcError {
         TCVpcError(.failedOperation_TaskFailed)
     }
@@ -394,6 +423,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.internalError_CreateCkafkaRouteError)
     }
 
+    /// 内部模块错误。
     public static var internalError_ModuleError: TCVpcError {
         TCVpcError(.internalError_ModuleError)
     }
@@ -501,6 +531,11 @@ public struct TCVpcError: TCVpcErrorType {
     /// 此IPv6地址未发布。
     public static var invalidParameterValue_AddressIpNotPublic: TCVpcError {
         TCVpcError(.invalidParameterValue_AddressIpNotPublic)
+    }
+
+    /// 未查询到该地址。
+    public static var invalidParameterValue_AddressIpsNotFound: TCVpcError {
+        TCVpcError(.invalidParameterValue_AddressIpsNotFound)
     }
 
     /// 该地址不可与此实例申请。
@@ -612,6 +647,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_InstanceDoesNotSupportAnycast)
     }
 
+    /// 实例不存在公网IP。
     public static var invalidParameterValue_InstanceHasNoWanIP: TCVpcError {
         TCVpcError(.invalidParameterValue_InstanceHasNoWanIP)
     }
@@ -701,6 +737,34 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_Malformed)
     }
 
+    /// 指定审批单号和资源不匹配。
+    ///
+    /// 请求中的BPAAS申请单和申请的资源不匹配；可能的原因是错误的申请单ID或错误的资源ID。
+    public static var invalidParameterValue_MemberApprovalApplicationIdMismatch: TCVpcError {
+        TCVpcError(.invalidParameterValue_MemberApprovalApplicationIdMismatch)
+    }
+
+    /// 流程服务审批单未审批。
+    ///
+    /// 该请求对应的BPAAS审批单位未审批状态，无法调用该接口。请联系BPAAS审批人员并更新审批状态后重试请求。
+    public static var invalidParameterValue_MemberApprovalApplicationNotApproved: TCVpcError {
+        TCVpcError(.invalidParameterValue_MemberApprovalApplicationNotApproved)
+    }
+
+    /// 流程服务审批单被拒绝。
+    ///
+    /// 该请求被BPAAS审批人员拒绝。请检查请求的策略是否合规。
+    public static var invalidParameterValue_MemberApprovalApplicationRejected: TCVpcError {
+        TCVpcError(.invalidParameterValue_MemberApprovalApplicationRejected)
+    }
+
+    /// 该请求需要走BPAAS流程服务审批，当前发起审批中。
+    ///
+    /// 如果用户想查看审批状态，可以跳转到BPAAS查询审批状态。否则，忽略该提示（该异常属于正常的业务逻辑）。
+    public static var invalidParameterValue_MemberApprovalApplicationStarted: TCVpcError {
+        TCVpcError(.invalidParameterValue_MemberApprovalApplicationStarted)
+    }
+
     /// 缺少绑定的实例。
     public static var invalidParameterValue_MissingAssociateEntity: TCVpcError {
         TCVpcError(.invalidParameterValue_MissingAssociateEntity)
@@ -724,6 +788,11 @@ public struct TCVpcError: TCVpcErrorType {
     /// DNAT转换规则的内网IP需为虚拟机上网卡所用的IP。
     public static var invalidParameterValue_NatGatewayDnatRulePipNeedVm: TCVpcError {
         TCVpcError(.invalidParameterValue_NatGatewayDnatRulePipNeedVm)
+    }
+
+    /// 新增NAT网关的DNAT转换规则已重复。
+    public static var invalidParameterValue_NatGatewayDnatRuleRepeated: TCVpcError {
+        TCVpcError(.invalidParameterValue_NatGatewayDnatRuleRepeated)
     }
 
     /// NAT网关的SNAT转换规则不存在。
@@ -766,6 +835,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_OnlySupportedForMasterNetworkCard)
     }
 
+    /// 参数值格式不匹配。
+    public static var invalidParameterValue_ParameterMismatch: TCVpcError {
+        TCVpcError(.invalidParameterValue_ParameterMismatch)
+    }
+
     /// 参数值不在指定范围。
     public static var invalidParameterValue_Range: TCVpcError {
         TCVpcError(.invalidParameterValue_Range)
@@ -806,11 +880,17 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_ResourceNotSupport)
     }
 
+    /// SSL-VPN-SERVER 云端网段和SSL-VPN-SERVER 客户端网段重叠。
+    public static var invalidParameterValue_SslCcnVpnServerCidrConflict: TCVpcError {
+        TCVpcError(.invalidParameterValue_SslCcnVpnServerCidrConflict)
+    }
+
     /// 子网CIDR冲突。
     public static var invalidParameterValue_SubnetConflict: TCVpcError {
         TCVpcError(.invalidParameterValue_SubnetConflict)
     }
 
+    /// CIDR与同一个私有网络内的另一个子网发生重叠。
     public static var invalidParameterValue_SubnetOverlap: TCVpcError {
         TCVpcError(.invalidParameterValue_SubnetOverlap)
     }
@@ -825,30 +905,37 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_SubnetRange)
     }
 
+    /// 标签键重复。
     public static var invalidParameterValue_TagDuplicateKey: TCVpcError {
         TCVpcError(.invalidParameterValue_TagDuplicateKey)
     }
 
+    /// 重复的标签资源类型。
     public static var invalidParameterValue_TagDuplicateResourceType: TCVpcError {
         TCVpcError(.invalidParameterValue_TagDuplicateResourceType)
     }
 
+    /// 标签键无效。
     public static var invalidParameterValue_TagInvalidKey: TCVpcError {
         TCVpcError(.invalidParameterValue_TagInvalidKey)
     }
 
+    /// 标签键长度无效。
     public static var invalidParameterValue_TagInvalidKeyLen: TCVpcError {
         TCVpcError(.invalidParameterValue_TagInvalidKeyLen)
     }
 
+    /// 标签值无效。
     public static var invalidParameterValue_TagInvalidVal: TCVpcError {
         TCVpcError(.invalidParameterValue_TagInvalidVal)
     }
 
+    /// 标签键不存在。
     public static var invalidParameterValue_TagKeyNotExists: TCVpcError {
         TCVpcError(.invalidParameterValue_TagKeyNotExists)
     }
 
+    /// 标签没有分配配额。
     public static var invalidParameterValue_TagNotAllocatedQuota: TCVpcError {
         TCVpcError(.invalidParameterValue_TagNotAllocatedQuota)
     }
@@ -858,18 +945,22 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.invalidParameterValue_TagNotExisted)
     }
 
+    /// 不支持的标签。
     public static var invalidParameterValue_TagNotSupportTag: TCVpcError {
         TCVpcError(.invalidParameterValue_TagNotSupportTag)
     }
 
+    /// '标签资源格式错误。
     public static var invalidParameterValue_TagResourceFormatError: TCVpcError {
         TCVpcError(.invalidParameterValue_TagResourceFormatError)
     }
 
+    /// 标签时间戳超配。
     public static var invalidParameterValue_TagTimestampExceeded: TCVpcError {
         TCVpcError(.invalidParameterValue_TagTimestampExceeded)
     }
 
+    /// 标签值不存在。
     public static var invalidParameterValue_TagValNotExists: TCVpcError {
         TCVpcError(.invalidParameterValue_TagValNotExists)
     }
@@ -914,6 +1005,13 @@ public struct TCVpcError: TCVpcErrorType {
     /// 参数Zone的值与CDC所在Zone冲突。
     public static var invalidParameterValue_ZoneConflict: TCVpcError {
         TCVpcError(.invalidParameterValue_ZoneConflict)
+    }
+
+    /// ACL ID与ACL类型不匹配。
+    ///
+    /// 请求的ACL类型参数，和ACL后台的类型（三元组、五元组）不匹配。请查询ACL实际类型后重试。
+    public static var invalidParameter_AclTypeMismatch: TCVpcError {
+        TCVpcError(.invalidParameter_AclTypeMismatch)
     }
 
     /// 参数不支持同时指定。
@@ -1091,28 +1189,39 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.limitExceeded_SubnetCidrBlock)
     }
 
+    /// 标签键已达到上限。
     public static var limitExceeded_TagKeyExceeded: TCVpcError {
         TCVpcError(.limitExceeded_TagKeyExceeded)
     }
 
+    /// 每个资源的标签键已达到上限。
     public static var limitExceeded_TagKeyPerResourceExceeded: TCVpcError {
         TCVpcError(.limitExceeded_TagKeyPerResourceExceeded)
     }
 
+    /// 没有足够的标签配额。
     public static var limitExceeded_TagNotEnoughQuota: TCVpcError {
         TCVpcError(.limitExceeded_TagNotEnoughQuota)
     }
 
+    /// 标签配额已满，无法创建资源。
     public static var limitExceeded_TagQuota: TCVpcError {
         TCVpcError(.limitExceeded_TagQuota)
     }
 
+    /// 标签配额已达到上限。
     public static var limitExceeded_TagQuotaExceeded: TCVpcError {
         TCVpcError(.limitExceeded_TagQuotaExceeded)
     }
 
+    /// 标签键的数目已达到上限。
     public static var limitExceeded_TagTagsExceeded: TCVpcError {
         TCVpcError(.limitExceeded_TagTagsExceeded)
+    }
+
+    /// 流量包配额超过限制。
+    public static var limitExceeded_TrafficPackageQuota: TCVpcError {
+        TCVpcError(.limitExceeded_TrafficPackageQuota)
     }
 
     /// 缺少参数错误。
@@ -1120,10 +1229,12 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.missingParameter)
     }
 
+    /// 指定公网IP处于隔离状态。
     public static var operationDenied_AddressInArrears: TCVpcError {
         TCVpcError(.operationDenied_AddressInArrears)
     }
 
+    /// 互斥的任务正在执行。
     public static var operationDenied_MutexTaskRunning: TCVpcError {
         TCVpcError(.operationDenied_MutexTaskRunning)
     }
@@ -1148,6 +1259,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.resourceInsufficient_CidrBlock)
     }
 
+    /// 子网IP资源不足, 无法分配IP。
     public static var resourceInsufficient_Subnet: TCVpcError {
         TCVpcError(.resourceInsufficient_Subnet)
     }
@@ -1217,6 +1329,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation)
     }
 
+    /// 不支持的账户。
+    public static var unsupportedOperation_AccountNotSupported: TCVpcError {
+        TCVpcError(.unsupportedOperation_AccountNotSupported)
+    }
+
     /// 接口不存在。
     public static var unsupportedOperation_ActionNotFound: TCVpcError {
         TCVpcError(.unsupportedOperation_ActionNotFound)
@@ -1255,6 +1372,11 @@ public struct TCVpcError: TCVpcErrorType {
     /// APPId不存在。
     public static var unsupportedOperation_AppIdNotFound: TCVpcError {
         TCVpcError(.unsupportedOperation_AppIdNotFound)
+    }
+
+    /// CCN关联的其他vpc已经存在nat的路由
+    public static var unsupportedOperation_AssociatedVpcOfCcnHadNatRoute: TCVpcError {
+        TCVpcError(.unsupportedOperation_AssociatedVpcOfCcnHadNatRoute)
     }
 
     /// 绑定关系已存在。
@@ -1297,6 +1419,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_CcnHasFlowLog)
     }
 
+    /// CCN实例所属账号未通过联通审批。
     public static var unsupportedOperation_CcnInstanceAccountNotApprovedByUnicom: TCVpcError {
         TCVpcError(.unsupportedOperation_CcnInstanceAccountNotApprovedByUnicom)
     }
@@ -1326,6 +1449,13 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_ClassicInstanceIdAlreadyExists)
     }
 
+    /// 负载均衡的安全组规则已达到上限。
+    ///
+    /// 减少负载均衡的安全组规则条数。
+    public static var unsupportedOperation_ClbPolicyExceedLimit: TCVpcError {
+        TCVpcError(.unsupportedOperation_ClbPolicyExceedLimit)
+    }
+
     /// 公网Clb不支持该规则。
     public static var unsupportedOperation_ClbPolicyLimit: TCVpcError {
         TCVpcError(.unsupportedOperation_ClbPolicyLimit)
@@ -1336,14 +1466,17 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_ConflictWithDockerRoute)
     }
 
+    /// 当前账号非联通账号。
     public static var unsupportedOperation_CurrentAccountIsNotUnicomAccount: TCVpcError {
         TCVpcError(.unsupportedOperation_CurrentAccountIsNotUnicomAccount)
     }
 
+    /// 当前查询地域非跨境。
     public static var unsupportedOperation_CurrentQueryRegionIsNotCrossBorder: TCVpcError {
         TCVpcError(.unsupportedOperation_CurrentQueryRegionIsNotCrossBorder)
     }
 
+    /// 该专线网关存在关联的NAT规则，不允许删除，请先删调所有的NAT规则。
     public static var unsupportedOperation_DCGatewayNatRuleExists: TCVpcError {
         TCVpcError(.unsupportedOperation_DCGatewayNatRuleExists)
     }
@@ -1363,6 +1496,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_DelRouteWithSubnet)
     }
 
+    /// VPN通道状态为更新中/销毁中/创建中，不支持此操作。
+    public static var unsupportedOperation_DeleteVpnConnInvalidState: TCVpcError {
+        TCVpcError(.unsupportedOperation_DeleteVpnConnInvalidState)
+    }
+
     /// 专线网关正在更新BGP Community属性。
     public static var unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity: TCVpcError {
         TCVpcError(.unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity)
@@ -1371,6 +1509,13 @@ public struct TCVpcError: TCVpcErrorType {
     /// 指定的路由策略已发布至云联网，请先撤销。
     public static var unsupportedOperation_DisabledNotifyCcn: TCVpcError {
         TCVpcError(.unsupportedOperation_DisabledNotifyCcn)
+    }
+
+    /// 创建DPDK NAT流日志时，采集类型只支持全部。
+    ///
+    /// 用户创建DPDK NAT流日志时，采集类型只能选择全部。
+    public static var unsupportedOperation_DpdkNatFlowLogOnlySupportAllTrafficType: TCVpcError {
+        TCVpcError(.unsupportedOperation_DpdkNatFlowLogOnlySupportAllTrafficType)
     }
 
     /// 安全组规则重复。
@@ -1418,6 +1563,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_InstanceAndRtbNotMatch)
     }
 
+    /// 指定实例资源不匹配。
     public static var unsupportedOperation_InstanceMismatch: TCVpcError {
         TCVpcError(.unsupportedOperation_InstanceMismatch)
     }
@@ -1494,6 +1640,14 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_LocalGatewayAlreadyExists)
     }
 
+    /// 资源被锁定。
+    ///
+    /// BPAAS服务审批时，对同一个资源的访问需要加锁确保顺序审批后执行。可以等该资源相关的BPAAS申请都审批通过或拒绝后，再重试。
+    public static var unsupportedOperation_LockedResources: TCVpcError {
+        TCVpcError(.unsupportedOperation_LockedResources)
+    }
+
+    /// 账户不支持修改公网IP的该属性。
     public static var unsupportedOperation_ModifyAddressAttribute: TCVpcError {
         TCVpcError(.unsupportedOperation_ModifyAddressAttribute)
     }
@@ -1538,6 +1692,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_NotLockedInstanceOperation)
     }
 
+    /// 目的端的服务在IP申请中使用的实例ID和这里传入的不匹配。
+    public static var unsupportedOperation_NotMatchTargetService: TCVpcError {
+        TCVpcError(.unsupportedOperation_NotMatchTargetService)
+    }
+
     /// 当前云联网实例未处于申请中状态，无法进行操作。
     public static var unsupportedOperation_NotPendingCcnInstance: TCVpcError {
         TCVpcError(.unsupportedOperation_NotPendingCcnInstance)
@@ -1548,14 +1707,28 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_NotPostpaidCcnOperation)
     }
 
+    /// 当前云联网不支持同时关联EDGE实例和跨境实例
     public static var unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance: TCVpcError {
         TCVpcError(.unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance)
     }
 
+    /// 不支持删除默认路由表。
     public static var unsupportedOperation_NotSupportDeleteDefaultRouteTable: TCVpcError {
         TCVpcError(.unsupportedOperation_NotSupportDeleteDefaultRouteTable)
     }
 
+    /// 该地址类型不支持释放操作。
+    public static var unsupportedOperation_NotSupportedAddressIpsChargeType: TCVpcError {
+        TCVpcError(.unsupportedOperation_NotSupportedAddressIpsChargeType)
+    }
+
+    /// 此地域没有上线出口二资源，请到北京/广州/南京购买。
+    public static var unsupportedOperation_NotSupportedPurchaseCenterEgressResource: TCVpcError {
+        TCVpcError(.unsupportedOperation_NotSupportedPurchaseCenterEgressResource)
+    }
+
+    /// 当前云联网不支持更新路由发布。
+    ///
     /// 确认云联网是否开启了路由重叠选项。
     public static var unsupportedOperation_NotSupportedUpdateCcnRoutePublish: TCVpcError {
         TCVpcError(.unsupportedOperation_NotSupportedUpdateCcnRoutePublish)
@@ -1611,10 +1784,12 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_PurchaseLimit)
     }
 
+    /// 记录已存在。
     public static var unsupportedOperation_RecordExists: TCVpcError {
         TCVpcError(.unsupportedOperation_RecordExists)
     }
 
+    /// 记录不存在。
     public static var unsupportedOperation_RecordNotExists: TCVpcError {
         TCVpcError(.unsupportedOperation_RecordNotExists)
     }
@@ -1631,11 +1806,49 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_RoleNotFound)
     }
 
+    /// 路由表绑定了子网。
+    ///
     /// 请解除该路由表和子网的绑定后重试。
     public static var unsupportedOperation_RouteTableHasSubnetRule: TCVpcError {
         TCVpcError(.unsupportedOperation_RouteTableHasSubnetRule)
     }
 
+    /// 实例已关联快照策略。
+    public static var unsupportedOperation_SnapshotAttached: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotAttached)
+    }
+
+    /// 快照备份策略不支持修改。
+    public static var unsupportedOperation_SnapshotBackupTypeModify: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotBackupTypeModify)
+    }
+
+    /// 快照文件生成失败。
+    public static var unsupportedOperation_SnapshotFileFailed: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotFileFailed)
+    }
+
+    /// 快照文件已过期或删除。
+    public static var unsupportedOperation_SnapshotFileNoExist: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotFileNoExist)
+    }
+
+    /// 快照文件正在生成中，请稍后查看。
+    public static var unsupportedOperation_SnapshotFileProcessing: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotFileProcessing)
+    }
+
+    /// 一次仅支持关联一个地域的实例。
+    public static var unsupportedOperation_SnapshotInstanceRegionDiff: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotInstanceRegionDiff)
+    }
+
+    /// 实例未关联快照策略。
+    public static var unsupportedOperation_SnapshotNotAttached: TCVpcError {
+        TCVpcError(.unsupportedOperation_SnapshotNotAttached)
+    }
+
+    /// SNAT子网 不支持分配IP。
     public static var unsupportedOperation_SnatSubnet: TCVpcError {
         TCVpcError(.unsupportedOperation_SnatSubnet)
     }
@@ -1645,6 +1858,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_SpecialEndPointService)
     }
 
+    /// SslVpnClientId 不存在。
     public static var unsupportedOperation_SslVpnClientIdNotFound: TCVpcError {
         TCVpcError(.unsupportedOperation_SslVpnClientIdNotFound)
     }
@@ -1659,18 +1873,22 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_SystemRoute)
     }
 
+    /// 标签正在分配中。
     public static var unsupportedOperation_TagAllocate: TCVpcError {
         TCVpcError(.unsupportedOperation_TagAllocate)
     }
 
+    /// 标签正在释放中。
     public static var unsupportedOperation_TagFree: TCVpcError {
         TCVpcError(.unsupportedOperation_TagFree)
     }
 
+    /// 标签没有权限。
     public static var unsupportedOperation_TagNotPermit: TCVpcError {
         TCVpcError(.unsupportedOperation_TagNotPermit)
     }
 
+    /// 不支持使用系统预留的标签键。
     public static var unsupportedOperation_TagSystemReservedTagKey: TCVpcError {
         TCVpcError(.unsupportedOperation_TagSystemReservedTagKey)
     }
@@ -1705,6 +1923,7 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_UnpaidOrderAlreadyExists)
     }
 
+    /// 不支持绑定LocalZone弹性公网IP。
     public static var unsupportedOperation_UnsupportedBindLocalZoneEIP: TCVpcError {
         TCVpcError(.unsupportedOperation_UnsupportedBindLocalZoneEIP)
     }
@@ -1732,6 +1951,16 @@ public struct TCVpcError: TCVpcErrorType {
     /// 资源不属于同一个VPC。
     public static var unsupportedOperation_VpcMismatch: TCVpcError {
         TCVpcError(.unsupportedOperation_VpcMismatch)
+    }
+
+    /// 当前通道为非可用状态，不支持该操作。
+    public static var unsupportedOperation_VpnConnInvalidState: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpnConnInvalidState)
+    }
+
+    /// VPC类型VPN网关必须携带VpcId。
+    public static var unsupportedOperation_VpnGwVpcIdMustHave: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpnGwVpcIdMustHave)
     }
 
     /// 指定资源在不同的可用区。

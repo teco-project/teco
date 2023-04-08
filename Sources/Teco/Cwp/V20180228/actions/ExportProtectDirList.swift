@@ -42,7 +42,7 @@ extension Cwp {
 
     /// ExportProtectDirList返回参数结构体
     public struct ExportProtectDirListResponse: TCResponseModel {
-        /// 任务ID
+        /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

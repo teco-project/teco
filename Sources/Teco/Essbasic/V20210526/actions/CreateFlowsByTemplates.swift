@@ -17,7 +17,7 @@
 extension Essbasic {
     /// CreateFlowsByTemplates请求参数结构体
     public struct CreateFlowsByTemplatesRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 多个合同（签署流程）信息，最多支持20个
@@ -31,7 +31,7 @@ extension Essbasic {
         /// 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
         public let previewType: Int64?
 
-        /// 操作者的信息
+        /// 操作者的信息，不用传
         public let `operator`: UserInfo?
 
         public init(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil) {
@@ -56,7 +56,7 @@ extension Essbasic {
         /// 多个合同ID
         public let flowIds: [String]
 
-        /// 渠道的业务信息，限制1024字符
+        /// 业务信息，限制1024字符
         public let customerData: [String]
 
         /// 创建消息，对应多个合同ID，

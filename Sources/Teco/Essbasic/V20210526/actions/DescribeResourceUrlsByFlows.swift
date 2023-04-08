@@ -17,14 +17,14 @@
 extension Essbasic {
     /// DescribeResourceUrlsByFlows请求参数结构体
     public struct DescribeResourceUrlsByFlowsRequest: TCRequestModel {
-        /// 渠道应用相关信息。
+        /// 应用相关信息。
         /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 查询资源所对应的签署流程Id，最多支持50个
         public let flowIds: [String]?
 
-        /// 操作者的信息
+        /// 操作者的信息，不用传
         public let `operator`: UserInfo?
 
         public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {

@@ -21,6 +21,7 @@ extension TCTkeError {
             case clusterNotSuitAddClusterCIDR = "UnsupportedOperation.ClusterNotSuitAddClusterCIDR"
             case clusterNotSuitEnableVPCCNI = "UnsupportedOperation.ClusterNotSuitEnableVPCCNI"
             case notInWhitelist = "UnsupportedOperation.NotInWhitelist"
+            case notSupportInstallVirtualKubelet = "UnsupportedOperation.NotSupportInstallVirtualKubelet"
             case other = "UnsupportedOperation"
         }
 
@@ -53,10 +54,12 @@ extension TCTkeError {
             UnsupportedOperation(.caEnableFailed)
         }
 
+        /// 集群不支持添加 ClusterCIDR。
         public static var clusterNotSuitAddClusterCIDR: UnsupportedOperation {
             UnsupportedOperation(.clusterNotSuitAddClusterCIDR)
         }
 
+        /// 集群不支持开启 VPC-CNI 模式。
         public static var clusterNotSuitEnableVPCCNI: UnsupportedOperation {
             UnsupportedOperation(.clusterNotSuitEnableVPCCNI)
         }
@@ -64,6 +67,13 @@ extension TCTkeError {
         /// 非白名单用户。
         public static var notInWhitelist: UnsupportedOperation {
             UnsupportedOperation(.notInWhitelist)
+        }
+
+        /// 不支持安装虚拟节点。
+        ///
+        /// 请检查集群版本是否满足安装虚拟节点条件。
+        public static var notSupportInstallVirtualKubelet: UnsupportedOperation {
+            UnsupportedOperation(.notSupportInstallVirtualKubelet)
         }
 
         /// 操作不支持。
@@ -82,6 +92,8 @@ extension TCTkeError {
                 code = .unsupportedOperation_ClusterNotSuitEnableVPCCNI
             case .notInWhitelist:
                 code = .unsupportedOperation_NotInWhitelist
+            case .notSupportInstallVirtualKubelet:
+                code = .unsupportedOperation_NotSupportInstallVirtualKubelet
             case .other:
                 code = .unsupportedOperation
             }

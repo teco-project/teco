@@ -25,6 +25,7 @@ extension TCDnspodError {
             case batchRecordCreateActionError = "InvalidParameter.BatchRecordCreateActionError"
             case batchRecordModifyActionError = "InvalidParameter.BatchRecordModifyActionError"
             case batchRecordModifyActionInvalidValue = "InvalidParameter.BatchRecordModifyActionInvalidValue"
+            case batchRecordRemoveActionError = "InvalidParameter.BatchRecordRemoveActionError"
             case batchRecordReplaceActionError = "InvalidParameter.BatchRecordReplaceActionError"
             case batchTaskCountLimit = "InvalidParameter.BatchTaskCountLimit"
             case batchTaskNotExist = "InvalidParameter.BatchTaskNotExist"
@@ -96,6 +97,7 @@ extension TCDnspodError {
             case paramsMissing = "InvalidParameter.ParamsMissing"
             case permissionDenied = "InvalidParameter.PermissionDenied"
             case qcloudUinInvalid = "InvalidParameter.QcloudUinInvalid"
+            case quhuiTxtRecordWait = "InvalidParameter.QuhuiTxtRecordWait"
             case realNameUser = "InvalidParameter.RealNameUser"
             case recordIdInvalid = "InvalidParameter.RecordIdInvalid"
             case recordLineInvalid = "InvalidParameter.RecordLineInvalid"
@@ -186,6 +188,11 @@ extension TCDnspodError {
         /// 记录值无效。
         public static var batchRecordModifyActionInvalidValue: InvalidParameter {
             InvalidParameter(.batchRecordModifyActionInvalidValue)
+        }
+
+        /// 批量删除记录任务失败，原因：内部错误。
+        public static var batchRecordRemoveActionError: InvalidParameter {
+            InvalidParameter(.batchRecordRemoveActionError)
         }
 
         /// 批量替换记录任务失败，原因：内部错误。
@@ -543,6 +550,11 @@ extension TCDnspodError {
             InvalidParameter(.qcloudUinInvalid)
         }
 
+        /// TXT 记录未设置或暂未生效，请稍后重试。
+        public static var quhuiTxtRecordWait: InvalidParameter {
+            InvalidParameter(.quhuiTxtRecordWait)
+        }
+
         /// 已实名用户。
         public static var realNameUser: InvalidParameter {
             InvalidParameter(.realNameUser)
@@ -663,6 +675,7 @@ extension TCDnspodError {
             InvalidParameter(.userAlreadyLocked)
         }
 
+        /// 对方账户非国内站用户。
         public static var userAreaInvalid: InvalidParameter {
             InvalidParameter(.userAreaInvalid)
         }
@@ -701,6 +714,8 @@ extension TCDnspodError {
                 code = .invalidParameter_BatchRecordModifyActionError
             case .batchRecordModifyActionInvalidValue:
                 code = .invalidParameter_BatchRecordModifyActionInvalidValue
+            case .batchRecordRemoveActionError:
+                code = .invalidParameter_BatchRecordRemoveActionError
             case .batchRecordReplaceActionError:
                 code = .invalidParameter_BatchRecordReplaceActionError
             case .batchTaskCountLimit:
@@ -843,6 +858,8 @@ extension TCDnspodError {
                 code = .invalidParameter_PermissionDenied
             case .qcloudUinInvalid:
                 code = .invalidParameter_QcloudUinInvalid
+            case .quhuiTxtRecordWait:
+                code = .invalidParameter_QuhuiTxtRecordWait
             case .realNameUser:
                 code = .invalidParameter_RealNameUser
             case .recordIdInvalid:

@@ -461,6 +461,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isMultiZoneCluster: Bool?
 
+        /// 是否开通异常节点自动补偿
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isCvmReplace: Bool?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case clusterId = "ClusterId"
@@ -503,6 +507,7 @@ extension Emr {
             case uniqSubnetId = "UniqSubnetId"
             case topologyInfoList = "TopologyInfoList"
             case isMultiZoneCluster = "IsMultiZoneCluster"
+            case isCvmReplace = "IsCvmReplace"
         }
     }
 
@@ -928,6 +933,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outSideSoftInfo: [SoftDependInfo]?
 
+        /// 当前集群的应用场景是否支持体外客户端
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSupportOutsideCluster: Bool?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case statusDesc = "StatusDesc"
@@ -958,6 +967,7 @@ extension Emr {
             case isMultiZoneCluster = "IsMultiZoneCluster"
             case isHandsCluster = "IsHandsCluster"
             case outSideSoftInfo = "OutSideSoftInfo"
+            case isSupportOutsideCluster = "IsSupportOutsideCluster"
         }
     }
 

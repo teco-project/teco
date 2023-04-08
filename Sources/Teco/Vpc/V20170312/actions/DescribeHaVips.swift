@@ -31,10 +31,10 @@ extension Vpc {
         /// <li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li>
         public let filters: [Filter]?
 
-        /// 偏移量
+        /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 返回数量
+        /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
 
         public init(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {

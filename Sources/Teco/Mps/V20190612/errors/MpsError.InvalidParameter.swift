@@ -62,82 +62,102 @@ extension TCMpsError {
             self.context = context
         }
 
+        /// InvalidParameter.EndTime
         public static var endTime: InvalidParameter {
             InvalidParameter(.endTime)
         }
 
+        /// InvalidParameter.ExceededQuantityLimit
         public static var exceededQuantityLimit: InvalidParameter {
             InvalidParameter(.exceededQuantityLimit)
         }
 
+        /// InvalidParameter.Id
         public static var id: InvalidParameter {
             InvalidParameter(.id)
         }
 
+        /// InvalidParameter.Input
         public static var input: InvalidParameter {
             InvalidParameter(.input)
         }
 
+        /// InvalidParameter.InputOutputId
         public static var inputOutputId: InvalidParameter {
             InvalidParameter(.inputOutputId)
         }
 
+        /// InvalidParameter.MaxBandwidth
         public static var maxBandwidth: InvalidParameter {
             InvalidParameter(.maxBandwidth)
         }
 
+        /// InvalidParameter.Name
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
 
+        /// InvalidParameter.NotFound
         public static var notFound: InvalidParameter {
             InvalidParameter(.notFound)
         }
 
+        /// InvalidParameter.Output
         public static var output: InvalidParameter {
             InvalidParameter(.output)
         }
 
+        /// InvalidParameter.OutputGroups
         public static var outputGroups: InvalidParameter {
             InvalidParameter(.outputGroups)
         }
 
+        /// InvalidParameter.OutputId
         public static var outputId: InvalidParameter {
             InvalidParameter(.outputId)
         }
 
+        /// InvalidParameter.PageNum
         public static var pageNum: InvalidParameter {
             InvalidParameter(.pageNum)
         }
 
+        /// InvalidParameter.PageSize
         public static var pageSize: InvalidParameter {
             InvalidParameter(.pageSize)
         }
 
+        /// InvalidParameter.Period
         public static var period: InvalidParameter {
             InvalidParameter(.period)
         }
 
+        /// InvalidParameter.Pipeline
         public static var pipeline: InvalidParameter {
             InvalidParameter(.pipeline)
         }
 
+        /// InvalidParameter.Protocol
         public static var `protocol`: InvalidParameter {
             InvalidParameter(.protocol)
         }
 
+        /// InvalidParameter.SortType
         public static var sortType: InvalidParameter {
             InvalidParameter(.sortType)
         }
 
+        /// InvalidParameter.StartTime
         public static var startTime: InvalidParameter {
             InvalidParameter(.startTime)
         }
 
+        /// InvalidParameter.State
         public static var state: InvalidParameter {
             InvalidParameter(.state)
         }
 
+        /// InvalidParameter.Type
         public static var type: InvalidParameter {
             InvalidParameter(.type)
         }

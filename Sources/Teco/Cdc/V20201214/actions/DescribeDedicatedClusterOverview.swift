@@ -37,12 +37,32 @@ extension Cdc {
         /// 宿主机数量
         public let hostCount: UInt64
 
+        /// vpn通道状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpnConnectionState: String?
+
+        /// vpn网关监控数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpngwBandwidthData: VpngwBandwidthData?
+
+        /// 本地网关信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let localNetInfo: LocalNetInfo?
+
+        /// vpn网关通道监控数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpnConnectionBandwidthData: [VpngwBandwidthData]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case cvmCount = "CvmCount"
             case hostCount = "HostCount"
+            case vpnConnectionState = "VpnConnectionState"
+            case vpngwBandwidthData = "VpngwBandwidthData"
+            case localNetInfo = "LocalNetInfo"
+            case vpnConnectionBandwidthData = "VpnConnectionBandwidthData"
             case requestId = "RequestId"
         }
     }

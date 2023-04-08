@@ -86,6 +86,8 @@ extension TCCdcError {
             InvalidParameterValue(.limitExceeded)
         }
 
+        /// 无效Region ID 。
+        ///
         /// 请确认Region ID 是否存在。
         public static var region: InvalidParameterValue {
             InvalidParameterValue(.region)

@@ -92,6 +92,8 @@ extension Ocr {
     /// 算式识别
     ///
     /// 本接口支持作业算式题目的自动识别和判分，目前覆盖 K12 学力范围内的 11 种题型，包括加减乘除四则、加减乘除已知结果求运算因子、判断大小、约等于估算、带余数除法、分数四则运算、单位换算、竖式加减法、竖式乘除法、脱式计算和解方程，平均识别精度达到93%以上。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func arithmeticOCR(_ input: ArithmeticOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ArithmeticOCRResponse> {
         self.client.execute(action: "ArithmeticOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -100,6 +102,8 @@ extension Ocr {
     /// 算式识别
     ///
     /// 本接口支持作业算式题目的自动识别和判分，目前覆盖 K12 学力范围内的 11 种题型，包括加减乘除四则、加减乘除已知结果求运算因子、判断大小、约等于估算、带余数除法、分数四则运算、单位换算、竖式加减法、竖式乘除法、脱式计算和解方程，平均识别精度达到93%以上。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func arithmeticOCR(_ input: ArithmeticOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArithmeticOCRResponse {
         try await self.client.execute(action: "ArithmeticOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -108,6 +112,8 @@ extension Ocr {
     /// 算式识别
     ///
     /// 本接口支持作业算式题目的自动识别和判分，目前覆盖 K12 学力范围内的 11 种题型，包括加减乘除四则、加减乘除已知结果求运算因子、判断大小、约等于估算、带余数除法、分数四则运算、单位换算、竖式加减法、竖式乘除法、脱式计算和解方程，平均识别精度达到93%以上。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func arithmeticOCR(imageBase64: String? = nil, imageUrl: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticPic: Bool? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidResult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ArithmeticOCRResponse> {
         self.arithmeticOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticPic: rejectNonArithmeticPic, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidResult: enableDispMidResult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex), region: region, logger: logger, on: eventLoop)
@@ -116,6 +122,8 @@ extension Ocr {
     /// 算式识别
     ///
     /// 本接口支持作业算式题目的自动识别和判分，目前覆盖 K12 学力范围内的 11 种题型，包括加减乘除四则、加减乘除已知结果求运算因子、判断大小、约等于估算、带余数除法、分数四则运算、单位换算、竖式加减法、竖式乘除法、脱式计算和解方程，平均识别精度达到93%以上。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func arithmeticOCR(imageBase64: String? = nil, imageUrl: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticPic: Bool? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidResult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArithmeticOCRResponse {
         try await self.arithmeticOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticPic: rejectNonArithmeticPic, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidResult: enableDispMidResult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex), region: region, logger: logger, on: eventLoop)

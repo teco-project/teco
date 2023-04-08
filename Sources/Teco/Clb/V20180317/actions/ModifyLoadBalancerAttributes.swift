@@ -23,7 +23,7 @@ extension Clb {
         /// 负载均衡实例名称
         public let loadBalancerName: String?
 
-        /// 负载均衡绑定的后端服务的地域信息
+        /// 设置负载均衡跨地域绑定1.0的后端服务信息
         public let targetRegionInfo: TargetRegionInfo?
 
         /// 网络计费相关参数
@@ -32,7 +32,7 @@ extension Clb {
         /// Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
         public let loadBalancerPassToTarget: Bool?
 
-        /// 是否开启SnatPro
+        /// 是否开启跨地域绑定2.0功能
         public let snatPro: Bool?
 
         /// 是否开启删除保护

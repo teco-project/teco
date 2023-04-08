@@ -17,9 +17,11 @@
 extension TCWedataError {
     public struct InvalidParameter: TCWedataErrorType {
         enum Code: String {
+            case clientIpNotAuthorized = "InvalidParameter.ClientIpNotAuthorized"
             case duplicateName = "InvalidParameter.DuplicateName"
             case invalidFilterParameter = "InvalidParameter.InvalidFilterParameter"
             case ruleNotExist = "InvalidParameter.RuleNotExist"
+            case ruleTemplateNotExist = "InvalidParameter.RuleTemplateNotExist"
             case serviceIsBusy = "InvalidParameter.ServiceIsBusy"
             case workspaceNotExist = "InvalidParameter.WorkspaceNotExist"
             case other = "InvalidParameter"
@@ -47,6 +49,13 @@ extension TCWedataError {
             self.context = context
         }
 
+        /// ClientIp未被授权。
+        ///
+        /// 需要开白名单ip
+        public static var clientIpNotAuthorized: InvalidParameter {
+            InvalidParameter(.clientIpNotAuthorized)
+        }
+
         /// 名称重复。
         public static var duplicateName: InvalidParameter {
             InvalidParameter(.duplicateName)
@@ -62,6 +71,11 @@ extension TCWedataError {
         /// 规则不存在。
         public static var ruleNotExist: InvalidParameter {
             InvalidParameter(.ruleNotExist)
+        }
+
+        /// 规则模版不存在。
+        public static var ruleTemplateNotExist: InvalidParameter {
+            InvalidParameter(.ruleTemplateNotExist)
         }
 
         /// 服务繁忙，请稍后重试。
@@ -84,12 +98,16 @@ extension TCWedataError {
         public func asWedataError() -> TCWedataError {
             let code: TCWedataError.Code
             switch self.error {
+            case .clientIpNotAuthorized:
+                code = .invalidParameter_ClientIpNotAuthorized
             case .duplicateName:
                 code = .invalidParameter_DuplicateName
             case .invalidFilterParameter:
                 code = .invalidParameter_InvalidFilterParameter
             case .ruleNotExist:
                 code = .invalidParameter_RuleNotExist
+            case .ruleTemplateNotExist:
+                code = .invalidParameter_RuleTemplateNotExist
             case .serviceIsBusy:
                 code = .invalidParameter_ServiceIsBusy
             case .workspaceNotExist:

@@ -95,11 +95,15 @@ extension TCLiveError {
             ResourceNotFound(.domainNotExist)
         }
 
+        /// 用户被禁用。
+        ///
         /// 请确认您在使用服务过程中是否有违规内容。
         public static var forbidService: ResourceNotFound {
             ResourceNotFound(.forbidService)
         }
 
+        /// 用户服务被冻结。
+        ///
         /// 用户长时间未使用，服务已被冻结，请提工单恢复。
         public static var freezeService: ResourceNotFound {
             ResourceNotFound(.freezeService)
@@ -130,6 +134,8 @@ extension TCLiveError {
             ResourceNotFound(.taskId)
         }
 
+        /// 用户主动停服。
+        ///
         /// 用户主动停服，可重新开通。
         public static var userDisableService: ResourceNotFound {
             ResourceNotFound(.userDisableService)

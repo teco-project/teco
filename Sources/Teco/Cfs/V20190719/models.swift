@@ -29,7 +29,7 @@ extension Cfs {
         /// 关联的文件系统个数
         public let fileSystemNums: UInt64
 
-        /// 快照定期备份在一星期哪一天
+        /// 快照定期备份在一星期哪一天，该参数与DayOfMonth,IntervalDays互斥
         public let dayOfWeek: String
 
         /// 快照定期备份在一天的哪一小时
@@ -56,6 +56,14 @@ extension Cfs {
         /// 文件系统信息
         public let fileSystems: [FileSystemByPolicy]
 
+        /// 快照定期备份在一个月的某个时间；该参数与DayOfWeek,IntervalDays互斥
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dayOfMonth: String?
+
+        /// 快照定期间隔天数，1-365 天；该参数与DayOfMonth,DayOfWeek互斥
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intervalDays: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case policyName = "PolicyName"
@@ -70,6 +78,8 @@ extension Cfs {
             case aliveDays = "AliveDays"
             case regionName = "RegionName"
             case fileSystems = "FileSystems"
+            case dayOfMonth = "DayOfMonth"
+            case intervalDays = "IntervalDays"
         }
     }
 
@@ -232,7 +242,13 @@ extension Cfs {
         /// 文件系统 ID
         public let fileSystemId: String
 
-        /// 文件系统状态
+        /// 文件系统状态。取值范围：
+        /// - creating:创建中
+        /// - mounting:挂载中
+        /// - create_failed:创建失败
+        /// - available:可使用
+        /// - unserviced:停服中
+        /// - upgrading:升级中
         public let lifeCycleState: String
 
         /// 文件系统已使用容量
@@ -283,6 +299,13 @@ extension Cfs {
         /// 文件系统标签列表
         public let tags: [TagInfo]
 
+        /// 文件系统生命周期管理状态
+        public let tieringState: String
+
+        /// 分层存储详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tieringDetail: TieringDetailInfo?
+
         enum CodingKeys: String, CodingKey {
             case creationTime = "CreationTime"
             case creationToken = "CreationToken"
@@ -304,6 +327,8 @@ extension Cfs {
             case bandwidthLimit = "BandwidthLimit"
             case capacity = "Capacity"
             case tags = "Tags"
+            case tieringState = "TieringState"
+            case tieringDetail = "TieringDetail"
         }
     }
 
@@ -549,7 +574,7 @@ extension Cfs {
     }
 
     /// Tag信息单元
-    public struct TagInfo: TCInputModel {
+    public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
 
@@ -564,6 +589,12 @@ extension Cfs {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// 分层存储详细信息
+    public struct TieringDetailInfo: TCInputModel, TCOutputModel {
+        public init() {
         }
     }
 

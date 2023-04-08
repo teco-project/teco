@@ -25,17 +25,21 @@ extension Vpc {
         /// `IP`地址列表，批量查询单次请求最多支持`10`个。
         public let ipv6Addresses: [String]?
 
-        /// 偏移量。
+        /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 返回数量。
+        /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
 
-        public init(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+        /// VPC下的子网ID。
+        public let subnetId: String?
+
+        public init(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subnetId: String? = nil) {
             self.vpcId = vpcId
             self.ipv6Addresses = ipv6Addresses
             self.offset = offset
             self.limit = limit
+            self.subnetId = subnetId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -43,6 +47,7 @@ extension Vpc {
             case ipv6Addresses = "Ipv6Addresses"
             case offset = "Offset"
             case limit = "Limit"
+            case subnetId = "SubnetId"
         }
 
         /// Compute the next request based on API response.
@@ -50,7 +55,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcIpv6AddressesRequest(vpcId: self.vpcId, ipv6Addresses: self.ipv6Addresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return DescribeVpcIpv6AddressesRequest(vpcId: self.vpcId, ipv6Addresses: self.ipv6Addresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subnetId: self.subnetId)
         }
     }
 
@@ -105,8 +110,8 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
-        self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
+        self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表
@@ -114,8 +119,8 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
-        try await self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
+        try await self.describeVpcIpv6Addresses(.init(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表

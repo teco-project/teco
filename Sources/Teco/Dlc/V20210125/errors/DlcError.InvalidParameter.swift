@@ -17,15 +17,21 @@
 extension TCDlcError {
     public struct InvalidParameter: TCDlcErrorType {
         enum Code: String {
+            case duplicateDataEngineName = "InvalidParameter.DuplicateDataEngineName"
             case duplicateGroupName = "InvalidParameter.DuplicateGroupName"
             case duplicateUserName = "InvalidParameter.DuplicateUserName"
             case invalidAccessPolicy = "InvalidParameter.InvalidAccessPolicy"
+            case invalidDataEngineMode = "InvalidParameter.InvalidDataEngineMode"
             case invalidDataEngineName = "InvalidParameter.InvalidDataEngineName"
+            case invalidDataEngineSpecs = "InvalidParameter.InvalidDataEngineSpecs"
             case invalidDescription = "InvalidParameter.InvalidDescription"
+            case invalidEngineType = "InvalidParameter.InvalidEngineType"
             case invalidFailureTolerance = "InvalidParameter.InvalidFailureTolerance"
             case invalidFilterKey = "InvalidParameter.InvalidFilterKey"
             case invalidGroupId = "InvalidParameter.InvalidGroupId"
+            case invalidMaxResults = "InvalidParameter.InvalidMaxResults"
             case invalidOffset = "InvalidParameter.InvalidOffset"
+            case invalidPayMode = "InvalidParameter.InvalidPayMode"
             case invalidRoleArn = "InvalidParameter.InvalidRoleArn"
             case invalidSQL = "InvalidParameter.InvalidSQL"
             case invalidSQLNum = "InvalidParameter.InvalidSQLNum"
@@ -34,11 +40,14 @@ extension TCDlcError {
             case invalidStoreLocation = "InvalidParameter.InvalidStoreLocation"
             case invalidTaskId = "InvalidParameter.InvalidTaskId"
             case invalidTaskType = "InvalidParameter.InvalidTaskType"
+            case invalidTimeSpan = "InvalidParameter.InvalidTimeSpan"
+            case invalidTimeUnit = "InvalidParameter.InvalidTimeUnit"
             case invalidUserAlias = "InvalidParameter.InvalidUserAlias"
             case invalidUserName = "InvalidParameter.InvalidUserName"
             case invalidUserType = "InvalidParameter.InvalidUserType"
             case invalidWorkGroupName = "InvalidParameter.InvalidWorkGroupName"
             case taskAlreadyFinished = "InvalidParameter.TaskAlreadyFinished"
+            case vpcCidrFormatError = "InvalidParameter.VpcCidrFormatError"
             case other = "InvalidParameter"
         }
 
@@ -64,6 +73,13 @@ extension TCDlcError {
             self.context = context
         }
 
+        /// 重复的引擎名称。
+        ///
+        /// 请换一个引擎名称。
+        public static var duplicateDataEngineName: InvalidParameter {
+            InvalidParameter(.duplicateDataEngineName)
+        }
+
         /// 重复的工作组名称。
         public static var duplicateGroupName: InvalidParameter {
             InvalidParameter(.duplicateGroupName)
@@ -79,6 +95,13 @@ extension TCDlcError {
             InvalidParameter(.invalidAccessPolicy)
         }
 
+        /// 无效的数据引擎模式。
+        ///
+        /// 修改数据引擎模式。
+        public static var invalidDataEngineMode: InvalidParameter {
+            InvalidParameter(.invalidDataEngineMode)
+        }
+
         /// 无效的数据引擎名。
         ///
         /// 一般是引擎名字重复或包含不支持的符号。
@@ -86,9 +109,23 @@ extension TCDlcError {
             InvalidParameter(.invalidDataEngineName)
         }
 
+        /// 无效的数据引擎规格。
+        ///
+        /// 修改引擎规格符合要求。
+        public static var invalidDataEngineSpecs: InvalidParameter {
+            InvalidParameter(.invalidDataEngineSpecs)
+        }
+
         /// 无效的描述信息。
         public static var invalidDescription: InvalidParameter {
             InvalidParameter(.invalidDescription)
+        }
+
+        /// 无效的引擎类型。
+        ///
+        /// 引擎类型仅支持presto或spark
+        public static var invalidEngineType: InvalidParameter {
+            InvalidParameter(.invalidEngineType)
         }
 
         /// 无效的容错策略。
@@ -96,6 +133,8 @@ extension TCDlcError {
             InvalidParameter(.invalidFailureTolerance)
         }
 
+        /// 无效的过滤条件。
+        ///
         /// 请更换过滤条件。
         public static var invalidFilterKey: InvalidParameter {
             InvalidParameter(.invalidFilterKey)
@@ -106,11 +145,27 @@ extension TCDlcError {
             InvalidParameter(.invalidGroupId)
         }
 
+        /// 无效的最大结果数。
+        ///
+        /// 调整最大结果数到1~1000
+        public static var invalidMaxResults: InvalidParameter {
+            InvalidParameter(.invalidMaxResults)
+        }
+
         /// 无效的Offset值。
         public static var invalidOffset: InvalidParameter {
             InvalidParameter(.invalidOffset)
         }
 
+        /// 无效的计费模式。
+        ///
+        /// 仅支持0：按量计费；1：包年包月模式
+        public static var invalidPayMode: InvalidParameter {
+            InvalidParameter(.invalidPayMode)
+        }
+
+        /// 无效的CAM role arn。
+        ///
         /// 请使用正确的已经授权的CAM role arn
         public static var invalidRoleArn: InvalidParameter {
             InvalidParameter(.invalidRoleArn)
@@ -133,6 +188,7 @@ extension TCDlcError {
             InvalidParameter(.invalidSortByType)
         }
 
+        /// SparkAppParam无效。
         public static var invalidSparkAppParam: InvalidParameter {
             InvalidParameter(.invalidSparkAppParam)
         }
@@ -152,6 +208,20 @@ extension TCDlcError {
         /// 填写正确的任务类型SQLTask
         public static var invalidTaskType: InvalidParameter {
             InvalidParameter(.invalidTaskType)
+        }
+
+        /// 无效的计费时长。
+        ///
+        /// 计费时长。按量计费下固定为3600；包年包月计费下表示购买的月份
+        public static var invalidTimeSpan: InvalidParameter {
+            InvalidParameter(.invalidTimeSpan)
+        }
+
+        /// 无效的计费时长单位。
+        ///
+        /// 计费时长单位。按量计费下固定为s；包年包月计费下固定为m
+        public static var invalidTimeUnit: InvalidParameter {
+            InvalidParameter(.invalidTimeUnit)
         }
 
         /// 无效用户名称。
@@ -183,6 +253,11 @@ extension TCDlcError {
             InvalidParameter(.taskAlreadyFinished)
         }
 
+        /// Vpc cidr格式错误。
+        public static var vpcCidrFormatError: InvalidParameter {
+            InvalidParameter(.vpcCidrFormatError)
+        }
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
@@ -191,24 +266,36 @@ extension TCDlcError {
         public func asDlcError() -> TCDlcError {
             let code: TCDlcError.Code
             switch self.error {
+            case .duplicateDataEngineName:
+                code = .invalidParameter_DuplicateDataEngineName
             case .duplicateGroupName:
                 code = .invalidParameter_DuplicateGroupName
             case .duplicateUserName:
                 code = .invalidParameter_DuplicateUserName
             case .invalidAccessPolicy:
                 code = .invalidParameter_InvalidAccessPolicy
+            case .invalidDataEngineMode:
+                code = .invalidParameter_InvalidDataEngineMode
             case .invalidDataEngineName:
                 code = .invalidParameter_InvalidDataEngineName
+            case .invalidDataEngineSpecs:
+                code = .invalidParameter_InvalidDataEngineSpecs
             case .invalidDescription:
                 code = .invalidParameter_InvalidDescription
+            case .invalidEngineType:
+                code = .invalidParameter_InvalidEngineType
             case .invalidFailureTolerance:
                 code = .invalidParameter_InvalidFailureTolerance
             case .invalidFilterKey:
                 code = .invalidParameter_InvalidFilterKey
             case .invalidGroupId:
                 code = .invalidParameter_InvalidGroupId
+            case .invalidMaxResults:
+                code = .invalidParameter_InvalidMaxResults
             case .invalidOffset:
                 code = .invalidParameter_InvalidOffset
+            case .invalidPayMode:
+                code = .invalidParameter_InvalidPayMode
             case .invalidRoleArn:
                 code = .invalidParameter_InvalidRoleArn
             case .invalidSQL:
@@ -225,6 +312,10 @@ extension TCDlcError {
                 code = .invalidParameter_InvalidTaskId
             case .invalidTaskType:
                 code = .invalidParameter_InvalidTaskType
+            case .invalidTimeSpan:
+                code = .invalidParameter_InvalidTimeSpan
+            case .invalidTimeUnit:
+                code = .invalidParameter_InvalidTimeUnit
             case .invalidUserAlias:
                 code = .invalidParameter_InvalidUserAlias
             case .invalidUserName:
@@ -235,6 +326,8 @@ extension TCDlcError {
                 code = .invalidParameter_InvalidWorkGroupName
             case .taskAlreadyFinished:
                 code = .invalidParameter_TaskAlreadyFinished
+            case .vpcCidrFormatError:
+                code = .invalidParameter_VpcCidrFormatError
             case .other:
                 code = .invalidParameter
             }

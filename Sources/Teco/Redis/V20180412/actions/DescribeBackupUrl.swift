@@ -20,17 +20,49 @@ extension Redis {
         /// 实例 ID。
         public let instanceId: String
 
-        /// 备份 ID，可通过DescribeInstanceBackups接口返回的参数 BackupSet 获取。
+        /// 备份 ID，可通过 [DescribeInstanceBackups ](https://cloud.tencent.com/document/product/239/20011)接口返回的参数 RedisBackupSet 获取。
         public let backupId: String
 
-        public init(instanceId: String, backupId: String) {
+        /// 下载备份文件的网络限制类型，如果不配置该参数，则使用用户自定义的配置。
+        ///
+        /// - NoLimit：不限制，腾讯云内外网均可以下载备份文件。
+        /// -  LimitOnlyIntranet：仅腾讯云自动分配的内网地址可下载备份文件。
+        /// - Customize：指用户自定义的私有网络可下载备份文件。
+        public let limitType: String?
+
+        /// 该参数仅支持输入 In，表示自定义的**LimitVpc**可以下载备份文件。
+        public let vpcComparisonSymbol: String?
+
+        /// 标识自定义的 LimitIp 地址是否可下载备份文件。
+        ///
+        /// - In: 自定义的 IP 地址可以下载。默认为 In。
+        /// - NotIn: 自定义的 IP 不可以下载。
+        public let ipComparisonSymbol: String?
+
+        /// 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，需配置该参数。
+        public let limitVpc: [BackupLimitVpcItem]?
+
+        /// 自定义的可下载备份文件的 VPC IP 地址。当参数**LimitType**为**Customize **时，需配置该参数。
+        public let limitIp: [String]?
+
+        public init(instanceId: String, backupId: String, limitType: String? = nil, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil) {
             self.instanceId = instanceId
             self.backupId = backupId
+            self.limitType = limitType
+            self.vpcComparisonSymbol = vpcComparisonSymbol
+            self.ipComparisonSymbol = ipComparisonSymbol
+            self.limitVpc = limitVpc
+            self.limitIp = limitIp
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupId = "BackupId"
+            case limitType = "LimitType"
+            case vpcComparisonSymbol = "VpcComparisonSymbol"
+            case ipComparisonSymbol = "IpComparisonSymbol"
+            case limitVpc = "LimitVpc"
+            case limitIp = "LimitIp"
         }
     }
 
@@ -82,15 +114,15 @@ extension Redis {
     ///
     /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
     @inlinable
-    public func describeBackupUrl(instanceId: String, backupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupUrlResponse> {
-        self.describeBackupUrl(.init(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
+    public func describeBackupUrl(instanceId: String, backupId: String, limitType: String? = nil, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupUrlResponse> {
+        self.describeBackupUrl(.init(instanceId: instanceId, backupId: backupId, limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份Rdb下载地址
     ///
     /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
     @inlinable
-    public func describeBackupUrl(instanceId: String, backupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUrlResponse {
-        try await self.describeBackupUrl(.init(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
+    public func describeBackupUrl(instanceId: String, backupId: String, limitType: String? = nil, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUrlResponse {
+        try await self.describeBackupUrl(.init(instanceId: instanceId, backupId: backupId, limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), region: region, logger: logger, on: eventLoop)
     }
 }

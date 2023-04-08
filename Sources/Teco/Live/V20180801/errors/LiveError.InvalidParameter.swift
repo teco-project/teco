@@ -177,6 +177,7 @@ extension TCLiveError {
             InvalidParameter(.domainTooLong)
         }
 
+        /// 自适应码率子模板gop值必须存在且相等。
         public static var gopMustEqualAndExists: InvalidParameter {
             InvalidParameter(.gopMustEqualAndExists)
         }
@@ -251,6 +252,7 @@ extension TCLiveError {
             InvalidParameter(.invalidVodFileName)
         }
 
+        /// 水印参数有误。
         public static var invalidWatermark: InvalidParameter {
             InvalidParameter(.invalidWatermark)
         }

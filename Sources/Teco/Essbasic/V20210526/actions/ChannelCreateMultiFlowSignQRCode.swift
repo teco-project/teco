@@ -17,7 +17,7 @@
 extension Essbasic {
     /// ChannelCreateMultiFlowSignQRCode请求参数结构体
     public struct ChannelCreateMultiFlowSignQRCodeRequest: TCRequestModel {
-        /// 渠道应用相关信息。
+        /// 应用相关信息。
         /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         public let agent: Agent
 
@@ -40,17 +40,17 @@ extension Essbasic {
         public let restrictions: [ApproverRestriction]?
 
         /// 回调地址，最大长度1000个字符
-        /// 不传默认使用渠道应用号配置的回调地址
+        /// 不传默认使用第三方应用号配置的回调地址
         /// 回调时机:用户通过签署二维码发起合同时，企业额度不足导致失败
         public let callbackUrl: String?
-
-        /// 用户信息
-        public let `operator`: UserInfo?
 
         /// 限制二维码用户条件（已弃用）
         public let approverRestrictions: ApproverRestriction?
 
-        public init(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil) {
+        /// 暂未开放
+        public let `operator`: UserInfo?
+
+        public init(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, approverRestrictions: ApproverRestriction? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.flowName = flowName
@@ -59,8 +59,8 @@ extension Essbasic {
             self.qrEffectiveDay = qrEffectiveDay
             self.restrictions = restrictions
             self.callbackUrl = callbackUrl
-            self.operator = `operator`
             self.approverRestrictions = approverRestrictions
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -72,8 +72,8 @@ extension Essbasic {
             case qrEffectiveDay = "QrEffectiveDay"
             case restrictions = "Restrictions"
             case callbackUrl = "CallbackUrl"
-            case `operator` = "Operator"
             case approverRestrictions = "ApproverRestrictions"
+            case `operator` = "Operator"
         }
     }
 
@@ -118,8 +118,8 @@ extension Essbasic {
     /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
     /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
     @inlinable
-    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateMultiFlowSignQRCodeResponse> {
-        self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)
+    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, approverRestrictions: ApproverRestriction? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateMultiFlowSignQRCodeResponse> {
+        self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, approverRestrictions: approverRestrictions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建一码多扫签署流程二维码
@@ -127,7 +127,7 @@ extension Essbasic {
     /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
     /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
     @inlinable
-    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
-        try await self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)
+    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, approverRestrictions: ApproverRestriction? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
+        try await self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, approverRestrictions: approverRestrictions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

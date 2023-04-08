@@ -44,26 +44,30 @@ extension Tdid {
     }
 
     /// 检查部署情况
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func checkDidDeploy(_ input: CheckDidDeployRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDidDeployResponse> {
-        self.client.execute(action: "CheckDidDeploy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CheckDidDeploy is no longer available.")
     }
 
     /// 检查部署情况
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func checkDidDeploy(_ input: CheckDidDeployRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDidDeployResponse {
-        try await self.client.execute(action: "CheckDidDeploy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CheckDidDeploy is no longer available.")
     }
 
     /// 检查部署情况
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func checkDidDeploy(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDidDeployResponse> {
-        self.checkDidDeploy(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        fatalError("CheckDidDeploy is no longer available.")
     }
 
     /// 检查部署情况
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func checkDidDeploy(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDidDeployResponse {
-        try await self.checkDidDeploy(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        fatalError("CheckDidDeploy is no longer available.")
     }
 }

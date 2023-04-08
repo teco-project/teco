@@ -88,7 +88,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable
     public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
         self.client.execute(action: "DescribeVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -96,7 +96,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable
     public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
         try await self.client.execute(action: "DescribeVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -104,7 +104,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable
     public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
         self.describeVpcEndPoint(.init(filters: filters, offset: offset, limit: limit, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
@@ -112,7 +112,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable
     public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
         try await self.describeVpcEndPoint(.init(filters: filters, offset: offset, limit: limit, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
@@ -120,7 +120,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable
     public func describeVpcEndPointPaginated(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [EndPoint])> {
         self.client.paginate(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)
@@ -128,7 +128,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     @inlinable @discardableResult
     public func describeVpcEndPointPaginated(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcEndPointResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcEndPoint, callback: onResponse, logger: logger, on: eventLoop)
@@ -136,7 +136,7 @@ extension Vpc {
 
     /// 查询终端节点列表
     ///
-    /// 查询终端节点列表。
+    /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     ///
     /// - Returns: `AsyncSequence`s of `EndPoint` and `DescribeVpcEndPointResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -53,33 +53,33 @@ extension Cdn {
         }
     }
 
-    /// 获取诊断任务列表
+    /// 获取诊断任务列表(即将下线)
     ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情， <font color=red>将于 **2023年5月31日** 下线</font><br>
     @inlinable
     public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
         self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取诊断任务列表
+    /// 获取诊断任务列表(即将下线)
     ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情， <font color=red>将于 **2023年5月31日** 下线</font><br>
     @inlinable
     public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
         try await self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取诊断任务列表
+    /// 获取诊断任务列表(即将下线)
     ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情， <font color=red>将于 **2023年5月31日** 下线</font><br>
     @inlinable
     public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
         self.listDiagnoseReport(.init(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取诊断任务列表
+    /// 获取诊断任务列表(即将下线)
     ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情， <font color=red>将于 **2023年5月31日** 下线</font><br>
     @inlinable
     public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
         try await self.listDiagnoseReport(.init(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)

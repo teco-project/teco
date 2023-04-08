@@ -50,6 +50,9 @@ extension Cwp {
         /// 一键扫描超时时长，如：1800秒（s）
         public let clickTimeout: UInt64
 
+        /// 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
+        public let uuids: [String]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -63,6 +66,7 @@ extension Cwp {
             case enableScan = "EnableScan"
             case endTime = "EndTime"
             case clickTimeout = "ClickTimeout"
+            case uuids = "Uuids"
             case requestId = "RequestId"
         }
     }

@@ -90,49 +90,55 @@ extension Tdmq {
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
-        self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
-        self.describeAMQPVHosts(.init(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.describeAMQPVHosts(.init(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPVHost])> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func describeAMQPVHostsPaginated(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPVHostsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPVHosts, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 
     /// 获取Amqp Vhost列表
@@ -140,8 +146,9 @@ extension Tdmq {
     /// 获取Amqp Vhost 列表
     ///
     /// - Returns: `AsyncSequence`s of `AMQPVHost` and `DescribeAMQPVHostsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPVHostsPaginator(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPVHostsRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPVHosts is no longer available.")
     }
 }

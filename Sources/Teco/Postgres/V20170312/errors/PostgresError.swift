@@ -91,6 +91,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         case failedOperation_UpdateResourceProjectTagValueError = "FailedOperation.UpdateResourceProjectTagValueError"
         case failedOperation_VPCResetServiceError = "FailedOperation.VPCResetServiceError"
         case failedOperation_VPCUpdateRouteError = "FailedOperation.VPCUpdateRouteError"
+        case failedOperation_WhitelistConnectError = "FailedOperation.WhitelistConnectError"
         case flowError = "FlowError"
         case instanceNotExist = "InstanceNotExist"
         case interfaceNameNotFound = "InterfaceNameNotFound"
@@ -139,6 +140,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         case invalidParameterValue_InvalidPasswordValueError = "InvalidParameterValue.InvalidPasswordValueError"
         case invalidParameterValue_InvalidPid = "InvalidParameterValue.InvalidPid"
         case invalidParameterValue_InvalidReadOnlyGroupStatus = "InvalidParameterValue.InvalidReadOnlyGroupStatus"
+        case invalidParameterValue_InvalidRegionIdError = "InvalidParameterValue.InvalidRegionIdError"
         case invalidParameterValue_InvalidZoneIdError = "InvalidParameterValue.InvalidZoneIdError"
         case invalidParameterValue_NullDealNames = "InvalidParameterValue.NullDealNames"
         case invalidParameterValue_ParameterCharacterError = "InvalidParameterValue.ParameterCharacterError"
@@ -245,6 +247,8 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.failedOperation)
     }
 
+    /// 申请资源标签的配额失败。
+    ///
     /// 请前往标签控制台添加配额，如果持续不成功，请联系客服进行处理。
     public static var failedOperation_AllocateQuotasError: TCPostgresError {
         TCPostgresError(.failedOperation_AllocateQuotasError)
@@ -390,7 +394,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.failedOperation_ModifyROGroupError)
     }
 
-    /// 不符合资源所拥有的的网络数量要求。
+    /// 不符合资源所拥有的网络数量要求。
     public static var failedOperation_NetworkNumLimitError: TCPostgresError {
         TCPostgresError(.failedOperation_NetworkNumLimitError)
     }
@@ -555,6 +559,11 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.failedOperation_VPCUpdateRouteError)
     }
 
+    /// 查询白名单失败，请稍后重试。如果持续不成功，请联系客服进行处理。
+    public static var failedOperation_WhitelistConnectError: TCPostgresError {
+        TCPostgresError(.failedOperation_WhitelistConnectError)
+    }
+
     /// 流程创建失败。
     public static var flowError: TCPostgresError {
         TCPostgresError(.flowError)
@@ -605,6 +614,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.internalError_InstanceDataError)
     }
 
+    /// 请求执行异常。
     public static var internalError_InternalHttpServerError: TCPostgresError {
         TCPostgresError(.internalError_InternalHttpServerError)
     }
@@ -619,6 +629,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.internalError_SystemError)
     }
 
+    /// 开启事务失败。
     public static var internalError_TransactioBeginError: TCPostgresError {
         TCPostgresError(.internalError_TransactioBeginError)
     }
@@ -793,6 +804,11 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.invalidParameterValue_InvalidReadOnlyGroupStatus)
     }
 
+    /// 无效地域。
+    public static var invalidParameterValue_InvalidRegionIdError: TCPostgresError {
+        TCPostgresError(.invalidParameterValue_InvalidRegionIdError)
+    }
+
     /// 无效的可用区。
     public static var invalidParameterValue_InvalidZoneIdError: TCPostgresError {
         TCPostgresError(.invalidParameterValue_InvalidZoneIdError)
@@ -958,6 +974,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.operationDenied_ROInstanceIpv6NotSupportedError)
     }
 
+    /// 只读实例状态限制当前操作。
     public static var operationDenied_ROInstanceStatusLimitOpError: TCPostgresError {
         TCPostgresError(.operationDenied_ROInstanceStatusLimitOpError)
     }

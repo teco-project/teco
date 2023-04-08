@@ -396,6 +396,293 @@ extension Irp {
         }
     }
 
+    /// 电商行为
+    public struct GoodsBehaviorInfo: TCInputModel {
+        /// 用户唯一ID，客户自定义用户ID，作为一个用户的唯一标识
+        public let userId: String
+
+        /// 商品唯一ID，skuId或spuId，客户根据需求自行决定商品主键粒度
+        public let goodsId: String
+
+        /// 行为类型：<br> ● expose - 曝光，<b>必须</b><br> ● click - 点击，<b>必须</b><br/>  ● stay - 详情页停留时长，<b>强烈建议</b><br/>  ● videoover - 视频播放时长，<b>强烈建议</b><br/> ●  like - 点赞&喜欢，<b>正效果</b><br/> ● collect - 收藏，<b>正效果</b><br/> ●  share - 转发&分享，<b>正效果</b><br/> ● reward - 打赏，<b>正效果</b><br/> ● unlike - 踩&不喜欢，<b>负效果</b><br/> ●  comment - 评论<br/> ●  order - 下单<br/> ●  buy - 购买成功<br/> ●  addcart - 加入购物车<br/>
+        /// 不支持的行为类型，可以映射到未被使用的其他行为类型。如实际业务数据中有私信行为，没有收藏行为，可以将私信行为映射到收藏行为
+        public let behaviorType: String
+
+        /// 行为类型对应的行为值：<br/> ● expose - 曝光，固定填1<br/> ● click - 点击，固定填1<br/>  ● stay - 详情页停留时长，填停留秒数，取值[1-86400]<br/>  ● videoover - 视频播放时长，填播放结束的秒数，取值[1-86400]<br/> ●  like - 点赞&喜欢，固定填1<br/> ● collect - 收藏，固定填1<br/> ●  share - 转发&分享，固定填1<br/> ● reward - 打赏，填打赏金额，没有则填1<br/> ● unlike - 踩&不喜欢，填不喜欢的原因，没有则填1<br/> ●  comment - 评论，填评论内容，如“上海加油”<br/> ●  order - 下单，固定填1<br/> ●  buy - 购买成功，固定填1<br/> ●  addcart - 加入购物车，固定填1
+        public let behaviorValue: String
+
+        /// 行为发生的时间戳： 秒级时间戳，尽量实时上报，最长不超过半小时否则会影响推荐结果的准确性
+        public let behaviorTimestamp: Int64
+
+        /// 行为发生的场景ID，在控制台创建场景后获取
+        public let sceneId: String
+
+        /// 算法来源： <br>● business 业务自己的算法对照组<br/> ● tencent 腾讯算法<br/> ● other 其他算法<br/>默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
+        public let source: String
+
+        /// 标识行为发生在app内哪个页面，取值客户自定，可以是明文或id，建议传明文便于理解、分析，如首页，发现页，用户中心等
+        /// <b>用作上下文特征，刻画不同场景用户行为分布的差异</b>
+        public let page: String?
+
+        /// 标识行为发生在页面的哪一区块，取值客户自定，可以是明文或id，建议传明文便于理解、分析，如横幅、广告位、猜你喜欢等
+        /// <b>用作上下文特征，刻画不同模块用户行为分布的差异</b>
+        public let module: String?
+
+        /// 推荐追踪ID，使用推荐结果中返回的GoodsTraceId填入。
+        /// 注意：如果和推荐结果中的GoodsTraceId不同，会影响行为特征归因，影响推荐算法效果。<b>强烈建议</b>
+        public let goodsTraceId: String?
+
+        /// 相关推荐场景点击进入详情页的内容id，该字段用来注明行为发生于哪个内容的详情页推荐中，<b>相关推荐场景强烈建议</b>
+        public let referrerGoodsId: String?
+
+        /// 订单商品购买个数，当behaviorType=order，buy或addcart时有值，<b>用作特征</b>
+        public let orderGoodsCnt: Int64?
+
+        /// 订单总金额，当behaviorType=order或buy时有值（单位：元，统一货币体系，如统一为RMB，美元等），<b>用作特征</b>
+        public let orderAmount: Float?
+
+        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，<b>用于构建用户画像信息</b>
+        public let userIdList: [StrUserIdInfo]?
+
+        /// 行为发生时用户基础特征信息，<b>用作特征</b>
+        public let userPortraitInfo: UserPortraitInfo?
+
+        /// 标识行为发生在模块内的具体位置，如1、2、...
+        /// <b>用作上下文特征，刻画不同位置用户行为分布的差异</b>
+        public let position: Int64?
+
+        /// json字符串，<b>用于行为数据的扩展</b>
+        public let `extension`: String?
+
+        public init(userId: String, goodsId: String, behaviorType: String, behaviorValue: String, behaviorTimestamp: Int64, sceneId: String, source: String, page: String? = nil, module: String? = nil, goodsTraceId: String? = nil, referrerGoodsId: String? = nil, orderGoodsCnt: Int64? = nil, orderAmount: Float? = nil, userIdList: [StrUserIdInfo]? = nil, userPortraitInfo: UserPortraitInfo? = nil, position: Int64? = nil, extension: String? = nil) {
+            self.userId = userId
+            self.goodsId = goodsId
+            self.behaviorType = behaviorType
+            self.behaviorValue = behaviorValue
+            self.behaviorTimestamp = behaviorTimestamp
+            self.sceneId = sceneId
+            self.source = source
+            self.page = page
+            self.module = module
+            self.goodsTraceId = goodsTraceId
+            self.referrerGoodsId = referrerGoodsId
+            self.orderGoodsCnt = orderGoodsCnt
+            self.orderAmount = orderAmount
+            self.userIdList = userIdList
+            self.userPortraitInfo = userPortraitInfo
+            self.position = position
+            self.extension = `extension`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case userId = "UserId"
+            case goodsId = "GoodsId"
+            case behaviorType = "BehaviorType"
+            case behaviorValue = "BehaviorValue"
+            case behaviorTimestamp = "BehaviorTimestamp"
+            case sceneId = "SceneId"
+            case source = "Source"
+            case page = "Page"
+            case module = "Module"
+            case goodsTraceId = "GoodsTraceId"
+            case referrerGoodsId = "ReferrerGoodsId"
+            case orderGoodsCnt = "OrderGoodsCnt"
+            case orderAmount = "OrderAmount"
+            case userIdList = "UserIdList"
+            case userPortraitInfo = "UserPortraitInfo"
+            case position = "Position"
+            case `extension` = "Extension"
+        }
+    }
+
+    /// 电商物料内容
+    public struct GoodsInfo: TCInputModel {
+        /// 商品唯一ID，skuId或spuId，客户根据需求自行决定商品主键粒度。建议限制在128字符以内
+        public let goodsId: String
+
+        /// 商品物料展示类型：<br/>● article -图文<br>● text -纯文本<br/>● video -视频<br/>● short_video -时长15秒以内的视频<br/>● mini_video -竖屏视频<br/>● image -纯图片<br/>（如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        public let goodsType: String
+
+        /// 商品状态：
+        /// ● 1 - 上架
+        /// ● 2 - 下架
+        /// Status=2的内容不会在推荐结果中出现
+        /// 需要下架内容时，把Status的值修改为2即可
+        public let status: UInt64
+
+        /// 商品生成时间，秒级时间戳（1639624786），需大于0，<b>用作特征和物料管理</b>
+        public let publishTimestamp: Int64
+
+        /// 商品过期时间，秒级时间戳（1639624786），如未填，则默认PublishTimestamp往后延一年，<b>用作特征</b>，过期则不会被推荐，<b>强烈建议</b>
+        public let expireTimestamp: Int64?
+
+        /// spu((Standard Product Unit))维度id，商品聚合信息的最小单位，<b>强烈建议</b>
+        public let spuId: String?
+
+        /// 类目层级数，例如3级类目，则填3，和CategoryPath字段的类数据匹配，<b>强烈建议</b>
+        public let categoryLevel: Int64?
+
+        /// 类目路径，一级二级三级等依次用英文冒号联接，和CategoryLevel字段值匹配，如体育：“女装:裙子:半身裙”。<b>用于物料池管理，强烈建议</b>
+        public let categoryPath: String?
+
+        /// 商品标题，<b>主要用于语义分析</b>，<b>强烈建议</b>
+        public let title: String?
+
+        /// 商品标签，多个标签用英文冒号联接，<b>用作特征，强烈建议</b>
+        public let tags: String?
+
+        /// 商品对应的品牌，取值用户自定义，可以是品牌id或品牌明文，<b>用作特征以及打散/过滤规则，强烈建议</b>
+        public let brand: String?
+
+        /// 商品所属店铺ID，取值客户自定义，<b>用作特征，强烈建议</b>
+        public let shopId: String?
+
+        /// 商品原始价格（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征，强烈建议</b>
+        public let orgPrice: Float?
+
+        /// 商品当前价格（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征，强烈建议</b>
+        public let curPrice: Float?
+
+        /// 商品来源类型，客户自定义，<b>用于物料池管理</b>
+        public let sourceId: String?
+
+        /// 商品正文关键片段，建议控制在500字符以内，<b>主要用于语义分析</b>
+        public let content: String?
+
+        /// 商品正文详情，主要用于语义分析，当内容过大时建议用ContentUrl传递，<b>与Content可二选一</b>
+        public let contentUrl: String?
+
+        /// 商品封面url，不超过10个，<b>用作特征</b>
+        public let picUrlList: [String]?
+
+        /// 卖家所在国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，<b>用作特征</b>
+        public let country: String?
+
+        /// 卖家所在省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，<b>用作特征</b>
+        public let province: String?
+
+        /// 卖家所在城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，<b>用作特征</b>
+        public let city: String?
+
+        /// 商品是否包邮；1:包邮；2:不包邮；3:满足条件包邮，<b>用作特征</b>
+        public let freeShipping: Int64?
+
+        /// 商品邮费（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征</b>
+        public let shippingPrice: Float?
+
+        /// 商品累计好评次数，<b>用作特征</b>
+        public let praiseCnt: Int64?
+
+        /// 商品累计评论次数，<b>用作特征</b>
+        public let commentCnt: Int64?
+
+        /// 商品累计分享次数，<b>用作特征</b>
+        public let shareCnt: Int64?
+
+        /// 商品累计收藏次数，<b>用作特征</b>
+        public let collectCnt: Int64?
+
+        /// 商品累积成交次数，<b>用作特征</b>
+        public let orderCnt: Int64?
+
+        /// 商品平均客户评分，取值范围用户自定，<b>用作特征</b>
+        public let score: Float?
+
+        /// json字符串，<b>用于物料池管理的自定义扩展</b>
+        public let `extension`: String?
+
+        public init(goodsId: String, goodsType: String, status: UInt64, publishTimestamp: Int64, expireTimestamp: Int64? = nil, spuId: String? = nil, categoryLevel: Int64? = nil, categoryPath: String? = nil, title: String? = nil, tags: String? = nil, brand: String? = nil, shopId: String? = nil, orgPrice: Float? = nil, curPrice: Float? = nil, sourceId: String? = nil, content: String? = nil, contentUrl: String? = nil, picUrlList: [String]? = nil, country: String? = nil, province: String? = nil, city: String? = nil, freeShipping: Int64? = nil, shippingPrice: Float? = nil, praiseCnt: Int64? = nil, commentCnt: Int64? = nil, shareCnt: Int64? = nil, collectCnt: Int64? = nil, orderCnt: Int64? = nil, score: Float? = nil, extension: String? = nil) {
+            self.goodsId = goodsId
+            self.goodsType = goodsType
+            self.status = status
+            self.publishTimestamp = publishTimestamp
+            self.expireTimestamp = expireTimestamp
+            self.spuId = spuId
+            self.categoryLevel = categoryLevel
+            self.categoryPath = categoryPath
+            self.title = title
+            self.tags = tags
+            self.brand = brand
+            self.shopId = shopId
+            self.orgPrice = orgPrice
+            self.curPrice = curPrice
+            self.sourceId = sourceId
+            self.content = content
+            self.contentUrl = contentUrl
+            self.picUrlList = picUrlList
+            self.country = country
+            self.province = province
+            self.city = city
+            self.freeShipping = freeShipping
+            self.shippingPrice = shippingPrice
+            self.praiseCnt = praiseCnt
+            self.commentCnt = commentCnt
+            self.shareCnt = shareCnt
+            self.collectCnt = collectCnt
+            self.orderCnt = orderCnt
+            self.score = score
+            self.extension = `extension`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case goodsId = "GoodsId"
+            case goodsType = "GoodsType"
+            case status = "Status"
+            case publishTimestamp = "PublishTimestamp"
+            case expireTimestamp = "ExpireTimestamp"
+            case spuId = "SpuId"
+            case categoryLevel = "CategoryLevel"
+            case categoryPath = "CategoryPath"
+            case title = "Title"
+            case tags = "Tags"
+            case brand = "Brand"
+            case shopId = "ShopId"
+            case orgPrice = "OrgPrice"
+            case curPrice = "CurPrice"
+            case sourceId = "SourceId"
+            case content = "Content"
+            case contentUrl = "ContentUrl"
+            case picUrlList = "PicUrlList"
+            case country = "Country"
+            case province = "Province"
+            case city = "City"
+            case freeShipping = "FreeShipping"
+            case shippingPrice = "ShippingPrice"
+            case praiseCnt = "PraiseCnt"
+            case commentCnt = "CommentCnt"
+            case shareCnt = "ShareCnt"
+            case collectCnt = "CollectCnt"
+            case orderCnt = "OrderCnt"
+            case score = "Score"
+            case `extension` = "Extension"
+        }
+    }
+
+    /// 推荐返回的内容信息
+    public struct RecGoodsData: TCOutputModel {
+        /// 推荐返回的商品ID
+        public let goodsId: String
+
+        /// 推荐结果分，取值范围[0,1000000]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let score: Float?
+
+        /// 推荐追踪id，本次推荐内容产生的后续行为上报均要用该GoodsTraceId上报。每次接口调用返回的GoodsTraceId不同
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let goodsTraceId: String?
+
+        /// 商品所在位置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let position: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case goodsId = "GoodsId"
+            case score = "Score"
+            case goodsTraceId = "GoodsTraceId"
+            case position = "Position"
+        }
+    }
+
     /// 推荐返回的内容信息
     public struct RecItemData: TCOutputModel {
         /// 推荐的内容ID
@@ -421,6 +708,12 @@ extension Irp {
         }
     }
 
+    /// 用户信息
+    public struct StrUserIdInfo: TCInputModel {
+        public init() {
+        }
+    }
+
     /// 用户ID信息
     public struct UserIdInfo: TCInputModel {
         /// 用户ID类型： <br/>● qq: qq号码 <br/>● qq_md5：qq的md5值 <br/>● imei：设备imei <br/>● imei_md5：imei的md5值 <br/>● idfa: Apple 向用户设备随机分配的设备标识符 <br/>● idfa_md5：idfa的md5值 <br/>● oaid：安卓10之后一种非永久性设备标识符 <br/>● oaid_md5：md5后的oaid <br/>● wx_openid：微信openid <br/>● qq_openid：QQ的openid <br/>● phone：电话号码 <br/>● phone_md5：md5后的电话号码 <br/>● phone_sha256：SHA256加密的手机号 <br/>● phone_sm3：国密SM3加密的手机号 <br/>（如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
@@ -437,6 +730,12 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case value = "Value"
+        }
+    }
+
+    /// 用户基础画像
+    public struct UserPortraitInfo: TCInputModel {
+        public init() {
         }
     }
 }

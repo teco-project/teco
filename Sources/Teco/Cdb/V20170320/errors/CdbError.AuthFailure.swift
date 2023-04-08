@@ -17,6 +17,7 @@
 extension TCCdbError {
     public struct AuthFailure: TCCdbErrorType {
         enum Code: String {
+            case invalidAuthorization = "AuthFailure.InvalidAuthorization"
             case subAccountDenied = "AuthFailure.SubAccountDenied"
             case other = "AuthFailure"
         }
@@ -43,6 +44,11 @@ extension TCCdbError {
             self.context = context
         }
 
+        /// 授权无效。
+        public static var invalidAuthorization: AuthFailure {
+            AuthFailure(.invalidAuthorization)
+        }
+
         /// 子账号无权限。
         public static var subAccountDenied: AuthFailure {
             AuthFailure(.subAccountDenied)
@@ -56,6 +62,8 @@ extension TCCdbError {
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
+            case .invalidAuthorization:
+                code = .authFailure_InvalidAuthorization
             case .subAccountDenied:
                 code = .authFailure_SubAccountDenied
             case .other:

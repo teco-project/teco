@@ -98,46 +98,53 @@ extension Tdmq {
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPExchangesResponse> {
-        self.client.execute(action: "DescribeAMQPExchanges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
-        try await self.client.execute(action: "DescribeAMQPExchanges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPExchangesResponse> {
-        self.describeAMQPExchanges(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
-        try await self.describeAMQPExchanges(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchangesPaginated(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPExchange])> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPExchanges, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func describeAMQPExchangesPaginated(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPExchangesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPExchanges, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 
     /// 获取AMQP Exchange列表
     ///
     /// - Returns: `AsyncSequence`s of `AMQPExchange` and `DescribeAMQPExchangesResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPExchangesPaginator(_ input: DescribeAMQPExchangesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPExchangesRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPExchanges, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPExchanges is no longer available.")
     }
 }

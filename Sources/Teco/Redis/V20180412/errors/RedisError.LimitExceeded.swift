@@ -24,6 +24,7 @@ extension TCRedisError {
             case memSizeNotInRange = "LimitExceeded.MemSizeNotInRange"
             case periodExceedMaxLimit = "LimitExceeded.PeriodExceedMaxLimit"
             case periodLessThanMinLimit = "LimitExceeded.PeriodLessThanMinLimit"
+            case reachTheAmountLimit = "LimitExceeded.ReachTheAmountLimit"
             case replicationGroupLocked = "LimitExceeded.ReplicationGroupLocked"
             case other = "LimitExceeded"
         }
@@ -85,6 +86,11 @@ extension TCRedisError {
             LimitExceeded(.periodLessThanMinLimit)
         }
 
+        /// 请的 redis 数量超过最大/最小购买数限制。
+        public static var reachTheAmountLimit: LimitExceeded {
+            LimitExceeded(.reachTheAmountLimit)
+        }
+
         /// 复制组已锁定。
         public static var replicationGroupLocked: LimitExceeded {
             LimitExceeded(.replicationGroupLocked)
@@ -112,6 +118,8 @@ extension TCRedisError {
                 code = .limitExceeded_PeriodExceedMaxLimit
             case .periodLessThanMinLimit:
                 code = .limitExceeded_PeriodLessThanMinLimit
+            case .reachTheAmountLimit:
+                code = .limitExceeded_ReachTheAmountLimit
             case .replicationGroupLocked:
                 code = .limitExceeded_ReplicationGroupLocked
             case .other:

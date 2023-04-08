@@ -61,78 +61,97 @@ extension TCEssError {
             self.context = context
         }
 
+        /// 缺少签署人手机号，请检查后重试。
         public static var approverMobile: MissingParameter {
             MissingParameter(.approverMobile)
         }
 
+        /// 缺少签署人姓名，请检查后重试。
         public static var approverName: MissingParameter {
             MissingParameter(.approverName)
         }
 
+        /// 缺少签署人企业信息，请检查后重试。
         public static var approverOrganizationInfo: MissingParameter {
             MissingParameter(.approverOrganizationInfo)
         }
 
+        /// 缺少签署流程签署人角色信息，请检查修改后重试。
         public static var approverRole: MissingParameter {
             MissingParameter(.approverRole)
         }
 
+        /// 缺少签署人签署控件配置，请联系客服了解控件传递规则，并在修改后重试。
         public static var approverSignComponent: MissingParameter {
             MissingParameter(.approverSignComponent)
         }
 
+        /// 授权码为空，请检查后重试。
         public static var authCode: MissingParameter {
             MissingParameter(.authCode)
         }
 
+        /// 缺少撤销取消理由，请检查修改后重试。
         public static var cancelReason: MissingParameter {
             MissingParameter(.cancelReason)
         }
 
+        /// 未找到表单域配置信息，请检查控件传参，检查文件资源配置，并在修改后重试。
         public static var field: MissingParameter {
             MissingParameter(.field)
         }
 
+        /// 文件名为空，请检查参数修改后重试。
         public static var fileNames: MissingParameter {
             MissingParameter(.fileNames)
         }
 
+        /// 缺少签署流程签署人信息，请指定签署人信息后重试。
         public static var flowApprover: MissingParameter {
             MissingParameter(.flowApprover)
         }
 
+        /// 缺少签署流程id，请检查修改后重试。
         public static var flowId: MissingParameter {
             MissingParameter(.flowId)
         }
 
+        /// 未找到关键字配置信息，请检查控件传参，检查文件资源配置，并在修改后重试。
         public static var keyWord: MissingParameter {
             MissingParameter(.keyWord)
         }
 
+        /// 缺少签署二维码id，请检查后重试。
         public static var qrCodeId: MissingParameter {
             MissingParameter(.qrCodeId)
         }
 
+        /// 缺少模板签署人信息，请检查后重试。
         public static var recipient: MissingParameter {
             MissingParameter(.recipient)
         }
 
+        /// 缺少文件资源ID，请检查后重试。
         public static var resourceId: MissingParameter {
             MissingParameter(.resourceId)
         }
 
+        /// 缺少资源名称，请检查修改后重试。
         public static var resourceName: MissingParameter {
             MissingParameter(.resourceName)
         }
 
+        /// 缺少静默签印章id，请检查修改后重试。
         public static var serverSignSealId: MissingParameter {
             MissingParameter(.serverSignSealId)
         }
 
+        /// 缺少签署控件参数。
         public static var signComponents: MissingParameter {
             MissingParameter(.signComponents)
         }
 
+        /// 缺少用户id，请检查后重试。
         public static var userId: MissingParameter {
             MissingParameter(.userId)
         }

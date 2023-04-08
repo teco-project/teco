@@ -44,26 +44,30 @@ extension Tdid {
     }
 
     /// 获取联盟bcos网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
-        self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumClusterList is no longer available.")
     }
 
     /// 获取联盟bcos网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetConsortiumClusterList is no longer available.")
     }
 
     /// 获取联盟bcos网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
-        self.getConsortiumClusterList(.init(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumClusterList is no longer available.")
     }
 
     /// 获取联盟bcos网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.getConsortiumClusterList(.init(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumClusterList is no longer available.")
     }
 }

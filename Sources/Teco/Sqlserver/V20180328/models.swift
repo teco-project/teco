@@ -32,19 +32,23 @@ extension Sqlserver {
         /// 账号备注信息
         public let remark: String?
 
-        /// 是否为管理员账户，默认为否
+        /// 是否为管理员账户，当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false，等价于AccountType=L3
         public let isAdmin: Bool?
 
         /// win-windows鉴权,sql-sqlserver鉴权，不填默认值为sql-sqlserver鉴权
         public let authentication: String?
 
-        public init(userName: String, password: String, dbPrivileges: [DBPrivilege]? = nil, remark: String? = nil, isAdmin: Bool? = nil, authentication: String? = nil) {
+        /// 账号类型，IsAdmin的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
+        public let accountType: String?
+
+        public init(userName: String, password: String, dbPrivileges: [DBPrivilege]? = nil, remark: String? = nil, isAdmin: Bool? = nil, authentication: String? = nil, accountType: String? = nil) {
             self.userName = userName
             self.password = password
             self.dbPrivileges = dbPrivileges
             self.remark = remark
             self.isAdmin = isAdmin
             self.authentication = authentication
+            self.accountType = accountType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -54,6 +58,7 @@ extension Sqlserver {
             case remark = "Remark"
             case isAdmin = "IsAdmin"
             case authentication = "Authentication"
+            case accountType = "AccountType"
         }
     }
 
@@ -101,6 +106,9 @@ extension Sqlserver {
         /// win-windows鉴权账户需要host
         public let host: String
 
+        /// 账号类型。L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限
+        public let accountType: String
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case remark = "Remark"
@@ -113,6 +121,7 @@ extension Sqlserver {
             case isAdmin = "IsAdmin"
             case authentication = "Authentication"
             case host = "Host"
+            case accountType = "AccountType"
         }
     }
 
@@ -140,17 +149,22 @@ extension Sqlserver {
         /// 数据库用户名
         public let userName: String
 
-        /// 数据库权限。ReadWrite表示可读写，ReadOnly表示只读
+        /// 数据库权限。ReadWrite表示可读写，ReadOnly表示只读,Delete表示删除DB对该账户的权限，DBOwner所有者
         public let privilege: String
 
-        public init(userName: String, privilege: String) {
+        /// 账户名称，L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限
+        public let accountType: String?
+
+        public init(userName: String, privilege: String, accountType: String? = nil) {
             self.userName = userName
             self.privilege = privilege
+            self.accountType = accountType
         }
 
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case privilege = "Privilege"
+            case accountType = "AccountType"
         }
     }
 
@@ -162,19 +176,24 @@ extension Sqlserver {
         /// 账号权限变更信息
         public let dbPrivileges: [DBPrivilegeModifyInfo]
 
-        /// 是否为管理员账户
+        /// 是否为管理员账户,当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false时，表示删除管理员权限，默认false
         public let isAdmin: Bool?
 
-        public init(userName: String, dbPrivileges: [DBPrivilegeModifyInfo], isAdmin: Bool? = nil) {
+        /// 账号类型，IsAdmin字段的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
+        public let accountType: String?
+
+        public init(userName: String, dbPrivileges: [DBPrivilegeModifyInfo], isAdmin: Bool? = nil, accountType: String? = nil) {
             self.userName = userName
             self.dbPrivileges = dbPrivileges
             self.isAdmin = isAdmin
+            self.accountType = accountType
         }
 
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case dbPrivileges = "DBPrivileges"
             case isAdmin = "IsAdmin"
+            case accountType = "AccountType"
         }
     }
 
@@ -722,7 +741,7 @@ extension Sqlserver {
         /// 数据库名
         public let dbName: String
 
-        /// 数据库权限，ReadWrite表示可读写，ReadOnly表示只读
+        /// 数据库权限，ReadWrite表示可读写，ReadOnly表示只读，DBOwner所有者
         public let privilege: String
 
         public init(dbName: String, privilege: String) {
@@ -741,7 +760,7 @@ extension Sqlserver {
         /// 数据库名
         public let dbName: String
 
-        /// 权限变更信息。ReadWrite表示可读写，ReadOnly表示只读，Delete表示删除账号对该DB的权限
+        /// 权限变更信息。ReadWrite表示可读写，ReadOnly表示只读，Delete表示删除账号对该DB的权限，DBOwner所有者
         public let privilege: String
 
         public init(dbName: String, privilege: String) {
@@ -771,6 +790,20 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case remark = "Remark"
+        }
+    }
+
+    /// 数据库重命名返回参数
+    public struct DBRenameRes: TCOutputModel {
+        /// 新数据库名称
+        public let newName: String
+
+        /// 老数据库名称
+        public let oldName: String
+
+        enum CodingKeys: String, CodingKey {
+            case newName = "NewName"
+            case oldName = "OldName"
         }
     }
 
@@ -871,6 +904,9 @@ extension Sqlserver {
         /// 用户类型
         public let userAccessDesc: String
 
+        /// 数据库创建时间
+        public let createTime: String?
+
         enum CodingKeys: String, CodingKey {
             case isSubscribed = "IsSubscribed"
             case collationName = "CollationName"
@@ -890,6 +926,7 @@ extension Sqlserver {
             case retentionPeriod = "RetentionPeriod"
             case stateDesc = "StateDesc"
             case userAccessDesc = "UserAccessDesc"
+            case createTime = "CreateTime"
         }
     }
 
@@ -1288,6 +1325,10 @@ extension Sqlserver {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isRecovery: String?
 
+        /// 重命名的数据库名称集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbRename: [DBRenameRes]?
+
         enum CodingKeys: String, CodingKey {
             case migrationId = "MigrationId"
             case migrationName = "MigrationName"
@@ -1305,6 +1346,7 @@ extension Sqlserver {
             case detail = "Detail"
             case action = "Action"
             case isRecovery = "IsRecovery"
+            case dbRename = "DBRename"
         }
     }
 
@@ -1723,7 +1765,7 @@ extension Sqlserver {
         }
     }
 
-    /// 用于RestoreInstance，RollbackInstance，CreateMigration、CloneDB 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
+    /// 用于RestoreInstance，RollbackInstance，CreateMigration、CloneDB、ModifyBackupMigration 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
     public struct RenameRestoreDatabase: TCInputModel {
         /// 库的名字，如果oldName不存在则返回失败。
         /// 在用于离线迁移任务时可不填。
@@ -1744,12 +1786,17 @@ extension Sqlserver {
     }
 
     /// 实例绑定的标签信息
-    public struct ResourceTag: TCOutputModel {
+    public struct ResourceTag: TCInputModel, TCOutputModel {
         /// 标签key
-        public let tagKey: String
+        public let tagKey: String?
 
         /// 标签value
-        public let tagValue: String
+        public let tagValue: String?
+
+        public init(tagKey: String? = nil, tagValue: String? = nil) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"

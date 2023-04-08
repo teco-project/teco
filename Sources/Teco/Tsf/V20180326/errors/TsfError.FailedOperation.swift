@@ -20,25 +20,39 @@ extension TCTsfError {
             case apiMetaParseFailed = "FailedOperation.ApiMetaParseFailed"
             case applicationCreateEsAtuhError = "FailedOperation.ApplicationCreateEsAtuhError"
             case applicationQueryFailed = "FailedOperation.ApplicationQueryFailed"
+            case cloudApiProxyError = "FailedOperation.CloudApiProxyError"
             case clusterCreateVpcFail = "FailedOperation.ClusterCreateVpcFail"
             case clusterQueryFailed = "FailedOperation.ClusterQueryFailed"
+            case clusterUpdateFailed = "FailedOperation.ClusterUpdateFailed"
             case configApplicationQueryFailed = "FailedOperation.ConfigApplicationQueryFailed"
             case configCreateFailed = "FailedOperation.ConfigCreateFailed"
             case configGroupQueryFailed = "FailedOperation.ConfigGroupQueryFailed"
             case configNamespaceQueryFailed = "FailedOperation.ConfigNamespaceQueryFailed"
             case configQueryFailed = "FailedOperation.ConfigQueryFailed"
             case configReleaseQueryFailed = "FailedOperation.ConfigReleaseQueryFailed"
+            case configTemplateCreateFailed = "FailedOperation.ConfigTemplateCreateFailed"
+            case configTemplateDeleteFailed = "FailedOperation.ConfigTemplateDeleteFailed"
+            case configTemplateImportFailed = "FailedOperation.ConfigTemplateImportFailed"
+            case configTemplateSearchListFailed = "FailedOperation.ConfigTemplateSearchListFailed"
+            case configTemplateUpdateFailed = "FailedOperation.ConfigTemplateUpdateFailed"
             case containergroupGroupHasrun = "FailedOperation.ContainergroupGroupHasrun"
             case containergroupGroupHasstop = "FailedOperation.ContainergroupGroupHasstop"
+            case containergroupKuberneteApiInvokeError = "FailedOperation.ContainergroupKuberneteApiInvokeError"
+            case containergroupKuberneteConnectError = "FailedOperation.ContainergroupKuberneteConnectError"
+            case containergroupKubernetesApiInvokeError = "FailedOperation.ContainergroupKubernetesApiInvokeError"
+            case containergroupKubernetesConnectError = "FailedOperation.ContainergroupKubernetesConnectError"
             case cvmCaeMasterHealthCheckConfigError = "FailedOperation.CvmCaeMasterHealthCheckConfigError"
             case gatewayRemoteCallError = "FailedOperation.GatewayRemoteCallError"
             case groupExists = "FailedOperation.GroupExists"
             case groupQueryFaild = "FailedOperation.GroupQueryFaild"
+            case imagerepoTcrBindError = "FailedOperation.ImagerepoTcrBindError"
             case instanceDeleteFailed = "FailedOperation.InstanceDeleteFailed"
             case instanceQueryFailed = "FailedOperation.InstanceQueryFailed"
             case instanceResetError = "FailedOperation.InstanceResetError"
             case instanceResetTimeout = "FailedOperation.InstanceResetTimeout"
             case instanceUpdateFailed = "FailedOperation.InstanceUpdateFailed"
+            case internalError = "FailedOperation.InternalError"
+            case invalidParameter = "FailedOperation.InvalidParameter"
             case laneInfoDeleteConsulFailed = "FailedOperation.LaneInfoDeleteConsulFailed"
             case laneInfoGroupNotEmpty = "FailedOperation.LaneInfoGroupNotEmpty"
             case laneInfoReleaseConsulFailed = "FailedOperation.LaneInfoReleaseConsulFailed"
@@ -48,6 +62,11 @@ extension TCTsfError {
             case namespaceCreateFailed = "FailedOperation.NamespaceCreateFailed"
             case namespaceQueryFailed = "FailedOperation.NamespaceQueryFailed"
             case ratelimitConsulError = "FailedOperation.RatelimitConsulError"
+            case ratelimitMeshApiServiceError = "FailedOperation.RatelimitMeshApiServiceError"
+            case resourceOpFailed = "FailedOperation.ResourceOpFailed"
+            case routeAffinityMeshFailed = "FailedOperation.RouteAffinityMeshFailed"
+            case routeEnableConsulFailed = "FailedOperation.RouteEnableConsulFailed"
+            case routeNamespaceRequestError = "FailedOperation.RouteNamespaceRequestError"
             case serviceInsertFailed = "FailedOperation.ServiceInsertFailed"
             case serviceQueryFailed = "FailedOperation.ServiceQueryFailed"
             case taskCreateError = "FailedOperation.TaskCreateError"
@@ -59,13 +78,31 @@ extension TCTsfError {
             case taskTerminateFailed = "FailedOperation.TaskTerminateFailed"
             case taskUpdateError = "FailedOperation.TaskUpdateError"
             case tkeClusterCreateFailed = "FailedOperation.TkeClusterCreateFailed"
+            case tkeClusterDeleteFailed = "FailedOperation.TkeClusterDeleteFailed"
             case tkeClusterQueryFailed = "FailedOperation.TkeClusterQueryFailed"
+            case tsfApmAgentTaskQueryError = "FailedOperation.TsfApmAgentTaskQueryError"
+            case tsfApmAgentTaskWriteError = "FailedOperation.TsfApmAgentTaskWriteError"
+            case tsfApmApmAgentNoConnection = "FailedOperation.TsfApmApmAgentNoConnection"
+            case tsfApmBusiLogCfgAppRelationWriteError = "FailedOperation.TsfApmBusiLogCfgAppRelationWriteError"
+            case tsfApmBusiLogCfgQueryError = "FailedOperation.TsfApmBusiLogCfgQueryError"
             case tsfApmBusiLogCfgSchemaQueryError = "FailedOperation.TsfApmBusiLogCfgSchemaQueryError"
+            case tsfApmBusiLogCfgSchemaWriteError = "FailedOperation.TsfApmBusiLogCfgSchemaWriteError"
             case tsfApmBusiLogCfgWriteError = "FailedOperation.TsfApmBusiLogCfgWriteError"
+            case tsfApmCallMasterInterfaceFailed = "FailedOperation.TsfApmCallMasterInterfaceFailed"
+            case tsfApmCallTsfMsFailed = "FailedOperation.TsfApmCallTsfMsFailed"
             case tsfApmCtsdbClientRequestError = "FailedOperation.TsfApmCtsdbClientRequestError"
+            case tsfApmInternalError = "FailedOperation.TsfApmInternalError"
+            case tsfApmStatsSearchServiceQueryError = "FailedOperation.TsfApmStatsSearchServiceQueryError"
+            case tsfAsDbInsterFail = "FailedOperation.TsfAsDbInsterFail"
+            case tsfAsDbQueryFail = "FailedOperation.TsfAsDbQueryFail"
+            case tsfAsExpandCountAndLimitError = "FailedOperation.TsfAsExpandCountAndLimitError"
+            case tsfAsExpandIndicatorsLessShrink = "FailedOperation.TsfAsExpandIndicatorsLessShrink"
+            case tsfAsExpandLimitLessShrinkLimit = "FailedOperation.TsfAsExpandLimitLessShrinkLimit"
             case tsfCmonitorCtsdbClientRequestFail = "FailedOperation.TsfCmonitorCtsdbClientRequestFail"
             case tsfMonitorWaitedTimeout = "FailedOperation.TsfMonitorWaitedTimeout"
+            case tsfMsServerError = "FailedOperation.TsfMsServerError"
             case tsfPrivilegeError = "FailedOperation.TsfPrivilegeError"
+            case unauthorizedOperation = "FailedOperation.UnauthorizedOperation"
             case unhandledException = "FailedOperation.UnhandledException"
         }
 
@@ -106,6 +143,11 @@ extension TCTsfError {
             FailedOperation(.applicationQueryFailed)
         }
 
+        /// TSF云API请求调用失败。
+        public static var cloudApiProxyError: FailedOperation {
+            FailedOperation(.cloudApiProxyError)
+        }
+
         /// 创建集群，开通VPC网络权限失败。
         public static var clusterCreateVpcFail: FailedOperation {
             FailedOperation(.clusterCreateVpcFail)
@@ -114,6 +156,11 @@ extension TCTsfError {
         /// 查询集群失败。
         public static var clusterQueryFailed: FailedOperation {
             FailedOperation(.clusterQueryFailed)
+        }
+
+        /// 更新集群失败。
+        public static var clusterUpdateFailed: FailedOperation {
+            FailedOperation(.clusterUpdateFailed)
         }
 
         /// 应用查询失败。
@@ -146,6 +193,31 @@ extension TCTsfError {
             FailedOperation(.configReleaseQueryFailed)
         }
 
+        /// 配置模板创建失败。
+        public static var configTemplateCreateFailed: FailedOperation {
+            FailedOperation(.configTemplateCreateFailed)
+        }
+
+        /// 配置模板删除失败。
+        public static var configTemplateDeleteFailed: FailedOperation {
+            FailedOperation(.configTemplateDeleteFailed)
+        }
+
+        /// 配置模板导入失败。
+        public static var configTemplateImportFailed: FailedOperation {
+            FailedOperation(.configTemplateImportFailed)
+        }
+
+        /// 配置模板分页查询失败。
+        public static var configTemplateSearchListFailed: FailedOperation {
+            FailedOperation(.configTemplateSearchListFailed)
+        }
+
+        /// 配置模板更新失败。
+        public static var configTemplateUpdateFailed: FailedOperation {
+            FailedOperation(.configTemplateUpdateFailed)
+        }
+
         /// 部署组处于运行状态，无法启动。
         public static var containergroupGroupHasrun: FailedOperation {
             FailedOperation(.containergroupGroupHasrun)
@@ -154,6 +226,26 @@ extension TCTsfError {
         /// 部署组处于停止状态，无法执行此操作。
         public static var containergroupGroupHasstop: FailedOperation {
             FailedOperation(.containergroupGroupHasstop)
+        }
+
+        /// 调用 kube-api-server 失败。
+        public static var containergroupKuberneteApiInvokeError: FailedOperation {
+            FailedOperation(.containergroupKuberneteApiInvokeError)
+        }
+
+        /// 连接 kube-api-sever 失败。
+        public static var containergroupKuberneteConnectError: FailedOperation {
+            FailedOperation(.containergroupKuberneteConnectError)
+        }
+
+        /// 调用 kube-api-server 失败。
+        public static var containergroupKubernetesApiInvokeError: FailedOperation {
+            FailedOperation(.containergroupKubernetesApiInvokeError)
+        }
+
+        /// 调用 kube-api-server 失败。
+        public static var containergroupKubernetesConnectError: FailedOperation {
+            FailedOperation(.containergroupKubernetesConnectError)
         }
 
         /// 健康检查配置失败。
@@ -174,6 +266,11 @@ extension TCTsfError {
         /// 部署组查询失败。
         public static var groupQueryFaild: FailedOperation {
             FailedOperation(.groupQueryFaild)
+        }
+
+        /// tcr仓库绑定失败。
+        public static var imagerepoTcrBindError: FailedOperation {
+            FailedOperation(.imagerepoTcrBindError)
         }
 
         /// 机器实例删除失败。
@@ -199,6 +296,16 @@ extension TCTsfError {
         /// 机器实例更新失败。
         public static var instanceUpdateFailed: FailedOperation {
             FailedOperation(.instanceUpdateFailed)
+        }
+
+        /// 内部错误。
+        public static var internalError: FailedOperation {
+            FailedOperation(.internalError)
+        }
+
+        /// 非法参数。
+        public static var invalidParameter: FailedOperation {
+            FailedOperation(.invalidParameter)
         }
 
         /// 泳道从consul删除失败。
@@ -244,6 +351,31 @@ extension TCTsfError {
         /// 访问配置中心失败。
         public static var ratelimitConsulError: FailedOperation {
             FailedOperation(.ratelimitConsulError)
+        }
+
+        /// 调用 Mesh API Server 失败。
+        public static var ratelimitMeshApiServiceError: FailedOperation {
+            FailedOperation(.ratelimitMeshApiServiceError)
+        }
+
+        /// 资源操作失败。
+        public static var resourceOpFailed: FailedOperation {
+            FailedOperation(.resourceOpFailed)
+        }
+
+        /// 路由就近访问策略启停用调用MESHAPI失败。
+        public static var routeAffinityMeshFailed: FailedOperation {
+            FailedOperation(.routeAffinityMeshFailed)
+        }
+
+        /// 服务路由规则启用生效失败。
+        public static var routeEnableConsulFailed: FailedOperation {
+            FailedOperation(.routeEnableConsulFailed)
+        }
+
+        /// 路由就近访问，查询命名空间失败。
+        public static var routeNamespaceRequestError: FailedOperation {
+            FailedOperation(.routeNamespaceRequestError)
         }
 
         /// 服务数据库入库失败。
@@ -301,9 +433,39 @@ extension TCTsfError {
             FailedOperation(.tkeClusterCreateFailed)
         }
 
+        /// TKE 集群删除失败。
+        public static var tkeClusterDeleteFailed: FailedOperation {
+            FailedOperation(.tkeClusterDeleteFailed)
+        }
+
         /// TKE 集群查询失败。
         public static var tkeClusterQueryFailed: FailedOperation {
             FailedOperation(.tkeClusterQueryFailed)
+        }
+
+        /// TSF应用性能管理任务数据库查询失败。
+        public static var tsfApmAgentTaskQueryError: FailedOperation {
+            FailedOperation(.tsfApmAgentTaskQueryError)
+        }
+
+        /// TSF应用性能管理任务数据库写入失败。
+        public static var tsfApmAgentTaskWriteError: FailedOperation {
+            FailedOperation(.tsfApmAgentTaskWriteError)
+        }
+
+        /// TSF应用性能管理apm-agent无法与该实例建立连接。
+        public static var tsfApmApmAgentNoConnection: FailedOperation {
+            FailedOperation(.tsfApmApmAgentNoConnection)
+        }
+
+        /// TSF应用性能管理业务日志配置与应用关联数据库写入失败。
+        public static var tsfApmBusiLogCfgAppRelationWriteError: FailedOperation {
+            FailedOperation(.tsfApmBusiLogCfgAppRelationWriteError)
+        }
+
+        /// TSF应用性能管理业务日志配置数据库查询失败。
+        public static var tsfApmBusiLogCfgQueryError: FailedOperation {
+            FailedOperation(.tsfApmBusiLogCfgQueryError)
         }
 
         /// TSF应用性能管理业务日志配置解析规则查询失败。
@@ -311,14 +473,64 @@ extension TCTsfError {
             FailedOperation(.tsfApmBusiLogCfgSchemaQueryError)
         }
 
+        /// TSF应用性能管理业务日志配置解析规则写入失败。
+        public static var tsfApmBusiLogCfgSchemaWriteError: FailedOperation {
+            FailedOperation(.tsfApmBusiLogCfgSchemaWriteError)
+        }
+
         /// TSF应用性能管理业务日志配置数据库写入失败。
         public static var tsfApmBusiLogCfgWriteError: FailedOperation {
             FailedOperation(.tsfApmBusiLogCfgWriteError)
         }
 
+        /// 调用master接口更新部署组失败。
+        public static var tsfApmCallMasterInterfaceFailed: FailedOperation {
+            FailedOperation(.tsfApmCallMasterInterfaceFailed)
+        }
+
+        /// TSF应用性能管理调用tsf-ms模块失败。
+        public static var tsfApmCallTsfMsFailed: FailedOperation {
+            FailedOperation(.tsfApmCallTsfMsFailed)
+        }
+
         /// TSF应用性能管理CTSDB客户端调用失败。
         public static var tsfApmCtsdbClientRequestError: FailedOperation {
             FailedOperation(.tsfApmCtsdbClientRequestError)
+        }
+
+        /// TSF应用性能管理内部异常, 请稍后重试。
+        public static var tsfApmInternalError: FailedOperation {
+            FailedOperation(.tsfApmInternalError)
+        }
+
+        /// TSF应用性能管理运行状态统计查询服务查询失败。
+        public static var tsfApmStatsSearchServiceQueryError: FailedOperation {
+            FailedOperation(.tsfApmStatsSearchServiceQueryError)
+        }
+
+        /// 数据库插入规则失败。
+        public static var tsfAsDbInsterFail: FailedOperation {
+            FailedOperation(.tsfAsDbInsterFail)
+        }
+
+        /// 查询数据库失败。
+        public static var tsfAsDbQueryFail: FailedOperation {
+            FailedOperation(.tsfAsDbQueryFail)
+        }
+
+        /// 扩容规则每次扩容机器数目不能大于机器最大数目。
+        public static var tsfAsExpandCountAndLimitError: FailedOperation {
+            FailedOperation(.tsfAsExpandCountAndLimitError)
+        }
+
+        /// 扩容规则指标不能小于缩容规则。
+        public static var tsfAsExpandIndicatorsLessShrink: FailedOperation {
+            FailedOperation(.tsfAsExpandIndicatorsLessShrink)
+        }
+
+        /// 扩容最大实例数不能小于缩容最小实例数。
+        public static var tsfAsExpandLimitLessShrinkLimit: FailedOperation {
+            FailedOperation(.tsfAsExpandLimitLessShrinkLimit)
         }
 
         /// ctsdb数据库请求失败。
@@ -331,9 +543,19 @@ extension TCTsfError {
             FailedOperation(.tsfMonitorWaitedTimeout)
         }
 
+        /// 调用ms server失败。
+        public static var tsfMsServerError: FailedOperation {
+            FailedOperation(.tsfMsServerError)
+        }
+
         /// TSF权限模块异常，请联系系统管理员。。
         public static var tsfPrivilegeError: FailedOperation {
             FailedOperation(.tsfPrivilegeError)
+        }
+
+        /// 未授权。
+        public static var unauthorizedOperation: FailedOperation {
+            FailedOperation(.unauthorizedOperation)
         }
 
         /// 模块未处理异常。
@@ -350,10 +572,14 @@ extension TCTsfError {
                 code = .failedOperation_ApplicationCreateEsAtuhError
             case .applicationQueryFailed:
                 code = .failedOperation_ApplicationQueryFailed
+            case .cloudApiProxyError:
+                code = .failedOperation_CloudApiProxyError
             case .clusterCreateVpcFail:
                 code = .failedOperation_ClusterCreateVpcFail
             case .clusterQueryFailed:
                 code = .failedOperation_ClusterQueryFailed
+            case .clusterUpdateFailed:
+                code = .failedOperation_ClusterUpdateFailed
             case .configApplicationQueryFailed:
                 code = .failedOperation_ConfigApplicationQueryFailed
             case .configCreateFailed:
@@ -366,10 +592,28 @@ extension TCTsfError {
                 code = .failedOperation_ConfigQueryFailed
             case .configReleaseQueryFailed:
                 code = .failedOperation_ConfigReleaseQueryFailed
+            case .configTemplateCreateFailed:
+                code = .failedOperation_ConfigTemplateCreateFailed
+            case .configTemplateDeleteFailed:
+                code = .failedOperation_ConfigTemplateDeleteFailed
+            case .configTemplateImportFailed:
+                code = .failedOperation_ConfigTemplateImportFailed
+            case .configTemplateSearchListFailed:
+                code = .failedOperation_ConfigTemplateSearchListFailed
+            case .configTemplateUpdateFailed:
+                code = .failedOperation_ConfigTemplateUpdateFailed
             case .containergroupGroupHasrun:
                 code = .failedOperation_ContainergroupGroupHasrun
             case .containergroupGroupHasstop:
                 code = .failedOperation_ContainergroupGroupHasstop
+            case .containergroupKuberneteApiInvokeError:
+                code = .failedOperation_ContainergroupKuberneteApiInvokeError
+            case .containergroupKuberneteConnectError:
+                code = .failedOperation_ContainergroupKuberneteConnectError
+            case .containergroupKubernetesApiInvokeError:
+                code = .failedOperation_ContainergroupKubernetesApiInvokeError
+            case .containergroupKubernetesConnectError:
+                code = .failedOperation_ContainergroupKubernetesConnectError
             case .cvmCaeMasterHealthCheckConfigError:
                 code = .failedOperation_CvmCaeMasterHealthCheckConfigError
             case .gatewayRemoteCallError:
@@ -378,6 +622,8 @@ extension TCTsfError {
                 code = .failedOperation_GroupExists
             case .groupQueryFaild:
                 code = .failedOperation_GroupQueryFaild
+            case .imagerepoTcrBindError:
+                code = .failedOperation_ImagerepoTcrBindError
             case .instanceDeleteFailed:
                 code = .failedOperation_InstanceDeleteFailed
             case .instanceQueryFailed:
@@ -388,6 +634,10 @@ extension TCTsfError {
                 code = .failedOperation_InstanceResetTimeout
             case .instanceUpdateFailed:
                 code = .failedOperation_InstanceUpdateFailed
+            case .internalError:
+                code = .failedOperation_InternalError
+            case .invalidParameter:
+                code = .failedOperation_InvalidParameter
             case .laneInfoDeleteConsulFailed:
                 code = .failedOperation_LaneInfoDeleteConsulFailed
             case .laneInfoGroupNotEmpty:
@@ -406,6 +656,16 @@ extension TCTsfError {
                 code = .failedOperation_NamespaceQueryFailed
             case .ratelimitConsulError:
                 code = .failedOperation_RatelimitConsulError
+            case .ratelimitMeshApiServiceError:
+                code = .failedOperation_RatelimitMeshApiServiceError
+            case .resourceOpFailed:
+                code = .failedOperation_ResourceOpFailed
+            case .routeAffinityMeshFailed:
+                code = .failedOperation_RouteAffinityMeshFailed
+            case .routeEnableConsulFailed:
+                code = .failedOperation_RouteEnableConsulFailed
+            case .routeNamespaceRequestError:
+                code = .failedOperation_RouteNamespaceRequestError
             case .serviceInsertFailed:
                 code = .failedOperation_ServiceInsertFailed
             case .serviceQueryFailed:
@@ -428,20 +688,56 @@ extension TCTsfError {
                 code = .failedOperation_TaskUpdateError
             case .tkeClusterCreateFailed:
                 code = .failedOperation_TkeClusterCreateFailed
+            case .tkeClusterDeleteFailed:
+                code = .failedOperation_TkeClusterDeleteFailed
             case .tkeClusterQueryFailed:
                 code = .failedOperation_TkeClusterQueryFailed
+            case .tsfApmAgentTaskQueryError:
+                code = .failedOperation_TsfApmAgentTaskQueryError
+            case .tsfApmAgentTaskWriteError:
+                code = .failedOperation_TsfApmAgentTaskWriteError
+            case .tsfApmApmAgentNoConnection:
+                code = .failedOperation_TsfApmApmAgentNoConnection
+            case .tsfApmBusiLogCfgAppRelationWriteError:
+                code = .failedOperation_TsfApmBusiLogCfgAppRelationWriteError
+            case .tsfApmBusiLogCfgQueryError:
+                code = .failedOperation_TsfApmBusiLogCfgQueryError
             case .tsfApmBusiLogCfgSchemaQueryError:
                 code = .failedOperation_TsfApmBusiLogCfgSchemaQueryError
+            case .tsfApmBusiLogCfgSchemaWriteError:
+                code = .failedOperation_TsfApmBusiLogCfgSchemaWriteError
             case .tsfApmBusiLogCfgWriteError:
                 code = .failedOperation_TsfApmBusiLogCfgWriteError
+            case .tsfApmCallMasterInterfaceFailed:
+                code = .failedOperation_TsfApmCallMasterInterfaceFailed
+            case .tsfApmCallTsfMsFailed:
+                code = .failedOperation_TsfApmCallTsfMsFailed
             case .tsfApmCtsdbClientRequestError:
                 code = .failedOperation_TsfApmCtsdbClientRequestError
+            case .tsfApmInternalError:
+                code = .failedOperation_TsfApmInternalError
+            case .tsfApmStatsSearchServiceQueryError:
+                code = .failedOperation_TsfApmStatsSearchServiceQueryError
+            case .tsfAsDbInsterFail:
+                code = .failedOperation_TsfAsDbInsterFail
+            case .tsfAsDbQueryFail:
+                code = .failedOperation_TsfAsDbQueryFail
+            case .tsfAsExpandCountAndLimitError:
+                code = .failedOperation_TsfAsExpandCountAndLimitError
+            case .tsfAsExpandIndicatorsLessShrink:
+                code = .failedOperation_TsfAsExpandIndicatorsLessShrink
+            case .tsfAsExpandLimitLessShrinkLimit:
+                code = .failedOperation_TsfAsExpandLimitLessShrinkLimit
             case .tsfCmonitorCtsdbClientRequestFail:
                 code = .failedOperation_TsfCmonitorCtsdbClientRequestFail
             case .tsfMonitorWaitedTimeout:
                 code = .failedOperation_TsfMonitorWaitedTimeout
+            case .tsfMsServerError:
+                code = .failedOperation_TsfMsServerError
             case .tsfPrivilegeError:
                 code = .failedOperation_TsfPrivilegeError
+            case .unauthorizedOperation:
+                code = .failedOperation_UnauthorizedOperation
             case .unhandledException:
                 code = .failedOperation_UnhandledException
             }

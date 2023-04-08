@@ -81,7 +81,7 @@ extension Monitor {
 
     /// 修改通知模板
     ///
-    /// 云监控告警编辑告警通知模板
+    /// 编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
         self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,7 +89,7 @@ extension Monitor {
 
     /// 修改通知模板
     ///
-    /// 云监控告警编辑告警通知模板
+    /// 编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,7 +97,7 @@ extension Monitor {
 
     /// 修改通知模板
     ///
-    /// 云监控告警编辑告警通知模板
+    /// 编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
         self.modifyAlarmNotice(.init(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
@@ -105,7 +105,7 @@ extension Monitor {
 
     /// 修改通知模板
     ///
-    /// 云监控告警编辑告警通知模板
+    /// 编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.modifyAlarmNotice(.init(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)

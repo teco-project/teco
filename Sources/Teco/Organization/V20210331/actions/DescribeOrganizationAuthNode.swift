@@ -25,14 +25,19 @@ extension Organization {
         /// 限制数目。最大50
         public let limit: UInt64
 
-        public init(offset: UInt64, limit: UInt64) {
+        /// 互信主体名称。
+        public let authName: String?
+
+        public init(offset: UInt64, limit: UInt64, authName: String? = nil) {
             self.offset = offset
             self.limit = limit
+            self.authName = authName
         }
 
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
+            case authName = "AuthName"
         }
 
         /// Compute the next request based on API response.
@@ -40,7 +45,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationAuthNodeRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return DescribeOrganizationAuthNodeRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, authName: self.authName)
         }
     }
 
@@ -74,43 +79,43 @@ extension Organization {
         }
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable
     public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
         self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable
     public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
         try await self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
-        self.describeOrganizationAuthNode(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, authName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
+        self.describeOrganizationAuthNode(.init(offset: offset, limit: limit, authName: authName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
-        try await self.describeOrganizationAuthNode(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, authName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
+        try await self.describeOrganizationAuthNode(.init(offset: offset, limit: limit, authName: authName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable
     public func describeOrganizationAuthNodePaginated(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AuthNode])> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationAuthNode, logger: logger, on: eventLoop)
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     @inlinable @discardableResult
     public func describeOrganizationAuthNodePaginated(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationAuthNodeResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationAuthNode, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取可创建组织成员的认证主体关系列表
+    /// 获取已设置管理员的互信主体关系列表
     ///
     /// - Returns: `AsyncSequence`s of `AuthNode` and `DescribeOrganizationAuthNodeResponse` that can be iterated over asynchronously on demand.
     @inlinable

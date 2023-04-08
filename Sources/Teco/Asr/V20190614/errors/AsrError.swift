@@ -26,8 +26,10 @@ public struct TCAsrError: TCAsrErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case authFailure_CheckResourceResponseCodeError = "AuthFailure.CheckResourceResponseCodeError"
+        case authFailure_InvalidAuthorization = "AuthFailure.InvalidAuthorization"
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_CheckAuthInfoFailed = "FailedOperation.CheckAuthInfoFailed"
         case failedOperation_ErrorDownFile = "FailedOperation.ErrorDownFile"
         case failedOperation_ErrorRecognize = "FailedOperation.ErrorRecognize"
         case failedOperation_NoSuchTask = "FailedOperation.NoSuchTask"
@@ -79,12 +81,13 @@ public struct TCAsrError: TCAsrErrorType {
         case limitExceeded_VocabFull = "LimitExceeded.VocabFull"
         case missingParameter = "MissingParameter"
         case requestLimitExceeded = "RequestLimitExceeded"
+        case requestLimitExceeded_UinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
         case unknownParameter = "UnknownParameter"
     }
 
     /// Error domains affliated to ``TCAsrError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self]
+        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, RequestLimitExceeded.self]
     }
 
     private let error: Code
@@ -119,6 +122,11 @@ public struct TCAsrError: TCAsrErrorType {
         TCAsrError(.authFailure_CheckResourceResponseCodeError)
     }
 
+    /// 鉴权错误。
+    public static var authFailure_InvalidAuthorization: TCAsrError {
+        TCAsrError(.authFailure_InvalidAuthorization)
+    }
+
     /// 未授权操作。
     public static var authFailure_UnauthorizedOperation: TCAsrError {
         TCAsrError(.authFailure_UnauthorizedOperation)
@@ -127,6 +135,11 @@ public struct TCAsrError: TCAsrErrorType {
     /// 操作失败。
     public static var failedOperation: TCAsrError {
         TCAsrError(.failedOperation)
+    }
+
+    /// 鉴权错误。
+    public static var failedOperation_CheckAuthInfoFailed: TCAsrError {
+        TCAsrError(.failedOperation_CheckAuthInfoFailed)
     }
 
     /// 下载音频文件失败。
@@ -382,6 +395,11 @@ public struct TCAsrError: TCAsrErrorType {
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCAsrError {
         TCAsrError(.requestLimitExceeded)
+    }
+
+    /// 超出请求频率。
+    public static var requestLimitExceeded_UinLimitExceeded: TCAsrError {
+        TCAsrError(.requestLimitExceeded_UinLimitExceeded)
     }
 
     /// 未知参数错误。

@@ -77,6 +77,8 @@ extension TCTdcpgError {
             InvalidParameterValue(.clusterNotFound)
         }
 
+        /// 数据库版本号相关参数数量错误。
+        ///
         /// DBMajorVersion、DBVersion、DBKernelVersion三个参数只能选择一个传递，且必须传递一个。
         public static var databaseVersionParamCountError: InvalidParameterValue {
             InvalidParameterValue(.databaseVersionParamCountError)
@@ -112,6 +114,8 @@ extension TCTdcpgError {
             InvalidParameterValue(.invalidDBVersion)
         }
 
+        /// 数据库版本号相关参数不合法。
+        ///
         /// 请检查DBMajorVersion、DBVersion、DBKernelVersion参数值是否合法。
         public static var invalidDatabaseVersion: InvalidParameterValue {
             InvalidParameterValue(.invalidDatabaseVersion)

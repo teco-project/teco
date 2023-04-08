@@ -20,7 +20,7 @@ extension Vpc {
         /// 云联网实例ID。
         public let ccnId: String
 
-        /// 云联网限速类型，INTER_REGION_LIMIT：地域间限速，OUTER_REGION_LIMIT：地域出口限速。
+        /// 云联网限速类型，INTER_REGION_LIMIT：地域间限速，OUTER_REGION_LIMIT：地域出口限速。默认值：OUTER_REGION_LIMIT。
         public let bandwidthLimitType: String?
 
         public init(ccnId: String, bandwidthLimitType: String? = nil) {

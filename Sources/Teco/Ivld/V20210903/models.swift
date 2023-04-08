@@ -417,23 +417,18 @@ extension Ivld {
     /// 媒资过滤条件
     public struct MediaFilter: TCInputModel {
         /// 媒资名称过滤条件
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaNameSet: [String]?
 
         /// 媒资状态数组，媒资状态可选值参见MediaInfo
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusSet: [Int64]?
 
         /// 媒资ID数组
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaIdSet: [String]?
 
         /// 媒资自定义标签数组
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelSet: [String]?
 
         /// 媒资文件类型，定义参见[MediaPreknownInfo.MediaType](https://cloud.tencent.com/document/product/1509/65063#MediaPreknownInfo)
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaType: Int64?
 
         public init(mediaNameSet: [String]? = nil, statusSet: [Int64]? = nil, mediaIdSet: [String]? = nil, labelSet: [String]? = nil, mediaType: Int64? = nil) {

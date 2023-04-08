@@ -26,7 +26,7 @@ extension Mrs {
         /// 不填，默认为0
         public let type: UInt64
 
-        /// 用户类型，新客户传1，老客户可不传
+        /// 后付费的用户类型，新客户传1，老客户可不传或传 0。2022 年 12 月 15 新增了计费项，在此时间之前已经通过商务指定优惠价格的大客户，请不传这个字段或传 0，如果传 1 会导致以前获得的折扣价格失效。在 2022 年 12 月 15 日之后，通过商务指定优惠价格的大客户请传 1。
         public let userType: UInt64?
 
         public init(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil) {

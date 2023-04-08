@@ -29,11 +29,18 @@ extension Tcss {
         /// 自选排除或扫描的地址
         public let scanPath: [String]?
 
-        public init(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil) {
+        /// 扫描路径模式：
+        /// SCAN_PATH_ALL：全部路径
+        /// SCAN_PATH_DEFAULT：默认路径
+        /// SCAN_PATH_USER_DEFINE：用户自定义路径
+        public let scanPathMode: String?
+
+        public init(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, scanPathMode: String? = nil) {
             self.enableScan = enableScan
             self.scanPathAll = scanPathAll
             self.scanPathType = scanPathType
             self.scanPath = scanPath
+            self.scanPathMode = scanPathMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +48,7 @@ extension Tcss {
             case scanPathAll = "ScanPathAll"
             case scanPathType = "ScanPathType"
             case scanPath = "ScanPath"
+            case scanPathMode = "ScanPathMode"
         }
     }
 
@@ -68,13 +76,13 @@ extension Tcss {
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable @discardableResult
-    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
-        self.modifyVirusMonitorSetting(.init(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
+        self.modifyVirusMonitorSetting(.init(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable @discardableResult
-    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
-        try await self.modifyVirusMonitorSetting(.init(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
+        try await self.modifyVirusMonitorSetting(.init(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 }

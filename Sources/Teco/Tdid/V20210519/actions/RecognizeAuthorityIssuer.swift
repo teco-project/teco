@@ -40,26 +40,30 @@ extension Tdid {
     }
 
     /// 认证权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeAuthorityIssuerResponse> {
-        self.client.execute(action: "RecognizeAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RecognizeAuthorityIssuer is no longer available.")
     }
 
     /// 认证权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
-        try await self.client.execute(action: "RecognizeAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RecognizeAuthorityIssuer is no longer available.")
     }
 
     /// 认证权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeAuthorityIssuerResponse> {
-        self.recognizeAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("RecognizeAuthorityIssuer is no longer available.")
     }
 
     /// 认证权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
-        try await self.recognizeAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("RecognizeAuthorityIssuer is no longer available.")
     }
 }

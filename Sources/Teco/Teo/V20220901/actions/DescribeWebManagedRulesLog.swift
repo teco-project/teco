@@ -52,6 +52,7 @@ extension Teo {
         /// <li>ruleId：规则id；</li>
         /// <li>sipCountryCode：ip所在国家；</li>
         /// <li>attackIp：攻击ip；</li>
+        /// <li>realClientIp：真实客户端ip；</li>
         /// <li>oriDomain：被攻击的子域名；</li>
         /// <li>eventId：事件id；</li>
         /// <li>ua：用户代理；</li>

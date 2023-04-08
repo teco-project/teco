@@ -43,6 +43,8 @@ extension TCMongodbError {
             self.context = context
         }
 
+        /// 内核响应超时。
+        ///
         /// 稍后重新尝试。
         public static var kernelResponseTimeout: FailedOperation {
             FailedOperation(.kernelResponseTimeout)

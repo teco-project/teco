@@ -575,6 +575,7 @@ public struct TCCpdpError: TCCpdpErrorType {
         TCCpdpError(.failedOperation_MidasInternalError)
     }
 
+    /// 聚鑫请求无效。
     public static var failedOperation_MidasInvalidRequest: TCCpdpError {
         TCCpdpError(.failedOperation_MidasInvalidRequest)
     }
@@ -607,6 +608,7 @@ public struct TCCpdpError: TCCpdpErrorType {
         TCCpdpError(.failedOperation_MidasRisk)
     }
 
+    /// 聚鑫支付状态不匹配。
     public static var failedOperation_MidasStatusNotMatch: TCCpdpError {
         TCCpdpError(.failedOperation_MidasStatusNotMatch)
     }
@@ -628,6 +630,8 @@ public struct TCCpdpError: TCCpdpErrorType {
         TCCpdpError(.failedOperation_ModifyMerchantFailed)
     }
 
+    /// 记录不存在。
+    ///
     /// 未查询到相关记录
     public static var failedOperation_MountNotFound: TCCpdpError {
         TCCpdpError(.failedOperation_MountNotFound)
@@ -947,6 +951,7 @@ public struct TCCpdpError: TCCpdpErrorType {
         TCCpdpError(.invalidParameter)
     }
 
+    /// 传入参数有误，请检查传入参数是否正确。
     public static var invalidParameter_BackendCgiError: TCCpdpError {
         TCCpdpError(.invalidParameter_BackendCgiError)
     }
@@ -1180,6 +1185,7 @@ public struct TCCpdpError: TCCpdpErrorType {
         TCCpdpError(.resourceNotFound_PlatformInfoNotFound)
     }
 
+    /// 聚鑫可用余额不足。
     public static var resourceUnavailable_MidasBalance: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasBalance)
     }

@@ -49,7 +49,7 @@ public struct Cloudstudio: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCCloudstudioError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

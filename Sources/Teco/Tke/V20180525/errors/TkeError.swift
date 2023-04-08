@@ -63,18 +63,23 @@ public struct TCTkeError: TCTkeErrorType {
         case failedOperation_KubernetesDeleteOperationError = "FailedOperation.KubernetesDeleteOperationError"
         case failedOperation_KubernetesGetOperationError = "FailedOperation.KubernetesGetOperationError"
         case failedOperation_KubernetesInternal = "FailedOperation.KubernetesInternal"
+        case failedOperation_KubernetesListOperationError = "FailedOperation.KubernetesListOperationError"
         case failedOperation_KubernetesPatchOperationError = "FailedOperation.KubernetesPatchOperationError"
         case failedOperation_LbCommon = "FailedOperation.LbCommon"
+        case failedOperation_MarketGetAuthFailed = "FailedOperation.MarketGetAuthFailed"
+        case failedOperation_MarketReleaseOperation = "FailedOperation.MarketReleaseOperation"
         case failedOperation_ModifyClsIndex = "FailedOperation.ModifyClsIndex"
         case failedOperation_NetworkScaleError = "FailedOperation.NetworkScaleError"
         case failedOperation_OsNotSupport = "FailedOperation.OsNotSupport"
         case failedOperation_Param = "FailedOperation.Param"
+        case failedOperation_PolicyServerCommonError = "FailedOperation.PolicyServerCommonError"
         case failedOperation_QuotaMaxClsLimit = "FailedOperation.QuotaMaxClsLimit"
         case failedOperation_QuotaMaxNodLimit = "FailedOperation.QuotaMaxNodLimit"
         case failedOperation_QuotaUSGLimit = "FailedOperation.QuotaUSGLimit"
         case failedOperation_RBACForbidden = "FailedOperation.RBACForbidden"
         case failedOperation_RecordNotFound = "FailedOperation.RecordNotFound"
         case failedOperation_TaskAlreadyRunning = "FailedOperation.TaskAlreadyRunning"
+        case failedOperation_TaskLifeStateError = "FailedOperation.TaskLifeStateError"
         case failedOperation_TradeCommon = "FailedOperation.TradeCommon"
         case failedOperation_UnexpectedError = "FailedOperation.UnexpectedError"
         case failedOperation_VPCUnexpectedError = "FailedOperation.VPCUnexpectedError"
@@ -123,8 +128,12 @@ public struct TCTkeError: TCTkeErrorType {
         case internalError_KubernetesDeleteOperationError = "InternalError.KubernetesDeleteOperationError"
         case internalError_KubernetesGetOperationError = "InternalError.KubernetesGetOperationError"
         case internalError_KubernetesInternal = "InternalError.KubernetesInternal"
+        case internalError_KubernetesListOperationError = "InternalError.KubernetesListOperationError"
         case internalError_KubernetesPatchOperationError = "InternalError.KubernetesPatchOperationError"
         case internalError_LbCommon = "InternalError.LbCommon"
+        case internalError_MarketGetAuthFailed = "InternalError.MarketGetAuthFailed"
+        case internalError_MarketInternalServerError = "InternalError.MarketInternalServerError"
+        case internalError_MarketReleaseOperation = "InternalError.MarketReleaseOperation"
         case internalError_OsNotSupport = "InternalError.OsNotSupport"
         case internalError_Param = "InternalError.Param"
         case internalError_PodNotFound = "InternalError.PodNotFound"
@@ -170,12 +179,16 @@ public struct TCTkeError: TCTkeErrorType {
         case invalidParameter_PromInstanceNotFound = "InvalidParameter.PromInstanceNotFound"
         case invalidParameter_ResourceNotFound = "InvalidParameter.ResourceNotFound"
         case invalidParameter_RouteTableNotEmpty = "InvalidParameter.RouteTableNotEmpty"
+        case invalidParameter_SubnetInvalidError = "InvalidParameter.SubnetInvalidError"
+        case invalidParameter_SubnetNotExist = "InvalidParameter.SubnetNotExist"
         case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case operationDenied_ClusterInDeletionProtection = "OperationDenied.ClusterInDeletionProtection"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_ExistRunningPod = "ResourceInUse.ExistRunningPod"
         case resourceInUse_ResourceExistAlready = "ResourceInUse.ResourceExistAlready"
+        case resourceInUse_SubnetAlreadyExist = "ResourceInUse.SubnetAlreadyExist"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_SpecifiedInstanceType = "ResourceInsufficient.SpecifiedInstanceType"
         case resourceNotFound = "ResourceNotFound"
@@ -188,6 +201,7 @@ public struct TCTkeError: TCTkeErrorType {
         case resourceUnavailable_ClusterInAbnormalStat = "ResourceUnavailable.ClusterInAbnormalStat"
         case resourceUnavailable_ClusterState = "ResourceUnavailable.ClusterState"
         case resourceUnavailable_EksContainerStatus = "ResourceUnavailable.EksContainerStatus"
+        case resourceUnavailable_NodePoolStateNotNormal = "ResourceUnavailable.NodePoolStateNotNormal"
         case resourcesSoldOut = "ResourcesSoldOut"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_CamNoAuth = "UnauthorizedOperation.CamNoAuth"
@@ -197,6 +211,7 @@ public struct TCTkeError: TCTkeErrorType {
         case unsupportedOperation_ClusterNotSuitAddClusterCIDR = "UnsupportedOperation.ClusterNotSuitAddClusterCIDR"
         case unsupportedOperation_ClusterNotSuitEnableVPCCNI = "UnsupportedOperation.ClusterNotSuitEnableVPCCNI"
         case unsupportedOperation_NotInWhitelist = "UnsupportedOperation.NotInWhitelist"
+        case unsupportedOperation_NotSupportInstallVirtualKubelet = "UnsupportedOperation.NotSupportInstallVirtualKubelet"
     }
 
     /// Error domains affliated to ``TCTkeError``.
@@ -266,6 +281,8 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_CamNoAuth)
     }
 
+    /// 集群禁止删除。
+    ///
     /// 请先删除包年包月计费资源。
     public static var failedOperation_ClusterForbiddenToDelete: TCTkeError {
         TCTkeError(.failedOperation_ClusterForbiddenToDelete)
@@ -292,6 +309,8 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_ClusterUpgradeNodeVersion)
     }
 
+    /// 内部Client错误。
+    ///
     /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_ComponentClientCommon: TCTkeError {
         TCTkeError(.failedOperation_ComponentClientCommon)
@@ -318,26 +337,33 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_ComponentClinetHttp)
     }
 
+    /// 创建CLS客户端失败。
     public static var failedOperation_CreateClsClient: TCTkeError {
         TCTkeError(.failedOperation_CreateClsClient)
     }
 
+    /// 创建CLS采集配置失败。
     public static var failedOperation_CreateClsConfig: TCTkeError {
         TCTkeError(.failedOperation_CreateClsConfig)
     }
 
+    /// 创建CLS索引失败。
     public static var failedOperation_CreateClsIndex: TCTkeError {
         TCTkeError(.failedOperation_CreateClsIndex)
     }
 
+    /// 创建CLS日志集失败。
     public static var failedOperation_CreateClsLogSet: TCTkeError {
         TCTkeError(.failedOperation_CreateClsLogSet)
     }
 
+    /// 创建CLS机器组失败。
     public static var failedOperation_CreateClsMachineGroup: TCTkeError {
         TCTkeError(.failedOperation_CreateClsMachineGroup)
     }
 
+    /// 创建 CLS 主题失败。
+    ///
     /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_CreateClsTopic: TCTkeError {
         TCTkeError(.failedOperation_CreateClsTopic)
@@ -385,27 +411,34 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_DfwGetUSGQuota)
     }
 
+    /// 集群关闭 VPC-CNI 模式失败。
     public static var failedOperation_DisableVPCCNIFailed: TCTkeError {
         TCTkeError(.failedOperation_DisableVPCCNIFailed)
     }
 
+    /// 开启 VPC-CNI 模式失败。
     public static var failedOperation_EnableVPCCNIFailed: TCTkeError {
         TCTkeError(.failedOperation_EnableVPCCNIFailed)
     }
 
+    /// 获取CLS采集配置失败。
     public static var failedOperation_GetClsConfig: TCTkeError {
         TCTkeError(.failedOperation_GetClsConfig)
     }
 
+    /// 查询主题集失败。
+    ///
     /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_GetClsLogSet: TCTkeError {
         TCTkeError(.failedOperation_GetClsLogSet)
     }
 
+    /// 获取CLS机器组失败。
     public static var failedOperation_GetClsMachineGroup: TCTkeError {
         TCTkeError(.failedOperation_GetClsMachineGroup)
     }
 
+    /// 通过配置文件创建集群Client错误。
     public static var failedOperation_KubeClientConf: TCTkeError {
         TCTkeError(.failedOperation_KubeClientConf)
     }
@@ -438,6 +471,8 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_KubernetesCreateOperationError)
     }
 
+    /// Kubernetes Delete 操作错误。
+    ///
     /// 请重试。
     public static var failedOperation_KubernetesDeleteOperationError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesDeleteOperationError)
@@ -455,6 +490,15 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_KubernetesInternal)
     }
 
+    /// 获取Kubernetes资源列表失败。
+    ///
+    /// 请提交工单联系我们协助处理
+    public static var failedOperation_KubernetesListOperationError: TCTkeError {
+        TCTkeError(.failedOperation_KubernetesListOperationError)
+    }
+
+    /// Kubernetes patch 操作失败。
+    ///
     /// 请重试。
     public static var failedOperation_KubernetesPatchOperationError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesPatchOperationError)
@@ -467,6 +511,21 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_LbCommon)
     }
 
+    /// 获取集群认证信息失败。
+    ///
+    /// 请提交工单联系我们协助处理
+    public static var failedOperation_MarketGetAuthFailed: TCTkeError {
+        TCTkeError(.failedOperation_MarketGetAuthFailed)
+    }
+
+    /// 操作应用Release失败。
+    ///
+    /// 请提交工单联系我们协助处理
+    public static var failedOperation_MarketReleaseOperation: TCTkeError {
+        TCTkeError(.failedOperation_MarketReleaseOperation)
+    }
+
+    /// 修改CLS索引失败。
     public static var failedOperation_ModifyClsIndex: TCTkeError {
         TCTkeError(.failedOperation_ModifyClsIndex)
     }
@@ -490,6 +549,11 @@ public struct TCTkeError: TCTkeErrorType {
     /// 请提交工单联系我们协助处理
     public static var failedOperation_Param: TCTkeError {
         TCTkeError(.failedOperation_Param)
+    }
+
+    /// gpe错误。
+    public static var failedOperation_PolicyServerCommonError: TCTkeError {
+        TCTkeError(.failedOperation_PolicyServerCommonError)
     }
 
     /// 超过配额限制。
@@ -518,6 +582,7 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_RBACForbidden)
     }
 
+    /// 记录没有发现。
     public static var failedOperation_RecordNotFound: TCTkeError {
         TCTkeError(.failedOperation_RecordNotFound)
     }
@@ -529,6 +594,13 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_TaskAlreadyRunning)
     }
 
+    /// 任务当前所处状态不支持此操作。
+    ///
+    /// 请提交工单联系我们协助处理
+    public static var failedOperation_TaskLifeStateError: TCTkeError {
+        TCTkeError(.failedOperation_TaskLifeStateError)
+    }
+
     /// 询价错误。
     ///
     /// 请提交工单联系我们协助处理
@@ -536,6 +608,7 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_TradeCommon)
     }
 
+    /// 不可预知的错误。
     public static var failedOperation_UnexpectedError: TCTkeError {
         TCTkeError(.failedOperation_UnexpectedError)
     }
@@ -561,6 +634,8 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_VpcRecodrNotFound)
     }
 
+    /// 白名单错误。
+    ///
     /// 请提单申请。
     public static var failedOperation_WhitelistUnexpectedError: TCTkeError {
         TCTkeError(.failedOperation_WhitelistUnexpectedError)
@@ -778,6 +853,11 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.internalError_KubernetesInternal)
     }
 
+    /// 获取Kubernetes资源列表失败。
+    public static var internalError_KubernetesListOperationError: TCTkeError {
+        TCTkeError(.internalError_KubernetesListOperationError)
+    }
+
     /// Kubernetes Patch操作失败。
     public static var internalError_KubernetesPatchOperationError: TCTkeError {
         TCTkeError(.internalError_KubernetesPatchOperationError)
@@ -788,6 +868,21 @@ public struct TCTkeError: TCTkeErrorType {
     /// 请提交工单联系我们协助处理
     public static var internalError_LbCommon: TCTkeError {
         TCTkeError(.internalError_LbCommon)
+    }
+
+    /// 获取集群认证信息失败。
+    public static var internalError_MarketGetAuthFailed: TCTkeError {
+        TCTkeError(.internalError_MarketGetAuthFailed)
+    }
+
+    /// 应用市场服务操作错误。
+    public static var internalError_MarketInternalServerError: TCTkeError {
+        TCTkeError(.internalError_MarketInternalServerError)
+    }
+
+    /// 操作应用Release失败。
+    public static var internalError_MarketReleaseOperation: TCTkeError {
+        TCTkeError(.internalError_MarketReleaseOperation)
     }
 
     /// 镜像OS不支持。
@@ -991,6 +1086,8 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.invalidParameter_InvalidPrivateNetworkCIDR)
     }
 
+    /// 镜像OS不支持。
+    ///
     /// 请向腾讯云提工单寻求支持。
     public static var invalidParameter_OsNotSupport: TCTkeError {
         TCTkeError(.invalidParameter_OsNotSupport)
@@ -1021,6 +1118,20 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.invalidParameter_RouteTableNotEmpty)
     }
 
+    /// 子网不合法。
+    ///
+    /// 请更换子网重试。
+    public static var invalidParameter_SubnetInvalidError: TCTkeError {
+        TCTkeError(.invalidParameter_SubnetInvalidError)
+    }
+
+    /// 子网不存在。
+    ///
+    /// 请检查子网是否存在，或更换子网进行重试。
+    public static var invalidParameter_SubnetNotExist: TCTkeError {
+        TCTkeError(.invalidParameter_SubnetNotExist)
+    }
+
     /// 超过配额限制。
     public static var limitExceeded: TCTkeError {
         TCTkeError(.limitExceeded)
@@ -1046,9 +1157,21 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.resourceInUse)
     }
 
+    /// 存在运行中的Pod。
+    public static var resourceInUse_ExistRunningPod: TCTkeError {
+        TCTkeError(.resourceInUse_ExistRunningPod)
+    }
+
     /// 资源已存在。
     public static var resourceInUse_ResourceExistAlready: TCTkeError {
         TCTkeError(.resourceInUse_ResourceExistAlready)
+    }
+
+    /// 所选子网已存在。
+    ///
+    /// 请选择其他子网后重试。
+    public static var resourceInUse_SubnetAlreadyExist: TCTkeError {
+        TCTkeError(.resourceInUse_SubnetAlreadyExist)
     }
 
     /// 资源不足。
@@ -1056,6 +1179,7 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.resourceInsufficient)
     }
 
+    /// CVM资源不足。
     public static var resourceInsufficient_SpecifiedInstanceType: TCTkeError {
         TCTkeError(.resourceInsufficient_SpecifiedInstanceType)
     }
@@ -1110,6 +1234,11 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.resourceUnavailable_EksContainerStatus)
     }
 
+    /// 节点池状态不正常。
+    public static var resourceUnavailable_NodePoolStateNotNormal: TCTkeError {
+        TCTkeError(.resourceUnavailable_NodePoolStateNotNormal)
+    }
+
     /// 资源售罄。
     public static var resourcesSoldOut: TCTkeError {
         TCTkeError(.resourcesSoldOut)
@@ -1144,10 +1273,12 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.unsupportedOperation_CaEnableFailed)
     }
 
+    /// 集群不支持添加 ClusterCIDR。
     public static var unsupportedOperation_ClusterNotSuitAddClusterCIDR: TCTkeError {
         TCTkeError(.unsupportedOperation_ClusterNotSuitAddClusterCIDR)
     }
 
+    /// 集群不支持开启 VPC-CNI 模式。
     public static var unsupportedOperation_ClusterNotSuitEnableVPCCNI: TCTkeError {
         TCTkeError(.unsupportedOperation_ClusterNotSuitEnableVPCCNI)
     }
@@ -1155,6 +1286,13 @@ public struct TCTkeError: TCTkeErrorType {
     /// 非白名单用户。
     public static var unsupportedOperation_NotInWhitelist: TCTkeError {
         TCTkeError(.unsupportedOperation_NotInWhitelist)
+    }
+
+    /// 不支持安装虚拟节点。
+    ///
+    /// 请检查集群版本是否满足安装虚拟节点条件。
+    public static var unsupportedOperation_NotSupportInstallVirtualKubelet: TCTkeError {
+        TCTkeError(.unsupportedOperation_NotSupportInstallVirtualKubelet)
     }
 
     public func asTkeError() -> TCTkeError {

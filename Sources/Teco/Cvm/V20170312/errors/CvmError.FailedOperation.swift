@@ -75,6 +75,7 @@ extension TCCvmError {
             FailedOperation(.accountIsYourSelf)
         }
 
+        /// 自带许可镜像暂时不支持共享。
         public static var byolImageShareFailed: FailedOperation {
             FailedOperation(.byolImageShareFailed)
         }
@@ -104,6 +105,7 @@ extension TCCvmError {
             FailedOperation(.inquiryRefundPriceFailed)
         }
 
+        /// 镜像状态繁忙，请稍后重试。
         public static var invalidImageState: FailedOperation {
             FailedOperation(.invalidImageState)
         }

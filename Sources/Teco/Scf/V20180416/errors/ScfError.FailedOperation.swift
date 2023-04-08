@@ -22,7 +22,9 @@ extension TCScfError {
             case apmConfigInstanceId = "FailedOperation.ApmConfigInstanceId"
             case asyncEventStatus = "FailedOperation.AsyncEventStatus"
             case authFailure = "FailedOperation.AuthFailure"
+            case callNetDeployFailed = "FailedOperation.CallNetDeployFailed"
             case callRoleFailed = "FailedOperation.CallRoleFailed"
+            case clsServiceUnregistered = "FailedOperation.ClsServiceUnregistered"
             case copyAsyncRun = "FailedOperation.CopyAsyncRun"
             case copyFailed = "FailedOperation.CopyFailed"
             case copyFunction = "FailedOperation.CopyFunction"
@@ -66,6 +68,8 @@ extension TCScfError {
             case updateAlias = "FailedOperation.UpdateAlias"
             case updateFunctionCode = "FailedOperation.UpdateFunctionCode"
             case updateFunctionConfiguration = "FailedOperation.UpdateFunctionConfiguration"
+            case updateStatus = "FailedOperation.UpdateStatus"
+            case updateTriggerStatus = "FailedOperation.UpdateTriggerStatus"
             case other = "FailedOperation"
         }
 
@@ -118,9 +122,19 @@ extension TCScfError {
             FailedOperation(.authFailure)
         }
 
+        /// 调用 NetDeploy 失败。
+        public static var callNetDeployFailed: FailedOperation {
+            FailedOperation(.callNetDeployFailed)
+        }
+
         /// 请求role信息失败。
         public static var callRoleFailed: FailedOperation {
             FailedOperation(.callRoleFailed)
+        }
+
+        /// CLS服务未注册。
+        public static var clsServiceUnregistered: FailedOperation {
+            FailedOperation(.clsServiceUnregistered)
         }
 
         /// CopyAsyncRun 传参异常。
@@ -338,6 +352,16 @@ extension TCScfError {
             FailedOperation(.updateFunctionConfiguration)
         }
 
+        /// 更新状态操作失败。
+        public static var updateStatus: FailedOperation {
+            FailedOperation(.updateStatus)
+        }
+
+        /// 与原状态一致，无需更改。
+        public static var updateTriggerStatus: FailedOperation {
+            FailedOperation(.updateTriggerStatus)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -356,8 +380,12 @@ extension TCScfError {
                 code = .failedOperation_AsyncEventStatus
             case .authFailure:
                 code = .failedOperation_AuthFailure
+            case .callNetDeployFailed:
+                code = .failedOperation_CallNetDeployFailed
             case .callRoleFailed:
                 code = .failedOperation_CallRoleFailed
+            case .clsServiceUnregistered:
+                code = .failedOperation_ClsServiceUnregistered
             case .copyAsyncRun:
                 code = .failedOperation_CopyAsyncRun
             case .copyFailed:
@@ -444,6 +472,10 @@ extension TCScfError {
                 code = .failedOperation_UpdateFunctionCode
             case .updateFunctionConfiguration:
                 code = .failedOperation_UpdateFunctionConfiguration
+            case .updateStatus:
+                code = .failedOperation_UpdateStatus
+            case .updateTriggerStatus:
+                code = .failedOperation_UpdateTriggerStatus
             case .other:
                 code = .failedOperation
             }

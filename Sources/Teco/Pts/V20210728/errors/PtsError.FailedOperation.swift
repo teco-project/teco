@@ -51,6 +51,7 @@ extension TCPtsError {
             self.context = context
         }
 
+        /// 获取标签失败。
         public static var accessTagFail: FailedOperation {
             FailedOperation(.accessTagFail)
         }

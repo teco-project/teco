@@ -17,13 +17,16 @@
 extension Redis {
     /// ModfiyInstancePassword请求参数结构体
     public struct ModfiyInstancePasswordRequest: TCRequestModel {
-        /// 实例ID
+        /// 实例 ID。
         public let instanceId: String
 
-        /// 实例旧密码
+        /// 实例旧密码。
         public let oldPassword: String
 
-        /// 实例新密码
+        /// 实例新密码。密码复杂度要求如下：
+        /// - 长度8 - 30位, 推荐使用12位以上的密码。
+        /// - 不能以"/"开头。
+        /// - 至少包含小写字母a - z、大写字母A - Z、数字0 - 9、特殊字符 ()~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
         public let password: String
 
         public init(instanceId: String, oldPassword: String, password: String) {
@@ -41,7 +44,7 @@ extension Redis {
 
     /// ModfiyInstancePassword返回参数结构体
     public struct ModfiyInstancePasswordResponse: TCResponseModel {
-        /// 任务ID
+        /// 任务 ID。
         public let taskId: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -55,7 +58,7 @@ extension Redis {
 
     /// 修改Redis密码
     ///
-    /// 修改redis密码
+    /// 本接口（ModfiyInstancePassword）用于修改实例访问密码。
     @inlinable
     public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModfiyInstancePasswordResponse> {
         self.client.execute(action: "ModfiyInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +66,7 @@ extension Redis {
 
     /// 修改Redis密码
     ///
-    /// 修改redis密码
+    /// 本接口（ModfiyInstancePassword）用于修改实例访问密码。
     @inlinable
     public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
         try await self.client.execute(action: "ModfiyInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +74,7 @@ extension Redis {
 
     /// 修改Redis密码
     ///
-    /// 修改redis密码
+    /// 本接口（ModfiyInstancePassword）用于修改实例访问密码。
     @inlinable
     public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModfiyInstancePasswordResponse> {
         self.modfiyInstancePassword(.init(instanceId: instanceId, oldPassword: oldPassword, password: password), region: region, logger: logger, on: eventLoop)
@@ -79,7 +82,7 @@ extension Redis {
 
     /// 修改Redis密码
     ///
-    /// 修改redis密码
+    /// 本接口（ModfiyInstancePassword）用于修改实例访问密码。
     @inlinable
     public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
         try await self.modfiyInstancePassword(.init(instanceId: instanceId, oldPassword: oldPassword, password: password), region: region, logger: logger, on: eventLoop)

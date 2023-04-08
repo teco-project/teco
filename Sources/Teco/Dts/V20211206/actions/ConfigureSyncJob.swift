@@ -20,14 +20,11 @@ extension Dts {
         /// 同步实例id（即标识一个同步作业），形如sync-werwfs23
         public let jobId: String
 
-        /// 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
+        /// 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云),注意具体可选值依赖当前链路
         public let srcAccessType: String
 
-        /// 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
+        /// 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、ckafka(CKafka实例),注意具体可选值依赖当前链路
         public let dstAccessType: String
-
-        /// 同步任务选项
-        public let options: Options
 
         /// 同步库表对象信息
         public let objects: Objects
@@ -44,27 +41,46 @@ extension Dts {
         /// 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
         public let expectRunTime: String?
 
-        /// 源端信息，单节点数据库使用
+        /// 源端信息，单节点数据库使用，且SrcNodeType传single
         public let srcInfo: Endpoint?
+
+        /// 源端信息，多节点数据库使用，且SrcNodeType传cluster
+        public let srcInfos: SyncDBEndpointInfos?
+
+        /// 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        public let srcNodeType: String?
 
         /// 目标端信息，单节点数据库使用
         public let dstInfo: Endpoint?
 
+        /// 目标端信息，多节点数据库使用，且DstNodeType传cluster
+        public let dstInfos: SyncDBEndpointInfos?
+
+        /// 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        public let dstNodeType: String?
+
+        /// 同步任务选项
+        public let options: Options?
+
         /// 自动重试的时间段、可设置5至720分钟、0表示不重试
         public let autoRetryTimeRangeMinutes: Int64?
 
-        public init(jobId: String, srcAccessType: String, dstAccessType: String, options: Options, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, dstInfo: Endpoint? = nil, autoRetryTimeRangeMinutes: Int64? = nil) {
+        public init(jobId: String, srcAccessType: String, dstAccessType: String, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, srcInfos: SyncDBEndpointInfos? = nil, srcNodeType: String? = nil, dstInfo: Endpoint? = nil, dstInfos: SyncDBEndpointInfos? = nil, dstNodeType: String? = nil, options: Options? = nil, autoRetryTimeRangeMinutes: Int64? = nil) {
             self.jobId = jobId
             self.srcAccessType = srcAccessType
             self.dstAccessType = dstAccessType
-            self.options = options
             self.objects = objects
             self.jobName = jobName
             self.jobMode = jobMode
             self.runMode = runMode
             self.expectRunTime = expectRunTime
             self.srcInfo = srcInfo
+            self.srcInfos = srcInfos
+            self.srcNodeType = srcNodeType
             self.dstInfo = dstInfo
+            self.dstInfos = dstInfos
+            self.dstNodeType = dstNodeType
+            self.options = options
             self.autoRetryTimeRangeMinutes = autoRetryTimeRangeMinutes
         }
 
@@ -72,14 +88,18 @@ extension Dts {
             case jobId = "JobId"
             case srcAccessType = "SrcAccessType"
             case dstAccessType = "DstAccessType"
-            case options = "Options"
             case objects = "Objects"
             case jobName = "JobName"
             case jobMode = "JobMode"
             case runMode = "RunMode"
             case expectRunTime = "ExpectRunTime"
             case srcInfo = "SrcInfo"
+            case srcInfos = "SrcInfos"
+            case srcNodeType = "SrcNodeType"
             case dstInfo = "DstInfo"
+            case dstInfos = "DstInfos"
+            case dstNodeType = "DstNodeType"
+            case options = "Options"
             case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
         }
     }
@@ -114,15 +134,15 @@ extension Dts {
     ///
     /// 配置一个同步任务
     @inlinable @discardableResult
-    public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, options: Options, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, dstInfo: Endpoint? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
-        self.configureSyncJob(.init(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+    public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, srcInfos: SyncDBEndpointInfos? = nil, srcNodeType: String? = nil, dstInfo: Endpoint? = nil, dstInfos: SyncDBEndpointInfos? = nil, dstNodeType: String? = nil, options: Options? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
+        self.configureSyncJob(.init(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, srcInfos: srcInfos, srcNodeType: srcNodeType, dstInfo: dstInfo, dstInfos: dstInfos, dstNodeType: dstNodeType, options: options, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置同步任务
     ///
     /// 配置一个同步任务
     @inlinable @discardableResult
-    public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, options: Options, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, dstInfo: Endpoint? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
-        try await self.configureSyncJob(.init(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+    public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, srcInfos: SyncDBEndpointInfos? = nil, srcNodeType: String? = nil, dstInfo: Endpoint? = nil, dstInfos: SyncDBEndpointInfos? = nil, dstNodeType: String? = nil, options: Options? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
+        try await self.configureSyncJob(.init(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, srcInfos: srcInfos, srcNodeType: srcNodeType, dstInfo: dstInfo, dstInfos: dstInfos, dstNodeType: dstNodeType, options: options, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
     }
 }

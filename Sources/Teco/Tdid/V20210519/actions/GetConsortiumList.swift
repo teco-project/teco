@@ -36,26 +36,30 @@ extension Tdid {
     }
 
     /// 获取联盟列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumList(_ input: GetConsortiumListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumListResponse> {
-        self.client.execute(action: "GetConsortiumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumList is no longer available.")
     }
 
     /// 获取联盟列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumList(_ input: GetConsortiumListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumListResponse {
-        try await self.client.execute(action: "GetConsortiumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetConsortiumList is no longer available.")
     }
 
     /// 获取联盟列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumListResponse> {
-        self.getConsortiumList(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumList is no longer available.")
     }
 
     /// 获取联盟列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getConsortiumList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumListResponse {
-        try await self.getConsortiumList(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("GetConsortiumList is no longer available.")
     }
 }

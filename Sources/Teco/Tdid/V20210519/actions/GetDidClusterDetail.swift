@@ -54,32 +54,36 @@ extension Tdid {
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
-        self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterDetail is no longer available.")
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidClusterDetail is no longer available.")
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
-        self.getDidClusterDetail(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterDetail is no longer available.")
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.getDidClusterDetail(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterDetail is no longer available.")
     }
 }

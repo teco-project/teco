@@ -22,10 +22,10 @@ extension Cdb {
         /// 实例 ID。
         public let instanceId: String
 
-        /// 开始时间戳。
+        /// 开始时间戳。例如 1585142640 。
         public let startTime: UInt64
 
-        /// 结束时间戳。
+        /// 结束时间戳。例如 1585142640 。
         public let endTime: UInt64
 
         /// 客户端 Host 列表。

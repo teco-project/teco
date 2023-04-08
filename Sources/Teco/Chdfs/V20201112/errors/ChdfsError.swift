@@ -26,6 +26,8 @@ public struct TCChdfsError: TCChdfsErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
         case failedOperation_AccessGroupBound = "FailedOperation.AccessGroupBound"
+        case failedOperation_AccountInsufficientBalance = "FailedOperation.AccountInsufficientBalance"
+        case failedOperation_AccountUnauthenticated = "FailedOperation.AccountUnauthenticated"
         case failedOperation_FileSystemNotEmpty = "FailedOperation.FileSystemNotEmpty"
         case failedOperation_QuotaLessThanCurrentUsed = "FailedOperation.QuotaLessThanCurrentUsed"
         case internalError = "InternalError"
@@ -43,7 +45,6 @@ public struct TCChdfsError: TCChdfsErrorType {
         case invalidParameterValue_InvalidVpcId = "InvalidParameterValue.InvalidVpcId"
         case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
-        case operationDenied = "OperationDenied"
         case resourceInUse = "ResourceInUse"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_AccessGroupNotExists = "ResourceNotFound.AccessGroupNotExists"
@@ -92,6 +93,16 @@ public struct TCChdfsError: TCChdfsErrorType {
     /// 当前权限组先解绑关联的挂载点。
     public static var failedOperation_AccessGroupBound: TCChdfsError {
         TCChdfsError(.failedOperation_AccessGroupBound)
+    }
+
+    /// 账户余额不足。
+    public static var failedOperation_AccountInsufficientBalance: TCChdfsError {
+        TCChdfsError(.failedOperation_AccountInsufficientBalance)
+    }
+
+    /// 账户未实名认证。
+    public static var failedOperation_AccountUnauthenticated: TCChdfsError {
+        TCChdfsError(.failedOperation_AccountUnauthenticated)
     }
 
     /// 文件系统非空。
@@ -179,11 +190,6 @@ public struct TCChdfsError: TCChdfsErrorType {
     /// 缺少参数错误。
     public static var missingParameter: TCChdfsError {
         TCChdfsError(.missingParameter)
-    }
-
-    /// 操作被拒绝。
-    public static var operationDenied: TCChdfsError {
-        TCChdfsError(.operationDenied)
     }
 
     /// 资源被占用。

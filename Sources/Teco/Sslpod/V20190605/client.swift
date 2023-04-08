@@ -16,7 +16,7 @@
 
 @_exported import TecoCore
 
-/// SSL证书监控SSLPod (sslpod)
+/// 证书监控 SSLPod (sslpod)
 ///
 /// 介绍如何使用 API对证书监控进行操作，包括域名管理、证书管理等。
 public struct Sslpod: TCService {

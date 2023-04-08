@@ -74,6 +74,7 @@ extension TCEcmError {
             case invalidSecurityGroupID = "InvalidParameterValue.InvalidSecurityGroupID"
             case invalidSnapshot = "InvalidParameterValue.InvalidSnapshot"
             case invalidSnapshotId = "InvalidParameterValue.InvalidSnapshotId"
+            case invalidSubnetInZone = "InvalidParameterValue.InvalidSubnetInZone"
             case invalidSystemDiskSize = "InvalidParameterValue.InvalidSystemDiskSize"
             case invalidSystemDiskType = "InvalidParameterValue.InvalidSystemDiskType"
             case invalidTime = "InvalidParameterValue.InvalidTime"
@@ -341,12 +342,12 @@ extension TCEcmError {
             InvalidParameterValue(.invalidInternetChargeType)
         }
 
-        /// 秘钥ID无效。
+        /// 密钥ID无效。
         public static var invalidKeyPairId: InvalidParameterValue {
             InvalidParameterValue(.invalidKeyPairId)
         }
 
-        /// 秘钥名称异常。
+        /// 密钥名称异常。
         ///
         /// 请检查实例ID是否重复
         public static var invalidKeyPairName: InvalidParameterValue {
@@ -411,6 +412,11 @@ extension TCEcmError {
         /// InvalidParameterValue.InvalidSnapshotId
         public static var invalidSnapshotId: InvalidParameterValue {
             InvalidParameterValue(.invalidSnapshotId)
+        }
+
+        /// 该子网不存在该节点。
+        public static var invalidSubnetInZone: InvalidParameterValue {
+            InvalidParameterValue(.invalidSubnetInZone)
         }
 
         /// 系统盘大小不合法。
@@ -498,6 +504,8 @@ extension TCEcmError {
             InvalidParameterValue(.subnetConflict)
         }
 
+        /// 子网不存在。
+        ///
         /// 更换子网。
         public static var subnetNotExist: InvalidParameterValue {
             InvalidParameterValue(.subnetNotExist)
@@ -670,6 +678,8 @@ extension TCEcmError {
                 code = .invalidParameterValue_InvalidSnapshot
             case .invalidSnapshotId:
                 code = .invalidParameterValue_InvalidSnapshotId
+            case .invalidSubnetInZone:
+                code = .invalidParameterValue_InvalidSubnetInZone
             case .invalidSystemDiskSize:
                 code = .invalidParameterValue_InvalidSystemDiskSize
             case .invalidSystemDiskType:

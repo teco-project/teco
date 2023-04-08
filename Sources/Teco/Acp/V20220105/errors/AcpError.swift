@@ -25,6 +25,7 @@ public protocol TCAcpErrorType: TCServiceErrorType {
 public struct TCAcpError: TCAcpErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
+        case invalidParameter = "InvalidParameter"
         case unsupportedOperation = "UnsupportedOperation"
     }
 
@@ -53,6 +54,11 @@ public struct TCAcpError: TCAcpErrorType {
     /// 操作失败。
     public static var failedOperation: TCAcpError {
         TCAcpError(.failedOperation)
+    }
+
+    /// 参数错误。
+    public static var invalidParameter: TCAcpError {
+        TCAcpError(.invalidParameter)
     }
 
     /// 操作不支持。

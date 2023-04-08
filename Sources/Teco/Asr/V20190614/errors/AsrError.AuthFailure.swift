@@ -18,6 +18,7 @@ extension TCAsrError {
     public struct AuthFailure: TCAsrErrorType {
         enum Code: String {
             case checkResourceResponseCodeError = "AuthFailure.CheckResourceResponseCodeError"
+            case invalidAuthorization = "AuthFailure.InvalidAuthorization"
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
@@ -49,6 +50,11 @@ extension TCAsrError {
             AuthFailure(.checkResourceResponseCodeError)
         }
 
+        /// 鉴权错误。
+        public static var invalidAuthorization: AuthFailure {
+            AuthFailure(.invalidAuthorization)
+        }
+
         /// 未授权操作。
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
@@ -64,6 +70,8 @@ extension TCAsrError {
             switch self.error {
             case .checkResourceResponseCodeError:
                 code = .authFailure_CheckResourceResponseCodeError
+            case .invalidAuthorization:
+                code = .authFailure_InvalidAuthorization
             case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
             case .other:

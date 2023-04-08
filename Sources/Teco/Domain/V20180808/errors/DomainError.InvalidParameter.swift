@@ -89,7 +89,7 @@ extension TCDomainError {
             InvalidParameter(.customDnsNotAllowed)
         }
 
-        /// 域名输入为空或者不合法。
+        /// 域名输入为空或者不正确。
         public static var domainNameIsInvalid: InvalidParameter {
             InvalidParameter(.domainNameIsInvalid)
         }
@@ -99,7 +99,7 @@ extension TCDomainError {
             InvalidParameter(.duplicateDomainExists)
         }
 
-        /// 邮箱为空或者不合法。
+        /// 邮箱为空或者不正确。
         public static var emailIsInvalid: InvalidParameter {
             InvalidParameter(.emailIsInvalid)
         }

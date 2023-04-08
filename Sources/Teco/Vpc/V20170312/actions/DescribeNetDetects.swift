@@ -19,7 +19,7 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeNetDetects请求参数结构体
     public struct DescribeNetDetectsRequest: TCPaginatedRequest {
-        /// 网络探测实例`ID`数组。形如：[`netd-12345678`]
+        /// 网络探测实例`ID`数组。形如：[`netd-12345678`]。
         public let netDetectIds: [String]?
 
         /// 过滤条件，参数不支持同时指定NetDetectIds和Filters。

@@ -31,11 +31,15 @@ extension Ckafka {
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
 
-        public init(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+        /// 连接源的关键字查询, 根据地域查询本地域内连接管理列表中的连接(仅支持包含region输入的连接源)
+        public let resourceRegion: String?
+
+        public init(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceRegion: String? = nil) {
             self.type = type
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
+            self.resourceRegion = resourceRegion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -43,6 +47,7 @@ extension Ckafka {
             case searchWord = "SearchWord"
             case offset = "Offset"
             case limit = "Limit"
+            case resourceRegion = "ResourceRegion"
         }
 
         /// Compute the next request based on API response.
@@ -50,7 +55,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConnectResourcesRequest(type: self.type, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return DescribeConnectResourcesRequest(type: self.type, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceRegion: self.resourceRegion)
         }
     }
 
@@ -92,14 +97,14 @@ extension Ckafka {
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
-        self.describeConnectResources(.init(type: type, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
+        self.describeConnectResources(.init(type: type, searchWord: searchWord, offset: offset, limit: limit, resourceRegion: resourceRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
-        try await self.describeConnectResources(.init(type: type, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
+        try await self.describeConnectResources(.init(type: type, searchWord: searchWord, offset: offset, limit: limit, resourceRegion: resourceRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub连接源列表

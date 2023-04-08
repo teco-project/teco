@@ -23,14 +23,19 @@ extension Ess {
         /// 调用方用户信息
         public let `operator`: UserInfo?
 
-        public init(flowIds: [String], operator: UserInfo? = nil) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil) {
             self.flowIds = flowIds
             self.operator = `operator`
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case flowIds = "FlowIds"
             case `operator` = "Operator"
+            case agent = "Agent"
         }
     }
 
@@ -71,8 +76,8 @@ extension Ess {
     /// 查询合同详情
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
-    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
-        self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
+        self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询合同详情
@@ -80,7 +85,7 @@ extension Ess {
     /// 查询合同详情
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
-    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
-        try await self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
+        try await self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

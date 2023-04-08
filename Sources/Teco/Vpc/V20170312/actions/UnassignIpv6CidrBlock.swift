@@ -20,7 +20,7 @@ extension Vpc {
         /// `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         public let vpcId: String
 
-        /// `IPv6`网段。形如：`3402:4e00:20:1000::/56`
+        /// `IPv6`网段。形如：`3402:4e00:20:1000::/56`。
         public let ipv6CidrBlock: String?
 
         public init(vpcId: String, ipv6CidrBlock: String? = nil) {

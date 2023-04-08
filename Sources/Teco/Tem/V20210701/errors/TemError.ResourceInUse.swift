@@ -45,10 +45,12 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 环境已锁定。
         public static var environmentAlreadyLocked: ResourceInUse {
             ResourceInUse(.environmentAlreadyLocked)
         }
 
+        /// 你操作的资源已被其他操作占用，请稍后重试。
         public static var resourceAlreadyLocked: ResourceInUse {
             ResourceInUse(.resourceAlreadyLocked)
         }

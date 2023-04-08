@@ -46,7 +46,7 @@ extension Monitor {
 
     /// 2.0实例关联集群
     ///
-    /// 与云监控融合的2.0实例关联集群
+    /// 与腾讯云可观测融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
         self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +54,7 @@ extension Monitor {
 
     /// 2.0实例关联集群
     ///
-    /// 与云监控融合的2.0实例关联集群
+    /// 与腾讯云可观测融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
         try await self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +62,7 @@ extension Monitor {
 
     /// 2.0实例关联集群
     ///
-    /// 与云监控融合的2.0实例关联集群
+    /// 与腾讯云可观测融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
         self.createPrometheusClusterAgent(.init(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Monitor {
 
     /// 2.0实例关联集群
     ///
-    /// 与云监控融合的2.0实例关联集群
+    /// 与腾讯云可观测融合的2.0实例关联集群
     @inlinable @discardableResult
     public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
         try await self.createPrometheusClusterAgent(.init(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)

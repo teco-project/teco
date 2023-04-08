@@ -23,14 +23,19 @@ extension Ess {
         /// 待创建员工的信息，Mobile和DisplayName必填
         public let employees: [Staff]
 
-        public init(operator: UserInfo, employees: [Staff]) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
             self.operator = `operator`
             self.employees = employees
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case employees = "Employees"
+            case agent = "Agent"
         }
     }
 
@@ -49,26 +54,34 @@ extension Ess {
     }
 
     /// 创建员工
+    ///
+    /// 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
         self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建员工
+    ///
+    /// 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建员工
+    ///
+    /// 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
     @inlinable
-    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
-        self.createIntegrationEmployees(.init(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
+        self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建员工
+    ///
+    /// 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
     @inlinable
-    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
-        try await self.createIntegrationEmployees(.init(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
+        try await self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

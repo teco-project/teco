@@ -631,13 +631,19 @@ extension As {
         /// <li>TERMINATING：中止中
         /// <li>TERMINATION_FAILED：中止失败
         /// <li>ATTACHING：绑定中
+        /// <li>ATTACH_FAILED：绑定失败
         /// <li>DETACHING：解绑中
-        /// <li>ATTACHING_LB：绑定LB中<li>DETACHING_LB：解绑LB中
+        /// <li>DETACH_FAILED：解绑失败
+        /// <li>ATTACHING_LB：绑定LB中
+        /// <li>DETACHING_LB：解绑LB中
+        /// <li>MODIFYING_LB：修改LB中
         /// <li>STARTING：开机中
         /// <li>START_FAILED：开机失败
         /// <li>STOPPING：关机中
         /// <li>STOP_FAILED：关机失败
         /// <li>STOPPED：已关机
+        /// <li>IN_LAUNCHING_HOOK：扩容生命周期挂钩中
+        /// <li>IN_TERMINATING_HOOK：缩容生命周期挂钩中
         public let lifeCycleState: String
 
         /// 健康状态，取值包括HEALTHY和UNHEALTHY
@@ -667,6 +673,17 @@ extension As {
         /// 伸缩组名称
         public let autoScalingGroupName: String
 
+        /// 预热状态，取值如下：
+        /// <li>WAITING_ENTER_WARMUP：等待进入预热
+        /// <li>NO_NEED_WARMUP：无需预热
+        /// <li>IN_WARMUP：预热中
+        /// <li>AFTER_WARMUP：完成预热
+        public let warmupStatus: String
+
+        /// 置放群组id，仅支持指定一个。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disasterRecoverGroupIds: [String]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case autoScalingGroupId = "AutoScalingGroupId"
@@ -681,6 +698,8 @@ extension As {
             case instanceType = "InstanceType"
             case versionNumber = "VersionNumber"
             case autoScalingGroupName = "AutoScalingGroupName"
+            case warmupStatus = "WarmupStatus"
+            case disasterRecoverGroupIds = "DisasterRecoverGroupIds"
         }
     }
 
@@ -1116,14 +1135,12 @@ extension As {
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
 
         /// 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         public let keyIds: [String]?
 
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: Bool?
 
         public init(password: String? = nil, keyIds: [String]? = nil, keepImageLogin: Bool? = nil) {
@@ -1159,13 +1176,17 @@ extension As {
         /// 统计类型，可选字段如下：<br><li>AVERAGE：平均值</li><li>MAXIMUM：最大值<li>MINIMUM：最小值</li><br> 默认取值：AVERAGE
         public let statistic: String?
 
-        public init(comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil) {
+        /// 精确告警阈值，本参数不作为入参输入，仅用作查询接口出参：<br><li>CPU_UTILIZATION：(0, 100]，单位：%</li><li>MEM_UTILIZATION：(0, 100]，单位：%</li><li>LAN_TRAFFIC_OUT：>0，单位：Mbps </li><li>LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        public let preciseThreshold: Float?
+
+        public init(comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil, preciseThreshold: Float? = nil) {
             self.comparisonOperator = comparisonOperator
             self.metricName = metricName
             self.threshold = threshold
             self.period = period
             self.continuousTime = continuousTime
             self.statistic = statistic
+            self.preciseThreshold = preciseThreshold
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1175,6 +1196,7 @@ extension As {
             case period = "Period"
             case continuousTime = "ContinuousTime"
             case statistic = "Statistic"
+            case preciseThreshold = "PreciseThreshold"
         }
     }
 
@@ -1259,20 +1281,45 @@ extension As {
         /// 告警触发策略ID。
         public let autoScalingPolicyId: String
 
+        /// 告警触发策略类型。取值：
+        /// - SIMPLE：简单策略
+        /// - TARGET_TRACKING：目标追踪策略
+        public let scalingPolicyType: String?
+
         /// 告警触发策略名称。
         public let scalingPolicyName: String
 
-        /// 告警触发后，期望实例数修改方式。取值 ：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        /// 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         public let adjustmentType: String
 
-        /// 告警触发后，期望实例数的调整值。
+        /// 告警触发后，期望实例数的调整值，仅适用于简单策略。
         public let adjustmentValue: Int64
 
-        /// 冷却时间。
+        /// 冷却时间，仅适用于简单策略。
         public let cooldown: UInt64
 
-        /// 告警监控指标。
+        /// 简单告警触发策略告警监控指标，仅适用于简单策略。
         public let metricAlarm: MetricAlarm
+
+        /// 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let predefinedMetricType: String?
+
+        /// 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetValue: UInt64?
+
+        /// 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let estimatedInstanceWarmup: UInt64?
+
+        /// 是否禁用缩容，仅适用于目标追踪策略。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disableScaleIn: Bool?
+
+        /// 告警监控指标列表，仅适用于目标追踪策略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metricAlarms: [MetricAlarm]?
 
         /// 通知组ID，即为用户组ID集合。
         public let notificationUserGroupIds: [String]
@@ -1280,11 +1327,17 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case autoScalingPolicyId = "AutoScalingPolicyId"
+            case scalingPolicyType = "ScalingPolicyType"
             case scalingPolicyName = "ScalingPolicyName"
             case adjustmentType = "AdjustmentType"
             case adjustmentValue = "AdjustmentValue"
             case cooldown = "Cooldown"
             case metricAlarm = "MetricAlarm"
+            case predefinedMetricType = "PredefinedMetricType"
+            case targetValue = "TargetValue"
+            case estimatedInstanceWarmup = "EstimatedInstanceWarmup"
+            case disableScaleIn = "DisableScaleIn"
+            case metricAlarms = "MetricAlarms"
             case notificationUserGroupIds = "NotificationUserGroupIds"
         }
     }

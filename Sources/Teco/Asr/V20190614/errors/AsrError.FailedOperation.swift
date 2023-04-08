@@ -17,6 +17,7 @@
 extension TCAsrError {
     public struct FailedOperation: TCAsrErrorType {
         enum Code: String {
+            case checkAuthInfoFailed = "FailedOperation.CheckAuthInfoFailed"
             case errorDownFile = "FailedOperation.ErrorDownFile"
             case errorRecognize = "FailedOperation.ErrorRecognize"
             case noSuchTask = "FailedOperation.NoSuchTask"
@@ -46,6 +47,11 @@ extension TCAsrError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 鉴权错误。
+        public static var checkAuthInfoFailed: FailedOperation {
+            FailedOperation(.checkAuthInfoFailed)
         }
 
         /// 下载音频文件失败。
@@ -86,6 +92,8 @@ extension TCAsrError {
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {
+            case .checkAuthInfoFailed:
+                code = .failedOperation_CheckAuthInfoFailed
             case .errorDownFile:
                 code = .failedOperation_ErrorDownFile
             case .errorRecognize:

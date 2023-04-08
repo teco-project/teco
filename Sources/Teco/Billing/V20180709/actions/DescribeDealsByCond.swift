@@ -21,13 +21,13 @@ import TecoPaginationHelpers
 extension Billing {
     /// DescribeDealsByCond请求参数结构体
     public struct DescribeDealsByCondRequest: TCPaginatedRequest {
-        /// 开始时间
+        /// 开始时间 2016-01-01 00:00:00
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
-        /// 结束时间
+        /// 结束时间 2016-02-01 00:00:00 建议跨度不超过3个月
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.

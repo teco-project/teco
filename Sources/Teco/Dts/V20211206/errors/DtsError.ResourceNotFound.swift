@@ -63,6 +63,7 @@ extension TCDtsError {
             ResourceNotFound(.resourceNotFound)
         }
 
+        /// 资源未找到。
         public static var resourceNotFoundError: ResourceNotFound {
             ResourceNotFound(.resourceNotFoundError)
         }

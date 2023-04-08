@@ -55,26 +55,30 @@ extension Tdmq {
     }
 
     /// 创建Amqp Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPVHost(_ input: CreateAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPVHostResponse> {
-        self.client.execute(action: "CreateAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPVHost is no longer available.")
     }
 
     /// 创建Amqp Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPVHost(_ input: CreateAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {
-        try await self.client.execute(action: "CreateAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAMQPVHost is no longer available.")
     }
 
     /// 创建Amqp Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPVHostResponse> {
-        self.createAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPVHost is no longer available.")
     }
 
     /// 创建Amqp Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {
-        try await self.createAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPVHost is no longer available.")
     }
 }

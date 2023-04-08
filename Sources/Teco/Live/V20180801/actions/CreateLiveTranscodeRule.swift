@@ -20,7 +20,7 @@ extension Live {
         /// 播放域名。
         public let domainName: String
 
-        /// 推流路径，与推流和播放地址中的AppName保持一致。如果只绑定域名，则此处填空。
+        /// 推流路径，与推流和播放地址中的AppName保持一致。如果只绑定域名，则此处填""。
         public let appName: String
 
         /// 流名称。如果只绑定域名或路径，则此处填空。
@@ -56,7 +56,7 @@ extension Live {
 
     /// 创建转码规则
     ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// 创建转码规则，数量上限：50，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
@@ -65,7 +65,7 @@ extension Live {
 
     /// 创建转码规则
     ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// 创建转码规则，数量上限：50，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
@@ -74,7 +74,7 @@ extension Live {
 
     /// 创建转码规则
     ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// 创建转码规则，数量上限：50，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
@@ -83,7 +83,7 @@ extension Live {
 
     /// 创建转码规则
     ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// 创建转码规则，数量上限：50，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {

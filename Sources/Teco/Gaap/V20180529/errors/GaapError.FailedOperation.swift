@@ -67,6 +67,7 @@ extension TCGaapError {
             case unTagResourcesFailed = "FailedOperation.UnTagResourcesFailed"
             case userNotAuthenticated = "FailedOperation.UserNotAuthenticated"
             case userNotConfirmProtocol = "FailedOperation.UserNotConfirmProtocol"
+            case userNotInWhitelist = "FailedOperation.UserNotInWhitelist"
             case userOutOfCoverage = "FailedOperation.UserOutOfCoverage"
             case vendorReturnError = "FailedOperation.VendorReturnError"
             case vendorServerError = "FailedOperation.VendorServerError"
@@ -302,6 +303,7 @@ extension TCGaapError {
             FailedOperation(.resourceCanNotAccess)
         }
 
+        /// 资源已经被操作过。
         public static var resourceHadBeenDone: FailedOperation {
             FailedOperation(.resourceHadBeenDone)
         }
@@ -326,10 +328,12 @@ extension TCGaapError {
             FailedOperation(.sessionNotExist)
         }
 
+        /// 标签资源绑定失败。
         public static var tagResourcesFailed: FailedOperation {
             FailedOperation(.tagResourcesFailed)
         }
 
+        /// 标签资源解绑失败。
         public static var unTagResourcesFailed: FailedOperation {
             FailedOperation(.unTagResourcesFailed)
         }
@@ -339,8 +343,14 @@ extension TCGaapError {
             FailedOperation(.userNotAuthenticated)
         }
 
+        /// 未开通协议。
         public static var userNotConfirmProtocol: FailedOperation {
             FailedOperation(.userNotConfirmProtocol)
+        }
+
+        /// 该功能为白名单功能，如有需要请联系腾讯云助手。
+        public static var userNotInWhitelist: FailedOperation {
+            FailedOperation(.userNotInWhitelist)
         }
 
         /// 该用户不在运营商网络可加速范围内。
@@ -466,6 +476,8 @@ extension TCGaapError {
                 code = .failedOperation_UserNotAuthenticated
             case .userNotConfirmProtocol:
                 code = .failedOperation_UserNotConfirmProtocol
+            case .userNotInWhitelist:
+                code = .failedOperation_UserNotInWhitelist
             case .userOutOfCoverage:
                 code = .failedOperation_UserOutOfCoverage
             case .vendorReturnError:

@@ -730,4 +730,38 @@ extension Cloudstudio {
             case authorAvatar = "AuthorAvatar"
         }
     }
+
+    /// 创建临时工作空间凭证 DTO
+    public struct WorkspaceTokenDTO: TCInputModel {
+        /// 工作空间 SpaceKey
+        public let spaceKey: String?
+
+        /// token过期时间，单位是秒，默认 3600
+        public let tokenExpiredLimitSec: UInt64?
+
+        public init(spaceKey: String? = nil, tokenExpiredLimitSec: UInt64? = nil) {
+            self.spaceKey = spaceKey
+            self.tokenExpiredLimitSec = tokenExpiredLimitSec
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case spaceKey = "SpaceKey"
+            case tokenExpiredLimitSec = "TokenExpiredLimitSec"
+        }
+    }
+
+    /// 获取工作空间临时访问 token 出参
+    public struct WorkspaceTokenInfoV0: TCOutputModel {
+        /// 访问工作空间临时凭证
+        public let token: String
+
+        /// token 过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expiredTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case token = "Token"
+            case expiredTime = "ExpiredTime"
+        }
+    }
 }

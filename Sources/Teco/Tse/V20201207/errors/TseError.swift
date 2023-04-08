@@ -29,6 +29,7 @@ public struct TCTseError: TCTseErrorType {
         case internalError_CreateError = "InternalError.CreateError"
         case internalError_GetCredential = "InternalError.GetCredential"
         case internalError_GetRoleError = "InternalError.GetRoleError"
+        case internalError_HttpStatusCodeError = "InternalError.HttpStatusCodeError"
         case internalError_IOError = "InternalError.IOError"
         case internalError_InternalError = "InternalError.InternalError"
         case internalError_OperationFailed = "InternalError.OperationFailed"
@@ -109,6 +110,11 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.internalError_GetRoleError)
     }
 
+    /// 状态码错误。
+    public static var internalError_HttpStatusCodeError: TCTseError {
+        TCTseError(.internalError_HttpStatusCodeError)
+    }
+
     /// 内部服务调用异常。
     public static var internalError_IOError: TCTseError {
         TCTseError(.internalError_IOError)
@@ -154,6 +160,8 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.internalError_VPCFailure)
     }
 
+    /// 旧实例不支持此操作。
+    ///
     /// 迁移到新架构的云原生网关
     public static var invalidParameterValue_Action: TCTseError {
         TCTseError(.invalidParameterValue_Action)

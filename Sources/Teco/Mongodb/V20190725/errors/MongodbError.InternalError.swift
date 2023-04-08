@@ -19,6 +19,7 @@ extension TCMongodbError {
         enum Code: String {
             case checkAppIdFailed = "InternalError.CheckAppIdFailed"
             case findInstanceFailed = "InternalError.FindInstanceFailed"
+            case passwordError = "InternalError.PasswordError"
             case other = "InternalError"
         }
 
@@ -56,6 +57,11 @@ extension TCMongodbError {
             InternalError(.findInstanceFailed)
         }
 
+        /// password与原先记录的password不同。
+        public static var passwordError: InternalError {
+            InternalError(.passwordError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -68,6 +74,8 @@ extension TCMongodbError {
                 code = .internalError_CheckAppIdFailed
             case .findInstanceFailed:
                 code = .internalError_FindInstanceFailed
+            case .passwordError:
+                code = .internalError_PasswordError
             case .other:
                 code = .internalError
             }

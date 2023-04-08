@@ -383,6 +383,9 @@ extension Antiddos {
         /// 弹性业务带宽开关
         public let elasticServiceBandwidth: UInt64
 
+        /// 赠送的业务带宽
+        public let giftServiceBandWidth: Int64?
+
         enum CodingKeys: String, CodingKey {
             case instanceDetail = "InstanceDetail"
             case specificationLimit = "SpecificationLimit"
@@ -402,6 +405,7 @@ extension Antiddos {
             case vitalityVersion = "VitalityVersion"
             case line = "Line"
             case elasticServiceBandwidth = "ElasticServiceBandwidth"
+            case giftServiceBandWidth = "GiftServiceBandWidth"
         }
     }
 
@@ -446,6 +450,10 @@ extension Antiddos {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let elasticLimit: UInt64?
 
+        /// 降配后的防护能力，单位Gbps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let downGradeProtect: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case protectBandwidth = "ProtectBandwidth"
             case protectCountLimit = "ProtectCountLimit"
@@ -457,6 +465,7 @@ extension Antiddos {
             case channelEditionFlag = "ChannelEditionFlag"
             case enterpriseFlag = "EnterpriseFlag"
             case elasticLimit = "ElasticLimit"
+            case downGradeProtect = "DownGradeProtect"
         }
     }
 
@@ -1773,12 +1782,20 @@ extension Antiddos {
         /// 规则所属的资源实例
         public let instanceDetailRule: [RuleInstanceRelation]?
 
-        public init(domain: String, proxyTypeList: [ProxyTypeInfo], realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
+        /// 协议
+        public let `protocol`: String?
+
+        /// 端口号
+        public let vport: Int64?
+
+        public init(domain: String, proxyTypeList: [ProxyTypeInfo], realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil, protocol: String? = nil, vport: Int64? = nil) {
             self.domain = domain
             self.proxyTypeList = proxyTypeList
             self.realServers = realServers
             self.instanceDetails = instanceDetails
             self.instanceDetailRule = instanceDetailRule
+            self.protocol = `protocol`
+            self.vport = vport
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1787,6 +1804,8 @@ extension Antiddos {
             case realServers = "RealServers"
             case instanceDetails = "InstanceDetails"
             case instanceDetailRule = "InstanceDetailRule"
+            case `protocol` = "Protocol"
+            case vport = "Vport"
         }
     }
 
@@ -2518,16 +2537,21 @@ extension Antiddos {
         /// 源站的回源权重，取值1~100
         public let weight: Int64
 
-        public init(realServer: String, rsType: Int64, weight: Int64) {
+        /// 端口号：0~65535
+        public let port: Int64?
+
+        public init(realServer: String, rsType: Int64, weight: Int64, port: Int64? = nil) {
             self.realServer = realServer
             self.rsType = rsType
             self.weight = weight
+            self.port = port
         }
 
         enum CodingKeys: String, CodingKey {
             case realServer = "RealServer"
             case rsType = "RsType"
             case weight = "Weight"
+            case port = "Port"
         }
     }
 

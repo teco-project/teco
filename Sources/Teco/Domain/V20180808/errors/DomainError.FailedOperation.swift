@@ -23,9 +23,12 @@ extension TCDomainError {
             case describeDomainFailed = "FailedOperation.DescribeDomainFailed"
             case describeDomainListFailed = "FailedOperation.DescribeDomainListFailed"
             case describeTemplateFailed = "FailedOperation.DescribeTemplateFailed"
+            case domainExpiredUnsupported = "FailedOperation.DomainExpiredUnsupported"
             case domainPriceListFailed = "FailedOperation.DomainPriceListFailed"
             case duplicatePhoneEmail = "FailedOperation.DuplicatePhoneEmail"
+            case getDomainPriceFailed = "FailedOperation.GetDomainPriceFailed"
             case modifyDomainOwnerFailed = "FailedOperation.ModifyDomainOwnerFailed"
+            case prohibitPhoneEmail = "FailedOperation.ProhibitPhoneEmail"
             case registerDomain = "FailedOperation.RegisterDomain"
             case registerDomainFailed = "FailedOperation.RegisterDomainFailed"
             case sendTcbPhoneEmailCodeFailed = "FailedOperation.SendTcbPhoneEmailCodeFailed"
@@ -59,7 +62,7 @@ extension TCDomainError {
             self.context = context
         }
 
-        /// 域名查询失败，请稍后重试。
+        /// 域名查询失败，请稍后重试该功能。
         public static var checkDomainFailed: FailedOperation {
             FailedOperation(.checkDomainFailed)
         }
@@ -89,6 +92,11 @@ extension TCDomainError {
             FailedOperation(.describeTemplateFailed)
         }
 
+        /// 域名已过期，不允许操作。
+        public static var domainExpiredUnsupported: FailedOperation {
+            FailedOperation(.domainExpiredUnsupported)
+        }
+
         /// 获取域名价格列表失败。
         public static var domainPriceListFailed: FailedOperation {
             FailedOperation(.domainPriceListFailed)
@@ -99,9 +107,21 @@ extension TCDomainError {
             FailedOperation(.duplicatePhoneEmail)
         }
 
+        /// 获取域名价格失败。
+        public static var getDomainPriceFailed: FailedOperation {
+            FailedOperation(.getDomainPriceFailed)
+        }
+
         /// 域名过户失败。
         public static var modifyDomainOwnerFailed: FailedOperation {
             FailedOperation(.modifyDomainOwnerFailed)
+        }
+
+        /// 禁止的手机或邮箱。
+        ///
+        /// 更换手机或邮箱
+        public static var prohibitPhoneEmail: FailedOperation {
+            FailedOperation(.prohibitPhoneEmail)
         }
 
         /// 域名注册操作失败，请稍后重试。
@@ -164,12 +184,18 @@ extension TCDomainError {
                 code = .failedOperation_DescribeDomainListFailed
             case .describeTemplateFailed:
                 code = .failedOperation_DescribeTemplateFailed
+            case .domainExpiredUnsupported:
+                code = .failedOperation_DomainExpiredUnsupported
             case .domainPriceListFailed:
                 code = .failedOperation_DomainPriceListFailed
             case .duplicatePhoneEmail:
                 code = .failedOperation_DuplicatePhoneEmail
+            case .getDomainPriceFailed:
+                code = .failedOperation_GetDomainPriceFailed
             case .modifyDomainOwnerFailed:
                 code = .failedOperation_ModifyDomainOwnerFailed
+            case .prohibitPhoneEmail:
+                code = .failedOperation_ProhibitPhoneEmail
             case .registerDomain:
                 code = .failedOperation_RegisterDomain
             case .registerDomainFailed:

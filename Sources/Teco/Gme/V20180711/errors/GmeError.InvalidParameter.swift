@@ -19,6 +19,7 @@ extension TCGmeError {
         enum Code: String {
             case callbackAddress = "InvalidParameter.CallbackAddress"
             case dateInvalid = "InvalidParameter.DateInvalid"
+            case dateOutOfSixtyDays = "InvalidParameter.DateOutOfSixtyDays"
             case tagKey = "InvalidParameter.TagKey"
             case timeRangeError = "InvalidParameter.TimeRangeError"
             case other = "InvalidParameter"
@@ -56,6 +57,11 @@ extension TCGmeError {
             InvalidParameter(.dateInvalid)
         }
 
+        /// 输入日期超出60天查询范围。
+        public static var dateOutOfSixtyDays: InvalidParameter {
+            InvalidParameter(.dateOutOfSixtyDays)
+        }
+
         /// 标签不正确
         public static var tagKey: InvalidParameter {
             InvalidParameter(.tagKey)
@@ -78,6 +84,8 @@ extension TCGmeError {
                 code = .invalidParameter_CallbackAddress
             case .dateInvalid:
                 code = .invalidParameter_DateInvalid
+            case .dateOutOfSixtyDays:
+                code = .invalidParameter_DateOutOfSixtyDays
             case .tagKey:
                 code = .invalidParameter_TagKey
             case .timeRangeError:

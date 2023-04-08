@@ -741,6 +741,12 @@ extension Trp {
         /// 更新时间
         public let updateTime: String?
 
+        /// 商户名称
+        public let merchantName: String?
+
+        /// 产品名称
+        public let productName: String?
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case corpId = "CorpId"
@@ -751,6 +757,8 @@ extension Trp {
             case uv = "Uv"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
+            case merchantName = "MerchantName"
+            case productName = "ProductName"
         }
     }
 

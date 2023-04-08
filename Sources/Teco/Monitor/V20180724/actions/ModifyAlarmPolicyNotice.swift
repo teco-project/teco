@@ -29,11 +29,15 @@ extension Monitor {
         /// 告警策略ID数组，支持给多个告警策略批量绑定通知模板。最多30个。
         public let policyIds: [String]?
 
-        public init(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil) {
+        /// 告警分级通知规则配置
+        public let hierarchicalNotices: [AlarmHierarchicalNotice]?
+
+        public init(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil) {
             self.module = module
             self.policyId = policyId
             self.noticeIds = noticeIds
             self.policyIds = policyIds
+            self.hierarchicalNotices = hierarchicalNotices
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +45,7 @@ extension Monitor {
             case policyId = "PolicyId"
             case noticeIds = "NoticeIds"
             case policyIds = "PolicyIds"
+            case hierarchicalNotices = "HierarchicalNotices"
         }
     }
 
@@ -56,7 +61,7 @@ extension Monitor {
 
     /// 修改告警策略绑定的告警通知模板
     ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
+    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
         self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -64,7 +69,7 @@ extension Monitor {
 
     /// 修改告警策略绑定的告警通知模板
     ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
+    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -72,17 +77,17 @@ extension Monitor {
 
     /// 修改告警策略绑定的告警通知模板
     ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
+    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
-    public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
-        self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
+        self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds, hierarchicalNotices: hierarchicalNotices), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略绑定的告警通知模板
     ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
+    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
-    public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
-        try await self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
+        try await self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds, hierarchicalNotices: hierarchicalNotices), region: region, logger: logger, on: eventLoop)
     }
 }

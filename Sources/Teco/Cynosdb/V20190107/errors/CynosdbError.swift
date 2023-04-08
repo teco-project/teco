@@ -66,6 +66,7 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case invalidParameterValue_InternalAccount = "InvalidParameterValue.InternalAccount"
         case invalidParameterValue_InvalidDBVersion = "InvalidParameterValue.InvalidDBVersion"
         case invalidParameterValue_InvalidParameterValueError = "InvalidParameterValue.InvalidParameterValueError"
+        case invalidParameterValue_InvalidPasswordValueError = "InvalidParameterValue.InvalidPasswordValueError"
         case invalidParameterValue_InvalidRegionIdError = "InvalidParameterValue.InvalidRegionIdError"
         case invalidParameterValue_InvalidSpec = "InvalidParameterValue.InvalidSpec"
         case invalidParameterValue_InvalidZoneIdError = "InvalidParameterValue.InvalidZoneIdError"
@@ -78,14 +79,19 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case invalidParameterValue_SubnetNotFound = "InvalidParameterValue.SubnetNotFound"
         case invalidParameterValue_VpcNotFound = "InvalidParameterValue.VpcNotFound"
         case invalidParameter_ControllerNotFoundError = "InvalidParameter.ControllerNotFoundError"
+        case invalidParameter_ExceptionParam = "InvalidParameter.ExceptionParam"
         case invalidParameter_InvalidParameterError = "InvalidParameter.InvalidParameterError"
         case invalidParameter_IsolateNotAllowed = "InvalidParameter.IsolateNotAllowed"
         case limitExceeded = "LimitExceeded"
+        case limitExceeded_ClusterInstanceLimit = "LimitExceeded.ClusterInstanceLimit"
         case limitExceeded_UserInstanceLimit = "LimitExceeded.UserInstanceLimit"
         case missingParameter = "MissingParameter"
+        case operationDenied_CamDeniedError = "OperationDenied.CamDeniedError"
         case operationDenied_ClusterOpNotAllowedError = "OperationDenied.ClusterOpNotAllowedError"
         case operationDenied_ClusterStatusDeniedError = "OperationDenied.ClusterStatusDeniedError"
+        case operationDenied_InstanceAccessDeniedError = "OperationDenied.InstanceAccessDeniedError"
         case operationDenied_InstanceStatusDeniedError = "OperationDenied.InstanceStatusDeniedError"
+        case operationDenied_InstanceStatusLimitError = "OperationDenied.InstanceStatusLimitError"
         case operationDenied_InsufficientBalanceError = "OperationDenied.InsufficientBalanceError"
         case operationDenied_ServerlessClusterStatusDenied = "OperationDenied.ServerlessClusterStatusDenied"
         case operationDenied_ServerlessInstanceStatusDenied = "OperationDenied.ServerlessInstanceStatusDenied"
@@ -338,6 +344,11 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.invalidParameterValue_InvalidParameterValueError)
     }
 
+    /// 密码不合规。
+    public static var invalidParameterValue_InvalidPasswordValueError: TCCynosdbError {
+        TCCynosdbError(.invalidParameterValue_InvalidPasswordValueError)
+    }
+
     /// 无效的地域。
     public static var invalidParameterValue_InvalidRegionIdError: TCCynosdbError {
         TCCynosdbError(.invalidParameterValue_InvalidRegionIdError)
@@ -400,6 +411,11 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.invalidParameter_ControllerNotFoundError)
     }
 
+    /// 参数传参错误。
+    public static var invalidParameter_ExceptionParam: TCCynosdbError {
+        TCCynosdbError(.invalidParameter_ExceptionParam)
+    }
+
     /// 未知参数，请检查参数是否有效。
     public static var invalidParameter_InvalidParameterError: TCCynosdbError {
         TCCynosdbError(.invalidParameter_InvalidParameterError)
@@ -415,6 +431,11 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.limitExceeded)
     }
 
+    /// 集群中节点数超过最大限制。
+    public static var limitExceeded_ClusterInstanceLimit: TCCynosdbError {
+        TCCynosdbError(.limitExceeded_ClusterInstanceLimit)
+    }
+
     /// 用户实例个数超出限制。
     public static var limitExceeded_UserInstanceLimit: TCCynosdbError {
         TCCynosdbError(.limitExceeded_UserInstanceLimit)
@@ -423,6 +444,11 @@ public struct TCCynosdbError: TCCynosdbErrorType {
     /// 缺少参数错误。
     public static var missingParameter: TCCynosdbError {
         TCCynosdbError(.missingParameter)
+    }
+
+    /// 权限校验失败。
+    public static var operationDenied_CamDeniedError: TCCynosdbError {
+        TCCynosdbError(.operationDenied_CamDeniedError)
     }
 
     /// 由于操作禁止，当前集群不允许该操作。
@@ -435,9 +461,19 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.operationDenied_ClusterStatusDeniedError)
     }
 
+    /// 您没有权限操作资源。
+    public static var operationDenied_InstanceAccessDeniedError: TCCynosdbError {
+        TCCynosdbError(.operationDenied_InstanceAccessDeniedError)
+    }
+
     /// 实例当前状态不允许该操作。
     public static var operationDenied_InstanceStatusDeniedError: TCCynosdbError {
         TCCynosdbError(.operationDenied_InstanceStatusDeniedError)
+    }
+
+    /// 实例未处于运行状态
+    public static var operationDenied_InstanceStatusLimitError: TCCynosdbError {
+        TCCynosdbError(.operationDenied_InstanceStatusLimitError)
     }
 
     /// 账号余额不足。

@@ -44,10 +44,12 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 有资源依赖，无法直接删除应用。
         public static var applicationNotDeletable: ResourceUnavailable {
             ResourceUnavailable(.applicationNotDeletable)
         }
 
+        /// 应用已停止。
         public static var applicationStopped: ResourceUnavailable {
             ResourceUnavailable(.applicationStopped)
         }

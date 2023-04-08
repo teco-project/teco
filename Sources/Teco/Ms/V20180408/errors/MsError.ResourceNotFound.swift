@@ -19,6 +19,7 @@ extension TCMsError {
         enum Code: String {
             case itemIdNotFound = "ResourceNotFound.ItemIdNotFound"
             case planIdNotFound = "ResourceNotFound.PlanIdNotFound"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -53,6 +54,11 @@ extension TCMsError {
             ResourceNotFound(.planIdNotFound)
         }
 
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
+        }
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
@@ -60,6 +66,8 @@ extension TCMsError {
                 code = .resourceNotFound_ItemIdNotFound
             case .planIdNotFound:
                 code = .resourceNotFound_PlanIdNotFound
+            case .other:
+                code = .resourceNotFound
             }
             return TCMsError(code, context: self.context)
         }

@@ -64,6 +64,7 @@ public struct TCKmsError: TCKmsErrorType {
         case resourceUnavailable_NotPurchased = "ResourceUnavailable.NotPurchased"
         case resourceUnavailable_TokenExpired = "ResourceUnavailable.TokenExpired"
         case unauthorizedOperation = "UnauthorizedOperation"
+        case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_ExternalCmkCanNotRotate = "UnsupportedOperation.ExternalCmkCanNotRotate"
         case unsupportedOperation_NotExternalCmk = "UnsupportedOperation.NotExternalCmk"
         case unsupportedOperation_NotUserCreatedCmk = "UnsupportedOperation.NotUserCreatedCmk"
@@ -123,6 +124,7 @@ public struct TCKmsError: TCKmsErrorType {
         TCKmsError(.failedOperation_EncryptionError)
     }
 
+    /// 标签服务错误。
     public static var failedOperation_TaggingError: TCKmsError {
         TCKmsError(.failedOperation_TaggingError)
     }
@@ -295,6 +297,11 @@ public struct TCKmsError: TCKmsErrorType {
     /// 未授权操作。
     public static var unauthorizedOperation: TCKmsError {
         TCKmsError(.unauthorizedOperation)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCKmsError {
+        TCKmsError(.unsupportedOperation)
     }
 
     /// 用户导入类型的CMK禁止轮换。

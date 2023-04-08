@@ -74,26 +74,30 @@ extension Tdid {
     }
 
     /// 创建DID服务
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func createDidService(_ input: CreateDidServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDidServiceResponse> {
-        self.client.execute(action: "CreateDidService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateDidService is no longer available.")
     }
 
     /// 创建DID服务
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func createDidService(_ input: CreateDidServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDidServiceResponse {
-        try await self.client.execute(action: "CreateDidService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateDidService is no longer available.")
     }
 
     /// 创建DID服务
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDidServiceResponse> {
-        self.createDidService(.init(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateDidService is no longer available.")
     }
 
     /// 创建DID服务
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDidServiceResponse {
-        try await self.createDidService(.init(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateDidService is no longer available.")
     }
 }

@@ -249,30 +249,45 @@ extension Vpc {
 
     /// 地址信息
     public struct AddressTemplateItem: TCInputModel, TCOutputModel {
-        /// 起始地址。
-        public let from: String
+        /// ipm-xxxxxxxx
+        public let addressTemplateId: String?
 
-        /// 结束地址。
-        public let to: String
+        /// IP模板名称
+        public let addressTemplateName: String?
 
-        public init(from: String, to: String) {
+        /// 废弃字段
+        public let from: String?
+
+        /// 废弃字段
+        public let to: String?
+
+        public init(addressTemplateId: String? = nil, addressTemplateName: String? = nil, from: String? = nil, to: String? = nil) {
+            self.addressTemplateId = addressTemplateId
+            self.addressTemplateName = addressTemplateName
             self.from = from
             self.to = to
         }
 
         enum CodingKeys: String, CodingKey {
+            case addressTemplateId = "AddressTemplateId"
+            case addressTemplateName = "AddressTemplateName"
             case from = "From"
             case to = "To"
         }
     }
 
     /// IP地址模板
-    public struct AddressTemplateSpecification: TCOutputModel {
+    public struct AddressTemplateSpecification: TCInputModel, TCOutputModel {
         /// IP地址ID，例如：ipm-2uw6ujo6。
         public let addressId: String
 
         /// IP地址组ID，例如：ipmg-2uw6ujo6。
         public let addressGroupId: String
+
+        public init(addressId: String, addressGroupId: String) {
+            self.addressId = addressId
+            self.addressGroupId = addressGroupId
+        }
 
         enum CodingKeys: String, CodingKey {
             case addressId = "AddressId"
@@ -446,23 +461,27 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceChargeType: String?
 
-        /// 限速类型，INTER_REGION_LIMIT为地域间限速；OUTER_REGION_LIMIT为地域出口限速。
+        /// 限速类型，`INTER_REGION_LIMIT` 为地域间限速；`OUTER_REGION_LIMIT` 为地域出口限速。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthLimitType: String?
 
         /// 标签键值对。
         public let tagSet: [Tag]?
 
-        /// 是否支持云联网路由优先级的功能。False：不支持，True：支持。
+        /// 是否支持云联网路由优先级的功能。`False`：不支持，`True`：支持。
         public let routePriorityFlag: Bool?
 
         /// 实例关联的路由表个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableCount: UInt64?
 
-        /// 是否开启云联网多路由表特性。False：未开启，True：开启。
+        /// 是否开启云联网多路由表特性。`False`：未开启，`True`：开启。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableFlag: Bool?
+
+        /// `true`：实例已被封禁，流量不通，`false`:解封禁。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSecurityLock: Bool?
 
         /// 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -482,6 +501,7 @@ extension Vpc {
             case routePriorityFlag = "RoutePriorityFlag"
             case routeTableCount = "RouteTableCount"
             case routeTableFlag = "RouteTableFlag"
+            case isSecurityLock = "IsSecurityLock"
             case routeBroadcastPolicyFlag = "RouteBroadcastPolicyFlag"
         }
     }
@@ -566,6 +586,71 @@ extension Vpc {
     }
 
     /// 用于描述云联网地域间限速带宽实例的信息。
+    public struct CcnBandwidth: TCOutputModel {
+        /// 带宽所属的云联网ID。
+        public let ccnId: String
+
+        /// 实例的创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// 实例的过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expiredTime: String?
+
+        /// 带宽实例的唯一ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionFlowControlId: String?
+
+        /// 带宽是否自动续费的标记。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: String?
+
+        /// 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ccnRegionBandwidthLimit: CcnRegionBandwidthLimitInfo?
+
+        /// 云市场实例ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let marketId: String?
+
+        /// 实例所属用户主账号ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAccountID: String?
+
+        /// 是否跨境，`true`表示跨境，反之不跨境。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isCrossBorder: Bool?
+
+        /// `true`表示封禁，地域间流量不通，`false`解禁，地域间流量正常
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSecurityLock: Bool?
+
+        /// `POSTPAID`表示后付费，`PREPAID`表示预付费。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceChargeType: String?
+
+        /// 实例更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case ccnId = "CcnId"
+            case createdTime = "CreatedTime"
+            case expiredTime = "ExpiredTime"
+            case regionFlowControlId = "RegionFlowControlId"
+            case renewFlag = "RenewFlag"
+            case ccnRegionBandwidthLimit = "CcnRegionBandwidthLimit"
+            case marketId = "MarketId"
+            case userAccountID = "UserAccountID"
+            case isCrossBorder = "IsCrossBorder"
+            case isSecurityLock = "IsSecurityLock"
+            case instanceChargeType = "InstanceChargeType"
+            case updateTime = "UpdateTime"
+        }
+    }
+
+    /// 用于描述云联网地域间限速带宽实例的信息。
     public struct CcnBandwidthInfo: TCOutputModel {
         /// 带宽所属的云联网ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -595,6 +680,10 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let marketId: String?
 
+        /// 资源绑定的标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagSet: [Tag]?
+
         enum CodingKeys: String, CodingKey {
             case ccnId = "CcnId"
             case createdTime = "CreatedTime"
@@ -603,21 +692,19 @@ extension Vpc {
             case renewFlag = "RenewFlag"
             case ccnRegionBandwidthLimit = "CcnRegionBandwidthLimit"
             case marketId = "MarketId"
+            case tagSet = "TagSet"
         }
     }
 
     /// 云联网限速实例锁对象，该对象特用于运营端使用，用于封禁实例流量。
     public struct CcnFlowLock: TCInputModel {
         /// 带宽所属的云联网ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnId: String?
 
         /// 实例所属用户主账号ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAccountID: String?
 
         /// 带宽实例的唯一ID。作为`UnlockCcnBandwidths`接口和`LockCcnBandwidths`接口的入参时，该字段必传。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionFlowControlId: String?
 
         public init(ccnId: String, userAccountID: String, regionFlowControlId: String? = nil) {
@@ -672,6 +759,10 @@ extension Vpc {
         }
     }
 
+    /// 云联网实例对象，该对象特用于运营端使用，不建议给租户的接口中提供该复杂类型。
+    public struct CcnInstanceInfo: TCOutputModel {
+    }
+
     /// 云联网（CCN）地域出带宽上限
     public struct CcnRegionBandwidthLimit: TCInputModel, TCOutputModel {
         /// 地域，例如：ap-guangzhou
@@ -705,6 +796,10 @@ extension Vpc {
             case dstRegion = "DstRegion"
             case dstIsBm = "DstIsBm"
         }
+    }
+
+    /// 云联网（CCN）地域出带宽上限。
+    public struct CcnRegionBandwidthLimitInfo: TCOutputModel {
     }
 
     /// CCN路由策略对象
@@ -935,16 +1030,16 @@ extension Vpc {
 
     /// 跨境带宽监控数据
     public struct CrossBorderFlowMonitorData: TCOutputModel {
-        /// 入带宽
+        /// 入带宽，单位：`bps`。
         public let inBandwidth: [Int64]
 
-        /// 出带宽
+        /// 出带宽，单位：`bps`。
         public let outBandwidth: [Int64]
 
-        /// 入包
+        /// 入包，单位：`pps`。
         public let inPkg: [Int64]
 
-        /// 出包
+        /// 出包，单位：`pps`。
         public let outPkg: [Int64]
 
         enum CodingKeys: String, CodingKey {
@@ -1057,15 +1152,27 @@ extension Vpc {
 
     /// 默认VPC和子网
     public struct DefaultVpcSubnet: TCOutputModel {
-        /// 默认VpcId
+        /// 默认VpcId。
         public let vpcId: String
 
-        /// 默认SubnetId
+        /// 默认SubnetId。
         public let subnetId: String
+
+        /// 默认Vpc名字。
+        public let vpcName: String?
+
+        /// 默认Subnet名字。
+        public let subnetName: String?
+
+        /// 默认子网网段。
+        public let cidrBlock: String?
 
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+            case vpcName = "VpcName"
+            case subnetName = "SubnetName"
+            case cidrBlock = "CidrBlock"
         }
     }
 
@@ -1504,11 +1611,11 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageType: String?
 
-        /// 消费端信息，当消费端类型为ckafka时返回
+        /// 消费端信息，当消费端类型为ckafka时返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowLogStorage: FlowLogStorage?
 
-        /// 流日志存储ID对应的地域信息
+        /// 流日志存储ID对应的地域信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cloudLogRegion: String?
 
@@ -1762,7 +1869,7 @@ extension Vpc {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36。
         public let period: UInt64
 
-        /// 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费， NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。默认：NOTIFY_AND_MANUAL_RENEW
+        /// 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费， NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。默认：NOTIFY_AND_AUTO_RENEW
         public let renewFlag: String?
 
         public init(period: UInt64, renewFlag: String? = nil) {
@@ -2358,6 +2465,7 @@ extension Vpc {
         /// NAT：NAT网关；
         /// NORMAL_CVM：普通云服务器；
         /// CCN：云联网网关；
+        /// NONEXTHOP：无下一跳；
         public let nextHopType: String
 
         /// 下一跳目的网关，取值与“下一跳类型”相关：
@@ -2366,7 +2474,8 @@ extension Vpc {
         /// 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        /// 下一跳类型为CCN，取值云联网网关，形如：ccn-12345678；
+        /// 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         public let nextHopDestination: String
 
         /// 下一跳网关名称。
@@ -3393,7 +3502,7 @@ extension Vpc {
         /// 安全组实例ID，例如：sg-ohuuioma。
         public let securityGroupId: String?
 
-        /// IP地址ID或者ID地址组ID。
+        /// IP地址ID或者IP地址组ID。
         public let addressTemplate: AddressTemplateSpecification?
 
         /// ACCEPT 或 DROP。
@@ -3530,12 +3639,17 @@ extension Vpc {
     }
 
     /// 协议端口模板
-    public struct ServiceTemplateSpecification: TCOutputModel {
+    public struct ServiceTemplateSpecification: TCInputModel, TCOutputModel {
         /// 协议端口ID，例如：ppm-f5n1f8da。
         public let serviceId: String
 
         /// 协议端口组ID，例如：ppmg-f5n1f8da。
         public let serviceGroupId: String
+
+        public init(serviceId: String, serviceGroupId: String) {
+            self.serviceId = serviceId
+            self.serviceGroupId = serviceGroupId
+        }
 
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
@@ -4255,6 +4369,22 @@ extension Vpc {
         }
     }
 
+    /// Vpc任务结果详细信息。
+    public struct VpcTaskResultDetailInfo: TCOutputModel {
+        /// 资源ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceId: String?
+
+        /// 状态。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case resourceId = "ResourceId"
+            case status = "Status"
+        }
+    }
+
     /// VPN通道对象。
     public struct VpnConnection: TCOutputModel {
         /// 通道实例ID。
@@ -4474,36 +4604,36 @@ extension Vpc {
         }
     }
 
-    /// Vpn网关目的路由
+    /// VPN网关目的路由
     public struct VpnGatewayRoute: TCInputModel, TCOutputModel {
-        /// 目的端IDC网段
+        /// 目的端IDC网段。
         public let destinationCidrBlock: String
 
-        /// 下一跳类型（关联实例类型）可选值:"VPNCONN"(VPN通道), "CCN"(CCN实例)
+        /// 下一跳类型（关联实例类型）可选值："VPNCONN"（VPN通道）， "CCN"（CCN实例）。
         public let instanceType: String
 
-        /// 下一跳实例ID
+        /// 下一跳实例ID。
         public let instanceId: String
 
-        /// 优先级, 可选值: 0, 100
+        /// 优先级，可选值：0，100。
         public let priority: Int64
 
-        /// 启用状态, 可选值: "ENABLE"(启用), "DISABLE"(禁用)
+        /// 启用状态，可选值："ENABLE"（启用），"DISABLE"  (禁用)。
         public let status: String
 
-        /// 路由条目ID
+        /// 路由条目ID。
         public let routeId: String?
 
-        /// 路由类型, 可选值: "VPC"(VPC路由), "CCN"(云联网传播路由), "Static"(静态路由), "BGP"(BGP路由)
+        /// 路由类型，可选值："VPC"（VPC路由），"CCN"（云联网传播路由），"Static"（静态路由），"BGP"（BGP路由）。
         public let type: String?
 
-        /// 创建时间
+        /// 创建时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
-        /// 更新时间
+        /// 更新时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
@@ -4536,10 +4666,10 @@ extension Vpc {
 
     /// 修改VPN状态参数
     public struct VpnGatewayRouteModify: TCInputModel {
-        /// Vpn网关路由ID
+        /// VPN网关路由ID。
         public let routeId: String
 
-        /// Vpn网关状态, ENABEL 启用, DISABLE禁用
+        /// VPN网关状态, ENABLE 启用, DISABLE禁用。
         public let status: String
 
         public init(routeId: String, status: String) {
@@ -4555,22 +4685,27 @@ extension Vpc {
 
     /// VPN网关云联网路由信息
     public struct VpngwCcnRoutes: TCInputModel, TCOutputModel {
-        /// 路由信息ID
+        /// 路由信息ID。
         public let routeId: String
 
-        /// 路由信息是否启用
+        /// 路由信息是否启用。
         /// ENABLE：启用该路由
         /// DISABLE：不启用该路由
         public let status: String?
 
-        public init(routeId: String, status: String? = nil) {
+        /// 路由CIDR。
+        public let destinationCidrBlock: String?
+
+        public init(routeId: String, status: String? = nil, destinationCidrBlock: String? = nil) {
             self.routeId = routeId
             self.status = status
+            self.destinationCidrBlock = destinationCidrBlock
         }
 
         enum CodingKeys: String, CodingKey {
             case routeId = "RouteId"
             case status = "Status"
+            case destinationCidrBlock = "DestinationCidrBlock"
         }
     }
 }

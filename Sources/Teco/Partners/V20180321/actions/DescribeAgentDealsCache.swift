@@ -115,7 +115,7 @@ extension Partners {
         }
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
@@ -123,7 +123,7 @@ extension Partners {
         self.client.execute(action: "DescribeAgentDealsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
@@ -131,7 +131,7 @@ extension Partners {
         try await self.client.execute(action: "DescribeAgentDealsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
@@ -139,7 +139,7 @@ extension Partners {
         self.describeAgentDealsCache(.init(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
@@ -147,7 +147,7 @@ extension Partners {
         try await self.describeAgentDealsCache(.init(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
@@ -155,7 +155,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeAgentDealsCache, logger: logger, on: eventLoop)
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable @discardableResult
@@ -163,7 +163,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeAgentDealsCache, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 代理商缓存订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentDealsByCache】代理商缓存订单查询接口
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     ///

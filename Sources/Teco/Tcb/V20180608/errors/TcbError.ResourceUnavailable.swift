@@ -62,6 +62,8 @@ extension TCTcbError {
             ResourceUnavailable(.invoiceAmountLack)
         }
 
+        /// 云项目oAuth授权失效（即RefreshToken过期）。
+        ///
         /// 云项目OAuth的refreshToken已过期，需要重新授权。
         public static var refreshTokenExpired: ResourceUnavailable {
             ResourceUnavailable(.refreshTokenExpired)

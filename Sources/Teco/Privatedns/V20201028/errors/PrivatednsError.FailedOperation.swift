@@ -66,6 +66,8 @@ extension TCPrivatednsError {
             FailedOperation(.createZoneFailed)
         }
 
+        /// 数据异常。
+        ///
         /// 数据异常，联系后台处理。
         public static var dataError: FailedOperation {
             FailedOperation(.dataError)
@@ -76,6 +78,8 @@ extension TCPrivatednsError {
             FailedOperation(.deleteLastBindVpcRecordFailed)
         }
 
+        /// 记录删除失败。
+        ///
         /// 其他原因导致删除失败，可能需要联系后台帮忙处理
         public static var deleteRecordFailed: FailedOperation {
             FailedOperation(.deleteRecordFailed)

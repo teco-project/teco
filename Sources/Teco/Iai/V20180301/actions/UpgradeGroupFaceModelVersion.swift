@@ -53,9 +53,10 @@ extension Iai {
     /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
+    @available(*, unavailable, message: "接口已经不使用了，需要下线掉，以免留在官网产生歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库升级
@@ -63,9 +64,10 @@ extension Iai {
     /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
+    @available(*, unavailable, message: "接口已经不使用了，需要下线掉，以免留在官网产生歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库升级
@@ -73,9 +75,10 @@ extension Iai {
     /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
+    @available(*, unavailable, message: "接口已经不使用了，需要下线掉，以免留在官网产生歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        self.upgradeGroupFaceModelVersion(.init(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库升级
@@ -83,8 +86,9 @@ extension Iai {
     /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
+    @available(*, unavailable, message: "接口已经不使用了，需要下线掉，以免留在官网产生歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.upgradeGroupFaceModelVersion(.init(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
     }
 }

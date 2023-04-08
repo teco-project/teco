@@ -102,6 +102,8 @@ extension Ocr {
     /// 港澳台居住证识别
     ///
     /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func hmtResidentPermitOCR(_ input: HmtResidentPermitOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HmtResidentPermitOCRResponse> {
         self.client.execute(action: "HmtResidentPermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,6 +112,8 @@ extension Ocr {
     /// 港澳台居住证识别
     ///
     /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func hmtResidentPermitOCR(_ input: HmtResidentPermitOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HmtResidentPermitOCRResponse {
         try await self.client.execute(action: "HmtResidentPermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -118,6 +122,8 @@ extension Ocr {
     /// 港澳台居住证识别
     ///
     /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func hmtResidentPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HmtResidentPermitOCRResponse> {
         self.hmtResidentPermitOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
@@ -126,6 +132,8 @@ extension Ocr {
     /// 港澳台居住证识别
     ///
     /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func hmtResidentPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HmtResidentPermitOCRResponse {
         try await self.hmtResidentPermitOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)

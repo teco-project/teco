@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 资源短缺。
         public static var resourceInsufficientError: ResourceInsufficient {
             ResourceInsufficient(.resourceInsufficientError)
         }

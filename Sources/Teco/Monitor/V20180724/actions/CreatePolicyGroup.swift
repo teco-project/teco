@@ -23,13 +23,13 @@ extension Monitor {
         /// 固定值，为"monitor"
         public let module: String
 
-        /// 策略组所属视图的名称，若通过模版创建，可不传入
+        /// 策略组所属视图的名称，若通过模板创建，可不传入
         public let viewName: String?
 
         /// 策略组所属项目Id，会进行鉴权操作
         public let projectId: Int64?
 
-        /// 模版策略组Id, 通过模版创建时才需要传
+        /// 模板策略组Id, 通过模板创建时才需要传
         public let conditionTempGroupId: Int64?
 
         /// 是否屏蔽策略组，0表示不屏蔽，1表示屏蔽。不填默认为0
@@ -47,7 +47,7 @@ extension Monitor {
         /// 策略组中的事件告警规则
         public let eventConditions: [CreatePolicyGroupEventCondition]?
 
-        /// 是否为后端调用。当且仅当值为1时，后台拉取策略模版中的规则填充入Conditions以及EventConditions字段
+        /// 是否为后端调用。当且仅当值为1时，后台拉取策略模板中的规则填充入Conditions以及EventConditions字段
         public let backEndCall: Int64?
 
         /// 指标告警规则的且或关系，0表示或规则(满足任意规则就告警)，1表示且规则(满足所有规则才告警)

@@ -124,6 +124,7 @@ extension TCTcrError {
             InvalidParameter(.errorTcrInvalidParameter)
         }
 
+        /// 复制实例已存在。
         public static var replicationExists: InvalidParameter {
             InvalidParameter(.replicationExists)
         }

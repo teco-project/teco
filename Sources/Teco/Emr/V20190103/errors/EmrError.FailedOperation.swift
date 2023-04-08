@@ -17,8 +17,10 @@
 extension TCEmrError {
     public struct FailedOperation: TCEmrErrorType {
         enum Code: String {
+            case checkIfSupportPodStretch = "FailedOperation.CheckIfSupportPodStretch"
             case duplicateOrderNotAllowed = "FailedOperation.DuplicateOrderNotAllowed"
             case notSupportPod = "FailedOperation.NotSupportPod"
+            case refundCvmFailed = "FailedOperation.RefundCvmFailed"
             case other = "FailedOperation"
         }
 
@@ -44,6 +46,11 @@ extension TCEmrError {
             self.context = context
         }
 
+        /// 操作失败。
+        public static var checkIfSupportPodStretch: FailedOperation {
+            FailedOperation(.checkIfSupportPodStretch)
+        }
+
         /// 重复的订单，请检查emr控制台。
         public static var duplicateOrderNotAllowed: FailedOperation {
             FailedOperation(.duplicateOrderNotAllowed)
@@ -55,6 +62,11 @@ extension TCEmrError {
         }
 
         /// 操作失败。
+        public static var refundCvmFailed: FailedOperation {
+            FailedOperation(.refundCvmFailed)
+        }
+
+        /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
@@ -62,10 +74,14 @@ extension TCEmrError {
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
+            case .checkIfSupportPodStretch:
+                code = .failedOperation_CheckIfSupportPodStretch
             case .duplicateOrderNotAllowed:
                 code = .failedOperation_DuplicateOrderNotAllowed
             case .notSupportPod:
                 code = .failedOperation_NotSupportPod
+            case .refundCvmFailed:
+                code = .failedOperation_RefundCvmFailed
             case .other:
                 code = .failedOperation
             }

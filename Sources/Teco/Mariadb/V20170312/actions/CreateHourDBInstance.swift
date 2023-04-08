@@ -41,8 +41,7 @@ extension Mariadb {
         /// 统一子网ID，VpcId有值时需填写
         public let subnetId: String?
 
-        /// 数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
-        /// 如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+        /// 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
         public let dbVersionId: String?
 
         /// 自定义实例名称

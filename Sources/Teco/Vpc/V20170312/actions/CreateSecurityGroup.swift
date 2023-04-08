@@ -26,7 +26,7 @@ extension Vpc {
         /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
         public let projectId: String?
 
-        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         public let tags: [Tag]?
 
         public init(groupName: String, groupDescription: String, projectId: String? = nil, tags: [Tag]? = nil) {

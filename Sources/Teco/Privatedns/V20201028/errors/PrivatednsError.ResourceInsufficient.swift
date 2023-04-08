@@ -43,6 +43,7 @@ extension TCPrivatednsError {
             self.context = context
         }
 
+        /// 余额不足。
         public static var balance: ResourceInsufficient {
             ResourceInsufficient(.balance)
         }

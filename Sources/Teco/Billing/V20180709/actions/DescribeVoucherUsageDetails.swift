@@ -26,12 +26,12 @@ extension Billing {
         public let offset: Int64
 
         /// 代金券id
-        public let voucherId: String?
+        public let voucherId: String
 
         /// 操作人，默认就是用户uin
         public let `operator`: String?
 
-        public init(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil) {
+        public init(limit: Int64, offset: Int64, voucherId: String, operator: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.voucherId = voucherId
@@ -101,13 +101,13 @@ extension Billing {
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
+    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
         self.describeVoucherUsageDetails(.init(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
+    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
         try await self.describeVoucherUsageDetails(.init(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 

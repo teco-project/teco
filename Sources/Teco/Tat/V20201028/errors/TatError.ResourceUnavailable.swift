@@ -23,6 +23,7 @@ extension TCTatError {
             case commandInInvoker = "ResourceUnavailable.CommandInInvoker"
             case instanceStateNotRunning = "ResourceUnavailable.InstanceStateNotRunning"
             case lighthouseUnsupportedRegion = "ResourceUnavailable.LighthouseUnsupportedRegion"
+            case other = "ResourceUnavailable"
         }
 
         private let error: Code
@@ -72,9 +73,16 @@ extension TCTatError {
             ResourceUnavailable(.instanceStateNotRunning)
         }
 
+        /// Lighthouse 尚不支持指定的地域。
+        ///
         /// 请确认所填实例是否为所请求的地域的资源。
         public static var lighthouseUnsupportedRegion: ResourceUnavailable {
             ResourceUnavailable(.lighthouseUnsupportedRegion)
+        }
+
+        /// 资源不可用。
+        public static var other: ResourceUnavailable {
+            ResourceUnavailable(.other)
         }
 
         public func asTatError() -> TCTatError {
@@ -92,6 +100,8 @@ extension TCTatError {
                 code = .resourceUnavailable_InstanceStateNotRunning
             case .lighthouseUnsupportedRegion:
                 code = .resourceUnavailable_LighthouseUnsupportedRegion
+            case .other:
+                code = .resourceUnavailable
             }
             return TCTatError(code, context: self.context)
         }

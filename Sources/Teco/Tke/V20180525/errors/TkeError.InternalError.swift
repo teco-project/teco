@@ -58,8 +58,12 @@ extension TCTkeError {
             case kubernetesDeleteOperationError = "InternalError.KubernetesDeleteOperationError"
             case kubernetesGetOperationError = "InternalError.KubernetesGetOperationError"
             case kubernetesInternal = "InternalError.KubernetesInternal"
+            case kubernetesListOperationError = "InternalError.KubernetesListOperationError"
             case kubernetesPatchOperationError = "InternalError.KubernetesPatchOperationError"
             case lbCommon = "InternalError.LbCommon"
+            case marketGetAuthFailed = "InternalError.MarketGetAuthFailed"
+            case marketInternalServerError = "InternalError.MarketInternalServerError"
+            case marketReleaseOperation = "InternalError.MarketReleaseOperation"
             case osNotSupport = "InternalError.OsNotSupport"
             case param = "InternalError.Param"
             case podNotFound = "InternalError.PodNotFound"
@@ -317,6 +321,11 @@ extension TCTkeError {
             InternalError(.kubernetesInternal)
         }
 
+        /// 获取Kubernetes资源列表失败。
+        public static var kubernetesListOperationError: InternalError {
+            InternalError(.kubernetesListOperationError)
+        }
+
         /// Kubernetes Patch操作失败。
         public static var kubernetesPatchOperationError: InternalError {
             InternalError(.kubernetesPatchOperationError)
@@ -327,6 +336,21 @@ extension TCTkeError {
         /// 请提交工单联系我们协助处理
         public static var lbCommon: InternalError {
             InternalError(.lbCommon)
+        }
+
+        /// 获取集群认证信息失败。
+        public static var marketGetAuthFailed: InternalError {
+            InternalError(.marketGetAuthFailed)
+        }
+
+        /// 应用市场服务操作错误。
+        public static var marketInternalServerError: InternalError {
+            InternalError(.marketInternalServerError)
+        }
+
+        /// 操作应用Release失败。
+        public static var marketReleaseOperation: InternalError {
+            InternalError(.marketReleaseOperation)
         }
 
         /// 镜像OS不支持。
@@ -546,10 +570,18 @@ extension TCTkeError {
                 code = .internalError_KubernetesGetOperationError
             case .kubernetesInternal:
                 code = .internalError_KubernetesInternal
+            case .kubernetesListOperationError:
+                code = .internalError_KubernetesListOperationError
             case .kubernetesPatchOperationError:
                 code = .internalError_KubernetesPatchOperationError
             case .lbCommon:
                 code = .internalError_LbCommon
+            case .marketGetAuthFailed:
+                code = .internalError_MarketGetAuthFailed
+            case .marketInternalServerError:
+                code = .internalError_MarketInternalServerError
+            case .marketReleaseOperation:
+                code = .internalError_MarketReleaseOperation
             case .osNotSupport:
                 code = .internalError_OsNotSupport
             case .param:

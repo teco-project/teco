@@ -106,7 +106,7 @@ public struct TCTmsError: TCTmsErrorType {
         TCTmsError(.invalidParameter_ParameterError)
     }
 
-    /// 未获取到接口授权。
+    /// 未开通权限/无有效套餐包/账号已欠费。
     public static var unauthorizedOperation_Unauthorized: TCTmsError {
         TCTmsError(.unauthorizedOperation_Unauthorized)
     }

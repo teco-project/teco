@@ -44,26 +44,30 @@ extension Tdid {
     }
 
     /// 获取DID服务列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceList(_ input: GetDidServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
-        self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceList is no longer available.")
     }
 
     /// 获取DID服务列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceList(_ input: GetDidServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
-        try await self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidServiceList is no longer available.")
     }
 
     /// 获取DID服务列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
-        self.getDidServiceList(.init(type: type), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceList is no longer available.")
     }
 
     /// 获取DID服务列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
-        try await self.getDidServiceList(.init(type: type), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidServiceList is no longer available.")
     }
 }

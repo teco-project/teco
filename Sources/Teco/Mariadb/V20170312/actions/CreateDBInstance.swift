@@ -53,7 +53,7 @@ extension Mariadb {
         /// 项目 ID，可以通过查看项目列表获取，不传则关联到默认项目
         public let projectId: Int64?
 
-        /// 数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。如果不传的话，默认为 Percona 5.7.17。
+        /// 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
         public let dbVersionId: String?
 
         /// 实例名称， 可以通过该字段自主的设置实例的名字

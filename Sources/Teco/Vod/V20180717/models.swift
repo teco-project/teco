@@ -158,11 +158,13 @@ extension Vod {
     }
 
     /// 转自适应码流信息
-    public struct AdaptiveDynamicStreamingInfoItem: TCInputModel {
+    public struct AdaptiveDynamicStreamingInfoItem: TCInputModel, TCOutputModel {
         /// 转自适应码流规格。
         public let definition: Int64
 
-        /// 打包格式，只能为 HLS。
+        /// 打包格式，取值范围：
+        /// <li>HLS；</li>
+        /// <li>DASH。</li>
         public let package: String
 
         /// 加密类型。
@@ -182,13 +184,17 @@ extension Vod {
         /// <li>None 表示没有经过数字水印处理。</li>
         public let digitalWatermarkType: String?
 
-        public init(definition: Int64, package: String, drmType: String, url: String, size: Int64? = nil, digitalWatermarkType: String? = nil) {
+        /// 子流信息列表。
+        public let subStreamSet: [MediaSubStreamInfoItem]?
+
+        public init(definition: Int64, package: String, drmType: String, url: String, size: Int64? = nil, digitalWatermarkType: String? = nil, subStreamSet: [MediaSubStreamInfoItem]? = nil) {
             self.definition = definition
             self.package = package
             self.drmType = drmType
             self.url = url
             self.size = size
             self.digitalWatermarkType = digitalWatermarkType
+            self.subStreamSet = subStreamSet
         }
 
         enum CodingKeys: String, CodingKey {
@@ -198,6 +204,7 @@ extension Vod {
             case url = "Url"
             case size = "Size"
             case digitalWatermarkType = "DigitalWatermarkType"
+            case subStreamSet = "SubStreamSet"
         }
     }
 
@@ -2702,6 +2709,30 @@ extension Vod {
         }
     }
 
+    /// 去伪影（毛刺）控制信息
+    public struct ArtifactRepairInfo: TCInputModel, TCOutputModel {
+        /// 去伪影（毛刺）控制开关，可选值：
+        /// <li>ON：开启去伪影（毛刺）；</li>
+        /// <li>OFF：关闭去伪影（毛刺）。</li>
+        public let `switch`: String
+
+        /// 去伪影（毛刺）类型，仅当去伪影（毛刺）控制开关为 ON 时有效，可选值：
+        /// <li>weak：轻去伪影（毛刺）；</li>
+        /// <li>strong：强去伪影（毛刺）。</li>
+        /// 默认值：weak。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+        }
+    }
+
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音全文识别任务开关，可选值：
@@ -2806,6 +2837,31 @@ extension Vod {
         }
     }
 
+    /// 音频降噪控制信息
+    public struct AudioDenoiseInfo: TCInputModel, TCOutputModel {
+        /// 音频降噪控制开关，可选值：
+        /// <li>ON：开启音频降噪；</li>
+        /// <li>OFF：关闭音频降噪。</li>
+        public let `switch`: String
+
+        /// 音频降噪类型，仅当音频降噪控制开关为 ON 时有效，可选值：
+        /// <li>weak：轻音频降噪；</li>
+        /// <li>normal：正常音频降噪；</li>
+        /// <li>strong：强音频降噪。</li>
+        /// 默认值：weak。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+        }
+    }
+
     /// 音频流配置参数
     public struct AudioTemplateInfo: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
@@ -2825,6 +2881,8 @@ extension Vod {
         /// <li>libfdk_aac。</li>
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         /// <li>libfdk_aac。</li>
+        /// 当外层参数 Container 为 wav 时，可选值为：
+        /// <li>pcm16。</li>
         public let codec: String
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
@@ -2832,6 +2890,7 @@ extension Vod {
         public let bitrate: UInt64
 
         /// 音频流的采样率，可选值：
+        /// <li>16000，仅当 Codec 为 pcm16 时可选。</li>
         /// <li>32000</li>
         /// <li>44100</li>
         /// <li>48000</li>
@@ -2880,12 +2939,15 @@ extension Vod {
         /// <li>libfdk_aac。</li>
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         /// <li>libfdk_aac。</li>
+        /// 当外层参数 Container 为 wav 时，可选值为：
+        /// <li>pcm16。</li>
         public let codec: String?
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         public let bitrate: UInt64?
 
         /// 音频流的采样率，可选值：
+        /// <li>16000，仅当 Codec 为 pcm16 时可选。</li>
         /// <li>32000</li>
         /// <li>44100</li>
         /// <li>48000</li>
@@ -3131,6 +3193,31 @@ extension Vod {
             case taskId = "TaskId"
             case srcFileId = "SrcFileId"
             case fileInfo = "FileInfo"
+        }
+    }
+
+    /// 色彩增强控制参数
+    public struct ColorEnhanceInfo: TCInputModel, TCOutputModel {
+        /// 色彩增强控制开关，可选值：
+        /// <li>ON：开启综合增强；</li>
+        /// <li>OFF：关闭综合增强。</li>
+        public let `switch`: String
+
+        /// 色彩增强类型，仅当色彩增强控制开关为 ON 时有效，可选值：
+        /// <li>weak：轻色彩增强；</li>
+        /// <li>normal：正常色彩增强；</li>
+        /// <li>strong：强色彩增强。</li>
+        /// 默认值：weak。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
         }
     }
 
@@ -4072,13 +4159,14 @@ extension Vod {
         /// <li>NewFileUpload：视频上传完成；</li>
         /// <li>ProcedureStateChanged：任务流状态变更；</li>
         /// <li>FileDeleted：视频删除完成；</li>
+        /// <li>RestoreMediaComplete：视频取回完成；</li>
         /// <li>PullComplete：视频转拉完成；</li>
         /// <li>EditMediaComplete：视频编辑完成；</li>
         /// <li>SplitMediaComplete：视频拆分完成；</li>
-        /// <li>WechatPublishComplete：微信发布完成；</li>
         /// <li>ComposeMediaComplete：制作媒体文件完成；</li>
         /// <li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li>
-        /// <li>FastClipMediaComplete：快速剪辑完成；</li>
+        /// <li>RemoveWatermark：智能去除水印完成。</li>
+        /// <li>RebuildMediaComplete：音画质重生完成事件。</li>
         /// <li>ReviewAudioVideoComplete：音视频审核完成；</li>
         /// <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
         /// <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
@@ -4110,7 +4198,7 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let editMediaCompleteEvent: EditMediaTask?
 
-        /// 视频拆条完成事件，当事件类型为 SplitMediaComplete 时有效。
+        /// 视频拆分完成事件，当事件类型为 SplitMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let splitMediaCompleteEvent: SplitMediaTask?
 
@@ -4146,15 +4234,19 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatMiniProgramPublishCompleteEvent: WechatMiniProgramPublishTask?
 
-        /// 智能去除水印任务完成事件，当事件类型为 RemoveWatermark 有效。
+        /// 智能去除水印完成事件，当事件类型为 RemoveWatermark 有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let removeWatermarkCompleteEvent: RemoveWatermarkTask?
 
-        /// 视频取回完成事件，当事件类型为RestoreMediaComplete 时有效。
+        /// 视频取回完成事件，当事件类型为 RestoreMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restoreMediaCompleteEvent: RestoreMediaTask?
 
-        /// 溯源水印提取完成事件，当事件类型为ExtractTraceWatermarkComplete 时有效。
+        /// 音画质重生完成事件，当事件类型为 RebuildMediaComplete 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rebuildMediaCompleteEvent: RebuildMediaTask?
+
+        /// 溯源水印提取完成事件，当事件类型为 ExtractTraceWatermarkComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extractTraceWatermarkCompleteEvent: ExtractTraceWatermarkTask?
 
@@ -4189,6 +4281,7 @@ extension Vod {
             case wechatMiniProgramPublishCompleteEvent = "WechatMiniProgramPublishCompleteEvent"
             case removeWatermarkCompleteEvent = "RemoveWatermarkCompleteEvent"
             case restoreMediaCompleteEvent = "RestoreMediaCompleteEvent"
+            case rebuildMediaCompleteEvent = "RebuildMediaCompleteEvent"
             case extractTraceWatermarkCompleteEvent = "ExtractTraceWatermarkCompleteEvent"
             case reviewAudioVideoCompleteEvent = "ReviewAudioVideoCompleteEvent"
             case reduceMediaBitrateCompleteEvent = "ReduceMediaBitrateCompleteEvent"
@@ -4354,6 +4447,28 @@ extension Vod {
         }
     }
 
+    /// 人脸增强控制
+    public struct FaceEnhanceInfo: TCInputModel, TCOutputModel {
+        /// 人脸增强控制开关，可选值：
+        /// <li>ON：开启人脸增强；</li>
+        /// <li>OFF：关闭人脸增强。</li>
+        public let `switch`: String
+
+        /// 人脸增强强度，仅当人脸增强控制开关为 ON 时有效，取值范围：0.0~1.0。
+        /// 默认：0.0。
+        public let intensity: Float?
+
+        public init(switch: String, intensity: Float? = nil) {
+            self.switch = `switch`
+            self.intensity = intensity
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case intensity = "Intensity"
+        }
+    }
+
     /// 文件删除结果信息
     public struct FileDeleteResultItem: TCOutputModel {
         /// 删除的文件 ID 。
@@ -4469,6 +4584,33 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case screenshotInterval = "ScreenshotInterval"
+        }
+    }
+
+    /// 高动态范围类型控制参数。
+    public struct HDRInfo: TCInputModel, TCOutputModel {
+        /// 高动态范围类型控制开关，可选值：
+        /// <li>ON：开启高动态范围类型转换；</li>
+        /// <li>OFF：关闭高动态范围类型转换。</li>
+        public let `switch`: String
+
+        /// 高动态范围类型，可选值：
+        /// <li>hdr10：表示 hdr10 标准；</li>
+        /// <li>hlg：表示 hlg 标准。</li>
+        ///
+        /// 注意：
+        /// <li> 仅当高动态范围类型控制开关为 ON 时有效；</li>
+        /// <li>当画质重生目标参数中指定视频输出参数的视频流编码格式 Codec 为 libx265 时有效。</li>
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
         }
     }
 
@@ -4603,6 +4745,31 @@ extension Vod {
         }
     }
 
+    /// 图片模糊处理。
+    public struct ImageBlur: TCInputModel {
+        /// 图片模糊的操作类型。可选模式有：
+        /// <li>Gaussian : 高斯模糊。</li>
+        public let type: String
+
+        /// 模糊半径，取值范围为1 - 50。当 Type 取值为 Gaussian 时此字段有效。
+        public let radius: Int64?
+
+        /// 正态分布的标准差，必须大于0。当 Type 取值为 Gaussian 时此字段有效。
+        public let sigma: Int64?
+
+        public init(type: String, radius: Int64? = nil, sigma: Int64? = nil) {
+            self.type = type
+            self.radius = radius
+            self.sigma = sigma
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case radius = "Radius"
+            case sigma = "Sigma"
+        }
+    }
+
     /// 图片中心裁剪处理。
     public struct ImageCenterCut: TCInputModel {
         /// 图片的裁剪模式，可选 Circle 和 Rectangle。
@@ -4650,7 +4817,7 @@ extension Vod {
     }
 
     /// 单个图片处理操作。
-    public struct ImageOperation: TCInputModel {
+    public struct ImageOperation: TCInputModel, TCOutputModel {
         /// 图片处理类型。可选类型有：
         /// <li>Scale : 图片缩略处理。</li>
         /// <li>CenterCut : 图片裁剪处理。</li>
@@ -4662,16 +4829,21 @@ extension Vod {
         /// 图片裁剪处理，仅当 Type 为 CenterCut 时有效。
         public let centerCut: ImageCenterCut?
 
-        public init(type: String, scale: ImageScale? = nil, centerCut: ImageCenterCut? = nil) {
+        /// 图片模糊处理，仅当 Type 为 Blur 时有效。
+        public let blur: ImageBlur?
+
+        public init(type: String, scale: ImageScale? = nil, centerCut: ImageCenterCut? = nil, blur: ImageBlur? = nil) {
             self.type = type
             self.scale = scale
             self.centerCut = centerCut
+            self.blur = blur
         }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case scale = "Scale"
             case centerCut = "CenterCut"
+            case blur = "Blur"
         }
     }
 
@@ -5060,6 +5232,29 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case templateId = "TemplateId"
+        }
+    }
+
+    /// 低光照增强控制
+    public struct LowLightEnhanceInfo: TCInputModel, TCOutputModel {
+        /// 低光照增强控制开关，可选值：
+        /// <li>ON：开启低光照增强；</li>
+        /// <li>OFF：关闭低光照增强。</li>
+        public let `switch`: String
+
+        /// 低光照增强类型，仅当低光照增强控制开关为 ON 时有效，可选值：
+        /// <li>normal：正常低光照增强；</li>
+        /// 默认值：normal。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
         }
     }
 
@@ -6338,6 +6533,31 @@ extension Vod {
             case sourceType = "SourceType"
             case sourceContext = "SourceContext"
             case trtcRecordInfo = "TrtcRecordInfo"
+        }
+    }
+
+    /// 转自适应码流子流信息。
+    public struct MediaSubStreamInfoItem: TCOutputModel {
+        /// 子流类型，取值范围：
+        /// <li>audio：纯音频；</li>
+        /// <li>video：视频（可能包含音频流）。</li>
+        public let type: String?
+
+        /// 当子流为视频流时，视频画面宽度，单位：px。
+        public let width: UInt64?
+
+        /// 当子流为视频流时，视频画面高度，单位：px。
+        public let height: UInt64?
+
+        /// 子流媒体文件大小，单位：Byte。
+        /// <font color=red>注意：</font>在 2023-02-09T16:00:00Z 前处理生成的自适应码流文件此字段为0。
+        public let size: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case width = "Width"
+            case height = "Height"
+            case size = "Size"
         }
     }
 
@@ -7964,6 +8184,547 @@ extension Vod {
         }
     }
 
+    /// 音画质重生音频控制控制信息。
+    public struct RebuildAudioInfo: TCInputModel, TCOutputModel {
+        /// 音频降噪控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let audioDenoiseInfo: AudioDenoiseInfo?
+
+        public init(audioDenoiseInfo: AudioDenoiseInfo? = nil) {
+            self.audioDenoiseInfo = audioDenoiseInfo
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case audioDenoiseInfo = "AudioDenoiseInfo"
+        }
+    }
+
+    /// 音画质重生结果文件输出。
+    public struct RebuildMediaOutputConfig: TCInputModel {
+        /// 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        public let mediaName: String?
+
+        /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        /// <li>默认值：0，表示其他分类。</li>
+        public let classId: Int64?
+
+        /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let expireTime: String?
+
+        public init(mediaName: String? = nil, classId: Int64? = nil, expireTime: String? = nil) {
+            self.mediaName = mediaName
+            self.classId = classId
+            self.expireTime = expireTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case mediaName = "MediaName"
+            case classId = "ClassId"
+            case expireTime = "ExpireTime"
+        }
+    }
+
+    /// 画质重生输出的音频信息
+    public struct RebuildMediaTargetAudioStream: TCInputModel, TCOutputModel {
+        /// 音频流的编码格式。
+        /// 当外层参数 Container 为 mp3 时，可选值为：
+        /// <li>libmp3lame。</li>
+        /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
+        /// <li>flac。</li>
+        /// 当外层参数 Container 为 m4a 时，可选值为：
+        /// <li>libfdk_aac；</li>
+        /// <li>libmp3lame；</li>
+        /// <li>ac3。</li>
+        /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
+        /// <li>libfdk_aac：更适合 mp4；</li>
+        /// <li>libmp3lame：更适合 flv；</li>
+        /// <li>mp2。</li>
+        /// 当外层参数 Container 为 hls 时，可选值为：
+        /// <li>libfdk_aac。</li>
+        public let codec: String?
+
+        /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
+        /// 当取值为 0，表示音频码率和原始音频保持一致。
+        public let bitrate: Int64?
+
+        /// 音频流的采样率，可选值：
+        /// <li>32000</li>
+        /// <li>44100</li>
+        /// <li>48000</li>
+        ///
+        /// 单位：Hz。
+        public let sampleRate: Int64?
+
+        /// 音频通道方式，可选值：
+        /// <li>1：单通道</li>
+        /// <li>2：双通道</li>
+        /// <li>6：立体声</li>
+        ///
+        /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
+        /// 默认值：2。
+        public let audioChannel: Int64?
+
+        public init(codec: String? = nil, bitrate: Int64? = nil, sampleRate: Int64? = nil, audioChannel: Int64? = nil) {
+            self.codec = codec
+            self.bitrate = bitrate
+            self.sampleRate = sampleRate
+            self.audioChannel = audioChannel
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case codec = "Codec"
+            case bitrate = "Bitrate"
+            case sampleRate = "SampleRate"
+            case audioChannel = "AudioChannel"
+        }
+    }
+
+    /// 画质重生目标参数
+    public struct RebuildMediaTargetInfo: TCInputModel, TCOutputModel {
+        /// 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        public let mediaName: String?
+
+        /// 描述信息，最长 128 个字符。缺省描述信息为空。
+        public let description: String?
+
+        /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        /// <li>默认值：0，表示其他分类。</li>
+        public let classId: Int64?
+
+        /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let expireTime: String?
+
+        /// 输出文件封装格式，可选值：mp4、flv、hls。默认mp4。
+        public let container: String?
+
+        /// 输出的视频信息。
+        public let videoStream: RebuildMediaTargetVideoStream?
+
+        /// 输出的音频信息。
+        public let audioStream: RebuildMediaTargetAudioStream?
+
+        /// 是否去除视频数据，可选值：
+        /// <li>0：保留</li>
+        /// <li>1：去除</li>
+        ///
+        /// 默认值：0。
+        public let removeVideo: Int64?
+
+        /// 是否去除音频数据，可选值：
+        /// <li>0：保留</li>
+        /// <li>1：去除</li>
+        ///
+        /// 默认值：0。
+        public let removeAudio: Int64?
+
+        public init(mediaName: String? = nil, description: String? = nil, classId: Int64? = nil, expireTime: String? = nil, container: String? = nil, videoStream: RebuildMediaTargetVideoStream? = nil, audioStream: RebuildMediaTargetAudioStream? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil) {
+            self.mediaName = mediaName
+            self.description = description
+            self.classId = classId
+            self.expireTime = expireTime
+            self.container = container
+            self.videoStream = videoStream
+            self.audioStream = audioStream
+            self.removeVideo = removeVideo
+            self.removeAudio = removeAudio
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case mediaName = "MediaName"
+            case description = "Description"
+            case classId = "ClassId"
+            case expireTime = "ExpireTime"
+            case container = "Container"
+            case videoStream = "VideoStream"
+            case audioStream = "AudioStream"
+            case removeVideo = "RemoveVideo"
+            case removeAudio = "RemoveAudio"
+        }
+    }
+
+    /// 画质重生输出的视频信息
+    public struct RebuildMediaTargetVideoStream: TCInputModel, TCOutputModel {
+        /// 视频流的编码格式，可选值：
+        /// <li>libx264：H.264 编码；</li>
+        /// <li>libx265：H.265 编码；</li>
+        /// <li>av1：AOMedia Video 1 编码。</li>
+        /// 默认视频流的编码格式为 H.264 编码。
+        public let codec: String?
+
+        /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        /// 当取值为 0，表示视频码率和原始视频保持一致。
+        public let bitrate: Int64?
+
+        /// 视频帧率，取值范围：[0, 100]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
+        public let fps: Int64?
+
+        /// 分辨率自适应，可选值：
+        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
+        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        ///
+        /// 默认值：open。
+        public let resolutionAdaptive: String?
+
+        /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        ///
+        /// 默认值：0。
+        public let width: Int64?
+
+        /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        ///
+        /// 默认值：0。
+        public let height: Int64?
+
+        /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        /// <li>stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
+        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        ///
+        /// 默认值：stretch 。
+        public let fillType: String?
+
+        /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
+        /// 当填 0 或不填时，系统将自动设置 gop 长度。
+        public let gop: Int64?
+
+        public init(codec: String? = nil, bitrate: Int64? = nil, fps: Int64? = nil, resolutionAdaptive: String? = nil, width: Int64? = nil, height: Int64? = nil, fillType: String? = nil, gop: Int64? = nil) {
+            self.codec = codec
+            self.bitrate = bitrate
+            self.fps = fps
+            self.resolutionAdaptive = resolutionAdaptive
+            self.width = width
+            self.height = height
+            self.fillType = fillType
+            self.gop = gop
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case codec = "Codec"
+            case bitrate = "Bitrate"
+            case fps = "Fps"
+            case resolutionAdaptive = "ResolutionAdaptive"
+            case width = "Width"
+            case height = "Height"
+            case fillType = "FillType"
+            case gop = "Gop"
+        }
+    }
+
+    /// 音画质重生任务
+    public struct RebuildMediaTask: TCOutputModel {
+        /// 任务 ID。
+        public let taskId: String
+
+        /// 任务流状态，取值：
+        /// <li>PROCESSING：处理中；</li>
+        /// <li>FINISH：已完成。</li>
+        public let status: String
+
+        /// 错误码，0 表示成功，其他值表示失败：
+        /// <li>40000：输入参数不合法，请检查输入参数；</li>
+        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
+        /// <li>70000：内部服务错误，建议重试。</li>
+        public let errCode: Int64
+
+        /// 错误信息。
+        public let message: String
+
+        /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        public let errCodeExt: String
+
+        /// 音画质重生任务进度，取值范围 [0-100] 。
+        public let progress: Int64
+
+        /// 音画质重生任务的输入。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let input: RebuildMediaTaskInput?
+
+        /// 音画质重生任务的输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: RebuildMediaTaskOutput?
+
+        /// 音画质重生输出视频的元信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metaData: MediaMetaData?
+
+        /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        public let sessionId: String
+
+        /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        public let sessionContext: String
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case status = "Status"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case errCodeExt = "ErrCodeExt"
+            case progress = "Progress"
+            case input = "Input"
+            case output = "Output"
+            case metaData = "MetaData"
+            case sessionId = "SessionId"
+            case sessionContext = "SessionContext"
+        }
+    }
+
+    /// 音画质重生任务的输入。
+    public struct RebuildMediaTaskInput: TCOutputModel {
+        /// 媒体文件 ID。
+        public let fileId: String
+
+        /// 起始偏移时间，单位：秒，不填表示从视频开始截取。
+        public let startTimeOffset: Float
+
+        /// 结束偏移时间，单位：秒，不填表示截取到视频末尾。
+        public let endTimeOffset: Float
+
+        /// 音画质重生模版号。
+        public let definition: Int64?
+
+        /// 画质修复控制参数。
+        public let repairInfo: RepairInfo
+
+        /// 智能插帧控制参数。
+        public let videoFrameInterpolationInfo: VideoFrameInterpolationInfo
+
+        /// 画面超分控制参数。
+        public let superResolutionInfo: SuperResolutionInfo
+
+        /// 高动态范围类型控制参数。
+        public let hdrInfo: HDRInfo?
+
+        /// 视频降噪控制参数。
+        public let videoDenoiseInfo: VideoDenoiseInfo?
+
+        /// 音频降噪控制参数。
+        public let audioDenoiseInfo: AudioDenoiseInfo?
+
+        /// 色彩增强控制参数。
+        public let colorInfo: ColorEnhanceInfo?
+
+        /// 细节增强控制参数。
+        public let sharpInfo: SharpEnhanceInfo?
+
+        /// 人脸增强控制参数。
+        public let faceInfo: FaceEnhanceInfo?
+
+        /// 低光照控制参数。
+        public let lowLightInfo: LowLightEnhanceInfo?
+
+        /// 去划痕控制参数。
+        public let scratchRepairInfo: ScratchRepairInfo?
+
+        /// 去伪影（毛刺）控制参数。
+        public let artifactRepairInfo: ArtifactRepairInfo?
+
+        /// 音画质重生输出目标参数。
+        public let targetInfo: RebuildMediaTargetInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case fileId = "FileId"
+            case startTimeOffset = "StartTimeOffset"
+            case endTimeOffset = "EndTimeOffset"
+            case definition = "Definition"
+            case repairInfo = "RepairInfo"
+            case videoFrameInterpolationInfo = "VideoFrameInterpolationInfo"
+            case superResolutionInfo = "SuperResolutionInfo"
+            case hdrInfo = "HDRInfo"
+            case videoDenoiseInfo = "VideoDenoiseInfo"
+            case audioDenoiseInfo = "AudioDenoiseInfo"
+            case colorInfo = "ColorInfo"
+            case sharpInfo = "SharpInfo"
+            case faceInfo = "FaceInfo"
+            case lowLightInfo = "LowLightInfo"
+            case scratchRepairInfo = "ScratchRepairInfo"
+            case artifactRepairInfo = "ArtifactRepairInfo"
+            case targetInfo = "TargetInfo"
+        }
+    }
+
+    /// 音画质重生任务输出
+    public struct RebuildMediaTaskOutput: TCOutputModel {
+        /// 文件类型，例如 mp4、flv 等。
+        public let fileType: String
+
+        /// 媒体文件播放地址。
+        public let fileUrl: String
+
+        /// 媒体文件 ID。
+        public let fileId: String
+
+        /// 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        public let mediaName: String
+
+        /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        /// <li>默认值：0，表示其他分类。</li>
+        public let classId: Int64
+
+        /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let expireTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case fileType = "FileType"
+            case fileUrl = "FileUrl"
+            case fileId = "FileId"
+            case mediaName = "MediaName"
+            case classId = "ClassId"
+            case expireTime = "ExpireTime"
+        }
+    }
+
+    /// 音画质重生模板详情。
+    public struct RebuildMediaTemplate: TCOutputModel {
+        /// 音画质重生模板号。
+        public let definition: Int64?
+
+        /// 模板类型，可选值：
+        /// <li>Preset：系统预置模板；</li>
+        /// <li>Custom：用户自定义模板。</li>
+        public let type: String?
+
+        /// 音画质重生模板名称。
+        public let name: String?
+
+        /// 音画质重生模板描述。
+        public let comment: String?
+
+        /// 音画质重生视频控制信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rebuildVideoInfo: RebuildVideoInfo?
+
+        /// 音画质重生音频控制信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rebuildAudioInfo: RebuildAudioInfo?
+
+        /// 输出视频控制信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetVideoInfo: RebuildMediaTargetVideoStream?
+
+        /// 输出音频控制信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetAudioInfo: RebuildMediaTargetAudioStream?
+
+        /// 封装格式。可选值：mp4、hls。默认是 mp4。
+        public let container: String?
+
+        /// 是否去除视频数据，可选值：
+        /// <li>0：保留</li>
+        /// <li>1：去除</li>
+        /// 默认值 0。
+        public let removeVideo: Int64?
+
+        /// 是否去除音频数据，可选值：
+        /// <li>0：保留</li>
+        /// <li>1：去除</li>
+        /// 默认值 0。
+        public let removeAudio: Int64?
+
+        /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let createTime: String?
+
+        /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case type = "Type"
+            case name = "Name"
+            case comment = "Comment"
+            case rebuildVideoInfo = "RebuildVideoInfo"
+            case rebuildAudioInfo = "RebuildAudioInfo"
+            case targetVideoInfo = "TargetVideoInfo"
+            case targetAudioInfo = "TargetAudioInfo"
+            case container = "Container"
+            case removeVideo = "RemoveVideo"
+            case removeAudio = "RemoveAudio"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+        }
+    }
+
+    /// 音画质重生视频控制控制信息。
+    public struct RebuildVideoInfo: TCInputModel, TCOutputModel {
+        /// 画质修复控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repairInfo: RepairInfo?
+
+        /// 智能插帧控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let videoFrameInterpolationInfo: VideoFrameInterpolationInfo?
+
+        /// 画面超分控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let superResolutionInfo: SuperResolutionInfo?
+
+        /// 高动态范围类型控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hdrInfo: HDRInfo?
+
+        /// 视频降噪控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let videoDenoiseInfo: VideoDenoiseInfo?
+
+        /// 色彩增强控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let colorInfo: ColorEnhanceInfo?
+
+        /// 细节增强控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sharpInfo: SharpEnhanceInfo?
+
+        /// 人脸增强控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let faceInfo: FaceEnhanceInfo?
+
+        /// 低光照控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lowLightInfo: LowLightEnhanceInfo?
+
+        /// 去划痕控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scratchRepairInfo: ScratchRepairInfo?
+
+        /// 去伪影控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let artifactRepairInfo: ArtifactRepairInfo?
+
+        public init(repairInfo: RepairInfo? = nil, videoFrameInterpolationInfo: VideoFrameInterpolationInfo? = nil, superResolutionInfo: SuperResolutionInfo? = nil, hdrInfo: HDRInfo? = nil, videoDenoiseInfo: VideoDenoiseInfo? = nil, colorInfo: ColorEnhanceInfo? = nil, sharpInfo: SharpEnhanceInfo? = nil, faceInfo: FaceEnhanceInfo? = nil, lowLightInfo: LowLightEnhanceInfo? = nil, scratchRepairInfo: ScratchRepairInfo? = nil, artifactRepairInfo: ArtifactRepairInfo? = nil) {
+            self.repairInfo = repairInfo
+            self.videoFrameInterpolationInfo = videoFrameInterpolationInfo
+            self.superResolutionInfo = superResolutionInfo
+            self.hdrInfo = hdrInfo
+            self.videoDenoiseInfo = videoDenoiseInfo
+            self.colorInfo = colorInfo
+            self.sharpInfo = sharpInfo
+            self.faceInfo = faceInfo
+            self.lowLightInfo = lowLightInfo
+            self.scratchRepairInfo = scratchRepairInfo
+            self.artifactRepairInfo = artifactRepairInfo
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case repairInfo = "RepairInfo"
+            case videoFrameInterpolationInfo = "VideoFrameInterpolationInfo"
+            case superResolutionInfo = "SuperResolutionInfo"
+            case hdrInfo = "HDRInfo"
+            case videoDenoiseInfo = "VideoDenoiseInfo"
+            case colorInfo = "ColorInfo"
+            case sharpInfo = "SharpInfo"
+            case faceInfo = "FaceInfo"
+            case lowLightInfo = "LowLightInfo"
+            case scratchRepairInfo = "ScratchRepairInfo"
+            case artifactRepairInfo = "ArtifactRepairInfo"
+        }
+    }
+
     /// 降码率任务转自适应码流结果类型
     public struct ReduceMediaBitrateAdaptiveDynamicStreamingResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
@@ -8216,6 +8977,31 @@ extension Vod {
         }
     }
 
+    /// 画质修复控制参数
+    public struct RepairInfo: TCInputModel, TCOutputModel {
+        /// 画质修复控制开关，可选值：
+        /// <li>ON：开启画质修复；</li>
+        /// <li>OFF：关闭画质修复。</li>
+        public let `switch`: String
+
+        /// 画质修复类型，仅当画质修复控制开关为 ON 时有效，可选值：
+        /// <li>weak：轻画质修复；</li>
+        /// <li>normal：正常画质修复；</li>
+        /// <li>strong：强画质修复。</li>
+        /// 默认值：weak。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+        }
+    }
+
     /// 播放器子流名字信息
     public struct ResolutionNameInfo: TCInputModel, TCOutputModel {
         /// 视频短边长度，单位：像素。
@@ -8309,11 +9095,10 @@ extension Vod {
 
         /// 嫌疑片段最可能的违规的标签，取值范围：
         /// <li>Porn：色情；</li>
-        /// <li>Terror：暴恐；</li>
+        /// <li>Terror：暴力；</li>
         /// <li>Polity：不适宜的信息；</li>
         /// <li>Ad：广告；</li>
         /// <li>Illegal：违法；</li>
-        /// <li>Religion：宗教；</li>
         /// <li>Abuse：谩骂；</li>
         /// <li>Moan：娇喘。</li>
         public let label: String
@@ -8432,11 +9217,10 @@ extension Vod {
 
         /// 当 Suggestion 为 review 或 block 时有效，表示音视频最可能的违规的标签，取值范围：
         /// <li>Porn：色情；</li>
-        /// <li>Terror：暴恐；</li>
+        /// <li>Terror：暴力；</li>
         /// <li>Polity：不适宜的信息；</li>
         /// <li>Ad：广告；</li>
         /// <li>Illegal：违法；</li>
-        /// <li>Religion：宗教；</li>
         /// <li>Abuse：谩骂；</li>
         /// <li>Moan：娇喘。</li>
         public let label: String
@@ -8483,11 +9267,10 @@ extension Vod {
 
         /// 当 Suggestion 为 review 或 block 时有效，表示最可能的违规的标签，取值范围：
         /// <li>Porn：色情；</li>
-        /// <li>Terror：暴恐；</li>
+        /// <li>Terror：暴力；</li>
         /// <li>Polity：不适宜的信息；</li>
         /// <li>Ad：广告；</li>
         /// <li>Illegal：违法；</li>
-        /// <li>Religion：宗教；</li>
         /// <li>Abuse：谩骂。</li>
         public let label: String?
 
@@ -8528,11 +9311,10 @@ extension Vod {
 
         /// 嫌疑片段最可能的违规的标签，取值范围：
         /// <li>Porn：色情；</li>
-        /// <li>Terror：暴恐；</li>
+        /// <li>Terror：暴力；</li>
         /// <li>Polity：不适宜的信息；</li>
         /// <li>Ad：广告；</li>
         /// <li>Illegal：违法；</li>
-        /// <li>Religion：宗教；</li>
         /// <li>Abuse：谩骂。</li>
         public let label: String?
 
@@ -8584,11 +9366,10 @@ extension Vod {
         /// <li>Voice：声音。</li>
         /// Label 表示违禁的标签，取值范围：
         /// <li>Porn：色情；</li>
-        /// <li>Terror：暴恐；</li>
+        /// <li>Terror：暴力；</li>
         /// <li>Polity：不适宜的信息；</li>
         /// <li>Ad：广告；</li>
         /// <li>Illegal：违法；</li>
-        /// <li>Religion：宗教；</li>
         /// <li>Abuse：谩骂；</li>
         /// <li>Moan：娇喘。</li>
         public let typeSet: [String]?
@@ -8637,6 +9418,59 @@ extension Vod {
             case labels = "Labels"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
+        }
+    }
+
+    /// 轮播任务信息
+    public struct RoundPlayInfo: TCOutputModel {
+        /// 轮播播单标识。
+        public let roundPlayId: String
+
+        /// 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        public let startTime: String
+
+        /// 轮播列表。
+        public let roundPlaylist: [RoundPlayListItemInfo]
+
+        /// 轮播播单名称，长度限制：64 个字符。
+        public let name: String
+
+        /// 轮播播单描述信息，长度限制：256 个字符。
+        public let desc: String
+
+        enum CodingKeys: String, CodingKey {
+            case roundPlayId = "RoundPlayId"
+            case startTime = "StartTime"
+            case roundPlaylist = "RoundPlaylist"
+            case name = "Name"
+            case desc = "Desc"
+        }
+    }
+
+    /// 加权轮播媒体文件信息
+    public struct RoundPlayListItemInfo: TCInputModel, TCOutputModel {
+        /// 媒体文件标识。
+        public let fileId: String
+
+        /// 播放的音视频类型，可选值：
+        /// <li>Transcode：转码输出；转码输出会有多个模版，必须指定 Definition 字段</li>
+        /// <li>Original：原始音视频。</li>
+        /// Type 对应的格式必须为 HLS 格式。
+        public let audioVideoType: String
+
+        /// 指定播放的转码模版，当 AudioVideoType 为 Transcode 时必须指定。
+        public let definition: Int64?
+
+        public init(fileId: String, audioVideoType: String, definition: Int64? = nil) {
+            self.fileId = fileId
+            self.audioVideoType = audioVideoType
+            self.definition = definition
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fileId = "FileId"
+            case audioVideoType = "AudioVideoType"
+            case definition = "Definition"
         }
     }
 
@@ -8766,6 +9600,35 @@ extension Vod {
         }
     }
 
+    /// 去划痕控制信息
+    public struct ScratchRepairInfo: TCInputModel, TCOutputModel {
+        /// 去划痕控制开关，可选值：
+        /// <li>ON：开启去划痕；</li>
+        /// <li>OFF：关闭去划痕。</li>
+        public let `switch`: String
+
+        /// 去划痕强度，仅当去划痕控制开关为 ON 时有效，取值范围：0.0~1.0。
+        /// 默认：0.0。
+        public let intensity: Float?
+
+        /// 去划痕类型，仅当去划痕控制开关为 ON 时有效，可选值：
+        /// <li>normal：正常去划痕；</li>
+        /// 默认值：normal。
+        public let type: String?
+
+        public init(switch: String, intensity: Float? = nil, type: String? = nil) {
+            self.switch = `switch`
+            self.intensity = intensity
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case intensity = "Intensity"
+            case type = "Type"
+        }
+    }
+
     /// 视频拆条任务识别控制参数
     public struct SegmentConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频拆条识别任务开关，可选值：
@@ -8795,6 +9658,28 @@ extension Vod {
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
+        }
+    }
+
+    /// 细节增强控制
+    public struct SharpEnhanceInfo: TCInputModel, TCOutputModel {
+        /// 细节增强控制开关，可选值：
+        /// <li>ON：开启细节增强；</li>
+        /// <li>OFF：关闭细节增强。</li>
+        public let `switch`: String
+
+        /// 细节增强强度，仅当细节增强控制开关为 ON 时有效，取值范围：0.0~1.0。
+        /// 默认：0.0。
+        public let intensity: Float?
+
+        public init(switch: String, intensity: Float? = nil) {
+            self.switch = `switch`
+            self.intensity = intensity
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case intensity = "Intensity"
         }
     }
 
@@ -8956,12 +9841,17 @@ extension Vod {
     }
 
     /// 排序依据
-    public struct SortBy: TCOutputModel {
+    public struct SortBy: TCInputModel, TCOutputModel {
         /// 排序字段
         public let field: String
 
         /// 排序方式，可选值：Asc（升序）、Desc（降序）
         public let order: String
+
+        public init(field: String, order: String) {
+            self.field = field
+            self.order = order
+        }
 
         enum CodingKeys: String, CodingKey {
             case field = "Field"
@@ -9362,6 +10252,37 @@ extension Vod {
         }
     }
 
+    /// 画面超分控制参数
+    public struct SuperResolutionInfo: TCInputModel, TCOutputModel {
+        /// 画面超分控制开关，可选值：
+        /// <li>ON：开启画面超分；</li>
+        /// <li>OFF：关闭画面超分。</li>
+        /// 当开启画面超分时，默认2倍超分。
+        public let `switch`: String
+
+        /// 画面超分类型，仅当画面超分控制开关为 ON 时有效，可选值：
+        /// <li>lq：针对低清晰度有较多噪声视频的超分；</li>
+        /// <li>hq：针对高清晰度视频超分。</li>
+        /// 默认值：lq。
+        public let type: String?
+
+        /// 超分倍数，可选值：2。
+        /// 默认值：2。
+        public let size: Int64?
+
+        public init(switch: String, type: String? = nil, size: Int64? = nil) {
+            self.switch = `switch`
+            self.type = type
+            self.size = size
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+            case size = "Size"
+        }
+    }
+
     /// SVG水印模板输入参数
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
@@ -9593,6 +10514,7 @@ extension Vod {
         /// <li> RemoveWatermark: 去水印</li>
         /// <li> ExtractTraceWatermark: 提取水印</li>
         /// <li> AddTraceWatermark: 添加水印</li>
+        /// <li> RebuildMedia: 音画质重生</li>
         /// <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         public let taskType: String
 
@@ -9644,13 +10566,14 @@ extension Vod {
         /// <li>Edit.TESHD-10.H265.FHD: H.265编码方式全高清极速高清视频编辑</li>
         /// <li>Edit.TESHD-10.H265.2K: H.265编码方式2K极速高清视频编辑</li>
         /// <li>Edit.TESHD-10.H265.4K: H.265编码方式4K极速高清视频编辑</li>
-        /// 去水印规格：
+        /// 去水印、音画质重生规格：
         /// <li>480P: 短边 ≤ 480px</li>
         /// <li>720P: 短边 ≤ 720px</li>
         /// <li>1080P: 短边 ≤ 1080px</li>
         /// <li>2K: 短边 ≤ 1440px</li>
         /// <li>4K: 短边 ≤ 2160px</li>
         /// <li>8K: 短边 ≤ 4320px</li>
+        /// <li>Audio: 音频</li>
         public let details: [SpecificationDataItem]
 
         enum CodingKeys: String, CodingKey {
@@ -10537,6 +11460,51 @@ extension Vod {
             case labelSet = "LabelSet"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
+        }
+    }
+
+    /// 视频降噪控制参数
+    public struct VideoDenoiseInfo: TCInputModel, TCOutputModel {
+        /// 视频降噪控制开关，可选值：
+        /// <li>ON：开启视频降噪；</li>
+        /// <li>OFF：关闭视频降噪。</li>
+        public let `switch`: String
+
+        /// 视频降噪类型，仅当视频降噪控制开关为 ON 时有效，可选值：
+        /// <li>weak：轻视频降噪；</li>
+        /// <li>strong：强视频降噪。</li>
+        /// 默认值：weak。
+        public let type: String?
+
+        public init(switch: String, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+        }
+    }
+
+    /// 智能插帧控制参数
+    public struct VideoFrameInterpolationInfo: TCInputModel, TCOutputModel {
+        /// 智能插帧控制开关，可选值：
+        /// <li>ON：开启智能插帧；</li>
+        /// <li>OFF：关闭智能插帧。</li>
+        public let `switch`: String
+
+        /// 智能插帧帧率，帧率范围为 (0, 100]，仅当智能插帧控制开关为 ON 时有效。默认跟源文件帧率一致。
+        public let fps: Int64?
+
+        public init(switch: String, fps: Int64? = nil) {
+            self.switch = `switch`
+            self.fps = fps
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case fps = "Fps"
         }
     }
 

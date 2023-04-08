@@ -63,26 +63,30 @@ extension Tdid {
     }
 
     /// 合约部署列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployList(_ input: GetDeployListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployListResponse> {
-        self.client.execute(action: "GetDeployList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDeployList is no longer available.")
     }
 
     /// 合约部署列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployList(_ input: GetDeployListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployListResponse {
-        try await self.client.execute(action: "GetDeployList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDeployList is no longer available.")
     }
 
     /// 合约部署列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployList(clusterId: String, groupId: UInt64, displayStart: UInt64, displayLength: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployListResponse> {
-        self.getDeployList(.init(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDeployList is no longer available.")
     }
 
     /// 合约部署列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployList(clusterId: String, groupId: UInt64, displayStart: UInt64, displayLength: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployListResponse {
-        try await self.getDeployList(.init(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDeployList is no longer available.")
     }
 }

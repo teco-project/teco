@@ -17,20 +17,20 @@
 extension Cbs {
     /// InquirePriceModifyDiskExtraPerformance请求参数结构体
     public struct InquirePriceModifyDiskExtraPerformanceRequest: TCRequestModel {
-        /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
-        public let diskId: String
-
         /// 额外购买的云硬盘性能值，单位MB/s。
         public let throughputPerformance: UInt64
 
-        public init(diskId: String, throughputPerformance: UInt64) {
-            self.diskId = diskId
+        /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        public let diskId: String
+
+        public init(throughputPerformance: UInt64, diskId: String) {
             self.throughputPerformance = throughputPerformance
+            self.diskId = diskId
         }
 
         enum CodingKeys: String, CodingKey {
-            case diskId = "DiskId"
             case throughputPerformance = "ThroughputPerformance"
+            case diskId = "DiskId"
         }
     }
 
@@ -68,15 +68,15 @@ extension Cbs {
     ///
     /// 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
     @inlinable
-    public func inquirePriceModifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceModifyDiskExtraPerformanceResponse> {
-        self.inquirePriceModifyDiskExtraPerformance(.init(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
+    public func inquirePriceModifyDiskExtraPerformance(throughputPerformance: UInt64, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceModifyDiskExtraPerformanceResponse> {
+        self.inquirePriceModifyDiskExtraPerformance(.init(throughputPerformance: throughputPerformance, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云硬盘额外性能询价
     ///
     /// 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
     @inlinable
-    public func inquirePriceModifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskExtraPerformanceResponse {
-        try await self.inquirePriceModifyDiskExtraPerformance(.init(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
+    public func inquirePriceModifyDiskExtraPerformance(throughputPerformance: UInt64, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskExtraPerformanceResponse {
+        try await self.inquirePriceModifyDiskExtraPerformance(.init(throughputPerformance: throughputPerformance, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 }

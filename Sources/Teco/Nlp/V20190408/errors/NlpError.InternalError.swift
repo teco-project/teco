@@ -19,6 +19,7 @@ extension TCNlpError {
         enum Code: String {
             case resourceRequestError = "InternalError.ResourceRequestError"
             case serviceCallError = "InternalError.ServiceCallError"
+            case serviceError = "InternalError.ServiceError"
             case other = "InternalError"
         }
 
@@ -49,9 +50,14 @@ extension TCNlpError {
             InternalError(.resourceRequestError)
         }
 
-        /// 服务调用错误
+        /// 内部服务调用错误。
         public static var serviceCallError: InternalError {
             InternalError(.serviceCallError)
+        }
+
+        /// 内部服务调用失败。
+        public static var serviceError: InternalError {
+            InternalError(.serviceError)
         }
 
         /// 内部错误。
@@ -66,6 +72,8 @@ extension TCNlpError {
                 code = .internalError_ResourceRequestError
             case .serviceCallError:
                 code = .internalError_ServiceCallError
+            case .serviceError:
+                code = .internalError_ServiceError
             case .other:
                 code = .internalError
             }

@@ -24,7 +24,7 @@ extension Tem {
         public let resourceType: String
 
         /// 资源 Id
-        public let resourceId: String
+        public let resourceId: String?
 
         /// 来源渠道
         public let sourceChannel: Int64?
@@ -35,7 +35,7 @@ extension Tem {
         /// 设置 resource 的额外配置
         public let resourceConfig: String?
 
-        public init(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil) {
+        public init(environmentId: String, resourceType: String, resourceId: String? = nil, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil) {
             self.environmentId = environmentId
             self.resourceType = resourceType
             self.resourceId = resourceId
@@ -83,13 +83,13 @@ extension Tem {
 
     /// 绑定云资源
     @inlinable
-    public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
+    public func createResource(environmentId: String, resourceType: String, resourceId: String? = nil, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
         self.createResource(.init(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定云资源
     @inlinable
-    public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+    public func createResource(environmentId: String, resourceType: String, resourceId: String? = nil, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
         try await self.createResource(.init(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), region: region, logger: logger, on: eventLoop)
     }
 }

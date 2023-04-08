@@ -25,6 +25,7 @@ public protocol TCCdbErrorType: TCServiceErrorType {
 public struct TCCdbError: TCCdbErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_InvalidAuthorization = "AuthFailure.InvalidAuthorization"
         case authFailure_SubAccountDenied = "AuthFailure.SubAccountDenied"
         case cdbError = "CdbError"
         case cdbError_BackupError = "CdbError.BackupError"
@@ -47,10 +48,10 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_JsonMarshalError = "FailedOperation.JsonMarshalError"
         case failedOperation_JsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
         case failedOperation_NotDelayRo = "FailedOperation.NotDelayRo"
+        case failedOperation_OperationInConflictErr = "FailedOperation.OperationInConflictErr"
         case failedOperation_PrivilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
         case failedOperation_ProxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
         case failedOperation_QueryLogError = "FailedOperation.QueryLogError"
-        case failedOperation_RepeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
         case failedOperation_ResponseValueError = "FailedOperation.ResponseValueError"
         case failedOperation_StartFlowError = "FailedOperation.StartFlowError"
         case failedOperation_StatusConflict = "FailedOperation.StatusConflict"
@@ -81,12 +82,14 @@ public struct TCCdbError: TCCdbErrorType {
         case internalError_ExecuteSQLError = "InternalError.ExecuteSQLError"
         case internalError_FtpError = "InternalError.FtpError"
         case internalError_HttpError = "InternalError.HttpError"
+        case internalError_ImportError = "InternalError.ImportError"
         case internalError_InnerCommonError = "InternalError.InnerCommonError"
         case internalError_InternalAssertError = "InternalError.InternalAssertError"
         case internalError_InternalHttpServerError = "InternalError.InternalHttpServerError"
         case internalError_InternalRequestError = "InternalError.InternalRequestError"
         case internalError_InternalServiceErrorErr = "InternalError.InternalServiceErrorErr"
         case internalError_JSONError = "InternalError.JSONError"
+        case internalError_KmsError = "InternalError.KmsError"
         case internalError_NetworkError = "InternalError.NetworkError"
         case internalError_OssError = "InternalError.OssError"
         case internalError_ParamError = "InternalError.ParamError"
@@ -138,6 +141,7 @@ public struct TCCdbError: TCCdbErrorType {
         case missingParameter_AccountMissingParameterError = "MissingParameter.AccountMissingParameterError"
         case missingParameter_MissingParamError = "MissingParameter.MissingParamError"
         case operationDenied = "OperationDenied"
+        case operationDenied_AccountOperationDenied = "OperationDenied.AccountOperationDenied"
         case operationDenied_ActionInProcess = "OperationDenied.ActionInProcess"
         case operationDenied_ActionNotSupport = "OperationDenied.ActionNotSupport"
         case operationDenied_AtLeastAllRuleAuditPolicyError = "OperationDenied.AtLeastAllRuleAuditPolicyError"
@@ -220,6 +224,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// CAM签名/鉴权错误。
     public static var authFailure: TCCdbError {
         TCCdbError(.authFailure)
+    }
+
+    /// 授权无效。
+    public static var authFailure_InvalidAuthorization: TCCdbError {
+        TCCdbError(.authFailure_InvalidAuthorization)
     }
 
     /// 子账号无权限。
@@ -334,6 +343,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_NotDelayRo)
     }
 
+    /// 实例正在执行其他操作，请稍后重试。
+    public static var failedOperation_OperationInConflictErr: TCCdbError {
+        TCCdbError(.failedOperation_OperationInConflictErr)
+    }
+
     /// 执行的权限修改操作非法。您可以参照产品文档，了解当前实例支持哪些权限修改操作，如有疑问，请您咨询客服进行处理。
     public static var failedOperation_PrivilegeDataIllegal: TCCdbError {
         TCCdbError(.failedOperation_PrivilegeDataIllegal)
@@ -347,11 +361,6 @@ public struct TCCdbError: TCCdbErrorType {
     /// 查询日志失败。
     public static var failedOperation_QueryLogError: TCCdbError {
         TCCdbError(.failedOperation_QueryLogError)
-    }
-
-    /// 代理创建中或则已存在，请勿重复创建。
-    public static var failedOperation_RepeatCreateProxyError: TCCdbError {
-        TCCdbError(.failedOperation_RepeatCreateProxyError)
     }
 
     /// 后台请求服务异常，请您联系客服解决。
@@ -486,6 +495,7 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.internalError_ExeSqlError)
     }
 
+    /// 执行http请求错误。
     public static var internalError_ExecHttpRequestError: TCCdbError {
         TCCdbError(.internalError_ExecHttpRequestError)
     }
@@ -503,6 +513,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// Http请求异常。
     public static var internalError_HttpError: TCCdbError {
         TCCdbError(.internalError_HttpError)
+    }
+
+    /// 导入失败。
+    public static var internalError_ImportError: TCCdbError {
+        TCCdbError(.internalError_ImportError)
     }
 
     /// 内部服务错误。
@@ -533,6 +548,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// json解析失败。
     public static var internalError_JSONError: TCCdbError {
         TCCdbError(.internalError_JSONError)
+    }
+
+    /// 开通加密失败。
+    public static var internalError_KmsError: TCCdbError {
+        TCCdbError(.internalError_KmsError)
     }
 
     /// 网络错误。
@@ -792,6 +812,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.operationDenied)
     }
 
+    /// 云账号权限不足，不支持该操作。
+    public static var operationDenied_AccountOperationDenied: TCCdbError {
+        TCCdbError(.operationDenied_AccountOperationDenied)
+    }
+
     /// 实例正在执行其他任务。
     public static var operationDenied_ActionInProcess: TCCdbError {
         TCCdbError(.operationDenied_ActionInProcess)
@@ -897,6 +922,7 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.operationDenied_FunctionDenied)
     }
 
+    /// 当前类型实例不支持该操作。
     public static var operationDenied_InstTypeNotSupport: TCCdbError {
         TCCdbError(.operationDenied_InstTypeNotSupport)
     }
@@ -916,6 +942,7 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.operationDenied_InstanceTaskRunning)
     }
 
+    /// 实例任务状态异常。
     public static var operationDenied_InstanceTaskStatusError: TCCdbError {
         TCCdbError(.operationDenied_InstanceTaskStatusError)
     }

@@ -57,12 +57,16 @@ extension Monitor {
         /// 被关联集群总量
         public let total: UInt64
 
+        /// 是否为首次绑定，需要安装预聚合规则
+        public let isFirstBind: Bool
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case agents = "Agents"
             case total = "Total"
+            case isFirstBind = "IsFirstBind"
             case requestId = "RequestId"
         }
 

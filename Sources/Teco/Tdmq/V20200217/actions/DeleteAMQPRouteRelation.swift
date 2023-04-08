@@ -50,26 +50,30 @@ extension Tdmq {
     }
 
     /// 删除Amqp路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
-        self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPRouteRelation is no longer available.")
     }
 
     /// 删除Amqp路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        try await self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAMQPRouteRelation is no longer available.")
     }
 
     /// 删除Amqp路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
-        self.deleteAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPRouteRelation is no longer available.")
     }
 
     /// 删除Amqp路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        try await self.deleteAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPRouteRelation is no longer available.")
     }
 }

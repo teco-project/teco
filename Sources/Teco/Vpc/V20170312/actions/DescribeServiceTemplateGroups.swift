@@ -61,7 +61,7 @@ extension Vpc {
 
     /// 查询协议端口模板集合
     ///
-    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
+    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
     public func describeServiceTemplateGroups(_ input: DescribeServiceTemplateGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
         self.client.execute(action: "DescribeServiceTemplateGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Vpc {
 
     /// 查询协议端口模板集合
     ///
-    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
+    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
     public func describeServiceTemplateGroups(_ input: DescribeServiceTemplateGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplateGroupsResponse {
         try await self.client.execute(action: "DescribeServiceTemplateGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -77,7 +77,7 @@ extension Vpc {
 
     /// 查询协议端口模板集合
     ///
-    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
+    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
     public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
         self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -85,7 +85,7 @@ extension Vpc {
 
     /// 查询协议端口模板集合
     ///
-    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
+    /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
     public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplateGroupsResponse {
         try await self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

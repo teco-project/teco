@@ -45,7 +45,7 @@ extension Ocr {
         /// 15：非税发票
         /// 16：全电发票
         /// ----------------------
-        /// -1：其他发票,（仅返回，本参数不支持传入-1，请在ReturnOther中控制是否返回）
+        /// -1：其他发票,（只传入此类型时，图片均采用其他票类型进行识别）
         public let types: [Int64]?
 
         /// 是否识别其他类型发票，默认为Yes
@@ -59,13 +59,17 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
 
-        public init(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
+        /// 是否开启PDF多页识别，默认值为false，开启后可同时支持多页PDF的识别返回，仅支持返回文件前30页。开启后IsPDF和PdfPageNumber入参不进行控制。
+        public let returnMultiplePage: Bool?
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, returnMultiplePage: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.types = types
             self.returnOther = returnOther
             self.isPdf = isPdf
             self.pdfPageNumber = pdfPageNumber
+            self.returnMultiplePage = returnMultiplePage
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Ocr {
             case returnOther = "ReturnOther"
             case isPdf = "IsPdf"
             case pdfPageNumber = "PdfPageNumber"
+            case returnMultiplePage = "ReturnMultiplePage"
         }
     }
 
@@ -118,8 +123,8 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
-        self.mixedInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, returnMultiplePage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
+        self.mixedInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnMultiplePage: returnMultiplePage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 混贴票据识别
@@ -128,7 +133,7 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
-        try await self.mixedInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, returnMultiplePage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
+        try await self.mixedInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnMultiplePage: returnMultiplePage), region: region, logger: logger, on: eventLoop)
     }
 }

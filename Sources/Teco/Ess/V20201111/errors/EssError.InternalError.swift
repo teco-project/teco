@@ -17,7 +17,10 @@
 extension TCEssError {
     public struct InternalError: TCEssErrorType {
         enum Code: String {
+            case api = "InternalError.Api"
             case cache = "InternalError.Cache"
+            case callOpenCloudApiError = "InternalError.CallOpenCloudApiError"
+            case callback = "InternalError.Callback"
             case db = "InternalError.Db"
             case dbConnection = "InternalError.DbConnection"
             case dbInsert = "InternalError.DbInsert"
@@ -55,9 +58,26 @@ extension TCEssError {
             self.context = context
         }
 
+        /// 第三方接口失败。
+        public static var api: InternalError {
+            InternalError(.api)
+        }
+
         /// 缓存错误。
         public static var cache: InternalError {
             InternalError(.cache)
+        }
+
+        /// 调用OpenCloud云api内部错误。
+        public static var callOpenCloudApiError: InternalError {
+            InternalError(.callOpenCloudApiError)
+        }
+
+        /// 回调错误。
+        ///
+        /// 请稍后重试
+        public static var callback: InternalError {
+            InternalError(.callback)
         }
 
         /// 数据库异常。
@@ -65,6 +85,7 @@ extension TCEssError {
             InternalError(.db)
         }
 
+        /// 数据库连接出错。
         public static var dbConnection: InternalError {
             InternalError(.dbConnection)
         }
@@ -99,6 +120,7 @@ extension TCEssError {
             InternalError(.encryption)
         }
 
+        /// Json序列化失败。
         public static var jsonMarshal: InternalError {
             InternalError(.jsonMarshal)
         }
@@ -108,11 +130,12 @@ extension TCEssError {
             InternalError(.pdf)
         }
 
+        /// 序列化错误。
         public static var serialize: InternalError {
             InternalError(.serialize)
         }
 
-        /// 系统错误。
+        /// 系统错误，请稍后重试。
         public static var system: InternalError {
             InternalError(.system)
         }
@@ -125,8 +148,14 @@ extension TCEssError {
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {
+            case .api:
+                code = .internalError_Api
             case .cache:
                 code = .internalError_Cache
+            case .callOpenCloudApiError:
+                code = .internalError_CallOpenCloudApiError
+            case .callback:
+                code = .internalError_Callback
             case .db:
                 code = .internalError_Db
             case .dbConnection:

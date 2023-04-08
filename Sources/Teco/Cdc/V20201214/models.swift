@@ -465,6 +465,10 @@ extension Cdc {
         /// 到期时间
         public let expireTime: String
 
+        /// 宿主机id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostId: String?
+
         enum CodingKeys: String, CodingKey {
             case hostIp = "HostIp"
             case serviceType = "ServiceType"
@@ -476,6 +480,7 @@ extension Cdc {
             case memTotal = "MemTotal"
             case runTime = "RunTime"
             case expireTime = "ExpireTime"
+            case hostId = "HostId"
         }
     }
 
@@ -502,6 +507,64 @@ extension Cdc {
             case cpu = "Cpu"
             case memory = "Memory"
             case count = "Count"
+        }
+    }
+
+    /// 入带宽数据
+    public struct InBandwidth: TCOutputModel {
+        /// 时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamps: [Float]?
+
+        /// 时间对应的值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let values: [Float]?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamps = "Timestamps"
+            case values = "Values"
+        }
+    }
+
+    /// 本地网络信息
+    public struct LocalNetInfo: TCOutputModel {
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 网络id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 路由信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bgpRoute: String?
+
+        /// 本地IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let localIp: String?
+
+        enum CodingKeys: String, CodingKey {
+            case `protocol` = "Protocol"
+            case vpcId = "VpcId"
+            case bgpRoute = "BGPRoute"
+            case localIp = "LocalIp"
+        }
+    }
+
+    /// 出带宽数据。
+    public struct OutBandwidth: TCOutputModel {
+        /// 时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamps: [Float]?
+
+        /// 对应时间的值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let values: [Float]?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamps = "Timestamps"
+            case values = "Values"
         }
     }
 
@@ -655,6 +718,21 @@ extension Cdc {
             case province = "Province"
             case city = "City"
             case postalCode = "PostalCode"
+        }
+    }
+
+    /// VPN网关的流量监控数据。
+    public struct VpngwBandwidthData: TCOutputModel {
+        /// 出带宽流量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outBandwidth: OutBandwidth?
+
+        /// 入带宽流量
+        public let inBandwidth: InBandwidth
+
+        enum CodingKeys: String, CodingKey {
+            case outBandwidth = "OutBandwidth"
+            case inBandwidth = "InBandwidth"
         }
     }
 

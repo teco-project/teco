@@ -44,6 +44,7 @@ extension TCSslError {
             self.context = context
         }
 
+        /// 后端服务响应为空。
         public static var backendResponseEmpty: InternalError {
             InternalError(.backendResponseEmpty)
         }

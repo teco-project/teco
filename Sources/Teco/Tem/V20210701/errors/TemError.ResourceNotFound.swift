@@ -17,7 +17,9 @@
 extension TCTemError {
     public struct ResourceNotFound: TCTemErrorType {
         enum Code: String {
+            case configDataNotFound = "ResourceNotFound.ConfigDataNotFound"
             case interfaceNotFound = "ResourceNotFound.InterfaceNotFound"
+            case logConfigNotFound = "ResourceNotFound.LogConfigNotFound"
             case microserviceOffline = "ResourceNotFound.MicroserviceOffline"
             case namespaceNotFound = "ResourceNotFound.NamespaceNotFound"
             case serviceNotFound = "ResourceNotFound.ServiceNotFound"
@@ -48,9 +50,19 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 配置不存在。
+        public static var configDataNotFound: ResourceNotFound {
+            ResourceNotFound(.configDataNotFound)
+        }
+
         /// 未提供该接口。
         public static var interfaceNotFound: ResourceNotFound {
             ResourceNotFound(.interfaceNotFound)
+        }
+
+        /// 日志配置不存在。
+        public static var logConfigNotFound: ResourceNotFound {
+            ResourceNotFound(.logConfigNotFound)
         }
 
         /// 目标微服务已离线。
@@ -86,8 +98,12 @@ extension TCTemError {
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
+            case .configDataNotFound:
+                code = .resourceNotFound_ConfigDataNotFound
             case .interfaceNotFound:
                 code = .resourceNotFound_InterfaceNotFound
+            case .logConfigNotFound:
+                code = .resourceNotFound_LogConfigNotFound
             case .microserviceOffline:
                 code = .resourceNotFound_MicroserviceOffline
             case .namespaceNotFound:

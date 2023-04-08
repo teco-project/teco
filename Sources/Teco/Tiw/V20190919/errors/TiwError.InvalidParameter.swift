@@ -17,14 +17,19 @@
 extension TCTiwError {
     public struct InvalidParameter: TCTiwErrorType {
         enum Code: String {
+            case applicationAlreadyExists = "InvalidParameter.ApplicationAlreadyExists"
             case bodyParameterTypeUnmatched = "InvalidParameter.BodyParameterTypeUnmatched"
             case callbackAddressFormatError = "InvalidParameter.CallbackAddressFormatError"
+            case cdnDomainNotFound = "InvalidParameter.CdnDomainNotFound"
             case fileFormatUnsupported = "InvalidParameter.FileFormatUnsupported"
             case invalidExtra = "InvalidParameter.InvalidExtra"
+            case invalidTaskType = "InvalidParameter.InvalidTaskType"
             case recordParameter = "InvalidParameter.RecordParameter"
             case sdkAppIdNotFound = "InvalidParameter.SdkAppIdNotFound"
             case taskNotFound = "InvalidParameter.TaskNotFound"
+            case timeFormat = "InvalidParameter.TimeFormat"
             case transcodeParameter = "InvalidParameter.TranscodeParameter"
+            case unmarshalJSONBodyFail = "InvalidParameter.UnmarshalJSONBodyFail"
             case urlFormatError = "InvalidParameter.UrlFormatError"
             case other = "InvalidParameter"
         }
@@ -51,6 +56,11 @@ extension TCTiwError {
             self.context = context
         }
 
+        /// 创建白板应用时该应用已存在。
+        public static var applicationAlreadyExists: InvalidParameter {
+            InvalidParameter(.applicationAlreadyExists)
+        }
+
         /// 参数类型不匹配。
         public static var bodyParameterTypeUnmatched: InvalidParameter {
             InvalidParameter(.bodyParameterTypeUnmatched)
@@ -61,6 +71,11 @@ extension TCTiwError {
             InvalidParameter(.callbackAddressFormatError)
         }
 
+        /// 未找到当前CDN域名。
+        public static var cdnDomainNotFound: InvalidParameter {
+            InvalidParameter(.cdnDomainNotFound)
+        }
+
         /// 文档后缀名对应的格式不支持。
         public static var fileFormatUnsupported: InvalidParameter {
             InvalidParameter(.fileFormatUnsupported)
@@ -69,6 +84,11 @@ extension TCTiwError {
         /// 额外指定的特殊功能不存在。
         public static var invalidExtra: InvalidParameter {
             InvalidParameter(.invalidExtra)
+        }
+
+        /// 设置应用配置任务类型不支持。
+        public static var invalidTaskType: InvalidParameter {
+            InvalidParameter(.invalidTaskType)
         }
 
         /// 实时录制参数格式不正确。
@@ -86,9 +106,19 @@ extension TCTiwError {
             InvalidParameter(.taskNotFound)
         }
 
+        /// 时间格式不合法解析失败。
+        public static var timeFormat: InvalidParameter {
+            InvalidParameter(.timeFormat)
+        }
+
         /// 文档转码参数格式不正确。
         public static var transcodeParameter: InvalidParameter {
             InvalidParameter(.transcodeParameter)
+        }
+
+        /// 解析JSON失败，可能参数数据类型不匹配。
+        public static var unmarshalJSONBodyFail: InvalidParameter {
+            InvalidParameter(.unmarshalJSONBodyFail)
         }
 
         /// 文档下载Url格式错误，请检查请求参数里的Url。
@@ -104,22 +134,32 @@ extension TCTiwError {
         public func asTiwError() -> TCTiwError {
             let code: TCTiwError.Code
             switch self.error {
+            case .applicationAlreadyExists:
+                code = .invalidParameter_ApplicationAlreadyExists
             case .bodyParameterTypeUnmatched:
                 code = .invalidParameter_BodyParameterTypeUnmatched
             case .callbackAddressFormatError:
                 code = .invalidParameter_CallbackAddressFormatError
+            case .cdnDomainNotFound:
+                code = .invalidParameter_CdnDomainNotFound
             case .fileFormatUnsupported:
                 code = .invalidParameter_FileFormatUnsupported
             case .invalidExtra:
                 code = .invalidParameter_InvalidExtra
+            case .invalidTaskType:
+                code = .invalidParameter_InvalidTaskType
             case .recordParameter:
                 code = .invalidParameter_RecordParameter
             case .sdkAppIdNotFound:
                 code = .invalidParameter_SdkAppIdNotFound
             case .taskNotFound:
                 code = .invalidParameter_TaskNotFound
+            case .timeFormat:
+                code = .invalidParameter_TimeFormat
             case .transcodeParameter:
                 code = .invalidParameter_TranscodeParameter
+            case .unmarshalJSONBodyFail:
+                code = .invalidParameter_UnmarshalJSONBodyFail
             case .urlFormatError:
                 code = .invalidParameter_UrlFormatError
             case .other:

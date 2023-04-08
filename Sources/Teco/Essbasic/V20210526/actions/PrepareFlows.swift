@@ -17,7 +17,7 @@
 extension Essbasic {
     /// PrepareFlows请求参数结构体
     public struct PrepareFlowsRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 多个合同（签署流程）信息，最大支持20个签署流程。
@@ -26,7 +26,7 @@ extension Essbasic {
         /// 操作完成后的跳转地址，最大长度200
         public let jumpUrl: String
 
-        /// 操作者的信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, flowInfos: [FlowInfo], jumpUrl: String, operator: UserInfo? = nil) {

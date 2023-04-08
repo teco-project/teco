@@ -50,26 +50,30 @@ extension Tdid {
     }
 
     /// 新建标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func createLabel(_ input: CreateLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLabelResponse> {
-        self.client.execute(action: "CreateLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateLabel is no longer available.")
     }
 
     /// 新建标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func createLabel(_ input: CreateLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLabelResponse {
-        try await self.client.execute(action: "CreateLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateLabel is no longer available.")
     }
 
     /// 新建标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func createLabel(labelName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLabelResponse> {
-        self.createLabel(.init(labelName: labelName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateLabel is no longer available.")
     }
 
     /// 新建标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func createLabel(labelName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLabelResponse {
-        try await self.createLabel(.init(labelName: labelName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateLabel is no longer available.")
     }
 }

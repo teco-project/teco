@@ -43,6 +43,7 @@ extension TCAmsError {
             self.context = context
         }
 
+        /// 未开通权限/无有效套餐包/账号已欠费。
         public static var unauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorized)
         }

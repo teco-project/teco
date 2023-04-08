@@ -49,26 +49,30 @@ extension Tdmq {
     }
 
     /// 创建AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func createAMQPCluster(_ input: CreateAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
-        self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPCluster is no longer available.")
     }
 
     /// 创建AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func createAMQPCluster(_ input: CreateAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAMQPCluster is no longer available.")
     }
 
     /// 创建AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
-        self.createAMQPCluster(.init(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPCluster is no longer available.")
     }
 
     /// 创建AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.createAMQPCluster(.init(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPCluster is no longer available.")
     }
 }

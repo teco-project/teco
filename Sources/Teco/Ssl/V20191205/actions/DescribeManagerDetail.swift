@@ -97,6 +97,9 @@ extension Ssl {
         /// 管理人ID
         public let managerId: Int64
 
+        /// 审核状态详细信息
+        public let statusInfo: [ManagerStatusInfo]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -119,6 +122,7 @@ extension Ssl {
             case companyInfo = "CompanyInfo"
             case companyId = "CompanyId"
             case managerId = "ManagerId"
+            case statusInfo = "StatusInfo"
             case requestId = "RequestId"
         }
     }

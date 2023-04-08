@@ -19,48 +19,48 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeFlowLogs请求参数结构体
     public struct DescribeFlowLogsRequest: TCPaginatedRequest {
-        /// 私用网络ID或者统一ID，建议使用统一ID
+        /// 私用网络ID或者统一ID，建议使用统一ID。
         public let vpcId: String?
 
-        /// 流日志唯一ID
+        /// 流日志唯一ID。
         public let flowLogId: String?
 
-        /// 流日志实例名字
+        /// 流日志实例名字。
         public let flowLogName: String?
 
-        /// 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE
+        /// 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE。
         public let resourceType: String?
 
-        /// 资源唯一ID
+        /// 资源唯一ID。
         public let resourceId: String?
 
-        /// 流日志采集类型，ACCEPT|REJECT|ALL
+        /// 流日志采集类型，ACCEPT|REJECT|ALL。
         public let trafficType: String?
 
-        /// 流日志存储ID
+        /// 流日志存储ID。
         public let cloudLogId: String?
 
-        /// 流日志存储ID状态
+        /// 流日志存储ID状态。
         public let cloudLogState: String?
 
-        /// 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime
+        /// 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime。
         public let orderField: String?
 
-        /// 升序（asc）还是降序（desc）,默认：desc
+        /// 升序（asc）还是降序（desc）,默认：desc。
         public let orderDirection: String?
 
         /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 每页行数，默认为10
+        /// 每页行数，默认为10。
         public let limit: UInt64?
 
-        /// 过滤条件，参数不支持同时指定FlowLogIds和Filters。
+        /// 过滤条件，参数不支持同时指定FlowLogId和Filters。
         /// <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         /// <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         public let filters: Filter?
 
-        /// 流日志存储ID对应的地域信息
+        /// 流日志存储ID对应的地域信息。
         public let cloudLogRegion: String?
 
         public init(vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil) {
@@ -108,10 +108,10 @@ extension Vpc {
 
     /// DescribeFlowLogs返回参数结构体
     public struct DescribeFlowLogsResponse: TCPaginatedResponse {
-        /// 流日志实例集合
+        /// 流日志实例集合。
         public let flowLog: [FlowLog]
 
-        /// 流日志总数目
+        /// 流日志总数目。
         public let totalNum: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -136,7 +136,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable
     public func describeFlowLogs(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLogsResponse> {
         self.client.execute(action: "DescribeFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -144,7 +144,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable
     public func describeFlowLogs(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogsResponse {
         try await self.client.execute(action: "DescribeFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -152,7 +152,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable
     public func describeFlowLogs(vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLogsResponse> {
         self.describeFlowLogs(.init(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
@@ -160,7 +160,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable
     public func describeFlowLogs(vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogsResponse {
         try await self.describeFlowLogs(.init(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
@@ -168,7 +168,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable
     public func describeFlowLogsPaginated(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FlowLog])> {
         self.client.paginate(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)
@@ -176,7 +176,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     @inlinable @discardableResult
     public func describeFlowLogsPaginated(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFlowLogs, callback: onResponse, logger: logger, on: eventLoop)
@@ -184,7 +184,7 @@ extension Vpc {
 
     /// 查询流日志集合
     ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     ///
     /// - Returns: `AsyncSequence`s of `FlowLog` and `DescribeFlowLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable

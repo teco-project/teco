@@ -23,7 +23,7 @@ extension Vpc {
         /// VPN通道实例ID。形如：vpnx-f49l6u0z。
         public let vpnConnectionId: String
 
-        /// 对端网关厂商信息对象，可通过DescribeCustomerGatewayVendors获取。
+        /// 对端网关厂商信息对象，可通过[DescribeCustomerGatewayVendors](https://cloud.tencent.com/document/api/215/17513)获取。
         public let customerGatewayVendor: CustomerGatewayVendor
 
         /// 通道接入设备物理接口名称。
@@ -60,7 +60,7 @@ extension Vpc {
 
     /// 下载VPN通道配置
     ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    /// 本接口（DownloadCustomerGatewayConfiguration）用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
         self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Vpc {
 
     /// 下载VPN通道配置
     ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    /// 本接口（DownloadCustomerGatewayConfiguration）用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
         try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Vpc {
 
     /// 下载VPN通道配置
     ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    /// 本接口（DownloadCustomerGatewayConfiguration）用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(vpnGatewayId: String, vpnConnectionId: String, customerGatewayVendor: CustomerGatewayVendor, interfaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
         self.downloadCustomerGatewayConfiguration(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId, customerGatewayVendor: customerGatewayVendor, interfaceName: interfaceName), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Vpc {
 
     /// 下载VPN通道配置
     ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    /// 本接口（DownloadCustomerGatewayConfiguration）用于下载VPN通道配置。
     @inlinable
     public func downloadCustomerGatewayConfiguration(vpnGatewayId: String, vpnConnectionId: String, customerGatewayVendor: CustomerGatewayVendor, interfaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
         try await self.downloadCustomerGatewayConfiguration(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId, customerGatewayVendor: customerGatewayVendor, interfaceName: interfaceName), region: region, logger: logger, on: eventLoop)

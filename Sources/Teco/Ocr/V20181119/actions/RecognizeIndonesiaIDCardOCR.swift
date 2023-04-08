@@ -104,6 +104,12 @@ extension Ocr {
         /// 人像截图
         public let photo: String
 
+        /// 省份，Scene为V2时支持识别
+        public let provinsi: String
+
+        /// 城市，Scene为V2时支持识别
+        public let kota: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -124,29 +130,47 @@ extension Ocr {
             case berlakuHingga = "BerlakuHingga"
             case issuedDate = "IssuedDate"
             case photo = "Photo"
+            case provinsi = "Provinsi"
+            case kota = "Kota"
             case requestId = "RequestId"
         }
     }
 
     /// 印尼身份证识别
+    ///
+    /// 印尼身份证识别
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
         self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 印尼身份证识别
+    ///
+    /// 印尼身份证识别
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
         try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 印尼身份证识别
+    ///
+    /// 印尼身份证识别
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
         self.recognizeIndonesiaIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 印尼身份证识别
+    ///
+    /// 印尼身份证识别
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
         try await self.recognizeIndonesiaIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)

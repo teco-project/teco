@@ -44,6 +44,7 @@ extension TCMonitorError {
             self.context = context
         }
 
+        /// 访问鉴权失败。
         public static var accessCAMFail: AuthFailure {
             AuthFailure(.accessCAMFail)
         }

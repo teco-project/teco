@@ -50,7 +50,6 @@ extension Lighthouse {
     ///
     /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
     /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
         self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -62,7 +61,6 @@ extension Lighthouse {
     ///
     /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
     /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
         try await self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -74,7 +72,6 @@ extension Lighthouse {
     ///
     /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
     /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
         self.modifyInstancesRenewFlag(.init(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
@@ -86,7 +83,6 @@ extension Lighthouse {
     ///
     /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
     /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
         try await self.modifyInstancesRenewFlag(.init(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)

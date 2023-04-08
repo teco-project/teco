@@ -51,25 +51,25 @@ extension Cam {
         }
     }
 
-    /// 查询安全设置
+    /// 获取子账号安全设置
     @inlinable
     public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
         self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询安全设置
+    /// 获取子账号安全设置
     @inlinable
     public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
         try await self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询安全设置
+    /// 获取子账号安全设置
     @inlinable
     public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
         self.describeSafeAuthFlagColl(.init(subUin: subUin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询安全设置
+    /// 获取子账号安全设置
     @inlinable
     public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
         try await self.describeSafeAuthFlagColl(.init(subUin: subUin), region: region, logger: logger, on: eventLoop)

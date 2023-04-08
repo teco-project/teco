@@ -36,7 +36,7 @@ extension Monitor {
         }
     }
 
-    /// 通知模版ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
+    /// 通知模板ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
     public struct AlarmHierarchicalNotice: TCInputModel, TCOutputModel {
         /// 通知模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -264,7 +264,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clsNotices: [CLSNotice]?
 
-        /// 通知模版绑定的标签
+        /// 通知模板绑定的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
 
@@ -471,7 +471,7 @@ extension Monitor {
 
     /// 告警策略指标触发条件
     public struct AlarmPolicyCondition: TCInputModel, TCOutputModel {
-        /// 指标触发与或条件，0=或，1=与
+        /// 告警触发条件的判断方式. 0: 任意; 1: 全部; 2: 复合. 当取值为2的时候为复合告警，与参数 ComplexExpression 配合使用.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUnionRule: Int64?
 
@@ -479,14 +479,20 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [AlarmPolicyRule]?
 
-        public init(isUnionRule: Int64, rules: [AlarmPolicyRule]) {
+        /// 复合告警触发条件的判断表达式，当 IsUnionRule 取值为2的时候有效. 其作用是描述多个触发条件需要满足表达式求值为True时才算是满足告警条件.
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let complexExpression: String?
+
+        public init(isUnionRule: Int64, rules: [AlarmPolicyRule], complexExpression: String? = nil) {
             self.isUnionRule = isUnionRule
             self.rules = rules
+            self.complexExpression = complexExpression
         }
 
         enum CodingKeys: String, CodingKey {
             case isUnionRule = "IsUnionRule"
             case rules = "Rules"
+            case complexExpression = "ComplexExpression"
         }
     }
 
@@ -902,7 +908,7 @@ extension Monitor {
         /// 持续几个检测周期触发规则会告警
         public let continuePeriod: Int64?
 
-        /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
+        /// 如果通过模板创建，需要传入模板中该指标的对应RuleId
         public let ruleId: Int64?
 
         public init(metricId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, calcType: Int64? = nil, calcValue: Float? = nil, calcPeriod: Int64? = nil, continuePeriod: Int64? = nil, ruleId: Int64? = nil) {
@@ -939,7 +945,7 @@ extension Monitor {
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
 
-        /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
+        /// 如果通过模板创建，需要传入模板中该指标的对应RuleId
         public let ruleId: Int64?
 
         public init(eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
@@ -1255,6 +1261,10 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportRegions: [String]?
 
+        /// 弃用信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deprecatingInfo: DescribePolicyConditionListResponseDeprecatingInfo?
+
         enum CodingKeys: String, CodingKey {
             case policyViewName = "PolicyViewName"
             case eventMetrics = "EventMetrics"
@@ -1264,6 +1274,7 @@ extension Monitor {
             case sortId = "SortId"
             case supportDefault = "SupportDefault"
             case supportRegions = "SupportRegions"
+            case deprecatingInfo = "DeprecatingInfo"
         }
     }
 
@@ -1496,6 +1507,27 @@ extension Monitor {
             case metricId = "MetricId"
             case metricShowName = "MetricShowName"
             case metricUnit = "MetricUnit"
+        }
+    }
+
+    /// DescribePolicyConditionListResponseDeprecatingInfo
+    public struct DescribePolicyConditionListResponseDeprecatingInfo: TCOutputModel {
+        /// 是否隐藏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hidden: Bool?
+
+        /// 新视图名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newViewNames: [String]?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        enum CodingKeys: String, CodingKey {
+            case hidden = "Hidden"
+            case newViewNames = "NewViewNames"
+            case description = "Description"
         }
     }
 
@@ -2136,24 +2168,34 @@ extension Monitor {
     /// 查询过滤参数
     public struct Filter: TCInputModel {
         /// 过滤方式（=, !=, in）
-        public let type: String
+        public let type: String?
 
         /// 过滤维度名
-        public let key: String
+        public let key: String?
 
         /// 过滤值，in过滤方式用逗号分割多个值
-        public let value: String
+        public let value: String?
 
-        public init(type: String, key: String, value: String) {
+        /// 过滤条件名称
+        public let name: String?
+
+        /// 过滤条件取值范围
+        public let values: [String]?
+
+        public init(type: String? = nil, key: String? = nil, value: String? = nil, name: String? = nil, values: [String]? = nil) {
             self.type = type
             self.key = key
             self.value = value
+            self.name = name
+            self.values = values
         }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case key = "Key"
             case value = "Value"
+            case name = "Name"
+            case values = "Values"
         }
     }
 
@@ -2511,7 +2553,20 @@ extension Monitor {
 
     /// k8s中标签，一般以数组的方式存在
     public struct Label: TCInputModel, TCOutputModel {
-        public init() {
+        /// map表中的Name
+        public let name: String
+
+        /// map表中的Value
+        public let value: String
+
+        public init(name: String, value: String) {
+            self.name = name
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case value = "Value"
         }
     }
 
@@ -2919,7 +2974,7 @@ extension Monitor {
         }
     }
 
-    /// 通知模版与策略绑定关系
+    /// 通知模板与策略绑定关系
     public struct NoticeBindPolicys: TCInputModel {
         /// 告警通知模板 ID
         public let noticeId: String?
@@ -3199,7 +3254,25 @@ extension Monitor {
 
     /// 托管Prometheus agent信息
     public struct PrometheusAgentInfo: TCInputModel {
-        public init() {
+        /// 集群类型
+        public let clusterType: String
+
+        /// 集群id
+        public let clusterId: String
+
+        /// 备注
+        public let describe: String?
+
+        public init(clusterType: String, clusterId: String, describe: String? = nil) {
+            self.clusterType = clusterType
+            self.clusterId = clusterId
+            self.describe = describe
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clusterType = "ClusterType"
+            case clusterId = "ClusterId"
+            case describe = "Describe"
         }
     }
 
@@ -3236,6 +3309,10 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedReason: String?
 
+        /// agent名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterType = "ClusterType"
             case clusterId = "ClusterId"
@@ -3245,6 +3322,7 @@ extension Monitor {
             case region = "Region"
             case vpcId = "VpcId"
             case failedReason = "FailedReason"
+            case name = "Name"
         }
     }
 
@@ -3401,7 +3479,10 @@ extension Monitor {
         /// 是否采集指标，true代表drop所有指标，false代表采集默认指标
         public let notScrape: Bool?
 
-        public init(region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil) {
+        /// 是否开启默认预聚合规则
+        public let openDefaultRecord: Bool?
+
+        public init(region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil, openDefaultRecord: Bool? = nil) {
             self.region = region
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -3410,6 +3491,7 @@ extension Monitor {
             self.externalLabels = externalLabels
             self.notInstallBasicScrape = notInstallBasicScrape
             self.notScrape = notScrape
+            self.openDefaultRecord = openDefaultRecord
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3421,6 +3503,7 @@ extension Monitor {
             case externalLabels = "ExternalLabels"
             case notInstallBasicScrape = "NotInstallBasicScrape"
             case notScrape = "NotScrape"
+            case openDefaultRecord = "OpenDefaultRecord"
         }
     }
 
@@ -3775,6 +3858,14 @@ extension Monitor {
         /// 绑定集群正常状态总数
         public let boundNormal: Int64
 
+        /// 资源包状态，0-无可用资源包，1-有可用资源包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourcePackageStatus: Int64?
+
+        /// 资源包规格名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourcePackageSpecName: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3791,6 +3882,8 @@ extension Monitor {
             case autoRenewFlag = "AutoRenewFlag"
             case boundTotal = "BoundTotal"
             case boundNormal = "BoundNormal"
+            case resourcePackageStatus = "ResourcePackageStatus"
+            case resourcePackageSpecName = "ResourcePackageSpecName"
         }
     }
 

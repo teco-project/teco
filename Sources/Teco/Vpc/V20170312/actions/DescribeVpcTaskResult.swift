@@ -37,12 +37,17 @@ extension Vpc {
         /// 异步任务执行输出。
         public let output: String
 
+        /// 异步任务详细结果。只用于特殊场景，如批量删除弹性网卡时查询成功的网卡列表和失败的列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: [VpcTaskResultDetailInfo]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case output = "Output"
+            case result = "Result"
             case requestId = "RequestId"
         }
     }

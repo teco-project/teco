@@ -23,13 +23,13 @@ extension Essbasic {
         /// 应用的唯一标识。不同的业务系统可以采用不同的AppId，不同AppId下的数据是隔离的。可以由控制台开发者中心-应用集成自主生成。
         public let appId: String
 
-        /// 渠道平台自定义，对于渠道子客企业的唯一标识。一个渠道子客企业主体与子客企业ProxyOrganizationOpenId是一一对应的，不可更改，不可重复使用。（例如，可以使用企业名称的hash值，或者社会统一信用代码的hash值，或者随机hash值，需要渠道平台保存），最大64位字符串
+        /// 第三方应用平台自定义，对应第三方平台子客企业的唯一标识。一个第三方平台子客企业主体与子客企业ProxyOrganizationOpenId是一一对应的，不可更改，不可重复使用。（例如，可以使用企业名称的hash值，或者社会统一信用代码的hash值，或者随机hash值，需要第三方应用平台保存），最大64位字符串
         public let proxyOrganizationOpenId: String?
 
-        /// 渠道子客企业中的员工/经办人，通过渠道平台进入电子签完成实名、且被赋予相关权限后，可以参与到企业资源的管理或签署流程中。
+        /// 第三方平台子客企业中的员工/经办人，通过第三方应用平台进入电子签完成实名、且被赋予相关权限后，可以参与到企业资源的管理或签署流程中。
         public let proxyOperator: UserInfo?
 
-        /// 在子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
+        /// 在第三方平台子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
         public let proxyAppId: String?
 
         /// 内部参数，暂未开放使用
@@ -119,17 +119,204 @@ extension Essbasic {
         }
     }
 
+    /// 基础流程信息
+    public struct BaseFlowInfo: TCInputModel {
+        /// 合同流程名称
+        public let flowName: String?
+
+        /// 合同流程类型
+        public let flowType: String?
+
+        /// 合同流程描述信息
+        public let flowDescription: String?
+
+        /// 合同流程截止时间，unix时间戳
+        public let deadline: Int64?
+
+        /// 是否顺序签署(true:无序签,false:顺序签)
+        public let unordered: Bool?
+
+        /// 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
+        public let intelligentStatus: String?
+
+        /// 填写控件内容
+        public let formFields: [FormField]?
+
+        /// 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批
+        public let needSignReview: Bool?
+
+        /// 用户流程自定义数据参数
+        public let userData: String?
+
+        public init(flowName: String, flowType: String, flowDescription: String, deadline: Int64, unordered: Bool? = nil, intelligentStatus: String? = nil, formFields: [FormField]? = nil, needSignReview: Bool? = nil, userData: String? = nil) {
+            self.flowName = flowName
+            self.flowType = flowType
+            self.flowDescription = flowDescription
+            self.deadline = deadline
+            self.unordered = unordered
+            self.intelligentStatus = intelligentStatus
+            self.formFields = formFields
+            self.needSignReview = needSignReview
+            self.userData = userData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case flowName = "FlowName"
+            case flowType = "FlowType"
+            case flowDescription = "FlowDescription"
+            case deadline = "Deadline"
+            case unordered = "Unordered"
+            case intelligentStatus = "IntelligentStatus"
+            case formFields = "FormFields"
+            case needSignReview = "NeedSignReview"
+            case userData = "UserData"
+        }
+    }
+
     /// 抄送信息
     public struct CcInfo: TCInputModel {
         /// 被抄送人手机号，大陆11位手机号
         public let mobile: String?
 
-        public init(mobile: String? = nil) {
+        /// 被抄送人姓名
+        public let name: String?
+
+        /// 被抄送人类型
+        /// 0--个人. 1--员工
+        public let ccType: Int64?
+
+        /// 被抄送人权限
+        /// 0--可查看
+        /// 1--可查看也可下载
+        public let ccPermission: Int64?
+
+        public init(mobile: String? = nil, name: String? = nil, ccType: Int64? = nil, ccPermission: Int64? = nil) {
             self.mobile = mobile
+            self.name = name
+            self.ccType = ccType
+            self.ccPermission = ccPermission
         }
 
         enum CodingKeys: String, CodingKey {
             case mobile = "Mobile"
+            case name = "Name"
+            case ccType = "CcType"
+            case ccPermission = "CcPermission"
+        }
+    }
+
+    /// 渠道角色信息
+    public struct ChannelRole: TCOutputModel {
+        /// 角色id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleId: String?
+
+        /// 角色名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleName: String?
+
+        /// 角色状态：1-启用；2-禁用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleStatus: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case roleId = "RoleId"
+            case roleName = "RoleName"
+            case roleStatus = "RoleStatus"
+        }
+    }
+
+    /// 签署人配置信息
+    public struct CommonApproverOption: TCInputModel {
+        /// 是否允许修改签署人信息
+        public let canEditApprover: Bool?
+
+        public init(canEditApprover: Bool? = nil) {
+            self.canEditApprover = canEditApprover
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case canEditApprover = "CanEditApprover"
+        }
+    }
+
+    /// 通用签署人信息
+    public struct CommonFlowApprover: TCInputModel {
+        /// 指定当前签署人为第三方应用集成子客，默认false：当前签署人为第三方应用集成子客，true：当前签署人为saas企业用户
+        public let notChannelOrganization: Bool?
+
+        /// 签署人类型,目前支持：0-企业签署人，1-个人签署人，3-企业静默签署人
+        public let approverType: Int64?
+
+        /// 企业id
+        public let organizationId: String?
+
+        /// 企业OpenId，第三方应用集成非静默签子客企业签署人发起合同毕传
+        public let organizationOpenId: String?
+
+        /// 企业名称，第三方应用集成非静默签子客企业签署人必传，saas企业签署人必传
+        public let organizationName: String?
+
+        /// 用户id
+        public let userId: String?
+
+        /// 用户openId，第三方应用集成非静默签子客企业签署人必传
+        public let openId: String?
+
+        /// 签署人名称，saas企业签署人，个人签署人必传
+        public let approverName: String?
+
+        /// 签署人手机号，saas企业签署人，个人签署人必传
+        public let approverMobile: String?
+
+        /// 签署人Id，使用模板发起是，对应模板配置中的签署人RecipientId
+        /// 注意：模板发起时该字段必填
+        public let recipientId: String?
+
+        /// 签署前置条件：阅读时长限制，不传默认10s,最大300s，最小3s
+        public let preReadTime: Int64?
+
+        /// 签署前置条件：阅读全文限制
+        public let isFullText: Bool?
+
+        /// 通知类型：SMS（短信） NONE（不做通知）, 不传 默认SMS
+        public let notifyType: String?
+
+        /// 签署人配置
+        public let approverOption: CommonApproverOption?
+
+        public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, notifyType: String? = nil, approverOption: CommonApproverOption? = nil) {
+            self.notChannelOrganization = notChannelOrganization
+            self.approverType = approverType
+            self.organizationId = organizationId
+            self.organizationOpenId = organizationOpenId
+            self.organizationName = organizationName
+            self.userId = userId
+            self.openId = openId
+            self.approverName = approverName
+            self.approverMobile = approverMobile
+            self.recipientId = recipientId
+            self.preReadTime = preReadTime
+            self.isFullText = isFullText
+            self.notifyType = notifyType
+            self.approverOption = approverOption
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case notChannelOrganization = "NotChannelOrganization"
+            case approverType = "ApproverType"
+            case organizationId = "OrganizationId"
+            case organizationOpenId = "OrganizationOpenId"
+            case organizationName = "OrganizationName"
+            case userId = "UserId"
+            case openId = "OpenId"
+            case approverName = "ApproverName"
+            case approverMobile = "ApproverMobile"
+            case recipientId = "RecipientId"
+            case preReadTime = "PreReadTime"
+            case isFullText = "IsFullText"
+            case notifyType = "NotifyType"
+            case approverOption = "ApproverOption"
         }
     }
 
@@ -173,7 +360,8 @@ extension Essbasic {
         /// SIGN_SIGNATURE - 用户签名控件；
         /// SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
         /// SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
-        /// SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
+        /// SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认;
+        /// SIGN_LEGAL_PERSON_SEAL - 企业法定代表人控件。
         ///
         /// 表单域的控件不能作为印章和签名控件
         public let componentType: String?
@@ -332,8 +520,8 @@ extension Essbasic {
         /// 指定关键字时纵坐标偏移量，单位pt
         public let offsetY: Float?
 
-        /// 渠道控件ID。
-        /// 如果不为空，属于渠道预设控件；
+        /// 平台企业控件ID。
+        /// 如果不为空，属于平台企业预设控件；
         public let channelComponentId: String?
 
         /// 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
@@ -404,7 +592,21 @@ extension Essbasic {
         }
     }
 
-    /// 渠道版员工部门信息
+    /// 创建合同配置信息
+    public struct CreateFlowOption: TCInputModel {
+        /// 是否允许修改合同信息
+        public let canEditFlow: Bool?
+
+        public init(canEditFlow: Bool? = nil) {
+            self.canEditFlow = canEditFlow
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case canEditFlow = "CanEditFlow"
+        }
+    }
+
+    /// 第三方应用集成员工部门信息
     public struct Department: TCOutputModel {
         /// 部门id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -474,6 +676,22 @@ extension Essbasic {
         }
     }
 
+    /// 绑定失败的用户角色信息
+    public struct FailedCreateRoleData: TCOutputModel {
+        /// 用户userId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userId: String?
+
+        /// 角色RoleId列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleIds: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case userId = "UserId"
+            case roleIds = "RoleIds"
+        }
+    }
+
     /// 此结构体 (Filter) 用于描述查询过滤条件。
     public struct Filter: TCInputModel {
         /// 查询过滤条件的Key
@@ -498,14 +716,14 @@ extension Essbasic {
         /// 模板配置时候的签署人id,与控件绑定
         public let receiptId: String
 
-        /// 渠道侧企业的第三方id
+        /// 平台企业的第三方id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyOrganizationOpenId: String?
 
-        /// 渠道侧企业操作人的第三方id
+        /// 平台企业操作人的第三方id
         public let proxyOperatorOpenId: String
 
-        /// 渠道侧企业名称
+        /// 平台企业名称
         public let proxyOrganizationName: String
 
         /// 签署人手机号
@@ -518,7 +736,21 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveName: String?
 
-        /// 当前签署人的状态
+        /// 当前签署人的状态, 状态如下
+        ///
+        /// PENDING 流程等待中
+        /// FILLPENDING 待填写状态
+        /// FILLACCEPT 参与人已经填写
+        /// FILLREJECT 参与人解决填写
+        /// WAITPICKUP 待签收
+        /// ACCEPT 签收
+        /// REJECT 拒签
+        /// DEADLINE 过期没有处理
+        /// CANCEL 取消
+        /// FORWARD 已经转他人处理
+        /// STOP 流程因为其他原因终止
+        /// RELIEVED 已经解除
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveStatus: String?
 
@@ -553,9 +785,9 @@ extension Essbasic {
     /// 其中签署方FlowApproverInfo需要传递的参数
     /// 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
     /// 1-个人：Name、Mobile必传
-    /// 2-渠道子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
-    /// 3-渠道合作企业不指定经办人：OrgName必传、OrgOpenId必传；
-    /// 4-非渠道合作企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
+    /// 2-第三方平台子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
+    /// 3-第三方平台子客企业不指定经办人：OrgName必传、OrgOpenId必传；
+    /// 4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
     ///
     /// RecipientId参数：
     /// 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId
@@ -578,15 +810,15 @@ extension Essbasic {
         /// 企业签署方工商营业执照上的企业名称，签署方为非发起方企业场景下必传，最大长度64个字符；
         public let organizationName: String?
 
-        /// 指定签署人非渠道企业下员工，在ApproverType为ORGANIZATION时指定。
-        /// 默认为false，即签署人位于同一个渠道应用号下；
+        /// 指定签署人非第三方平台子客企业下员工，在ApproverType为ORGANIZATION时指定。
+        /// 默认为false，即签署人位于同一个第三方平台应用号下；默认为false，即签署人位于同一个第三方应用号下；
         public let notChannelOrganization: Bool?
 
         /// 用户侧第三方id，最大长度64个字符
-        /// 当签署方为同一渠道下的员工时，该字段若不指定，则发起【待领取】的流程
+        /// 当签署方为同一第三方平台下的员工时，该字段若不指定，则发起【待领取】的流程
         public let openId: String?
 
-        /// 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符；
+        /// 企业签署方在同一第三方平台应用下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符；
         public let organizationOpenId: String?
 
         /// 签署人类型
@@ -608,7 +840,8 @@ extension Essbasic {
         /// 使用PDF文件直接发起合同时，签署人指定的签署控件
         public let signComponents: [Component]?
 
-        /// 个人签署方指定签署控件类型，目前仅支持：OCR_ESIGN(AI智慧手写签名)
+        /// 个人签署方指定签署控件类型，目前支持：OCR_ESIGN -AI智慧手写签名
+        /// HANDWRITE -手写签名
         public let componentLimitType: [String]?
 
         /// 合同的强制预览时间：3~300s，未指定则按合同页数计算
@@ -623,7 +856,15 @@ extension Essbasic {
         /// 当前签署方进行签署操作是否需要企业内部审批，true 则为需要
         public let approverNeedSignReview: Bool?
 
-        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil) {
+        /// 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1
+        /// 查看合同的认证方式 Flow层级的优先于approver层级的
+        public let approverVerifyTypes: [Int64]?
+
+        /// 签署人签署合同时的认证方式
+        /// 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
+        public let approverSignTypes: [Int64]?
+
+        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil) {
             self.name = name
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
@@ -642,6 +883,8 @@ extension Essbasic {
             self.jumpUrl = jumpUrl
             self.approverOption = approverOption
             self.approverNeedSignReview = approverNeedSignReview
+            self.approverVerifyTypes = approverVerifyTypes
+            self.approverSignTypes = approverSignTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -663,6 +906,8 @@ extension Essbasic {
             case jumpUrl = "JumpUrl"
             case approverOption = "ApproverOption"
             case approverNeedSignReview = "ApproverNeedSignReview"
+            case approverVerifyTypes = "ApproverVerifyTypes"
+            case approverSignTypes = "ApproverSignTypes"
         }
     }
 
@@ -699,7 +944,15 @@ extension Essbasic {
         /// 合同(流程)的类型
         public let flowType: String
 
-        /// 合同(流程)的状态
+        /// 合同(流程)的状态, 状态如下
+        ///
+        /// INIT 还没发起
+        /// PART 部分签署
+        /// REJECT 拒签
+        /// ALL 全部签署
+        /// DEADLINE 流签
+        /// CANCEL 取消
+        /// RELIEVED 解除
         public let flowStatus: String
 
         /// 合同(流程)的信息
@@ -717,6 +970,9 @@ extension Essbasic {
         /// 合同(流程)的签署人数组
         public let flowApproverInfos: [FlowApproverDetail]
 
+        /// 合同(流程)关注方信息列表
+        public let ccInfos: [FlowApproverDetail]?
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowName = "FlowName"
@@ -727,6 +983,7 @@ extension Essbasic {
             case deadLine = "DeadLine"
             case customData = "CustomData"
             case flowApproverInfos = "FlowApproverInfos"
+            case ccInfos = "CcInfos"
         }
     }
 
@@ -753,7 +1010,7 @@ extension Essbasic {
         /// 签署流程回调地址，长度不超过255个字符
         public let callbackUrl: String?
 
-        /// 渠道的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        /// 第三方应用的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         public let customerData: String?
 
         /// 合同签署顺序类型(无序签,顺序签)，默认为false，即有序签署
@@ -797,7 +1054,7 @@ extension Essbasic {
     /// 此结构体 (FlowInfo) 用于描述签署流程信息。
     ///
     /// 【数据表格传参说明】
-    /// 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
+    /// 当模板的 ComponentType='DYNAMIC_TABLE'时（ 第三方应用集成或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
     /// 输入示例1：
     ///
     /// ```
@@ -933,7 +1190,7 @@ extension Essbasic {
         /// 合同描述，最大长度1000个字符
         public let flowDescription: String?
 
-        /// 渠道的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        /// 第三方应用平台的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         public let customerData: String?
 
         /// 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
@@ -948,7 +1205,10 @@ extension Essbasic {
         /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
 
-        public init(flowName: String, deadline: Int64, templateId: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, formFields: [FormField]? = nil, callbackUrl: String? = nil, flowType: String? = nil, flowDescription: String? = nil, customerData: String? = nil, customShowMap: String? = nil, ccInfos: [CcInfo]? = nil, needSignReview: Bool? = nil) {
+        /// 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        public let ccNotifyType: Int64?
+
+        public init(flowName: String, deadline: Int64, templateId: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, formFields: [FormField]? = nil, callbackUrl: String? = nil, flowType: String? = nil, flowDescription: String? = nil, customerData: String? = nil, customShowMap: String? = nil, ccInfos: [CcInfo]? = nil, needSignReview: Bool? = nil, ccNotifyType: Int64? = nil) {
             self.flowName = flowName
             self.deadline = deadline
             self.templateId = templateId
@@ -961,6 +1221,7 @@ extension Essbasic {
             self.customShowMap = customShowMap
             self.ccInfos = ccInfos
             self.needSignReview = needSignReview
+            self.ccNotifyType = ccNotifyType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -976,6 +1237,7 @@ extension Essbasic {
             case customShowMap = "CustomShowMap"
             case ccInfos = "CcInfos"
             case needSignReview = "NeedSignReview"
+            case ccNotifyType = "CcNotifyType"
         }
     }
 
@@ -1177,7 +1439,7 @@ extension Essbasic {
 
     /// 合作企业经办人列表信息
     public struct ProxyOrganizationOperator: TCInputModel {
-        /// 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
+        /// 对应Agent-ProxyOperator-OpenId。第三方应用平台自定义，对子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要第三方应用平台保存），最大64位字符串
         public let id: String
 
         /// 经办人姓名，最大长度50个字符
@@ -1195,12 +1457,19 @@ extension Essbasic {
         /// 经办人手机号，大陆手机号输入11位，暂不支持海外手机号。
         public let mobile: String?
 
-        public init(id: String, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil) {
+        /// 默认角色，值为以下三个对应的英文：
+        /// 业务管理员：admin
+        /// 经办人：channel-normal-operator
+        /// 业务员：channel-sales-man
+        public let defaultRole: String?
+
+        public init(id: String, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, defaultRole: String? = nil) {
             self.id = id
             self.name = name
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
             self.mobile = mobile
+            self.defaultRole = defaultRole
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1209,6 +1478,7 @@ extension Essbasic {
             case idCardType = "IdCardType"
             case idCardNumber = "IdCardNumber"
             case mobile = "Mobile"
+            case defaultRole = "DefaultRole"
         }
     }
 
@@ -1272,8 +1542,8 @@ extension Essbasic {
     /// 如果需要指定B端（机构身份类型）签署人，其中ReleasedApprover需要传递的参数如下：
     /// ApproverNumber, OrganizationName, ApproverType必传。
     /// 对于其他身份标识
-    /// - 渠道子客企业指定经办人：OpenId必传，OrganizationOpenId必传；
-    /// - 非渠道合作企业：Name、Mobile必传。
+    /// - 子客企业指定经办人：OpenId必传，OrganizationOpenId必传；
+    /// - 非子客企业：Name、Mobile必传。
     public struct ReleasedApprover: TCInputModel {
         /// 企业签署方工商营业执照上的企业名称，签署方为非发起方企业场景下必传，最大长度64个字符
         public let organizationName: String
@@ -1300,11 +1570,11 @@ extension Essbasic {
         /// 签署人手机号，脱敏显示。大陆手机号为11位，暂不支持海外手机号
         public let mobile: String?
 
-        /// 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符
+        /// 企业签署方在同一第三方应用下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符
         public let organizationOpenId: String?
 
         /// 用户侧第三方id，最大长度64个字符
-        /// 当签署方为同一渠道下的员工时，该字必传
+        /// 当签署方为同一第三方应用下的员工时，该字必传
         public let openId: String?
 
         public init(organizationName: String, approverNumber: UInt64, approverType: String, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil) {
@@ -1568,7 +1838,7 @@ extension Essbasic {
         }
     }
 
-    /// 渠道版员工角色信息
+    /// 第三方应用集成员工角色信息
     public struct StaffRole: TCOutputModel {
         /// 角色id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1652,18 +1922,18 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
 
-        /// 渠道版-模板PDF文件链接
+        /// 第三方应用集成-模板PDF文件链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pdfUrl: String?
 
-        /// 关联的渠道模板ID
+        /// 关联的平台企业模板ID
         public let channelTemplateId: String
 
-        /// 关联的渠道模板名称
+        /// 关联的平台企业模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelTemplateName: String?
 
-        /// 0-需要渠道子客手动领取渠道的模板(默认); 1-渠道自动设置子客模板
+        /// 0-需要子客企业手动领取平台企业的模板(默认); 1-平台自动设置子客模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelAutoSave: Int64?
 
@@ -1712,10 +1982,10 @@ extension Essbasic {
 
     /// 用量明细
     public struct UsageDetail: TCOutputModel {
-        /// 渠道侧合作企业唯一标识
+        /// 子客企业唯一标识
         public let proxyOrganizationOpenId: String
 
-        /// 渠道侧合作企业名
+        /// 子客企业名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyOrganizationName: String?
 
@@ -1749,7 +2019,7 @@ extension Essbasic {
 
     /// 接口调用者信息
     public struct UserInfo: TCInputModel {
-        /// 渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
+        /// 第三方应用平台自定义，对应第三方平台子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要第三方应用平台保存），最大64位字符串
         public let openId: String?
 
         /// 内部参数，暂未开放使用

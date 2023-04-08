@@ -44,14 +44,17 @@ extension TCLcicError {
             self.context = context
         }
 
+        /// 存储空间已无剩余，无法使用存储功能。
         public static var record: ResourceInsufficient {
             ResourceInsufficient(.record)
         }
 
+        /// 打开课堂失败，请前往控制台查看用量情况。
         public static var room: ResourceInsufficient {
             ResourceInsufficient(.room)
         }
 
+        /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }

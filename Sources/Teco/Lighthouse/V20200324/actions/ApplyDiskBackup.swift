@@ -20,7 +20,7 @@ extension Lighthouse {
         /// 云硬盘ID，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。
         public let diskId: String
 
-        /// 云硬盘备份点ID，可通过 DescribeDiskBackups 接口查询。
+        /// 云硬盘备份点ID，可通过[DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询。
         public let diskBackupId: String
 
         public init(diskId: String, diskBackupId: String) {
@@ -49,7 +49,7 @@ extension Lighthouse {
     /// 本接口（ApplyDiskBackup）用于回滚指定云硬盘的备份点。
     /// * 仅支持回滚到原云硬盘。
     /// * 用于回滚的云硬盘备份点必须处于 NORMAL 状态。
-    ///   云硬盘备份点状态可以通过 DescribeDiskBackups 接口查询。
+    ///   云硬盘备份点状态可以通过  [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379) 接口查询。
     /// * 回滚云硬盘备份点时，云硬盘的状态必须为 UNATTACHED或ATTACHED。
     ///   云硬盘状态可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口查询。
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
@@ -63,7 +63,7 @@ extension Lighthouse {
     /// 本接口（ApplyDiskBackup）用于回滚指定云硬盘的备份点。
     /// * 仅支持回滚到原云硬盘。
     /// * 用于回滚的云硬盘备份点必须处于 NORMAL 状态。
-    ///   云硬盘备份点状态可以通过 DescribeDiskBackups 接口查询。
+    ///   云硬盘备份点状态可以通过  [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379) 接口查询。
     /// * 回滚云硬盘备份点时，云硬盘的状态必须为 UNATTACHED或ATTACHED。
     ///   云硬盘状态可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口查询。
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
@@ -77,7 +77,7 @@ extension Lighthouse {
     /// 本接口（ApplyDiskBackup）用于回滚指定云硬盘的备份点。
     /// * 仅支持回滚到原云硬盘。
     /// * 用于回滚的云硬盘备份点必须处于 NORMAL 状态。
-    ///   云硬盘备份点状态可以通过 DescribeDiskBackups 接口查询。
+    ///   云硬盘备份点状态可以通过  [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379) 接口查询。
     /// * 回滚云硬盘备份点时，云硬盘的状态必须为 UNATTACHED或ATTACHED。
     ///   云硬盘状态可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口查询。
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
@@ -91,7 +91,7 @@ extension Lighthouse {
     /// 本接口（ApplyDiskBackup）用于回滚指定云硬盘的备份点。
     /// * 仅支持回滚到原云硬盘。
     /// * 用于回滚的云硬盘备份点必须处于 NORMAL 状态。
-    ///   云硬盘备份点状态可以通过 DescribeDiskBackups 接口查询。
+    ///   云硬盘备份点状态可以通过  [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379) 接口查询。
     /// * 回滚云硬盘备份点时，云硬盘的状态必须为 UNATTACHED或ATTACHED。
     ///   云硬盘状态可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口查询。
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。

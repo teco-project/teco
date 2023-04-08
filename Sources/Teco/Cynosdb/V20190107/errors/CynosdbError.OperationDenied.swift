@@ -17,9 +17,12 @@
 extension TCCynosdbError {
     public struct OperationDenied: TCCynosdbErrorType {
         enum Code: String {
+            case camDeniedError = "OperationDenied.CamDeniedError"
             case clusterOpNotAllowedError = "OperationDenied.ClusterOpNotAllowedError"
             case clusterStatusDeniedError = "OperationDenied.ClusterStatusDeniedError"
+            case instanceAccessDeniedError = "OperationDenied.InstanceAccessDeniedError"
             case instanceStatusDeniedError = "OperationDenied.InstanceStatusDeniedError"
+            case instanceStatusLimitError = "OperationDenied.InstanceStatusLimitError"
             case insufficientBalanceError = "OperationDenied.InsufficientBalanceError"
             case serverlessClusterStatusDenied = "OperationDenied.ServerlessClusterStatusDenied"
             case serverlessInstanceStatusDenied = "OperationDenied.ServerlessInstanceStatusDenied"
@@ -50,6 +53,11 @@ extension TCCynosdbError {
             self.context = context
         }
 
+        /// 权限校验失败。
+        public static var camDeniedError: OperationDenied {
+            OperationDenied(.camDeniedError)
+        }
+
         /// 由于操作禁止，当前集群不允许该操作。
         public static var clusterOpNotAllowedError: OperationDenied {
             OperationDenied(.clusterOpNotAllowedError)
@@ -60,9 +68,19 @@ extension TCCynosdbError {
             OperationDenied(.clusterStatusDeniedError)
         }
 
+        /// 您没有权限操作资源。
+        public static var instanceAccessDeniedError: OperationDenied {
+            OperationDenied(.instanceAccessDeniedError)
+        }
+
         /// 实例当前状态不允许该操作。
         public static var instanceStatusDeniedError: OperationDenied {
             OperationDenied(.instanceStatusDeniedError)
+        }
+
+        /// 实例未处于运行状态
+        public static var instanceStatusLimitError: OperationDenied {
+            OperationDenied(.instanceStatusLimitError)
         }
 
         /// 账号余额不足。
@@ -98,12 +116,18 @@ extension TCCynosdbError {
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
+            case .camDeniedError:
+                code = .operationDenied_CamDeniedError
             case .clusterOpNotAllowedError:
                 code = .operationDenied_ClusterOpNotAllowedError
             case .clusterStatusDeniedError:
                 code = .operationDenied_ClusterStatusDeniedError
+            case .instanceAccessDeniedError:
+                code = .operationDenied_InstanceAccessDeniedError
             case .instanceStatusDeniedError:
                 code = .operationDenied_InstanceStatusDeniedError
+            case .instanceStatusLimitError:
+                code = .operationDenied_InstanceStatusLimitError
             case .insufficientBalanceError:
                 code = .operationDenied_InsufficientBalanceError
             case .serverlessClusterStatusDenied:

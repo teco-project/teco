@@ -217,6 +217,10 @@ extension Iotvideo {
         /// 资源包创建时间
         public let createTime: Int64
 
+        /// 资源包状态 0.未使用 1.使用中 2.已退款 3.已过期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case bonusId = "BonusId"
             case userId = "UserId"
@@ -225,6 +229,7 @@ extension Iotvideo {
             case used = "Used"
             case expireTime = "ExpireTime"
             case createTime = "CreateTime"
+            case status = "Status"
         }
     }
 
@@ -791,6 +796,37 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case total = "Total"
+        }
+    }
+
+    /// TRTC调用参数
+    public struct TRTCParams: TCOutputModel {
+        /// 应用id，供TRTC SDK使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkAppId: Int64?
+
+        /// 用户id，供TRTC SDK使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userId: String?
+
+        /// 用户id签名，供TRTC SDK使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userSig: String?
+
+        /// 房间id，供TRTC SDK使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strRoomId: String?
+
+        /// 权限票据，供TRTC SDK使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privateMapKey: String?
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SDKAppId"
+            case userId = "UserId"
+            case userSig = "UserSig"
+            case strRoomId = "StrRoomId"
+            case privateMapKey = "PrivateMapKey"
         }
     }
 

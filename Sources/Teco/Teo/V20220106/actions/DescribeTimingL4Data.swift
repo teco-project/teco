@@ -120,32 +120,36 @@ extension Teo {
     /// 四层时序流量数据查询接口
     ///
     /// 四层时序流量数据查询
+    @available(*, unavailable, message: "旧版本的接口已经不兼容，故作下线处理")
     @inlinable
     public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL4DataResponse> {
-        self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeTimingL4Data is no longer available.")
     }
 
     /// 四层时序流量数据查询接口
     ///
     /// 四层时序流量数据查询
+    @available(*, unavailable, message: "旧版本的接口已经不兼容，故作下线处理")
     @inlinable
     public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL4DataResponse {
-        try await self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeTimingL4Data is no longer available.")
     }
 
     /// 四层时序流量数据查询接口
     ///
     /// 四层时序流量数据查询
+    @available(*, unavailable, message: "旧版本的接口已经不兼容，故作下线处理")
     @inlinable
     public func describeTimingL4Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, instanceIds: [String]? = nil, protocol: String? = nil, interval: String? = nil, ruleId: String? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL4DataResponse> {
-        self.describeTimingL4Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, instanceIds: instanceIds, protocol: `protocol`, interval: interval, ruleId: ruleId, filters: filters, proxyIds: proxyIds, area: area), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeTimingL4Data is no longer available.")
     }
 
     /// 四层时序流量数据查询接口
     ///
     /// 四层时序流量数据查询
+    @available(*, unavailable, message: "旧版本的接口已经不兼容，故作下线处理")
     @inlinable
     public func describeTimingL4Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, instanceIds: [String]? = nil, protocol: String? = nil, interval: String? = nil, ruleId: String? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL4DataResponse {
-        try await self.describeTimingL4Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, instanceIds: instanceIds, protocol: `protocol`, interval: interval, ruleId: ruleId, filters: filters, proxyIds: proxyIds, area: area), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeTimingL4Data is no longer available.")
     }
 }

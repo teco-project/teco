@@ -55,26 +55,30 @@ extension Tdmq {
     }
 
     /// 更新Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPExchangeResponse> {
-        self.client.execute(action: "ModifyAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPExchange is no longer available.")
     }
 
     /// 更新Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
-        try await self.client.execute(action: "ModifyAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("ModifyAMQPExchange is no longer available.")
     }
 
     /// 更新Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPExchangeResponse> {
-        self.modifyAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPExchange is no longer available.")
     }
 
     /// 更新Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
-        try await self.modifyAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPExchange is no longer available.")
     }
 }

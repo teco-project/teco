@@ -29,13 +29,13 @@ extension Cynosdb {
         /// 新增只读实例数，取值范围为[0,4]
         public let readOnlyCount: Int64
 
-        /// 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
+        /// 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。当前版本已废弃。
         public let instanceGrpId: String?
 
-        /// 所属VPC网络ID，该参数已废弃
+        /// 所属VPC网络ID。
         public let vpcId: String?
 
-        /// 所属子网ID，如果设置了VpcId，则SubnetId必填。该参数已废弃。
+        /// 所属子网ID，如果设置了VpcId，则SubnetId必填。
         public let subnetId: String?
 
         /// 新增RO组时使用的Port，取值范围为[0,65535)
@@ -63,7 +63,10 @@ extension Cynosdb {
         /// 参数列表，ParamTemplateId 传入时InstanceParams才有效
         public let instanceParams: [ModifyParamItem]?
 
-        public init(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil) {
+        /// 安全组ID，新建只读实例时可以指定安全组。
+        public let securityGroupIds: [String]?
+
+        public init(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil, securityGroupIds: [String]? = nil) {
             self.clusterId = clusterId
             self.cpu = cpu
             self.memory = memory
@@ -79,6 +82,7 @@ extension Cynosdb {
             self.dealMode = dealMode
             self.paramTemplateId = paramTemplateId
             self.instanceParams = instanceParams
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -97,6 +101,7 @@ extension Cynosdb {
             case dealMode = "DealMode"
             case paramTemplateId = "ParamTemplateId"
             case instanceParams = "InstanceParams"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -150,15 +155,15 @@ extension Cynosdb {
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
-        self.addInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode, paramTemplateId: paramTemplateId, instanceParams: instanceParams), region: region, logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
+        self.addInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode, paramTemplateId: paramTemplateId, instanceParams: instanceParams, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.addInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode, paramTemplateId: paramTemplateId, instanceParams: instanceParams), region: region, logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, instanceParams: [ModifyParamItem]? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.addInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode, paramTemplateId: paramTemplateId, instanceParams: instanceParams, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -23,14 +23,19 @@ extension Monitor {
         /// yaml的内容
         public let content: String
 
-        public init(instanceId: String, content: String) {
+        /// 规则名称
+        public let name: String?
+
+        public init(instanceId: String, content: String, name: String? = nil) {
             self.instanceId = instanceId
             self.content = content
+            self.name = name
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case content = "Content"
+            case name = "Name"
         }
     }
 
@@ -58,13 +63,13 @@ extension Monitor {
 
     /// 以Yaml的方式创建聚合规则
     @inlinable @discardableResult
-    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
-        self.createPrometheusRecordRuleYaml(.init(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
+    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
+        self.createPrometheusRecordRuleYaml(.init(instanceId: instanceId, content: content, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 以Yaml的方式创建聚合规则
     @inlinable @discardableResult
-    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
-        try await self.createPrometheusRecordRuleYaml(.init(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
+    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
+        try await self.createPrometheusRecordRuleYaml(.init(instanceId: instanceId, content: content, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

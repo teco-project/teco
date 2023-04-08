@@ -53,26 +53,30 @@ extension Tdid {
     }
 
     /// 披露策略Policy注册
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
-        self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RegisterClaimPolicy is no longer available.")
     }
 
     /// 披露策略Policy注册
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RegisterClaimPolicy is no longer available.")
     }
 
     /// 披露策略Policy注册
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
-        self.registerClaimPolicy(.init(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterClaimPolicy is no longer available.")
     }
 
     /// 披露策略Policy注册
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.registerClaimPolicy(.init(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterClaimPolicy is no longer available.")
     }
 }

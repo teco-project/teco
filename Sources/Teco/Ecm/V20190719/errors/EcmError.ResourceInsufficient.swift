@@ -20,6 +20,7 @@ extension TCEcmError {
             case instanceQuotaNotEnough = "ResourceInsufficient.InstanceQuotaNotEnough"
             case invaildPrivateImageNum = "ResourceInsufficient.InvaildPrivateImageNum"
             case ipQuotaNotEnough = "ResourceInsufficient.IPQuotaNotEnough"
+            case privateIPQuotaNotEnough = "ResourceInsufficient.PrivateIPQuotaNotEnough"
             case other = "ResourceInsufficient"
         }
 
@@ -60,6 +61,13 @@ extension TCEcmError {
             ResourceInsufficient(.ipQuotaNotEnough)
         }
 
+        /// 当前子网中内网IP不足
+        ///
+        /// 指定新的子网后继续创建实例
+        public static var privateIPQuotaNotEnough: ResourceInsufficient {
+            ResourceInsufficient(.privateIPQuotaNotEnough)
+        }
+
         /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
@@ -74,6 +82,8 @@ extension TCEcmError {
                 code = .resourceInsufficient_InvaildPrivateImageNum
             case .ipQuotaNotEnough:
                 code = .resourceInsufficient_IPQuotaNotEnough
+            case .privateIPQuotaNotEnough:
+                code = .resourceInsufficient_PrivateIPQuotaNotEnough
             case .other:
                 code = .resourceInsufficient
             }

@@ -768,10 +768,15 @@ extension Tcm {
         /// 负载均衡实例 VIP
         public let loadBalancerVip: String
 
+        /// 负载均衡实例 Hostname
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerHostname: String?
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
             case loadBalancerVip = "LoadBalancerVip"
+            case loadBalancerHostname = "LoadBalancerHostname"
         }
     }
 

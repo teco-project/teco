@@ -17,7 +17,6 @@
 extension TCTiaError {
     public struct FailedOperation: TCTiaErrorType {
         enum Code: String {
-            case alreadyExists = "FailedOperation.AlreadyExists"
             case timeOut = "FailedOperation.TimeOut"
         }
 
@@ -43,11 +42,6 @@ extension TCTiaError {
             self.context = context
         }
 
-        /// 资源已存在。
-        public static var alreadyExists: FailedOperation {
-            FailedOperation(.alreadyExists)
-        }
-
         /// 操作超时。
         public static var timeOut: FailedOperation {
             FailedOperation(.timeOut)
@@ -56,8 +50,6 @@ extension TCTiaError {
         public func asTiaError() -> TCTiaError {
             let code: TCTiaError.Code
             switch self.error {
-            case .alreadyExists:
-                code = .failedOperation_AlreadyExists
             case .timeOut:
                 code = .failedOperation_TimeOut
             }

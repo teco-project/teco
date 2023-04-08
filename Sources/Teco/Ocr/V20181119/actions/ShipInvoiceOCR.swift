@@ -72,6 +72,8 @@ extension Ocr {
     /// 轮船票识别
     ///
     /// 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func shipInvoiceOCR(_ input: ShipInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShipInvoiceOCRResponse> {
         self.client.execute(action: "ShipInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 轮船票识别
     ///
     /// 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func shipInvoiceOCR(_ input: ShipInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShipInvoiceOCRResponse {
         try await self.client.execute(action: "ShipInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 轮船票识别
     ///
     /// 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func shipInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShipInvoiceOCRResponse> {
         self.shipInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 轮船票识别
     ///
     /// 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func shipInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShipInvoiceOCRResponse {
         try await self.shipInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

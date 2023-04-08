@@ -521,12 +521,16 @@ extension Ocr {
         /// 识别到的内容。
         public let singleInvoiceInfos: [SingleInvoiceInfo]
 
+        /// 发票处于识别图片或PDF文件中的页教，默认从1开始。
+        public let page: Int64?
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case type = "Type"
             case rect = "Rect"
             case angle = "Angle"
             case singleInvoiceInfos = "SingleInvoiceInfos"
+            case page = "Page"
         }
     }
 
@@ -870,6 +874,25 @@ extension Ocr {
         }
     }
 
+    /// 智慧表单上传文件信息
+    public struct SmartFormFileUrl: TCInputModel {
+        /// 文件url地址
+        public let fileUrl: String
+
+        /// 文件的顺序，顺序从1开始
+        public let fileOrderNumber: UInt64
+
+        public init(fileUrl: String, fileOrderNumber: UInt64) {
+            self.fileUrl = fileUrl
+            self.fileOrderNumber = fileOrderNumber
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fileUrl = "FileUrl"
+            case fileOrderNumber = "FileOrderNumber"
+        }
+    }
+
     /// 智能结构化识别
     public struct StructuralItem: TCOutputModel {
         /// 识别出的字段名称(关键字)。
@@ -944,6 +967,44 @@ extension Ocr {
         }
     }
 
+    /// 单元格数据
+    public struct TableCellInfo: TCOutputModel {
+        /// 单元格左上角的列索引
+        public let colTl: Int64
+
+        /// 单元格左上角的行索引
+        public let rowTl: Int64
+
+        /// 单元格右下角的列索引
+        public let colBr: Int64
+
+        /// 单元格右下角的行索引
+        public let rowBr: Int64
+
+        /// 单元格内识别出的字符串文本，若文本存在多行，以换行符"\n"隔开
+        public let text: String
+
+        /// 单元格类型
+        public let type: String
+
+        /// 单元格置信度
+        public let confidence: Float
+
+        /// 单元格在图像中的四点坐标
+        public let polygon: [Coord]
+
+        enum CodingKeys: String, CodingKey {
+            case colTl = "ColTl"
+            case rowTl = "RowTl"
+            case colBr = "ColBr"
+            case rowBr = "RowBr"
+            case text = "Text"
+            case type = "Type"
+            case confidence = "Confidence"
+            case polygon = "Polygon"
+        }
+    }
+
     /// 表格内容检测
     public struct TableDetectInfo: TCOutputModel {
         /// 单元格内容
@@ -968,6 +1029,29 @@ extension Ocr {
         enum CodingKeys: String, CodingKey {
             case cells = "Cells"
             case titles = "Titles"
+            case type = "Type"
+            case tableCoordPoint = "TableCoordPoint"
+        }
+    }
+
+    /// 表格内容检测
+    public struct TableInfo: TCOutputModel {
+        /// 单元格内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cells: [TableCellInfo]?
+
+        /// 图像中的文本块类型，0 为非表格文本，
+        /// 1 为有线表格，2 为无线表格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 表格主体四个顶点坐标（依次为左上角，
+        /// 右上角，右下角，左下角）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableCoordPoint: [Coord]?
+
+        enum CodingKeys: String, CodingKey {
+            case cells = "Cells"
             case type = "Type"
             case tableCoordPoint = "TableCoordPoint"
         }

@@ -40,12 +40,14 @@ extension TCCdbError {
             case executeSQLError = "InternalError.ExecuteSQLError"
             case ftpError = "InternalError.FtpError"
             case httpError = "InternalError.HttpError"
+            case importError = "InternalError.ImportError"
             case innerCommonError = "InternalError.InnerCommonError"
             case internalAssertError = "InternalError.InternalAssertError"
             case internalHttpServerError = "InternalError.InternalHttpServerError"
             case internalRequestError = "InternalError.InternalRequestError"
             case internalServiceErrorErr = "InternalError.InternalServiceErrorErr"
             case jsonError = "InternalError.JSONError"
+            case kmsError = "InternalError.KmsError"
             case networkError = "InternalError.NetworkError"
             case ossError = "InternalError.OssError"
             case paramError = "InternalError.ParamError"
@@ -184,6 +186,7 @@ extension TCCdbError {
             InternalError(.exeSqlError)
         }
 
+        /// 执行http请求错误。
         public static var execHttpRequestError: InternalError {
             InternalError(.execHttpRequestError)
         }
@@ -201,6 +204,11 @@ extension TCCdbError {
         /// Http请求异常。
         public static var httpError: InternalError {
             InternalError(.httpError)
+        }
+
+        /// 导入失败。
+        public static var importError: InternalError {
+            InternalError(.importError)
         }
 
         /// 内部服务错误。
@@ -231,6 +239,11 @@ extension TCCdbError {
         /// json解析失败。
         public static var jsonError: InternalError {
             InternalError(.jsonError)
+        }
+
+        /// 开通加密失败。
+        public static var kmsError: InternalError {
+            InternalError(.kmsError)
         }
 
         /// 网络错误。
@@ -377,6 +390,8 @@ extension TCCdbError {
                 code = .internalError_FtpError
             case .httpError:
                 code = .internalError_HttpError
+            case .importError:
+                code = .internalError_ImportError
             case .innerCommonError:
                 code = .internalError_InnerCommonError
             case .internalAssertError:
@@ -389,6 +404,8 @@ extension TCCdbError {
                 code = .internalError_InternalServiceErrorErr
             case .jsonError:
                 code = .internalError_JSONError
+            case .kmsError:
+                code = .internalError_KmsError
             case .networkError:
                 code = .internalError_NetworkError
             case .ossError:

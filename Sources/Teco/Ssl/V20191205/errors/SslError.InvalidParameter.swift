@@ -67,6 +67,7 @@ extension TCSslError {
             InvalidParameter(.packageIdsInvalid)
         }
 
+        /// 参数有误。
         public static var withDetailReason: InvalidParameter {
             InvalidParameter(.withDetailReason)
         }

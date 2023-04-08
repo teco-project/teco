@@ -23,7 +23,7 @@ extension Clb {
         /// 要将监听器创建到哪些端口，每个端口对应一个新的监听器。
         public let ports: [Int64]
 
-        /// 监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL（TCP_SSL 正在内测中，如需使用请通过工单申请）。
+        /// 监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL | QUIC。
         public let `protocol`: String
 
         /// 要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数。

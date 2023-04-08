@@ -17,24 +17,24 @@
 extension Cbs {
     /// InquiryPriceResizeDisk请求参数结构体
     public struct InquiryPriceResizeDiskRequest: TCRequestModel {
-        /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
-        public let diskId: String
-
         /// 云硬盘扩容后的大小，单位为GB，不得小于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         public let diskSize: UInt64
+
+        /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        public let diskId: String
 
         /// 云盘所属项目ID。 如传入则仅用于鉴权。
         public let projectId: UInt64?
 
-        public init(diskId: String, diskSize: UInt64, projectId: UInt64? = nil) {
-            self.diskId = diskId
+        public init(diskSize: UInt64, diskId: String, projectId: UInt64? = nil) {
             self.diskSize = diskSize
+            self.diskId = diskId
             self.projectId = projectId
         }
 
         enum CodingKeys: String, CodingKey {
-            case diskId = "DiskId"
             case diskSize = "DiskSize"
+            case diskId = "DiskId"
             case projectId = "ProjectId"
         }
     }
@@ -56,8 +56,6 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    ///
-    /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
         self.client.execute(action: "InquiryPriceResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,8 +64,6 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    ///
-    /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
         try await self.client.execute(action: "InquiryPriceResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,20 +72,16 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    ///
-    /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
-        self.inquiryPriceResizeDisk(.init(diskId: diskId, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func inquiryPriceResizeDisk(diskSize: UInt64, diskId: String, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
+        self.inquiryPriceResizeDisk(.init(diskSize: diskSize, diskId: diskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    ///
-    /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
-        try await self.inquiryPriceResizeDisk(.init(diskId: diskId, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func inquiryPriceResizeDisk(diskSize: UInt64, diskId: String, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
+        try await self.inquiryPriceResizeDisk(.init(diskSize: diskSize, diskId: diskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

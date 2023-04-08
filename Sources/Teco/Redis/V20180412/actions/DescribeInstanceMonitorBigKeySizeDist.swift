@@ -49,24 +49,32 @@ extension Redis {
     }
 
     /// 查询实例大Key大小分布
+    ///
+    /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(_ input: DescribeInstanceMonitorBigKeySizeDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeySizeDistResponse> {
         self.client.execute(action: "DescribeInstanceMonitorBigKeySizeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key大小分布
+    ///
+    /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(_ input: DescribeInstanceMonitorBigKeySizeDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeySizeDistResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorBigKeySizeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例大Key大小分布
+    ///
+    /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeySizeDistResponse> {
         self.describeInstanceMonitorBigKeySizeDist(.init(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key大小分布
+    ///
+    /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeySizeDistResponse {
         try await self.describeInstanceMonitorBigKeySizeDist(.init(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)

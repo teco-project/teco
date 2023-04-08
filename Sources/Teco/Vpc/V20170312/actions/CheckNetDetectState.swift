@@ -20,22 +20,6 @@ extension Vpc {
         /// 探测目的IPv4地址数组，最多两个。
         public let detectDestinationIp: [String]
 
-        /// 下一跳类型，目前我们支持的类型有：
-        /// VPN：VPN网关；
-        /// DIRECTCONNECT：专线网关；
-        /// PEERCONNECTION：对等连接；
-        /// NAT：NAT网关；
-        /// NORMAL_CVM：普通云服务器；
-        public let nextHopType: String
-
-        /// 下一跳目的网关，取值与“下一跳类型”相关：
-        /// 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
-        /// 下一跳类型为DIRECTCONNECT，取值专线网关ID，形如：dcg-12345678；
-        /// 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
-        /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
-        /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        public let nextHopDestination: String
-
         /// 网络探测实例ID。形如：netd-12345678。该参数与（VpcId，SubnetId，NetDetectName），至少要有一个。当NetDetectId存在时，使用NetDetectId。
         public let netDetectId: String?
 
@@ -48,24 +32,44 @@ extension Vpc {
         /// 网络探测名称，最大长度不能超过60个字节。该参数与（VpcId，SubnetId）配合使用，与NetDetectId至少要有一个。当NetDetectId存在时，使用NetDetectId。
         public let netDetectName: String?
 
-        public init(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil) {
+        /// 下一跳类型，目前我们支持的类型有：
+        /// VPN：VPN网关；
+        /// DIRECTCONNECT：专线网关；
+        /// PEERCONNECTION：对等连接；
+        /// NAT：NAT网关；
+        /// NORMAL_CVM：普通云服务器；
+        /// CCN：云联网网关；
+        /// NONEXTHOP：无下一跳；
+        public let nextHopType: String?
+
+        /// 下一跳目的网关，取值与“下一跳类型”相关：
+        /// 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
+        /// 下一跳类型为DIRECTCONNECT，取值专线网关ID，形如：dcg-12345678；
+        /// 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
+        /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
+        /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
+        /// 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
+        /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
+        public let nextHopDestination: String?
+
+        public init(detectDestinationIp: [String], netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil) {
             self.detectDestinationIp = detectDestinationIp
-            self.nextHopType = nextHopType
-            self.nextHopDestination = nextHopDestination
             self.netDetectId = netDetectId
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.netDetectName = netDetectName
+            self.nextHopType = nextHopType
+            self.nextHopDestination = nextHopDestination
         }
 
         enum CodingKeys: String, CodingKey {
             case detectDestinationIp = "DetectDestinationIp"
-            case nextHopType = "NextHopType"
-            case nextHopDestination = "NextHopDestination"
             case netDetectId = "NetDetectId"
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
             case netDetectName = "NetDetectName"
+            case nextHopType = "NextHopType"
+            case nextHopDestination = "NextHopDestination"
         }
     }
 
@@ -85,7 +89,7 @@ extension Vpc {
 
     /// 验证网络探测
     ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    /// 本接口（CheckNetDetectState）用于验证网络探测。
     @inlinable
     public func checkNetDetectState(_ input: CheckNetDetectStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
         self.client.execute(action: "CheckNetDetectState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -93,7 +97,7 @@ extension Vpc {
 
     /// 验证网络探测
     ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    /// 本接口（CheckNetDetectState）用于验证网络探测。
     @inlinable
     public func checkNetDetectState(_ input: CheckNetDetectStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
         try await self.client.execute(action: "CheckNetDetectState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -101,17 +105,17 @@ extension Vpc {
 
     /// 验证网络探测
     ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    /// 本接口（CheckNetDetectState）用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
-        self.checkNetDetectState(.init(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), region: region, logger: logger, on: eventLoop)
+    public func checkNetDetectState(detectDestinationIp: [String], netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
+        self.checkNetDetectState(.init(detectDestinationIp: detectDestinationIp, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, nextHopType: nextHopType, nextHopDestination: nextHopDestination), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证网络探测
     ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    /// 本接口（CheckNetDetectState）用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
-        try await self.checkNetDetectState(.init(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), region: region, logger: logger, on: eventLoop)
+    public func checkNetDetectState(detectDestinationIp: [String], netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
+        try await self.checkNetDetectState(.init(detectDestinationIp: detectDestinationIp, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, nextHopType: nextHopType, nextHopDestination: nextHopDestination), region: region, logger: logger, on: eventLoop)
     }
 }

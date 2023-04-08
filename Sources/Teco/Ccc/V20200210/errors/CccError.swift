@@ -42,7 +42,20 @@ public struct TCCccError: TCCccErrorType {
         case invalidParameterValue_RecordNotExist = "InvalidParameterValue.RecordNotExist"
         case invalidParameterValue_SkillGroupError = "InvalidParameterValue.SkillGroupError"
         case invalidParameterValue_SkillGroupExist = "InvalidParameterValue.SkillGroupExist"
+        case invalidParameter_DuplicateAddress = "InvalidParameter.DuplicateAddress"
+        case invalidParameter_DuplicatePhoneNumber = "InvalidParameter.DuplicatePhoneNumber"
+        case invalidParameter_DuplicateSipAccount = "InvalidParameter.DuplicateSipAccount"
+        case invalidParameter_IllegalAddress = "InvalidParameter.IllegalAddress"
+        case invalidParameter_IllegalPhoneNumber = "InvalidParameter.IllegalPhoneNumber"
         case invalidParameter_InstanceNotExist = "InvalidParameter.InstanceNotExist"
+        case invalidParameter_InvalidAddress = "InvalidParameter.InvalidAddress"
+        case invalidParameter_InvalidIP = "InvalidParameter.InvalidIP"
+        case invalidParameter_InvalidPhoneNumber = "InvalidParameter.InvalidPhoneNumber"
+        case invalidParameter_InvalidPort = "InvalidParameter.InvalidPort"
+        case invalidParameter_SipAccountPasswordFormat = "InvalidParameter.SipAccountPasswordFormat"
+        case invalidParameter_SipAccountUserFormat = "InvalidParameter.SipAccountUserFormat"
+        case invalidParameter_SipTrunkInUsed = "InvalidParameter.SipTrunkInUsed"
+        case invalidParameter_SipTrunkNotFound = "InvalidParameter.SipTrunkNotFound"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_OutOfCountLimit = "LimitExceeded.OutOfCountLimit"
         case operationDenied_NotInWhiteList = "OperationDenied.NotInWhiteList"
@@ -84,14 +97,17 @@ public struct TCCccError: TCCccErrorType {
         TCCccError(.failedOperation_CallOutFailed)
     }
 
+    /// 被叫号码外呼受限。
     public static var failedOperation_CalleeIsLimited: TCCccError {
         TCCccError(.failedOperation_CalleeIsLimited)
     }
 
+    /// 主叫号码外呼超频。
     public static var failedOperation_CallerOverFrequency: TCCccError {
         TCCccError(.failedOperation_CallerOverFrequency)
     }
 
+    /// 当前号码状态不能被修改。
     public static var failedOperation_CurStateNotAllowModify: TCCccError {
         TCCccError(.failedOperation_CurStateNotAllowModify)
     }
@@ -101,6 +117,7 @@ public struct TCCccError: TCCccErrorType {
         TCCccError(.failedOperation_DuplicatedAccount)
     }
 
+    /// 无可用的外呼号码。
     public static var failedOperation_NoCallOutNumber: TCCccError {
         TCCccError(.failedOperation_NoCallOutNumber)
     }
@@ -112,6 +129,7 @@ public struct TCCccError: TCCccErrorType {
         TCCccError(.failedOperation_PermissionDenied)
     }
 
+    /// 坐席处于忙碌状态。
     public static var failedOperation_SeatStatusBusy: TCCccError {
         TCCccError(.failedOperation_SeatStatusBusy)
     }
@@ -146,6 +164,8 @@ public struct TCCccError: TCCccErrorType {
         TCCccError(.invalidParameterValue_InstanceNotExist)
     }
 
+    /// 号码已经绑定别的账号。
+    ///
     /// 请确认手机号是否有误
     public static var invalidParameterValue_PhoneNumIsBoundOtherAccount: TCCccError {
         TCCccError(.invalidParameterValue_PhoneNumIsBoundOtherAccount)
@@ -158,17 +178,110 @@ public struct TCCccError: TCCccErrorType {
         TCCccError(.invalidParameterValue_RecordNotExist)
     }
 
+    /// 技能组错误。
     public static var invalidParameterValue_SkillGroupError: TCCccError {
         TCCccError(.invalidParameterValue_SkillGroupError)
     }
 
+    /// 技能组已存在。
     public static var invalidParameterValue_SkillGroupExist: TCCccError {
         TCCccError(.invalidParameterValue_SkillGroupExist)
+    }
+
+    /// 重复的地址
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_DuplicateAddress: TCCccError {
+        TCCccError(.invalidParameter_DuplicateAddress)
+    }
+
+    /// 重复的号码
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_DuplicatePhoneNumber: TCCccError {
+        TCCccError(.invalidParameter_DuplicatePhoneNumber)
+    }
+
+    /// 重复的SIP账号
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_DuplicateSipAccount: TCCccError {
+        TCCccError(.invalidParameter_DuplicateSipAccount)
+    }
+
+    /// 非法的地址
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_IllegalAddress: TCCccError {
+        TCCccError(.invalidParameter_IllegalAddress)
+    }
+
+    /// 非法的号码
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_IllegalPhoneNumber: TCCccError {
+        TCCccError(.invalidParameter_IllegalPhoneNumber)
     }
 
     /// 实例不存在。
     public static var invalidParameter_InstanceNotExist: TCCccError {
         TCCccError(.invalidParameter_InstanceNotExist)
+    }
+
+    /// 无效的地址
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_InvalidAddress: TCCccError {
+        TCCccError(.invalidParameter_InvalidAddress)
+    }
+
+    /// 无效的IP信息
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_InvalidIP: TCCccError {
+        TCCccError(.invalidParameter_InvalidIP)
+    }
+
+    /// 无效的号码
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_InvalidPhoneNumber: TCCccError {
+        TCCccError(.invalidParameter_InvalidPhoneNumber)
+    }
+
+    /// 无效的端口信息
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_InvalidPort: TCCccError {
+        TCCccError(.invalidParameter_InvalidPort)
+    }
+
+    /// 密码不合法(长度大于等于八位，必须包含大小写字母以及数字)
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_SipAccountPasswordFormat: TCCccError {
+        TCCccError(.invalidParameter_SipAccountPasswordFormat)
+    }
+
+    /// 用户名不合法(只能包含A-Z、a-z、以及数字)
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_SipAccountUserFormat: TCCccError {
+        TCCccError(.invalidParameter_SipAccountUserFormat)
+    }
+
+    /// SIP通道仍在使用中
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_SipTrunkInUsed: TCCccError {
+        TCCccError(.invalidParameter_SipTrunkInUsed)
+    }
+
+    /// 未找到SIP通道信息
+    ///
+    /// 检查输入参数
+    public static var invalidParameter_SipTrunkNotFound: TCCccError {
+        TCCccError(.invalidParameter_SipTrunkNotFound)
     }
 
     /// 超过配额限制。

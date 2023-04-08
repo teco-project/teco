@@ -44,7 +44,7 @@ extension Ess {
         /// 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
         public let autoJumpBack: Bool?
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil) {

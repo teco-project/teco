@@ -28,6 +28,7 @@ public struct TCTcbError: TCTcbErrorType {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_PartialFailure = "FailedOperation.PartialFailure"
+        case failedOperation_PlatformError = "FailedOperation.PlatformError"
         case internalError = "InternalError"
         case internalError_Database = "InternalError.Database"
         case internalError_SystemFail = "InternalError.SystemFail"
@@ -114,6 +115,11 @@ public struct TCTcbError: TCTcbErrorType {
     /// 部分失败，一般是因为权限等问题导致有部分资源操作失败。具体信息关注Message。
     public static var failedOperation_PartialFailure: TCTcbError {
         TCTcbError(.failedOperation_PartialFailure)
+    }
+
+    /// 操作失败，后台依赖平台错误。
+    public static var failedOperation_PlatformError: TCTcbError {
+        TCTcbError(.failedOperation_PlatformError)
     }
 
     /// 内部错误。
@@ -268,6 +274,8 @@ public struct TCTcbError: TCTcbErrorType {
         TCTcbError(.resourceUnavailable_InvoiceAmountLack)
     }
 
+    /// 云项目oAuth授权失效（即RefreshToken过期）。
+    ///
     /// 云项目OAuth的refreshToken已过期，需要重新授权。
     public static var resourceUnavailable_RefreshTokenExpired: TCTcbError {
         TCTcbError(.resourceUnavailable_RefreshTokenExpired)

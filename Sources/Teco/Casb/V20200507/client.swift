@@ -47,7 +47,7 @@ public struct Casb: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCCasbError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

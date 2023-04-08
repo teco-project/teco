@@ -19,6 +19,7 @@ extension TCEbError {
         enum Code: String {
             case ossException = "InternalError.OssException"
             case system = "InternalError.System"
+            case unknownInternalError = "InternalError.UnknownInternalError"
             case other = "InternalError"
         }
 
@@ -54,6 +55,11 @@ extension TCEbError {
             InternalError(.system)
         }
 
+        /// 未知错误。
+        public static var unknownInternalError: InternalError {
+            InternalError(.unknownInternalError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -66,6 +72,8 @@ extension TCEbError {
                 code = .internalError_OssException
             case .system:
                 code = .internalError_System
+            case .unknownInternalError:
+                code = .internalError_UnknownInternalError
             case .other:
                 code = .internalError
             }

@@ -65,6 +65,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         case internalError_DBRowsAffectedError = "InternalError.DBRowsAffectedError"
         case internalError_DbOperationFailed = "InternalError.DbOperationFailed"
         case internalError_FenceError = "InternalError.FenceError"
+        case internalError_GetCipherTextFailed = "InternalError.GetCipherTextFailed"
         case internalError_GetDbConfigFailed = "InternalError.GetDbConfigFailed"
         case internalError_GetDbListFailed = "InternalError.GetDbListFailed"
         case internalError_GetDbObjectFailed = "InternalError.GetDbObjectFailed"
@@ -157,6 +158,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
         case unsupportedOperation_InvalidOperation = "UnsupportedOperation.InvalidOperation"
         case unsupportedOperation_OldProxyVersion = "UnsupportedOperation.OldProxyVersion"
+        case unsupportedOperation_OperationNotApplicable = "UnsupportedOperation.OperationNotApplicable"
     }
 
     /// Error domains affliated to ``TCMariadbError``.
@@ -251,6 +253,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.failedOperation_DisassociateSecurityGroupsFailed)
     }
 
+    /// 拉取安全组详情失败。
     public static var failedOperation_GetSecurityGroupDetailFailed: TCMariadbError {
         TCMariadbError(.failedOperation_GetSecurityGroupDetailFailed)
     }
@@ -270,6 +273,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.failedOperation_ModifyRightFailed)
     }
 
+    /// 隔离实例失败。
     public static var failedOperation_OssIsolateInstanceFailed: TCMariadbError {
         TCMariadbError(.failedOperation_OssIsolateInstanceFailed)
     }
@@ -299,6 +303,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.failedOperation_SetRuleLocationFailed)
     }
 
+    /// 安全组规则下发失败。
     public static var failedOperation_SetSvcLocationFailed: TCMariadbError {
         TCMariadbError(.failedOperation_SetSvcLocationFailed)
     }
@@ -308,6 +313,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.failedOperation_TagDryRunError)
     }
 
+    /// 标签配额不足。
     public static var failedOperation_TagQuotaExceedLimit: TCMariadbError {
         TCMariadbError(.failedOperation_TagQuotaExceedLimit)
     }
@@ -317,6 +323,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.failedOperation_UpdateInstanceInfoFailed)
     }
 
+    /// 用户未经鉴权。
     public static var failedOperation_UserNotAuthed: TCMariadbError {
         TCMariadbError(.failedOperation_UserNotAuthed)
     }
@@ -386,6 +393,13 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.internalError_FenceError)
     }
 
+    /// 获取数据库加密密钥失败。
+    ///
+    /// None
+    public static var internalError_GetCipherTextFailed: TCMariadbError {
+        TCMariadbError(.internalError_GetCipherTextFailed)
+    }
+
     /// 获取数据库实例参数失败。
     public static var internalError_GetDbConfigFailed: TCMariadbError {
         TCMariadbError(.internalError_GetDbConfigFailed)
@@ -441,6 +455,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.internalError_GetUserListFailed)
     }
 
+    /// 获取用户安全组数量失败。
     public static var internalError_GetUserSGCountFailed: TCMariadbError {
         TCMariadbError(.internalError_GetUserSGCountFailed)
     }
@@ -640,6 +655,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.invalidParameterValue_SuperUserForbidden)
     }
 
+    /// 当前部署方式不允许设置此同步模式。
     public static var invalidParameterValue_SyncModeNotAllowed: TCMariadbError {
         TCMariadbError(.invalidParameterValue_SyncModeNotAllowed)
     }
@@ -819,6 +835,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         TCMariadbError(.resourceUnavailable_InstanceStatusAbnormal)
     }
 
+    /// 安全组校验失败。
     public static var resourceUnavailable_SGCheckFail: TCMariadbError {
         TCMariadbError(.resourceUnavailable_SGCheckFail)
     }
@@ -841,6 +858,11 @@ public struct TCMariadbError: TCMariadbErrorType {
     /// Proxy软件版本太旧，请联系客服升级到新版本后再试。
     public static var unsupportedOperation_OldProxyVersion: TCMariadbError {
         TCMariadbError(.unsupportedOperation_OldProxyVersion)
+    }
+
+    /// 不适用的操作。
+    public static var unsupportedOperation_OperationNotApplicable: TCMariadbError {
+        TCMariadbError(.unsupportedOperation_OperationNotApplicable)
     }
 
     public func asMariadbError() -> TCMariadbError {

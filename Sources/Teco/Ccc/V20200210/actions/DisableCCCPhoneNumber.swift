@@ -17,25 +17,25 @@
 extension Ccc {
     /// DisableCCCPhoneNumber请求参数结构体
     public struct DisableCCCPhoneNumberRequest: TCRequestModel {
-        /// TCCC 实例应用 ID
-        public let sdkAppId: UInt64
-
         /// 号码列表，0086开头
         public let phoneNumbers: [String]
 
         /// 停用开关，0启用 1停用
         public let disabled: Int64
 
-        public init(sdkAppId: UInt64, phoneNumbers: [String], disabled: Int64) {
-            self.sdkAppId = sdkAppId
+        /// TCCC 实例应用 ID
+        public let sdkAppId: UInt64?
+
+        public init(phoneNumbers: [String], disabled: Int64, sdkAppId: UInt64? = nil) {
             self.phoneNumbers = phoneNumbers
             self.disabled = disabled
+            self.sdkAppId = sdkAppId
         }
 
         enum CodingKeys: String, CodingKey {
-            case sdkAppId = "SdkAppId"
             case phoneNumbers = "PhoneNumbers"
             case disabled = "Disabled"
+            case sdkAppId = "SdkAppId"
         }
     }
 
@@ -63,13 +63,13 @@ extension Ccc {
 
     /// 停用号码
     @inlinable @discardableResult
-    public func disableCCCPhoneNumber(sdkAppId: UInt64, phoneNumbers: [String], disabled: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCCCPhoneNumberResponse> {
-        self.disableCCCPhoneNumber(.init(sdkAppId: sdkAppId, phoneNumbers: phoneNumbers, disabled: disabled), region: region, logger: logger, on: eventLoop)
+    public func disableCCCPhoneNumber(phoneNumbers: [String], disabled: Int64, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCCCPhoneNumberResponse> {
+        self.disableCCCPhoneNumber(.init(phoneNumbers: phoneNumbers, disabled: disabled, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停用号码
     @inlinable @discardableResult
-    public func disableCCCPhoneNumber(sdkAppId: UInt64, phoneNumbers: [String], disabled: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
-        try await self.disableCCCPhoneNumber(.init(sdkAppId: sdkAppId, phoneNumbers: phoneNumbers, disabled: disabled), region: region, logger: logger, on: eventLoop)
+    public func disableCCCPhoneNumber(phoneNumbers: [String], disabled: Int64, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
+        try await self.disableCCCPhoneNumber(.init(phoneNumbers: phoneNumbers, disabled: disabled, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

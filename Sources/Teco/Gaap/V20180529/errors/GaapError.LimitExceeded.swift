@@ -49,6 +49,7 @@ extension TCGaapError {
             LimitExceeded(.domain)
         }
 
+        /// 标签配额不足。
         public static var tagQuota: LimitExceeded {
             LimitExceeded(.tagQuota)
         }

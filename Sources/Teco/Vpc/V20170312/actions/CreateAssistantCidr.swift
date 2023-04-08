@@ -51,7 +51,7 @@ extension Vpc {
 
     /// 创建辅助CIDR
     ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    /// 本接口（CreateAssistantCidr）用于批量创建辅助CIDR。
     @inlinable
     public func createAssistantCidr(_ input: CreateAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
         self.client.execute(action: "CreateAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// 创建辅助CIDR
     ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    /// 本接口（CreateAssistantCidr）用于批量创建辅助CIDR。
     @inlinable
     public func createAssistantCidr(_ input: CreateAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
         try await self.client.execute(action: "CreateAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 创建辅助CIDR
     ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    /// 本接口（CreateAssistantCidr）用于批量创建辅助CIDR。
     @inlinable
     public func createAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
         self.createAssistantCidr(.init(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Vpc {
 
     /// 创建辅助CIDR
     ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    /// 本接口（CreateAssistantCidr）用于批量创建辅助CIDR。
     @inlinable
     public func createAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
         try await self.createAssistantCidr(.init(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)

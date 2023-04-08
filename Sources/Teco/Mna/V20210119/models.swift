@@ -107,9 +107,24 @@ extension Mna {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceNetInfo: [DeviceNetInfo]?
 
+        /// 聚合服务器地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewaySite: String?
+
+        /// 业务下行速率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let businessDownRate: Float?
+
+        /// 业务上行速率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let businessUpRate: Float?
+
         enum CodingKeys: String, CodingKey {
             case deviceBaseInfo = "DeviceBaseInfo"
             case deviceNetInfo = "DeviceNetInfo"
+            case gatewaySite = "GatewaySite"
+            case businessDownRate = "BusinessDownRate"
+            case businessUpRate = "BusinessUpRate"
         }
     }
 
@@ -225,6 +240,14 @@ extension Mna {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let netInfoName: String?
 
+        /// 下行实时速率（浮点数类型代替上一版本DataRx的整型）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let downRate: Float?
+
+        /// 上行实时速率（浮点数类型代替上一版本TxRate的整型）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upRate: Float?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case dataEnable = "DataEnable"
@@ -238,6 +261,8 @@ extension Mna {
             case signalStrength = "SignalStrength"
             case rat = "Rat"
             case netInfoName = "NetInfoName"
+            case downRate = "DownRate"
+            case upRate = "UpRate"
         }
     }
 
@@ -265,17 +290,48 @@ extension Mna {
         }
     }
 
+    /// 设备流量信息
+    public struct FlowDetails: TCOutputModel {
+        /// 流量数据点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netDetails: [NetDetails]?
+
+        /// 设备ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceId: String?
+
+        /// 流量最大值（单位：bytes）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxValue: Float?
+
+        /// 流量平均值（单位：bytes）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avgValue: Float?
+
+        /// 流量总值（单位：bytes）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalValue: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case netDetails = "NetDetails"
+            case deviceId = "DeviceId"
+            case maxValue = "MaxValue"
+            case avgValue = "AvgValue"
+            case totalValue = "TotalValue"
+        }
+    }
+
     /// 网络详细信息
     public struct NetDetails: TCOutputModel {
-        /// 时间点，单位：s
-        public let time: String
-
         /// 流量值（bit）
         public let current: Float
 
+        /// 时间点，单位：s
+        public let time: String
+
         enum CodingKeys: String, CodingKey {
-            case time = "Time"
             case current = "Current"
+            case time = "Time"
         }
     }
 

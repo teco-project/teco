@@ -18,7 +18,7 @@ extension Vod {
     /// CreateImageProcessingTemplate请求参数结构体
     public struct CreateImageProcessingTemplateRequest: TCRequestModel {
         /// 图片处理操作数组，操作将以其在数组中的顺序执行。
-        /// <li>长度限制：3。</li>
+        /// <li>长度限制：10。</li>
         public let operations: [ImageOperation]
 
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -61,7 +61,7 @@ extension Vod {
 
     /// 创建图片即时处理模板
     ///
-    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
+    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持十次操作，例如：裁剪-缩略-裁剪-模糊-缩略-裁剪-缩略-裁剪-模糊-缩略。
     @inlinable
     public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
         self.client.execute(action: "CreateImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Vod {
 
     /// 创建图片即时处理模板
     ///
-    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
+    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持十次操作，例如：裁剪-缩略-裁剪-模糊-缩略-裁剪-缩略-裁剪-模糊-缩略。
     @inlinable
     public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
         try await self.client.execute(action: "CreateImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -77,7 +77,7 @@ extension Vod {
 
     /// 创建图片即时处理模板
     ///
-    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
+    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持十次操作，例如：裁剪-缩略-裁剪-模糊-缩略-裁剪-缩略-裁剪-模糊-缩略。
     @inlinable
     public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
         self.createImageProcessingTemplate(.init(operations: operations, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
@@ -85,7 +85,7 @@ extension Vod {
 
     /// 创建图片即时处理模板
     ///
-    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
+    /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持十次操作，例如：裁剪-缩略-裁剪-模糊-缩略-裁剪-缩略-裁剪-模糊-缩略。
     @inlinable
     public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
         try await self.createImageProcessingTemplate(.init(operations: operations, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)

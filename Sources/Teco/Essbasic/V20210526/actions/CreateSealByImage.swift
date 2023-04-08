@@ -17,7 +17,7 @@
 extension Essbasic {
     /// CreateSealByImage请求参数结构体
     public struct CreateSealByImageRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 印章名称，最大长度不超过50字符
@@ -58,33 +58,33 @@ extension Essbasic {
         }
     }
 
-    /// 渠道通过图片为子客代创建印章
+    /// 通过图片为子客企业代创建印章
     ///
-    /// 渠道通过图片为子客代创建印章，图片最大5MB
+    /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
     public func createSealByImage(_ input: CreateSealByImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
         self.client.execute(action: "CreateSealByImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 渠道通过图片为子客代创建印章
+    /// 通过图片为子客企业代创建印章
     ///
-    /// 渠道通过图片为子客代创建印章，图片最大5MB
+    /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
     public func createSealByImage(_ input: CreateSealByImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
         try await self.client.execute(action: "CreateSealByImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 渠道通过图片为子客代创建印章
+    /// 通过图片为子客企业代创建印章
     ///
-    /// 渠道通过图片为子客代创建印章，图片最大5MB
+    /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
     public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
         self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 渠道通过图片为子客代创建印章
+    /// 通过图片为子客企业代创建印章
     ///
-    /// 渠道通过图片为子客代创建印章，图片最大5MB
+    /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
     public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
         try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)

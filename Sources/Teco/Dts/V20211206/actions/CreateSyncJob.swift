@@ -26,7 +26,7 @@ extension Dts {
         /// 源端数据库所在地域,如ap-guangzhou
         public let srcRegion: String
 
-        /// 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
+        /// 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql,kafka等
         public let dstDatabaseType: String
 
         /// 目标端数据库所在地域,如ap-guangzhou

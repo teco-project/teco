@@ -20,7 +20,7 @@ extension Vpc {
         /// 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
         public let networkInterfaceId: String
 
-        /// 指定的内网IPv6`地址信息。
+        /// 指定的内网IPv6地址信息。
         public let ipv6Addresses: [Ipv6Address]
 
         public init(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]) {

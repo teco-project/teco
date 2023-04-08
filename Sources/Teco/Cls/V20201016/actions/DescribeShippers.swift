@@ -100,57 +100,43 @@ extension Cls {
         }
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable
     public func describeShippers(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShippersResponse> {
         self.client.execute(action: "DescribeShippers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable
     public func describeShippers(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
         try await self.client.execute(action: "DescribeShippers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable
     public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShippersResponse> {
         self.describeShippers(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable
     public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
         try await self.describeShippers(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable
     public func describeShippersPaginated(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ShipperInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     @inlinable @discardableResult
     public func describeShippersPaginated(_ input: DescribeShippersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeShippersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeShippers, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
+    /// 获取投递到COS的任务配置信息
     ///
     /// - Returns: `AsyncSequence`s of `ShipperInfo` and `DescribeShippersResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -54,7 +54,13 @@ extension Tcb {
         /// <li>Activity：活动来源</li>
         public let flag: String?
 
-        public init(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil) {
+        /// 环境别名，无字符类型限制
+        public let envAlias: String?
+
+        /// 附加字段，用于透传额外的自定义信息
+        public let extra: String?
+
+        public init(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, envAlias: String? = nil, extra: String? = nil) {
             self.envId = envId
             self.wxAppId = wxAppId
             self.source = source
@@ -64,6 +70,8 @@ extension Tcb {
             self.channel = channel
             self.extensionId = extensionId
             self.flag = flag
+            self.envAlias = envAlias
+            self.extra = extra
         }
 
         enum CodingKeys: String, CodingKey {
@@ -76,6 +84,8 @@ extension Tcb {
             case channel = "Channel"
             case extensionId = "ExtensionId"
             case flag = "Flag"
+            case envAlias = "EnvAlias"
+            case extra = "Extra"
         }
     }
 
@@ -112,13 +122,13 @@ extension Tcb {
 
     /// 开通后付费资源
     @inlinable
-    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePostpayPackageResponse> {
-        self.createPostpayPackage(.init(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), region: region, logger: logger, on: eventLoop)
+    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, envAlias: String? = nil, extra: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePostpayPackageResponse> {
+        self.createPostpayPackage(.init(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag, envAlias: envAlias, extra: extra), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通后付费资源
     @inlinable
-    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
-        try await self.createPostpayPackage(.init(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), region: region, logger: logger, on: eventLoop)
+    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, envAlias: String? = nil, extra: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
+        try await self.createPostpayPackage(.init(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag, envAlias: envAlias, extra: extra), region: region, logger: logger, on: eventLoop)
     }
 }

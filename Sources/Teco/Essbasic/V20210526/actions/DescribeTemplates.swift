@@ -19,7 +19,7 @@ import TecoPaginationHelpers
 extension Essbasic {
     /// DescribeTemplates请求参数结构体
     public struct DescribeTemplatesRequest: TCPaginatedRequest {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 模板唯一标识，查询单个模板时使用
@@ -46,10 +46,10 @@ extension Essbasic {
         /// 是否获取模板预览链接
         public let withPreviewUrl: Bool?
 
-        /// 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
+        /// 是否获取模板的PDF文件链接- 第三方应用集成需要开启白名单时才能使用。
         public let withPdfUrl: Bool?
 
-        /// 渠道模板ID
+        /// 模板ID
         public let channelTemplateId: String?
 
         public init(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil) {
@@ -127,7 +127,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable
     public func describeTemplates(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
         self.client.execute(action: "DescribeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -135,7 +135,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable
     public func describeTemplates(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
         try await self.client.execute(action: "DescribeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -143,7 +143,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable
     public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
         self.describeTemplates(.init(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
@@ -151,7 +151,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable
     public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
         try await self.describeTemplates(.init(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
@@ -159,7 +159,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable
     public func describeTemplatesPaginated(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemplateInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)
@@ -167,7 +167,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     @inlinable @discardableResult
     public func describeTemplatesPaginated(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeTemplates, callback: onResponse, logger: logger, on: eventLoop)
@@ -175,7 +175,7 @@ extension Essbasic {
 
     /// 查询模板信息列表
     ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    /// 通过此接口（DescribeTemplates）查询该第三方平台子客企业在电子签拥有的有效模板，不包括第三方平台模板
     ///
     /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable

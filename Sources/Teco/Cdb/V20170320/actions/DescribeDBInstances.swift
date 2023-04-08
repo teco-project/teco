@@ -19,7 +19,7 @@ import TecoPaginationHelpers
 extension Cdb {
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCPaginatedRequest {
-        /// 项目 ID，可使用 [查询项目列表](https://cloud.tencent.com/document/product/378/4400) 接口查询项目 ID。
+        /// 项目 ID。
         public let projectId: Int64?
 
         /// 实例类型，可取值：1 - 主实例，2 - 灾备实例，3 - 只读实例。
@@ -28,7 +28,7 @@ extension Cdb {
         /// 实例的内网 IP 地址。
         public let vips: [String]?
 
-        /// 实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 隔离中（可在回收站恢复开机）
+        /// 实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 已隔离（可在回收站恢复开机）
         public let status: [UInt64]?
 
         /// 偏移量，默认值为 0。
@@ -121,7 +121,10 @@ extension Cdb {
         /// 数据库代理 ID 。
         public let proxyIds: [String]?
 
-        public init(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil) {
+        /// 数据库引擎类型。
+        public let engineTypes: [String]?
+
+        public init(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil, engineTypes: [String]? = nil) {
             self.projectId = projectId
             self.instanceTypes = instanceTypes
             self.vips = vips
@@ -156,6 +159,7 @@ extension Cdb {
             self.tags = tags
             self.proxyVips = proxyVips
             self.proxyIds = proxyIds
+            self.engineTypes = engineTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -193,6 +197,7 @@ extension Cdb {
             case tags = "Tags"
             case proxyVips = "ProxyVips"
             case proxyIds = "ProxyIds"
+            case engineTypes = "EngineTypes"
         }
 
         /// Compute the next request based on API response.
@@ -200,7 +205,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBInstancesRequest(projectId: self.projectId, instanceTypes: self.instanceTypes, vips: self.vips, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, securityGroupId: self.securityGroupId, payTypes: self.payTypes, instanceNames: self.instanceNames, taskStatus: self.taskStatus, engineVersions: self.engineVersions, vpcIds: self.vpcIds, zoneIds: self.zoneIds, subnetIds: self.subnetIds, cdbErrors: self.cdbErrors, orderBy: self.orderBy, orderDirection: self.orderDirection, withSecurityGroup: self.withSecurityGroup, withExCluster: self.withExCluster, exClusterId: self.exClusterId, instanceIds: self.instanceIds, initFlag: self.initFlag, withDr: self.withDr, withRo: self.withRo, withMaster: self.withMaster, deployGroupIds: self.deployGroupIds, tagKeysForSearch: self.tagKeysForSearch, cageIds: self.cageIds, tagValues: self.tagValues, uniqueVpcIds: self.uniqueVpcIds, uniqSubnetIds: self.uniqSubnetIds, tags: self.tags, proxyVips: self.proxyVips, proxyIds: self.proxyIds)
+            return DescribeDBInstancesRequest(projectId: self.projectId, instanceTypes: self.instanceTypes, vips: self.vips, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, securityGroupId: self.securityGroupId, payTypes: self.payTypes, instanceNames: self.instanceNames, taskStatus: self.taskStatus, engineVersions: self.engineVersions, vpcIds: self.vpcIds, zoneIds: self.zoneIds, subnetIds: self.subnetIds, cdbErrors: self.cdbErrors, orderBy: self.orderBy, orderDirection: self.orderDirection, withSecurityGroup: self.withSecurityGroup, withExCluster: self.withExCluster, exClusterId: self.exClusterId, instanceIds: self.instanceIds, initFlag: self.initFlag, withDr: self.withDr, withRo: self.withRo, withMaster: self.withMaster, deployGroupIds: self.deployGroupIds, tagKeysForSearch: self.tagKeysForSearch, cageIds: self.cageIds, tagValues: self.tagValues, uniqueVpcIds: self.uniqueVpcIds, uniqSubnetIds: self.uniqSubnetIds, tags: self.tags, proxyVips: self.proxyVips, proxyIds: self.proxyIds, engineTypes: self.engineTypes)
         }
     }
 
@@ -252,16 +257,16 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
     @inlinable
-    public func describeDBInstances(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
-        self.describeDBInstances(.init(projectId: projectId, instanceTypes: instanceTypes, vips: vips, status: status, offset: offset, limit: limit, securityGroupId: securityGroupId, payTypes: payTypes, instanceNames: instanceNames, taskStatus: taskStatus, engineVersions: engineVersions, vpcIds: vpcIds, zoneIds: zoneIds, subnetIds: subnetIds, cdbErrors: cdbErrors, orderBy: orderBy, orderDirection: orderDirection, withSecurityGroup: withSecurityGroup, withExCluster: withExCluster, exClusterId: exClusterId, instanceIds: instanceIds, initFlag: initFlag, withDr: withDr, withRo: withRo, withMaster: withMaster, deployGroupIds: deployGroupIds, tagKeysForSearch: tagKeysForSearch, cageIds: cageIds, tagValues: tagValues, uniqueVpcIds: uniqueVpcIds, uniqSubnetIds: uniqSubnetIds, tags: tags, proxyVips: proxyVips, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
+    public func describeDBInstances(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil, engineTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
+        self.describeDBInstances(.init(projectId: projectId, instanceTypes: instanceTypes, vips: vips, status: status, offset: offset, limit: limit, securityGroupId: securityGroupId, payTypes: payTypes, instanceNames: instanceNames, taskStatus: taskStatus, engineVersions: engineVersions, vpcIds: vpcIds, zoneIds: zoneIds, subnetIds: subnetIds, cdbErrors: cdbErrors, orderBy: orderBy, orderDirection: orderDirection, withSecurityGroup: withSecurityGroup, withExCluster: withExCluster, exClusterId: exClusterId, instanceIds: instanceIds, initFlag: initFlag, withDr: withDr, withRo: withRo, withMaster: withMaster, deployGroupIds: deployGroupIds, tagKeysForSearch: tagKeysForSearch, cageIds: cageIds, tagValues: tagValues, uniqueVpcIds: uniqueVpcIds, uniqSubnetIds: uniqSubnetIds, tags: tags, proxyVips: proxyVips, proxyIds: proxyIds, engineTypes: engineTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
     ///
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
     @inlinable
-    public func describeDBInstances(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.describeDBInstances(.init(projectId: projectId, instanceTypes: instanceTypes, vips: vips, status: status, offset: offset, limit: limit, securityGroupId: securityGroupId, payTypes: payTypes, instanceNames: instanceNames, taskStatus: taskStatus, engineVersions: engineVersions, vpcIds: vpcIds, zoneIds: zoneIds, subnetIds: subnetIds, cdbErrors: cdbErrors, orderBy: orderBy, orderDirection: orderDirection, withSecurityGroup: withSecurityGroup, withExCluster: withExCluster, exClusterId: exClusterId, instanceIds: instanceIds, initFlag: initFlag, withDr: withDr, withRo: withRo, withMaster: withMaster, deployGroupIds: deployGroupIds, tagKeysForSearch: tagKeysForSearch, cageIds: cageIds, tagValues: tagValues, uniqueVpcIds: uniqueVpcIds, uniqSubnetIds: uniqSubnetIds, tags: tags, proxyVips: proxyVips, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
+    public func describeDBInstances(projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil, proxyVips: [String]? = nil, proxyIds: [String]? = nil, engineTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.describeDBInstances(.init(projectId: projectId, instanceTypes: instanceTypes, vips: vips, status: status, offset: offset, limit: limit, securityGroupId: securityGroupId, payTypes: payTypes, instanceNames: instanceNames, taskStatus: taskStatus, engineVersions: engineVersions, vpcIds: vpcIds, zoneIds: zoneIds, subnetIds: subnetIds, cdbErrors: cdbErrors, orderBy: orderBy, orderDirection: orderDirection, withSecurityGroup: withSecurityGroup, withExCluster: withExCluster, exClusterId: exClusterId, instanceIds: instanceIds, initFlag: initFlag, withDr: withDr, withRo: withRo, withMaster: withMaster, deployGroupIds: deployGroupIds, tagKeysForSearch: tagKeysForSearch, cageIds: cageIds, tagValues: tagValues, uniqueVpcIds: uniqueVpcIds, uniqSubnetIds: uniqSubnetIds, tags: tags, proxyVips: proxyVips, proxyIds: proxyIds, engineTypes: engineTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表

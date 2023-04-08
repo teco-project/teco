@@ -17,8 +17,12 @@
 extension TCDasbError {
     public struct FailedOperation: TCDasbErrorType {
         enum Code: String {
+            case authFailed = "FailedOperation.AuthFailed"
+            case connectionFailed = "FailedOperation.ConnectionFailed"
             case dataNotFound = "FailedOperation.DataNotFound"
             case duplicateData = "FailedOperation.DuplicateData"
+            case tooFrequent = "FailedOperation.TooFrequent"
+            case vpcDeployed = "FailedOperation.VPCDeployed"
             case other = "FailedOperation"
         }
 
@@ -44,6 +48,20 @@ extension TCDasbError {
             self.context = context
         }
 
+        /// 账号或密码错误。
+        ///
+        /// 请检查账号或密码信息。
+        public static var authFailed: FailedOperation {
+            FailedOperation(.authFailed)
+        }
+
+        /// 连接服务器失败。
+        ///
+        /// 请检查网络之后重试。
+        public static var connectionFailed: FailedOperation {
+            FailedOperation(.connectionFailed)
+        }
+
         /// 目标数据不存在。
         public static var dataNotFound: FailedOperation {
             FailedOperation(.dataNotFound)
@@ -54,6 +72,20 @@ extension TCDasbError {
             FailedOperation(.duplicateData)
         }
 
+        /// 操作过于频繁，请稍后再试。
+        ///
+        /// 稍后重试
+        public static var tooFrequent: FailedOperation {
+            FailedOperation(.tooFrequent)
+        }
+
+        /// 该VPC已开通服务，请选择其他VPC。
+        ///
+        /// 请选择其他未开通过服务的VPC。
+        public static var vpcDeployed: FailedOperation {
+            FailedOperation(.vpcDeployed)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -62,10 +94,18 @@ extension TCDasbError {
         public func asDasbError() -> TCDasbError {
             let code: TCDasbError.Code
             switch self.error {
+            case .authFailed:
+                code = .failedOperation_AuthFailed
+            case .connectionFailed:
+                code = .failedOperation_ConnectionFailed
             case .dataNotFound:
                 code = .failedOperation_DataNotFound
             case .duplicateData:
                 code = .failedOperation_DuplicateData
+            case .tooFrequent:
+                code = .failedOperation_TooFrequent
+            case .vpcDeployed:
+                code = .failedOperation_VPCDeployed
             case .other:
                 code = .failedOperation
             }

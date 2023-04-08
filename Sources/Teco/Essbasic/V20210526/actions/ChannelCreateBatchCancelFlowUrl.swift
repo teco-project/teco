@@ -17,13 +17,13 @@
 extension Essbasic {
     /// ChannelCreateBatchCancelFlowUrl请求参数结构体
     public struct ChannelCreateBatchCancelFlowUrlRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 签署流程Id数组
         public let flowIds: [String]
 
-        /// 操作人信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, flowIds: [String], operator: UserInfo? = nil) {
@@ -61,7 +61,7 @@ extension Essbasic {
         }
     }
 
-    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    /// 根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
     /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
@@ -74,7 +74,7 @@ extension Essbasic {
         self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    /// 根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
     /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
@@ -87,7 +87,7 @@ extension Essbasic {
         try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    /// 根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
     /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
@@ -100,7 +100,7 @@ extension Essbasic {
         self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    /// 根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
     /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；

@@ -19,6 +19,7 @@ extension TCImsError {
         enum Code: String {
             case emptyImageContent = "InvalidParameterValue.EmptyImageContent"
             case imageSizeTooSmall = "InvalidParameterValue.ImageSizeTooSmall"
+            case invalidCallbackUrl = "InvalidParameterValue.InvalidCallbackUrl"
             case invalidContent = "InvalidParameterValue.InvalidContent"
             case invalidDataId = "InvalidParameterValue.InvalidDataId"
             case invalidFileContentSize = "InvalidParameterValue.InvalidFileContentSize"
@@ -59,6 +60,13 @@ extension TCImsError {
             InvalidParameterValue(.imageSizeTooSmall)
         }
 
+        /// 回调地址错误。
+        ///
+        /// 检查回调地址格式及是否为内网地址。
+        public static var invalidCallbackUrl: InvalidParameterValue {
+            InvalidParameterValue(.invalidCallbackUrl)
+        }
+
         /// FileContent和FileUrl为空。
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
@@ -96,6 +104,8 @@ extension TCImsError {
                 code = .invalidParameterValue_EmptyImageContent
             case .imageSizeTooSmall:
                 code = .invalidParameterValue_ImageSizeTooSmall
+            case .invalidCallbackUrl:
+                code = .invalidParameterValue_InvalidCallbackUrl
             case .invalidContent:
                 code = .invalidParameterValue_InvalidContent
             case .invalidDataId:

@@ -37,6 +37,7 @@ extension TCIaiError {
             case jobCannnotRollback = "FailedOperation.JobCannnotRollback"
             case requestLimitExceeded = "FailedOperation.RequestLimitExceeded"
             case requestTimeout = "FailedOperation.RequestTimeout"
+            case rpcFail = "FailedOperation.RpcFail"
             case searchFacesExceed = "FailedOperation.SearchFacesExceed"
             case serverError = "FailedOperation.ServerError"
             case unKnowError = "FailedOperation.UnKnowError"
@@ -166,6 +167,11 @@ extension TCIaiError {
             FailedOperation(.requestTimeout)
         }
 
+        /// Rpc调用失败。
+        public static var rpcFail: FailedOperation {
+            FailedOperation(.rpcFail)
+        }
+
         /// 检索人脸个数超过限制。
         public static var searchFacesExceed: FailedOperation {
             FailedOperation(.searchFacesExceed)
@@ -234,6 +240,8 @@ extension TCIaiError {
                 code = .failedOperation_RequestLimitExceeded
             case .requestTimeout:
                 code = .failedOperation_RequestTimeout
+            case .rpcFail:
+                code = .failedOperation_RpcFail
             case .searchFacesExceed:
                 code = .failedOperation_SearchFacesExceed
             case .serverError:

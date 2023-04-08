@@ -30,8 +30,10 @@ extension TCTioneError {
             case dcFilterValues = "InvalidParameterValue.DCFilterValues"
             case duplicateName = "InvalidParameterValue.DuplicateName"
             case frameworkVersionNotSupport = "InvalidParameterValue.FrameworkVersionNotSupport"
+            case imageNotFound = "InvalidParameterValue.ImageNotFound"
             case invalidFilter = "InvalidParameterValue.InvalidFilter"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
+            case notAllow = "InvalidParameterValue.NotAllow"
             case other = "InvalidParameterValue"
         }
 
@@ -124,14 +126,28 @@ extension TCTioneError {
             InvalidParameterValue(.frameworkVersionNotSupport)
         }
 
+        /// 训练任务镜像不存在。
+        public static var imageNotFound: InvalidParameterValue {
+            InvalidParameterValue(.imageNotFound)
+        }
+
+        /// 无效的过滤器。
+        ///
         /// 检查过滤器参数
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
         }
 
+        /// 参数值数量超过限制。
+        ///
         /// 减少参数值数量
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
+        }
+
+        /// 操作不允许。
+        public static var notAllow: InvalidParameterValue {
+            InvalidParameterValue(.notAllow)
         }
 
         /// 参数取值错误。
@@ -168,10 +184,14 @@ extension TCTioneError {
                 code = .invalidParameterValue_DuplicateName
             case .frameworkVersionNotSupport:
                 code = .invalidParameterValue_FrameworkVersionNotSupport
+            case .imageNotFound:
+                code = .invalidParameterValue_ImageNotFound
             case .invalidFilter:
                 code = .invalidParameterValue_InvalidFilter
             case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
+            case .notAllow:
+                code = .invalidParameterValue_NotAllow
             case .other:
                 code = .invalidParameterValue
             }

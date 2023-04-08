@@ -475,7 +475,11 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allIpDone: Bool?
 
-        public init(name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, applicationName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil, servicePortMappingList: [ServicePortMapping]? = nil, flushAll: Bool? = nil, enableRegistryNextDeploy: Int64? = nil, applicationId: String? = nil, allIpDone: Bool? = nil) {
+        /// clb 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalDomain: String?
+
+        public init(name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, applicationName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil, servicePortMappingList: [ServicePortMapping]? = nil, flushAll: Bool? = nil, enableRegistryNextDeploy: Int64? = nil, applicationId: String? = nil, allIpDone: Bool? = nil, externalDomain: String? = nil) {
             self.name = name
             self.ports = ports
             self.yaml = yaml
@@ -492,6 +496,7 @@ extension Tem {
             self.enableRegistryNextDeploy = enableRegistryNextDeploy
             self.applicationId = applicationId
             self.allIpDone = allIpDone
+            self.externalDomain = externalDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -511,6 +516,7 @@ extension Tem {
             case enableRegistryNextDeploy = "EnableRegistryNextDeploy"
             case applicationId = "ApplicationId"
             case allIpDone = "AllIpDone"
+            case externalDomain = "ExternalDomain"
         }
     }
 
@@ -717,7 +723,11 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteType: String?
 
-        public init(environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil, rewriteType: String? = nil) {
+        /// clb 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        public init(environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil, rewriteType: String? = nil, domain: String? = nil) {
             self.environmentId = environmentId
             self.clusterNamespace = clusterNamespace
             self.addressIPVersion = addressIPVersion
@@ -730,6 +740,7 @@ extension Tem {
             self.createTime = createTime
             self.mixed = mixed
             self.rewriteType = rewriteType
+            self.domain = domain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -745,6 +756,7 @@ extension Tem {
             case createTime = "CreateTime"
             case mixed = "Mixed"
             case rewriteType = "RewriteType"
+            case domain = "Domain"
         }
     }
 
@@ -955,7 +967,15 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unMatchedKey: String?
 
-        public init(beginningRegex: String? = nil, keys: [String]? = nil, filterKeys: [String]? = nil, filterRegex: [String]? = nil, logRegex: String? = nil, timeKey: String? = nil, timeFormat: String? = nil, unMatchUpload: String? = nil, unMatchedKey: String? = nil) {
+        /// tracking
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let backtracking: String?
+
+        /// 分隔符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let delimiter: String?
+
+        public init(beginningRegex: String? = nil, keys: [String]? = nil, filterKeys: [String]? = nil, filterRegex: [String]? = nil, logRegex: String? = nil, timeKey: String? = nil, timeFormat: String? = nil, unMatchUpload: String? = nil, unMatchedKey: String? = nil, backtracking: String? = nil, delimiter: String? = nil) {
             self.beginningRegex = beginningRegex
             self.keys = keys
             self.filterKeys = filterKeys
@@ -965,6 +985,8 @@ extension Tem {
             self.timeFormat = timeFormat
             self.unMatchUpload = unMatchUpload
             self.unMatchedKey = unMatchedKey
+            self.backtracking = backtracking
+            self.delimiter = delimiter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -977,6 +999,8 @@ extension Tem {
             case timeFormat = "TimeFormat"
             case unMatchUpload = "UnMatchUpload"
             case unMatchedKey = "UnMatchedKey"
+            case backtracking = "Backtracking"
+            case delimiter = "Delimiter"
         }
     }
 
@@ -1459,7 +1483,11 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let portMappingItemList: [ServicePortMappingItem]?
 
-        public init(type: String? = nil, serviceName: String? = nil, clusterIp: String? = nil, externalIp: String? = nil, subnetId: String? = nil, vpcId: String? = nil, loadBalanceId: String? = nil, yaml: String? = nil, ports: [Int64]? = nil, portMappingItemList: [ServicePortMappingItem]? = nil) {
+        /// clb domain
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalDomain: String?
+
+        public init(type: String? = nil, serviceName: String? = nil, clusterIp: String? = nil, externalIp: String? = nil, subnetId: String? = nil, vpcId: String? = nil, loadBalanceId: String? = nil, yaml: String? = nil, ports: [Int64]? = nil, portMappingItemList: [ServicePortMappingItem]? = nil, externalDomain: String? = nil) {
             self.type = type
             self.serviceName = serviceName
             self.clusterIp = clusterIp
@@ -1470,6 +1498,7 @@ extension Tem {
             self.yaml = yaml
             self.ports = ports
             self.portMappingItemList = portMappingItemList
+            self.externalDomain = externalDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1483,6 +1512,7 @@ extension Tem {
             case yaml = "Yaml"
             case ports = "Ports"
             case portMappingItemList = "PortMappingItemList"
+            case externalDomain = "ExternalDomain"
         }
     }
 
@@ -1590,6 +1620,10 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createDate: String?
 
+        /// 地域id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionId: String?
+
         enum CodingKeys: String, CodingKey {
             case versionName = "VersionName"
             case status = "Status"
@@ -1611,6 +1645,7 @@ extension Tem {
             case podList = "PodList"
             case workloadInfo = "WorkloadInfo"
             case createDate = "CreateDate"
+            case regionId = "RegionId"
         }
     }
 
@@ -1784,14 +1819,20 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startedApplicationNum: Int64?
 
-        public init(applicationNumNeedToStart: Int64? = nil, startedApplicationNum: Int64? = nil) {
+        /// 启动失败的应用数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startFailedApplicationNum: Int64?
+
+        public init(applicationNumNeedToStart: Int64? = nil, startedApplicationNum: Int64? = nil, startFailedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStart = applicationNumNeedToStart
             self.startedApplicationNum = startedApplicationNum
+            self.startFailedApplicationNum = startFailedApplicationNum
         }
 
         enum CodingKeys: String, CodingKey {
             case applicationNumNeedToStart = "ApplicationNumNeedToStart"
             case startedApplicationNum = "StartedApplicationNum"
+            case startFailedApplicationNum = "StartFailedApplicationNum"
         }
     }
 
@@ -1805,14 +1846,20 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppedApplicationNum: Int64?
 
-        public init(applicationNumNeedToStop: Int64? = nil, stoppedApplicationNum: Int64? = nil) {
+        /// 停止失败的应用数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stopFailedApplicationNum: Int64?
+
+        public init(applicationNumNeedToStop: Int64? = nil, stoppedApplicationNum: Int64? = nil, stopFailedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStop = applicationNumNeedToStop
             self.stoppedApplicationNum = stoppedApplicationNum
+            self.stopFailedApplicationNum = stopFailedApplicationNum
         }
 
         enum CodingKeys: String, CodingKey {
             case applicationNumNeedToStop = "ApplicationNumNeedToStop"
             case stoppedApplicationNum = "StoppedApplicationNum"
+            case stopFailedApplicationNum = "StopFailedApplicationNum"
         }
     }
 
@@ -2361,7 +2408,15 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
 
-        public init(versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf? = nil, applicationName: String? = nil, applicationDescription: String? = nil, environmentName: String? = nil, environmentId: String? = nil, publicDomain: String? = nil, enablePublicAccess: Bool? = nil, currentInstances: Int64? = nil, expectedInstances: Int64? = nil, codingLanguage: String? = nil, pkgName: String? = nil, esEnable: Int64? = nil, esStrategy: Int64? = nil, imageTag: String? = nil, logEnable: Int64? = nil, minAliveInstances: String? = nil, securityGroupIds: [String]? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, useRegistryDefaultConfig: Bool? = nil, service: EksService? = nil, settingConfs: [MountedSettingConf]? = nil, logConfs: [String]? = nil, postStart: String? = nil, preStop: String? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, zones: [String]? = nil, lastDeployDate: String? = nil, lastDeploySuccessDate: String? = nil, nodeInfos: [NodeInfo]? = nil, imageType: Int64? = nil, enableTracing: UInt64? = nil, enableTracingReport: UInt64? = nil, repoType: UInt64? = nil, batchDeployStatus: String? = nil, apmInstanceId: String? = nil, workloadInfo: WorkloadInfo? = nil, speedUp: Bool? = nil, startupProbe: HealthCheckConfig? = nil, osFlavour: String? = nil, repoServer: String? = nil, underDeploying: Bool? = nil, enablePrometheusConf: EnablePrometheusConf? = nil, stoppedManually: Bool? = nil, tcrInstanceId: String? = nil, enableMetrics: Int64? = nil, appId: String? = nil, subAccountUin: String? = nil, uin: String? = nil, region: String? = nil, groupId: String? = nil, enableRegistry: Int64? = nil, autoscalerList: [Autoscaler]? = nil, modifier: String? = nil, creator: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, podList: DescribeRunPodPage? = nil, confEdited: Bool? = nil, tags: [Tag]? = nil) {
+        /// 是否编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preStopEncoded: String?
+
+        /// 是否编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let postStartEncoded: String?
+
+        public init(versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf? = nil, applicationName: String? = nil, applicationDescription: String? = nil, environmentName: String? = nil, environmentId: String? = nil, publicDomain: String? = nil, enablePublicAccess: Bool? = nil, currentInstances: Int64? = nil, expectedInstances: Int64? = nil, codingLanguage: String? = nil, pkgName: String? = nil, esEnable: Int64? = nil, esStrategy: Int64? = nil, imageTag: String? = nil, logEnable: Int64? = nil, minAliveInstances: String? = nil, securityGroupIds: [String]? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, useRegistryDefaultConfig: Bool? = nil, service: EksService? = nil, settingConfs: [MountedSettingConf]? = nil, logConfs: [String]? = nil, postStart: String? = nil, preStop: String? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, zones: [String]? = nil, lastDeployDate: String? = nil, lastDeploySuccessDate: String? = nil, nodeInfos: [NodeInfo]? = nil, imageType: Int64? = nil, enableTracing: UInt64? = nil, enableTracingReport: UInt64? = nil, repoType: UInt64? = nil, batchDeployStatus: String? = nil, apmInstanceId: String? = nil, workloadInfo: WorkloadInfo? = nil, speedUp: Bool? = nil, startupProbe: HealthCheckConfig? = nil, osFlavour: String? = nil, repoServer: String? = nil, underDeploying: Bool? = nil, enablePrometheusConf: EnablePrometheusConf? = nil, stoppedManually: Bool? = nil, tcrInstanceId: String? = nil, enableMetrics: Int64? = nil, appId: String? = nil, subAccountUin: String? = nil, uin: String? = nil, region: String? = nil, groupId: String? = nil, enableRegistry: Int64? = nil, autoscalerList: [Autoscaler]? = nil, modifier: String? = nil, creator: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, podList: DescribeRunPodPage? = nil, confEdited: Bool? = nil, tags: [Tag]? = nil, preStopEncoded: String? = nil, postStartEncoded: String? = nil) {
             self.versionId = versionId
             self.applicationId = applicationId
             self.deployMode = deployMode
@@ -2448,6 +2503,8 @@ extension Tem {
             self.podList = podList
             self.confEdited = confEdited
             self.tags = tags
+            self.preStopEncoded = preStopEncoded
+            self.postStartEncoded = postStartEncoded
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2537,6 +2594,8 @@ extension Tem {
             case podList = "PodList"
             case confEdited = "ConfEdited"
             case tags = "Tags"
+            case preStopEncoded = "PreStopEncoded"
+            case postStartEncoded = "PostStartEncoded"
         }
     }
 

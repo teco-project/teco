@@ -19,6 +19,7 @@ extension TCScfError {
         enum Code: String {
             case alias = "ResourceNotFound.Alias"
             case asyncEvent = "ResourceNotFound.AsyncEvent"
+            case attachedTagKeyNotFound = "ResourceNotFound.AttachedTagKeyNotFound"
             case cdn = "ResourceNotFound.Cdn"
             case cfsMountInsNotMatch = "ResourceNotFound.CfsMountInsNotMatch"
             case cfsProtocolError = "ResourceNotFound.CfsProtocolError"
@@ -78,6 +79,11 @@ extension TCScfError {
         /// 未找到指定的AsyncEvent，请创建后再试。
         public static var asyncEvent: ResourceNotFound {
             ResourceNotFound(.asyncEvent)
+        }
+
+        /// 函数需要关联的标签Key不存在。
+        public static var attachedTagKeyNotFound: ResourceNotFound {
+            ResourceNotFound(.attachedTagKeyNotFound)
         }
 
         /// Cdn不存在。
@@ -224,6 +230,8 @@ extension TCScfError {
                 code = .resourceNotFound_Alias
             case .asyncEvent:
                 code = .resourceNotFound_AsyncEvent
+            case .attachedTagKeyNotFound:
+                code = .resourceNotFound_AttachedTagKeyNotFound
             case .cdn:
                 code = .resourceNotFound_Cdn
             case .cfsMountInsNotMatch:

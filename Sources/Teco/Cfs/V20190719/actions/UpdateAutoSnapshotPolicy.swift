@@ -35,13 +35,21 @@ extension Cfs {
         /// 是否激活定期快照功能
         public let isActivated: UInt64?
 
-        public init(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil) {
+        /// 定期快照在月的某几天天，该参数与DayOfWeek互斥
+        public let dayOfMonth: String?
+
+        /// 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 互斥
+        public let intervalDays: UInt64?
+
+        public init(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, dayOfMonth: String? = nil, intervalDays: UInt64? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.policyName = policyName
             self.dayOfWeek = dayOfWeek
             self.hour = hour
             self.aliveDays = aliveDays
             self.isActivated = isActivated
+            self.dayOfMonth = dayOfMonth
+            self.intervalDays = intervalDays
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +59,8 @@ extension Cfs {
             case hour = "Hour"
             case aliveDays = "AliveDays"
             case isActivated = "IsActivated"
+            case dayOfMonth = "DayOfMonth"
+            case intervalDays = "IntervalDays"
         }
     }
 
@@ -88,15 +98,15 @@ extension Cfs {
     ///
     /// 更新定期自动快照策略
     @inlinable
-    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAutoSnapshotPolicyResponse> {
-        self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), region: region, logger: logger, on: eventLoop)
+    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, dayOfMonth: String? = nil, intervalDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAutoSnapshotPolicyResponse> {
+        self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated, dayOfMonth: dayOfMonth, intervalDays: intervalDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新定期快照策略
     ///
     /// 更新定期自动快照策略
     @inlinable
-    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
-        try await self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), region: region, logger: logger, on: eventLoop)
+    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, dayOfMonth: String? = nil, intervalDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
+        try await self.updateAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated, dayOfMonth: dayOfMonth, intervalDays: intervalDays), region: region, logger: logger, on: eventLoop)
     }
 }

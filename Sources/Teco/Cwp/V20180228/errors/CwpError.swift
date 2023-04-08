@@ -59,12 +59,14 @@ public struct TCCwpError: TCCwpErrorType {
         case operationDenied = "OperationDenied"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
+        case resourceNotFound_MachineNotFound = "ResourceNotFound.MachineNotFound"
+        case resourceUnavailable = "ResourceUnavailable"
         case unknownParameter = "UnknownParameter"
     }
 
     /// Error domains affliated to ``TCCwpError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self]
     }
 
     private let error: Code
@@ -262,6 +264,16 @@ public struct TCCwpError: TCCwpErrorType {
     /// 资源不存在。
     public static var resourceNotFound: TCCwpError {
         TCCwpError(.resourceNotFound)
+    }
+
+    /// 扫描机器不存在。
+    public static var resourceNotFound_MachineNotFound: TCCwpError {
+        TCCwpError(.resourceNotFound_MachineNotFound)
+    }
+
+    /// 资源不可用。
+    public static var resourceUnavailable: TCCwpError {
+        TCCwpError(.resourceUnavailable)
     }
 
     /// 未知参数错误。

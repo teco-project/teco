@@ -20,12 +20,17 @@ extension Cdwch {
         /// 集群实例ID
         public let instanceId: String
 
-        public init(instanceId: String) {
+        /// 是否是open api查询
+        public let isOpenApi: Bool?
+
+        public init(instanceId: String, isOpenApi: Bool? = nil) {
             self.instanceId = instanceId
+            self.isOpenApi = isOpenApi
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
+            case isOpenApi = "IsOpenApi"
         }
     }
 
@@ -63,15 +68,15 @@ extension Cdwch {
     ///
     /// 根据实例ID查询某个实例的具体信息
     @inlinable
-    public func describeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceResponse> {
-        self.describeInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func describeInstance(instanceId: String, isOpenApi: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceResponse> {
+        self.describeInstance(.init(instanceId: instanceId, isOpenApi: isOpenApi), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述实例信息
     ///
     /// 根据实例ID查询某个实例的具体信息
     @inlinable
-    public func describeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceResponse {
-        try await self.describeInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func describeInstance(instanceId: String, isOpenApi: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceResponse {
+        try await self.describeInstance(.init(instanceId: instanceId, isOpenApi: isOpenApi), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,7 +74,10 @@ extension Lcic {
         /// 助教Id列表。直播开始后不允许修改。
         public let assistants: [String]?
 
-        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil) {
+        /// 房间绑定的群组ID
+        public let groupId: String?
+
+        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil) {
             self.roomId = roomId
             self.sdkAppId = sdkAppId
             self.startTime = startTime
@@ -88,6 +91,7 @@ extension Lcic {
             self.subType = subType
             self.disableRecord = disableRecord
             self.assistants = assistants
+            self.groupId = groupId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -104,6 +108,7 @@ extension Lcic {
             case subType = "SubType"
             case disableRecord = "DisableRecord"
             case assistants = "Assistants"
+            case groupId = "GroupId"
         }
     }
 
@@ -131,13 +136,13 @@ extension Lcic {
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
+        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
+        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

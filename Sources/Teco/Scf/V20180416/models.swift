@@ -312,7 +312,7 @@ extension Scf {
     }
 
     /// 死信队列参数
-    public struct DeadLetterConfig: TCInputModel {
+    public struct DeadLetterConfig: TCInputModel, TCOutputModel {
         /// 死信队列模式
         public let type: String
 
@@ -379,7 +379,7 @@ extension Scf {
     }
 
     /// 函数的环境变量参数
-    public struct Environment: TCInputModel {
+    public struct Environment: TCInputModel, TCOutputModel {
         /// 环境变量数组
         public let variables: [Variable]?
 
@@ -621,7 +621,14 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerImageAccelerate: Bool?
 
-        public init(imageType: String, imageUri: String, registryId: String? = nil, entryPoint: String? = nil, command: String? = nil, args: String? = nil, containerImageAccelerate: Bool? = nil) {
+        /// 镜像函数端口设置
+        /// -1: 无端口镜像函数
+        /// 0: 默认端口，当前默认端口是9000
+        /// 其他: 特殊端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imagePort: Int64?
+
+        public init(imageType: String, imageUri: String, registryId: String? = nil, entryPoint: String? = nil, command: String? = nil, args: String? = nil, containerImageAccelerate: Bool? = nil, imagePort: Int64? = nil) {
             self.imageType = imageType
             self.imageUri = imageUri
             self.registryId = registryId
@@ -629,6 +636,7 @@ extension Scf {
             self.command = command
             self.args = args
             self.containerImageAccelerate = containerImageAccelerate
+            self.imagePort = imagePort
         }
 
         enum CodingKeys: String, CodingKey {
@@ -639,6 +647,7 @@ extension Scf {
             case command = "Command"
             case args = "Args"
             case containerImageAccelerate = "ContainerImageAccelerate"
+            case imagePort = "ImagePort"
         }
     }
 
@@ -1250,6 +1259,10 @@ extension Scf {
         /// Vod触发器数量
         public let vod: Int64
 
+        /// Eb触发器数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eb: Int64?
+
         enum CodingKeys: String, CodingKey {
             case cos = "Cos"
             case timer = "Timer"
@@ -1262,6 +1275,7 @@ extension Scf {
             case mps = "Mps"
             case cm = "Cm"
             case vod = "Vod"
+            case eb = "Eb"
         }
     }
 
@@ -1458,7 +1472,7 @@ extension Scf {
     }
 
     /// 私有网络参数配置
-    public struct VpcConfig: TCInputModel {
+    public struct VpcConfig: TCInputModel, TCOutputModel {
         /// 私有网络 的 Id
         public let vpcId: String?
 

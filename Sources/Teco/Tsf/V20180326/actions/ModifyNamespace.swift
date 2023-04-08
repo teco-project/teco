@@ -46,34 +46,39 @@ extension Tsf {
 
     /// ModifyNamespace返回参数结构体
     public struct ModifyNamespaceResponse: TCResponseModel {
+        /// Result
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: Bool?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case result = "Result"
             case requestId = "RequestId"
         }
     }
 
     /// 修改命名空间
-    @inlinable @discardableResult
+    @inlinable
     public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
         self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间
-    @inlinable @discardableResult
+    @inlinable
     public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
         try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改命名空间
-    @inlinable @discardableResult
+    @inlinable
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, namespaceDesc: String? = nil, isHaEnable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
         self.modifyNamespace(.init(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间
-    @inlinable @discardableResult
+    @inlinable
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, namespaceDesc: String? = nil, isHaEnable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
         try await self.modifyNamespace(.init(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable), region: region, logger: logger, on: eventLoop)
     }

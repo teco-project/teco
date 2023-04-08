@@ -47,7 +47,9 @@ extension Vod {
         /// <li>FastClipMedia：快速剪辑任务；</li>
         /// <li>RemoveWatermarkTask：智能去除水印任务；</li>
         /// <li>DescribeFileAttributesTask：获取文件属性任务；</li>
-        /// <li> ReviewAudioVideo：音视频审核任务。</li>
+        /// <li>RebuildMedia：音画质重生任务；</li>
+        /// <li>ReviewAudioVideo：音视频审核任务；</li>
+        /// <li>ExtractTraceWatermark：提取溯源水印任务。</li>
         public let taskType: String
 
         /// 任务状态，取值：
@@ -117,6 +119,10 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let removeWatermarkTask: RemoveWatermarkTask?
 
+        /// 音画质重生任务信息，仅当 TaskType 为 RebuildMedia，该字段有值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rebuildMediaTask: RebuildMediaTask?
+
         /// 提取溯源水印任务信息，仅当 TaskType 为 ExtractTraceWatermark，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extractTraceWatermarkTask: ExtractTraceWatermarkTask?
@@ -155,6 +161,7 @@ extension Vod {
             case createImageSpriteTask = "CreateImageSpriteTask"
             case snapshotByTimeOffsetTask = "SnapshotByTimeOffsetTask"
             case removeWatermarkTask = "RemoveWatermarkTask"
+            case rebuildMediaTask = "RebuildMediaTask"
             case extractTraceWatermarkTask = "ExtractTraceWatermarkTask"
             case reviewAudioVideoTask = "ReviewAudioVideoTask"
             case reduceMediaBitrateTask = "ReduceMediaBitrateTask"

@@ -180,14 +180,12 @@ extension TCTeoError {
             InvalidParameter(.parameterError)
         }
 
-        /// 安全参数错误。
+        /// 参数错误
         public static var security: InvalidParameter {
             InvalidParameter(.security)
         }
 
-        /// 域名配置错误。
-        ///
-        /// 参数错误-setting非法参数。
+        /// 配置项参数错误。
         public static var settingInvalidParam: InvalidParameter {
             InvalidParameter(.settingInvalidParam)
         }

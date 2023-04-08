@@ -938,11 +938,13 @@ extension Batch {
     }
 
     /// 竞价请求相关选项
-    public struct InstanceMarketOptionsRequest: TCInputModel {
+    public struct InstanceMarketOptionsRequest: TCInputModel, TCOutputModel {
         /// 竞价相关选项
-        public let spotOptions: SpotMarketOptions
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spotOptions: SpotMarketOptions?
 
         /// 市场选项类型，当前只支持取值：spot
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let marketType: String?
 
         public init(spotOptions: SpotMarketOptions, marketType: String? = nil) {

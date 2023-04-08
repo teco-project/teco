@@ -22,7 +22,11 @@ extension TCThpcError {
             case clusterStatusNotSupport = "UnsupportedOperation.ClusterStatusNotSupport"
             case invalidNodeRole = "UnsupportedOperation.InvalidNodeRole"
             case nodeStatusNotSupport = "UnsupportedOperation.NodeStatusNotSupport"
+            case parameterTooLarge = "UnsupportedOperation.ParameterTooLarge"
+            case parameterTooSmall = "UnsupportedOperation.ParameterTooSmall"
+            case queueNotEmpty = "UnsupportedOperation.QueueNotEmpty"
             case vpcIdConflict = "UnsupportedOperation.VpcIdConflict"
+            case other = "UnsupportedOperation"
         }
 
         private let error: Code
@@ -52,6 +56,7 @@ extension TCThpcError {
             UnsupportedOperation(.autoScalingGroupAlreadyBinded)
         }
 
+        /// 弹性伸缩类型不支持此操作。
         public static var autoScalingType: UnsupportedOperation {
             UnsupportedOperation(.autoScalingType)
         }
@@ -66,13 +71,34 @@ extension TCThpcError {
             UnsupportedOperation(.invalidNodeRole)
         }
 
+        /// 节点状态不支持此操作。
         public static var nodeStatusNotSupport: UnsupportedOperation {
             UnsupportedOperation(.nodeStatusNotSupport)
+        }
+
+        /// 参数值过大，不支持此操作。
+        public static var parameterTooLarge: UnsupportedOperation {
+            UnsupportedOperation(.parameterTooLarge)
+        }
+
+        /// 参数值过小，不支持此操作。
+        public static var parameterTooSmall: UnsupportedOperation {
+            UnsupportedOperation(.parameterTooSmall)
+        }
+
+        /// 队列内存在节点，不支持此操作。
+        public static var queueNotEmpty: UnsupportedOperation {
+            UnsupportedOperation(.queueNotEmpty)
         }
 
         /// vpc冲突，不支持当前操作。
         public static var vpcIdConflict: UnsupportedOperation {
             UnsupportedOperation(.vpcIdConflict)
+        }
+
+        /// 操作不支持。
+        public static var other: UnsupportedOperation {
+            UnsupportedOperation(.other)
         }
 
         public func asThpcError() -> TCThpcError {
@@ -88,8 +114,16 @@ extension TCThpcError {
                 code = .unsupportedOperation_InvalidNodeRole
             case .nodeStatusNotSupport:
                 code = .unsupportedOperation_NodeStatusNotSupport
+            case .parameterTooLarge:
+                code = .unsupportedOperation_ParameterTooLarge
+            case .parameterTooSmall:
+                code = .unsupportedOperation_ParameterTooSmall
+            case .queueNotEmpty:
+                code = .unsupportedOperation_QueueNotEmpty
             case .vpcIdConflict:
                 code = .unsupportedOperation_VpcIdConflict
+            case .other:
+                code = .unsupportedOperation
             }
             return TCThpcError(code, context: self.context)
         }

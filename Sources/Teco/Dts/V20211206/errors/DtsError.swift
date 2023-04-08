@@ -29,6 +29,7 @@ public struct TCDtsError: TCDtsErrorType {
         case authFailure_AuthorizedOperationDenyError = "AuthFailure.AuthorizedOperationDenyError"
         case authFailure_UnauthorizedOperationError = "AuthFailure.UnauthorizedOperationError"
         case dryRunOperation_DryRunOperationError = "DryRunOperation.DryRunOperationError"
+        case failedOperation = "FailedOperation"
         case failedOperation_FailedOperationError = "FailedOperation.FailedOperationError"
         case failedOperation_NotAllowOperation = "FailedOperation.NotAllowOperation"
         case failedOperation_StartJobFailed = "FailedOperation.StartJobFailed"
@@ -49,6 +50,7 @@ public struct TCDtsError: TCDtsErrorType {
         case internalError_UndefinedError = "InternalError.UndefinedError"
         case internalError_UnknownError = "InternalError.UnknownError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_DataConvertError = "InvalidParameterValue.DataConvertError"
         case invalidParameterValue_InvalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
         case invalidParameterValue_InvalidParameterValueError = "InvalidParameterValue.InvalidParameterValueError"
@@ -118,6 +120,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.authFailure)
     }
 
+    /// 认证失败。
     public static var authFailure_AuthFailureError: TCDtsError {
         TCDtsError(.authFailure_AuthFailureError)
     }
@@ -134,10 +137,17 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.authFailure_UnauthorizedOperationError)
     }
 
+    /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
     public static var dryRunOperation_DryRunOperationError: TCDtsError {
         TCDtsError(.dryRunOperation_DryRunOperationError)
     }
 
+    /// 操作失败。
+    public static var failedOperation: TCDtsError {
+        TCDtsError(.failedOperation)
+    }
+
+    /// 操作失败。
     public static var failedOperation_FailedOperationError: TCDtsError {
         TCDtsError(.failedOperation_FailedOperationError)
     }
@@ -189,6 +199,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.internalError_DuplicateJob)
     }
 
+    /// 内部错误。
     public static var internalError_InternalErrorError: TCDtsError {
         TCDtsError(.internalError_InternalErrorError)
     }
@@ -244,6 +255,11 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.invalidParameter)
     }
 
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCDtsError {
+        TCDtsError(.invalidParameterValue)
+    }
+
     /// 数据转换错误。
     public static var invalidParameterValue_DataConvertError: TCDtsError {
         TCDtsError(.invalidParameterValue_DataConvertError)
@@ -269,10 +285,12 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.invalidParameter_InstanceNotFound)
     }
 
+    /// 参数无效。
     public static var invalidParameter_InvalidParameterError: TCDtsError {
         TCDtsError(.invalidParameter_InvalidParameterError)
     }
 
+    /// 数量超出限制。
     public static var limitExceeded_LimitExceededError: TCDtsError {
         TCDtsError(.limitExceeded_LimitExceededError)
     }
@@ -287,6 +305,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.missingParameter)
     }
 
+    /// 参数丢失。
     public static var missingParameter_MissingParameterError: TCDtsError {
         TCDtsError(.missingParameter_MissingParameterError)
     }
@@ -313,18 +332,22 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.operationDenied_NotEnoughMoneyError)
     }
 
+    /// 操作被拒绝。
     public static var operationDenied_OperationDeniedError: TCDtsError {
         TCDtsError(.operationDenied_OperationDeniedError)
     }
 
+    /// 请求次数超限。
     public static var requestLimitExceeded_RequestLimitExceededError: TCDtsError {
         TCDtsError(.requestLimitExceeded_RequestLimitExceededError)
     }
 
+    /// 资源在使用中。
     public static var resourceInUse_ResourceInUseError: TCDtsError {
         TCDtsError(.resourceInUse_ResourceInUseError)
     }
 
+    /// 资源短缺。
     public static var resourceInsufficient_ResourceInsufficientError: TCDtsError {
         TCDtsError(.resourceInsufficient_ResourceInsufficientError)
     }
@@ -351,14 +374,17 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.resourceNotFound_ResourceNotFound)
     }
 
+    /// 资源未找到。
     public static var resourceNotFound_ResourceNotFoundError: TCDtsError {
         TCDtsError(.resourceNotFound_ResourceNotFoundError)
     }
 
+    /// 资源不可用。
     public static var resourceUnavailable_ResourceUnavailableError: TCDtsError {
         TCDtsError(.resourceUnavailable_ResourceUnavailableError)
     }
 
+    /// 资源售罄。
     public static var resourcesSoldOut_ResourcesSoldOutError: TCDtsError {
         TCDtsError(.resourcesSoldOut_ResourcesSoldOutError)
     }
@@ -378,6 +404,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.unauthorizedOperation_PermissionDenied)
     }
 
+    /// 未授权的操作。
     public static var unauthorizedOperation_UnauthorizedOperationError: TCDtsError {
         TCDtsError(.unauthorizedOperation_UnauthorizedOperationError)
     }
@@ -387,6 +414,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.unknownParameter)
     }
 
+    /// 未知参数。
     public static var unknownParameter_UnknownParameterError: TCDtsError {
         TCDtsError(.unknownParameter_UnknownParameterError)
     }
@@ -396,7 +424,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.unsupportedOperation)
     }
 
-    /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+    /// 自研上云用户创建迁移任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
     ///
     /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
     public static var unsupportedOperation_IntraNetUserNotTaggedError: TCDtsError {
@@ -411,6 +439,7 @@ public struct TCDtsError: TCDtsErrorType {
         TCDtsError(.unsupportedOperation_IntraNetUserNotTaggedForSyncJobError)
     }
 
+    /// 不支持的操作。
     public static var unsupportedOperation_UnsupportedOperationError: TCDtsError {
         TCDtsError(.unsupportedOperation_UnsupportedOperationError)
     }

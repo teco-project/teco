@@ -46,7 +46,7 @@ extension Vpc {
 
     /// 禁用云联网路由
     ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由。
     @inlinable @discardableResult
     public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
         self.client.execute(action: "DisableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +54,7 @@ extension Vpc {
 
     /// 禁用云联网路由
     ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由。
     @inlinable @discardableResult
     public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
         try await self.client.execute(action: "DisableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 禁用云联网路由
     ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由。
     @inlinable @discardableResult
     public func disableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
         self.disableCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 禁用云联网路由
     ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由。
     @inlinable @discardableResult
     public func disableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
         try await self.disableCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)

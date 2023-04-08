@@ -66,6 +66,7 @@ public struct TCBpaasError: TCBpaasErrorType {
         TCBpaasError(.failedOperation)
     }
 
+    /// 数据上报失败。
     public static var failedOperation_SendToCkafka: TCBpaasError {
         TCBpaasError(.failedOperation_SendToCkafka)
     }

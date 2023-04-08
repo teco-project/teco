@@ -43,7 +43,16 @@ extension Domain {
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
 
-        public init(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
+        /// 渠道来源，pc/miniprogram/h5等
+        public let channelFrom: String?
+
+        /// 订单来源，common正常/dianshi_active点石活动等
+        public let orderFrom: String?
+
+        /// 活动id
+        public let activityId: String?
+
+        public init(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil) {
             self.templateId = templateId
             self.period = period
             self.domains = domains
@@ -52,6 +61,9 @@ extension Domain {
             self.packageResourceId = packageResourceId
             self.updateProhibition = updateProhibition
             self.transferProhibition = transferProhibition
+            self.channelFrom = channelFrom
+            self.orderFrom = orderFrom
+            self.activityId = activityId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -63,6 +75,9 @@ extension Domain {
             case packageResourceId = "PackageResourceId"
             case updateProhibition = "UpdateProhibition"
             case transferProhibition = "TransferProhibition"
+            case channelFrom = "ChannelFrom"
+            case orderFrom = "OrderFrom"
+            case activityId = "ActivityId"
         }
     }
 
@@ -101,15 +116,15 @@ extension Domain {
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
-    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
-        self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
+        self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量域名注册
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
-    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        try await self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 }

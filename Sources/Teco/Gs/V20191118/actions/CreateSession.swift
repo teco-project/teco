@@ -17,9 +17,6 @@
 extension Gs {
     /// CreateSession请求参数结构体
     public struct CreateSessionRequest: TCRequestModel {
-        /// 客户端session信息，从JSSDK请求中获得
-        public let clientSession: String
-
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
         public let userId: String
 
@@ -31,6 +28,9 @@ extension Gs {
 
         /// 游戏参数
         public let gameParas: String?
+
+        /// 客户端session信息，从JSSDK请求中获得。特殊的，当 RunMode 参数为 RunWithoutClient 时，该字段可以为空
+        public let clientSession: String?
 
         /// 分辨率,，可设置为1080p或720p或1920x1080格式
         public let resolution: String?
@@ -73,12 +73,12 @@ extension Gs {
         /// 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         public let runMode: String?
 
-        public init(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil) {
-            self.clientSession = clientSession
+        public init(userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, clientSession: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil) {
             self.userId = userId
             self.gameId = gameId
             self.gameRegion = gameRegion
             self.gameParas = gameParas
+            self.clientSession = clientSession
             self.resolution = resolution
             self.imageUrl = imageUrl
             self.setNo = setNo
@@ -95,11 +95,11 @@ extension Gs {
         }
 
         enum CodingKeys: String, CodingKey {
-            case clientSession = "ClientSession"
             case userId = "UserId"
             case gameId = "GameId"
             case gameRegion = "GameRegion"
             case gameParas = "GameParas"
+            case clientSession = "ClientSession"
             case resolution = "Resolution"
             case imageUrl = "ImageUrl"
             case setNo = "SetNo"
@@ -152,13 +152,13 @@ extension Gs {
 
     /// 创建会话
     @inlinable
-    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
-        self.createSession(.init(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
+    public func createSession(userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, clientSession: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
+        self.createSession(.init(userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, clientSession: clientSession, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
     @inlinable
-    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.createSession(.init(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
+    public func createSession(userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, clientSession: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.createSession(.init(userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, clientSession: clientSession, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
     }
 }

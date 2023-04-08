@@ -17,17 +17,13 @@
 extension TCTeoError {
     public struct InvalidParameterValue: TCTeoErrorType {
         enum Code: String {
-            case conflictRecord = "InvalidParameterValue.ConflictRecord"
             case conflictWithDNSSEC = "InvalidParameterValue.ConflictWithDNSSEC"
-            case conflictWithLBRecord = "InvalidParameterValue.ConflictWithLBRecord"
-            case conflictWithNSRecord = "InvalidParameterValue.ConflictWithNSRecord"
+            case contentSameAsName = "InvalidParameterValue.ContentSameAsName"
+            case domainNotMatchZone = "InvalidParameterValue.DomainNotMatchZone"
             case invalidDNSContent = "InvalidParameterValue.InvalidDNSContent"
             case invalidDNSName = "InvalidParameterValue.InvalidDNSName"
             case invalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
-            case invalidProxyName = "InvalidParameterValue.InvalidProxyName"
-            case invalidProxyOrigin = "InvalidParameterValue.InvalidProxyOrigin"
-            case recordAlreadyExists = "InvalidParameterValue.RecordAlreadyExists"
-            case recordNotAllowed = "InvalidParameterValue.RecordNotAllowed"
+            case zoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
             case other = "InvalidParameterValue"
         }
 
@@ -53,24 +49,19 @@ extension TCTeoError {
             self.context = context
         }
 
-        /// 与已经添加的记录冲突。
-        public static var conflictRecord: InvalidParameterValue {
-            InvalidParameterValue(.conflictRecord)
-        }
-
         /// DNS 记录与 DNSSEC 功能冲突。
         public static var conflictWithDNSSEC: InvalidParameterValue {
             InvalidParameterValue(.conflictWithDNSSEC)
         }
 
-        /// DNS 记录与 LB 记录冲突。
-        public static var conflictWithLBRecord: InvalidParameterValue {
-            InvalidParameterValue(.conflictWithLBRecord)
+        /// 主机记录与记录值不能取值相同。
+        public static var contentSameAsName: InvalidParameterValue {
+            InvalidParameterValue(.contentSameAsName)
         }
 
-        /// DNS 记录与 NS 记录冲突。
-        public static var conflictWithNSRecord: InvalidParameterValue {
-            InvalidParameterValue(.conflictWithNSRecord)
+        /// 入参中的域名与站点参数不匹配，请更正后重试。
+        public static var domainNotMatchZone: InvalidParameterValue {
+            InvalidParameterValue(.domainNotMatchZone)
         }
 
         /// DNS 记录内容错误。
@@ -83,28 +74,16 @@ extension TCTeoError {
             InvalidParameterValue(.invalidDNSName)
         }
 
+        /// 加速域名状态不符合要求。
         public static var invalidDomainStatus: InvalidParameterValue {
             InvalidParameterValue(.invalidDomainStatus)
         }
 
-        /// DNS 代理域名错误。
-        public static var invalidProxyName: InvalidParameterValue {
-            InvalidParameterValue(.invalidProxyName)
-        }
-
-        /// DNS 代理域名源站错误。
-        public static var invalidProxyOrigin: InvalidParameterValue {
-            InvalidParameterValue(.invalidProxyOrigin)
-        }
-
-        /// 记录已存在。
-        public static var recordAlreadyExists: InvalidParameterValue {
-            InvalidParameterValue(.recordAlreadyExists)
-        }
-
-        /// 记录不允许添加。
-        public static var recordNotAllowed: InvalidParameterValue {
-            InvalidParameterValue(.recordNotAllowed)
+        /// 该同名站点标识已被占用，请重新输入。
+        ///
+        /// 同名站点标识已被使用，用户需重新输入不一样的
+        public static var zoneSameAsName: InvalidParameterValue {
+            InvalidParameterValue(.zoneSameAsName)
         }
 
         /// 参数取值错误。
@@ -115,28 +94,20 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .conflictRecord:
-                code = .invalidParameterValue_ConflictRecord
             case .conflictWithDNSSEC:
                 code = .invalidParameterValue_ConflictWithDNSSEC
-            case .conflictWithLBRecord:
-                code = .invalidParameterValue_ConflictWithLBRecord
-            case .conflictWithNSRecord:
-                code = .invalidParameterValue_ConflictWithNSRecord
+            case .contentSameAsName:
+                code = .invalidParameterValue_ContentSameAsName
+            case .domainNotMatchZone:
+                code = .invalidParameterValue_DomainNotMatchZone
             case .invalidDNSContent:
                 code = .invalidParameterValue_InvalidDNSContent
             case .invalidDNSName:
                 code = .invalidParameterValue_InvalidDNSName
             case .invalidDomainStatus:
                 code = .invalidParameterValue_InvalidDomainStatus
-            case .invalidProxyName:
-                code = .invalidParameterValue_InvalidProxyName
-            case .invalidProxyOrigin:
-                code = .invalidParameterValue_InvalidProxyOrigin
-            case .recordAlreadyExists:
-                code = .invalidParameterValue_RecordAlreadyExists
-            case .recordNotAllowed:
-                code = .invalidParameterValue_RecordNotAllowed
+            case .zoneSameAsName:
+                code = .invalidParameterValue_ZoneSameAsName
             case .other:
                 code = .invalidParameterValue
             }

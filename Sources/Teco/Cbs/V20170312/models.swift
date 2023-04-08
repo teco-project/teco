@@ -18,6 +18,39 @@
 import TecoDateHelpers
 
 extension Cbs {
+    /// 定期快照高级保留策略，四个参数都为必选参数
+    public struct AdvancedRetentionPolicy: TCInputModel, TCOutputModel {
+        /// 保留最新快照Days天内的每天最新的一个快照，取值范围：[0, 100]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let days: UInt64?
+
+        /// 保留最新快照Weeks周内的每周最新的一个快照，取值范围：[0, 100]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weeks: UInt64?
+
+        /// 保留最新快照Months月内的每月最新的一个快照， 取值范围：[0, 100]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let months: UInt64?
+
+        /// 保留最新快照Years年内的每年最新的一个快照，取值范围：[0, 100]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let years: UInt64?
+
+        public init(days: UInt64, weeks: UInt64, months: UInt64, years: UInt64) {
+            self.days = days
+            self.weeks = weeks
+            self.months = months
+            self.years = years
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case days = "Days"
+            case weeks = "Weeks"
+            case months = "Months"
+            case years = "Years"
+        }
+    }
+
     /// 描述一个实例已挂载和可挂载数据盘的数量。
     public struct AttachDetail: TCOutputModel {
         /// 实例ID。
@@ -110,6 +143,26 @@ extension Cbs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIdSet: [String]?
 
+        /// 该定期快照创建的快照可以保留的月数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let retentionMonths: UInt64?
+
+        /// 该定期快照创建的快照最大保留数量。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let retentionAmount: UInt64?
+
+        /// 定期快照高级保留策略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let advancedRetentionPolicy: AdvancedRetentionPolicy?
+
+        /// 该复制快照策略的源端账户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let copyFromAccountUin: String?
+
+        /// 标签。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
         enum CodingKeys: String, CodingKey {
             case diskIdSet = "DiskIdSet"
             case isActivated = "IsActivated"
@@ -124,6 +177,11 @@ extension Cbs {
             case retentionDays = "RetentionDays"
             case copyToAccountUin = "CopyToAccountUin"
             case instanceIdSet = "InstanceIdSet"
+            case retentionMonths = "RetentionMonths"
+            case retentionAmount = "RetentionAmount"
+            case advancedRetentionPolicy = "AdvancedRetentionPolicy"
+            case copyFromAccountUin = "CopyFromAccountUin"
+            case tags = "Tags"
         }
     }
 
@@ -159,6 +217,15 @@ extension Cbs {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
+        /// 存储池创建时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        /// 当前集群中已创建的云盘数量。
+        public let diskNumber: UInt64
+
         enum CodingKeys: String, CodingKey {
             case cageId = "CageId"
             case cdcState = "CdcState"
@@ -168,6 +235,8 @@ extension Cbs {
             case cdcId = "CdcId"
             case diskType = "DiskType"
             case expiredTime = "ExpiredTime"
+            case createdTime = "CreatedTime"
+            case diskNumber = "DiskNumber"
         }
     }
 
@@ -182,6 +251,66 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case diskAavilable = "DiskAavilable"
             case diskTotal = "DiskTotal"
+        }
+    }
+
+    /// 描述购买云盘时的费用明细。
+    public struct DetailPrice: TCOutputModel {
+        /// 描述计费项目名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let priceTitle: String?
+
+        /// 描述计费项目显示名称，用户控制台展示。
+        public let priceName: String
+
+        /// 预付费云盘预支费用的原价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originalPrice: Float?
+
+        /// 预付费云盘预支费用的折扣价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountPrice: Float?
+
+        /// 后付费云盘原单价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPrice: Float?
+
+        /// 后付费云盘折扣单价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPriceDiscount: Float?
+
+        /// 后付费云盘的计价单元，取值范围：HOUR：表示后付费云盘的计价单元是按小时计算。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeUnit: String?
+
+        /// 高精度预付费云盘预支费用的原价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originalPriceHigh: String?
+
+        /// 高精度预付费云盘预支费用的折扣价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountPriceHigh: String?
+
+        /// 高精度后付费云盘原单价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPriceHigh: String?
+
+        /// 高精度后付费云盘折扣单价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPriceDiscountHigh: String?
+
+        enum CodingKeys: String, CodingKey {
+            case priceTitle = "PriceTitle"
+            case priceName = "PriceName"
+            case originalPrice = "OriginalPrice"
+            case discountPrice = "DiscountPrice"
+            case unitPrice = "UnitPrice"
+            case unitPriceDiscount = "UnitPriceDiscount"
+            case chargeUnit = "ChargeUnit"
+            case originalPriceHigh = "OriginalPriceHigh"
+            case discountPriceHigh = "DiscountPriceHigh"
+            case unitPriceHigh = "UnitPriceHigh"
+            case unitPriceDiscountHigh = "UnitPriceDiscountHigh"
         }
     }
 
@@ -314,11 +443,22 @@ extension Cbs {
         /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         public let deleteSnapshot: Int64
 
+        /// 云硬盘备份点配额。表示最大可以保留的备份点数量。
+        public let diskBackupQuota: UInt64
+
         /// 云硬盘备份点已使用的数量。
         public let diskBackupCount: UInt64
 
         /// 云硬盘挂载实例的类型。取值范围：<br><li>CVM<br><li>EKS
         public let instanceType: String
+
+        /// 云硬盘最后一次挂载的实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastAttachInsId: String?
+
+        /// 云硬盘最后一次操作错误提示
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorPrompt: String?
 
         enum CodingKeys: String, CodingKey {
             case deleteWithInstance = "DeleteWithInstance"
@@ -357,8 +497,11 @@ extension Cbs {
             case shareable = "Shareable"
             case createTime = "CreateTime"
             case deleteSnapshot = "DeleteSnapshot"
+            case diskBackupQuota = "DiskBackupQuota"
             case diskBackupCount = "DiskBackupCount"
             case instanceType = "InstanceType"
+            case lastAttachInsId = "LastAttachInsId"
+            case errorPrompt = "ErrorPrompt"
         }
     }
 
@@ -473,6 +616,10 @@ extension Cbs {
         /// 最大可配置云盘大小，单位GB。
         public let maxDiskSize: UInt64?
 
+        /// 描述预付费或后付费云盘的价格。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let price: Price?
+
         enum CodingKeys: String, CodingKey {
             case available = "Available"
             case diskChargeType = "DiskChargeType"
@@ -485,6 +632,7 @@ extension Cbs {
             case diskUsage = "DiskUsage"
             case minDiskSize = "MinDiskSize"
             case maxDiskSize = "MaxDiskSize"
+            case price = "Price"
         }
     }
 
@@ -575,6 +723,10 @@ extension Cbs {
         /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](/document/api/378/4400) 的返回值中的 projectId 字段来获取。不填为默认项目。
         public let projectId: UInt64?
 
+        /// 实例所属项目名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let projectName: String?
+
         /// 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcName: String?
@@ -586,10 +738,11 @@ extension Cbs {
         /// 独享集群id。
         public let dedicatedClusterId: String?
 
-        public init(zone: String, cageId: String? = nil, projectId: UInt64? = nil, cdcName: String? = nil, cdcId: String? = nil, dedicatedClusterId: String? = nil) {
+        public init(zone: String, cageId: String? = nil, projectId: UInt64? = nil, projectName: String? = nil, cdcName: String? = nil, cdcId: String? = nil, dedicatedClusterId: String? = nil) {
             self.zone = zone
             self.cageId = cageId
             self.projectId = projectId
+            self.projectName = projectName
             self.cdcName = cdcName
             self.cdcId = cdcId
             self.dedicatedClusterId = dedicatedClusterId
@@ -599,13 +752,14 @@ extension Cbs {
             case zone = "Zone"
             case cageId = "CageId"
             case projectId = "ProjectId"
+            case projectName = "ProjectName"
             case cdcName = "CdcName"
             case cdcId = "CdcId"
             case dedicatedClusterId = "DedicatedClusterId"
         }
     }
 
-    /// 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的小时执行该条定期快照策略。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
+    /// 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的时刻点执行该条定期快照策。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
     public struct Policy: TCInputModel, TCOutputModel {
         /// 指定定期快照策略的触发时间。单位为小时，取值范围：[0, 23]。00:00 ~ 23:00 共 24 个时间点可选，1表示 01:00，依此类推。
         public let hour: [UInt64]
@@ -613,14 +767,24 @@ extension Cbs {
         /// 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
         public let dayOfWeek: [UInt64]?
 
-        public init(hour: [UInt64], dayOfWeek: [UInt64]? = nil) {
+        /// 指定每月从月初到月底需要触发定期快照的日期,取值范围：[1, 31]，1-31分别表示每月的具体日期，比如5表示每月的5号。注：若设置29、30、31等部分月份不存在的日期，则对应不存在日期的月份会跳过不打定期快照。
+        public let dayOfMonth: [UInt64]?
+
+        /// 指定创建定期快照的间隔天数，取值范围：[1, 365]，例如设置为5，则间隔5天即触发定期快照创建。注：当选择按天备份时，理论上第一次备份的时间为备份策略创建当天。如果当天备份策略创建的时间已经晚于设置的备份时间，那么将会等到第二个备份周期再进行第一次备份。
+        public let intervalDays: UInt64?
+
+        public init(hour: [UInt64], dayOfWeek: [UInt64]? = nil, dayOfMonth: [UInt64]? = nil, intervalDays: UInt64? = nil) {
             self.hour = hour
             self.dayOfWeek = dayOfWeek
+            self.dayOfMonth = dayOfMonth
+            self.intervalDays = intervalDays
         }
 
         enum CodingKeys: String, CodingKey {
             case hour = "Hour"
             case dayOfWeek = "DayOfWeek"
+            case dayOfMonth = "DayOfMonth"
+            case intervalDays = "IntervalDays"
         }
     }
 
@@ -662,6 +826,10 @@ extension Cbs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
 
+        /// 计费项目明细列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let detailPrices: [DetailPrice]?
+
         enum CodingKeys: String, CodingKey {
             case discountPrice = "DiscountPrice"
             case chargeUnit = "ChargeUnit"
@@ -672,6 +840,7 @@ extension Cbs {
             case unitPriceDiscountHigh = "UnitPriceDiscountHigh"
             case discountPriceHigh = "DiscountPriceHigh"
             case unitPrice = "UnitPrice"
+            case detailPrices = "DetailPrices"
         }
     }
 
@@ -812,7 +981,7 @@ extension Cbs {
         @TCDateEncoding public var timeStartShare: Date
 
         /// 快照绑定的标签列表。
-        public let tags: [Tag]
+        public let tags: [Tag]?
 
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"

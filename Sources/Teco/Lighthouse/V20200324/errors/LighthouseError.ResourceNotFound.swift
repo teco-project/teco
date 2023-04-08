@@ -19,7 +19,12 @@ extension TCLighthouseError {
         enum Code: String {
             case blueprintIdNotFound = "ResourceNotFound.BlueprintIdNotFound"
             case blueprintNotFound = "ResourceNotFound.BlueprintNotFound"
+            case diskAttachedHasNoInstanceId = "ResourceNotFound.DiskAttachedHasNoInstanceId"
+            case diskBackupIdNotFound = "ResourceNotFound.DiskBackupIdNotFound"
+            case diskBackupNotExists = "ResourceNotFound.DiskBackupNotExists"
+            case diskBackupNotFound = "ResourceNotFound.DiskBackupNotFound"
             case diskIdNotFound = "ResourceNotFound.DiskIdNotFound"
+            case diskNotExists = "ResourceNotFound.DiskNotExists"
             case diskNotFound = "ResourceNotFound.DiskNotFound"
             case firewallNotFound = "ResourceNotFound.FirewallNotFound"
             case firewallRulesNotFound = "ResourceNotFound.FirewallRulesNotFound"
@@ -28,6 +33,8 @@ extension TCLighthouseError {
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
             case keyIdNotFound = "ResourceNotFound.KeyIdNotFound"
             case privateBlueprintNotFound = "ResourceNotFound.PrivateBlueprintNotFound"
+            case roleNotFound = "ResourceNotFound.RoleNotFound"
+            case sceneIdNotFound = "ResourceNotFound.SceneIdNotFound"
             case snapshotIdNotFound = "ResourceNotFound.SnapshotIdNotFound"
             case snapshotNotFound = "ResourceNotFound.SnapshotNotFound"
             case other = "ResourceNotFound"
@@ -65,9 +72,34 @@ extension TCLighthouseError {
             ResourceNotFound(.blueprintNotFound)
         }
 
+        /// 处于已挂载状态的磁盘关联实例不存在。
+        public static var diskAttachedHasNoInstanceId: ResourceNotFound {
+            ResourceNotFound(.diskAttachedHasNoInstanceId)
+        }
+
+        /// 磁盘备份点ID不存在。
+        public static var diskBackupIdNotFound: ResourceNotFound {
+            ResourceNotFound(.diskBackupIdNotFound)
+        }
+
+        /// 磁盘备份点不存在。
+        public static var diskBackupNotExists: ResourceNotFound {
+            ResourceNotFound(.diskBackupNotExists)
+        }
+
+        /// 用户指定磁盘备份点不存在。
+        public static var diskBackupNotFound: ResourceNotFound {
+            ResourceNotFound(.diskBackupNotFound)
+        }
+
         /// 磁盘 ID 不存在。
         public static var diskIdNotFound: ResourceNotFound {
             ResourceNotFound(.diskIdNotFound)
+        }
+
+        /// 磁盘不存在。
+        public static var diskNotExists: ResourceNotFound {
+            ResourceNotFound(.diskNotExists)
         }
 
         /// 磁盘不存在。
@@ -105,8 +137,19 @@ extension TCLighthouseError {
             ResourceNotFound(.keyIdNotFound)
         }
 
+        /// 自定义镜像不存在。
         public static var privateBlueprintNotFound: ResourceNotFound {
             ResourceNotFound(.privateBlueprintNotFound)
+        }
+
+        /// 服务角色不存在, 请为账号添加这个角色。
+        public static var roleNotFound: ResourceNotFound {
+            ResourceNotFound(.roleNotFound)
+        }
+
+        /// 未查询到场景ID
+        public static var sceneIdNotFound: ResourceNotFound {
+            ResourceNotFound(.sceneIdNotFound)
         }
 
         /// 快照 ID 不存在。
@@ -131,8 +174,18 @@ extension TCLighthouseError {
                 code = .resourceNotFound_BlueprintIdNotFound
             case .blueprintNotFound:
                 code = .resourceNotFound_BlueprintNotFound
+            case .diskAttachedHasNoInstanceId:
+                code = .resourceNotFound_DiskAttachedHasNoInstanceId
+            case .diskBackupIdNotFound:
+                code = .resourceNotFound_DiskBackupIdNotFound
+            case .diskBackupNotExists:
+                code = .resourceNotFound_DiskBackupNotExists
+            case .diskBackupNotFound:
+                code = .resourceNotFound_DiskBackupNotFound
             case .diskIdNotFound:
                 code = .resourceNotFound_DiskIdNotFound
+            case .diskNotExists:
+                code = .resourceNotFound_DiskNotExists
             case .diskNotFound:
                 code = .resourceNotFound_DiskNotFound
             case .firewallNotFound:
@@ -149,6 +202,10 @@ extension TCLighthouseError {
                 code = .resourceNotFound_KeyIdNotFound
             case .privateBlueprintNotFound:
                 code = .resourceNotFound_PrivateBlueprintNotFound
+            case .roleNotFound:
+                code = .resourceNotFound_RoleNotFound
+            case .sceneIdNotFound:
+                code = .resourceNotFound_SceneIdNotFound
             case .snapshotIdNotFound:
                 code = .resourceNotFound_SnapshotIdNotFound
             case .snapshotNotFound:

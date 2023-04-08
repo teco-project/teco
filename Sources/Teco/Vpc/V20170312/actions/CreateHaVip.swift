@@ -29,11 +29,15 @@ extension Vpc {
         /// 指定虚拟IP地址，必须在`VPC`网段内且未被占用。不指定则自动分配。
         public let vip: String?
 
-        public init(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil) {
+        /// `HAVIP`所在弹性网卡`ID`。
+        public let networkInterfaceId: String?
+
+        public init(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, networkInterfaceId: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.haVipName = haVipName
             self.vip = vip
+            self.networkInterfaceId = networkInterfaceId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +45,7 @@ extension Vpc {
             case subnetId = "SubnetId"
             case haVipName = "HaVipName"
             case vip = "Vip"
+            case networkInterfaceId = "NetworkInterfaceId"
         }
     }
 
@@ -60,7 +65,7 @@ extension Vpc {
 
     /// 创建HAVIP
     ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）。
     @inlinable
     public func createHaVip(_ input: CreateHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHaVipResponse> {
         self.client.execute(action: "CreateHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +73,7 @@ extension Vpc {
 
     /// 创建HAVIP
     ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）。
     @inlinable
     public func createHaVip(_ input: CreateHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
         try await self.client.execute(action: "CreateHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,17 +81,17 @@ extension Vpc {
 
     /// 创建HAVIP
     ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）。
     @inlinable
-    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHaVipResponse> {
-        self.createHaVip(.init(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip), region: region, logger: logger, on: eventLoop)
+    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, networkInterfaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHaVipResponse> {
+        self.createHaVip(.init(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip, networkInterfaceId: networkInterfaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建HAVIP
     ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）。
     @inlinable
-    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
-        try await self.createHaVip(.init(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip), region: region, logger: logger, on: eventLoop)
+    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, networkInterfaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
+        try await self.createHaVip(.init(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip, networkInterfaceId: networkInterfaceId), region: region, logger: logger, on: eventLoop)
     }
 }

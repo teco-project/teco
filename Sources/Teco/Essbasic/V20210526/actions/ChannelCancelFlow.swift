@@ -20,14 +20,11 @@ extension Essbasic {
         /// 签署流程编号
         public let flowId: String
 
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
 
         /// 撤回原因，最大不超过200字符
         public let cancelMessage: String?
-
-        /// 操作者的信息
-        public let `operator`: UserInfo?
 
         /// 撤销理由自定义格式；选项：
         /// 0 默认格式
@@ -36,20 +33,23 @@ extension Essbasic {
         /// 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         public let cancelMessageFormat: Int64?
 
-        public init(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil) {
+        /// 暂未开放
+        public let `operator`: UserInfo?
+
+        public init(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.cancelMessage = cancelMessage
-            self.operator = `operator`
             self.cancelMessageFormat = cancelMessageFormat
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case agent = "Agent"
             case cancelMessage = "CancelMessage"
-            case `operator` = "Operator"
             case cancelMessageFormat = "CancelMessageFormat"
+            case `operator` = "Operator"
         }
     }
 
@@ -63,9 +63,9 @@ extension Essbasic {
         }
     }
 
-    /// 渠道版撤销签署流程
+    /// 撤销签署流程
     ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
@@ -73,9 +73,9 @@ extension Essbasic {
         self.client.execute(action: "ChannelCancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 渠道版撤销签署流程
+    /// 撤销签署流程
     ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
@@ -83,23 +83,23 @@ extension Essbasic {
         try await self.client.execute(action: "ChannelCancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 渠道版撤销签署流程
+    /// 撤销签署流程
     ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
-    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelFlowResponse> {
-        self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelFlowResponse> {
+        self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 渠道版撤销签署流程
+    /// 撤销签署流程
     ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
-    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
-        try await self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
+        try await self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

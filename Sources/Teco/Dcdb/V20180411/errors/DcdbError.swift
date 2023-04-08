@@ -58,6 +58,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         case internalError_CheckVipStatusFailed = "InternalError.CheckVipStatusFailed"
         case internalError_CosConfiguration = "InternalError.CosConfiguration"
         case internalError_CosSignUrl = "InternalError.CosSignUrl"
+        case internalError_CreateFlowError = "InternalError.CreateFlowError"
         case internalError_CreateFlowFailed = "InternalError.CreateFlowFailed"
         case internalError_DBRowsAffectedError = "InternalError.DBRowsAffectedError"
         case internalError_DbOperationFailed = "InternalError.DbOperationFailed"
@@ -231,6 +232,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.failedOperation_DisassociateSecurityGroupsFailed)
     }
 
+    /// 拉取安全组详情失败。
     public static var failedOperation_GetSecurityGroupDetailFailed: TCDcdbError {
         TCDcdbError(.failedOperation_GetSecurityGroupDetailFailed)
     }
@@ -245,6 +247,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.failedOperation_MsgQueueOperationFailed)
     }
 
+    /// 隔离实例失败。
     public static var failedOperation_OssIsolateInstanceFailed: TCDcdbError {
         TCDcdbError(.failedOperation_OssIsolateInstanceFailed)
     }
@@ -274,6 +277,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.failedOperation_SetRuleLocationFailed)
     }
 
+    /// 安全组规则下发失败。
     public static var failedOperation_SetSvcLocationFailed: TCDcdbError {
         TCDcdbError(.failedOperation_SetSvcLocationFailed)
     }
@@ -338,6 +342,12 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.internalError_CosSignUrl)
     }
 
+    /// 创建流程失败。
+    public static var internalError_CreateFlowError: TCDcdbError {
+        TCDcdbError(.internalError_CreateFlowError)
+    }
+
+    /// 创建任务流程失败。
     public static var internalError_CreateFlowFailed: TCDcdbError {
         TCDcdbError(.internalError_CreateFlowFailed)
     }
@@ -412,6 +422,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.internalError_GetUserListFailed)
     }
 
+    /// 获取用户安全组数量失败。
     public static var internalError_GetUserSGCountFailed: TCDcdbError {
         TCDcdbError(.internalError_GetUserSGCountFailed)
     }
@@ -566,6 +577,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.invalidParameterValue_IllegalZone)
     }
 
+    /// 参数值传入错误。
     public static var invalidParameterValue_InvalidParameterValueError: TCDcdbError {
         TCDcdbError(.invalidParameterValue_InvalidParameterValueError)
     }
@@ -585,6 +597,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.invalidParameterValue_SuperUserForbidden)
     }
 
+    /// 当前部署方式不允许设置此同步模式。
     public static var invalidParameterValue_SyncModeNotAllowed: TCDcdbError {
         TCDcdbError(.invalidParameterValue_SyncModeNotAllowed)
     }
@@ -734,6 +747,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.resourceUnavailable_InstanceStatusAbnormal)
     }
 
+    /// 安全组校验失败。
     public static var resourceUnavailable_SGCheckFail: TCDcdbError {
         TCDcdbError(.resourceUnavailable_SGCheckFail)
     }

@@ -18,7 +18,13 @@ extension TCNlpError {
     public struct ResourceUnavailable: TCNlpErrorType {
         enum Code: String {
             case fileUnavailable = "ResourceUnavailable.FileUnavailable"
+            case freeze = "ResourceUnavailable.Freeze"
+            case inArrears = "ResourceUnavailable.InArrears"
+            case isOpening = "ResourceUnavailable.IsOpening"
+            case notExist = "ResourceUnavailable.NotExist"
+            case recover = "ResourceUnavailable.Recover"
             case serviceNotOpenedError = "ResourceUnavailable.ServiceNotOpenedError"
+            case stopUsing = "ResourceUnavailable.StopUsing"
             case other = "ResourceUnavailable"
         }
 
@@ -49,9 +55,39 @@ extension TCNlpError {
             ResourceUnavailable(.fileUnavailable)
         }
 
+        /// 帐号已被冻结。
+        public static var freeze: ResourceUnavailable {
+            ResourceUnavailable(.freeze)
+        }
+
+        /// 账号已欠费。
+        public static var inArrears: ResourceUnavailable {
+            ResourceUnavailable(.inArrears)
+        }
+
+        /// 服务正在开通中，请稍等。
+        public static var isOpening: ResourceUnavailable {
+            ResourceUnavailable(.isOpening)
+        }
+
+        /// 计费状态未知，请确认是否已在控制台开通服务。
+        public static var notExist: ResourceUnavailable {
+            ResourceUnavailable(.notExist)
+        }
+
+        /// 资源已被回收。
+        public static var recover: ResourceUnavailable {
+            ResourceUnavailable(.recover)
+        }
+
         /// 您的账号尚未开通NLP服务，请登录腾讯云NLP控制台进行服务开通后再使用
         public static var serviceNotOpenedError: ResourceUnavailable {
             ResourceUnavailable(.serviceNotOpenedError)
+        }
+
+        /// 帐号已停服。
+        public static var stopUsing: ResourceUnavailable {
+            ResourceUnavailable(.stopUsing)
         }
 
         /// 资源不可用。
@@ -64,8 +100,20 @@ extension TCNlpError {
             switch self.error {
             case .fileUnavailable:
                 code = .resourceUnavailable_FileUnavailable
+            case .freeze:
+                code = .resourceUnavailable_Freeze
+            case .inArrears:
+                code = .resourceUnavailable_InArrears
+            case .isOpening:
+                code = .resourceUnavailable_IsOpening
+            case .notExist:
+                code = .resourceUnavailable_NotExist
+            case .recover:
+                code = .resourceUnavailable_Recover
             case .serviceNotOpenedError:
                 code = .resourceUnavailable_ServiceNotOpenedError
+            case .stopUsing:
+                code = .resourceUnavailable_StopUsing
             case .other:
                 code = .resourceUnavailable
             }

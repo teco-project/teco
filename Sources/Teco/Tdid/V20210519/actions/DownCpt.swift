@@ -40,26 +40,30 @@ extension Tdid {
     }
 
     /// 凭证模版下载
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func downCpt(_ input: DownCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
-        self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DownCpt is no longer available.")
     }
 
     /// 凭证模版下载
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func downCpt(_ input: DownCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        try await self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DownCpt is no longer available.")
     }
 
     /// 凭证模版下载
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
-        self.downCpt(.init(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
+        fatalError("DownCpt is no longer available.")
     }
 
     /// 凭证模版下载
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        try await self.downCpt(.init(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
+        fatalError("DownCpt is no longer available.")
     }
 }

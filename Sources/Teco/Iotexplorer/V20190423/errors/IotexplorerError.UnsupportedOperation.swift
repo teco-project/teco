@@ -195,10 +195,12 @@ extension TCIotexplorerError {
             UnsupportedOperation(.unpaidOrder)
         }
 
+        /// Video账户未创建，请检查后重新操作。
         public static var videoAccountNotExist: UnsupportedOperation {
             UnsupportedOperation(.videoAccountNotExist)
         }
 
+        /// Video平台license数量不足。
         public static var videoInsufficientLicenses: UnsupportedOperation {
             UnsupportedOperation(.videoInsufficientLicenses)
         }

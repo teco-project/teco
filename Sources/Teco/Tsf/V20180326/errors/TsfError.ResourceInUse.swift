@@ -21,9 +21,12 @@ extension TCTsfError {
             case cvmcaeMasterCannotDelete = "ResourceInUse.CvmcaeMasterCannotDelete"
             case defaultNamepsaceCannotBeDeleted = "ResourceInUse.DefaultNamepsaceCannotBeDeleted"
             case groupCannotDelete = "ResourceInUse.GroupCannotDelete"
+            case groupExists = "ResourceInUse.GroupExists"
             case groupInOperation = "ResourceInUse.GroupInOperation"
+            case instanceExists = "ResourceInUse.InstanceExists"
             case instanceHasBeenUsed = "ResourceInUse.InstanceHasBeenUsed"
             case namespaceCannotDelete = "ResourceInUse.NamespaceCannotDelete"
+            case nonDefaultNamespaceExists = "ResourceInUse.NonDefaultNamespaceExists"
             case objectExist = "ResourceInUse.ObjectExist"
             case ratelimitRuleExistError = "ResourceInUse.RatelimitRuleExistError"
         }
@@ -70,9 +73,19 @@ extension TCTsfError {
             ResourceInUse(.groupCannotDelete)
         }
 
+        /// 集群下存在分组。
+        public static var groupExists: ResourceInUse {
+            ResourceInUse(.groupExists)
+        }
+
         /// 部署组在更新中 请稍后再执行该操作。
         public static var groupInOperation: ResourceInUse {
             ResourceInUse(.groupInOperation)
+        }
+
+        /// 实例已经存在。
+        public static var instanceExists: ResourceInUse {
+            ResourceInUse(.instanceExists)
         }
 
         /// 机器实例已经被使用。
@@ -83,6 +96,11 @@ extension TCTsfError {
         /// 此命名空间下存在资源，无法执行删除操作。
         public static var namespaceCannotDelete: ResourceInUse {
             ResourceInUse(.namespaceCannotDelete)
+        }
+
+        /// 集群下存在非默认命名空间。
+        public static var nonDefaultNamespaceExists: ResourceInUse {
+            ResourceInUse(.nonDefaultNamespaceExists)
         }
 
         /// 资源对象已存在。
@@ -106,12 +124,18 @@ extension TCTsfError {
                 code = .resourceInUse_DefaultNamepsaceCannotBeDeleted
             case .groupCannotDelete:
                 code = .resourceInUse_GroupCannotDelete
+            case .groupExists:
+                code = .resourceInUse_GroupExists
             case .groupInOperation:
                 code = .resourceInUse_GroupInOperation
+            case .instanceExists:
+                code = .resourceInUse_InstanceExists
             case .instanceHasBeenUsed:
                 code = .resourceInUse_InstanceHasBeenUsed
             case .namespaceCannotDelete:
                 code = .resourceInUse_NamespaceCannotDelete
+            case .nonDefaultNamespaceExists:
+                code = .resourceInUse_NonDefaultNamespaceExists
             case .objectExist:
                 code = .resourceInUse_ObjectExist
             case .ratelimitRuleExistError:

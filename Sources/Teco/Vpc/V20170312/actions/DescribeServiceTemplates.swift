@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 查询协议端口模板
     ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板。
     @inlinable
     public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplatesResponse> {
         self.client.execute(action: "DescribeServiceTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 查询协议端口模板
     ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板。
     @inlinable
     public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
         try await self.client.execute(action: "DescribeServiceTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,7 +78,7 @@ extension Vpc {
 
     /// 查询协议端口模板
     ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板。
     @inlinable
     public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplatesResponse> {
         self.describeServiceTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -86,7 +86,7 @@ extension Vpc {
 
     /// 查询协议端口模板
     ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板。
     @inlinable
     public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
         try await self.describeServiceTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

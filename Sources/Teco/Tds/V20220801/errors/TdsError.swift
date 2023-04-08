@@ -49,6 +49,7 @@ public struct TCTdsError: TCTdsErrorType {
         self.context = context
     }
 
+    /// 资源不足。
     public static var resourceInsufficient: TCTdsError {
         TCTdsError(.resourceInsufficient)
     }

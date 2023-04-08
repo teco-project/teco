@@ -17,7 +17,7 @@
 extension Ess {
     /// CreateFlow请求参数结构体
     public struct CreateFlowRequest: TCRequestModel {
-        /// 调用方用户信息，userId 必填
+        /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         public let `operator`: UserInfo
 
         /// 签署流程名称,最大长度200个字符
@@ -63,7 +63,7 @@ extension Ess {
         /// 暂未开放
         public let callbackUrl: String?
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         /// 被抄送人的信息列表。

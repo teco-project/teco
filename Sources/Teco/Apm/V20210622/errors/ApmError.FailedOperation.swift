@@ -54,6 +54,7 @@ extension TCApmError {
             self.context = context
         }
 
+        /// 访问标签失败。
         public static var accessTagFail: FailedOperation {
             FailedOperation(.accessTagFail)
         }
@@ -63,6 +64,7 @@ extension TCApmError {
             FailedOperation(.appIdNotMatchInstanceInfo)
         }
 
+        /// 未命中白名单且实例id为官方demo实例id时，不允许修改接口。
         public static var demoInstanceNotAllowModified: FailedOperation {
             FailedOperation(.demoInstanceNotAllowModified)
         }
@@ -77,10 +79,12 @@ extension TCApmError {
             FailedOperation(.instanceNotFound)
         }
 
+        /// 非法实例id。
         public static var invalidInstanceID: FailedOperation {
             FailedOperation(.invalidInstanceID)
         }
 
+        /// 查询指标类数据查询条件缺少过滤参数。
         public static var metricFiltersLackParams: FailedOperation {
             FailedOperation(.metricFiltersLackParams)
         }
@@ -90,10 +94,12 @@ extension TCApmError {
             FailedOperation(.notInnerVPC)
         }
 
+        /// 查询时间区间不支持。
         public static var queryTimeIntervalIsNotSupported: FailedOperation {
             FailedOperation(.queryTimeIntervalIsNotSupported)
         }
 
+        /// 不支持该地域。
         public static var regionNotSupport: FailedOperation {
             FailedOperation(.regionNotSupport)
         }
@@ -103,6 +109,7 @@ extension TCApmError {
             FailedOperation(.sendRequest)
         }
 
+        /// 视图名不存在或非法。
         public static var viewNameNotExistOrIllegal: FailedOperation {
             FailedOperation(.viewNameNotExistOrIllegal)
         }

@@ -21,6 +21,7 @@ extension TCTdmqError {
             case cluster = "ResourceNotFound.Cluster"
             case environment = "ResourceNotFound.Environment"
             case environmentRole = "ResourceNotFound.EnvironmentRole"
+            case instance = "ResourceNotFound.Instance"
             case namespace = "ResourceNotFound.Namespace"
             case role = "ResourceNotFound.Role"
             case subscription = "ResourceNotFound.Subscription"
@@ -72,6 +73,13 @@ extension TCTdmqError {
             ResourceNotFound(.environmentRole)
         }
 
+        /// 实例不存在。
+        ///
+        /// 实例可能已被删除，或者查询实例的参数不正确。
+        public static var instance: ResourceNotFound {
+            ResourceNotFound(.instance)
+        }
+
         /// 命名空间不存在。
         public static var namespace: ResourceNotFound {
             ResourceNotFound(.namespace)
@@ -112,6 +120,8 @@ extension TCTdmqError {
                 code = .resourceNotFound_Environment
             case .environmentRole:
                 code = .resourceNotFound_EnvironmentRole
+            case .instance:
+                code = .resourceNotFound_Instance
             case .namespace:
                 code = .resourceNotFound_Namespace
             case .role:

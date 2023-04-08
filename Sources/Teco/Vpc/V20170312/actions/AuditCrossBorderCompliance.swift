@@ -20,7 +20,7 @@ extension Vpc {
         /// 服务商, 可选值：`UNICOM`。
         public let serviceProvider: String
 
-        /// 表单唯一`ID`。
+        /// 表单唯一`ID`。可通过[DescribeCrossBorderCompliance](https://cloud.tencent.com/document/product/215/47838)接口查询ComplianceId信息
         public let complianceId: UInt64
 
         /// 通过：`APPROVED `，拒绝：`DENY`。

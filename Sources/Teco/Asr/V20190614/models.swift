@@ -143,6 +143,10 @@ extension Asr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let silenceTime: Int64?
 
+        /// 情绪类型（可能为空）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let emotionType: [String]?
+
         enum CodingKeys: String, CodingKey {
             case finalSentence = "FinalSentence"
             case sliceSentence = "SliceSentence"
@@ -154,6 +158,7 @@ extension Asr {
             case speakerId = "SpeakerId"
             case emotionalEnergy = "EmotionalEnergy"
             case silenceTime = "SilenceTime"
+            case emotionType = "EmotionType"
         }
     }
 
@@ -208,7 +213,7 @@ extension Asr {
 
     /// 获取录音识别结果的返回参数
     public struct TaskStatus: TCOutputModel {
-        /// 任务标识。
+        /// 任务标识。注意：TaskId数据类型为uint64。
         public let taskId: UInt64
 
         /// 任务状态码，0：任务等待，1：任务执行中，2：任务成功，3：任务失败。

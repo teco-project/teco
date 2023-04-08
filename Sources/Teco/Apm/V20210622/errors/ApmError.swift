@@ -26,6 +26,7 @@ public struct TCApmError: TCApmErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
+        case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_AccessTagFail = "FailedOperation.AccessTagFail"
         case failedOperation_AppIdNotMatchInstanceInfo = "FailedOperation.AppIdNotMatchInstanceInfo"
@@ -88,11 +89,17 @@ public struct TCApmError: TCApmErrorType {
         TCApmError(.authFailure_UnauthorizedOperation)
     }
 
+    /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
+    public static var dryRunOperation: TCApmError {
+        TCApmError(.dryRunOperation)
+    }
+
     /// 操作失败。
     public static var failedOperation: TCApmError {
         TCApmError(.failedOperation)
     }
 
+    /// 访问标签失败。
     public static var failedOperation_AccessTagFail: TCApmError {
         TCApmError(.failedOperation_AccessTagFail)
     }
@@ -102,6 +109,7 @@ public struct TCApmError: TCApmErrorType {
         TCApmError(.failedOperation_AppIdNotMatchInstanceInfo)
     }
 
+    /// 未命中白名单且实例id为官方demo实例id时，不允许修改接口。
     public static var failedOperation_DemoInstanceNotAllowModified: TCApmError {
         TCApmError(.failedOperation_DemoInstanceNotAllowModified)
     }
@@ -116,10 +124,12 @@ public struct TCApmError: TCApmErrorType {
         TCApmError(.failedOperation_InstanceNotFound)
     }
 
+    /// 非法实例id。
     public static var failedOperation_InvalidInstanceID: TCApmError {
         TCApmError(.failedOperation_InvalidInstanceID)
     }
 
+    /// 查询指标类数据查询条件缺少过滤参数。
     public static var failedOperation_MetricFiltersLackParams: TCApmError {
         TCApmError(.failedOperation_MetricFiltersLackParams)
     }
@@ -129,10 +139,12 @@ public struct TCApmError: TCApmErrorType {
         TCApmError(.failedOperation_NotInnerVPC)
     }
 
+    /// 查询时间区间不支持。
     public static var failedOperation_QueryTimeIntervalIsNotSupported: TCApmError {
         TCApmError(.failedOperation_QueryTimeIntervalIsNotSupported)
     }
 
+    /// 不支持该地域。
     public static var failedOperation_RegionNotSupport: TCApmError {
         TCApmError(.failedOperation_RegionNotSupport)
     }
@@ -142,6 +154,7 @@ public struct TCApmError: TCApmErrorType {
         TCApmError(.failedOperation_SendRequest)
     }
 
+    /// 视图名不存在或非法。
     public static var failedOperation_ViewNameNotExistOrIllegal: TCApmError {
         TCApmError(.failedOperation_ViewNameNotExistOrIllegal)
     }

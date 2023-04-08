@@ -97,6 +97,7 @@ extension TCSmhError {
             InvalidParameterValue(.notModified)
         }
 
+        /// 指定的手机号码非该企业的超级管理员。
         public static var notSuperAdmin: InvalidParameterValue {
             InvalidParameterValue(.notSuperAdmin)
         }

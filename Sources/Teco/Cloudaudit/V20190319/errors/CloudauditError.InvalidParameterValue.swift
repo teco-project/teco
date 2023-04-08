@@ -20,6 +20,7 @@ extension TCCloudauditError {
             case aliasAlreadyExists = "InvalidParameterValue.AliasAlreadyExists"
             case attributeKey = "InvalidParameterValue.attributeKey"
             case auditNameError = "InvalidParameterValue.AuditNameError"
+            case auditTrackNameNotSupportModify = "InvalidParameterValue.AuditTrackNameNotSupportModify"
             case cmqRegionError = "InvalidParameterValue.CmqRegionError"
             case cosNameError = "InvalidParameterValue.CosNameError"
             case cosRegionError = "InvalidParameterValue.CosRegionError"
@@ -69,6 +70,11 @@ extension TCCloudauditError {
         /// 跟踪集名称不符合规则
         public static var auditNameError: InvalidParameterValue {
             InvalidParameterValue(.auditNameError)
+        }
+
+        /// 跟踪集名称不支持修改。
+        public static var auditTrackNameNotSupportModify: InvalidParameterValue {
+            InvalidParameterValue(.auditTrackNameNotSupportModify)
         }
 
         /// 云审计目前不支持输入的cmq地域
@@ -140,6 +146,8 @@ extension TCCloudauditError {
                 code = .invalidParameterValue_attributeKey
             case .auditNameError:
                 code = .invalidParameterValue_AuditNameError
+            case .auditTrackNameNotSupportModify:
+                code = .invalidParameterValue_AuditTrackNameNotSupportModify
             case .cmqRegionError:
                 code = .invalidParameterValue_CmqRegionError
             case .cosNameError:

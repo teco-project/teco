@@ -1632,12 +1632,17 @@ extension Es {
     }
 
     /// 实例标签信息
-    public struct TagInfo: TCOutputModel {
+    public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
 
         /// 标签值
         public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"

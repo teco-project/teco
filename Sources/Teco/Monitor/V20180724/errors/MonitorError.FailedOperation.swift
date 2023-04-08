@@ -30,19 +30,25 @@ extension TCMonitorError {
             case alertPolicyModifyFailed = "FailedOperation.AlertPolicyModifyFailed"
             case alertTriggerRuleDeleteFailed = "FailedOperation.AlertTriggerRuleDeleteFailed"
             case badYamlFormat = "FailedOperation.BadYamlFormat"
+            case componentClientCommon = "FailedOperation.ComponentClientCommon"
+            case componentClientHttp = "FailedOperation.ComponentClientHttp"
+            case componentClientUnpack = "FailedOperation.ComponentClientUnpack"
             case createInstance = "FailedOperation.CreateInstance"
             case createInstanceLimited = "FailedOperation.CreateInstanceLimited"
             case dataColumnNotFound = "FailedOperation.DataColumnNotFound"
             case dataQueryFailed = "FailedOperation.DataQueryFailed"
             case dataTableNotFound = "FailedOperation.DataTableNotFound"
+            case db = "FailedOperation.Db"
             case dbQueryFailed = "FailedOperation.DbQueryFailed"
             case dbRecordCreateFailed = "FailedOperation.DbRecordCreateFailed"
             case dbRecordDeleteFailed = "FailedOperation.DbRecordDeleteFailed"
+            case dbRecordNotFound = "FailedOperation.DbRecordNotFound"
             case dbRecordUpdateFailed = "FailedOperation.DbRecordUpdateFailed"
             case dbTransactionBeginFailed = "FailedOperation.DbTransactionBeginFailed"
             case dbTransactionCommitFailed = "FailedOperation.DbTransactionCommitFailed"
             case dimQueryRequestFailed = "FailedOperation.DimQueryRequestFailed"
             case divisionByZero = "FailedOperation.DivisionByZero"
+            case doHTTPTransferFailed = "FailedOperation.DoHTTPTransferFailed"
             case druidQueryFailed = "FailedOperation.DruidQueryFailed"
             case druidTableNotFound = "FailedOperation.DruidTableNotFound"
             case duplicateName = "FailedOperation.DuplicateName"
@@ -52,6 +58,8 @@ extension TCMonitorError {
             case instanceNotFound = "FailedOperation.InstanceNotFound"
             case instanceNotRunning = "FailedOperation.InstanceNotRunning"
             case internalError = "FailedOperation.InternalError"
+            case kubeClientConf = "FailedOperation.KubeClientConf"
+            case kubeCommon = "FailedOperation.KubeCommon"
             case regionUnavailable = "FailedOperation.RegionUnavailable"
             case resourceExist = "FailedOperation.ResourceExist"
             case resourceNotFound = "FailedOperation.ResourceNotFound"
@@ -154,6 +162,21 @@ extension TCMonitorError {
             FailedOperation(.badYamlFormat)
         }
 
+        /// FailedOperation.ComponentClientCommon
+        public static var componentClientCommon: FailedOperation {
+            FailedOperation(.componentClientCommon)
+        }
+
+        /// FailedOperation.ComponentClientHttp
+        public static var componentClientHttp: FailedOperation {
+            FailedOperation(.componentClientHttp)
+        }
+
+        /// FailedOperation.ComponentClientUnpack
+        public static var componentClientUnpack: FailedOperation {
+            FailedOperation(.componentClientUnpack)
+        }
+
         /// 创建实例失败。
         public static var createInstance: FailedOperation {
             FailedOperation(.createInstance)
@@ -179,6 +202,11 @@ extension TCMonitorError {
             FailedOperation(.dataTableNotFound)
         }
 
+        /// FailedOperation.Db
+        public static var db: FailedOperation {
+            FailedOperation(.db)
+        }
+
         /// 数据库查询失败。
         public static var dbQueryFailed: FailedOperation {
             FailedOperation(.dbQueryFailed)
@@ -192,6 +220,11 @@ extension TCMonitorError {
         /// 数据库记录删除失败。
         public static var dbRecordDeleteFailed: FailedOperation {
             FailedOperation(.dbRecordDeleteFailed)
+        }
+
+        /// FailedOperation.DbRecordNotFound
+        public static var dbRecordNotFound: FailedOperation {
+            FailedOperation(.dbRecordNotFound)
         }
 
         /// 数据库记录更新失败。
@@ -219,6 +252,11 @@ extension TCMonitorError {
             FailedOperation(.divisionByZero)
         }
 
+        /// 后端服务超时
+        public static var doHTTPTransferFailed: FailedOperation {
+            FailedOperation(.doHTTPTransferFailed)
+        }
+
         /// 查询分析数据失败。
         public static var druidQueryFailed: FailedOperation {
             FailedOperation(.druidQueryFailed)
@@ -234,10 +272,12 @@ extension TCMonitorError {
             FailedOperation(.duplicateName)
         }
 
+        /// 未开通。
         public static var errNotOpen: FailedOperation {
             FailedOperation(.errNotOpen)
         }
 
+        /// 欠费。
         public static var errOwed: FailedOperation {
             FailedOperation(.errOwed)
         }
@@ -257,8 +297,19 @@ extension TCMonitorError {
             FailedOperation(.instanceNotRunning)
         }
 
+        /// 内部服务错误。
         public static var internalError: FailedOperation {
             FailedOperation(.internalError)
+        }
+
+        /// FailedOperation.KubeClientConf
+        public static var kubeClientConf: FailedOperation {
+            FailedOperation(.kubeClientConf)
+        }
+
+        /// FailedOperation.KubeCommon
+        public static var kubeCommon: FailedOperation {
+            FailedOperation(.kubeCommon)
         }
 
         /// 地区不可用。
@@ -345,6 +396,12 @@ extension TCMonitorError {
                 code = .failedOperation_AlertTriggerRuleDeleteFailed
             case .badYamlFormat:
                 code = .failedOperation_BadYamlFormat
+            case .componentClientCommon:
+                code = .failedOperation_ComponentClientCommon
+            case .componentClientHttp:
+                code = .failedOperation_ComponentClientHttp
+            case .componentClientUnpack:
+                code = .failedOperation_ComponentClientUnpack
             case .createInstance:
                 code = .failedOperation_CreateInstance
             case .createInstanceLimited:
@@ -355,12 +412,16 @@ extension TCMonitorError {
                 code = .failedOperation_DataQueryFailed
             case .dataTableNotFound:
                 code = .failedOperation_DataTableNotFound
+            case .db:
+                code = .failedOperation_Db
             case .dbQueryFailed:
                 code = .failedOperation_DbQueryFailed
             case .dbRecordCreateFailed:
                 code = .failedOperation_DbRecordCreateFailed
             case .dbRecordDeleteFailed:
                 code = .failedOperation_DbRecordDeleteFailed
+            case .dbRecordNotFound:
+                code = .failedOperation_DbRecordNotFound
             case .dbRecordUpdateFailed:
                 code = .failedOperation_DbRecordUpdateFailed
             case .dbTransactionBeginFailed:
@@ -371,6 +432,8 @@ extension TCMonitorError {
                 code = .failedOperation_DimQueryRequestFailed
             case .divisionByZero:
                 code = .failedOperation_DivisionByZero
+            case .doHTTPTransferFailed:
+                code = .failedOperation_DoHTTPTransferFailed
             case .druidQueryFailed:
                 code = .failedOperation_DruidQueryFailed
             case .druidTableNotFound:
@@ -389,6 +452,10 @@ extension TCMonitorError {
                 code = .failedOperation_InstanceNotRunning
             case .internalError:
                 code = .failedOperation_InternalError
+            case .kubeClientConf:
+                code = .failedOperation_KubeClientConf
+            case .kubeCommon:
+                code = .failedOperation_KubeCommon
             case .regionUnavailable:
                 code = .failedOperation_RegionUnavailable
             case .resourceExist:

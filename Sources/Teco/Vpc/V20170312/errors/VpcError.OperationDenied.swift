@@ -43,10 +43,12 @@ extension TCVpcError {
             self.context = context
         }
 
+        /// 指定公网IP处于隔离状态。
         public static var addressInArrears: OperationDenied {
             OperationDenied(.addressInArrears)
         }
 
+        /// 互斥的任务正在执行。
         public static var mutexTaskRunning: OperationDenied {
             OperationDenied(.mutexTaskRunning)
         }

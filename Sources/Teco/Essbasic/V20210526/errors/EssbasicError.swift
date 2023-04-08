@@ -45,8 +45,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case internalError_DbUpdate = "InternalError.DbUpdate"
         case internalError_Decryption = "InternalError.Decryption"
         case internalError_DependsApi = "InternalError.DependsApi"
+        case internalError_DependsDb = "InternalError.DependsDb"
         case internalError_Encryption = "InternalError.Encryption"
         case internalError_GenerateId = "InternalError.GenerateId"
+        case internalError_Pdf = "InternalError.Pdf"
         case internalError_SealUpload = "InternalError.SealUpload"
         case internalError_Serialize = "InternalError.Serialize"
         case internalError_System = "InternalError.System"
@@ -57,6 +59,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case invalidParameter_ApproverType = "InvalidParameter.ApproverType"
         case invalidParameter_BizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
         case invalidParameter_BusinessLicense = "InvalidParameter.BusinessLicense"
+        case invalidParameter_CancelReason = "InvalidParameter.CancelReason"
         case invalidParameter_CardType = "InvalidParameter.CardType"
         case invalidParameter_ComponentValue = "InvalidParameter.ComponentValue"
         case invalidParameter_ContentType = "InvalidParameter.ContentType"
@@ -81,20 +84,25 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case invalidParameter_FlowType = "InvalidParameter.FlowType"
         case invalidParameter_GenerateType = "InvalidParameter.GenerateType"
         case invalidParameter_Image = "InvalidParameter.Image"
+        case invalidParameter_InvalidId = "InvalidParameter.InvalidId"
         case invalidParameter_LimitSealName = "InvalidParameter.LimitSealName"
         case invalidParameter_MenuStatus = "InvalidParameter.MenuStatus"
         case invalidParameter_MissingRequiredParameterValue = "InvalidParameter.MissingRequiredParameterValue"
+        case invalidParameter_Mobile = "InvalidParameter.Mobile"
         case invalidParameter_Name = "InvalidParameter.Name"
         case invalidParameter_NonsupportMobile = "InvalidParameter.NonsupportMobile"
         case invalidParameter_OpenId = "InvalidParameter.OpenId"
         case invalidParameter_OrganizationId = "InvalidParameter.OrganizationId"
         case invalidParameter_OrganizationName = "InvalidParameter.OrganizationName"
         case invalidParameter_ParamError = "InvalidParameter.ParamError"
+        case invalidParameter_ResourceType = "InvalidParameter.ResourceType"
         case invalidParameter_SensitiveFileContent = "InvalidParameter.SensitiveFileContent"
         case invalidParameter_SignComponentType = "InvalidParameter.SignComponentType"
+        case invalidParameter_SignComponents = "InvalidParameter.SignComponents"
         case invalidParameter_Status = "InvalidParameter.Status"
         case invalidParameter_Unordered = "InvalidParameter.Unordered"
         case invalidParameter_UnsupportedComponentType = "InvalidParameter.UnsupportedComponentType"
+        case invalidParameter_fFowIds = "InvalidParameter.fFowIds"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_CallTimes = "LimitExceeded.CallTimes"
         case limitExceeded_CreateFlowNum = "LimitExceeded.CreateFlowNum"
@@ -113,11 +121,13 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case missingParameter_OrgOpenId = "MissingParameter.OrgOpenId"
         case missingParameter_OrganizationId = "MissingParameter.OrganizationId"
         case missingParameter_ProxyOperatorOpenId = "MissingParameter.ProxyOperatorOpenId"
+        case missingParameter_ResourceName = "MissingParameter.ResourceName"
         case missingParameter_SealId = "MissingParameter.SealId"
         case missingParameter_SealImage = "MissingParameter.SealImage"
         case missingParameter_SealName = "MissingParameter.SealName"
         case missingParameter_SignComponents = "MissingParameter.SignComponents"
         case missingParameter_Templates = "MissingParameter.Templates"
+        case missingParameter_UserId = "MissingParameter.UserId"
         case missingParameter_UserOpenId = "MissingParameter.UserOpenId"
         case operationDenied = "OperationDenied"
         case operationDenied_AuthTag = "OperationDenied.AuthTag"
@@ -127,39 +137,50 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case operationDenied_ErrNoResourceAccess = "OperationDenied.ErrNoResourceAccess"
         case operationDenied_FileDeleted = "OperationDenied.FileDeleted"
         case operationDenied_FlowHasTerminated = "OperationDenied.FlowHasTerminated"
+        case operationDenied_FlowStatusForbid = "OperationDenied.FlowStatusForbid"
         case operationDenied_Forbid = "OperationDenied.Forbid"
         case operationDenied_InvalidApproverAge = "OperationDenied.InvalidApproverAge"
         case operationDenied_NoApiAuth = "OperationDenied.NoApiAuth"
         case operationDenied_NoFlowPermission = "OperationDenied.NoFlowPermission"
         case operationDenied_NoIdentityVerify = "OperationDenied.NoIdentityVerify"
         case operationDenied_NoQuota = "OperationDenied.NoQuota"
+        case operationDenied_NotBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
         case operationDenied_OperateType = "OperationDenied.OperateType"
         case operationDenied_OperatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
         case operationDenied_OutQueryLimit = "OperationDenied.OutQueryLimit"
+        case operationDenied_OverseaAbilityNotOpen = "OperationDenied.OverseaAbilityNotOpen"
+        case operationDenied_ProveNoQuota = "OperationDenied.ProveNoQuota"
         case operationDenied_UserNotInOrganization = "OperationDenied.UserNotInOrganization"
+        case operationDenied_WhiteListForbid = "OperationDenied.WhiteListForbid"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_Application = "ResourceNotFound.Application"
         case resourceNotFound_ApplicationAuth = "ResourceNotFound.ApplicationAuth"
         case resourceNotFound_ApplicationId = "ResourceNotFound.ApplicationId"
         case resourceNotFound_File = "ResourceNotFound.File"
         case resourceNotFound_Flow = "ResourceNotFound.Flow"
+        case resourceNotFound_FlowApprover = "ResourceNotFound.FlowApprover"
         case resourceNotFound_FlowApprovers = "ResourceNotFound.FlowApprovers"
+        case resourceNotFound_FlowGroup = "ResourceNotFound.FlowGroup"
         case resourceNotFound_Organization = "ResourceNotFound.Organization"
         case resourceNotFound_Resource = "ResourceNotFound.Resource"
         case resourceNotFound_Seal = "ResourceNotFound.Seal"
         case resourceNotFound_TeamWorkOrganization = "ResourceNotFound.TeamWorkOrganization"
         case resourceNotFound_Template = "ResourceNotFound.Template"
+        case resourceNotFound_URL = "ResourceNotFound.URL"
         case resourceNotFound_User = "ResourceNotFound.User"
         case resourceNotFound_VerifyUser = "ResourceNotFound.VerifyUser"
         case resourceUnavailable = "ResourceUnavailable"
         case unauthorizedOperation = "UnauthorizedOperation"
+        case unauthorizedOperation_NoPermissionFeature = "UnauthorizedOperation.NoPermissionFeature"
+        case unauthorizedOperation_UnauthorizedOperationDownload = "UnauthorizedOperation.UnauthorizedOperationDownload"
+        case unauthorizedOperation_UnauthorizedOperationOrganization = "UnauthorizedOperation.UnauthorizedOperationOrganization"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
     }
 
     /// Error domains affliated to ``TCEssbasicError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, ResourceNotFound.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, ResourceNotFound.self, UnauthorizedOperation.self]
     }
 
     private let error: Code
@@ -194,6 +215,8 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.failedOperation)
     }
 
+    /// 签署人未达到合法年龄。
+    ///
     /// 请检查签署人证件号是合法年龄，以证件号为准。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AgeNotAchieveNormalLegal: TCEssbasicError {
         TCEssbasicError(.failedOperation_AgeNotAchieveNormalLegal)
@@ -206,32 +229,42 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.failedOperation_AuthFail)
     }
 
+    /// 存在同名印章。
     public static var failedOperation_ExistSameSealName: TCEssbasicError {
         TCEssbasicError(.failedOperation_ExistSameSealName)
     }
 
+    /// 合同数目超出。
     public static var failedOperation_FlowNumExceed: TCEssbasicError {
         TCEssbasicError(.failedOperation_FlowNumExceed)
     }
 
+    /// 已授权。
     public static var failedOperation_HasAuthorized: TCEssbasicError {
         TCEssbasicError(.failedOperation_HasAuthorized)
     }
 
+    /// 当前合同状态无法进行签署审批。
     public static var failedOperation_NotAvailableSignReview: TCEssbasicError {
         TCEssbasicError(.failedOperation_NotAvailableSignReview)
     }
 
+    /// 发起签署存在填写控件。
+    ///
     /// 请确认是否模板配置存在发起方的填写控件。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeCreatorSignComponents: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeCreatorSignComponents)
     }
 
+    /// 模板签署人不存在。
+    ///
     /// 请确认模板是否缺少签署人。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeSignUsers: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeSignUsers)
     }
 
+    /// 签署二维码模板信息有误，请检查参数后重试。
+    ///
     /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeTemplateId: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeTemplateId)
@@ -305,6 +338,11 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.internalError_DependsApi)
     }
 
+    /// 数据库异常。
+    public static var internalError_DependsDb: TCEssbasicError {
+        TCEssbasicError(.internalError_DependsDb)
+    }
+
     /// 加密错误。
     ///
     /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
@@ -319,6 +357,14 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.internalError_GenerateId)
     }
 
+    /// Pdf合成错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
+    public static var internalError_Pdf: TCEssbasicError {
+        TCEssbasicError(.internalError_Pdf)
+    }
+
+    /// 上传印章失败。
     public static var internalError_SealUpload: TCEssbasicError {
         TCEssbasicError(.internalError_SealUpload)
     }
@@ -361,6 +407,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_Application)
     }
 
+    /// 参数错误，不合法的签署人类型，请修改后重试。
     public static var invalidParameter_ApproverType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_ApproverType)
     }
@@ -372,26 +419,37 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_BizApproverAlreadyExists)
     }
 
+    /// 营业执照格式不合法。
     public static var invalidParameter_BusinessLicense: TCEssbasicError {
         TCEssbasicError(.invalidParameter_BusinessLicense)
     }
 
+    /// 撤销理由填写格式错误。
+    public static var invalidParameter_CancelReason: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_CancelReason)
+    }
+
+    /// 证件类型错误。
     public static var invalidParameter_CardType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_CardType)
     }
 
+    /// 参数错误,控件内容无效。
     public static var invalidParameter_ComponentValue: TCEssbasicError {
         TCEssbasicError(.invalidParameter_ComponentValue)
     }
 
+    /// 查询内容参数有误。
     public static var invalidParameter_ContentType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_ContentType)
     }
 
+    /// 参数错误，无效的自定义页卡模板，仅支持{合同名称}{发起方姓名}{发起方企业}{签署方N姓名}{签署方N企业}，请修改后重试。
     public static var invalidParameter_CustomShowMap: TCEssbasicError {
         TCEssbasicError(.invalidParameter_CustomShowMap)
     }
 
+    /// 参数错误，UserData长度非法，请修改后重试。
     public static var invalidParameter_CustomerData: TCEssbasicError {
         TCEssbasicError(.invalidParameter_CustomerData)
     }
@@ -403,14 +461,17 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_DataNotFound)
     }
 
+    /// 参数错误，不合法的日期，请检查后重试。
     public static var invalidParameter_Date: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Date)
     }
 
+    /// 员工ID不正确。
     public static var invalidParameter_DepartUserId: TCEssbasicError {
         TCEssbasicError(.invalidParameter_DepartUserId)
     }
 
+    /// 重复提交任务。
     public static var invalidParameter_DupTask: TCEssbasicError {
         TCEssbasicError(.invalidParameter_DupTask)
     }
@@ -422,90 +483,124 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_EmptyParams)
     }
 
+    /// 不合法的EndPoint，请检查修改后重试。
     public static var invalidParameter_EndPoint: TCEssbasicError {
         TCEssbasicError(.invalidParameter_EndPoint)
     }
 
+    /// 文件类型不合法。
     public static var invalidParameter_FileType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FileType)
     }
 
+    /// 参数错误，不合法的备选签署人数量，请检查后重试。
     public static var invalidParameter_FlowApproverInfos: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowApproverInfos)
     }
 
+    /// 参数错误，参与者数量不能为空且不能超过数量限制，请修改后重试。
     public static var invalidParameter_FlowApprovers: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowApprovers)
     }
 
+    /// 参数错误，不合法的签署流程回调链接，请修改后重试。
     public static var invalidParameter_FlowCallbackUrl: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowCallbackUrl)
     }
 
+    /// 参数错误，不合法的签署流程截止日期，请修改后重试。
     public static var invalidParameter_FlowDeadLine: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowDeadLine)
     }
 
+    /// 参数错误，不合法的签署流程描述，请修改后重试。
     public static var invalidParameter_FlowDescription: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowDescription)
     }
 
+    /// 参数错误，目前仅支持单个文件发起，请修改后重试。
     public static var invalidParameter_FlowFileIds: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowFileIds)
     }
 
+    /// 参数错误，合同id列表长度非法，请检查后重试。
     public static var invalidParameter_FlowIds: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowIds)
     }
 
+    /// 参数错误，FlowInfos非法，请修改后重试。
     public static var invalidParameter_FlowInfos: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowInfos)
     }
 
+    /// 参数错误，不合法的签署流程名称，请修改后重试。
     public static var invalidParameter_FlowName: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowName)
     }
 
+    /// 参数错误，不合法的FlowType，请修改后重试。
     public static var invalidParameter_FlowType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_FlowType)
     }
 
+    /// 参数错误，不受支持的GenerateType，请检查后重试。
     public static var invalidParameter_GenerateType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_GenerateType)
     }
 
+    /// 图片不正确。
     public static var invalidParameter_Image: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Image)
     }
 
+    /// Id不存在或者符合规范。
+    public static var invalidParameter_InvalidId: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_InvalidId)
+    }
+
+    /// 印章名称长度超出。
     public static var invalidParameter_LimitSealName: TCEssbasicError {
         TCEssbasicError(.invalidParameter_LimitSealName)
     }
 
+    /// 菜单栏状态非法。
     public static var invalidParameter_MenuStatus: TCEssbasicError {
         TCEssbasicError(.invalidParameter_MenuStatus)
     }
 
+    /// 缺少必填参数的值。
     public static var invalidParameter_MissingRequiredParameterValue: TCEssbasicError {
         TCEssbasicError(.invalidParameter_MissingRequiredParameterValue)
     }
 
+    /// 手机号码不正确。
+    ///
+    /// 请检查手机号码是否规范。
+    public static var invalidParameter_Mobile: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_Mobile)
+    }
+
+    /// 姓名不符合要求。
     public static var invalidParameter_Name: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Name)
     }
 
+    /// 不支持的手机号。
     public static var invalidParameter_NonsupportMobile: TCEssbasicError {
         TCEssbasicError(.invalidParameter_NonsupportMobile)
     }
 
+    /// OpenId不合法。
     public static var invalidParameter_OpenId: TCEssbasicError {
         TCEssbasicError(.invalidParameter_OpenId)
     }
 
+    /// OrganizationId不合法。
     public static var invalidParameter_OrganizationId: TCEssbasicError {
         TCEssbasicError(.invalidParameter_OrganizationId)
     }
 
+    /// 企业名称不合法。
     public static var invalidParameter_OrganizationName: TCEssbasicError {
         TCEssbasicError(.invalidParameter_OrganizationName)
     }
@@ -517,12 +612,23 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_ParamError)
     }
 
+    /// 资源类型错误。
+    public static var invalidParameter_ResourceType: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_ResourceType)
+    }
+
+    /// 文件内容敏感信息。
     public static var invalidParameter_SensitiveFileContent: TCEssbasicError {
         TCEssbasicError(.invalidParameter_SensitiveFileContent)
     }
 
+    /// 参数错误，不合法的签署控件类型，请修改后重试。
     public static var invalidParameter_SignComponentType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_SignComponentType)
+    }
+
+    public static var invalidParameter_SignComponents: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_SignComponents)
     }
 
     /// 状态异常。
@@ -532,12 +638,18 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_Status)
     }
 
+    /// 参数错误，不合法的签署顺序，请检查后重试。
     public static var invalidParameter_Unordered: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Unordered)
     }
 
+    /// 参数错误，不支持的控件类型，请检查后重试。
     public static var invalidParameter_UnsupportedComponentType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_UnsupportedComponentType)
+    }
+
+    public static var invalidParameter_fFowIds: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_fFowIds)
     }
 
     /// 超过配额限制。
@@ -545,26 +657,32 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.limitExceeded)
     }
 
+    /// 超出调用次数限制。
     public static var limitExceeded_CallTimes: TCEssbasicError {
         TCEssbasicError(.limitExceeded_CallTimes)
     }
 
+    /// 超出流程创建数量限制。
     public static var limitExceeded_CreateFlowNum: TCEssbasicError {
         TCEssbasicError(.limitExceeded_CreateFlowNum)
     }
 
+    /// 文件大小限制。
     public static var limitExceeded_FileSize: TCEssbasicError {
         TCEssbasicError(.limitExceeded_FileSize)
     }
 
+    /// 合同id数超出限制。
     public static var limitExceeded_FlowIds: TCEssbasicError {
         TCEssbasicError(.limitExceeded_FlowIds)
     }
 
+    /// 超出流程数量限制。
     public static var limitExceeded_FlowInfos: TCEssbasicError {
         TCEssbasicError(.limitExceeded_FlowInfos)
     }
 
+    /// 经办人数据超出。
     public static var limitExceeded_ProxyOrganizationOperator: TCEssbasicError {
         TCEssbasicError(.limitExceeded_ProxyOrganizationOperator)
     }
@@ -574,10 +692,12 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.missingParameter)
     }
 
+    /// 合作企业激活信息不存在。
     public static var missingParameter_CompanyActiveInfo: TCEssbasicError {
         TCEssbasicError(.missingParameter_CompanyActiveInfo)
     }
 
+    /// 缺少时间参数，请检查后重试。
     public static var missingParameter_Date: TCEssbasicError {
         TCEssbasicError(.missingParameter_Date)
     }
@@ -587,54 +707,77 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.missingParameter_FlowId)
     }
 
+    /// 缺少流程id，请检查后重试。
     public static var missingParameter_FlowIds: TCEssbasicError {
         TCEssbasicError(.missingParameter_FlowIds)
     }
 
+    /// 请传入需要查询的合同或合同组的ID。
     public static var missingParameter_FlowIdsOrFlowGroupId: TCEssbasicError {
         TCEssbasicError(.missingParameter_FlowIdsOrFlowGroupId)
     }
 
+    /// 未指定流程合同信息。
     public static var missingParameter_FlowInfo: TCEssbasicError {
         TCEssbasicError(.missingParameter_FlowInfo)
     }
 
+    /// 缺少控件名称参数，请检查后重试。
     public static var missingParameter_MissComponentName: TCEssbasicError {
         TCEssbasicError(.missingParameter_MissComponentName)
     }
 
+    /// 企业OpenId不存在。
     public static var missingParameter_OrgOpenId: TCEssbasicError {
         TCEssbasicError(.missingParameter_OrgOpenId)
     }
 
+    /// 企业信息为空。
     public static var missingParameter_OrganizationId: TCEssbasicError {
         TCEssbasicError(.missingParameter_OrganizationId)
     }
 
+    /// ProxyOperatorOpenId不存在。
     public static var missingParameter_ProxyOperatorOpenId: TCEssbasicError {
         TCEssbasicError(.missingParameter_ProxyOperatorOpenId)
     }
 
+    /// 资源名称错误。
+    public static var missingParameter_ResourceName: TCEssbasicError {
+        TCEssbasicError(.missingParameter_ResourceName)
+    }
+
+    /// 印章ID为空。
     public static var missingParameter_SealId: TCEssbasicError {
         TCEssbasicError(.missingParameter_SealId)
     }
 
+    /// 印章图片为空。
     public static var missingParameter_SealImage: TCEssbasicError {
         TCEssbasicError(.missingParameter_SealImage)
     }
 
+    /// 印章名称为空。
     public static var missingParameter_SealName: TCEssbasicError {
         TCEssbasicError(.missingParameter_SealName)
     }
 
+    /// 签署人缺少签署控件。
     public static var missingParameter_SignComponents: TCEssbasicError {
         TCEssbasicError(.missingParameter_SignComponents)
     }
 
+    /// 缺少模板参数。
     public static var missingParameter_Templates: TCEssbasicError {
         TCEssbasicError(.missingParameter_Templates)
     }
 
+    /// 缺少用户ID参数
+    public static var missingParameter_UserId: TCEssbasicError {
+        TCEssbasicError(.missingParameter_UserId)
+    }
+
+    /// OpenId不存在。
     public static var missingParameter_UserOpenId: TCEssbasicError {
         TCEssbasicError(.missingParameter_UserOpenId)
     }
@@ -644,6 +787,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied)
     }
 
+    /// 不支持的可见性标识。
     public static var operationDenied_AuthTag: TCEssbasicError {
         TCEssbasicError(.operationDenied_AuthTag)
     }
@@ -655,24 +799,34 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_BannedApplication)
     }
 
+    /// 文件发起静默签未开通白名单。
     public static var operationDenied_ByFilesServerSignForbid: TCEssbasicError {
         TCEssbasicError(.operationDenied_ByFilesServerSignForbid)
     }
 
+    /// 只支持下载单个。
     public static var operationDenied_DownLoadMoreThanOne: TCEssbasicError {
         TCEssbasicError(.operationDenied_DownLoadMoreThanOne)
     }
 
+    /// 无资源访问权限。
     public static var operationDenied_ErrNoResourceAccess: TCEssbasicError {
         TCEssbasicError(.operationDenied_ErrNoResourceAccess)
     }
 
+    /// 文件已删除。
     public static var operationDenied_FileDeleted: TCEssbasicError {
         TCEssbasicError(.operationDenied_FileDeleted)
     }
 
+    /// 流程已终止。
     public static var operationDenied_FlowHasTerminated: TCEssbasicError {
         TCEssbasicError(.operationDenied_FlowHasTerminated)
+    }
+
+    /// 签署流程状态不正确，请检查后重试。
+    public static var operationDenied_FlowStatusForbid: TCEssbasicError {
+        TCEssbasicError(.operationDenied_FlowStatusForbid)
     }
 
     /// 禁止操作。
@@ -682,6 +836,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_Forbid)
     }
 
+    /// 签署人未达到合法年龄。
     public static var operationDenied_InvalidApproverAge: TCEssbasicError {
         TCEssbasicError(.operationDenied_InvalidApproverAge)
     }
@@ -693,6 +848,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_NoApiAuth)
     }
 
+    /// 无权操作合同。
     public static var operationDenied_NoFlowPermission: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoFlowPermission)
     }
@@ -711,24 +867,50 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_NoQuota)
     }
 
+    /// 不属于企业超管或者法人。
+    ///
+    /// 不属于企业超管或者法人，请超管/法人权限用户操作
+    public static var operationDenied_NotBelongSuperAdminOrLegalPerson: TCEssbasicError {
+        TCEssbasicError(.operationDenied_NotBelongSuperAdminOrLegalPerson)
+    }
+
+    /// 操作类型不支持。
     public static var operationDenied_OperateType: TCEssbasicError {
         TCEssbasicError(.operationDenied_OperateType)
     }
 
+    /// 操作者权限不足。
+    ///
     /// 联系管理员获取权限。
     public static var operationDenied_OperatorHasNoPermission: TCEssbasicError {
         TCEssbasicError(.operationDenied_OperatorHasNoPermission)
     }
 
+    /// 超出查询上限。
     public static var operationDenied_OutQueryLimit: TCEssbasicError {
         TCEssbasicError(.operationDenied_OutQueryLimit)
     }
 
-    /// 用户与企业不对应。
+    /// 当前企业员工没有开通境外签署能力。
+    public static var operationDenied_OverseaAbilityNotOpen: TCEssbasicError {
+        TCEssbasicError(.operationDenied_OverseaAbilityNotOpen)
+    }
+
+    /// 出证计费额度不足。
+    public static var operationDenied_ProveNoQuota: TCEssbasicError {
+        TCEssbasicError(.operationDenied_ProveNoQuota)
+    }
+
+    /// 用户不归属于当前企业，无法操作，请检查后重试。
     ///
     /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_UserNotInOrganization: TCEssbasicError {
         TCEssbasicError(.operationDenied_UserNotInOrganization)
+    }
+
+    /// 接口功能暂未开放，请联系客户经理申请白名单使用
+    public static var operationDenied_WhiteListForbid: TCEssbasicError {
+        TCEssbasicError(.operationDenied_WhiteListForbid)
     }
 
     /// 资源不存在。
@@ -743,14 +925,17 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.resourceNotFound_Application)
     }
 
+    /// 应用授权记录未找到。
     public static var resourceNotFound_ApplicationAuth: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_ApplicationAuth)
     }
 
+    /// ApplicationId不存在。
     public static var resourceNotFound_ApplicationId: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_ApplicationId)
     }
 
+    /// 文件不存在。
     public static var resourceNotFound_File: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_File)
     }
@@ -762,8 +947,19 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.resourceNotFound_Flow)
     }
 
+    /// 签署流程的签署人不存在，请检查后重试。
+    public static var resourceNotFound_FlowApprover: TCEssbasicError {
+        TCEssbasicError(.resourceNotFound_FlowApprover)
+    }
+
+    /// 签署人信息不存在，请检查后重试。
     public static var resourceNotFound_FlowApprovers: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_FlowApprovers)
+    }
+
+    /// 合同组不存在。
+    public static var resourceNotFound_FlowGroup: TCEssbasicError {
+        TCEssbasicError(.resourceNotFound_FlowGroup)
     }
 
     /// 机构不存在。
@@ -773,14 +969,17 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.resourceNotFound_Organization)
     }
 
+    /// 资源不存在。
     public static var resourceNotFound_Resource: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Resource)
     }
 
+    /// 印章不存在，请检查后重试。
     public static var resourceNotFound_Seal: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Seal)
     }
 
+    /// 合作企业不存在。
     public static var resourceNotFound_TeamWorkOrganization: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_TeamWorkOrganization)
     }
@@ -792,10 +991,19 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.resourceNotFound_Template)
     }
 
+    /// Url不存在。
+    ///
+    /// Url 不存在，请检查查询参数
+    public static var resourceNotFound_URL: TCEssbasicError {
+        TCEssbasicError(.resourceNotFound_URL)
+    }
+
+    /// 用户信息不存在。
     public static var resourceNotFound_User: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_User)
     }
 
+    /// 实名用户信息不存在。
     public static var resourceNotFound_VerifyUser: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_VerifyUser)
     }
@@ -808,6 +1016,21 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 未授权操作。
     public static var unauthorizedOperation: TCEssbasicError {
         TCEssbasicError(.unauthorizedOperation)
+    }
+
+    /// 请升级到对应版本后即可使用该接口。
+    public static var unauthorizedOperation_NoPermissionFeature: TCEssbasicError {
+        TCEssbasicError(.unauthorizedOperation_NoPermissionFeature)
+    }
+
+    /// 未授权下载权限。
+    public static var unauthorizedOperation_UnauthorizedOperationDownload: TCEssbasicError {
+        TCEssbasicError(.unauthorizedOperation_UnauthorizedOperationDownload)
+    }
+
+    /// 企业没有被授权。
+    public static var unauthorizedOperation_UnauthorizedOperationOrganization: TCEssbasicError {
+        TCEssbasicError(.unauthorizedOperation_UnauthorizedOperationOrganization)
     }
 
     /// 未知参数错误。

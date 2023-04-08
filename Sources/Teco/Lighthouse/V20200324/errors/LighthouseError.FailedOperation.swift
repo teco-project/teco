@@ -18,14 +18,24 @@ extension TCLighthouseError {
     public struct FailedOperation: TCLighthouseErrorType {
         enum Code: String {
             case createBlueprintFailed = "FailedOperation.CreateBlueprintFailed"
+            case createInstancesFailed = "FailedOperation.CreateInstancesFailed"
             case createKeyPairFailed = "FailedOperation.CreateKeyPairFailed"
             case deleteKeyPairFailed = "FailedOperation.DeleteKeyPairFailed"
+            case describeBlueprintsFailed = "FailedOperation.DescribeBlueprintsFailed"
+            case describeInstanceStatus = "FailedOperation.DescribeInstanceStatus"
+            case describeInstancesModificationError = "FailedOperation.DescribeInstancesModificationError"
+            case describeInstancesReturnableError = "FailedOperation.DescribeInstancesReturnableError"
+            case describeInstancesTrafficPackagesFailed = "FailedOperation.DescribeInstancesTrafficPackagesFailed"
+            case destroyResourcesFailed = "FailedOperation.DestroyResourcesFailed"
             case firewallRulesOperationFailed = "FailedOperation.FirewallRulesOperationFailed"
             case importKeyPairFailed = "FailedOperation.ImportKeyPairFailed"
             case instanceOperationFailed = "FailedOperation.InstanceOperationFailed"
             case isolateResourcesFailed = "FailedOperation.IsolateResourcesFailed"
             case modifyInstancesBundleFailed = "FailedOperation.ModifyInstancesBundleFailed"
+            case renewInstancesFailed = "FailedOperation.RenewInstancesFailed"
+            case requestError = "FailedOperation.RequestError"
             case snapshotOperationFailed = "FailedOperation.SnapshotOperationFailed"
+            case tradeGetPriceFailed = "FailedOperation.TradeGetPriceFailed"
             case unableToCreateBlueprint = "FailedOperation.UnableToCreateBlueprint"
             case unableToCreateInstances = "FailedOperation.UnableToCreateInstances"
             case other = "FailedOperation"
@@ -58,6 +68,11 @@ extension TCLighthouseError {
             FailedOperation(.createBlueprintFailed)
         }
 
+        /// 创建实例失败。
+        public static var createInstancesFailed: FailedOperation {
+            FailedOperation(.createInstancesFailed)
+        }
+
         /// 对密钥对的创建操作失败。
         public static var createKeyPairFailed: FailedOperation {
             FailedOperation(.createKeyPairFailed)
@@ -66,6 +81,35 @@ extension TCLighthouseError {
         /// 对密钥对的删除操作失败。
         public static var deleteKeyPairFailed: FailedOperation {
             FailedOperation(.deleteKeyPairFailed)
+        }
+
+        /// 查询镜像失败，请稍后再试。
+        public static var describeBlueprintsFailed: FailedOperation {
+            FailedOperation(.describeBlueprintsFailed)
+        }
+
+        /// 查询实例状态错误。
+        public static var describeInstanceStatus: FailedOperation {
+            FailedOperation(.describeInstanceStatus)
+        }
+
+        /// 查询实例变配套餐失败。
+        public static var describeInstancesModificationError: FailedOperation {
+            FailedOperation(.describeInstancesModificationError)
+        }
+
+        /// 查询实例退还错误。
+        public static var describeInstancesReturnableError: FailedOperation {
+            FailedOperation(.describeInstancesReturnableError)
+        }
+
+        /// 查询流量包失败。
+        public static var describeInstancesTrafficPackagesFailed: FailedOperation {
+            FailedOperation(.describeInstancesTrafficPackagesFailed)
+        }
+
+        public static var destroyResourcesFailed: FailedOperation {
+            FailedOperation(.destroyResourcesFailed)
         }
 
         /// 对防火墙规则的操作失败。
@@ -88,13 +132,29 @@ extension TCLighthouseError {
             FailedOperation(.isolateResourcesFailed)
         }
 
+        /// 变更实例套餐失败。
         public static var modifyInstancesBundleFailed: FailedOperation {
             FailedOperation(.modifyInstancesBundleFailed)
+        }
+
+        /// 续费实例失败。
+        public static var renewInstancesFailed: FailedOperation {
+            FailedOperation(.renewInstancesFailed)
+        }
+
+        /// 请求错误。
+        public static var requestError: FailedOperation {
+            FailedOperation(.requestError)
         }
 
         /// 快照操作失败。
         public static var snapshotOperationFailed: FailedOperation {
             FailedOperation(.snapshotOperationFailed)
+        }
+
+        /// 计费询价失败。
+        public static var tradeGetPriceFailed: FailedOperation {
+            FailedOperation(.tradeGetPriceFailed)
         }
 
         /// 操作失败，不能创建自定义镜像。
@@ -119,10 +179,24 @@ extension TCLighthouseError {
             switch self.error {
             case .createBlueprintFailed:
                 code = .failedOperation_CreateBlueprintFailed
+            case .createInstancesFailed:
+                code = .failedOperation_CreateInstancesFailed
             case .createKeyPairFailed:
                 code = .failedOperation_CreateKeyPairFailed
             case .deleteKeyPairFailed:
                 code = .failedOperation_DeleteKeyPairFailed
+            case .describeBlueprintsFailed:
+                code = .failedOperation_DescribeBlueprintsFailed
+            case .describeInstanceStatus:
+                code = .failedOperation_DescribeInstanceStatus
+            case .describeInstancesModificationError:
+                code = .failedOperation_DescribeInstancesModificationError
+            case .describeInstancesReturnableError:
+                code = .failedOperation_DescribeInstancesReturnableError
+            case .describeInstancesTrafficPackagesFailed:
+                code = .failedOperation_DescribeInstancesTrafficPackagesFailed
+            case .destroyResourcesFailed:
+                code = .failedOperation_DestroyResourcesFailed
             case .firewallRulesOperationFailed:
                 code = .failedOperation_FirewallRulesOperationFailed
             case .importKeyPairFailed:
@@ -133,8 +207,14 @@ extension TCLighthouseError {
                 code = .failedOperation_IsolateResourcesFailed
             case .modifyInstancesBundleFailed:
                 code = .failedOperation_ModifyInstancesBundleFailed
+            case .renewInstancesFailed:
+                code = .failedOperation_RenewInstancesFailed
+            case .requestError:
+                code = .failedOperation_RequestError
             case .snapshotOperationFailed:
                 code = .failedOperation_SnapshotOperationFailed
+            case .tradeGetPriceFailed:
+                code = .failedOperation_TradeGetPriceFailed
             case .unableToCreateBlueprint:
                 code = .failedOperation_UnableToCreateBlueprint
             case .unableToCreateInstances:

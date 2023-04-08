@@ -48,6 +48,8 @@ extension TCTseError {
             self.context = context
         }
 
+        /// 旧实例不支持此操作。
+        ///
         /// 迁移到新架构的云原生网关
         public static var action: InvalidParameterValue {
             InvalidParameterValue(.action)

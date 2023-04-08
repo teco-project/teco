@@ -25,22 +25,27 @@ public protocol TCOcrErrorType: TCServiceErrorType {
 public struct TCOcrError: TCOcrErrorType {
     enum Code: String {
         case failedOperation_ArrearsError = "FailedOperation.ArrearsError"
+        case failedOperation_CardSideError = "FailedOperation.CardSideError"
         case failedOperation_CountLimitError = "FailedOperation.CountLimitError"
         case failedOperation_DataSourceQueryFailed = "FailedOperation.DataSourceQueryFailed"
+        case failedOperation_DbError = "FailedOperation.DbError"
         case failedOperation_DetectFailed = "FailedOperation.DetectFailed"
         case failedOperation_DownLoadError = "FailedOperation.DownLoadError"
         case failedOperation_EmptyImageError = "FailedOperation.EmptyImageError"
         case failedOperation_EngineRecognizeTimeout = "FailedOperation.EngineRecognizeTimeout"
         case failedOperation_IdCardInfoIllegal = "FailedOperation.IdCardInfoIllegal"
+        case failedOperation_IllegalBankCardError = "FailedOperation.IllegalBankCardError"
         case failedOperation_ImageBlur = "FailedOperation.ImageBlur"
         case failedOperation_ImageDecodeFailed = "FailedOperation.ImageDecodeFailed"
         case failedOperation_ImageNoBusinessCard = "FailedOperation.ImageNoBusinessCard"
         case failedOperation_ImageNoIdCard = "FailedOperation.ImageNoIdCard"
+        case failedOperation_ImageNoSpecifiedCard = "FailedOperation.ImageNoSpecifiedCard"
         case failedOperation_ImageNoText = "FailedOperation.ImageNoText"
         case failedOperation_ImageSizeTooLarge = "FailedOperation.ImageSizeTooLarge"
         case failedOperation_InvoiceMismatch = "FailedOperation.InvoiceMismatch"
         case failedOperation_LanguageNotSupport = "FailedOperation.LanguageNotSupport"
         case failedOperation_MultiCardError = "FailedOperation.MultiCardError"
+        case failedOperation_NoBankCardError = "FailedOperation.NoBankCardError"
         case failedOperation_NoBizLicense = "FailedOperation.NoBizLicense"
         case failedOperation_NoHKIDCard = "FailedOperation.NoHKIDCard"
         case failedOperation_NoMASIDCard = "FailedOperation.NoMASIDCard"
@@ -49,7 +54,9 @@ public struct TCOcrError: TCOcrErrorType {
         case failedOperation_QueryNoRecord = "FailedOperation.QueryNoRecord"
         case failedOperation_UnKnowError = "FailedOperation.UnKnowError"
         case failedOperation_UnOpenError = "FailedOperation.UnOpenError"
+        case failedOperation_UserQuotaError = "FailedOperation.UserQuotaError"
         case internalError = "InternalError"
+        case invalidParameterValue_FileUrlIllegalError = "InvalidParameterValue.FileUrlIllegalError"
         case invalidParameterValue_InvalidParameterValueLimit = "InvalidParameterValue.InvalidParameterValueLimit"
         case invalidParameterValue_PriceOrVerificationParameterValueLimit = "InvalidParameterValue.PriceOrVerificationParameterValueLimit"
         case invalidParameterValue_TicketCodeParameterValueLimit = "InvalidParameterValue.TicketCodeParameterValueLimit"
@@ -99,6 +106,10 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_ArrearsError)
     }
 
+    public static var failedOperation_CardSideError: TCOcrError {
+        TCOcrError(.failedOperation_CardSideError)
+    }
+
     /// 今日次数达到限制。
     public static var failedOperation_CountLimitError: TCOcrError {
         TCOcrError(.failedOperation_CountLimitError)
@@ -107,6 +118,11 @@ public struct TCOcrError: TCOcrErrorType {
     /// 数据源查询失败。
     public static var failedOperation_DataSourceQueryFailed: TCOcrError {
         TCOcrError(.failedOperation_DataSourceQueryFailed)
+    }
+
+    /// 数据库异常。
+    public static var failedOperation_DbError: TCOcrError {
+        TCOcrError(.failedOperation_DbError)
     }
 
     /// 检测失败。
@@ -134,6 +150,11 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_IdCardInfoIllegal)
     }
 
+    /// 银行卡信息非法。
+    public static var failedOperation_IllegalBankCardError: TCOcrError {
+        TCOcrError(.failedOperation_IllegalBankCardError)
+    }
+
     /// 图片模糊。
     public static var failedOperation_ImageBlur: TCOcrError {
         TCOcrError(.failedOperation_ImageBlur)
@@ -154,6 +175,11 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_ImageNoIdCard)
     }
 
+    /// 非指定卡类别图片
+    public static var failedOperation_ImageNoSpecifiedCard: TCOcrError {
+        TCOcrError(.failedOperation_ImageNoSpecifiedCard)
+    }
+
     /// 图片中未检测到文本。
     public static var failedOperation_ImageNoText: TCOcrError {
         TCOcrError(.failedOperation_ImageNoText)
@@ -164,7 +190,7 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_ImageSizeTooLarge)
     }
 
-    /// 发票数据不一致。
+    /// 发票数据不一致。温馨提示：新版发票核验接口功能更完整，请尽快切换，如已切换请忽略。
     public static var failedOperation_InvoiceMismatch: TCOcrError {
         TCOcrError(.failedOperation_InvoiceMismatch)
     }
@@ -181,6 +207,12 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_MultiCardError)
     }
 
+    /// 非银行卡。
+    public static var failedOperation_NoBankCardError: TCOcrError {
+        TCOcrError(.failedOperation_NoBankCardError)
+    }
+
+    /// 非营业执照。
     public static var failedOperation_NoBizLicense: TCOcrError {
         TCOcrError(.failedOperation_NoBizLicense)
     }
@@ -220,9 +252,19 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_UnOpenError)
     }
 
+    /// 剩余识别次数不足，请检查资源包状态。
+    public static var failedOperation_UserQuotaError: TCOcrError {
+        TCOcrError(.failedOperation_UserQuotaError)
+    }
+
     /// 内部错误。
     public static var internalError: TCOcrError {
         TCOcrError(.internalError)
+    }
+
+    /// 任务创建失败，文件URL非法。
+    public static var invalidParameterValue_FileUrlIllegalError: TCOcrError {
+        TCOcrError(.invalidParameterValue_FileUrlIllegalError)
     }
 
     /// 参数值错误。
@@ -280,7 +322,7 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.resourceNotFound_NoAreaCode)
     }
 
-    /// 发票不存在。
+    /// 发票不存在。温馨提示：新版发票核验接口功能更完整，请尽快切换，如已切换请忽略。
     public static var resourceNotFound_NoInvoice: TCOcrError {
         TCOcrError(.resourceNotFound_NoInvoice)
     }

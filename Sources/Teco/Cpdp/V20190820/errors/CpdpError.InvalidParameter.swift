@@ -53,6 +53,7 @@ extension TCCpdpError {
             self.context = context
         }
 
+        /// 传入参数有误，请检查传入参数是否正确。
         public static var backendCgiError: InvalidParameter {
             InvalidParameter(.backendCgiError)
         }

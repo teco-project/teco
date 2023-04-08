@@ -18,8 +18,6 @@ extension TCTeoError {
     public struct FailedOperation: TCTeoErrorType {
         enum Code: String {
             case certificateNotFound = "FailedOperation.CertificateNotFound"
-            case createClsLogSetFailed = "FailedOperation.CreateClsLogSetFailed"
-            case createClsLogTopicTaskFailed = "FailedOperation.CreateClsLogTopicTaskFailed"
             case invalidZoneStatus = "FailedOperation.InvalidZoneStatus"
             case other = "FailedOperation"
         }
@@ -51,16 +49,7 @@ extension TCTeoError {
             FailedOperation(.certificateNotFound)
         }
 
-        /// 创建日志集失败，请检查日志集名是否已存在。
-        public static var createClsLogSetFailed: FailedOperation {
-            FailedOperation(.createClsLogSetFailed)
-        }
-
-        /// 创建日志主题任务失败，请检查日志主题名或任务名是否已存在。
-        public static var createClsLogTopicTaskFailed: FailedOperation {
-            FailedOperation(.createClsLogTopicTaskFailed)
-        }
-
+        /// 站点状态不正确。
         public static var invalidZoneStatus: FailedOperation {
             FailedOperation(.invalidZoneStatus)
         }
@@ -75,10 +64,6 @@ extension TCTeoError {
             switch self.error {
             case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
-            case .createClsLogSetFailed:
-                code = .failedOperation_CreateClsLogSetFailed
-            case .createClsLogTopicTaskFailed:
-                code = .failedOperation_CreateClsLogTopicTaskFailed
             case .invalidZoneStatus:
                 code = .failedOperation_InvalidZoneStatus
             case .other:

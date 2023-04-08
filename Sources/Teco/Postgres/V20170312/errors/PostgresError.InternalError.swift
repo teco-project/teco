@@ -84,6 +84,7 @@ extension TCPostgresError {
             InternalError(.instanceDataError)
         }
 
+        /// 请求执行异常。
         public static var internalHttpServerError: InternalError {
             InternalError(.internalHttpServerError)
         }
@@ -98,6 +99,7 @@ extension TCPostgresError {
             InternalError(.systemError)
         }
 
+        /// 开启事务失败。
         public static var transactioBeginError: InternalError {
             InternalError(.transactioBeginError)
         }

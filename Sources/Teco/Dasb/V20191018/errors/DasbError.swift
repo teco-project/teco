@@ -26,8 +26,12 @@ public struct TCDasbError: TCDasbErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
+        case failedOperation_AuthFailed = "FailedOperation.AuthFailed"
+        case failedOperation_ConnectionFailed = "FailedOperation.ConnectionFailed"
         case failedOperation_DataNotFound = "FailedOperation.DataNotFound"
         case failedOperation_DuplicateData = "FailedOperation.DuplicateData"
+        case failedOperation_TooFrequent = "FailedOperation.TooFrequent"
+        case failedOperation_VPCDeployed = "FailedOperation.VPCDeployed"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
@@ -84,6 +88,20 @@ public struct TCDasbError: TCDasbErrorType {
         TCDasbError(.failedOperation)
     }
 
+    /// 账号或密码错误。
+    ///
+    /// 请检查账号或密码信息。
+    public static var failedOperation_AuthFailed: TCDasbError {
+        TCDasbError(.failedOperation_AuthFailed)
+    }
+
+    /// 连接服务器失败。
+    ///
+    /// 请检查网络之后重试。
+    public static var failedOperation_ConnectionFailed: TCDasbError {
+        TCDasbError(.failedOperation_ConnectionFailed)
+    }
+
     /// 目标数据不存在。
     public static var failedOperation_DataNotFound: TCDasbError {
         TCDasbError(.failedOperation_DataNotFound)
@@ -92,6 +110,20 @@ public struct TCDasbError: TCDasbErrorType {
     /// 重复数据。
     public static var failedOperation_DuplicateData: TCDasbError {
         TCDasbError(.failedOperation_DuplicateData)
+    }
+
+    /// 操作过于频繁，请稍后再试。
+    ///
+    /// 稍后重试
+    public static var failedOperation_TooFrequent: TCDasbError {
+        TCDasbError(.failedOperation_TooFrequent)
+    }
+
+    /// 该VPC已开通服务，请选择其他VPC。
+    ///
+    /// 请选择其他未开通过服务的VPC。
+    public static var failedOperation_VPCDeployed: TCDasbError {
+        TCDasbError(.failedOperation_VPCDeployed)
     }
 
     /// 内部错误。

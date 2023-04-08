@@ -70,6 +70,7 @@ extension TCEssError {
             case qrFlowEffectDay = "InvalidParameter.QrFlowEffectDay"
             case resourceType = "InvalidParameter.ResourceType"
             case sealId = "InvalidParameter.SealId"
+            case sensitive = "InvalidParameter.Sensitive"
             case signComponents = "InvalidParameter.SignComponents"
             case status = "InvalidParameter.Status"
             case templateId = "InvalidParameter.TemplateId"
@@ -99,62 +100,77 @@ extension TCEssError {
             self.context = context
         }
 
+        /// 不合法的签署人类型，请检查后重试。
         public static var approverType: InvalidParameter {
             InvalidParameter(.approverType)
         }
 
+        /// 不合法的业务id，请检查是否传递，检查是否超过接口上限数量，并在修改后重试。
         public static var businessId: InvalidParameter {
             InvalidParameter(.businessId)
         }
 
+        /// 不合法的业务类型，请检查后重试。
         public static var businessType: InvalidParameter {
             InvalidParameter(.businessType)
         }
 
+        /// 不合法的撤销取消理由，将检查长度，内容，并在修改后重试。
         public static var cancelReason: InvalidParameter {
             InvalidParameter(.cancelReason)
         }
 
+        /// 不合法的证件信息，请检查证件号证件类型是否正确。
         public static var cardNumber: InvalidParameter {
             InvalidParameter(.cardNumber)
         }
 
+        /// 不合法的证件信息，请检查证件号证件类型是否正确。
         public static var cardType: InvalidParameter {
             InvalidParameter(.cardType)
         }
 
+        /// 不合法的抄送方设置，请联系客服了解抄送设置规则，修改后重试。
         public static var ccNum: InvalidParameter {
             InvalidParameter(.ccNum)
         }
 
+        /// ClientToken不合法请检查。
         public static var clientToken: InvalidParameter {
             InvalidParameter(.clientToken)
         }
 
+        /// 不合法的控件所在文件序号，请检查文件资源与控件的对应关系，并在修改后重试。
         public static var componentFileIndex: InvalidParameter {
             InvalidParameter(.componentFileIndex)
         }
 
+        /// 不合法的控件页码，请与文件资源检查，并在修改后重试。
         public static var componentPage: InvalidParameter {
             InvalidParameter(.componentPage)
         }
 
+        /// 不合法的控件大小或坐标，请检查控件坐标，大小是否合理，并在修改后重试。
         public static var componentPosition: InvalidParameter {
             InvalidParameter(.componentPosition)
         }
 
+        /// 控件的类型与输入值不匹配，请检查参数修改后重试。
         public static var componentTypeNoMatchValue: InvalidParameter {
             InvalidParameter(.componentTypeNoMatchValue)
         }
 
+        /// 不合法的控件内容，请检查控件是否必填，检查控件内容是否正确设置，并在修改后重试。
         public static var componentValue: InvalidParameter {
             InvalidParameter(.componentValue)
         }
 
+        /// 不合法的模板查询类型，请检查后重试。
         public static var contentType: InvalidParameter {
             InvalidParameter(.contentType)
         }
 
+        /// 无效的自定义页卡模板，请检查后重试。
         public static var customShowMap: InvalidParameter {
             InvalidParameter(.customShowMap)
         }
@@ -169,43 +185,52 @@ extension TCEssError {
             InvalidParameter(.dataNotFound)
         }
 
-        /// 参数为空。
+        /// 参数为空，请检查参数修改后重试。
         public static var emptyParams: InvalidParameter {
             InvalidParameter(.emptyParams)
         }
 
+        /// 不合法的EndPoint，请检查修改后重试。
         public static var endPoint: InvalidParameter {
             InvalidParameter(.endPoint)
         }
 
+        /// 不合法的签署流程回调链接，请修改后重试。
         public static var flowCallbackUrl: InvalidParameter {
             InvalidParameter(.flowCallbackUrl)
         }
 
+        /// 不合法的签署流程截止日期，请修改后重试。
         public static var flowDeadLine: InvalidParameter {
             InvalidParameter(.flowDeadLine)
         }
 
+        /// 不合法的签署流程描述，请修改后重试。
         public static var flowDescription: InvalidParameter {
             InvalidParameter(.flowDescription)
         }
 
+        /// 不合法的签署流程名称，请修改后重试。
         public static var flowName: InvalidParameter {
             InvalidParameter(.flowName)
         }
 
+        /// 不合法的签署流程类型，请修改后重试。
         public static var flowType: InvalidParameter {
             InvalidParameter(.flowType)
         }
 
+        /// 不合法的签署流程用户自定义数据，请修改后重试。
         public static var flowUserData: InvalidParameter {
             InvalidParameter(.flowUserData)
         }
 
+        /// 不合法的FromSource，请联系开发，检查后重试。
         public static var fromSource: InvalidParameter {
             InvalidParameter(.fromSource)
         }
 
+        /// 用户个人证件已过期。
         public static var idCardValidityOverLimit: InvalidParameter {
             InvalidParameter(.idCardValidityOverLimit)
         }
@@ -215,6 +240,7 @@ extension TCEssError {
             InvalidParameter(.invalidChannel)
         }
 
+        /// id类型参数不合法，请检查后重试。
         public static var invalidId: InvalidParameter {
             InvalidParameter(.invalidId)
         }
@@ -279,25 +305,33 @@ extension TCEssError {
             InvalidParameter(.invalidVerifyCode)
         }
 
+        /// 缺少必填控件的值。
+        ///
         /// 请检查必填控件是否都已填充非空值。
         public static var missingRequiredComponentValue: InvalidParameter {
             InvalidParameter(.missingRequiredComponentValue)
         }
 
+        /// 不合法的手机号，请检查后重试。
+        ///
         /// 请确认手机号是正确的。
         public static var mobile: InvalidParameter {
             InvalidParameter(.mobile)
         }
 
+        /// 不合法的用户名称，请修改后重试。
+        ///
         /// 确认名字是否正确。
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
 
+        /// 不支持的通知类型，请检查并联系客服处理。
         public static var notifyType: InvalidParameter {
             InvalidParameter(.notifyType)
         }
 
+        /// 不合法的企业名称，请修改后重试。
         public static var organizationName: InvalidParameter {
             InvalidParameter(.organizationName)
         }
@@ -307,30 +341,42 @@ extension TCEssError {
             InvalidParameter(.paramError)
         }
 
+        /// 个人静默签Tag未设置，请检查后重试。
         public static var personAutoSignTag: InvalidParameter {
             InvalidParameter(.personAutoSignTag)
         }
 
+        /// 不合法的阅读时长限制，请联系客服了解阅读时长设置规则，修改后重试。
         public static var preReadTime: InvalidParameter {
             InvalidParameter(.preReadTime)
         }
 
+        /// 签署二维码的有效期不合法，请联系客服了解规则，并修稿后重试。
         public static var qrEffectDay: InvalidParameter {
             InvalidParameter(.qrEffectDay)
         }
 
+        /// 二维码合同的有效期不合法，请联系客服了解规则，并修稿后重试。
         public static var qrFlowEffectDay: InvalidParameter {
             InvalidParameter(.qrFlowEffectDay)
         }
 
+        /// 不合法的资源类型，请联系客服了解，并在修改后重试。
         public static var resourceType: InvalidParameter {
             InvalidParameter(.resourceType)
         }
 
+        /// 不合法的印章id，请检查印章id是够正确，并在修改后重试。
         public static var sealId: InvalidParameter {
             InvalidParameter(.sealId)
         }
 
+        /// 参数包含有敏感词
+        public static var sensitive: InvalidParameter {
+            InvalidParameter(.sensitive)
+        }
+
+        /// 签署控件参数不合法，请检查后重试。
         public static var signComponents: InvalidParameter {
             InvalidParameter(.signComponents)
         }
@@ -340,10 +386,12 @@ extension TCEssError {
             InvalidParameter(.status)
         }
 
+        /// 不合法的签署二维码模板id，请检查修改后重试。
         public static var templateId: InvalidParameter {
             InvalidParameter(.templateId)
         }
 
+        /// 不合法的认证渠道，请联系客户了解电子签支持的认证渠道，并在修改后重试。
         public static var verifyChannel: InvalidParameter {
             InvalidParameter(.verifyChannel)
         }
@@ -462,6 +510,8 @@ extension TCEssError {
                 code = .invalidParameter_ResourceType
             case .sealId:
                 code = .invalidParameter_SealId
+            case .sensitive:
+                code = .invalidParameter_Sensitive
             case .signComponents:
                 code = .invalidParameter_SignComponents
             case .status:

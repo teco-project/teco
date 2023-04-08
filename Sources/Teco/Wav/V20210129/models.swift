@@ -227,6 +227,22 @@ extension Wav {
         }
     }
 
+    /// 客户渠道标签
+    public struct ChannelTag: TCOutputModel {
+        /// 该客户档案当前已成功关联的渠道标签名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagName: String?
+
+        /// 该客户档案当前已成功关联的渠道标签的id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case tagName = "TagName"
+            case tagId = "TagId"
+        }
+    }
+
     /// 会话存档数据详情
     public struct ChatArchivingDetail: TCOutputModel {
         /// 消息id
@@ -345,6 +361,45 @@ extension Wav {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
 
+        /// 线索属性，0：个人，1：企业
+        public let leadUserType: Int64?
+
+        /// 线索来源类型，1：线上，2：线下
+        public let leadType: Int64?
+
+        /// 线索渠道对应ID
+        public let channelId: UInt64?
+
+        /// 线索渠道类型，与线索来源对应的渠道名称
+        public let channelName: String?
+
+        /// 线索渠道名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceChannelName: String?
+
+        /// 0：未知，1：男，2：女
+        public let gender: Int64?
+
+        /// 线索创建时间戳，单位：秒
+        public let createTime: String?
+
+        /// 线索所处状态，101-待分配 201-待建档 301-已建档 401-已邀约 501-跟进中 601-已下订单 701-已成交 801-战败申请中 901-已战败 1001-未知状态 1101-转移申请中 1201-已完成
+        public let leadStatus: Int64?
+
+        /// 线索意向等级
+        public let levelCode: String?
+
+        /// 线索成功导入的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let importAtTime: UInt64?
+
+        /// 完成线索分配的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let distributeTime: UInt64?
+
+        /// 获取线索的时间戳，单位：秒
+        public let createAtTime: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case clueId = "ClueId"
             case dealerId = "DealerId"
@@ -361,6 +416,18 @@ extension Wav {
             case remark = "Remark"
             case tagList = "TagList"
             case userName = "UserName"
+            case leadUserType = "LeadUserType"
+            case leadType = "LeadType"
+            case channelId = "ChannelId"
+            case channelName = "ChannelName"
+            case sourceChannelName = "SourceChannelName"
+            case gender = "Gender"
+            case createTime = "CreateTime"
+            case leadStatus = "LeadStatus"
+            case levelCode = "LevelCode"
+            case importAtTime = "ImportAtTime"
+            case distributeTime = "DistributeTime"
+            case createAtTime = "CreateAtTime"
         }
     }
 
@@ -494,6 +561,181 @@ extension Wav {
         }
     }
 
+    /// 潜客客户档案信息
+    public struct CustomerProfile: TCOutputModel {
+        /// 客户档案id，客户唯一识别编码
+        public let customerId: UInt64?
+
+        /// 所属经销商id
+        public let dealerCode: String?
+
+        /// 客户在微信生态中唯一识别码
+        public let unionId: String?
+
+        /// 档案创建时间戳，单位：秒
+        public let createTime: String?
+
+        /// 客户姓名
+        public let userName: String?
+
+        /// 0未知，1：男，2：女
+        public let gender: Int64?
+
+        /// 客户联系手机号
+        public let phone: String?
+
+        /// 客户年龄段名称
+        public let ageRangeName: String?
+
+        /// 客户行业类型名称信息，如教师、医生
+        public let jobTypeName: String?
+
+        /// 客户居住地址
+        public let address: String?
+
+        /// 客户所处状态
+        ///  0:已分配 1:未分配 1 待建档, 2 已建档， 3 已到店 4 已经试驾 5 战败申请中 6 已战败 7 已成交
+        public let leadsProcessStatus: Int64?
+
+        /// 客户来源类型，1：线上，2：线下
+        public let leadType: Int64?
+
+        /// 与客户来源类型对应的渠道名称
+        public let sourceName: String?
+
+        /// 客户购车的意向等级
+        public let leadsLevelCode: String?
+
+        /// 客户意向品牌编号
+        public let vehicleBrandCode: String?
+
+        /// 客户意向车系编号
+        public let vehicleSeriesCode: String?
+
+        /// 客户意向车型编号
+        public let vehicleTypeCode: String?
+
+        /// 购车用途信息
+        public let vehiclePurpose: VehiclePurpose?
+
+        /// 购车关注点信息
+        public let purchaseConcern: [PurchaseConcern]?
+
+        /// 客户所属顾问姓名
+        public let salesName: String?
+
+        /// 客户所属顾问手机号
+        public let salesPhone: String?
+
+        /// 客户实际到店时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realArrivalTime: UInt64?
+
+        /// 客户到店完成试乘试驾时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completeTestDriveTime: String?
+
+        /// 客户完成下订的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderTime: UInt64?
+
+        /// 客户成交的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deliveryTime: UInt64?
+
+        /// 开票时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let invoiceTime: UInt64?
+
+        /// 完成对此客户战败审批的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loseTime: UInt64?
+
+        /// 线索成功获取的时间戳，单位：秒
+        public let createdAtTime: UInt64?
+
+        /// 线索成功导入的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let importAtTime: UInt64?
+
+        /// 完成线索分配的时间戳，单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let distributeTime: UInt64?
+
+        /// 线索成功创建的时间戳，单位：秒
+        public let leadCreateTime: UInt64?
+
+        /// 线索关联微信昵称
+        public let nickname: String?
+
+        /// 线索归属部门节点
+        public let orgIdList: [String]?
+
+        /// 客户的介绍人姓名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let introducer: String?
+
+        /// 客户的介绍人手机号码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let introducerPhone: String?
+
+        /// 最近一次完成跟进的时间戳，单位：秒
+        public let followTime: UInt64?
+
+        /// 最近一次计划跟进的时间戳，单位：秒
+        public let nextFollowTime: UInt64?
+
+        /// 已为该客户添加的企业标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enterpriseTags: [EnterpriseTag]?
+
+        /// 已为该客户添加的渠道标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelTags: [ChannelTag]?
+
+        enum CodingKeys: String, CodingKey {
+            case customerId = "CustomerId"
+            case dealerCode = "DealerCode"
+            case unionId = "UnionId"
+            case createTime = "CreateTime"
+            case userName = "UserName"
+            case gender = "Gender"
+            case phone = "Phone"
+            case ageRangeName = "AgeRangeName"
+            case jobTypeName = "JobTypeName"
+            case address = "Address"
+            case leadsProcessStatus = "LeadsProcessStatus"
+            case leadType = "LeadType"
+            case sourceName = "SourceName"
+            case leadsLevelCode = "LeadsLevelCode"
+            case vehicleBrandCode = "VehicleBrandCode"
+            case vehicleSeriesCode = "VehicleSeriesCode"
+            case vehicleTypeCode = "VehicleTypeCode"
+            case vehiclePurpose = "VehiclePurpose"
+            case purchaseConcern = "PurchaseConcern"
+            case salesName = "SalesName"
+            case salesPhone = "SalesPhone"
+            case realArrivalTime = "RealArrivalTime"
+            case completeTestDriveTime = "CompleteTestDriveTime"
+            case orderTime = "OrderTime"
+            case deliveryTime = "DeliveryTime"
+            case invoiceTime = "InvoiceTime"
+            case loseTime = "LoseTime"
+            case createdAtTime = "CreatedAtTime"
+            case importAtTime = "ImportAtTime"
+            case distributeTime = "DistributeTime"
+            case leadCreateTime = "LeadCreateTime"
+            case nickname = "Nickname"
+            case orgIdList = "OrgIdList"
+            case introducer = "Introducer"
+            case introducerPhone = "IntroducerPhone"
+            case followTime = "FollowTime"
+            case nextFollowTime = "NextFollowTime"
+            case enterpriseTags = "EnterpriseTags"
+            case channelTags = "ChannelTags"
+        }
+    }
+
     /// 经销商信息
     public struct DealerInfo: TCOutputModel {
         /// 企微SaaS平台经销商id
@@ -502,9 +744,45 @@ extension Wav {
         /// 经销商名称
         public let dealerName: String
 
+        /// 所属省份编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let provinceCode: String?
+
+        /// 所属城市编号列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cityCodeList: [String]?
+
+        /// 业务覆盖品牌id列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let brandIdList: [String]?
+
         enum CodingKeys: String, CodingKey {
             case dealerId = "DealerId"
             case dealerName = "DealerName"
+            case provinceCode = "ProvinceCode"
+            case cityCodeList = "CityCodeList"
+            case brandIdList = "BrandIdList"
+        }
+    }
+
+    /// 客户企业标签
+    public struct EnterpriseTag: TCOutputModel {
+        /// 该客户档案当前已成功关联的企业标签分组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 该客户档案当前已成功关联的企业标签名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagName: String?
+
+        /// 该客户档案当前已成功关联的企业标签的id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case groupName = "GroupName"
+            case tagName = "TagName"
+            case tagId = "TagId"
         }
     }
 
@@ -537,6 +815,22 @@ extension Wav {
             case type = "Type"
             case unionId = "UnionId"
             case phone = "Phone"
+        }
+    }
+
+    /// 具备更多信息的外部联系人详细信息
+    public struct ExternalContactDetailPro: TCOutputModel {
+        /// 客户信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customer: ExternalContact?
+
+        /// 添加了此外部联系人的企业成员信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let followUser: [FollowUserPro]?
+
+        enum CodingKeys: String, CodingKey {
+            case customer = "Customer"
+            case followUser = "FollowUser"
         }
     }
 
@@ -660,6 +954,52 @@ extension Wav {
             case addWay = "AddWay"
             case operUserId = "OperUserId"
             case tags = "Tags"
+        }
+    }
+
+    /// 具备更多信息的添加了此外部联系人的企业成员信息
+    public struct FollowUserPro: TCOutputModel {
+        /// 添加了此外部联系人的企业成员userid
+        public let userId: String
+
+        /// 该成员对此外部联系人的备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        /// 该成员对此外部联系人的描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 该成员添加此外部联系人的时间戳，单位为秒
+        public let createTime: UInt64
+
+        /// 该成员添加此客户的来源，具体含义详见<a href="https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89">来源定义</a>
+        public let addWay: Int64
+
+        /// 发起添加的userid，如果成员主动添加，为成员的userid；如果是客户主动添加，则为客户的外部联系人userid；如果是内部成员共享/管理员分配，则为对应的成员/管理员userid
+        public let operUserId: String
+
+        /// 该成员添加此外部联系人所打标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [ExternalContactTag]?
+
+        /// 添加了此外部联系人的企业成员的姓名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let salesName: String?
+
+        /// 企业成员的归属部门id列表
+        public let departmentIdList: [Int64]?
+
+        enum CodingKeys: String, CodingKey {
+            case userId = "UserId"
+            case remark = "Remark"
+            case description = "Description"
+            case createTime = "CreateTime"
+            case addWay = "AddWay"
+            case operUserId = "OperUserId"
+            case tags = "Tags"
+            case salesName = "SalesName"
+            case departmentIdList = "DepartmentIdList"
         }
     }
 
@@ -806,6 +1146,20 @@ extension Wav {
         }
     }
 
+    /// 购车关注点
+    public struct PurchaseConcern: TCOutputModel {
+        /// 购车关注点code
+        public let code: String?
+
+        /// 购车关注点描述
+        public let description: String?
+
+        enum CodingKeys: String, CodingKey {
+            case code = "Code"
+            case description = "Description"
+        }
+    }
+
     /// 企业成员SaaS使用明细数据
     public struct SalesActionEventDetail: TCOutputModel {
         /// 事件码
@@ -942,6 +1296,20 @@ extension Wav {
             case seriesName = "SeriesName"
             case modelId = "ModelId"
             case modelName = "ModelName"
+        }
+    }
+
+    /// 购车用途详细信息
+    public struct VehiclePurpose: TCOutputModel {
+        /// 购车用途code
+        public let vehiclePurposeCode: String?
+
+        /// 购车用途名称
+        public let vehiclePurposeName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case vehiclePurposeCode = "VehiclePurposeCode"
+            case vehiclePurposeName = "VehiclePurposeName"
         }
     }
 

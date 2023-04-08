@@ -51,7 +51,7 @@ extension Vpc {
 
     /// 修改终端节点属性
     ///
-    /// 修改终端节点属性。
+    /// 本接口（ModifyVpcEndPointAttribute）用于修改终端节点属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointAttributeResponse> {
         self.client.execute(action: "ModifyVpcEndPointAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// 修改终端节点属性
     ///
-    /// 修改终端节点属性。
+    /// 本接口（ModifyVpcEndPointAttribute）用于修改终端节点属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointAttributeResponse {
         try await self.client.execute(action: "ModifyVpcEndPointAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 修改终端节点属性
     ///
-    /// 修改终端节点属性。
+    /// 本接口（ModifyVpcEndPointAttribute）用于修改终端节点属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointAttribute(endPointId: String, endPointName: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointAttributeResponse> {
         self.modifyVpcEndPointAttribute(.init(endPointId: endPointId, endPointName: endPointName, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Vpc {
 
     /// 修改终端节点属性
     ///
-    /// 修改终端节点属性。
+    /// 本接口（ModifyVpcEndPointAttribute）用于修改终端节点属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointAttribute(endPointId: String, endPointName: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointAttributeResponse {
         try await self.modifyVpcEndPointAttribute(.init(endPointId: endPointId, endPointName: endPointName, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)

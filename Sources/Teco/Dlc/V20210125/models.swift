@@ -116,11 +116,9 @@ extension Dlc {
         public let csvSerde: CSVSerde?
 
         /// 标题行，默认为0。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headLines: Int64?
 
         /// 格式，默认值为CSV
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let format: String?
 
         public init(codeCompress: String? = nil, csvSerde: CSVSerde? = nil, headLines: Int64? = nil, format: String? = nil) {
@@ -227,6 +225,33 @@ extension Dlc {
             case createTime = "CreateTime"
             case modifiedTime = "ModifiedTime"
             case isPartition = "IsPartition"
+        }
+    }
+
+    /// 定时启停策略信息
+    public struct CrontabResumeSuspendStrategy: TCInputModel, TCOutputModel {
+        /// 定时拉起时间：如：周一8点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resumeTime: String?
+
+        /// 定时挂起时间：如：周一20点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let suspendTime: String?
+
+        /// 挂起配置：0（默认）：等待任务结束后挂起、1：强制挂起
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let suspendStrategy: Int64?
+
+        public init(resumeTime: String? = nil, suspendTime: String? = nil, suspendStrategy: Int64? = nil) {
+            self.resumeTime = resumeTime
+            self.suspendTime = suspendTime
+            self.suspendStrategy = suspendStrategy
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resumeTime = "ResumeTime"
+            case suspendTime = "SuspendTime"
+            case suspendStrategy = "SuspendStrategy"
         }
     }
 
@@ -614,6 +639,230 @@ extension Dlc {
         }
     }
 
+    /// 引擎配置
+    public struct DataEngineConfigPair: TCInputModel, TCOutputModel {
+        public init() {
+        }
+    }
+
+    /// DataEngine详细信息
+    public struct DataEngineInfo: TCInputModel, TCOutputModel {
+        /// DataEngine名称
+        public let dataEngineName: String
+
+        /// 引擎类型 spark/presto
+        public let engineType: String
+
+        /// 集群资源类型 spark_private/presto_private/presto_cu/spark_cu
+        public let clusterType: String
+
+        /// 引用ID
+        public let quotaId: String?
+
+        /// 数据引擎状态  -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中
+        public let state: Int64?
+
+        /// 创建时间
+        public let createTime: Int64?
+
+        /// 更新时间
+        public let updateTime: Int64?
+
+        /// 集群规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: Int64?
+
+        /// 计费模式 0共享模式 1按量计费 2包年包月
+        public let mode: Int64?
+
+        /// 最小集群数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let minClusters: Int64?
+
+        /// 最大集群数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxClusters: Int64?
+
+        /// 是否自动恢复
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoResume: Bool?
+
+        /// 自动恢复时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spendAfter: Int64?
+
+        /// 集群网段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cidrBlock: String?
+
+        /// 是否为默认引擎
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultDataEngine: Bool?
+
+        /// 返回信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 引擎id
+        public let dataEngineId: String?
+
+        /// 操作者
+        public let subAccountUin: String?
+
+        /// 到期时间
+        public let expireTime: String?
+
+        /// 隔离时间
+        public let isolatedTime: String?
+
+        /// 冲正时间
+        public let reversalTime: String?
+
+        /// 用户名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAlias: String?
+
+        /// 标签对集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagList: [TagInfo]?
+
+        /// 引擎拥有的权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [String]?
+
+        /// 是否自定挂起集群：false（默认）：不自动挂起、true：自动挂起
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoSuspend: Bool?
+
+        /// 定时启停集群策略：0（默认）：关闭定时策略、1：开启定时策略（注：定时启停策略与自动挂起策略互斥）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crontabResumeSuspend: Int64?
+
+        /// 定时启停策略，复杂类型：包含启停时间、挂起集群策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy?
+
+        /// 引擎执行任务类型，有效值：SQL/BATCH
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let engineExecType: String?
+
+        /// 自动续费标志，0，初始状态，默认不自动续费，若用户有预付费不停服特权，自动续费。1：自动续费。2：明确不自动续费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: Int64?
+
+        /// 集群自动挂起时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoSuspendTime: Int64?
+
+        /// 网络连接配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkConnectionSet: [NetworkConnection]?
+
+        /// ui的跳转地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uiURL: String?
+
+        /// 引擎的资源类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceType: String?
+
+        /// 集群镜像版本ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageVersionId: String?
+
+        /// 集群镜像小版本ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let childImageVersionId: String?
+
+        /// 集群镜像版本名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageVersionName: String?
+
+        /// 是否开启备集群
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startStandbyCluster: Bool?
+
+        public init(dataEngineName: String, engineType: String, clusterType: String, quotaId: String? = nil, state: Int64? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, size: Int64? = nil, mode: Int64? = nil, minClusters: Int64? = nil, maxClusters: Int64? = nil, autoResume: Bool? = nil, spendAfter: Int64? = nil, cidrBlock: String? = nil, defaultDataEngine: Bool? = nil, message: String? = nil, dataEngineId: String? = nil, subAccountUin: String? = nil, expireTime: String? = nil, isolatedTime: String? = nil, reversalTime: String? = nil, userAlias: String? = nil, tagList: [TagInfo]? = nil, permissions: [String]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, renewFlag: Int64? = nil, autoSuspendTime: Int64? = nil, networkConnectionSet: [NetworkConnection]? = nil, uiURL: String? = nil, resourceType: String? = nil, imageVersionId: String? = nil, childImageVersionId: String? = nil, imageVersionName: String? = nil, startStandbyCluster: Bool? = nil) {
+            self.dataEngineName = dataEngineName
+            self.engineType = engineType
+            self.clusterType = clusterType
+            self.quotaId = quotaId
+            self.state = state
+            self.createTime = createTime
+            self.updateTime = updateTime
+            self.size = size
+            self.mode = mode
+            self.minClusters = minClusters
+            self.maxClusters = maxClusters
+            self.autoResume = autoResume
+            self.spendAfter = spendAfter
+            self.cidrBlock = cidrBlock
+            self.defaultDataEngine = defaultDataEngine
+            self.message = message
+            self.dataEngineId = dataEngineId
+            self.subAccountUin = subAccountUin
+            self.expireTime = expireTime
+            self.isolatedTime = isolatedTime
+            self.reversalTime = reversalTime
+            self.userAlias = userAlias
+            self.tagList = tagList
+            self.permissions = permissions
+            self.autoSuspend = autoSuspend
+            self.crontabResumeSuspend = crontabResumeSuspend
+            self.crontabResumeSuspendStrategy = crontabResumeSuspendStrategy
+            self.engineExecType = engineExecType
+            self.renewFlag = renewFlag
+            self.autoSuspendTime = autoSuspendTime
+            self.networkConnectionSet = networkConnectionSet
+            self.uiURL = uiURL
+            self.resourceType = resourceType
+            self.imageVersionId = imageVersionId
+            self.childImageVersionId = childImageVersionId
+            self.imageVersionName = imageVersionName
+            self.startStandbyCluster = startStandbyCluster
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case dataEngineName = "DataEngineName"
+            case engineType = "EngineType"
+            case clusterType = "ClusterType"
+            case quotaId = "QuotaId"
+            case state = "State"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case size = "Size"
+            case mode = "Mode"
+            case minClusters = "MinClusters"
+            case maxClusters = "MaxClusters"
+            case autoResume = "AutoResume"
+            case spendAfter = "SpendAfter"
+            case cidrBlock = "CidrBlock"
+            case defaultDataEngine = "DefaultDataEngine"
+            case message = "Message"
+            case dataEngineId = "DataEngineId"
+            case subAccountUin = "SubAccountUin"
+            case expireTime = "ExpireTime"
+            case isolatedTime = "IsolatedTime"
+            case reversalTime = "ReversalTime"
+            case userAlias = "UserAlias"
+            case tagList = "TagList"
+            case permissions = "Permissions"
+            case autoSuspend = "AutoSuspend"
+            case crontabResumeSuspend = "CrontabResumeSuspend"
+            case crontabResumeSuspendStrategy = "CrontabResumeSuspendStrategy"
+            case engineExecType = "EngineExecType"
+            case renewFlag = "RenewFlag"
+            case autoSuspendTime = "AutoSuspendTime"
+            case networkConnectionSet = "NetworkConnectionSet"
+            case uiURL = "UiURL"
+            case resourceType = "ResourceType"
+            case imageVersionId = "ImageVersionId"
+            case childImageVersionId = "ChildImageVersionId"
+            case imageVersionName = "ImageVersionName"
+            case startStandbyCluster = "StartStandbyCluster"
+        }
+    }
+
     /// 数据表数据格式。
     public struct DataFormat: TCOutputModel {
         /// 文本格式，TextFile。
@@ -799,7 +1048,7 @@ extension Dlc {
     }
 
     /// 配置格式
-    public struct KVPair: TCInputModel {
+    public struct KVPair: TCInputModel, TCOutputModel {
         /// 配置的key值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
@@ -865,6 +1114,352 @@ extension Dlc {
             case dataOperationType = "DataOperationType"
             case isAcid = "IsAcid"
             case isDynamicPartitionWrite = "IsDynamicPartitionWrite"
+        }
+    }
+
+    /// 网络配置
+    public struct NetworkConnection: TCInputModel, TCOutputModel {
+        /// 网络配置id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// 网络配置唯一标志符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let associateId: String?
+
+        /// 计算引擎id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let houseId: String?
+
+        /// 数据源id(已废弃)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionId: String?
+
+        /// 网络配置状态（0-初始化，1-正常）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: Int64?
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: Int64?
+
+        /// 创建用户Appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appid: Int64?
+
+        /// 计算引擎名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let houseName: String?
+
+        /// 网络配置名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionName: String?
+
+        /// 网络配置类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkConnectionType: Int64?
+
+        /// 创建用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 创建用户SubAccountUin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subAccountUin: String?
+
+        /// 网络配置描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkConnectionDesc: String?
+
+        /// 数据源vpcid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionVpcId: String?
+
+        /// 数据源SubnetId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionSubnetId: String?
+
+        /// 数据源SubnetId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionCidrBlock: String?
+
+        /// 数据源SubnetCidrBlock
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionSubnetCidrBlock: String?
+
+        public init(id: Int64? = nil, associateId: String? = nil, houseId: String? = nil, datasourceConnectionId: String? = nil, state: Int64? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, appid: Int64? = nil, houseName: String? = nil, datasourceConnectionName: String? = nil, networkConnectionType: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil, networkConnectionDesc: String? = nil, datasourceConnectionVpcId: String? = nil, datasourceConnectionSubnetId: String? = nil, datasourceConnectionCidrBlock: String? = nil, datasourceConnectionSubnetCidrBlock: String? = nil) {
+            self.id = id
+            self.associateId = associateId
+            self.houseId = houseId
+            self.datasourceConnectionId = datasourceConnectionId
+            self.state = state
+            self.createTime = createTime
+            self.updateTime = updateTime
+            self.appid = appid
+            self.houseName = houseName
+            self.datasourceConnectionName = datasourceConnectionName
+            self.networkConnectionType = networkConnectionType
+            self.uin = uin
+            self.subAccountUin = subAccountUin
+            self.networkConnectionDesc = networkConnectionDesc
+            self.datasourceConnectionVpcId = datasourceConnectionVpcId
+            self.datasourceConnectionSubnetId = datasourceConnectionSubnetId
+            self.datasourceConnectionCidrBlock = datasourceConnectionCidrBlock
+            self.datasourceConnectionSubnetCidrBlock = datasourceConnectionSubnetCidrBlock
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case associateId = "AssociateId"
+            case houseId = "HouseId"
+            case datasourceConnectionId = "DatasourceConnectionId"
+            case state = "State"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case appid = "Appid"
+            case houseName = "HouseName"
+            case datasourceConnectionName = "DatasourceConnectionName"
+            case networkConnectionType = "NetworkConnectionType"
+            case uin = "Uin"
+            case subAccountUin = "SubAccountUin"
+            case networkConnectionDesc = "NetworkConnectionDesc"
+            case datasourceConnectionVpcId = "DatasourceConnectionVpcId"
+            case datasourceConnectionSubnetId = "DatasourceConnectionSubnetId"
+            case datasourceConnectionCidrBlock = "DatasourceConnectionCidrBlock"
+            case datasourceConnectionSubnetCidrBlock = "DatasourceConnectionSubnetCidrBlock"
+        }
+    }
+
+    /// Notebook Session详细信息。
+    public struct NotebookSessionInfo: TCOutputModel {
+        /// Session名称
+        public let name: String
+
+        /// 类型，当前支持：spark、pyspark、sparkr、sql
+        public let kind: String
+
+        /// DLC Spark作业引擎名称
+        public let dataEngineName: String
+
+        /// Session相关配置，当前支持：eni、roleArn以及用户指定的配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let arguments: [KVPair]?
+
+        /// 运行程序地址，当前支持：cosn://和lakefs://两种路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let programDependentFiles: [String]?
+
+        /// 依赖的jar程序地址，当前支持：cosn://和lakefs://两种路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let programDependentJars: [String]?
+
+        /// 依赖的python程序地址，当前支持：cosn://和lakefs://两种路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let programDependentPython: [String]?
+
+        /// 依赖的pyspark虚拟环境地址，当前支持：cosn://和lakefs://两种路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let programArchives: [String]?
+
+        /// 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let driverSize: String?
+
+        /// 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorSize: String?
+
+        /// 指定的Executor数量，默认为1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorNumbers: UInt64?
+
+        /// 代理用户，默认为root
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyUser: String?
+
+        /// 指定的Session超时时间，单位秒，默认3600秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeoutInSecond: Int64?
+
+        /// Spark任务返回的AppId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkAppId: String?
+
+        /// Session唯一标识
+        public let sessionId: String
+
+        /// Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        public let state: String
+
+        /// Session创建时间
+        public let createTime: String
+
+        /// 其它信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appInfo: [KVPair]?
+
+        /// Spark ui地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkUiUrl: String?
+
+        /// 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorMaxNumbers: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case kind = "Kind"
+            case dataEngineName = "DataEngineName"
+            case arguments = "Arguments"
+            case programDependentFiles = "ProgramDependentFiles"
+            case programDependentJars = "ProgramDependentJars"
+            case programDependentPython = "ProgramDependentPython"
+            case programArchives = "ProgramArchives"
+            case driverSize = "DriverSize"
+            case executorSize = "ExecutorSize"
+            case executorNumbers = "ExecutorNumbers"
+            case proxyUser = "ProxyUser"
+            case timeoutInSecond = "TimeoutInSecond"
+            case sparkAppId = "SparkAppId"
+            case sessionId = "SessionId"
+            case state = "State"
+            case createTime = "CreateTime"
+            case appInfo = "AppInfo"
+            case sparkUiUrl = "SparkUiUrl"
+            case executorMaxNumbers = "ExecutorMaxNumbers"
+        }
+    }
+
+    /// 按批提交Statement运行SQL任务。
+    public struct NotebookSessionStatementBatchInformation: TCOutputModel {
+        /// 任务详情列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notebookSessionStatementBatch: [NotebookSessionStatementInfo]?
+
+        /// 当前批任务是否运行完成
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isAvailable: Bool?
+
+        /// Session唯一标识
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessionId: String?
+
+        /// Batch唯一标识
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case notebookSessionStatementBatch = "NotebookSessionStatementBatch"
+            case isAvailable = "IsAvailable"
+            case sessionId = "SessionId"
+            case batchId = "BatchId"
+        }
+    }
+
+    /// NotebookSessionStatement详情。
+    public struct NotebookSessionStatementInfo: TCOutputModel {
+        /// 完成时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completed: Int64?
+
+        /// 开始时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let started: Int64?
+
+        /// 完成进度，百分制
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let progress: Float?
+
+        /// Session Statement唯一标识
+        public let statementId: String
+
+        /// Session Statement状态，包含：waiting（排队中）、running（运行中）、available（正常）、error（异常）、cancelling（取消中）、cancelled（已取消）
+        public let state: String
+
+        /// Statement输出信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outPut: StatementOutput?
+
+        /// 批任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchId: String?
+
+        /// 运行语句
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let code: String?
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case completed = "Completed"
+            case started = "Started"
+            case progress = "Progress"
+            case statementId = "StatementId"
+            case state = "State"
+            case outPut = "OutPut"
+            case batchId = "BatchId"
+            case code = "Code"
+            case taskId = "TaskId"
+        }
+    }
+
+    /// notebook session列表信息。
+    public struct NotebookSessions: TCOutputModel {
+        /// 类型，当前支持：spark、pyspark、sparkr、sql
+        public let kind: String
+
+        /// Session唯一标识
+        public let sessionId: String
+
+        /// 代理用户，默认为root
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyUser: String?
+
+        /// Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        public let state: String
+
+        /// Spark任务返回的AppId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkAppId: String?
+
+        /// Session名称
+        public let name: String
+
+        /// Session创建时间
+        public let createTime: String
+
+        /// 引擎名称
+        public let dataEngineName: String
+
+        /// 最新的运行时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastRunningTime: String?
+
+        /// 创建者
+        public let creator: String
+
+        /// spark ui地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkUiUrl: String?
+
+        enum CodingKeys: String, CodingKey {
+            case kind = "Kind"
+            case sessionId = "SessionId"
+            case proxyUser = "ProxyUser"
+            case state = "State"
+            case sparkAppId = "SparkAppId"
+            case name = "Name"
+            case createTime = "CreateTime"
+            case dataEngineName = "DataEngineName"
+            case lastRunningTime = "LastRunningTime"
+            case creator = "Creator"
+            case sparkUiUrl = "SparkUiUrl"
         }
     }
 
@@ -972,7 +1567,11 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceName: String?
 
-        public init(database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, operator: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
+        /// 策略ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        public init(database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, operator: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil, id: Int64? = nil) {
             self.database = database
             self.catalog = catalog
             self.table = table
@@ -989,6 +1588,7 @@ extension Dlc {
             self.createTime = createTime
             self.sourceId = sourceId
             self.sourceName = sourceName
+            self.id = id
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1008,6 +1608,7 @@ extension Dlc {
             case createTime = "CreateTime"
             case sourceId = "SourceId"
             case sourceName = "SourceName"
+            case id = "Id"
         }
     }
 
@@ -1085,7 +1686,7 @@ extension Dlc {
         }
     }
 
-    /// spark作业详情
+    /// spark作业详情。
     public struct SparkJobInfo: TCOutputModel {
         /// spark作业ID
         public let jobId: String
@@ -1183,6 +1784,10 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobArchives: String?
 
+        /// Spark Image 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkImage: String?
+
         /// pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobPythonFiles: String?
@@ -1194,6 +1799,14 @@ extension Dlc {
         /// 引擎状态：-100（默认：未知状态），-2~11：引擎正常状态；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataEngineStatus: Int64?
+
+        /// 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于JobExecutorNums
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobExecutorMaxNumbers: Int64?
+
+        /// 镜像版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkImageVersion: String?
 
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
@@ -1226,9 +1839,53 @@ extension Dlc {
             case appPythonFiles = "AppPythonFiles"
             case isLocalArchives = "IsLocalArchives"
             case jobArchives = "JobArchives"
+            case sparkImage = "SparkImage"
             case jobPythonFiles = "JobPythonFiles"
             case taskNum = "TaskNum"
             case dataEngineStatus = "DataEngineStatus"
+            case jobExecutorMaxNumbers = "JobExecutorMaxNumbers"
+            case sparkImageVersion = "SparkImageVersion"
+        }
+    }
+
+    /// notebook session statement输出信息。
+    public struct StatementOutput: TCOutputModel {
+        /// 执行总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executionCount: Int64?
+
+        /// Statement数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let data: [KVPair]?
+
+        /// Statement状态:ok,error
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 错误名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorName: String?
+
+        /// 错误类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorValue: String?
+
+        /// 错误堆栈信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorMessage: [String]?
+
+        /// SQL类型任务结果返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sqlResult: String?
+
+        enum CodingKeys: String, CodingKey {
+            case executionCount = "ExecutionCount"
+            case data = "Data"
+            case status = "Status"
+            case errorName = "ErrorName"
+            case errorValue = "ErrorValue"
+            case errorMessage = "ErrorMessage"
+            case sqlResult = "SQLResult"
         }
     }
 
@@ -1279,6 +1936,89 @@ extension Dlc {
             case averageSchedulingDelay = "AverageSchedulingDelay"
             case averageProcessingTime = "AverageProcessingTime"
             case averageTotalDelay = "AverageTotalDelay"
+        }
+    }
+
+    /// 表字段描述信息
+    public struct TColumn: TCInputModel {
+        /// 字段名称
+        public let name: String
+
+        /// 字段类型
+        public let type: String
+
+        /// 字段描述
+        public let comment: String?
+
+        /// 字段默认值
+        public let `default`: String?
+
+        /// 字段是否是非空
+        public let notNull: Bool?
+
+        public init(name: String, type: String, comment: String? = nil, default: String? = nil, notNull: Bool? = nil) {
+            self.name = name
+            self.type = type
+            self.comment = comment
+            self.default = `default`
+            self.notNull = notNull
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case type = "Type"
+            case comment = "Comment"
+            case `default` = "Default"
+            case notNull = "NotNull"
+        }
+    }
+
+    /// 表分区字段信息
+    public struct TPartition: TCInputModel {
+        /// 字段名称
+        public let name: String
+
+        /// 字段类型
+        public let type: String?
+
+        /// 字段描述
+        public let comment: String?
+
+        /// 分区类型
+        public let partitionType: String?
+
+        /// 分区格式
+        public let partitionFormat: String?
+
+        /// 分区分隔数
+        public let partitionDot: Int64?
+
+        /// 分区转换策略
+        public let transform: String?
+
+        /// 策略参数
+        public let transformArgs: [String]?
+
+        public init(name: String, type: String? = nil, comment: String? = nil, partitionType: String? = nil, partitionFormat: String? = nil, partitionDot: Int64? = nil, transform: String? = nil, transformArgs: [String]? = nil) {
+            self.name = name
+            self.type = type
+            self.comment = comment
+            self.partitionType = partitionType
+            self.partitionFormat = partitionFormat
+            self.partitionDot = partitionDot
+            self.transform = transform
+            self.transformArgs = transformArgs
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case type = "Type"
+            case comment = "Comment"
+            case partitionType = "PartitionType"
+            case partitionFormat = "PartitionFormat"
+            case partitionDot = "PartitionDot"
+            case transform = "Transform"
+            case transformArgs = "TransformArgs"
         }
     }
 
@@ -1429,6 +2169,27 @@ extension Dlc {
             case inputFormat = "InputFormat"
             case storageSize = "StorageSize"
             case recordCount = "RecordCount"
+        }
+    }
+
+    /// 标签对信息
+    public struct TagInfo: TCInputModel, TCOutputModel {
+        /// 标签键
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagKey: String?
+
+        /// 标签值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagValue: String?
+
+        public init(tagKey: String? = nil, tagValue: String? = nil) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
         }
     }
 

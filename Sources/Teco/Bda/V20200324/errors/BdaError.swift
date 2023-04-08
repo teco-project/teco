@@ -194,6 +194,7 @@ public struct TCBdaError: TCBdaErrorType {
         TCBdaError(.failedOperation_ImageFacedetectFailed)
     }
 
+    /// 图片不存在前景。
     public static var failedOperation_ImageNotForeground: TCBdaError {
         TCBdaError(.failedOperation_ImageNotForeground)
     }

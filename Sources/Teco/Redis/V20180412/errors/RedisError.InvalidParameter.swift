@@ -22,6 +22,7 @@ extension TCRedisError {
             case illegalParameterError = "InvalidParameter.IllegalParameterError"
             case instanceSGOverLimitError = "InvalidParameter.InstanceSGOverLimitError"
             case invalidParameter = "InvalidParameter.InvalidParameter"
+            case isNotVpcInstance = "InvalidParameter.IsNotVpcInstance"
             case notSupported = "InvalidParameter.NotSupported"
             case onlyVPCOnSpecZoneId = "InvalidParameter.OnlyVPCOnSpecZoneId"
             case period = "InvalidParameter.Period"
@@ -76,6 +77,11 @@ extension TCRedisError {
             InvalidParameter(.invalidParameter)
         }
 
+        /// 不是vpc网络下实例。
+        public static var isNotVpcInstance: InvalidParameter {
+            InvalidParameter(.isNotVpcInstance)
+        }
+
         /// 参数错误，不支持操作。
         public static var notSupported: InvalidParameter {
             InvalidParameter(.notSupported)
@@ -114,6 +120,8 @@ extension TCRedisError {
                 code = .invalidParameter_InstanceSGOverLimitError
             case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
+            case .isNotVpcInstance:
+                code = .invalidParameter_IsNotVpcInstance
             case .notSupported:
                 code = .invalidParameter_NotSupported
             case .onlyVPCOnSpecZoneId:

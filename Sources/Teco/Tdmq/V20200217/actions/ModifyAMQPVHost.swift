@@ -55,26 +55,30 @@ extension Tdmq {
     }
 
     /// 更新Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPVHostResponse> {
-        self.client.execute(action: "ModifyAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPVHost is no longer available.")
     }
 
     /// 更新Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPVHostResponse {
-        try await self.client.execute(action: "ModifyAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("ModifyAMQPVHost is no longer available.")
     }
 
     /// 更新Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPVHostResponse> {
-        self.modifyAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPVHost is no longer available.")
     }
 
     /// 更新Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPVHostResponse {
-        try await self.modifyAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPVHost is no longer available.")
     }
 }

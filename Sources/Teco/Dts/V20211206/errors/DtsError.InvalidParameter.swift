@@ -55,6 +55,7 @@ extension TCDtsError {
             InvalidParameter(.instanceNotFound)
         }
 
+        /// 参数无效。
         public static var invalidParameterError: InvalidParameter {
             InvalidParameter(.invalidParameterError)
         }

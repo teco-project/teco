@@ -66,32 +66,36 @@ extension Cbs {
     /// 查询云盘操作日志列表
     ///
     /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @available(*, unavailable, message: "接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007")
     @inlinable
     public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskOperationLogsResponse> {
-        self.client.execute(action: "DescribeDiskOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeDiskOperationLogs is no longer available.")
     }
 
     /// 查询云盘操作日志列表
     ///
     /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @available(*, unavailable, message: "接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007")
     @inlinable
     public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
-        try await self.client.execute(action: "DescribeDiskOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeDiskOperationLogs is no longer available.")
     }
 
     /// 查询云盘操作日志列表
     ///
     /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @available(*, unavailable, message: "接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007")
     @inlinable
     public func describeDiskOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskOperationLogsResponse> {
-        self.describeDiskOperationLogs(.init(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeDiskOperationLogs is no longer available.")
     }
 
     /// 查询云盘操作日志列表
     ///
     /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @available(*, unavailable, message: "接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007")
     @inlinable
     public func describeDiskOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
-        try await self.describeDiskOperationLogs(.init(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeDiskOperationLogs is no longer available.")
     }
 }

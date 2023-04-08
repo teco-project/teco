@@ -23,11 +23,11 @@ extension Cbs {
         /// 快照ID, 可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotId: String
 
-        /// 新的快照名称。最长为60个字符。
-        public let snapshotName: String?
-
         /// 快照的保留方式，FALSE表示非永久保留，TRUE表示永久保留。
         public let isPermanent: Bool?
+
+        /// 新的快照名称。最长为60个字符。
+        public let snapshotName: String?
 
         /// 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
         ///
@@ -35,17 +35,17 @@ extension Cbs {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date?
 
-        public init(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil) {
+        public init(snapshotId: String, isPermanent: Bool? = nil, snapshotName: String? = nil, deadline: Date? = nil) {
             self.snapshotId = snapshotId
-            self.snapshotName = snapshotName
             self.isPermanent = isPermanent
+            self.snapshotName = snapshotName
             self._deadline = .init(wrappedValue: deadline)
         }
 
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"
-            case snapshotName = "SnapshotName"
             case isPermanent = "IsPermanent"
+            case snapshotName = "SnapshotName"
             case deadline = "Deadline"
         }
     }
@@ -89,8 +89,8 @@ extension Cbs {
     /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
     /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
     @inlinable @discardableResult
-    public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
-        self.modifySnapshotAttribute(.init(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline), region: region, logger: logger, on: eventLoop)
+    public func modifySnapshotAttribute(snapshotId: String, isPermanent: Bool? = nil, snapshotName: String? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
+        self.modifySnapshotAttribute(.init(snapshotId: snapshotId, isPermanent: isPermanent, snapshotName: snapshotName, deadline: deadline), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照信息
@@ -100,7 +100,7 @@ extension Cbs {
     /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
     /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
     @inlinable @discardableResult
-    public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
-        try await self.modifySnapshotAttribute(.init(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline), region: region, logger: logger, on: eventLoop)
+    public func modifySnapshotAttribute(snapshotId: String, isPermanent: Bool? = nil, snapshotName: String? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
+        try await self.modifySnapshotAttribute(.init(snapshotId: snapshotId, isPermanent: isPermanent, snapshotName: snapshotName, deadline: deadline), region: region, logger: logger, on: eventLoop)
     }
 }

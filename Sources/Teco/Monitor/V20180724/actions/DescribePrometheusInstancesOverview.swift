@@ -82,7 +82,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
         self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -90,7 +90,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
         try await self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,7 +98,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
         self.describePrometheusInstancesOverview(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -106,7 +106,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
         try await self.describePrometheusInstancesOverview(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -114,7 +114,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverviewPaginated(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PrometheusInstancesOverview])> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
@@ -122,7 +122,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     @inlinable @discardableResult
     public func describePrometheusInstancesOverviewPaginated(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesOverviewResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstancesOverview, callback: onResponse, logger: logger, on: eventLoop)
@@ -130,7 +130,7 @@ extension Monitor {
 
     /// 获取2.0实例列表
     ///
-    /// 获取与云监控融合实例列表
+    /// 获取与 Prometheus 监控融合实例列表
     ///
     /// - Returns: `AsyncSequence`s of `PrometheusInstancesOverview` and `DescribePrometheusInstancesOverviewResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -31,10 +31,10 @@ extension Cwp {
 
     /// ExportVulDetectionExcel返回参数结构体
     public struct ExportVulDetectionExcelResponse: TCResponseModel {
-        /// 导出文件下载链接地址
+        /// 该参数已废弃
         public let downloadUrl: String
 
-        /// 导出本次漏洞检测Excel的任务Id（不同于入参的本次漏洞检测任务id）
+        /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址（不同于入参的本次漏洞检测任务id）
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -15,19 +15,24 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 认证主体主要信息
+    /// 互信主体主要信息
     public struct AuthNode: TCOutputModel {
-        /// 主体关系ID
+        /// 互信主体关系ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relationId: Int64?
 
-        /// 主体名称
+        /// 互信主体名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authName: String?
+
+        /// 主体管理员
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let manager: MemberMainInfo?
 
         enum CodingKeys: String, CodingKey {
             case relationId = "RelationId"
             case authName = "AuthName"
+            case manager = "Manager"
         }
     }
 
@@ -63,6 +68,22 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case identityId = "IdentityId"
             case identityAliasName = "IdentityAliasName"
+        }
+    }
+
+    /// 成员主要信息
+    public struct MemberMainInfo: TCOutputModel {
+        /// 成员uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberUin: Int64?
+
+        /// 成员名称j
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case memberUin = "MemberUin"
+            case memberName = "MemberName"
         }
     }
 
@@ -250,15 +271,15 @@ extension Organization {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identityId: Int64?
 
-        /// 身份角色名。
+        /// 身份的角色名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identityRoleName: String?
 
-        /// 身份角色别名。
+        /// 身份的角色别名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identityRoleAliasName: String?
 
-        /// 描述
+        /// 描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
@@ -270,6 +291,10 @@ extension Organization {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
 
+        /// 身份类型。取值： 1-预设  2-自定义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let identityType: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case identityId = "IdentityId"
             case identityRoleName = "IdentityRoleName"
@@ -277,6 +302,7 @@ extension Organization {
             case description = "Description"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
+            case identityType = "IdentityType"
         }
     }
 

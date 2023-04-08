@@ -24,6 +24,7 @@ extension TCVpcError {
             case addressIpNotFound = "InvalidParameterValue.AddressIpNotFound"
             case addressIpNotInVpc = "InvalidParameterValue.AddressIpNotInVpc"
             case addressIpNotPublic = "InvalidParameterValue.AddressIpNotPublic"
+            case addressIpsNotFound = "InvalidParameterValue.AddressIpsNotFound"
             case addressNotApplicable = "InvalidParameterValue.AddressNotApplicable"
             case addressNotCalcIP = "InvalidParameterValue.AddressNotCalcIP"
             case addressNotEIP = "InvalidParameterValue.AddressNotEIP"
@@ -63,11 +64,16 @@ extension TCVpcError {
             case lbAlreadyBindEip = "InvalidParameterValue.LBAlreadyBindEip"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
             case malformed = "InvalidParameterValue.Malformed"
+            case memberApprovalApplicationIdMismatch = "InvalidParameterValue.MemberApprovalApplicationIdMismatch"
+            case memberApprovalApplicationNotApproved = "InvalidParameterValue.MemberApprovalApplicationNotApproved"
+            case memberApprovalApplicationRejected = "InvalidParameterValue.MemberApprovalApplicationRejected"
+            case memberApprovalApplicationStarted = "InvalidParameterValue.MemberApprovalApplicationStarted"
             case missingAssociateEntity = "InvalidParameterValue.MissingAssociateEntity"
             case mixedAddressIpSetType = "InvalidParameterValue.MixedAddressIpSetType"
             case natGatewayDnatRuleExisted = "InvalidParameterValue.NatGatewayDnatRuleExisted"
             case natGatewayDnatRuleNotExists = "InvalidParameterValue.NatGatewayDnatRuleNotExists"
             case natGatewayDnatRulePipNeedVm = "InvalidParameterValue.NatGatewayDnatRulePipNeedVm"
+            case natGatewayDnatRuleRepeated = "InvalidParameterValue.NatGatewayDnatRuleRepeated"
             case natGatewaySnatRuleNotExists = "InvalidParameterValue.NatGatewaySnatRuleNotExists"
             case natSnatRuleExists = "InvalidParameterValue.NatSnatRuleExists"
             case netDetectInVpc = "InvalidParameterValue.NetDetectInVpc"
@@ -76,6 +82,7 @@ extension TCVpcError {
             case networkInterfaceIdMalformed = "InvalidParameterValue.NetworkInterfaceIdMalformed"
             case networkInterfaceNotFound = "InvalidParameterValue.NetworkInterfaceNotFound"
             case onlySupportedForMasterNetworkCard = "InvalidParameterValue.OnlySupportedForMasterNetworkCard"
+            case parameterMismatch = "InvalidParameterValue.ParameterMismatch"
             case range = "InvalidParameterValue.Range"
             case reserved = "InvalidParameterValue.Reserved"
             case resourceAlreadyExisted = "InvalidParameterValue.ResourceAlreadyExisted"
@@ -84,6 +91,7 @@ extension TCVpcError {
             case resourceNotExisted = "InvalidParameterValue.ResourceNotExisted"
             case resourceNotFound = "InvalidParameterValue.ResourceNotFound"
             case resourceNotSupport = "InvalidParameterValue.ResourceNotSupport"
+            case sslCcnVpnServerCidrConflict = "InvalidParameterValue.SslCcnVpnServerCidrConflict"
             case subnetConflict = "InvalidParameterValue.SubnetConflict"
             case subnetOverlap = "InvalidParameterValue.SubnetOverlap"
             case subnetOverlapAssistCidr = "InvalidParameterValue.SubnetOverlapAssistCidr"
@@ -166,6 +174,11 @@ extension TCVpcError {
         /// 此IPv6地址未发布。
         public static var addressIpNotPublic: InvalidParameterValue {
             InvalidParameterValue(.addressIpNotPublic)
+        }
+
+        /// 未查询到该地址。
+        public static var addressIpsNotFound: InvalidParameterValue {
+            InvalidParameterValue(.addressIpsNotFound)
         }
 
         /// 该地址不可与此实例申请。
@@ -277,6 +290,7 @@ extension TCVpcError {
             InvalidParameterValue(.instanceDoesNotSupportAnycast)
         }
 
+        /// 实例不存在公网IP。
         public static var instanceHasNoWanIP: InvalidParameterValue {
             InvalidParameterValue(.instanceHasNoWanIP)
         }
@@ -366,6 +380,34 @@ extension TCVpcError {
             InvalidParameterValue(.malformed)
         }
 
+        /// 指定审批单号和资源不匹配。
+        ///
+        /// 请求中的BPAAS申请单和申请的资源不匹配；可能的原因是错误的申请单ID或错误的资源ID。
+        public static var memberApprovalApplicationIdMismatch: InvalidParameterValue {
+            InvalidParameterValue(.memberApprovalApplicationIdMismatch)
+        }
+
+        /// 流程服务审批单未审批。
+        ///
+        /// 该请求对应的BPAAS审批单位未审批状态，无法调用该接口。请联系BPAAS审批人员并更新审批状态后重试请求。
+        public static var memberApprovalApplicationNotApproved: InvalidParameterValue {
+            InvalidParameterValue(.memberApprovalApplicationNotApproved)
+        }
+
+        /// 流程服务审批单被拒绝。
+        ///
+        /// 该请求被BPAAS审批人员拒绝。请检查请求的策略是否合规。
+        public static var memberApprovalApplicationRejected: InvalidParameterValue {
+            InvalidParameterValue(.memberApprovalApplicationRejected)
+        }
+
+        /// 该请求需要走BPAAS流程服务审批，当前发起审批中。
+        ///
+        /// 如果用户想查看审批状态，可以跳转到BPAAS查询审批状态。否则，忽略该提示（该异常属于正常的业务逻辑）。
+        public static var memberApprovalApplicationStarted: InvalidParameterValue {
+            InvalidParameterValue(.memberApprovalApplicationStarted)
+        }
+
         /// 缺少绑定的实例。
         public static var missingAssociateEntity: InvalidParameterValue {
             InvalidParameterValue(.missingAssociateEntity)
@@ -389,6 +431,11 @@ extension TCVpcError {
         /// DNAT转换规则的内网IP需为虚拟机上网卡所用的IP。
         public static var natGatewayDnatRulePipNeedVm: InvalidParameterValue {
             InvalidParameterValue(.natGatewayDnatRulePipNeedVm)
+        }
+
+        /// 新增NAT网关的DNAT转换规则已重复。
+        public static var natGatewayDnatRuleRepeated: InvalidParameterValue {
+            InvalidParameterValue(.natGatewayDnatRuleRepeated)
         }
 
         /// NAT网关的SNAT转换规则不存在。
@@ -431,6 +478,11 @@ extension TCVpcError {
             InvalidParameterValue(.onlySupportedForMasterNetworkCard)
         }
 
+        /// 参数值格式不匹配。
+        public static var parameterMismatch: InvalidParameterValue {
+            InvalidParameterValue(.parameterMismatch)
+        }
+
         /// 参数值不在指定范围。
         public static var range: InvalidParameterValue {
             InvalidParameterValue(.range)
@@ -471,11 +523,17 @@ extension TCVpcError {
             InvalidParameterValue(.resourceNotSupport)
         }
 
+        /// SSL-VPN-SERVER 云端网段和SSL-VPN-SERVER 客户端网段重叠。
+        public static var sslCcnVpnServerCidrConflict: InvalidParameterValue {
+            InvalidParameterValue(.sslCcnVpnServerCidrConflict)
+        }
+
         /// 子网CIDR冲突。
         public static var subnetConflict: InvalidParameterValue {
             InvalidParameterValue(.subnetConflict)
         }
 
+        /// CIDR与同一个私有网络内的另一个子网发生重叠。
         public static var subnetOverlap: InvalidParameterValue {
             InvalidParameterValue(.subnetOverlap)
         }
@@ -490,30 +548,37 @@ extension TCVpcError {
             InvalidParameterValue(.subnetRange)
         }
 
+        /// 标签键重复。
         public static var tagDuplicateKey: InvalidParameterValue {
             InvalidParameterValue(.tagDuplicateKey)
         }
 
+        /// 重复的标签资源类型。
         public static var tagDuplicateResourceType: InvalidParameterValue {
             InvalidParameterValue(.tagDuplicateResourceType)
         }
 
+        /// 标签键无效。
         public static var tagInvalidKey: InvalidParameterValue {
             InvalidParameterValue(.tagInvalidKey)
         }
 
+        /// 标签键长度无效。
         public static var tagInvalidKeyLen: InvalidParameterValue {
             InvalidParameterValue(.tagInvalidKeyLen)
         }
 
+        /// 标签值无效。
         public static var tagInvalidVal: InvalidParameterValue {
             InvalidParameterValue(.tagInvalidVal)
         }
 
+        /// 标签键不存在。
         public static var tagKeyNotExists: InvalidParameterValue {
             InvalidParameterValue(.tagKeyNotExists)
         }
 
+        /// 标签没有分配配额。
         public static var tagNotAllocatedQuota: InvalidParameterValue {
             InvalidParameterValue(.tagNotAllocatedQuota)
         }
@@ -523,18 +588,22 @@ extension TCVpcError {
             InvalidParameterValue(.tagNotExisted)
         }
 
+        /// 不支持的标签。
         public static var tagNotSupportTag: InvalidParameterValue {
             InvalidParameterValue(.tagNotSupportTag)
         }
 
+        /// '标签资源格式错误。
         public static var tagResourceFormatError: InvalidParameterValue {
             InvalidParameterValue(.tagResourceFormatError)
         }
 
+        /// 标签时间戳超配。
         public static var tagTimestampExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagTimestampExceeded)
         }
 
+        /// 标签值不存在。
         public static var tagValNotExists: InvalidParameterValue {
             InvalidParameterValue(.tagValNotExists)
         }
@@ -603,6 +672,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_AddressIpNotInVpc
             case .addressIpNotPublic:
                 code = .invalidParameterValue_AddressIpNotPublic
+            case .addressIpsNotFound:
+                code = .invalidParameterValue_AddressIpsNotFound
             case .addressNotApplicable:
                 code = .invalidParameterValue_AddressNotApplicable
             case .addressNotCalcIP:
@@ -681,6 +752,14 @@ extension TCVpcError {
                 code = .invalidParameterValue_LimitExceeded
             case .malformed:
                 code = .invalidParameterValue_Malformed
+            case .memberApprovalApplicationIdMismatch:
+                code = .invalidParameterValue_MemberApprovalApplicationIdMismatch
+            case .memberApprovalApplicationNotApproved:
+                code = .invalidParameterValue_MemberApprovalApplicationNotApproved
+            case .memberApprovalApplicationRejected:
+                code = .invalidParameterValue_MemberApprovalApplicationRejected
+            case .memberApprovalApplicationStarted:
+                code = .invalidParameterValue_MemberApprovalApplicationStarted
             case .missingAssociateEntity:
                 code = .invalidParameterValue_MissingAssociateEntity
             case .mixedAddressIpSetType:
@@ -691,6 +770,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_NatGatewayDnatRuleNotExists
             case .natGatewayDnatRulePipNeedVm:
                 code = .invalidParameterValue_NatGatewayDnatRulePipNeedVm
+            case .natGatewayDnatRuleRepeated:
+                code = .invalidParameterValue_NatGatewayDnatRuleRepeated
             case .natGatewaySnatRuleNotExists:
                 code = .invalidParameterValue_NatGatewaySnatRuleNotExists
             case .natSnatRuleExists:
@@ -707,6 +788,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_NetworkInterfaceNotFound
             case .onlySupportedForMasterNetworkCard:
                 code = .invalidParameterValue_OnlySupportedForMasterNetworkCard
+            case .parameterMismatch:
+                code = .invalidParameterValue_ParameterMismatch
             case .range:
                 code = .invalidParameterValue_Range
             case .reserved:
@@ -723,6 +806,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_ResourceNotFound
             case .resourceNotSupport:
                 code = .invalidParameterValue_ResourceNotSupport
+            case .sslCcnVpnServerCidrConflict:
+                code = .invalidParameterValue_SslCcnVpnServerCidrConflict
             case .subnetConflict:
                 code = .invalidParameterValue_SubnetConflict
             case .subnetOverlap:

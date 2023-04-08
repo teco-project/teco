@@ -48,16 +48,22 @@ extension TCRumError {
             self.context = context
         }
 
+        /// 计费相关 - 账户余额不足。
+        ///
         /// 购买资源时账户余额不足，请先充值再进行购买。
         public static var chargeNoBalance: FailedOperation {
             FailedOperation(.chargeNoBalance)
         }
 
+        /// 计费相关 - 账户没有付费权限。
+        ///
         /// 该账号没有付费权限，请联系对应账号管理员。
         public static var chargeNoPayRight: FailedOperation {
             FailedOperation(.chargeNoPayRight)
         }
 
+        /// 计费相关 - 计费参数无效。
+        ///
         /// 请联系腾讯云助手与产品开发
         public static var chargeParamInvalid: FailedOperation {
             FailedOperation(.chargeParamInvalid)

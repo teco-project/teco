@@ -46,8 +46,10 @@ public struct TCTatError: TCTatErrorType {
         case invalidParameterValue_InvalidInvokerId = "InvalidParameterValue.InvalidInvokerId"
         case invalidParameterValue_InvalidOutputCOSBucketUrl = "InvalidParameterValue.InvalidOutputCOSBucketUrl"
         case invalidParameterValue_InvalidOutputCOSKeyPrefix = "InvalidParameterValue.InvalidOutputCOSKeyPrefix"
+        case invalidParameterValue_InvalidTimeFormat = "InvalidParameterValue.InvalidTimeFormat"
         case invalidParameterValue_InvalidUsername = "InvalidParameterValue.InvalidUsername"
         case invalidParameterValue_InvalidWorkingDirectory = "InvalidParameterValue.InvalidWorkingDirectory"
+        case invalidParameterValue_InvokeTimeExpired = "InvalidParameterValue.InvokeTimeExpired"
         case invalidParameterValue_LackOfParameterInfo = "InvalidParameterValue.LackOfParameterInfo"
         case invalidParameterValue_LackOfParameters = "InvalidParameterValue.LackOfParameters"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
@@ -71,6 +73,8 @@ public struct TCTatError: TCTatErrorType {
         case resourceNotFound_CommandNotFound = "ResourceNotFound.CommandNotFound"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_InvocationNotFound = "ResourceNotFound.InvocationNotFound"
+        case resourceNotFound_RoleNotFound = "ResourceNotFound.RoleNotFound"
+        case resourceUnavailable = "ResourceUnavailable"
         case resourceUnavailable_AgentNotInstalled = "ResourceUnavailable.AgentNotInstalled"
         case resourceUnavailable_AgentStatusNotOnline = "ResourceUnavailable.AgentStatusNotOnline"
         case resourceUnavailable_CommandInExecuting = "ResourceUnavailable.CommandInExecuting"
@@ -82,6 +86,7 @@ public struct TCTatError: TCTatErrorType {
         case unauthorizedOperation_MFAExpired = "UnauthorizedOperation.MFAExpired"
         case unauthorizedOperation_MFANotFound = "UnauthorizedOperation.MFANotFound"
         case unknownParameter = "UnknownParameter"
+        case unsupportedOperation = "UnsupportedOperation"
     }
 
     /// Error domains affliated to ``TCTatError``.
@@ -227,6 +232,12 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.invalidParameterValue_InvalidOutputCOSKeyPrefix)
     }
 
+    /// 无效的时间格式。
+    public static var invalidParameterValue_InvalidTimeFormat: TCTatError {
+        TCTatError(.invalidParameterValue_InvalidTimeFormat)
+    }
+
+    /// 用户名不合法。
     public static var invalidParameterValue_InvalidUsername: TCTatError {
         TCTatError(.invalidParameterValue_InvalidUsername)
     }
@@ -234,6 +245,11 @@ public struct TCTatError: TCTatErrorType {
     /// 命令执行路径不合法。
     public static var invalidParameterValue_InvalidWorkingDirectory: TCTatError {
         TCTatError(.invalidParameterValue_InvalidWorkingDirectory)
+    }
+
+    /// 调用时间已过期。
+    public static var invalidParameterValue_InvokeTimeExpired: TCTatError {
+        TCTatError(.invalidParameterValue_InvokeTimeExpired)
     }
 
     /// 已启用自定义参数功能，但缺失自定义参数信息。
@@ -311,6 +327,7 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.invalidParameter_InvalidUsername)
     }
 
+    /// 参数名称重复。
     public static var invalidParameter_ParameterNameDuplicated: TCTatError {
         TCTatError(.invalidParameter_ParameterNameDuplicated)
     }
@@ -320,6 +337,7 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.limitExceeded)
     }
 
+    /// 填写的 Filter 取值过多。
     public static var limitExceeded_FilterValueExceeded: TCTatError {
         TCTatError(.limitExceeded_FilterValueExceeded)
     }
@@ -351,6 +369,16 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.resourceNotFound_InvocationNotFound)
     }
 
+    /// 角色不存在。
+    public static var resourceNotFound_RoleNotFound: TCTatError {
+        TCTatError(.resourceNotFound_RoleNotFound)
+    }
+
+    /// 资源不可用。
+    public static var resourceUnavailable: TCTatError {
+        TCTatError(.resourceUnavailable)
+    }
+
     /// Agent 未安装。
     public static var resourceUnavailable_AgentNotInstalled: TCTatError {
         TCTatError(.resourceUnavailable_AgentNotInstalled)
@@ -376,6 +404,8 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.resourceUnavailable_InstanceStateNotRunning)
     }
 
+    /// Lighthouse 尚不支持指定的地域。
+    ///
     /// 请确认所填实例是否为所请求的地域的资源。
     public static var resourceUnavailable_LighthouseUnsupportedRegion: TCTatError {
         TCTatError(.resourceUnavailable_LighthouseUnsupportedRegion)
@@ -404,6 +434,11 @@ public struct TCTatError: TCTatErrorType {
     /// 未知参数错误。
     public static var unknownParameter: TCTatError {
         TCTatError(.unknownParameter)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCTatError {
+        TCTatError(.unsupportedOperation)
     }
 
     public func asTatError() -> TCTatError {

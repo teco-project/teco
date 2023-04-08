@@ -17,7 +17,11 @@
 extension TCCloudauditError {
     public struct FailedOperation: TCCloudauditErrorType {
         enum Code: String {
+            case checkClsTopicIsExistFailed = "FailedOperation.CheckClsTopicIsExistFailed"
+            case checkCosBucketIsExistFailed = "FailedOperation.CheckCosBucketIsExistFailed"
             case createBucketFail = "FailedOperation.CreateBucketFail"
+            case getClsTopicFailed = "FailedOperation.GetClsTopicFailed"
+            case getCosBucketListFailed = "FailedOperation.GetCosBucketListFailed"
             case other = "FailedOperation"
         }
 
@@ -43,9 +47,29 @@ extension TCCloudauditError {
             self.context = context
         }
 
+        /// 检查cls日志主题是否存在失败。
+        public static var checkClsTopicIsExistFailed: FailedOperation {
+            FailedOperation(.checkClsTopicIsExistFailed)
+        }
+
+        /// 检查cos桶是否存在失败。
+        public static var checkCosBucketIsExistFailed: FailedOperation {
+            FailedOperation(.checkCosBucketIsExistFailed)
+        }
+
         /// 创建COS存储桶失败
         public static var createBucketFail: FailedOperation {
             FailedOperation(.createBucketFail)
+        }
+
+        /// 拉取cls日志主题失败。
+        public static var getClsTopicFailed: FailedOperation {
+            FailedOperation(.getClsTopicFailed)
+        }
+
+        /// 拉取cos存储桶列表失败。
+        public static var getCosBucketListFailed: FailedOperation {
+            FailedOperation(.getCosBucketListFailed)
         }
 
         /// 操作失败。
@@ -56,8 +80,16 @@ extension TCCloudauditError {
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {
+            case .checkClsTopicIsExistFailed:
+                code = .failedOperation_CheckClsTopicIsExistFailed
+            case .checkCosBucketIsExistFailed:
+                code = .failedOperation_CheckCosBucketIsExistFailed
             case .createBucketFail:
                 code = .failedOperation_CreateBucketFail
+            case .getClsTopicFailed:
+                code = .failedOperation_GetClsTopicFailed
+            case .getCosBucketListFailed:
+                code = .failedOperation_GetCosBucketListFailed
             case .other:
                 code = .failedOperation
             }

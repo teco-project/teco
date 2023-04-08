@@ -213,6 +213,7 @@ extension TCTdmqError {
             FailedOperation(.namespaceInUse)
         }
 
+        /// PulsarAdminClient错误。
         public static var pulsarAdminError: FailedOperation {
             FailedOperation(.pulsarAdminError)
         }

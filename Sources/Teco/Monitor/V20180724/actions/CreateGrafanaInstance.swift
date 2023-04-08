@@ -26,21 +26,21 @@ extension Monitor {
         /// 子网 ID 数组
         public let subnetIds: [String]
 
-        /// Grafana 初始密码
-        public let grafanaInitPassword: String
-
         /// 是否启用外网
         public let enableInternet: Bool
+
+        /// Grafana 初始密码
+        public let grafanaInitPassword: String?
 
         /// 标签
         public let tagSpecification: [PrometheusTag]?
 
-        public init(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil) {
+        public init(instanceName: String, vpcId: String, subnetIds: [String], enableInternet: Bool, grafanaInitPassword: String? = nil, tagSpecification: [PrometheusTag]? = nil) {
             self.instanceName = instanceName
             self.vpcId = vpcId
             self.subnetIds = subnetIds
-            self.grafanaInitPassword = grafanaInitPassword
             self.enableInternet = enableInternet
+            self.grafanaInitPassword = grafanaInitPassword
             self.tagSpecification = tagSpecification
         }
 
@@ -48,8 +48,8 @@ extension Monitor {
             case instanceName = "InstanceName"
             case vpcId = "VpcId"
             case subnetIds = "SubnetIds"
-            case grafanaInitPassword = "GrafanaInitPassword"
             case enableInternet = "EnableInternet"
+            case grafanaInitPassword = "GrafanaInitPassword"
             case tagSpecification = "TagSpecification"
         }
     }
@@ -82,13 +82,13 @@ extension Monitor {
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
-        self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], enableInternet: Bool, grafanaInitPassword: String? = nil, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
+        self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, enableInternet: enableInternet, grafanaInitPassword: grafanaInitPassword, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
-        try await self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], enableInternet: Bool, grafanaInitPassword: String? = nil, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
+        try await self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, enableInternet: enableInternet, grafanaInitPassword: grafanaInitPassword, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

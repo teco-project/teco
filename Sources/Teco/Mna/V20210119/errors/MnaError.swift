@@ -30,6 +30,7 @@ public struct TCMnaError: TCMnaErrorType {
         case internalError_DuplicateDataKey = "InternalError.DuplicateDataKey"
         case internalError_DuplicateDeviceName = "InternalError.DuplicateDeviceName"
         case internalError_FileIOError = "InternalError.FileIOError"
+        case internalError_MonitorDataRequestError = "InternalError.MonitorDataRequestError"
         case internalError_NetworkInfoRequestError = "InternalError.NetworkInfoRequestError"
         case internalError_UndefinedEncryptedKey = "InternalError.UndefinedEncryptedKey"
         case invalidParameter = "InvalidParameter"
@@ -86,26 +87,37 @@ public struct TCMnaError: TCMnaErrorType {
         TCMnaError(.internalError)
     }
 
+    /// 请求控制器发生错误。
     public static var internalError_ControlRequestError: TCMnaError {
         TCMnaError(.internalError_ControlRequestError)
     }
 
+    /// 设备密钥已存在。
     public static var internalError_DuplicateDataKey: TCMnaError {
         TCMnaError(.internalError_DuplicateDataKey)
     }
 
+    /// 设备名已存在。
     public static var internalError_DuplicateDeviceName: TCMnaError {
         TCMnaError(.internalError_DuplicateDeviceName)
     }
 
+    /// 文件读写异常。
     public static var internalError_FileIOError: TCMnaError {
         TCMnaError(.internalError_FileIOError)
     }
 
+    /// 监控数据请求错误。
+    public static var internalError_MonitorDataRequestError: TCMnaError {
+        TCMnaError(.internalError_MonitorDataRequestError)
+    }
+
+    /// 智研流量数据请求错误。
     public static var internalError_NetworkInfoRequestError: TCMnaError {
         TCMnaError(.internalError_NetworkInfoRequestError)
     }
 
+    /// 预置密钥尚未创建。
     public static var internalError_UndefinedEncryptedKey: TCMnaError {
         TCMnaError(.internalError_UndefinedEncryptedKey)
     }

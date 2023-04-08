@@ -79,6 +79,7 @@ public struct TCGaapError: TCGaapErrorType {
         case failedOperation_UnTagResourcesFailed = "FailedOperation.UnTagResourcesFailed"
         case failedOperation_UserNotAuthenticated = "FailedOperation.UserNotAuthenticated"
         case failedOperation_UserNotConfirmProtocol = "FailedOperation.UserNotConfirmProtocol"
+        case failedOperation_UserNotInWhitelist = "FailedOperation.UserNotInWhitelist"
         case failedOperation_UserOutOfCoverage = "FailedOperation.UserOutOfCoverage"
         case failedOperation_VendorReturnError = "FailedOperation.VendorReturnError"
         case failedOperation_VendorServerError = "FailedOperation.VendorServerError"
@@ -381,6 +382,7 @@ public struct TCGaapError: TCGaapErrorType {
         TCGaapError(.failedOperation_ResourceCanNotAccess)
     }
 
+    /// 资源已经被操作过。
     public static var failedOperation_ResourceHadBeenDone: TCGaapError {
         TCGaapError(.failedOperation_ResourceHadBeenDone)
     }
@@ -405,10 +407,12 @@ public struct TCGaapError: TCGaapErrorType {
         TCGaapError(.failedOperation_SessionNotExist)
     }
 
+    /// 标签资源绑定失败。
     public static var failedOperation_TagResourcesFailed: TCGaapError {
         TCGaapError(.failedOperation_TagResourcesFailed)
     }
 
+    /// 标签资源解绑失败。
     public static var failedOperation_UnTagResourcesFailed: TCGaapError {
         TCGaapError(.failedOperation_UnTagResourcesFailed)
     }
@@ -418,8 +422,14 @@ public struct TCGaapError: TCGaapErrorType {
         TCGaapError(.failedOperation_UserNotAuthenticated)
     }
 
+    /// 未开通协议。
     public static var failedOperation_UserNotConfirmProtocol: TCGaapError {
         TCGaapError(.failedOperation_UserNotConfirmProtocol)
+    }
+
+    /// 该功能为白名单功能，如有需要请联系腾讯云助手。
+    public static var failedOperation_UserNotInWhitelist: TCGaapError {
+        TCGaapError(.failedOperation_UserNotInWhitelist)
     }
 
     /// 该用户不在运营商网络可加速范围内。
@@ -452,6 +462,7 @@ public struct TCGaapError: TCGaapErrorType {
         TCGaapError(.invalidParameterValue)
     }
 
+    /// 证书和私钥不匹配。
     public static var invalidParameterValue_CertificateContentNotMatchKey: TCGaapError {
         TCGaapError(.invalidParameterValue_CertificateContentNotMatchKey)
     }
@@ -581,6 +592,7 @@ public struct TCGaapError: TCGaapErrorType {
         TCGaapError(.limitExceeded_Domain)
     }
 
+    /// 标签配额不足。
     public static var limitExceeded_TagQuota: TCGaapError {
         TCGaapError(.limitExceeded_TagQuota)
     }

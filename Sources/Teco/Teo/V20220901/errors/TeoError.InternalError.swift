@@ -91,8 +91,6 @@ extension TCTeoError {
             InternalError(.routeError)
         }
 
-        /// 内部错误。
-        ///
         /// 内部错误-系统错误。
         public static var systemError: InternalError {
             InternalError(.systemError)

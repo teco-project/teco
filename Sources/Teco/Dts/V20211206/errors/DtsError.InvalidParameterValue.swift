@@ -20,6 +20,7 @@ extension TCDtsError {
             case dataConvertError = "InvalidParameterValue.DataConvertError"
             case invalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
             case invalidParameterValueError = "InvalidParameterValue.InvalidParameterValueError"
+            case other = "InvalidParameterValue"
         }
 
         private let error: Code
@@ -59,6 +60,11 @@ extension TCDtsError {
             InvalidParameterValue(.invalidParameterValueError)
         }
 
+        /// 参数取值错误。
+        public static var other: InvalidParameterValue {
+            InvalidParameterValue(.other)
+        }
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
@@ -68,6 +74,8 @@ extension TCDtsError {
                 code = .invalidParameterValue_InvalidParameterValue
             case .invalidParameterValueError:
                 code = .invalidParameterValue_InvalidParameterValueError
+            case .other:
+                code = .invalidParameterValue
             }
             return TCDtsError(code, context: self.context)
         }

@@ -27,11 +27,13 @@ extension TCEssbasicError {
             case orgOpenId = "MissingParameter.OrgOpenId"
             case organizationId = "MissingParameter.OrganizationId"
             case proxyOperatorOpenId = "MissingParameter.ProxyOperatorOpenId"
+            case resourceName = "MissingParameter.ResourceName"
             case sealId = "MissingParameter.SealId"
             case sealImage = "MissingParameter.SealImage"
             case sealName = "MissingParameter.SealName"
             case signComponents = "MissingParameter.SignComponents"
             case templates = "MissingParameter.Templates"
+            case userId = "MissingParameter.UserId"
             case userOpenId = "MissingParameter.UserOpenId"
             case other = "MissingParameter"
         }
@@ -58,10 +60,12 @@ extension TCEssbasicError {
             self.context = context
         }
 
+        /// 合作企业激活信息不存在。
         public static var companyActiveInfo: MissingParameter {
             MissingParameter(.companyActiveInfo)
         }
 
+        /// 缺少时间参数，请检查后重试。
         public static var date: MissingParameter {
             MissingParameter(.date)
         }
@@ -71,54 +75,77 @@ extension TCEssbasicError {
             MissingParameter(.flowId)
         }
 
+        /// 缺少流程id，请检查后重试。
         public static var flowIds: MissingParameter {
             MissingParameter(.flowIds)
         }
 
+        /// 请传入需要查询的合同或合同组的ID。
         public static var flowIdsOrFlowGroupId: MissingParameter {
             MissingParameter(.flowIdsOrFlowGroupId)
         }
 
+        /// 未指定流程合同信息。
         public static var flowInfo: MissingParameter {
             MissingParameter(.flowInfo)
         }
 
+        /// 缺少控件名称参数，请检查后重试。
         public static var missComponentName: MissingParameter {
             MissingParameter(.missComponentName)
         }
 
+        /// 企业OpenId不存在。
         public static var orgOpenId: MissingParameter {
             MissingParameter(.orgOpenId)
         }
 
+        /// 企业信息为空。
         public static var organizationId: MissingParameter {
             MissingParameter(.organizationId)
         }
 
+        /// ProxyOperatorOpenId不存在。
         public static var proxyOperatorOpenId: MissingParameter {
             MissingParameter(.proxyOperatorOpenId)
         }
 
+        /// 资源名称错误。
+        public static var resourceName: MissingParameter {
+            MissingParameter(.resourceName)
+        }
+
+        /// 印章ID为空。
         public static var sealId: MissingParameter {
             MissingParameter(.sealId)
         }
 
+        /// 印章图片为空。
         public static var sealImage: MissingParameter {
             MissingParameter(.sealImage)
         }
 
+        /// 印章名称为空。
         public static var sealName: MissingParameter {
             MissingParameter(.sealName)
         }
 
+        /// 签署人缺少签署控件。
         public static var signComponents: MissingParameter {
             MissingParameter(.signComponents)
         }
 
+        /// 缺少模板参数。
         public static var templates: MissingParameter {
             MissingParameter(.templates)
         }
 
+        /// 缺少用户ID参数
+        public static var userId: MissingParameter {
+            MissingParameter(.userId)
+        }
+
+        /// OpenId不存在。
         public static var userOpenId: MissingParameter {
             MissingParameter(.userOpenId)
         }
@@ -151,6 +178,8 @@ extension TCEssbasicError {
                 code = .missingParameter_OrganizationId
             case .proxyOperatorOpenId:
                 code = .missingParameter_ProxyOperatorOpenId
+            case .resourceName:
+                code = .missingParameter_ResourceName
             case .sealId:
                 code = .missingParameter_SealId
             case .sealImage:
@@ -161,6 +190,8 @@ extension TCEssbasicError {
                 code = .missingParameter_SignComponents
             case .templates:
                 code = .missingParameter_Templates
+            case .userId:
+                code = .missingParameter_UserId
             case .userOpenId:
                 code = .missingParameter_UserOpenId
             case .other:

@@ -50,34 +50,42 @@ extension TCTcrError {
             self.context = context
         }
 
+        /// 创建私有域失败。
         public static var createPrivateZone: UnsupportedOperation {
             UnsupportedOperation(.createPrivateZone)
         }
 
+        /// 创建私有域记录失败。
         public static var createPrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.createPrivateZoneRecord)
         }
 
+        /// 删除私有域记录失败。
         public static var deletePrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.deletePrivateZoneRecord)
         }
 
+        /// 查询私有域列表失败。
         public static var describePrivateZoneList: UnsupportedOperation {
             UnsupportedOperation(.describePrivateZoneList)
         }
 
+        /// 查询私有域记录列表失败。
         public static var describePrivateZoneRecordList: UnsupportedOperation {
             UnsupportedOperation(.describePrivateZoneRecordList)
         }
 
+        /// 个人版实例用户未初始化。
         public static var errNoUserInitialized: UnsupportedOperation {
             UnsupportedOperation(.errNoUserInitialized)
         }
 
+        /// 修改私有域记录失败。
         public static var modifyPrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.modifyPrivateZoneRecord)
         }
 
+        /// 修改vpc与私有域关联关系失败。
         public static var modifyPrivateZoneVpc: UnsupportedOperation {
             UnsupportedOperation(.modifyPrivateZoneVpc)
         }

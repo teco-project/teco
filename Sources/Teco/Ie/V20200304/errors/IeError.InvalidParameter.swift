@@ -43,6 +43,7 @@ extension TCIeError {
             self.context = context
         }
 
+        /// 不支持直播流。
         public static var liveStreamNotSupport: InvalidParameter {
             InvalidParameter(.liveStreamNotSupport)
         }

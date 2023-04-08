@@ -68,6 +68,8 @@ extension TCRedisError {
             UnsupportedOperation(.isAutoRenewError)
         }
 
+        /// 实例版本过低。
+        ///
         /// 实例版本过低，如需使用该功能请提交工单申请。
         public static var limitProxyVersion: UnsupportedOperation {
             UnsupportedOperation(.limitProxyVersion)

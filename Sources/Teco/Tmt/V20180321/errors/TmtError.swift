@@ -32,6 +32,7 @@ public struct TCTmtError: TCTmtErrorType {
         case failedOperation_UserNotRegistered = "FailedOperation.UserNotRegistered"
         case internalError = "InternalError"
         case internalError_BackendTimeout = "InternalError.BackendTimeout"
+        case internalError_ErrorGetRoute = "InternalError.ErrorGetRoute"
         case internalError_ErrorUnknown = "InternalError.ErrorUnknown"
         case internalError_RequestFailed = "InternalError.RequestFailed"
         case invalidParameter = "InvalidParameter"
@@ -41,6 +42,7 @@ public struct TCTmtError: TCTmtErrorType {
         case limitExceeded = "LimitExceeded"
         case limitExceeded_LimitedAccessFrequency = "LimitExceeded.LimitedAccessFrequency"
         case missingParameter = "MissingParameter"
+        case requestLimitExceeded_UinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
         case unauthorizedOperation_ActionNotFound = "UnauthorizedOperation.ActionNotFound"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AudioDurationExceed = "UnsupportedOperation.AudioDurationExceed"
@@ -52,7 +54,7 @@ public struct TCTmtError: TCTmtErrorType {
 
     /// Error domains affliated to ``TCTmtError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, RequestLimitExceeded.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -82,6 +84,7 @@ public struct TCTmtError: TCTmtErrorType {
         TCTmtError(.failedOperation)
     }
 
+    /// 数据插入错误。
     public static var failedOperation_InsertErr: TCTmtError {
         TCTmtError(.failedOperation_InsertErr)
     }
@@ -91,6 +94,7 @@ public struct TCTmtError: TCTmtErrorType {
         TCTmtError(.failedOperation_NoFreeAmount)
     }
 
+    /// 内部请求错误。
     public static var failedOperation_RequestAiLabErr: TCTmtError {
         TCTmtError(.failedOperation_RequestAiLabErr)
     }
@@ -113,6 +117,11 @@ public struct TCTmtError: TCTmtErrorType {
     /// 后台服务超时，请稍后重试。
     public static var internalError_BackendTimeout: TCTmtError {
         TCTmtError(.internalError_BackendTimeout)
+    }
+
+    /// 路由获取错误。
+    public static var internalError_ErrorGetRoute: TCTmtError {
+        TCTmtError(.internalError_ErrorGetRoute)
     }
 
     /// 未知错误。
@@ -158,6 +167,11 @@ public struct TCTmtError: TCTmtErrorType {
     /// 缺少参数错误。
     public static var missingParameter: TCTmtError {
         TCTmtError(.missingParameter)
+    }
+
+    /// 超出UIN使用限额。
+    public static var requestLimitExceeded_UinLimitExceeded: TCTmtError {
+        TCTmtError(.requestLimitExceeded_UinLimitExceeded)
     }
 
     /// 请填写正确的Action字段名称。

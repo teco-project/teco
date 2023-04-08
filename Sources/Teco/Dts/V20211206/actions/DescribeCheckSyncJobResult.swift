@@ -17,7 +17,7 @@
 extension Dts {
     /// DescribeCheckSyncJobResult请求参数结构体
     public struct DescribeCheckSyncJobResultRequest: TCRequestModel {
-        /// 同步任务id
+        /// 同步实例id（即标识一个同步作业），形如sync-werwfs23，此值必填
         public let jobId: String?
 
         public init(jobId: String? = nil) {
@@ -31,7 +31,7 @@ extension Dts {
 
     /// DescribeCheckSyncJobResult返回参数结构体
     public struct DescribeCheckSyncJobResultResponse: TCResponseModel {
-        /// 校验结果
+        /// 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -43,7 +43,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stepCur: UInt64?
 
-        /// 总体进度
+        /// 总体进度，范围为[0,100]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: UInt64?
 
@@ -65,24 +65,32 @@ extension Dts {
     }
 
     /// 查询同步校验任务结果
+    ///
+    /// 查询同步校验任务结果，检查必要参数和周边配置
     @inlinable
     public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckSyncJobResultResponse> {
         self.client.execute(action: "DescribeCheckSyncJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询同步校验任务结果
+    ///
+    /// 查询同步校验任务结果，检查必要参数和周边配置
     @inlinable
     public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
         try await self.client.execute(action: "DescribeCheckSyncJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询同步校验任务结果
+    ///
+    /// 查询同步校验任务结果，检查必要参数和周边配置
     @inlinable
     public func describeCheckSyncJobResult(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckSyncJobResultResponse> {
         self.describeCheckSyncJobResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询同步校验任务结果
+    ///
+    /// 查询同步校验任务结果，检查必要参数和周边配置
     @inlinable
     public func describeCheckSyncJobResult(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
         try await self.describeCheckSyncJobResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)

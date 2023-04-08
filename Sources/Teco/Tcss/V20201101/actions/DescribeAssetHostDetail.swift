@@ -31,7 +31,7 @@ extension Tcss {
 
     /// DescribeAssetHostDetail返回参数结构体
     public struct DescribeAssetHostDetailResponse: TCResponseModel {
-        /// 云镜uuid
+        /// 容器安全uuid
         public let uuid: String
 
         /// 更新时间

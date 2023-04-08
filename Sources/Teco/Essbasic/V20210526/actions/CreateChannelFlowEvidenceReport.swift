@@ -17,24 +17,24 @@
 extension Essbasic {
     /// CreateChannelFlowEvidenceReport请求参数结构体
     public struct CreateChannelFlowEvidenceReportRequest: TCRequestModel {
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        public let agent: Agent
+
         /// 签署流程编号
         public let flowId: String
 
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
-        public let agent: Agent
-
-        /// 操作者的信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
-        public init(flowId: String, agent: Agent, operator: UserInfo? = nil) {
-            self.flowId = flowId
+        public init(agent: Agent, flowId: String, operator: UserInfo? = nil) {
             self.agent = agent
+            self.flowId = flowId
             self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
-            case flowId = "FlowId"
             case agent = "Agent"
+            case flowId = "FlowId"
             case `operator` = "Operator"
         }
     }
@@ -88,8 +88,8 @@ extension Essbasic {
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
-    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
-        self.createChannelFlowEvidenceReport(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
+        self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
@@ -97,7 +97,7 @@ extension Essbasic {
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
-    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
-        try await self.createChannelFlowEvidenceReport(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
+        try await self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

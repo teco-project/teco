@@ -67,6 +67,10 @@ extension Live {
     /// 禁推直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    /// 注意：
+    /// 1. 默认只要流名称正确，禁推就会生效。
+    /// 2. 如需要推流域名+推流路径+流名称 强匹配生效禁推，需提单联系售后开启配置。
+    /// 3. 如果配置了域名分组，需填写准确推流域名，才可断掉当前推流。
     @inlinable @discardableResult
     public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
         self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,6 +79,10 @@ extension Live {
     /// 禁推直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    /// 注意：
+    /// 1. 默认只要流名称正确，禁推就会生效。
+    /// 2. 如需要推流域名+推流路径+流名称 强匹配生效禁推，需提单联系售后开启配置。
+    /// 3. 如果配置了域名分组，需填写准确推流域名，才可断掉当前推流。
     @inlinable @discardableResult
     public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
         try await self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,6 +91,10 @@ extension Live {
     /// 禁推直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    /// 注意：
+    /// 1. 默认只要流名称正确，禁推就会生效。
+    /// 2. 如需要推流域名+推流路径+流名称 强匹配生效禁推，需提单联系售后开启配置。
+    /// 3. 如果配置了域名分组，需填写准确推流域名，才可断掉当前推流。
     @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
         self.forbidLiveStream(.init(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime, reason: reason), region: region, logger: logger, on: eventLoop)
@@ -91,6 +103,10 @@ extension Live {
     /// 禁推直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    /// 注意：
+    /// 1. 默认只要流名称正确，禁推就会生效。
+    /// 2. 如需要推流域名+推流路径+流名称 强匹配生效禁推，需提单联系售后开启配置。
+    /// 3. 如果配置了域名分组，需填写准确推流域名，才可断掉当前推流。
     @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
         try await self.forbidLiveStream(.init(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime, reason: reason), region: region, logger: logger, on: eventLoop)

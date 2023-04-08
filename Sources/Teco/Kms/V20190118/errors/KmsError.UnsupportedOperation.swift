@@ -22,6 +22,7 @@ extension TCKmsError {
             case notUserCreatedCmk = "UnsupportedOperation.NotUserCreatedCmk"
             case serviceTemporaryUnavailable = "UnsupportedOperation.ServiceTemporaryUnavailable"
             case unsupportedKeyUsageInCurrentRegion = "UnsupportedOperation.UnsupportedKeyUsageInCurrentRegion"
+            case other = "UnsupportedOperation"
         }
 
         private let error: Code
@@ -71,6 +72,11 @@ extension TCKmsError {
             UnsupportedOperation(.unsupportedKeyUsageInCurrentRegion)
         }
 
+        /// 操作不支持。
+        public static var other: UnsupportedOperation {
+            UnsupportedOperation(.other)
+        }
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {
@@ -84,6 +90,8 @@ extension TCKmsError {
                 code = .unsupportedOperation_ServiceTemporaryUnavailable
             case .unsupportedKeyUsageInCurrentRegion:
                 code = .unsupportedOperation_UnsupportedKeyUsageInCurrentRegion
+            case .other:
+                code = .unsupportedOperation
             }
             return TCKmsError(code, context: self.context)
         }

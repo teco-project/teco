@@ -111,13 +111,13 @@ extension Trtc {
 
     /// 录制音频转码参数。
     public struct AudioParams: TCInputModel {
-        /// 音频采样率:
+        /// 音频采样率枚举值:(注意1 代表48000HZ, 2 代表44100HZ, 3 代表16000HZ)
         /// 1：48000Hz（默认）;
         /// 2：44100Hz
         /// 3：16000Hz。
         public let sampleRate: UInt64
 
-        /// 声道数:
+        /// 声道数枚举值:
         /// 1：单声道;
         /// 2：双声道（默认）。
         public let channel: UInt64
@@ -344,7 +344,7 @@ extension Trtc {
         /// 水印参数。
         public let waterMarkParams: WaterMarkParams?
 
-        /// 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。
+        /// 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。若此参数不生效，请请提交工单寻求帮助。
         public let renderMode: UInt64?
 
         public init(template: UInt64? = nil, mainVideoUserId: String? = nil, mainVideoStreamType: UInt64? = nil, smallVideoLayoutParams: SmallVideoLayoutParams? = nil, mainVideoRightAlign: UInt64? = nil, mixVideoUids: [String]? = nil, presetLayoutConfig: [PresetLayoutConfig]? = nil, placeHolderMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, waterMarkParams: WaterMarkParams? = nil, renderMode: UInt64? = nil) {
@@ -497,7 +497,7 @@ extension Trtc {
         /// 子画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
         public let renderMode: UInt64?
 
-        /// 子画面的背景颜色，常用的颜色有：
+        /// 【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：
         /// 红色：0xcc0033。
         /// 黄色：0xcc9900。
         /// 绿色：0xcccc33。
@@ -554,11 +554,15 @@ extension Trtc {
         /// 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
         public let maxVideoUser: MaxVideoUser?
 
-        public init(mixLayoutMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, mixLayoutList: [McuLayout]? = nil, maxVideoUser: MaxVideoUser? = nil) {
+        /// 屏幕分享模板、悬浮模板、九宫格模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底
+        public let renderMode: UInt64?
+
+        public init(mixLayoutMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, mixLayoutList: [McuLayout]? = nil, maxVideoUser: MaxVideoUser? = nil, renderMode: UInt64? = nil) {
             self.mixLayoutMode = mixLayoutMode
             self.pureAudioHoldPlaceMode = pureAudioHoldPlaceMode
             self.mixLayoutList = mixLayoutList
             self.maxVideoUser = maxVideoUser
+            self.renderMode = renderMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -566,6 +570,7 @@ extension Trtc {
             case pureAudioHoldPlaceMode = "PureAudioHoldPlaceMode"
             case mixLayoutList = "MixLayoutList"
             case maxVideoUser = "MaxVideoUser"
+            case renderMode = "RenderMode"
         }
     }
 
@@ -578,14 +583,24 @@ extension Trtc {
         /// SEI消息的payload_type，默认值100，取值范围100-254（244除外，244为我们内部自定义的时间戳SEI）
         public let payloadType: UInt64?
 
-        public init(appData: String? = nil, payloadType: UInt64? = nil) {
+        /// SEI发送间隔，单位毫秒，默认值为1000。
+        public let interval: UInt64?
+
+        /// 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
+        public let followIdr: UInt64?
+
+        public init(appData: String? = nil, payloadType: UInt64? = nil, interval: UInt64? = nil, followIdr: UInt64? = nil) {
             self.appData = appData
             self.payloadType = payloadType
+            self.interval = interval
+            self.followIdr = followIdr
         }
 
         enum CodingKeys: String, CodingKey {
             case appData = "AppData"
             case payloadType = "PayloadType"
+            case interval = "Interval"
+            case followIdr = "FollowIdr"
         }
     }
 
@@ -600,16 +615,26 @@ extension Trtc {
         /// PayloadType为5，PayloadUuid必须填写。PayloadType不是5时，不需要填写，填写会被后台忽略。该值必须是32长度的十六进制。
         public let payloadUuid: String?
 
-        public init(payloadContent: String, payloadType: UInt64, payloadUuid: String? = nil) {
+        /// SEI发送间隔，单位毫秒，默认值为1000。
+        public let interval: UInt64?
+
+        /// 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
+        public let followIdr: UInt64?
+
+        public init(payloadContent: String, payloadType: UInt64, payloadUuid: String? = nil, interval: UInt64? = nil, followIdr: UInt64? = nil) {
             self.payloadContent = payloadContent
             self.payloadType = payloadType
             self.payloadUuid = payloadUuid
+            self.interval = interval
+            self.followIdr = followIdr
         }
 
         enum CodingKeys: String, CodingKey {
             case payloadContent = "PayloadContent"
             case payloadType = "PayloadType"
             case payloadUuid = "PayloadUuid"
+            case interval = "Interval"
+            case followIdr = "FollowIdr"
         }
     }
 
@@ -747,20 +772,74 @@ extension Trtc {
 
     /// 水印参数。
     public struct McuWaterMarkParams: TCInputModel {
-        /// 水印类型，0为图片（默认）。
+        /// 水印类型，0为图片（默认），1为文字。
         public let waterMarkType: UInt64?
 
         /// 图片水印参数。WaterMarkType为0指定。
         public let waterMarkImage: McuWaterMarkImage?
 
-        public init(waterMarkType: UInt64? = nil, waterMarkImage: McuWaterMarkImage? = nil) {
+        /// 文字水印参数。WaterMarkType为1指定。
+        public let waterMarkText: McuWaterMarkText?
+
+        public init(waterMarkType: UInt64? = nil, waterMarkImage: McuWaterMarkImage? = nil, waterMarkText: McuWaterMarkText? = nil) {
             self.waterMarkType = waterMarkType
             self.waterMarkImage = waterMarkImage
+            self.waterMarkText = waterMarkText
         }
 
         enum CodingKeys: String, CodingKey {
             case waterMarkType = "WaterMarkType"
             case waterMarkImage = "WaterMarkImage"
+            case waterMarkText = "WaterMarkText"
+        }
+    }
+
+    /// 文字水印参数。
+    public struct McuWaterMarkText: TCInputModel {
+        /// 文字水印内容。
+        public let text: String
+
+        /// 水印在输出时的宽。单位为像素值。
+        public let waterMarkWidth: UInt64
+
+        /// 水印在输出时的高。单位为像素值。
+        public let waterMarkHeight: UInt64
+
+        /// 水印在输出时的X偏移。单位为像素值。
+        public let locationX: UInt64
+
+        /// 水印在输出时的Y偏移。单位为像素值。
+        public let locationY: UInt64
+
+        /// 字体大小
+        public let fontSize: UInt64?
+
+        /// 字体颜色，默认为白色。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
+        public let fontColor: String?
+
+        /// 字体背景色，不配置默认为透明。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
+        public let backGroundColor: String?
+
+        public init(text: String, waterMarkWidth: UInt64, waterMarkHeight: UInt64, locationX: UInt64, locationY: UInt64, fontSize: UInt64, fontColor: String? = nil, backGroundColor: String? = nil) {
+            self.text = text
+            self.waterMarkWidth = waterMarkWidth
+            self.waterMarkHeight = waterMarkHeight
+            self.locationX = locationX
+            self.locationY = locationY
+            self.fontSize = fontSize
+            self.fontColor = fontColor
+            self.backGroundColor = backGroundColor
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case waterMarkWidth = "WaterMarkWidth"
+            case waterMarkHeight = "WaterMarkHeight"
+            case locationX = "LocationX"
+            case locationY = "LocationY"
+            case fontSize = "FontSize"
+            case fontColor = "FontColor"
+            case backGroundColor = "BackGroundColor"
         }
     }
 
@@ -801,7 +880,7 @@ extension Trtc {
         /// 该画布的图层顺序, 这个值越小表示图层越靠后。默认值为0。
         public let imageLayer: UInt64?
 
-        /// 下载的url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
+        /// 图片的url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
         public let subBackgroundImage: String?
 
         public init(top: UInt64, left: UInt64, width: UInt64, height: UInt64, userId: String? = nil, alpha: UInt64? = nil, renderMode: UInt64? = nil, mediaId: UInt64? = nil, imageLayer: UInt64? = nil, subBackgroundImage: String? = nil) {
@@ -863,7 +942,7 @@ extension Trtc {
         /// 这个位置的MediaId代表的是对应MaxResolutionUserId的主辅路，MixLayoutList内代表的是自定义用户的主辅路。
         public let mediaId: UInt64?
 
-        /// 下载的url地址， 只支持jpg， png，大小限制不超过5M。
+        /// 图片的url地址， 只支持jpg， png，大小限制不超过5M，url不可包含中文。
         public let backgroundImageUrl: String?
 
         /// 设置为1时代表启用占位图功能，0时代表不启用占位图功能，默认为0。启用占位图功能时，在预设位置的用户没有上行视频时可显示对应的占位图。
@@ -1166,7 +1245,10 @@ extension Trtc {
         /// Hls 格式录制此参数不生效。
         public let maxMediaFileDuration: UInt64?
 
-        public init(recordMode: UInt64, maxIdleTime: UInt64? = nil, streamType: UInt64? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil, outputFormat: UInt64? = nil, avMerge: UInt64? = nil, maxMediaFileDuration: UInt64? = nil) {
+        /// 指定录制主辅流，0：主流+辅流（默认）；1:主流；2:辅流。
+        public let mediaId: UInt64?
+
+        public init(recordMode: UInt64, maxIdleTime: UInt64? = nil, streamType: UInt64? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil, outputFormat: UInt64? = nil, avMerge: UInt64? = nil, maxMediaFileDuration: UInt64? = nil, mediaId: UInt64? = nil) {
             self.recordMode = recordMode
             self.maxIdleTime = maxIdleTime
             self.streamType = streamType
@@ -1174,6 +1256,7 @@ extension Trtc {
             self.outputFormat = outputFormat
             self.avMerge = avMerge
             self.maxMediaFileDuration = maxMediaFileDuration
+            self.mediaId = mediaId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1184,6 +1267,7 @@ extension Trtc {
             case outputFormat = "OutputFormat"
             case avMerge = "AvMerge"
             case maxMediaFileDuration = "MaxMediaFileDuration"
+            case mediaId = "MediaId"
         }
     }
 
@@ -1752,20 +1836,79 @@ extension Trtc {
 
     /// 水印布局参数
     public struct WaterMark: TCInputModel {
-        /// 水印类型，0为图片（默认），1为文字（暂不支持）。
+        /// 水印类型，0为图片（默认），1为文字，2为时间戳。
         public let waterMarkType: UInt64?
 
         /// 水印为图片时的参数列表，水印为图片时校验必填。
         public let waterMarkImage: WaterMarkImage?
 
-        public init(waterMarkType: UInt64? = nil, waterMarkImage: WaterMarkImage? = nil) {
+        /// 水印为文字时的参数列表，水印为文字时校验必填。
+        public let waterMarkChar: WaterMarkChar?
+
+        /// 水印为时间戳时的参数列表，水印为时间戳时校验必填。
+        public let waterMarkTimestamp: WaterMarkTimestamp?
+
+        public init(waterMarkType: UInt64? = nil, waterMarkImage: WaterMarkImage? = nil, waterMarkChar: WaterMarkChar? = nil, waterMarkTimestamp: WaterMarkTimestamp? = nil) {
             self.waterMarkType = waterMarkType
             self.waterMarkImage = waterMarkImage
+            self.waterMarkChar = waterMarkChar
+            self.waterMarkTimestamp = waterMarkTimestamp
         }
 
         enum CodingKeys: String, CodingKey {
             case waterMarkType = "WaterMarkType"
             case waterMarkImage = "WaterMarkImage"
+            case waterMarkChar = "WaterMarkChar"
+            case waterMarkTimestamp = "WaterMarkTimestamp"
+        }
+    }
+
+    /// 自定义文字水印数据结构
+    public struct WaterMarkChar: TCInputModel {
+        /// 文字水印的起始坐标Y值，从左上角开始
+        public let top: UInt64?
+
+        /// 文字水印的起始坐标X值，从左上角开始
+        public let left: UInt64?
+
+        /// 文字水印的宽度，单位像素值
+        public let width: UInt64?
+
+        /// 文字水印的高度，单位像素值
+        public let height: UInt64?
+
+        /// 水印文字的内容
+        public let chars: String?
+
+        /// 水印文字的大小，单位像素，默认14
+        public let fontSize: UInt64?
+
+        /// 水印文字的颜色，默认白色
+        public let fontColor: String?
+
+        /// 水印文字的背景色，为空代表背景透明，默认为空
+        public let backGroundColor: String?
+
+        public init(top: UInt64, left: UInt64, width: UInt64, height: UInt64, chars: String, fontSize: UInt64? = nil, fontColor: String? = nil, backGroundColor: String? = nil) {
+            self.top = top
+            self.left = left
+            self.width = width
+            self.height = height
+            self.chars = chars
+            self.fontSize = fontSize
+            self.fontColor = fontColor
+            self.backGroundColor = backGroundColor
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case top = "Top"
+            case left = "Left"
+            case width = "Width"
+            case height = "Height"
+            case chars = "Chars"
+            case fontSize = "FontSize"
+            case fontColor = "FontColor"
+            case backGroundColor = "BackGroundColor"
         }
     }
 
@@ -1839,6 +1982,25 @@ extension Trtc {
             case locationX = "LocationX"
             case locationY = "LocationY"
             case waterMarkUrl = "WaterMarkUrl"
+        }
+    }
+
+    /// 时间戳水印数据结构
+    public struct WaterMarkTimestamp: TCInputModel {
+        /// 时间戳的位置，取值范围0-6，分别代表上左，上右，下左，下右，上居中，下居中，居中
+        public let pos: UInt64?
+
+        /// 显示时间戳的时区，默认东八区
+        public let timeZone: UInt64?
+
+        public init(pos: UInt64, timeZone: UInt64? = nil) {
+            self.pos = pos
+            self.timeZone = timeZone
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case pos = "Pos"
+            case timeZone = "TimeZone"
         }
     }
 }

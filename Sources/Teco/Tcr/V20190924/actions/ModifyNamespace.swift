@@ -24,18 +24,38 @@ extension Tcr {
         public let namespaceName: String
 
         /// 访问级别，True为公开，False为私有
-        public let isPublic: Bool
+        public let isPublic: Bool?
 
-        public init(registryId: String, namespaceName: String, isPublic: Bool) {
+        /// 扫描级别，True为自动，False为手动
+        public let isAutoScan: Bool?
+
+        /// 阻断开关，True为开放，False为关闭
+        public let isPreventVUL: Bool?
+
+        /// 阻断漏洞等级，目前仅支持 low、medium、high
+        public let severity: String?
+
+        /// 漏洞白名单列表
+        public let cveWhitelistItems: [CVEWhitelistItem]?
+
+        public init(registryId: String, namespaceName: String, isPublic: Bool? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.isPublic = isPublic
+            self.isAutoScan = isAutoScan
+            self.isPreventVUL = isPreventVUL
+            self.severity = severity
+            self.cveWhitelistItems = cveWhitelistItems
         }
 
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
             case isPublic = "IsPublic"
+            case isAutoScan = "IsAutoScan"
+            case isPreventVUL = "IsPreventVUL"
+            case severity = "Severity"
+            case cveWhitelistItems = "CVEWhitelistItems"
         }
     }
 
@@ -50,34 +70,26 @@ extension Tcr {
     }
 
     /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable @discardableResult
     public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
         self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable @discardableResult
     public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
         try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable @discardableResult
-    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.modifyNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), region: region, logger: logger, on: eventLoop)
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
+        self.modifyNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, isAutoScan: isAutoScan, isPreventVUL: isPreventVUL, severity: severity, cveWhitelistItems: cveWhitelistItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable @discardableResult
-    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.modifyNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), region: region, logger: logger, on: eventLoop)
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.modifyNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, isAutoScan: isAutoScan, isPreventVUL: isPreventVUL, severity: severity, cveWhitelistItems: cveWhitelistItems), region: region, logger: logger, on: eventLoop)
     }
 }

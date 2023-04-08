@@ -24,16 +24,21 @@ extension TCEssbasicError {
             case errNoResourceAccess = "OperationDenied.ErrNoResourceAccess"
             case fileDeleted = "OperationDenied.FileDeleted"
             case flowHasTerminated = "OperationDenied.FlowHasTerminated"
+            case flowStatusForbid = "OperationDenied.FlowStatusForbid"
             case forbid = "OperationDenied.Forbid"
             case invalidApproverAge = "OperationDenied.InvalidApproverAge"
             case noApiAuth = "OperationDenied.NoApiAuth"
             case noFlowPermission = "OperationDenied.NoFlowPermission"
             case noIdentityVerify = "OperationDenied.NoIdentityVerify"
             case noQuota = "OperationDenied.NoQuota"
+            case notBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
             case operateType = "OperationDenied.OperateType"
             case operatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
             case outQueryLimit = "OperationDenied.OutQueryLimit"
+            case overseaAbilityNotOpen = "OperationDenied.OverseaAbilityNotOpen"
+            case proveNoQuota = "OperationDenied.ProveNoQuota"
             case userNotInOrganization = "OperationDenied.UserNotInOrganization"
+            case whiteListForbid = "OperationDenied.WhiteListForbid"
             case other = "OperationDenied"
         }
 
@@ -59,6 +64,7 @@ extension TCEssbasicError {
             self.context = context
         }
 
+        /// 不支持的可见性标识。
         public static var authTag: OperationDenied {
             OperationDenied(.authTag)
         }
@@ -70,24 +76,34 @@ extension TCEssbasicError {
             OperationDenied(.bannedApplication)
         }
 
+        /// 文件发起静默签未开通白名单。
         public static var byFilesServerSignForbid: OperationDenied {
             OperationDenied(.byFilesServerSignForbid)
         }
 
+        /// 只支持下载单个。
         public static var downLoadMoreThanOne: OperationDenied {
             OperationDenied(.downLoadMoreThanOne)
         }
 
+        /// 无资源访问权限。
         public static var errNoResourceAccess: OperationDenied {
             OperationDenied(.errNoResourceAccess)
         }
 
+        /// 文件已删除。
         public static var fileDeleted: OperationDenied {
             OperationDenied(.fileDeleted)
         }
 
+        /// 流程已终止。
         public static var flowHasTerminated: OperationDenied {
             OperationDenied(.flowHasTerminated)
+        }
+
+        /// 签署流程状态不正确，请检查后重试。
+        public static var flowStatusForbid: OperationDenied {
+            OperationDenied(.flowStatusForbid)
         }
 
         /// 禁止操作。
@@ -97,6 +113,7 @@ extension TCEssbasicError {
             OperationDenied(.forbid)
         }
 
+        /// 签署人未达到合法年龄。
         public static var invalidApproverAge: OperationDenied {
             OperationDenied(.invalidApproverAge)
         }
@@ -108,6 +125,7 @@ extension TCEssbasicError {
             OperationDenied(.noApiAuth)
         }
 
+        /// 无权操作合同。
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
         }
@@ -126,24 +144,50 @@ extension TCEssbasicError {
             OperationDenied(.noQuota)
         }
 
+        /// 不属于企业超管或者法人。
+        ///
+        /// 不属于企业超管或者法人，请超管/法人权限用户操作
+        public static var notBelongSuperAdminOrLegalPerson: OperationDenied {
+            OperationDenied(.notBelongSuperAdminOrLegalPerson)
+        }
+
+        /// 操作类型不支持。
         public static var operateType: OperationDenied {
             OperationDenied(.operateType)
         }
 
+        /// 操作者权限不足。
+        ///
         /// 联系管理员获取权限。
         public static var operatorHasNoPermission: OperationDenied {
             OperationDenied(.operatorHasNoPermission)
         }
 
+        /// 超出查询上限。
         public static var outQueryLimit: OperationDenied {
             OperationDenied(.outQueryLimit)
         }
 
-        /// 用户与企业不对应。
+        /// 当前企业员工没有开通境外签署能力。
+        public static var overseaAbilityNotOpen: OperationDenied {
+            OperationDenied(.overseaAbilityNotOpen)
+        }
+
+        /// 出证计费额度不足。
+        public static var proveNoQuota: OperationDenied {
+            OperationDenied(.proveNoQuota)
+        }
+
+        /// 用户不归属于当前企业，无法操作，请检查后重试。
         ///
         /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var userNotInOrganization: OperationDenied {
             OperationDenied(.userNotInOrganization)
+        }
+
+        /// 接口功能暂未开放，请联系客户经理申请白名单使用
+        public static var whiteListForbid: OperationDenied {
+            OperationDenied(.whiteListForbid)
         }
 
         /// 操作被拒绝。
@@ -168,6 +212,8 @@ extension TCEssbasicError {
                 code = .operationDenied_FileDeleted
             case .flowHasTerminated:
                 code = .operationDenied_FlowHasTerminated
+            case .flowStatusForbid:
+                code = .operationDenied_FlowStatusForbid
             case .forbid:
                 code = .operationDenied_Forbid
             case .invalidApproverAge:
@@ -180,14 +226,22 @@ extension TCEssbasicError {
                 code = .operationDenied_NoIdentityVerify
             case .noQuota:
                 code = .operationDenied_NoQuota
+            case .notBelongSuperAdminOrLegalPerson:
+                code = .operationDenied_NotBelongSuperAdminOrLegalPerson
             case .operateType:
                 code = .operationDenied_OperateType
             case .operatorHasNoPermission:
                 code = .operationDenied_OperatorHasNoPermission
             case .outQueryLimit:
                 code = .operationDenied_OutQueryLimit
+            case .overseaAbilityNotOpen:
+                code = .operationDenied_OverseaAbilityNotOpen
+            case .proveNoQuota:
+                code = .operationDenied_ProveNoQuota
             case .userNotInOrganization:
                 code = .operationDenied_UserNotInOrganization
+            case .whiteListForbid:
+                code = .operationDenied_WhiteListForbid
             case .other:
                 code = .operationDenied
             }

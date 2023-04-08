@@ -52,6 +52,7 @@ public struct TCCmeError: TCCmeErrorType {
         case invalidParameterValue_Input = "InvalidParameterValue.Input"
         case invalidParameterValue_Limit = "InvalidParameterValue.Limit"
         case invalidParameterValue_MaterialId = "InvalidParameterValue.MaterialId"
+        case invalidParameterValue_MediaCastSourceInfosInvalid = "InvalidParameterValue.MediaCastSourceInfosInvalid"
         case invalidParameterValue_MediaReplacementInfo = "InvalidParameterValue.MediaReplacementInfo"
         case invalidParameterValue_MemberIds = "InvalidParameterValue.MemberIds"
         case invalidParameterValue_MemberNotExist = "InvalidParameterValue.MemberNotExist"
@@ -59,6 +60,7 @@ public struct TCCmeError: TCCmeErrorType {
         case invalidParameterValue_NameLenLimt = "InvalidParameterValue.NameLenLimt"
         case invalidParameterValue_NotTeamMemberError = "InvalidParameterValue.NotTeamMemberError"
         case invalidParameterValue_Offset = "InvalidParameterValue.Offset"
+        case invalidParameterValue_OperationInvalid = "InvalidParameterValue.OperationInvalid"
         case invalidParameterValue_Operator = "InvalidParameterValue.Operator"
         case invalidParameterValue_OwnerId = "InvalidParameterValue.OwnerId"
         case invalidParameterValue_OwnerRemark = "InvalidParameterValue.OwnerRemark"
@@ -247,6 +249,7 @@ public struct TCCmeError: TCCmeErrorType {
         TCCmeError(.invalidParameterValue_ExportDestination)
     }
 
+    /// 拓展信息不合法。
     public static var invalidParameterValue_ExtInfoInvalid: TCCmeError {
         TCCmeError(.invalidParameterValue_ExtInfoInvalid)
     }
@@ -271,6 +274,11 @@ public struct TCCmeError: TCCmeErrorType {
     /// 媒体 ID 无效。
     public static var invalidParameterValue_MaterialId: TCCmeError {
         TCCmeError(.invalidParameterValue_MaterialId)
+    }
+
+    /// 输入源信息非法。
+    public static var invalidParameterValue_MediaCastSourceInfosInvalid: TCCmeError {
+        TCCmeError(.invalidParameterValue_MediaCastSourceInfosInvalid)
     }
 
     /// 媒体替换信息无效。
@@ -308,6 +316,11 @@ public struct TCCmeError: TCCmeErrorType {
     /// 分页偏移不合法。
     public static var invalidParameterValue_Offset: TCCmeError {
         TCCmeError(.invalidParameterValue_Offset)
+    }
+
+    /// 转推操作非法。
+    public static var invalidParameterValue_OperationInvalid: TCCmeError {
+        TCCmeError(.invalidParameterValue_OperationInvalid)
     }
 
     /// 无效的操作者。

@@ -45,7 +45,16 @@ extension Domain {
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
 
-        public init(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
+        /// 渠道来源，pc/miniprogram/h5等
+        public let channelFrom: String?
+
+        /// 订单来源，common正常/dianshi_active点石活动等
+        public let orderFrom: String?
+
+        /// 活动id
+        public let activityId: String?
+
+        public init(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil) {
             self.domains = domains
             self.passWords = passWords
             self.templateId = templateId
@@ -54,6 +63,9 @@ extension Domain {
             self.lockTransfer = lockTransfer
             self.updateProhibition = updateProhibition
             self.transferProhibition = transferProhibition
+            self.channelFrom = channelFrom
+            self.orderFrom = orderFrom
+            self.activityId = activityId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +77,9 @@ extension Domain {
             case lockTransfer = "LockTransfer"
             case updateProhibition = "UpdateProhibition"
             case transferProhibition = "TransferProhibition"
+            case channelFrom = "ChannelFrom"
+            case orderFrom = "OrderFrom"
+            case activityId = "ActivityId"
         }
     }
 
@@ -102,15 +117,15 @@ extension Domain {
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
-    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferInDomainBatchResponse> {
-        self.transferInDomainBatch(.init(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferInDomainBatchResponse> {
+        self.transferInDomainBatch(.init(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量域名转入
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
-    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
-        try await self.transferInDomainBatch(.init(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
+        try await self.transferInDomainBatch(.init(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 }

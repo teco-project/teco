@@ -454,7 +454,7 @@ extension Tcb {
     }
 
     /// 独立网关云托管服务配置信息
-    public struct CloudBaseRunForGatewayConf: TCInputModel {
+    public struct CloudBaseRunForGatewayConf: TCInputModel, TCOutputModel {
         /// 是否缩容到0
         public let isZero: Bool
 

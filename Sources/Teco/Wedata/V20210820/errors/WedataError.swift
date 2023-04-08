@@ -34,9 +34,11 @@ public struct TCWedataError: TCWedataErrorType {
         case internalError_InternalCallCloudApiError = "InternalError.InternalCallCloudApiError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameter_ClientIpNotAuthorized = "InvalidParameter.ClientIpNotAuthorized"
         case invalidParameter_DuplicateName = "InvalidParameter.DuplicateName"
         case invalidParameter_InvalidFilterParameter = "InvalidParameter.InvalidFilterParameter"
         case invalidParameter_RuleNotExist = "InvalidParameter.RuleNotExist"
+        case invalidParameter_RuleTemplateNotExist = "InvalidParameter.RuleTemplateNotExist"
         case invalidParameter_ServiceIsBusy = "InvalidParameter.ServiceIsBusy"
         case invalidParameter_WorkspaceNotExist = "InvalidParameter.WorkspaceNotExist"
         case limitExceeded = "LimitExceeded"
@@ -52,11 +54,12 @@ public struct TCWedataError: TCWedataErrorType {
         case unauthorizedOperation_UserNotInProject = "UnauthorizedOperation.UserNotInProject"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_NoRuleInRuleGroup = "UnsupportedOperation.NoRuleInRuleGroup"
     }
 
     /// Error domains affliated to ``TCWedataError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, InternalError.self, InvalidParameter.self, OperationDenied.self, UnauthorizedOperation.self]
+        [AuthFailure.self, InternalError.self, InvalidParameter.self, OperationDenied.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -135,6 +138,13 @@ public struct TCWedataError: TCWedataErrorType {
         TCWedataError(.invalidParameterValue)
     }
 
+    /// ClientIp未被授权。
+    ///
+    /// 需要开白名单ip
+    public static var invalidParameter_ClientIpNotAuthorized: TCWedataError {
+        TCWedataError(.invalidParameter_ClientIpNotAuthorized)
+    }
+
     /// 名称重复。
     public static var invalidParameter_DuplicateName: TCWedataError {
         TCWedataError(.invalidParameter_DuplicateName)
@@ -150,6 +160,11 @@ public struct TCWedataError: TCWedataErrorType {
     /// 规则不存在。
     public static var invalidParameter_RuleNotExist: TCWedataError {
         TCWedataError(.invalidParameter_RuleNotExist)
+    }
+
+    /// 规则模版不存在。
+    public static var invalidParameter_RuleTemplateNotExist: TCWedataError {
+        TCWedataError(.invalidParameter_RuleTemplateNotExist)
     }
 
     /// 服务繁忙，请稍后重试。
@@ -227,6 +242,11 @@ public struct TCWedataError: TCWedataErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCWedataError {
         TCWedataError(.unsupportedOperation)
+    }
+
+    /// 请先配置不少于一个规则。
+    public static var unsupportedOperation_NoRuleInRuleGroup: TCWedataError {
+        TCWedataError(.unsupportedOperation_NoRuleInRuleGroup)
     }
 
     public func asWedataError() -> TCWedataError {

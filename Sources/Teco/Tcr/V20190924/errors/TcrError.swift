@@ -27,6 +27,7 @@ public struct TCTcrError: TCTcrErrorType {
         case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
         case failedOperation_DependenceError = "FailedOperation.DependenceError"
+        case failedOperation_EmptyCoreBody = "FailedOperation.EmptyCoreBody"
         case failedOperation_ErrorGetDBDataError = "FailedOperation.ErrorGetDBDataError"
         case failedOperation_ErrorTcrInvalidMediaType = "FailedOperation.ErrorTcrInvalidMediaType"
         case failedOperation_ErrorTcrResourceConflict = "FailedOperation.ErrorTcrResourceConflict"
@@ -147,18 +148,30 @@ public struct TCTcrError: TCTcrErrorType {
         TCTcrError(.failedOperation_DependenceError)
     }
 
+    /// Core 返回内容为空
+    ///
+    /// 1. 检查 Global 日志
+    /// 2. 检查 Core 是否 panic 了
+    public static var failedOperation_EmptyCoreBody: TCTcrError {
+        TCTcrError(.failedOperation_EmptyCoreBody)
+    }
+
+    /// 获取数据库数据错误。
     public static var failedOperation_ErrorGetDBDataError: TCTcrError {
         TCTcrError(.failedOperation_ErrorGetDBDataError)
     }
 
+    /// Tcr实例请求无效的Hearder类型。
     public static var failedOperation_ErrorTcrInvalidMediaType: TCTcrError {
         TCTcrError(.failedOperation_ErrorTcrInvalidMediaType)
     }
 
+    /// Tcr实例资源冲突。
     public static var failedOperation_ErrorTcrResourceConflict: TCTcrError {
         TCTcrError(.failedOperation_ErrorTcrResourceConflict)
     }
 
+    /// 没有Tcr操作权限。
     public static var failedOperation_ErrorTcrUnauthorized: TCTcrError {
         TCTcrError(.failedOperation_ErrorTcrUnauthorized)
     }
@@ -372,6 +385,7 @@ public struct TCTcrError: TCTcrErrorType {
         TCTcrError(.invalidParameter_ErrorTcrInvalidParameter)
     }
 
+    /// 复制实例已存在。
     public static var invalidParameter_ReplicationExists: TCTcrError {
         TCTcrError(.invalidParameter_ReplicationExists)
     }
@@ -478,34 +492,42 @@ public struct TCTcrError: TCTcrErrorType {
         TCTcrError(.unsupportedOperation)
     }
 
+    /// 创建私有域失败。
     public static var unsupportedOperation_CreatePrivateZone: TCTcrError {
         TCTcrError(.unsupportedOperation_CreatePrivateZone)
     }
 
+    /// 创建私有域记录失败。
     public static var unsupportedOperation_CreatePrivateZoneRecord: TCTcrError {
         TCTcrError(.unsupportedOperation_CreatePrivateZoneRecord)
     }
 
+    /// 删除私有域记录失败。
     public static var unsupportedOperation_DeletePrivateZoneRecord: TCTcrError {
         TCTcrError(.unsupportedOperation_DeletePrivateZoneRecord)
     }
 
+    /// 查询私有域列表失败。
     public static var unsupportedOperation_DescribePrivateZoneList: TCTcrError {
         TCTcrError(.unsupportedOperation_DescribePrivateZoneList)
     }
 
+    /// 查询私有域记录列表失败。
     public static var unsupportedOperation_DescribePrivateZoneRecordList: TCTcrError {
         TCTcrError(.unsupportedOperation_DescribePrivateZoneRecordList)
     }
 
+    /// 个人版实例用户未初始化。
     public static var unsupportedOperation_ErrNoUserInitialized: TCTcrError {
         TCTcrError(.unsupportedOperation_ErrNoUserInitialized)
     }
 
+    /// 修改私有域记录失败。
     public static var unsupportedOperation_ModifyPrivateZoneRecord: TCTcrError {
         TCTcrError(.unsupportedOperation_ModifyPrivateZoneRecord)
     }
 
+    /// 修改vpc与私有域关联关系失败。
     public static var unsupportedOperation_ModifyPrivateZoneVpc: TCTcrError {
         TCTcrError(.unsupportedOperation_ModifyPrivateZoneVpc)
     }

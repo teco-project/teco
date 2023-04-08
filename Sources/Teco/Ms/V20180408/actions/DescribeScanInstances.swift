@@ -96,54 +96,60 @@ extension Ms {
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstances(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanInstancesResponse> {
-        self.client.execute(action: "DescribeScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstances(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanInstancesResponse {
-        try await self.client.execute(action: "DescribeScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanInstancesResponse> {
-        self.describeScanInstances(.init(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanInstancesResponse {
-        try await self.describeScanInstances(.init(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstancesPaginated(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AppScanSet])> {
-        self.client.paginate(input: input, region: region, command: self.describeScanInstances, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
     ///
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable @discardableResult
     public func describeScanInstancesPaginated(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeScanInstances, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 
     /// 查询扫描列表
@@ -152,8 +158,9 @@ extension Ms {
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
     ///
     /// - Returns: `AsyncSequence`s of `AppScanSet` and `DescribeScanInstancesResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanInstancesPaginator(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanInstancesRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanInstances, logger: logger, on: eventLoop)
+        fatalError("DescribeScanInstances is no longer available.")
     }
 }

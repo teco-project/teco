@@ -77,7 +77,7 @@ extension Partners {
         }
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
@@ -85,7 +85,7 @@ extension Partners {
         self.client.execute(action: "DescribeRebateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
@@ -93,7 +93,7 @@ extension Partners {
         try await self.client.execute(action: "DescribeRebateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
@@ -101,7 +101,7 @@ extension Partners {
         self.describeRebateInfos(.init(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
@@ -109,7 +109,7 @@ extension Partners {
         try await self.describeRebateInfos(.init(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
@@ -117,7 +117,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable @discardableResult
@@ -125,7 +125,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeRebateInfos, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询代理商返佣信息（禁止接入）
+    /// 【已切换至DescribeRebateInfosNew】查询代理商返佣信息
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     ///

@@ -27,6 +27,7 @@ public struct TCIrpError: TCIrpErrorType {
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case limitExceeded = "LimitExceeded"
         case operationDenied = "OperationDenied"
         case unauthorizedOperation = "UnauthorizedOperation"
     }
@@ -66,6 +67,11 @@ public struct TCIrpError: TCIrpErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCIrpError {
         TCIrpError(.invalidParameterValue)
+    }
+
+    /// 超过配额限制。
+    public static var limitExceeded: TCIrpError {
+        TCIrpError(.limitExceeded)
     }
 
     /// 操作被拒绝。

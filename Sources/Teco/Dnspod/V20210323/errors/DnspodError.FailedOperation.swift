@@ -130,6 +130,7 @@ extension TCDnspodError {
             FailedOperation(.domainIsVip)
         }
 
+        /// 当前域名还未使用 DNSPod 的解析服务，我们无法获取解析量数据。
         public static var domainNotInService: FailedOperation {
             FailedOperation(.domainNotInService)
         }
@@ -214,6 +215,7 @@ extension TCDnspodError {
             FailedOperation(.resourceNotBind)
         }
 
+        /// 请求量统计数据暂时不可用，请稍后再试。
         public static var temporaryError: FailedOperation {
             FailedOperation(.temporaryError)
         }

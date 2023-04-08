@@ -20,7 +20,7 @@ extension Rum {
         /// 排序方式  desc  asc（必填）
         public let orderBy: String
 
-        /// 开始时间（必填）
+        /// 开始时间（必填）格式为时间戳 毫秒
         public let startTime: String
 
         /// 单次查询返回的原始日志条数，最大值为100（必填）
@@ -32,7 +32,7 @@ extension Rum {
         /// 查询语句，参考控制台请求参数，语句长度最大为4096（必填）
         public let query: String
 
-        /// 结束时间（必填）
+        /// 结束时间（必填）格式为时间戳 毫秒
         public let endTime: String
 
         /// 项目ID（必填）

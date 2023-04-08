@@ -37,6 +37,7 @@ public struct TCBiError: TCBiErrorType {
         case requestLimitExceeded = "RequestLimitExceeded"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_Authorize = "UnauthorizedOperation.Authorize"
+        case unauthorizedOperation_UserNotExist = "UnauthorizedOperation.UserNotExist"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_BIError = "UnsupportedOperation.BIError"
@@ -132,6 +133,11 @@ public struct TCBiError: TCBiErrorType {
     /// 权限错误。
     public static var unauthorizedOperation_Authorize: TCBiError {
         TCBiError(.unauthorizedOperation_Authorize)
+    }
+
+    /// 用户不存在。
+    public static var unauthorizedOperation_UserNotExist: TCBiError {
+        TCBiError(.unauthorizedOperation_UserNotExist)
     }
 
     /// 未知参数错误。

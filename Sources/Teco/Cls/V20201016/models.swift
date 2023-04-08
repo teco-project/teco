@@ -222,17 +222,21 @@ extension Cls {
     }
 
     /// 多维分析的分析维度
-    public struct AnalysisDimensional: TCInputModel {
+    public struct AnalysisDimensional: TCInputModel, TCOutputModel {
         /// 分析名称
-        public let name: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
 
         /// 分析类型：query，field ，original
-        public let type: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
 
         /// 分析内容
-        public let content: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
 
         /// 配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configInfo: [AlarmAnalysisConfig]?
 
         public init(name: String, type: String, content: String, configInfo: [AlarmAnalysisConfig]? = nil) {
@@ -694,6 +698,88 @@ extension Cls {
         }
     }
 
+    /// cos导入配置信息
+    public struct CosRechargeInfo: TCOutputModel {
+        /// COS导入配置ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 日志主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// 日志集ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logsetId: String?
+
+        /// COS导入任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// COS存储桶
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        /// COS存储桶所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketRegion: String?
+
+        /// COS文件所在文件夹的前缀
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prefix: String?
+
+        /// 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
+        /// 默认为minimalist_log
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logType: String?
+
+        /// 状态   status 0: 已创建, 1: 运行中, 2: 已停止, 3: 已完成, 4: 运行失败。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 是否启用:   0： 未启用  ， 1：启用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: UInt64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 进度条百分值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let progress: UInt64?
+
+        /// supported: "", "gzip", "lzop", "snappy”; 默认空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let compress: String?
+
+        /// 见： ExtractRuleInfo 结构描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extractRuleInfo: ExtractRuleInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case topicId = "TopicId"
+            case logsetId = "LogsetId"
+            case name = "Name"
+            case bucket = "Bucket"
+            case bucketRegion = "BucketRegion"
+            case prefix = "Prefix"
+            case logType = "LogType"
+            case status = "Status"
+            case enable = "Enable"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case progress = "Progress"
+            case compress = "Compress"
+            case extractRuleInfo = "ExtractRuleInfo"
+        }
+    }
+
     /// csv内容描述
     public struct CsvInfo: TCInputModel, TCOutputModel {
         /// csv首行是否打印key
@@ -960,7 +1046,7 @@ extension Cls {
 
         /// 全文索引的分词符，其中的每个字符代表一个分词符；
         /// 仅支持英文符号、\n\t\r及转义符\；
-        /// 注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义
+        /// 注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义。使用API Explorer进行调试时请使用JSON参数输入方式，以避免\n\t\r被重复转义
         public let tokenizer: String
 
         /// 是否包含中文
@@ -1107,6 +1193,14 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
 
+        /// 原始日志(仅在日志创建索引异常时有值)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rawLog: String?
+
+        /// 日志创建索引异常原因(仅在日志创建索引异常时有值)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indexStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case filename = "Filename"
@@ -1115,6 +1209,8 @@ extension Cls {
             case pkgLogId = "PkgLogId"
             case bTime = "BTime"
             case hostName = "HostName"
+            case rawLog = "RawLog"
+            case indexStatus = "IndexStatus"
         }
     }
 
@@ -1149,6 +1245,14 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
 
+        /// 原始日志(仅在日志创建索引异常时有值)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rawLog: String?
+
+        /// 日志创建索引异常原因(仅在日志创建索引异常时有值)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indexStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case topicId = "TopicId"
@@ -1159,6 +1263,8 @@ extension Cls {
             case pkgLogId = "PkgLogId"
             case logJson = "LogJson"
             case hostName = "HostName"
+            case rawLog = "RawLog"
+            case indexStatus = "IndexStatus"
         }
     }
 
@@ -1637,12 +1743,14 @@ extension Cls {
     }
 
     /// 创建资源实例时同时绑定的标签对说明
-    public struct Tag: TCInputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
-        public let key: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
 
         /// 标签值
-        public let value: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
 
         public init(key: String, value: String) {
             self.key = key
@@ -1710,6 +1818,11 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describes: String?
 
+        /// 开启日志沉降，热存储的生命周期， hotPeriod < Period。
+        /// 热存储为 hotPeriod, 冷存储则为 Period-hotPeriod。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hotPeriod: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case logsetId = "LogsetId"
             case topicId = "TopicId"
@@ -1726,6 +1839,7 @@ extension Cls {
             case period = "Period"
             case subAssumerName = "SubAssumerName"
             case describes = "Describes"
+            case hotPeriod = "HotPeriod"
         }
     }
 
@@ -1737,7 +1851,7 @@ extension Cls {
         /// 字段的分词符，其中的每个字符代表一个分词符；
         /// 仅支持英文符号、\n\t\r及转义符\；
         /// long及double类型字段需为空；
-        /// 注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义
+        /// 注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义。使用API Explorer进行调试时请使用JSON参数输入方式，以避免\n\t\r被重复转义
         public let tokenizer: String?
 
         /// 字段是否开启分析功能

@@ -51,11 +51,7 @@ extension Dcdb {
         /// 虚拟私有网络子网 ID，VpcId不为空时必填
         public let subnetId: String?
 
-        /// 数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。
-        /// 8.0.18 - MySQL 8.0.18；
-        /// 10.1.9 - Mariadb 10.1.9；
-        /// 5.7.17 - Percona 5.7.17。
-        /// 如果不填的话，默认为5.7.17，表示Percona 5.7.17。
+        /// 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
         public let dbVersionId: String?
 
         /// 是否自动使用代金券进行支付，默认不使用。

@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 查询IP地址模板
     ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板。
     @inlinable
     public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressTemplatesResponse> {
         self.client.execute(action: "DescribeAddressTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 查询IP地址模板
     ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板。
     @inlinable
     public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
         try await self.client.execute(action: "DescribeAddressTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,7 +78,7 @@ extension Vpc {
 
     /// 查询IP地址模板
     ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板。
     @inlinable
     public func describeAddressTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressTemplatesResponse> {
         self.describeAddressTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -86,7 +86,7 @@ extension Vpc {
 
     /// 查询IP地址模板
     ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板。
     @inlinable
     public func describeAddressTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
         try await self.describeAddressTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

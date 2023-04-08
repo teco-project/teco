@@ -45,7 +45,7 @@ extension Mongodb {
         /// 分页大小，最小值为1，最大值为100，默认值为20。
         public let limit: UInt64?
 
-        /// 慢日志返回格式，可设置为json，不传默认返回原生慢日志格式。
+        /// 慢日志返回格式。默认返回原生慢日志格式，4.4及以上版本可设置为json。
         public let format: String?
 
         public init(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil) {

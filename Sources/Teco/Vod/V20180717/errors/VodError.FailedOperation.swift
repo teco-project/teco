@@ -27,6 +27,7 @@ extension TCVodError {
             case mediaForbidedBySystem = "FailedOperation.MediaForbidedBySystem"
             case mediaType = "FailedOperation.MediaType"
             case netWorkError = "FailedOperation.NetWorkError"
+            case noNeedToReduceMediaBitrate = "FailedOperation.NoNeedToReduceMediaBitrate"
             case noPrivileges = "FailedOperation.NoPrivileges"
             case parentIdNoFound = "FailedOperation.ParentIdNoFound"
             case subclassLimitExceeded = "FailedOperation.SubclassLimitExceeded"
@@ -108,6 +109,11 @@ extension TCVodError {
             FailedOperation(.netWorkError)
         }
 
+        /// 无需做降码率处理。
+        public static var noNeedToReduceMediaBitrate: FailedOperation {
+            FailedOperation(.noNeedToReduceMediaBitrate)
+        }
+
         /// 没有开通该接口使用权限。
         public static var noPrivileges: FailedOperation {
             FailedOperation(.noPrivileges)
@@ -166,6 +172,8 @@ extension TCVodError {
                 code = .failedOperation_MediaType
             case .netWorkError:
                 code = .failedOperation_NetWorkError
+            case .noNeedToReduceMediaBitrate:
+                code = .failedOperation_NoNeedToReduceMediaBitrate
             case .noPrivileges:
                 code = .failedOperation_NoPrivileges
             case .parentIdNoFound:

@@ -138,7 +138,7 @@ extension TCTiiaError {
             InvalidParameterValue(.limitExceed)
         }
 
-        /// 图片已经存在。
+        /// 图片名称重复。
         public static var picNameAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.picNameAlreadyExist)
         }

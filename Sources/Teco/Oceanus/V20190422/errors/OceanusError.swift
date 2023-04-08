@@ -377,6 +377,8 @@ public struct TCOceanusError: TCOceanusErrorType {
         TCOceanusError(.invalidParameter_InvalidResourceIds)
     }
 
+    /// 创建作业配置错误。
+    ///
     /// 请输入有效的日志采集方式或者存储桶名称。
     public static var invalidParameter_JobConfigLogCollectParamError: TCOceanusError {
         TCOceanusError(.invalidParameter_JobConfigLogCollectParamError)

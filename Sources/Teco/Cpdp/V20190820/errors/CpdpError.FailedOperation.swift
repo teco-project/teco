@@ -445,6 +445,7 @@ extension TCCpdpError {
             FailedOperation(.midasInternalError)
         }
 
+        /// 聚鑫请求无效。
         public static var midasInvalidRequest: FailedOperation {
             FailedOperation(.midasInvalidRequest)
         }
@@ -477,6 +478,7 @@ extension TCCpdpError {
             FailedOperation(.midasRisk)
         }
 
+        /// 聚鑫支付状态不匹配。
         public static var midasStatusNotMatch: FailedOperation {
             FailedOperation(.midasStatusNotMatch)
         }
@@ -498,6 +500,8 @@ extension TCCpdpError {
             FailedOperation(.modifyMerchantFailed)
         }
 
+        /// 记录不存在。
+        ///
         /// 未查询到相关记录
         public static var mountNotFound: FailedOperation {
             FailedOperation(.mountNotFound)

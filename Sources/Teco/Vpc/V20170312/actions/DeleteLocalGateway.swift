@@ -17,13 +17,13 @@
 extension Vpc {
     /// DeleteLocalGateway请求参数结构体
     public struct DeleteLocalGatewayRequest: TCRequestModel {
-        /// 本地网关实例ID
+        /// 本地网关实例ID。
         public let localGatewayId: String
 
-        /// CDC实例ID
+        /// CDC实例ID。
         public let cdcId: String
 
-        /// VPC实例ID
+        /// VPC实例ID。
         public let vpcId: String?
 
         public init(localGatewayId: String, cdcId: String, vpcId: String? = nil) {
@@ -51,7 +51,7 @@ extension Vpc {
 
     /// 删除本地网关
     ///
-    /// 该接口用于删除CDC的本地网关。
+    /// 本接口（DeleteLocalGateway）用于删除CDC的本地网关。
     @inlinable @discardableResult
     public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLocalGatewayResponse> {
         self.client.execute(action: "DeleteLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// 删除本地网关
     ///
-    /// 该接口用于删除CDC的本地网关。
+    /// 本接口（DeleteLocalGateway）用于删除CDC的本地网关。
     @inlinable @discardableResult
     public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
         try await self.client.execute(action: "DeleteLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 删除本地网关
     ///
-    /// 该接口用于删除CDC的本地网关。
+    /// 本接口（DeleteLocalGateway）用于删除CDC的本地网关。
     @inlinable @discardableResult
     public func deleteLocalGateway(localGatewayId: String, cdcId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLocalGatewayResponse> {
         self.deleteLocalGateway(.init(localGatewayId: localGatewayId, cdcId: cdcId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Vpc {
 
     /// 删除本地网关
     ///
-    /// 该接口用于删除CDC的本地网关。
+    /// 本接口（DeleteLocalGateway）用于删除CDC的本地网关。
     @inlinable @discardableResult
     public func deleteLocalGateway(localGatewayId: String, cdcId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
         try await self.deleteLocalGateway(.init(localGatewayId: localGatewayId, cdcId: cdcId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)

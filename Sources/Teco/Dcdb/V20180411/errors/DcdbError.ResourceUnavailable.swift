@@ -72,6 +72,7 @@ extension TCDcdbError {
             ResourceUnavailable(.instanceStatusAbnormal)
         }
 
+        /// 安全组校验失败。
         public static var sgCheckFail: ResourceUnavailable {
             ResourceUnavailable(.sgCheckFail)
         }

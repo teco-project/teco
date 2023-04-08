@@ -18,6 +18,7 @@ extension TCIotcloudError {
     public struct LimitExceeded: TCIotcloudErrorType {
         enum Code: String {
             case caAlreadyBindProduct = "LimitExceeded.CAAlreadyBindProduct"
+            case caCertLimit = "LimitExceeded.CACertLimit"
             case caCertNameRepeat = "LimitExceeded.CACertNameRepeat"
             case caCertNotSupport = "LimitExceeded.CACertNotSupport"
             case caRepeat = "LimitExceeded.CARepeat"
@@ -54,6 +55,11 @@ extension TCIotcloudError {
         /// CA证书已经绑定了产品，无法操作。
         public static var caAlreadyBindProduct: LimitExceeded {
             LimitExceeded(.caAlreadyBindProduct)
+        }
+
+        /// CA证书达到上限。
+        public static var caCertLimit: LimitExceeded {
+            LimitExceeded(.caCertLimit)
         }
 
         /// CA证书名称重复。
@@ -106,6 +112,8 @@ extension TCIotcloudError {
             switch self.error {
             case .caAlreadyBindProduct:
                 code = .limitExceeded_CAAlreadyBindProduct
+            case .caCertLimit:
+                code = .limitExceeded_CACertLimit
             case .caCertNameRepeat:
                 code = .limitExceeded_CACertNameRepeat
             case .caCertNotSupport:

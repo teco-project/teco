@@ -89,7 +89,16 @@ extension Dlc {
         /// archives：依赖资源
         public let appArchives: String?
 
-        public init(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil) {
+        /// Spark Image 版本
+        public let sparkImage: String?
+
+        /// Spark Image 版本名称
+        public let sparkImageVersion: String?
+
+        /// 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums
+        public let appExecutorMaxNumbers: Int64?
+
+        public init(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil) {
             self.appName = appName
             self.appType = appType
             self.dataEngine = dataEngine
@@ -114,6 +123,9 @@ extension Dlc {
             self.dataSource = dataSource
             self.isLocalArchives = isLocalArchives
             self.appArchives = appArchives
+            self.sparkImage = sparkImage
+            self.sparkImageVersion = sparkImageVersion
+            self.appExecutorMaxNumbers = appExecutorMaxNumbers
         }
 
         enum CodingKeys: String, CodingKey {
@@ -141,6 +153,9 @@ extension Dlc {
             case dataSource = "DataSource"
             case isLocalArchives = "IsLocalArchives"
             case appArchives = "AppArchives"
+            case sparkImage = "SparkImage"
+            case sparkImageVersion = "SparkImageVersion"
+            case appExecutorMaxNumbers = "AppExecutorMaxNumbers"
         }
     }
 
@@ -168,13 +183,13 @@ extension Dlc {
 
     /// 更新spark应用
     @inlinable @discardableResult
-    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
-        self.modifySparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), region: region, logger: logger, on: eventLoop)
+    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
+        self.modifySparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新spark应用
     @inlinable @discardableResult
-    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
-        try await self.modifySparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), region: region, logger: logger, on: eventLoop)
+    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
+        try await self.modifySparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers), region: region, logger: logger, on: eventLoop)
     }
 }

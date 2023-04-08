@@ -46,8 +46,10 @@ public struct TCEbError: TCEbErrorType {
         case internalError = "InternalError"
         case internalError_OssException = "InternalError.OssException"
         case internalError_System = "InternalError.System"
+        case internalError_UnknownInternalError = "InternalError.UnknownInternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue_AMPParams = "InvalidParameterValue.AMPParams"
+        case invalidParameterValue_Action = "InvalidParameterValue.Action"
         case invalidParameterValue_BatchEventCount = "InvalidParameterValue.BatchEventCount"
         case invalidParameterValue_BatchTimeout = "InvalidParameterValue.BatchTimeout"
         case invalidParameterValue_CKafkaTargetParams = "InvalidParameterValue.CKafkaTargetParams"
@@ -173,10 +175,12 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.failedOperation)
     }
 
+    /// 添加私有链接失败。
     public static var failedOperation_AddPrivateLink: TCEbError {
         TCEbError(.failedOperation_AddPrivateLink)
     }
 
+    /// 用户鉴权错误。
     public static var failedOperation_AuthenticateUserFailed: TCEbError {
         TCEbError(.failedOperation_AuthenticateUserFailed)
     }
@@ -191,6 +195,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.failedOperation_DeleteConnection)
     }
 
+    /// 删除私有链接失败。
     public static var failedOperation_DeletePrivateLink: TCEbError {
         TCEbError(.failedOperation_DeletePrivateLink)
     }
@@ -200,14 +205,17 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.failedOperation_DeleteRule)
     }
 
+    /// ES集群内部错误。
     public static var failedOperation_ESInternalError: TCEbError {
         TCEbError(.failedOperation_ESInternalError)
     }
 
+    /// ES集群操作失败。
     public static var failedOperation_ESRequestFailed: TCEbError {
         TCEbError(.failedOperation_ESRequestFailed)
     }
 
+    /// ES索引模板冲突错误。
     public static var failedOperation_ESTemplateConflict: TCEbError {
         TCEbError(.failedOperation_ESTemplateConflict)
     }
@@ -217,6 +225,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.failedOperation_ErrorFilter)
     }
 
+    /// 注册CLS服务失败。
     public static var failedOperation_RegisterCLSService: TCEbError {
         TCEbError(.failedOperation_RegisterCLSService)
     }
@@ -226,14 +235,17 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.failedOperation_ServiceError)
     }
 
+    /// 标签绑定操作失败。
     public static var failedOperation_TagResource: TCEbError {
         TCEbError(.failedOperation_TagResource)
     }
 
+    /// 申请标签配额失败。
     public static var failedOperation_TagResourceAllocateQuotas: TCEbError {
         TCEbError(.failedOperation_TagResourceAllocateQuotas)
     }
 
+    /// 标签解绑操作失败。
     public static var failedOperation_UnTagResource: TCEbError {
         TCEbError(.failedOperation_UnTagResource)
     }
@@ -263,6 +275,11 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.internalError_System)
     }
 
+    /// 未知错误。
+    public static var internalError_UnknownInternalError: TCEbError {
+        TCEbError(.internalError_UnknownInternalError)
+    }
+
     /// 参数错误。
     public static var invalidParameter: TCEbError {
         TCEbError(.invalidParameter)
@@ -271,6 +288,11 @@ public struct TCEbError: TCEbErrorType {
     /// AMPParams取值与规范不符，请修正后再试。
     public static var invalidParameterValue_AMPParams: TCEbError {
         TCEbError(.invalidParameterValue_AMPParams)
+    }
+
+    /// Action 操作参数取值与规范不符，请修正后再试。
+    public static var invalidParameterValue_Action: TCEbError {
+        TCEbError(.invalidParameterValue_Action)
     }
 
     /// BatchEventCount取值与规范不符，请修正后再试。
@@ -328,6 +350,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.invalidParameterValue_Description)
     }
 
+    /// ES目标参数错误。
     public static var invalidParameterValue_ElasticSearchTargetParams: TCEbError {
         TCEbError(.invalidParameterValue_ElasticSearchTargetParams)
     }
@@ -387,6 +410,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.invalidParameterValue_Limit)
     }
 
+    /// LinkMode取值与规范不符，请修正后再试。
     public static var invalidParameterValue_LinkMode: TCEbError {
         TCEbError(.invalidParameterValue_LinkMode)
     }
@@ -441,6 +465,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.invalidParameterValue_RuleName)
     }
 
+    /// 标签参数错误。
     public static var invalidParameterValue_Tags: TCEbError {
         TCEbError(.invalidParameterValue_Tags)
     }
@@ -470,6 +495,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.invalidParameterValue_Type)
     }
 
+    /// APIGateway连接器不支持开启或关闭操作，请修正后重试。
     public static var invalidParameter_EnableAPIGateway: TCEbError {
         TCEbError(.invalidParameter_EnableAPIGateway)
     }
@@ -484,6 +510,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.limitExceeded_BannedAccount)
     }
 
+    /// 集群私有链接超限。
     public static var limitExceeded_ClusterPrivateLinkExceeded: TCEbError {
         TCEbError(.limitExceeded_ClusterPrivateLinkExceeded)
     }
@@ -533,6 +560,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.limitExceeded_Trigger)
     }
 
+    /// 用户私有链接超限。
     public static var limitExceeded_UserPrivateLinkExceeded: TCEbError {
         TCEbError(.limitExceeded_UserPrivateLinkExceeded)
     }
@@ -547,10 +575,12 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.operationDenied_DefaultCLSResourceUnsupported)
     }
 
+    /// 不支持操作当前ES版本。
     public static var operationDenied_ESVersionUnsupported: TCEbError {
         TCEbError(.operationDenied_ESVersionUnsupported)
     }
 
+    /// 技术架构升级，该资源临时锁定中，预计持续3~5分钟，事件推送流程无影响。
     public static var operationDenied_EventBusResourceIsLocked: TCEbError {
         TCEbError(.operationDenied_EventBusResourceIsLocked)
     }
@@ -570,7 +600,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.resourceInUse_DefaultEventBus)
     }
 
-    /// 事件集下有规则或者连接器，无法删除，请删除所有规则和连接器后重试。
+    /// 无法删除，因事件集下存在规则、连接器或归档，请删除所有规则、连接器和归档后重试。
     public static var resourceInUse_EventBus: TCEbError {
         TCEbError(.resourceInUse_EventBus)
     }
@@ -620,10 +650,12 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.resourceNotFound_Namespace)
     }
 
+    /// 未找到网络资源关联记录。
     public static var resourceNotFound_NetAssociation: TCEbError {
         TCEbError(.resourceNotFound_NetAssociation)
     }
 
+    /// 未找到privatelink记录。
     public static var resourceNotFound_PrivateLinkResource: TCEbError {
         TCEbError(.resourceNotFound_PrivateLinkResource)
     }
@@ -638,6 +670,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.resourceNotFound_Rule)
     }
 
+    /// 未找到指定标签。
     public static var resourceNotFound_Tag: TCEbError {
         TCEbError(.resourceNotFound_Tag)
     }
@@ -662,6 +695,7 @@ public struct TCEbError: TCEbErrorType {
         TCEbError(.resourceUnavailable_Connection)
     }
 
+    /// ES集群状态异常。
     public static var resourceUnavailable_ESUnhealth: TCEbError {
         TCEbError(.resourceUnavailable_ESUnhealth)
     }

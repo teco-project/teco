@@ -102,6 +102,7 @@ public struct TCEcmError: TCEcmErrorType {
         case invalidParameterValue_InvalidSecurityGroupID = "InvalidParameterValue.InvalidSecurityGroupID"
         case invalidParameterValue_InvalidSnapshot = "InvalidParameterValue.InvalidSnapshot"
         case invalidParameterValue_InvalidSnapshotId = "InvalidParameterValue.InvalidSnapshotId"
+        case invalidParameterValue_InvalidSubnetInZone = "InvalidParameterValue.InvalidSubnetInZone"
         case invalidParameterValue_InvalidSystemDiskSize = "InvalidParameterValue.InvalidSystemDiskSize"
         case invalidParameterValue_InvalidSystemDiskType = "InvalidParameterValue.InvalidSystemDiskType"
         case invalidParameterValue_InvalidTime = "InvalidParameterValue.InvalidTime"
@@ -174,6 +175,7 @@ public struct TCEcmError: TCEcmErrorType {
         case resourceInsufficient_IPQuotaNotEnough = "ResourceInsufficient.IPQuotaNotEnough"
         case resourceInsufficient_InstanceQuotaNotEnough = "ResourceInsufficient.InstanceQuotaNotEnough"
         case resourceInsufficient_InvaildPrivateImageNum = "ResourceInsufficient.InvaildPrivateImageNum"
+        case resourceInsufficient_PrivateIPQuotaNotEnough = "ResourceInsufficient.PrivateIPQuotaNotEnough"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_InstanceNotExist = "ResourceNotFound.InstanceNotExist"
         case resourceNotFound_NotFound = "ResourceNotFound.NotFound"
@@ -568,12 +570,12 @@ public struct TCEcmError: TCEcmErrorType {
         TCEcmError(.invalidParameterValue_InvalidInternetChargeType)
     }
 
-    /// 秘钥ID无效。
+    /// 密钥ID无效。
     public static var invalidParameterValue_InvalidKeyPairId: TCEcmError {
         TCEcmError(.invalidParameterValue_InvalidKeyPairId)
     }
 
-    /// 秘钥名称异常。
+    /// 密钥名称异常。
     ///
     /// 请检查实例ID是否重复
     public static var invalidParameterValue_InvalidKeyPairName: TCEcmError {
@@ -638,6 +640,11 @@ public struct TCEcmError: TCEcmErrorType {
     /// InvalidParameterValue.InvalidSnapshotId
     public static var invalidParameterValue_InvalidSnapshotId: TCEcmError {
         TCEcmError(.invalidParameterValue_InvalidSnapshotId)
+    }
+
+    /// 该子网不存在该节点。
+    public static var invalidParameterValue_InvalidSubnetInZone: TCEcmError {
+        TCEcmError(.invalidParameterValue_InvalidSubnetInZone)
     }
 
     /// 系统盘大小不合法。
@@ -725,6 +732,8 @@ public struct TCEcmError: TCEcmErrorType {
         TCEcmError(.invalidParameterValue_SubnetConflict)
     }
 
+    /// 子网不存在。
+    ///
     /// 更换子网。
     public static var invalidParameterValue_SubnetNotExist: TCEcmError {
         TCEcmError(.invalidParameterValue_SubnetNotExist)
@@ -1000,6 +1009,13 @@ public struct TCEcmError: TCEcmErrorType {
         TCEcmError(.resourceInsufficient_InvaildPrivateImageNum)
     }
 
+    /// 当前子网中内网IP不足
+    ///
+    /// 指定新的子网后继续创建实例
+    public static var resourceInsufficient_PrivateIPQuotaNotEnough: TCEcmError {
+        TCEcmError(.resourceInsufficient_PrivateIPQuotaNotEnough)
+    }
+
     /// 资源不存在。
     public static var resourceNotFound: TCEcmError {
         TCEcmError(.resourceNotFound)
@@ -1055,6 +1071,8 @@ public struct TCEcmError: TCEcmErrorType {
         TCEcmError(.resourcesSoldOut_LoadBalancerSoldOut)
     }
 
+    /// 特定机型售罄。
+    ///
     /// 更换机型或者可用区。
     public static var resourcesSoldOut_SpecifiedInstanceType: TCEcmError {
         TCEcmError(.resourcesSoldOut_SpecifiedInstanceType)

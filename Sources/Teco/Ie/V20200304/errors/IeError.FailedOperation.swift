@@ -90,6 +90,7 @@ extension TCIeError {
             FailedOperation(.serverError)
         }
 
+        /// 任务重复提交。
         public static var taskResubmit: FailedOperation {
             FailedOperation(.taskResubmit)
         }

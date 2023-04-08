@@ -43,6 +43,7 @@ extension TCBpaasError {
             self.context = context
         }
 
+        /// 数据上报失败。
         public static var sendToCkafka: FailedOperation {
             FailedOperation(.sendToCkafka)
         }

@@ -55,32 +55,36 @@ extension Ms {
     /// 批量查询扫描结果
     ///
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanResults(_ input: DescribeScanResultsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultsResponse> {
-        self.client.execute(action: "DescribeScanResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeScanResults is no longer available.")
     }
 
     /// 批量查询扫描结果
     ///
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanResults(_ input: DescribeScanResultsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
-        try await self.client.execute(action: "DescribeScanResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeScanResults is no longer available.")
     }
 
     /// 批量查询扫描结果
     ///
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanResults(itemId: String, appMd5s: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultsResponse> {
-        self.describeScanResults(.init(itemId: itemId, appMd5s: appMd5s), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeScanResults is no longer available.")
     }
 
     /// 批量查询扫描结果
     ///
     /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func describeScanResults(itemId: String, appMd5s: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
-        try await self.describeScanResults(.init(itemId: itemId, appMd5s: appMd5s), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeScanResults is no longer available.")
     }
 }

@@ -69,6 +69,8 @@ extension Ocr {
     /// 网约车驾驶证识别
     ///
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingDriverLicenseOCRResponse> {
         self.client.execute(action: "RideHailingDriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -77,6 +79,8 @@ extension Ocr {
     /// 网约车驾驶证识别
     ///
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingDriverLicenseOCRResponse {
         try await self.client.execute(action: "RideHailingDriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -85,6 +89,8 @@ extension Ocr {
     /// 网约车驾驶证识别
     ///
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingDriverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingDriverLicenseOCRResponse> {
         self.rideHailingDriverLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -93,6 +99,8 @@ extension Ocr {
     /// 网约车驾驶证识别
     ///
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingDriverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingDriverLicenseOCRResponse {
         try await self.rideHailingDriverLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

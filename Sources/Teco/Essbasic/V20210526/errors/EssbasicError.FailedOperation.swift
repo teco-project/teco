@@ -52,6 +52,8 @@ extension TCEssbasicError {
             self.context = context
         }
 
+        /// 签署人未达到合法年龄。
+        ///
         /// 请检查签署人证件号是合法年龄，以证件号为准。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var ageNotAchieveNormalLegal: FailedOperation {
             FailedOperation(.ageNotAchieveNormalLegal)
@@ -64,32 +66,42 @@ extension TCEssbasicError {
             FailedOperation(.authFail)
         }
 
+        /// 存在同名印章。
         public static var existSameSealName: FailedOperation {
             FailedOperation(.existSameSealName)
         }
 
+        /// 合同数目超出。
         public static var flowNumExceed: FailedOperation {
             FailedOperation(.flowNumExceed)
         }
 
+        /// 已授权。
         public static var hasAuthorized: FailedOperation {
             FailedOperation(.hasAuthorized)
         }
 
+        /// 当前合同状态无法进行签署审批。
         public static var notAvailableSignReview: FailedOperation {
             FailedOperation(.notAvailableSignReview)
         }
 
+        /// 发起签署存在填写控件。
+        ///
         /// 请确认是否模板配置存在发起方的填写控件。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeCreatorSignComponents: FailedOperation {
             FailedOperation(.qrCodeCreatorSignComponents)
         }
 
+        /// 模板签署人不存在。
+        ///
         /// 请确认模板是否缺少签署人。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeSignUsers: FailedOperation {
             FailedOperation(.qrCodeSignUsers)
         }
 
+        /// 签署二维码模板信息有误，请检查参数后重试。
+        ///
         /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeTemplateId: FailedOperation {
             FailedOperation(.qrCodeTemplateId)

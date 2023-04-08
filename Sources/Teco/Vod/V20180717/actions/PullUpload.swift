@@ -24,6 +24,10 @@ extension Vod {
         /// 支持的扩展名详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。请确保媒体 URL 可以访问。
         public let mediaUrl: String
 
+        /// 媒体文件类型（扩展名），支持的类型详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。
+        /// 如果 MediaType 不填或取值为空字符串，将根据 MediaUrl 自动获取文件类型。
+        public let mediaType: String?
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
 
@@ -62,8 +66,9 @@ extension Vod {
         /// 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         public let sourceContext: String?
 
-        public init(mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil) {
+        public init(mediaUrl: String, mediaType: String? = nil, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil) {
             self.mediaUrl = mediaUrl
+            self.mediaType = mediaType
             self.subAppId = subAppId
             self.mediaName = mediaName
             self.coverUrl = coverUrl
@@ -79,6 +84,7 @@ extension Vod {
 
         enum CodingKeys: String, CodingKey {
             case mediaUrl = "MediaUrl"
+            case mediaType = "MediaType"
             case subAppId = "SubAppId"
             case mediaName = "MediaName"
             case coverUrl = "CoverUrl"
@@ -127,15 +133,15 @@ extension Vod {
     ///
     /// 该接口用于将一个网络上的视频拉取到云点播平台。
     @inlinable
-    public func pullUpload(mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullUploadResponse> {
-        self.pullUpload(.init(mediaUrl: mediaUrl, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), region: region, logger: logger, on: eventLoop)
+    public func pullUpload(mediaUrl: String, mediaType: String? = nil, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullUploadResponse> {
+        self.pullUpload(.init(mediaUrl: mediaUrl, mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取上传
     ///
     /// 该接口用于将一个网络上的视频拉取到云点播平台。
     @inlinable
-    public func pullUpload(mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
-        try await self.pullUpload(.init(mediaUrl: mediaUrl, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), region: region, logger: logger, on: eventLoop)
+    public func pullUpload(mediaUrl: String, mediaType: String? = nil, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
+        try await self.pullUpload(.init(mediaUrl: mediaUrl, mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), region: region, logger: logger, on: eventLoop)
     }
 }

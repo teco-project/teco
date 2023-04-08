@@ -26,16 +26,21 @@ extension Ess {
         /// 补充签署人信息
         public let approvers: [FillApproverInfo]
 
-        public init(operator: UserInfo, flowId: String, approvers: [FillApproverInfo]) {
+        /// 企微消息中的发起人
+        public let initiator: String?
+
+        public init(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil) {
             self.operator = `operator`
             self.flowId = flowId
             self.approvers = approvers
+            self.initiator = initiator
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case flowId = "FlowId"
             case approvers = "Approvers"
+            case initiator = "Initiator"
         }
     }
 
@@ -81,8 +86,8 @@ extension Ess {
     ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
-    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
-        self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers), region: region, logger: logger, on: eventLoop)
+    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
+        self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator), region: region, logger: logger, on: eventLoop)
     }
 
     /// 补充签署流程本企业签署人信息
@@ -93,7 +98,7 @@ extension Ess {
     ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
-    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
-        try await self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers), region: region, logger: logger, on: eventLoop)
+    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
+        try await self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator), region: region, logger: logger, on: eventLoop)
     }
 }

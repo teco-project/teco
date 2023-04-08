@@ -53,26 +53,30 @@ extension Tdid {
     }
 
     /// 披露策略Policy管理列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPolicyList(_ input: GetPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyListResponse> {
-        self.client.execute(action: "GetPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetPolicyList is no longer available.")
     }
 
     /// 披露策略Policy管理列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPolicyList(_ input: GetPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
-        try await self.client.execute(action: "GetPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetPolicyList is no longer available.")
     }
 
     /// 披露策略Policy管理列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPolicyList(displayStart: Int64, displayLength: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyListResponse> {
-        self.getPolicyList(.init(displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        fatalError("GetPolicyList is no longer available.")
     }
 
     /// 披露策略Policy管理列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPolicyList(displayStart: Int64, displayLength: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
-        try await self.getPolicyList(.init(displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        fatalError("GetPolicyList is no longer available.")
     }
 }

@@ -35,10 +35,10 @@ extension Vpc {
         /// 云联网实例ID
         public let ccnId: String?
 
-        /// 排序字段。支持：`CcnId` `InstanceType` `InstanceId` `InstanceName` `InstanceRegion` `AttachedTime` `State`。
+        /// 排序字段。支持：`CcnId` `InstanceType` `InstanceId` `InstanceName` `InstanceRegion` `AttachedTime` `State`。默认值：`AttachedTime`
         public let orderField: String?
 
-        /// 排序方法。升序：`ASC`，倒序：`DESC`。
+        /// 排序方法。升序：`ASC`，倒序：`DESC`。默认值：`ASC`
         public let orderDirection: String?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, ccnId: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {

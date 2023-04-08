@@ -43,7 +43,7 @@ extension TCDomainError {
             self.context = context
         }
 
-        /// 网络错误，请稍后重试。
+        /// 网络报错，请稍后重试。
         public static var domainInternalError: InternalError {
             InternalError(.domainInternalError)
         }

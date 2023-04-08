@@ -28,16 +28,41 @@ extension Tdmq {
         /// 一页限制
         public let limit: UInt64?
 
-        public init(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+        /// 模糊搜索节点名字
+        public let nodeName: String?
+
+        /// 过滤参数的名字和数值
+        /// 现在只有一个nodeStatus
+        /// running/down
+        /// 数组类型，兼容后续添加过滤参数
+        public let filters: [Filter]?
+
+        /// 按指定元素排序，现在只有2个
+        /// cpuUsage/diskUsage
+        public let sortElement: String?
+
+        /// 升序/降序
+        /// ascend/descend
+        public let sortOrder: String?
+
+        public init(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, nodeName: String? = nil, filters: [Filter]? = nil, sortElement: String? = nil, sortOrder: String? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
+            self.nodeName = nodeName
+            self.filters = filters
+            self.sortElement = sortElement
+            self.sortOrder = sortOrder
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case offset = "Offset"
             case limit = "Limit"
+            case nodeName = "NodeName"
+            case filters = "Filters"
+            case sortElement = "SortElement"
+            case sortOrder = "SortOrder"
         }
 
         /// Compute the next request based on API response.
@@ -45,7 +70,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRabbitMQNodeListRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return DescribeRabbitMQNodeListRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, nodeName: self.nodeName, filters: self.filters, sortElement: self.sortElement, sortOrder: self.sortOrder)
         }
     }
 
@@ -92,14 +117,14 @@ extension Tdmq {
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
-        self.describeRabbitMQNodeList(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, nodeName: String? = nil, filters: [Filter]? = nil, sortElement: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
+        self.describeRabbitMQNodeList(.init(instanceId: instanceId, offset: offset, limit: limit, nodeName: nodeName, filters: filters, sortElement: sortElement, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
-        try await self.describeRabbitMQNodeList(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, nodeName: String? = nil, filters: [Filter]? = nil, sortElement: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
+        try await self.describeRabbitMQNodeList(.init(instanceId: instanceId, offset: offset, limit: limit, nodeName: nodeName, filters: filters, sortElement: sortElement, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// RabbitMQ专享版查询节点列表

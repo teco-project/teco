@@ -36,7 +36,7 @@ extension Dbbrain {
         /// 偏移量，默认为0。
         public let offset: Int64?
 
-        /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        /// 服务产品类型，支持值："mysql" - 云数据库 MySQL，默认为"mysql"。
         public let product: String?
 
         public init(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil) {

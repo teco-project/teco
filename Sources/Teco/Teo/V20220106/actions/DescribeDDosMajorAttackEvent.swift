@@ -103,26 +103,30 @@ extension Teo {
     }
 
     /// 查询DDos主攻击事件
+    @available(*, unavailable, message: "此接口已经做不兼容变更，所以此版本的接口已经无法调用，故作下线处理")
     @inlinable
     public func describeDDosMajorAttackEvent(_ input: DescribeDDosMajorAttackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosMajorAttackEventResponse> {
-        self.client.execute(action: "DescribeDDosMajorAttackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeDDosMajorAttackEvent is no longer available.")
     }
 
     /// 查询DDos主攻击事件
+    @available(*, unavailable, message: "此接口已经做不兼容变更，所以此版本的接口已经无法调用，故作下线处理")
     @inlinable
     public func describeDDosMajorAttackEvent(_ input: DescribeDDosMajorAttackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosMajorAttackEventResponse {
-        try await self.client.execute(action: "DescribeDDosMajorAttackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeDDosMajorAttackEvent is no longer available.")
     }
 
     /// 查询DDos主攻击事件
+    @available(*, unavailable, message: "此接口已经做不兼容变更，所以此版本的接口已经无法调用，故作下线处理")
     @inlinable
     public func describeDDosMajorAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, protocolType: String? = nil, zoneIds: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosMajorAttackEventResponse> {
-        self.describeDDosMajorAttackEvent(.init(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, protocolType: protocolType, zoneIds: zoneIds, area: area), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeDDosMajorAttackEvent is no longer available.")
     }
 
     /// 查询DDos主攻击事件
+    @available(*, unavailable, message: "此接口已经做不兼容变更，所以此版本的接口已经无法调用，故作下线处理")
     @inlinable
     public func describeDDosMajorAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, protocolType: String? = nil, zoneIds: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosMajorAttackEventResponse {
-        try await self.describeDDosMajorAttackEvent(.init(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, protocolType: protocolType, zoneIds: zoneIds, area: area), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeDDosMajorAttackEvent is no longer available.")
     }
 }

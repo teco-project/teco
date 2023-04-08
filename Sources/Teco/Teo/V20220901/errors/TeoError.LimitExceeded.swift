@@ -19,6 +19,7 @@ extension TCTeoError {
         enum Code: String {
             case batchQuota = "LimitExceeded.BatchQuota"
             case dailyQuota = "LimitExceeded.DailyQuota"
+            case queryTimeLimitExceeded = "LimitExceeded.QueryTimeLimitExceeded"
             case rateLimitExceeded = "LimitExceeded.RateLimitExceeded"
             case other = "LimitExceeded"
         }
@@ -55,6 +56,13 @@ extension TCTeoError {
             LimitExceeded(.dailyQuota)
         }
 
+        /// 查询时间范围超出限制。
+        ///
+        /// 减少时间查询范围
+        public static var queryTimeLimitExceeded: LimitExceeded {
+            LimitExceeded(.queryTimeLimitExceeded)
+        }
+
         /// 单位时间内接口请求频率达到限制。
         public static var rateLimitExceeded: LimitExceeded {
             LimitExceeded(.rateLimitExceeded)
@@ -72,6 +80,8 @@ extension TCTeoError {
                 code = .limitExceeded_BatchQuota
             case .dailyQuota:
                 code = .limitExceeded_DailyQuota
+            case .queryTimeLimitExceeded:
+                code = .limitExceeded_QueryTimeLimitExceeded
             case .rateLimitExceeded:
                 code = .limitExceeded_RateLimitExceeded
             case .other:

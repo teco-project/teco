@@ -55,7 +55,7 @@ extension TCSmsError {
             InvalidParameter(.dirtyWordFound)
         }
 
-        /// International 或者 SmsType 参数有误，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+        /// 参数有误，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var invalidParameters: InvalidParameter {
             InvalidParameter(.invalidParameters)
         }

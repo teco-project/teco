@@ -43,6 +43,7 @@ extension TCCdcError {
             self.context = context
         }
 
+        /// CDC绑定VPC失败。
         public static var cdcBindVpcFail: FailedOperation {
             FailedOperation(.cdcBindVpcFail)
         }

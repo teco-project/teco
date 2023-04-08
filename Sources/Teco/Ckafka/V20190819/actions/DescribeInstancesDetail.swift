@@ -46,7 +46,10 @@ extension Ckafka {
         /// 按照实例ID过滤
         public let instanceIdList: [String]?
 
-        public init(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil) {
+        /// 根据标签列表过滤实例（取交集）
+        public let tagList: [Tag]?
+
+        public init(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, tagList: [Tag]? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.status = status
@@ -56,6 +59,7 @@ extension Ckafka {
             self.filters = filters
             self.instanceIds = instanceIds
             self.instanceIdList = instanceIdList
+            self.tagList = tagList
         }
 
         enum CodingKeys: String, CodingKey {
@@ -68,6 +72,7 @@ extension Ckafka {
             case filters = "Filters"
             case instanceIds = "InstanceIds"
             case instanceIdList = "InstanceIdList"
+            case tagList = "TagList"
         }
 
         /// Compute the next request based on API response.
@@ -75,7 +80,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesDetailRequest(instanceId: self.instanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagKey: self.tagKey, filters: self.filters, instanceIds: self.instanceIds, instanceIdList: self.instanceIdList)
+            return DescribeInstancesDetailRequest(instanceId: self.instanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagKey: self.tagKey, filters: self.filters, instanceIds: self.instanceIds, instanceIdList: self.instanceIdList, tagList: self.tagList)
         }
     }
 
@@ -123,16 +128,16 @@ extension Ckafka {
     ///
     /// 用户账户下获取实例列表详情
     @inlinable
-    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDetailResponse> {
-        self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDetailResponse> {
+        self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表详情
     ///
     /// 用户账户下获取实例列表详情
     @inlinable
-    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
-        try await self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
+        try await self.describeInstancesDetail(.init(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表详情

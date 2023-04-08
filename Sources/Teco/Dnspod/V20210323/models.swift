@@ -36,7 +36,6 @@ extension Dnspod {
         public let recordLineId: String?
 
         /// 记录权重值(暂未支持)。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
 
         /// 记录的 MX 记录值，非 MX 记录类型，默认为 0，MX记录则必选。
@@ -127,6 +126,10 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
 
+        /// 记录权重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weight: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case subDomain = "SubDomain"
@@ -140,6 +143,7 @@ extension Dnspod {
             case id = "Id"
             case enabled = "Enabled"
             case mx = "MX"
+            case weight = "Weight"
         }
     }
 
@@ -344,6 +348,33 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case dealName = "DealName"
+        }
+    }
+
+    /// 批量删除域名详情
+    public struct DeleteDomainBatchDetail: TCOutputModel {
+        /// 域名 ID
+        public let domainId: UInt64?
+
+        /// 域名
+        public let domain: String?
+
+        /// 错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let error: String?
+
+        /// 删除状态
+        public let status: String?
+
+        /// 操作
+        public let operation: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domainId = "DomainId"
+            case domain = "Domain"
+            case error = "Error"
+            case status = "Status"
+            case operation = "Operation"
         }
     }
 
@@ -916,6 +947,106 @@ extension Dnspod {
         }
     }
 
+    /// 套餐配置明细
+    public struct PackageDetailItem: TCOutputModel {
+        /// 套餐原价
+        public let realPrice: UInt64
+
+        /// 可更换域名次数
+        public let changedTimes: UInt64
+
+        /// 允许设置的最小 TTL 值
+        public let minTtl: UInt64
+
+        /// 负载均衡数量
+        public let recordRoll: UInt64
+
+        /// 子域名级数
+        public let subDomainLevel: UInt64
+
+        /// 泛解析级数
+        public let maxWildcard: UInt64
+
+        /// DNS 服务集群个数
+        public let dnsServerRegion: String
+
+        /// 套餐名称
+        public let domainGradeCn: String
+
+        /// 套餐代号
+        public let gradeLevel: UInt64
+
+        /// 套餐对应的 NS
+        public let ns: [String]
+
+        /// 套餐代码
+        public let domainGrade: String
+
+        enum CodingKeys: String, CodingKey {
+            case realPrice = "RealPrice"
+            case changedTimes = "ChangedTimes"
+            case minTtl = "MinTtl"
+            case recordRoll = "RecordRoll"
+            case subDomainLevel = "SubDomainLevel"
+            case maxWildcard = "MaxWildcard"
+            case dnsServerRegion = "DnsServerRegion"
+            case domainGradeCn = "DomainGradeCn"
+            case gradeLevel = "GradeLevel"
+            case ns = "Ns"
+            case domainGrade = "DomainGrade"
+        }
+    }
+
+    /// 域名概览明细
+    public struct PreviewDetail: TCOutputModel {
+        /// 域名
+        public let name: String
+
+        /// 域名套餐代码
+        public let grade: String
+
+        /// 域名套餐名称
+        public let gradeTitle: String
+
+        /// 域名记录数
+        public let records: UInt64
+
+        /// 域名停靠状态。0 未开启 1 已开启 2 已暂停
+        public let domainParkingStatus: UInt64
+
+        /// 自定义线路数量
+        public let lineCount: UInt64
+
+        /// 自定义线路分组数量
+        public let lineGroupCount: UInt64
+
+        /// 域名别名数量
+        public let aliasCount: UInt64
+
+        /// 允许添加的最大域名别名数量
+        public let maxAliasCount: UInt64
+
+        /// 昨天的解析量
+        public let resolveCount: UInt64
+
+        /// 增值服务数量
+        public let vasCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case grade = "Grade"
+            case gradeTitle = "GradeTitle"
+            case records = "Records"
+            case domainParkingStatus = "DomainParkingStatus"
+            case lineCount = "LineCount"
+            case lineGroupCount = "LineGroupCount"
+            case aliasCount = "AliasCount"
+            case maxAliasCount = "MaxAliasCount"
+            case resolveCount = "ResolveCount"
+            case vasCount = "VASCount"
+        }
+    }
+
     /// 域名权限项
     public struct PurviewInfo: TCOutputModel {
         /// 权限名称
@@ -1083,6 +1214,9 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
 
+        /// 是否是默认的ns记录
+        public let defaultNS: Bool?
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case value = "Value"
@@ -1097,6 +1231,7 @@ extension Dnspod {
             case remark = "Remark"
             case ttl = "TTL"
             case mx = "MX"
+            case defaultNS = "DefaultNS"
         }
     }
 
@@ -1314,6 +1449,176 @@ extension Dnspod {
             case wechatBinded = "WechatBinded"
             case uin = "Uin"
             case freeNs = "FreeNs"
+        }
+    }
+
+    /// 域名增值服务用量
+    public struct VASStatisticItem: TCOutputModel {
+        /// 增值服务名称
+        public let name: String?
+
+        /// 增值服务标识
+        public let key: String?
+
+        /// 增值服务最大用量
+        public let limitCount: UInt64?
+
+        /// 增值服务已使用的用量
+        public let useCount: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case key = "Key"
+            case limitCount = "LimitCount"
+            case useCount = "UseCount"
+        }
+    }
+
+    /// Whois联系信息
+    public struct WhoisContact: TCOutputModel {
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let admin: WhoisContactAddress?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let billing: WhoisContactAddress?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registrant: WhoisContactAddress?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tech: WhoisContactAddress?
+
+        enum CodingKeys: String, CodingKey {
+            case admin = "Admin"
+            case billing = "Billing"
+            case registrant = "Registrant"
+            case tech = "Tech"
+        }
+    }
+
+    /// Whois联系信息地址
+    public struct WhoisContactAddress: TCOutputModel {
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let city: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let country: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let email: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fax: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let faxExt: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let handle: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let organization: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phone: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let postalCode: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let street: String?
+
+        enum CodingKeys: String, CodingKey {
+            case city = "City"
+            case country = "Country"
+            case email = "Email"
+            case fax = "Fax"
+            case faxExt = "FaxExt"
+            case handle = "Handle"
+            case name = "Name"
+            case organization = "Organization"
+            case phone = "Phone"
+            case postalCode = "PostalCode"
+            case state = "State"
+            case street = "Street"
+        }
+    }
+
+    /// Whois信息
+    public struct WhoisInfo: TCOutputModel {
+        /// 联系信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let contacts: WhoisContact?
+
+        /// 域名注册时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let creationDate: String?
+
+        /// 域名到期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expirationDate: String?
+
+        /// 是否是在腾讯云注册的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isQcloud: Bool?
+
+        /// 是否当前操作帐号注册的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isQcloudOwner: Bool?
+
+        /// 域名配置的NS
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nameServers: [String]?
+
+        /// Whois原始信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let raw: [String]?
+
+        /// 域名注册商
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registrar: [String]?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: [String]?
+
+        /// 更新日期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedDate: String?
+
+        enum CodingKeys: String, CodingKey {
+            case contacts = "Contacts"
+            case creationDate = "CreationDate"
+            case expirationDate = "ExpirationDate"
+            case isQcloud = "IsQcloud"
+            case isQcloudOwner = "IsQcloudOwner"
+            case nameServers = "NameServers"
+            case raw = "Raw"
+            case registrar = "Registrar"
+            case status = "Status"
+            case updatedDate = "UpdatedDate"
         }
     }
 }

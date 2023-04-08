@@ -17,7 +17,7 @@
 extension Vpc {
     /// DeleteNetDetect请求参数结构体
     public struct DeleteNetDetectRequest: TCRequestModel {
-        /// 网络探测实例`ID`。形如：`netd-12345678`
+        /// 网络探测实例`ID`。形如：`netd-12345678`。
         public let netDetectId: String
 
         public init(netDetectId: String) {
@@ -41,7 +41,7 @@ extension Vpc {
 
     /// 删除网络探测
     ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    /// 本接口（DeleteNetDetect）用于删除网络探测实例。
     @inlinable @discardableResult
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
         self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -49,7 +49,7 @@ extension Vpc {
 
     /// 删除网络探测
     ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    /// 本接口（DeleteNetDetect）用于删除网络探测实例。
     @inlinable @discardableResult
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
         try await self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -57,7 +57,7 @@ extension Vpc {
 
     /// 删除网络探测
     ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    /// 本接口（DeleteNetDetect）用于删除网络探测实例。
     @inlinable @discardableResult
     public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
         self.deleteNetDetect(.init(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)
@@ -65,7 +65,7 @@ extension Vpc {
 
     /// 删除网络探测
     ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    /// 本接口（DeleteNetDetect）用于删除网络探测实例。
     @inlinable @discardableResult
     public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
         try await self.deleteNetDetect(.init(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)

@@ -18,6 +18,7 @@ extension TCTcbError {
     public struct FailedOperation: TCTcbErrorType {
         enum Code: String {
             case partialFailure = "FailedOperation.PartialFailure"
+            case platformError = "FailedOperation.PlatformError"
             case other = "FailedOperation"
         }
 
@@ -50,6 +51,11 @@ extension TCTcbError {
             FailedOperation(.partialFailure)
         }
 
+        /// 操作失败，后台依赖平台错误。
+        public static var platformError: FailedOperation {
+            FailedOperation(.platformError)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -60,6 +66,8 @@ extension TCTcbError {
             switch self.error {
             case .partialFailure:
                 code = .failedOperation_PartialFailure
+            case .platformError:
+                code = .failedOperation_PlatformError
             case .other:
                 code = .failedOperation
             }

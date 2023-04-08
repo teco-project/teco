@@ -27,6 +27,7 @@ public struct TCCloudhsmError: TCCloudhsmErrorType {
         case authFailure = "AuthFailure"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameterValue = "InvalidParameterValue"
         case resourceNotFound = "ResourceNotFound"
         case unauthorizedOperation = "UnauthorizedOperation"
     }
@@ -66,6 +67,11 @@ public struct TCCloudhsmError: TCCloudhsmErrorType {
     /// 参数错误。
     public static var invalidParameter: TCCloudhsmError {
         TCCloudhsmError(.invalidParameter)
+    }
+
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCCloudhsmError {
+        TCCloudhsmError(.invalidParameterValue)
     }
 
     /// 资源不存在。

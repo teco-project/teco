@@ -49,7 +49,7 @@ public struct Trdp: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCTrdpError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

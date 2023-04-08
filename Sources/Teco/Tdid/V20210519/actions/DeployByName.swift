@@ -54,26 +54,30 @@ extension Tdid {
     }
 
     /// 通过Name部署TDID合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func deployByName(_ input: DeployByNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
-        self.client.execute(action: "DeployByName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeployByName is no longer available.")
     }
 
     /// 通过Name部署TDID合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func deployByName(_ input: DeployByNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
-        try await self.client.execute(action: "DeployByName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeployByName is no longer available.")
     }
 
     /// 通过Name部署TDID合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
-        self.deployByName(.init(applicationName: applicationName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeployByName is no longer available.")
     }
 
     /// 通过Name部署TDID合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
-        try await self.deployByName(.init(applicationName: applicationName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeployByName is no longer available.")
     }
 }

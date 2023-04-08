@@ -22,6 +22,8 @@ extension TCThpcError {
             case imageId = "ResourceNotFound.ImageId"
             case launchConfigurationId = "ResourceNotFound.LaunchConfigurationId"
             case nodeId = "ResourceNotFound.NodeId"
+            case queue = "ResourceNotFound.Queue"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -56,6 +58,7 @@ extension TCThpcError {
             ResourceNotFound(.clusterId)
         }
 
+        /// 无法找到镜像ID。
         public static var imageId: ResourceNotFound {
             ResourceNotFound(.imageId)
         }
@@ -68,6 +71,16 @@ extension TCThpcError {
         /// 无法找到ID对应节点。
         public static var nodeId: ResourceNotFound {
             ResourceNotFound(.nodeId)
+        }
+
+        /// 无法找到指定队列。
+        public static var queue: ResourceNotFound {
+            ResourceNotFound(.queue)
+        }
+
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
         }
 
         public func asThpcError() -> TCThpcError {
@@ -83,6 +96,10 @@ extension TCThpcError {
                 code = .resourceNotFound_LaunchConfigurationId
             case .nodeId:
                 code = .resourceNotFound_NodeId
+            case .queue:
+                code = .resourceNotFound_Queue
+            case .other:
+                code = .resourceNotFound
             }
             return TCThpcError(code, context: self.context)
         }

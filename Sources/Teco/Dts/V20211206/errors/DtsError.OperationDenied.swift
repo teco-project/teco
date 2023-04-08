@@ -63,6 +63,7 @@ extension TCDtsError {
             OperationDenied(.notEnoughMoneyError)
         }
 
+        /// 操作被拒绝。
         public static var operationDeniedError: OperationDenied {
             OperationDenied(.operationDeniedError)
         }

@@ -17,7 +17,7 @@
 extension Essbasic {
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequestModel {
-        /// 应用相关信息，若是渠道版调用 appid 和proxyappid 必填
+        /// 应用相关信息，若是第三方应用集成调用 appid 和proxyappid 必填
         public let agent: Agent
 
         /// 文件对应业务类型
@@ -71,6 +71,7 @@ extension Essbasic {
     /// 文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
     /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
     /// 代码示例：
     /// HttpProfile httpProfile = new HttpProfile();
@@ -83,6 +84,7 @@ extension Essbasic {
     /// 文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
     /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
     /// 代码示例：
     /// HttpProfile httpProfile = new HttpProfile();
@@ -95,6 +97,7 @@ extension Essbasic {
     /// 文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
     /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
     /// 代码示例：
     /// HttpProfile httpProfile = new HttpProfile();
@@ -107,6 +110,7 @@ extension Essbasic {
     /// 文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
     /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
     /// 代码示例：
     /// HttpProfile httpProfile = new HttpProfile();

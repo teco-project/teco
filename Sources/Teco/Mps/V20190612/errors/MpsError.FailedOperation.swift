@@ -19,8 +19,10 @@ extension TCMpsError {
         enum Code: String {
             case bucketNotifyAlreadyExist = "FailedOperation.BucketNotifyAlreadyExist"
             case cosStatusInavlid = "FailedOperation.CosStatusInavlid"
+            case getSourceNotify = "FailedOperation.GetSourceNotify"
             case invalidMpsUser = "FailedOperation.InvalidMpsUser"
             case invalidUser = "FailedOperation.InvalidUser"
+            case setSourceNotify = "FailedOperation.SetSourceNotify"
             case other = "FailedOperation"
         }
 
@@ -56,6 +58,11 @@ extension TCMpsError {
             FailedOperation(.cosStatusInavlid)
         }
 
+        /// 操作失败：获取源通知错误。
+        public static var getSourceNotify: FailedOperation {
+            FailedOperation(.getSourceNotify)
+        }
+
         /// 操作失败：非法 mps 用户。
         public static var invalidMpsUser: FailedOperation {
             FailedOperation(.invalidMpsUser)
@@ -64,6 +71,11 @@ extension TCMpsError {
         /// 操作失败：无效用户。
         public static var invalidUser: FailedOperation {
             FailedOperation(.invalidUser)
+        }
+
+        /// 操作失败：设置源通知错误。
+        public static var setSourceNotify: FailedOperation {
+            FailedOperation(.setSourceNotify)
         }
 
         /// 操作失败。
@@ -78,10 +90,14 @@ extension TCMpsError {
                 code = .failedOperation_BucketNotifyAlreadyExist
             case .cosStatusInavlid:
                 code = .failedOperation_CosStatusInavlid
+            case .getSourceNotify:
+                code = .failedOperation_GetSourceNotify
             case .invalidMpsUser:
                 code = .failedOperation_InvalidMpsUser
             case .invalidUser:
                 code = .failedOperation_InvalidUser
+            case .setSourceNotify:
+                code = .failedOperation_SetSourceNotify
             case .other:
                 code = .failedOperation
             }

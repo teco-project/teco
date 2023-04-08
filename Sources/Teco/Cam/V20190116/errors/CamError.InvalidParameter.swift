@@ -39,6 +39,7 @@ extension TCCamError {
             case mfaTokenError = "InvalidParameter.MFATokenError"
             case notSupportProduct = "InvalidParameter.NotSupportProduct"
             case operateEntitiesOverLimit = "InvalidParameter.OperateEntitiesOverLimit"
+            case organizationRoleOperateError = "InvalidParameter.OrganizationRoleOperateError"
             case paramError = "InvalidParameter.ParamError"
             case passwordViolatedRules = "InvalidParameter.PasswordViolatedRules"
             case policyDocumentError = "InvalidParameter.PolicyDocumentError"
@@ -64,6 +65,7 @@ extension TCCamError {
             case roleNameInUse = "InvalidParameter.RoleNameInUse"
             case roleNotExist = "InvalidParameter.RoleNotExist"
             case scopeError = "InvalidParameter.ScopeError"
+            case searchKeywordLengthError = "InvalidParameter.SearchKeywordLengthError"
             case serviceLinkedPolicyCantInPermissionBoundary = "InvalidParameter.ServiceLinkedPolicyCantInPermissionBoundary"
             case serviceLinkedRoleCantUsePermissionBoundary = "InvalidParameter.ServiceLinkedRoleCantUsePermissionBoundary"
             case serviceTypeError = "InvalidParameter.ServiceTypeError"
@@ -213,6 +215,11 @@ extension TCCamError {
             InvalidParameter(.operateEntitiesOverLimit)
         }
 
+        /// 当前角色仅支持企业管理员操作，如需修改，请联系企业管理员。
+        public static var organizationRoleOperateError: InvalidParameter {
+            InvalidParameter(.organizationRoleOperateError)
+        }
+
         /// 非法入参。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
@@ -338,6 +345,11 @@ extension TCCamError {
             InvalidParameter(.scopeError)
         }
 
+        /// 查询关键字长度错误。
+        public static var searchKeywordLengthError: InvalidParameter {
+            InvalidParameter(.searchKeywordLengthError)
+        }
+
         /// 权限边界不能用服务相关策略。
         public static var serviceLinkedPolicyCantInPermissionBoundary: InvalidParameter {
             InvalidParameter(.serviceLinkedPolicyCantInPermissionBoundary)
@@ -460,6 +472,8 @@ extension TCCamError {
                 code = .invalidParameter_NotSupportProduct
             case .operateEntitiesOverLimit:
                 code = .invalidParameter_OperateEntitiesOverLimit
+            case .organizationRoleOperateError:
+                code = .invalidParameter_OrganizationRoleOperateError
             case .paramError:
                 code = .invalidParameter_ParamError
             case .passwordViolatedRules:
@@ -510,6 +524,8 @@ extension TCCamError {
                 code = .invalidParameter_RoleNotExist
             case .scopeError:
                 code = .invalidParameter_ScopeError
+            case .searchKeywordLengthError:
+                code = .invalidParameter_SearchKeywordLengthError
             case .serviceLinkedPolicyCantInPermissionBoundary:
                 code = .invalidParameter_ServiceLinkedPolicyCantInPermissionBoundary
             case .serviceLinkedRoleCantUsePermissionBoundary:

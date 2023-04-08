@@ -17,6 +17,7 @@
 extension TCLighthouseError {
     public struct ResourceInUse: TCLighthouseErrorType {
         enum Code: String {
+            case diskBackupInUse = "ResourceInUse.DiskBackupInUse"
             case keyPairInUse = "ResourceInUse.KeyPairInUse"
         }
 
@@ -42,6 +43,11 @@ extension TCLighthouseError {
             self.context = context
         }
 
+        /// 磁盘备份点正在使用中，不支持此操作。
+        public static var diskBackupInUse: ResourceInUse {
+            ResourceInUse(.diskBackupInUse)
+        }
+
         /// 密钥对正在使用中。
         public static var keyPairInUse: ResourceInUse {
             ResourceInUse(.keyPairInUse)
@@ -50,6 +56,8 @@ extension TCLighthouseError {
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
+            case .diskBackupInUse:
+                code = .resourceInUse_DiskBackupInUse
             case .keyPairInUse:
                 code = .resourceInUse_KeyPairInUse
             }

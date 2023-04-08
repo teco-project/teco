@@ -50,26 +50,30 @@ extension Tdmq {
     }
 
     /// 删除Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPQueue(_ input: DeleteAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPQueueResponse> {
-        self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPQueue is no longer available.")
     }
 
     /// 删除Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPQueue(_ input: DeleteAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPQueueResponse {
-        try await self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAMQPQueue is no longer available.")
     }
 
     /// 删除Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPQueueResponse> {
-        self.deleteAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPQueue is no longer available.")
     }
 
     /// 删除Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPQueueResponse {
-        try await self.deleteAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPQueue is no longer available.")
     }
 }

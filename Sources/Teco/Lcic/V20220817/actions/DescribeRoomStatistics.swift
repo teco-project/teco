@@ -53,6 +53,20 @@ extension Lcic {
         /// 成员记录列表。
         public let memberRecords: [MemberRecord]
 
+        /// 秒级unix时间戳，实际房间开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realStartTime: UInt64?
+
+        /// 秒级unix时间戳，实际房间结束时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realEndTime: UInt64?
+
+        /// 房间消息总数。
+        public let messageCount: UInt64
+
+        /// 房间连麦总数。
+        public let micCount: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -61,6 +75,10 @@ extension Lcic {
             case memberNumber = "MemberNumber"
             case total = "Total"
             case memberRecords = "MemberRecords"
+            case realStartTime = "RealStartTime"
+            case realEndTime = "RealEndTime"
+            case messageCount = "MessageCount"
+            case micCount = "MicCount"
             case requestId = "RequestId"
         }
     }

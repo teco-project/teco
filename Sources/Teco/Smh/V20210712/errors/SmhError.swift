@@ -132,6 +132,7 @@ public struct TCSmhError: TCSmhErrorType {
         TCSmhError(.invalidParameterValue_NotModified)
     }
 
+    /// 指定的手机号码非该企业的超级管理员。
     public static var invalidParameterValue_NotSuperAdmin: TCSmhError {
         TCSmhError(.invalidParameterValue_NotSuperAdmin)
     }
@@ -168,6 +169,7 @@ public struct TCSmhError: TCSmhErrorType {
         TCSmhError(.resourceNotFound_OfficialInstance)
     }
 
+    /// 尚未开通 COS 数据处理（数据万象）服务。
     public static var unauthorizedOperation_CreateMediaBucket: TCSmhError {
         TCSmhError(.unauthorizedOperation_CreateMediaBucket)
     }

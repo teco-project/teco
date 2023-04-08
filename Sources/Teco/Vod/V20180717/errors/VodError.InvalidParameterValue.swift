@@ -94,6 +94,7 @@ extension TCVodError {
             case isps = "InvalidParameterValue.Isps"
             case keyFrameDescContentTooLong = "InvalidParameterValue.KeyFrameDescContentTooLong"
             case labelSet = "InvalidParameterValue.LabelSet"
+            case labels = "InvalidParameterValue.Labels"
             case limit = "InvalidParameterValue.Limit"
             case limitTooLarge = "InvalidParameterValue.LimitTooLarge"
             case mediaManifestContent = "InvalidParameterValue.MediaManifestContent"
@@ -589,6 +590,11 @@ extension TCVodError {
             InvalidParameterValue(.labelSet)
         }
 
+        /// 参数错误：标签错误。
+        public static var labels: InvalidParameterValue {
+            InvalidParameterValue(.labels)
+        }
+
         /// 参数错误：Limit。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
@@ -614,7 +620,7 @@ extension TCVodError {
             InvalidParameterValue(.mediaUrl)
         }
 
-        /// Metric 参数错误。
+        /// 参数错误：Metric 无效。
         public static var metric: InvalidParameterValue {
             InvalidParameterValue(.metric)
         }
@@ -1176,6 +1182,8 @@ extension TCVodError {
                 code = .invalidParameterValue_KeyFrameDescContentTooLong
             case .labelSet:
                 code = .invalidParameterValue_LabelSet
+            case .labels:
+                code = .invalidParameterValue_Labels
             case .limit:
                 code = .invalidParameterValue_Limit
             case .limitTooLarge:

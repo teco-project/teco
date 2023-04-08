@@ -91,12 +91,17 @@ extension Facefusion {
     }
 
     /// 人脸信息
-    public struct MaterialFaces: TCOutputModel {
+    public struct MaterialFaces: TCInputModel, TCOutputModel {
         /// 人脸序号
-        public let faceId: String
+        public let faceId: String?
 
         /// 人脸框信息
-        public let faceInfo: FaceInfo
+        public let faceInfo: FaceInfo?
+
+        public init(faceId: String? = nil, faceInfo: FaceInfo? = nil) {
+            self.faceId = faceId
+            self.faceInfo = faceInfo
+        }
 
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"

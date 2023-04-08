@@ -64,6 +64,8 @@ extension Ocr {
     /// <b>此接口为表格识别的旧版本服务，不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/49525">新版表格识别</a>。</b>
     ///
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func tableOCR(_ input: TableOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TableOCRResponse> {
         self.client.execute(action: "TableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -74,6 +76,8 @@ extension Ocr {
     /// <b>此接口为表格识别的旧版本服务，不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/49525">新版表格识别</a>。</b>
     ///
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func tableOCR(_ input: TableOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TableOCRResponse {
         try await self.client.execute(action: "TableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -84,6 +88,8 @@ extension Ocr {
     /// <b>此接口为表格识别的旧版本服务，不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/49525">新版表格识别</a>。</b>
     ///
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func tableOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TableOCRResponse> {
         self.tableOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -94,6 +100,8 @@ extension Ocr {
     /// <b>此接口为表格识别的旧版本服务，不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/49525">新版表格识别</a>。</b>
     ///
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func tableOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TableOCRResponse {
         try await self.tableOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

@@ -17,8 +17,9 @@
 extension TCTeoError {
     public struct ResourceUnavailable: TCTeoErrorType {
         enum Code: String {
-            case availableDomainNotFound = "ResourceUnavailable.AvailableDomainNotFound"
             case certNotFound = "ResourceUnavailable.CertNotFound"
+            case domainAlreadyExists = "ResourceUnavailable.DomainAlreadyExists"
+            case domainNotFound = "ResourceUnavailable.DomainNotFound"
             case hostNotFound = "ResourceUnavailable.HostNotFound"
             case proxyZoneNotFound = "ResourceUnavailable.ProxyZoneNotFound"
             case zoneNotFound = "ResourceUnavailable.ZoneNotFound"
@@ -47,14 +48,19 @@ extension TCTeoError {
             self.context = context
         }
 
-        /// 无剩余可创建新任务的域名。
-        public static var availableDomainNotFound: ResourceUnavailable {
-            ResourceUnavailable(.availableDomainNotFound)
-        }
-
         /// 证书不存在或未授权。
         public static var certNotFound: ResourceUnavailable {
             ResourceUnavailable(.certNotFound)
+        }
+
+        /// 当前域名已接入EdgeOne，如确认需要接入到当前账号，请进行域名找回。
+        public static var domainAlreadyExists: ResourceUnavailable {
+            ResourceUnavailable(.domainAlreadyExists)
+        }
+
+        /// 请求的加速域名不存在，请更正后重试。
+        public static var domainNotFound: ResourceUnavailable {
+            ResourceUnavailable(.domainNotFound)
         }
 
         /// 域名不存在或未开启代理。
@@ -80,10 +86,12 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .availableDomainNotFound:
-                code = .resourceUnavailable_AvailableDomainNotFound
             case .certNotFound:
                 code = .resourceUnavailable_CertNotFound
+            case .domainAlreadyExists:
+                code = .resourceUnavailable_DomainAlreadyExists
+            case .domainNotFound:
+                code = .resourceUnavailable_DomainNotFound
             case .hostNotFound:
                 code = .resourceUnavailable_HostNotFound
             case .proxyZoneNotFound:

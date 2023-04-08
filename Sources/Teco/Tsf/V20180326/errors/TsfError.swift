@@ -27,25 +27,39 @@ public struct TCTsfError: TCTsfErrorType {
         case failedOperation_ApiMetaParseFailed = "FailedOperation.ApiMetaParseFailed"
         case failedOperation_ApplicationCreateEsAtuhError = "FailedOperation.ApplicationCreateEsAtuhError"
         case failedOperation_ApplicationQueryFailed = "FailedOperation.ApplicationQueryFailed"
+        case failedOperation_CloudApiProxyError = "FailedOperation.CloudApiProxyError"
         case failedOperation_ClusterCreateVpcFail = "FailedOperation.ClusterCreateVpcFail"
         case failedOperation_ClusterQueryFailed = "FailedOperation.ClusterQueryFailed"
+        case failedOperation_ClusterUpdateFailed = "FailedOperation.ClusterUpdateFailed"
         case failedOperation_ConfigApplicationQueryFailed = "FailedOperation.ConfigApplicationQueryFailed"
         case failedOperation_ConfigCreateFailed = "FailedOperation.ConfigCreateFailed"
         case failedOperation_ConfigGroupQueryFailed = "FailedOperation.ConfigGroupQueryFailed"
         case failedOperation_ConfigNamespaceQueryFailed = "FailedOperation.ConfigNamespaceQueryFailed"
         case failedOperation_ConfigQueryFailed = "FailedOperation.ConfigQueryFailed"
         case failedOperation_ConfigReleaseQueryFailed = "FailedOperation.ConfigReleaseQueryFailed"
+        case failedOperation_ConfigTemplateCreateFailed = "FailedOperation.ConfigTemplateCreateFailed"
+        case failedOperation_ConfigTemplateDeleteFailed = "FailedOperation.ConfigTemplateDeleteFailed"
+        case failedOperation_ConfigTemplateImportFailed = "FailedOperation.ConfigTemplateImportFailed"
+        case failedOperation_ConfigTemplateSearchListFailed = "FailedOperation.ConfigTemplateSearchListFailed"
+        case failedOperation_ConfigTemplateUpdateFailed = "FailedOperation.ConfigTemplateUpdateFailed"
         case failedOperation_ContainergroupGroupHasrun = "FailedOperation.ContainergroupGroupHasrun"
         case failedOperation_ContainergroupGroupHasstop = "FailedOperation.ContainergroupGroupHasstop"
+        case failedOperation_ContainergroupKuberneteApiInvokeError = "FailedOperation.ContainergroupKuberneteApiInvokeError"
+        case failedOperation_ContainergroupKuberneteConnectError = "FailedOperation.ContainergroupKuberneteConnectError"
+        case failedOperation_ContainergroupKubernetesApiInvokeError = "FailedOperation.ContainergroupKubernetesApiInvokeError"
+        case failedOperation_ContainergroupKubernetesConnectError = "FailedOperation.ContainergroupKubernetesConnectError"
         case failedOperation_CvmCaeMasterHealthCheckConfigError = "FailedOperation.CvmCaeMasterHealthCheckConfigError"
         case failedOperation_GatewayRemoteCallError = "FailedOperation.GatewayRemoteCallError"
         case failedOperation_GroupExists = "FailedOperation.GroupExists"
         case failedOperation_GroupQueryFaild = "FailedOperation.GroupQueryFaild"
+        case failedOperation_ImagerepoTcrBindError = "FailedOperation.ImagerepoTcrBindError"
         case failedOperation_InstanceDeleteFailed = "FailedOperation.InstanceDeleteFailed"
         case failedOperation_InstanceQueryFailed = "FailedOperation.InstanceQueryFailed"
         case failedOperation_InstanceResetError = "FailedOperation.InstanceResetError"
         case failedOperation_InstanceResetTimeout = "FailedOperation.InstanceResetTimeout"
         case failedOperation_InstanceUpdateFailed = "FailedOperation.InstanceUpdateFailed"
+        case failedOperation_InternalError = "FailedOperation.InternalError"
+        case failedOperation_InvalidParameter = "FailedOperation.InvalidParameter"
         case failedOperation_LaneInfoDeleteConsulFailed = "FailedOperation.LaneInfoDeleteConsulFailed"
         case failedOperation_LaneInfoGroupNotEmpty = "FailedOperation.LaneInfoGroupNotEmpty"
         case failedOperation_LaneInfoReleaseConsulFailed = "FailedOperation.LaneInfoReleaseConsulFailed"
@@ -55,6 +69,11 @@ public struct TCTsfError: TCTsfErrorType {
         case failedOperation_NamespaceCreateFailed = "FailedOperation.NamespaceCreateFailed"
         case failedOperation_NamespaceQueryFailed = "FailedOperation.NamespaceQueryFailed"
         case failedOperation_RatelimitConsulError = "FailedOperation.RatelimitConsulError"
+        case failedOperation_RatelimitMeshApiServiceError = "FailedOperation.RatelimitMeshApiServiceError"
+        case failedOperation_ResourceOpFailed = "FailedOperation.ResourceOpFailed"
+        case failedOperation_RouteAffinityMeshFailed = "FailedOperation.RouteAffinityMeshFailed"
+        case failedOperation_RouteEnableConsulFailed = "FailedOperation.RouteEnableConsulFailed"
+        case failedOperation_RouteNamespaceRequestError = "FailedOperation.RouteNamespaceRequestError"
         case failedOperation_ServiceInsertFailed = "FailedOperation.ServiceInsertFailed"
         case failedOperation_ServiceQueryFailed = "FailedOperation.ServiceQueryFailed"
         case failedOperation_TaskCreateError = "FailedOperation.TaskCreateError"
@@ -66,13 +85,31 @@ public struct TCTsfError: TCTsfErrorType {
         case failedOperation_TaskTerminateFailed = "FailedOperation.TaskTerminateFailed"
         case failedOperation_TaskUpdateError = "FailedOperation.TaskUpdateError"
         case failedOperation_TkeClusterCreateFailed = "FailedOperation.TkeClusterCreateFailed"
+        case failedOperation_TkeClusterDeleteFailed = "FailedOperation.TkeClusterDeleteFailed"
         case failedOperation_TkeClusterQueryFailed = "FailedOperation.TkeClusterQueryFailed"
+        case failedOperation_TsfApmAgentTaskQueryError = "FailedOperation.TsfApmAgentTaskQueryError"
+        case failedOperation_TsfApmAgentTaskWriteError = "FailedOperation.TsfApmAgentTaskWriteError"
+        case failedOperation_TsfApmApmAgentNoConnection = "FailedOperation.TsfApmApmAgentNoConnection"
+        case failedOperation_TsfApmBusiLogCfgAppRelationWriteError = "FailedOperation.TsfApmBusiLogCfgAppRelationWriteError"
+        case failedOperation_TsfApmBusiLogCfgQueryError = "FailedOperation.TsfApmBusiLogCfgQueryError"
         case failedOperation_TsfApmBusiLogCfgSchemaQueryError = "FailedOperation.TsfApmBusiLogCfgSchemaQueryError"
+        case failedOperation_TsfApmBusiLogCfgSchemaWriteError = "FailedOperation.TsfApmBusiLogCfgSchemaWriteError"
         case failedOperation_TsfApmBusiLogCfgWriteError = "FailedOperation.TsfApmBusiLogCfgWriteError"
+        case failedOperation_TsfApmCallMasterInterfaceFailed = "FailedOperation.TsfApmCallMasterInterfaceFailed"
+        case failedOperation_TsfApmCallTsfMsFailed = "FailedOperation.TsfApmCallTsfMsFailed"
         case failedOperation_TsfApmCtsdbClientRequestError = "FailedOperation.TsfApmCtsdbClientRequestError"
+        case failedOperation_TsfApmInternalError = "FailedOperation.TsfApmInternalError"
+        case failedOperation_TsfApmStatsSearchServiceQueryError = "FailedOperation.TsfApmStatsSearchServiceQueryError"
+        case failedOperation_TsfAsDbInsterFail = "FailedOperation.TsfAsDbInsterFail"
+        case failedOperation_TsfAsDbQueryFail = "FailedOperation.TsfAsDbQueryFail"
+        case failedOperation_TsfAsExpandCountAndLimitError = "FailedOperation.TsfAsExpandCountAndLimitError"
+        case failedOperation_TsfAsExpandIndicatorsLessShrink = "FailedOperation.TsfAsExpandIndicatorsLessShrink"
+        case failedOperation_TsfAsExpandLimitLessShrinkLimit = "FailedOperation.TsfAsExpandLimitLessShrinkLimit"
         case failedOperation_TsfCmonitorCtsdbClientRequestFail = "FailedOperation.TsfCmonitorCtsdbClientRequestFail"
         case failedOperation_TsfMonitorWaitedTimeout = "FailedOperation.TsfMonitorWaitedTimeout"
+        case failedOperation_TsfMsServerError = "FailedOperation.TsfMsServerError"
         case failedOperation_TsfPrivilegeError = "FailedOperation.TsfPrivilegeError"
+        case failedOperation_UnauthorizedOperation = "FailedOperation.UnauthorizedOperation"
         case failedOperation_UnhandledException = "FailedOperation.UnhandledException"
         case internalError_ApplicationMasterFeignError = "InternalError.ApplicationMasterFeignError"
         case internalError_ApplicationMasterNuknownError = "InternalError.ApplicationMasterNuknownError"
@@ -93,6 +130,8 @@ public struct TCTsfError: TCTsfErrorType {
         case internalError_CvmCaeMasterDispatchError = "InternalError.CvmCaeMasterDispatchError"
         case internalError_CvmCaeMasterInternalError = "InternalError.CvmCaeMasterInternalError"
         case internalError_CvmCaeMasterNonAlive = "InternalError.CvmCaeMasterNonAlive"
+        case internalError_CvmCaeMasterQueryError = "InternalError.CvmCaeMasterQueryError"
+        case internalError_DispatchCommonError = "InternalError.DispatchCommonError"
         case internalError_GatewayCommonError = "InternalError.GatewayCommonError"
         case internalError_GatewayConsistencyError = "InternalError.GatewayConsistencyError"
         case internalError_GatewayConsulError = "InternalError.GatewayConsulError"
@@ -119,6 +158,7 @@ public struct TCTsfError: TCTsfErrorType {
         case internalError_UnhandledException = "InternalError.UnhandledException"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_ApplicationDescLength = "InvalidParameterValue.ApplicationDescLength"
         case invalidParameterValue_ApplicationMicroTypeInvalid = "InvalidParameterValue.ApplicationMicroTypeInvalid"
         case invalidParameterValue_ApplicationNameExist = "InvalidParameterValue.ApplicationNameExist"
         case invalidParameterValue_ApplicationNameLength = "InvalidParameterValue.ApplicationNameLength"
@@ -130,6 +170,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ClusterCidrConflict = "InvalidParameterValue.ClusterCidrConflict"
         case invalidParameterValue_ClusterNameExist = "InvalidParameterValue.ClusterNameExist"
         case invalidParameterValue_ClusterNameRequired = "InvalidParameterValue.ClusterNameRequired"
+        case invalidParameterValue_ClusterPageLimitInvalid = "InvalidParameterValue.ClusterPageLimitInvalid"
         case invalidParameterValue_ClusterRegionInvalid = "InvalidParameterValue.ClusterRegionInvalid"
         case invalidParameterValue_ClusterTypeInvalid = "InvalidParameterValue.ClusterTypeInvalid"
         case invalidParameterValue_ClusterZoneInvalid = "InvalidParameterValue.ClusterZoneInvalid"
@@ -139,6 +180,10 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ConfigNameInvalid = "InvalidParameterValue.ConfigNameInvalid"
         case invalidParameterValue_ConfigNotExistsOrPermissionDenied = "InvalidParameterValue.ConfigNotExistsOrPermissionDenied"
         case invalidParameterValue_ConfigReleaseNotExists = "InvalidParameterValue.ConfigReleaseNotExists"
+        case invalidParameterValue_ConfigTemplateDescTooLong = "InvalidParameterValue.ConfigTemplateDescTooLong"
+        case invalidParameterValue_ConfigTemplateNameInvalid = "InvalidParameterValue.ConfigTemplateNameInvalid"
+        case invalidParameterValue_ConfigTemplateNameTooLong = "InvalidParameterValue.ConfigTemplateNameTooLong"
+        case invalidParameterValue_ConfigTemplateTypeInvalid = "InvalidParameterValue.ConfigTemplateTypeInvalid"
         case invalidParameterValue_ConfigValueFormatInvalid = "InvalidParameterValue.ConfigValueFormatInvalid"
         case invalidParameterValue_ConfigValueTooLong = "InvalidParameterValue.ConfigValueTooLong"
         case invalidParameterValue_ConfigVersionDescInvalid = "InvalidParameterValue.ConfigVersionDescInvalid"
@@ -173,16 +218,20 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_CvmCaeMasterAgentBusy = "InvalidParameterValue.CvmCaeMasterAgentBusy"
         case invalidParameterValue_CvmCaeMasterAgentNotFound = "InvalidParameterValue.CvmCaeMasterAgentNotFound"
         case invalidParameterValue_CvmCaeMasterGroupNoAgent = "InvalidParameterValue.CvmCaeMasterGroupNoAgent"
+        case invalidParameterValue_CvmCaeMasterTaskNotExist = "InvalidParameterValue.CvmCaeMasterTaskNotExist"
         case invalidParameterValue_DeployGroupNotExists = "InvalidParameterValue.DeployGroupNotExists"
         case invalidParameterValue_FileConfigAlreadyReleased = "InvalidParameterValue.FileConfigAlreadyReleased"
         case invalidParameterValue_FileConfigExists = "InvalidParameterValue.FileConfigExists"
         case invalidParameterValue_FileConfigExistsPath = "InvalidParameterValue.FileConfigExistsPath"
         case invalidParameterValue_FileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
+        case invalidParameterValue_FileConfigFileNameInvalid = "InvalidParameterValue.FileConfigFileNameInvalid"
         case invalidParameterValue_FileConfigFilePathInvalid = "InvalidParameterValue.FileConfigFilePathInvalid"
         case invalidParameterValue_FileConfigNameInvalid = "InvalidParameterValue.FileConfigNameInvalid"
         case invalidParameterValue_FileConfigNotExistsOrPermissionDenied = "InvalidParameterValue.FileConfigNotExistsOrPermissionDenied"
         case invalidParameterValue_FileConfigPathExists = "InvalidParameterValue.FileConfigPathExists"
+        case invalidParameterValue_FileConfigReleaseNotExists = "InvalidParameterValue.FileConfigReleaseNotExists"
         case invalidParameterValue_FileConfigVersionDescInvalid = "InvalidParameterValue.FileConfigVersionDescInvalid"
+        case invalidParameterValue_FileConfigVersionInvalid = "InvalidParameterValue.FileConfigVersionInvalid"
         case invalidParameterValue_GatewayParameterError = "InvalidParameterValue.GatewayParameterError"
         case invalidParameterValue_GatewayParameterInvalid = "InvalidParameterValue.GatewayParameterInvalid"
         case invalidParameterValue_GlobalNamespaceNameExist = "InvalidParameterValue.GlobalNamespaceNameExist"
@@ -230,6 +279,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_NamespaceNameInvalid = "InvalidParameterValue.NamespaceNameInvalid"
         case invalidParameterValue_NamespaceNotExists = "InvalidParameterValue.NamespaceNotExists"
         case invalidParameterValue_ReleasedConfigCanNotBeDeleted = "InvalidParameterValue.ReleasedConfigCanNotBeDeleted"
+        case invalidParameterValue_ReleasedFileConfigCanNotBeDeleted = "InvalidParameterValue.ReleasedFileConfigCanNotBeDeleted"
         case invalidParameterValue_ResourcePermissionDenied = "InvalidParameterValue.ResourcePermissionDenied"
         case invalidParameterValue_ResourceTypeError = "InvalidParameterValue.ResourceTypeError"
         case invalidParameterValue_ServiceDescLength = "InvalidParameterValue.ServiceDescLength"
@@ -237,7 +287,10 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ServiceNotExistsOrPermissionDenied = "InvalidParameterValue.ServiceNotExistsOrPermissionDenied"
         case invalidParameterValue_TaskParameterInvalid = "InvalidParameterValue.TaskParameterInvalid"
         case invalidParameterValue_WrongDontStartValue = "InvalidParameterValue.WrongDontStartValue"
+        case invalidParameter_ApplicationDeleteFailed = "InvalidParameter.ApplicationDeleteFailed"
         case invalidParameter_BadRequest = "InvalidParameter.BadRequest"
+        case invalidParameter_ConfigTemplateNameInvalid = "InvalidParameter.ConfigTemplateNameInvalid"
+        case invalidParameter_CvmCaeMasterJsonDecodeFail = "InvalidParameter.CvmCaeMasterJsonDecodeFail"
         case invalidParameter_CvmCaeMasterUnknownInstanceStatus = "InvalidParameter.CvmCaeMasterUnknownInstanceStatus"
         case invalidParameter_ImagerepoTcrNamespaceNotFound = "InvalidParameter.ImagerepoTcrNamespaceNotFound"
         case invalidParameter_KubernetesParamError = "InvalidParameter.KubernetesParamError"
@@ -287,27 +340,36 @@ public struct TCTsfError: TCTsfErrorType {
         case missingParameter_ConfigIdRequired = "MissingParameter.ConfigIdRequired"
         case missingParameter_ConfigNameRequired = "MissingParameter.ConfigNameRequired"
         case missingParameter_ConfigReleaseIdRequired = "MissingParameter.ConfigReleaseIdRequired"
+        case missingParameter_ConfigTemplateIdRequired = "MissingParameter.ConfigTemplateIdRequired"
+        case missingParameter_ConfigTemplateNameRequired = "MissingParameter.ConfigTemplateNameRequired"
+        case missingParameter_ConfigTemplateTypeRequired = "MissingParameter.ConfigTemplateTypeRequired"
         case missingParameter_ConfigTypeRequired = "MissingParameter.ConfigTypeRequired"
         case missingParameter_ConfigValueRequired = "MissingParameter.ConfigValueRequired"
         case missingParameter_ConfigVersionRequired = "MissingParameter.ConfigVersionRequired"
         case missingParameter_FileConfigFileValueRequired = "MissingParameter.FileConfigFileValueRequired"
         case missingParameter_GatewayParameterRequired = "MissingParameter.GatewayParameterRequired"
         case missingParameter_GroupApplicationNull = "MissingParameter.GroupApplicationNull"
+        case missingParameter_GroupExpandServeridNull = "MissingParameter.GroupExpandServeridNull"
         case missingParameter_GroupIdNull = "MissingParameter.GroupIdNull"
         case missingParameter_GroupIdRequired = "MissingParameter.GroupIdRequired"
         case missingParameter_GroupNamespaceNull = "MissingParameter.GroupNamespaceNull"
+        case missingParameter_GroupShirkServeridNull = "MissingParameter.GroupShirkServeridNull"
         case missingParameter_InstanceImportModeNull = "MissingParameter.InstanceImportModeNull"
         case missingParameter_NamespaceIdRequired = "MissingParameter.NamespaceIdRequired"
         case missingParameter_RequiredParameterMissing = "MissingParameter.RequiredParameterMissing"
         case missingParameter_ServiceIdRequired = "MissingParameter.ServiceIdRequired"
+        case missingParameter_SystemParameterRequired = "MissingParameter.SystemParameterRequired"
         case missingParameter_TaskParameterMissed = "MissingParameter.TaskParameterMissed"
         case resourceInUse_ApplicationCannotDelete = "ResourceInUse.ApplicationCannotDelete"
         case resourceInUse_CvmcaeMasterCannotDelete = "ResourceInUse.CvmcaeMasterCannotDelete"
         case resourceInUse_DefaultNamepsaceCannotBeDeleted = "ResourceInUse.DefaultNamepsaceCannotBeDeleted"
         case resourceInUse_GroupCannotDelete = "ResourceInUse.GroupCannotDelete"
+        case resourceInUse_GroupExists = "ResourceInUse.GroupExists"
         case resourceInUse_GroupInOperation = "ResourceInUse.GroupInOperation"
+        case resourceInUse_InstanceExists = "ResourceInUse.InstanceExists"
         case resourceInUse_InstanceHasBeenUsed = "ResourceInUse.InstanceHasBeenUsed"
         case resourceInUse_NamespaceCannotDelete = "ResourceInUse.NamespaceCannotDelete"
+        case resourceInUse_NonDefaultNamespaceExists = "ResourceInUse.NonDefaultNamespaceExists"
         case resourceInUse_ObjectExist = "ResourceInUse.ObjectExist"
         case resourceInUse_RatelimitRuleExistError = "ResourceInUse.RatelimitRuleExistError"
         case resourceInsufficient_PackageSpaceFull = "ResourceInsufficient.PackageSpaceFull"
@@ -387,6 +449,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_ApplicationQueryFailed)
     }
 
+    /// TSF云API请求调用失败。
+    public static var failedOperation_CloudApiProxyError: TCTsfError {
+        TCTsfError(.failedOperation_CloudApiProxyError)
+    }
+
     /// 创建集群，开通VPC网络权限失败。
     public static var failedOperation_ClusterCreateVpcFail: TCTsfError {
         TCTsfError(.failedOperation_ClusterCreateVpcFail)
@@ -395,6 +462,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 查询集群失败。
     public static var failedOperation_ClusterQueryFailed: TCTsfError {
         TCTsfError(.failedOperation_ClusterQueryFailed)
+    }
+
+    /// 更新集群失败。
+    public static var failedOperation_ClusterUpdateFailed: TCTsfError {
+        TCTsfError(.failedOperation_ClusterUpdateFailed)
     }
 
     /// 应用查询失败。
@@ -427,6 +499,31 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_ConfigReleaseQueryFailed)
     }
 
+    /// 配置模板创建失败。
+    public static var failedOperation_ConfigTemplateCreateFailed: TCTsfError {
+        TCTsfError(.failedOperation_ConfigTemplateCreateFailed)
+    }
+
+    /// 配置模板删除失败。
+    public static var failedOperation_ConfigTemplateDeleteFailed: TCTsfError {
+        TCTsfError(.failedOperation_ConfigTemplateDeleteFailed)
+    }
+
+    /// 配置模板导入失败。
+    public static var failedOperation_ConfigTemplateImportFailed: TCTsfError {
+        TCTsfError(.failedOperation_ConfigTemplateImportFailed)
+    }
+
+    /// 配置模板分页查询失败。
+    public static var failedOperation_ConfigTemplateSearchListFailed: TCTsfError {
+        TCTsfError(.failedOperation_ConfigTemplateSearchListFailed)
+    }
+
+    /// 配置模板更新失败。
+    public static var failedOperation_ConfigTemplateUpdateFailed: TCTsfError {
+        TCTsfError(.failedOperation_ConfigTemplateUpdateFailed)
+    }
+
     /// 部署组处于运行状态，无法启动。
     public static var failedOperation_ContainergroupGroupHasrun: TCTsfError {
         TCTsfError(.failedOperation_ContainergroupGroupHasrun)
@@ -435,6 +532,26 @@ public struct TCTsfError: TCTsfErrorType {
     /// 部署组处于停止状态，无法执行此操作。
     public static var failedOperation_ContainergroupGroupHasstop: TCTsfError {
         TCTsfError(.failedOperation_ContainergroupGroupHasstop)
+    }
+
+    /// 调用 kube-api-server 失败。
+    public static var failedOperation_ContainergroupKuberneteApiInvokeError: TCTsfError {
+        TCTsfError(.failedOperation_ContainergroupKuberneteApiInvokeError)
+    }
+
+    /// 连接 kube-api-sever 失败。
+    public static var failedOperation_ContainergroupKuberneteConnectError: TCTsfError {
+        TCTsfError(.failedOperation_ContainergroupKuberneteConnectError)
+    }
+
+    /// 调用 kube-api-server 失败。
+    public static var failedOperation_ContainergroupKubernetesApiInvokeError: TCTsfError {
+        TCTsfError(.failedOperation_ContainergroupKubernetesApiInvokeError)
+    }
+
+    /// 调用 kube-api-server 失败。
+    public static var failedOperation_ContainergroupKubernetesConnectError: TCTsfError {
+        TCTsfError(.failedOperation_ContainergroupKubernetesConnectError)
     }
 
     /// 健康检查配置失败。
@@ -455,6 +572,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 部署组查询失败。
     public static var failedOperation_GroupQueryFaild: TCTsfError {
         TCTsfError(.failedOperation_GroupQueryFaild)
+    }
+
+    /// tcr仓库绑定失败。
+    public static var failedOperation_ImagerepoTcrBindError: TCTsfError {
+        TCTsfError(.failedOperation_ImagerepoTcrBindError)
     }
 
     /// 机器实例删除失败。
@@ -480,6 +602,16 @@ public struct TCTsfError: TCTsfErrorType {
     /// 机器实例更新失败。
     public static var failedOperation_InstanceUpdateFailed: TCTsfError {
         TCTsfError(.failedOperation_InstanceUpdateFailed)
+    }
+
+    /// 内部错误。
+    public static var failedOperation_InternalError: TCTsfError {
+        TCTsfError(.failedOperation_InternalError)
+    }
+
+    /// 非法参数。
+    public static var failedOperation_InvalidParameter: TCTsfError {
+        TCTsfError(.failedOperation_InvalidParameter)
     }
 
     /// 泳道从consul删除失败。
@@ -525,6 +657,31 @@ public struct TCTsfError: TCTsfErrorType {
     /// 访问配置中心失败。
     public static var failedOperation_RatelimitConsulError: TCTsfError {
         TCTsfError(.failedOperation_RatelimitConsulError)
+    }
+
+    /// 调用 Mesh API Server 失败。
+    public static var failedOperation_RatelimitMeshApiServiceError: TCTsfError {
+        TCTsfError(.failedOperation_RatelimitMeshApiServiceError)
+    }
+
+    /// 资源操作失败。
+    public static var failedOperation_ResourceOpFailed: TCTsfError {
+        TCTsfError(.failedOperation_ResourceOpFailed)
+    }
+
+    /// 路由就近访问策略启停用调用MESHAPI失败。
+    public static var failedOperation_RouteAffinityMeshFailed: TCTsfError {
+        TCTsfError(.failedOperation_RouteAffinityMeshFailed)
+    }
+
+    /// 服务路由规则启用生效失败。
+    public static var failedOperation_RouteEnableConsulFailed: TCTsfError {
+        TCTsfError(.failedOperation_RouteEnableConsulFailed)
+    }
+
+    /// 路由就近访问，查询命名空间失败。
+    public static var failedOperation_RouteNamespaceRequestError: TCTsfError {
+        TCTsfError(.failedOperation_RouteNamespaceRequestError)
     }
 
     /// 服务数据库入库失败。
@@ -582,9 +739,39 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_TkeClusterCreateFailed)
     }
 
+    /// TKE 集群删除失败。
+    public static var failedOperation_TkeClusterDeleteFailed: TCTsfError {
+        TCTsfError(.failedOperation_TkeClusterDeleteFailed)
+    }
+
     /// TKE 集群查询失败。
     public static var failedOperation_TkeClusterQueryFailed: TCTsfError {
         TCTsfError(.failedOperation_TkeClusterQueryFailed)
+    }
+
+    /// TSF应用性能管理任务数据库查询失败。
+    public static var failedOperation_TsfApmAgentTaskQueryError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmAgentTaskQueryError)
+    }
+
+    /// TSF应用性能管理任务数据库写入失败。
+    public static var failedOperation_TsfApmAgentTaskWriteError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmAgentTaskWriteError)
+    }
+
+    /// TSF应用性能管理apm-agent无法与该实例建立连接。
+    public static var failedOperation_TsfApmApmAgentNoConnection: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmApmAgentNoConnection)
+    }
+
+    /// TSF应用性能管理业务日志配置与应用关联数据库写入失败。
+    public static var failedOperation_TsfApmBusiLogCfgAppRelationWriteError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmBusiLogCfgAppRelationWriteError)
+    }
+
+    /// TSF应用性能管理业务日志配置数据库查询失败。
+    public static var failedOperation_TsfApmBusiLogCfgQueryError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmBusiLogCfgQueryError)
     }
 
     /// TSF应用性能管理业务日志配置解析规则查询失败。
@@ -592,14 +779,64 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_TsfApmBusiLogCfgSchemaQueryError)
     }
 
+    /// TSF应用性能管理业务日志配置解析规则写入失败。
+    public static var failedOperation_TsfApmBusiLogCfgSchemaWriteError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmBusiLogCfgSchemaWriteError)
+    }
+
     /// TSF应用性能管理业务日志配置数据库写入失败。
     public static var failedOperation_TsfApmBusiLogCfgWriteError: TCTsfError {
         TCTsfError(.failedOperation_TsfApmBusiLogCfgWriteError)
     }
 
+    /// 调用master接口更新部署组失败。
+    public static var failedOperation_TsfApmCallMasterInterfaceFailed: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmCallMasterInterfaceFailed)
+    }
+
+    /// TSF应用性能管理调用tsf-ms模块失败。
+    public static var failedOperation_TsfApmCallTsfMsFailed: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmCallTsfMsFailed)
+    }
+
     /// TSF应用性能管理CTSDB客户端调用失败。
     public static var failedOperation_TsfApmCtsdbClientRequestError: TCTsfError {
         TCTsfError(.failedOperation_TsfApmCtsdbClientRequestError)
+    }
+
+    /// TSF应用性能管理内部异常, 请稍后重试。
+    public static var failedOperation_TsfApmInternalError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmInternalError)
+    }
+
+    /// TSF应用性能管理运行状态统计查询服务查询失败。
+    public static var failedOperation_TsfApmStatsSearchServiceQueryError: TCTsfError {
+        TCTsfError(.failedOperation_TsfApmStatsSearchServiceQueryError)
+    }
+
+    /// 数据库插入规则失败。
+    public static var failedOperation_TsfAsDbInsterFail: TCTsfError {
+        TCTsfError(.failedOperation_TsfAsDbInsterFail)
+    }
+
+    /// 查询数据库失败。
+    public static var failedOperation_TsfAsDbQueryFail: TCTsfError {
+        TCTsfError(.failedOperation_TsfAsDbQueryFail)
+    }
+
+    /// 扩容规则每次扩容机器数目不能大于机器最大数目。
+    public static var failedOperation_TsfAsExpandCountAndLimitError: TCTsfError {
+        TCTsfError(.failedOperation_TsfAsExpandCountAndLimitError)
+    }
+
+    /// 扩容规则指标不能小于缩容规则。
+    public static var failedOperation_TsfAsExpandIndicatorsLessShrink: TCTsfError {
+        TCTsfError(.failedOperation_TsfAsExpandIndicatorsLessShrink)
+    }
+
+    /// 扩容最大实例数不能小于缩容最小实例数。
+    public static var failedOperation_TsfAsExpandLimitLessShrinkLimit: TCTsfError {
+        TCTsfError(.failedOperation_TsfAsExpandLimitLessShrinkLimit)
     }
 
     /// ctsdb数据库请求失败。
@@ -612,9 +849,19 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_TsfMonitorWaitedTimeout)
     }
 
+    /// 调用ms server失败。
+    public static var failedOperation_TsfMsServerError: TCTsfError {
+        TCTsfError(.failedOperation_TsfMsServerError)
+    }
+
     /// TSF权限模块异常，请联系系统管理员。。
     public static var failedOperation_TsfPrivilegeError: TCTsfError {
         TCTsfError(.failedOperation_TsfPrivilegeError)
+    }
+
+    /// 未授权。
+    public static var failedOperation_UnauthorizedOperation: TCTsfError {
+        TCTsfError(.failedOperation_UnauthorizedOperation)
     }
 
     /// 模块未处理异常。
@@ -715,6 +962,16 @@ public struct TCTsfError: TCTsfErrorType {
     /// MASTER通道查询失败。
     public static var internalError_CvmCaeMasterNonAlive: TCTsfError {
         TCTsfError(.internalError_CvmCaeMasterNonAlive)
+    }
+
+    /// 数据查询失败。
+    public static var internalError_CvmCaeMasterQueryError: TCTsfError {
+        TCTsfError(.internalError_CvmCaeMasterQueryError)
+    }
+
+    /// TSF暂时不能响应请求。。
+    public static var internalError_DispatchCommonError: TCTsfError {
+        TCTsfError(.internalError_DispatchCommonError)
     }
 
     /// 网关通用异常:%s。
@@ -847,6 +1104,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue)
     }
 
+    /// 应用描述不能大于200组字符。
+    public static var invalidParameterValue_ApplicationDescLength: TCTsfError {
+        TCTsfError(.invalidParameterValue_ApplicationDescLength)
+    }
+
     /// 无效的微服务类型。
     public static var invalidParameterValue_ApplicationMicroTypeInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_ApplicationMicroTypeInvalid)
@@ -902,6 +1164,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_ClusterNameRequired)
     }
 
+    /// 集群无效的分页参数。
+    public static var invalidParameterValue_ClusterPageLimitInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_ClusterPageLimitInvalid)
+    }
+
     /// 创建集群，无效的地域字段。
     public static var invalidParameterValue_ClusterRegionInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_ClusterRegionInvalid)
@@ -945,6 +1212,26 @@ public struct TCTsfError: TCTsfErrorType {
     /// 无法获取配置项发布信息。
     public static var invalidParameterValue_ConfigReleaseNotExists: TCTsfError {
         TCTsfError(.invalidParameterValue_ConfigReleaseNotExists)
+    }
+
+    /// 配置模板描述过长。
+    public static var invalidParameterValue_ConfigTemplateDescTooLong: TCTsfError {
+        TCTsfError(.invalidParameterValue_ConfigTemplateDescTooLong)
+    }
+
+    /// 配置模板名称不合规。
+    public static var invalidParameterValue_ConfigTemplateNameInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_ConfigTemplateNameInvalid)
+    }
+
+    /// 配置模板内容过长。
+    public static var invalidParameterValue_ConfigTemplateNameTooLong: TCTsfError {
+        TCTsfError(.invalidParameterValue_ConfigTemplateNameTooLong)
+    }
+
+    /// 配置模板类型不合规。
+    public static var invalidParameterValue_ConfigTemplateTypeInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_ConfigTemplateTypeInvalid)
     }
 
     /// 配置格式不符合YAML要求。
@@ -1117,6 +1404,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_CvmCaeMasterGroupNoAgent)
     }
 
+    /// 任务不存在。
+    public static var invalidParameterValue_CvmCaeMasterTaskNotExist: TCTsfError {
+        TCTsfError(.invalidParameterValue_CvmCaeMasterTaskNotExist)
+    }
+
     /// 部署组不存在。
     public static var invalidParameterValue_DeployGroupNotExists: TCTsfError {
         TCTsfError(.invalidParameterValue_DeployGroupNotExists)
@@ -1142,6 +1434,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_FileConfigExistsPathOther)
     }
 
+    /// 文件配置项文件名称不合规。
+    public static var invalidParameterValue_FileConfigFileNameInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_FileConfigFileNameInvalid)
+    }
+
     /// 文件配置项文件路径不合规。
     public static var invalidParameterValue_FileConfigFilePathInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_FileConfigFilePathInvalid)
@@ -1162,9 +1459,19 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_FileConfigPathExists)
     }
 
+    /// 无法获取文件配置项发布信息。
+    public static var invalidParameterValue_FileConfigReleaseNotExists: TCTsfError {
+        TCTsfError(.invalidParameterValue_FileConfigReleaseNotExists)
+    }
+
     /// 文件配置项版本描述不合规。
     public static var invalidParameterValue_FileConfigVersionDescInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_FileConfigVersionDescInvalid)
+    }
+
+    /// 文件配置项版本不合规。
+    public static var invalidParameterValue_FileConfigVersionInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_FileConfigVersionInvalid)
     }
 
     /// 请求参数异常:%s。
@@ -1402,6 +1709,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_ReleasedConfigCanNotBeDeleted)
     }
 
+    /// 文件配置项已经发布，不允许删除。
+    public static var invalidParameterValue_ReleasedFileConfigCanNotBeDeleted: TCTsfError {
+        TCTsfError(.invalidParameterValue_ReleasedFileConfigCanNotBeDeleted)
+    }
+
     /// 无权限操作资源%s。
     public static var invalidParameterValue_ResourcePermissionDenied: TCTsfError {
         TCTsfError(.invalidParameterValue_ResourcePermissionDenied)
@@ -1437,9 +1749,24 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_WrongDontStartValue)
     }
 
+    /// 删除应用失败。
+    public static var invalidParameter_ApplicationDeleteFailed: TCTsfError {
+        TCTsfError(.invalidParameter_ApplicationDeleteFailed)
+    }
+
     /// [%s]模块接口[%s]请求不正确（400 BAD REQUEST）。。
     public static var invalidParameter_BadRequest: TCTsfError {
         TCTsfError(.invalidParameter_BadRequest)
+    }
+
+    /// 配置模板名称不符合规范。
+    public static var invalidParameter_ConfigTemplateNameInvalid: TCTsfError {
+        TCTsfError(.invalidParameter_ConfigTemplateNameInvalid)
+    }
+
+    /// TSF MASTER 解包失败。
+    public static var invalidParameter_CvmCaeMasterJsonDecodeFail: TCTsfError {
+        TCTsfError(.invalidParameter_CvmCaeMasterJsonDecodeFail)
     }
 
     /// TSF MASTER 实例状态异常。
@@ -1687,6 +2014,21 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.missingParameter_ConfigReleaseIdRequired)
     }
 
+    /// 缺少配置模板id。
+    public static var missingParameter_ConfigTemplateIdRequired: TCTsfError {
+        TCTsfError(.missingParameter_ConfigTemplateIdRequired)
+    }
+
+    /// 配置模板名称未填写。
+    public static var missingParameter_ConfigTemplateNameRequired: TCTsfError {
+        TCTsfError(.missingParameter_ConfigTemplateNameRequired)
+    }
+
+    /// 配置模板类型未填写。
+    public static var missingParameter_ConfigTemplateTypeRequired: TCTsfError {
+        TCTsfError(.missingParameter_ConfigTemplateTypeRequired)
+    }
+
     /// 配置项类型未填写。
     public static var missingParameter_ConfigTypeRequired: TCTsfError {
         TCTsfError(.missingParameter_ConfigTypeRequired)
@@ -1717,6 +2059,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.missingParameter_GroupApplicationNull)
     }
 
+    /// 分组扩容操作，机器列表为空。
+    public static var missingParameter_GroupExpandServeridNull: TCTsfError {
+        TCTsfError(.missingParameter_GroupExpandServeridNull)
+    }
+
     /// 分组ID不能为空。
     public static var missingParameter_GroupIdNull: TCTsfError {
         TCTsfError(.missingParameter_GroupIdNull)
@@ -1730,6 +2077,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 分组所属命名空间不能为空。
     public static var missingParameter_GroupNamespaceNull: TCTsfError {
         TCTsfError(.missingParameter_GroupNamespaceNull)
+    }
+
+    /// 分组缩容操作，机器列表为空。
+    public static var missingParameter_GroupShirkServeridNull: TCTsfError {
+        TCTsfError(.missingParameter_GroupShirkServeridNull)
     }
 
     /// 虚拟机集群导入云主机导入方式为空。
@@ -1750,6 +2102,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 未填写服务Id。
     public static var missingParameter_ServiceIdRequired: TCTsfError {
         TCTsfError(.missingParameter_ServiceIdRequired)
+    }
+
+    /// 未指定%s。。
+    public static var missingParameter_SystemParameterRequired: TCTsfError {
+        TCTsfError(.missingParameter_SystemParameterRequired)
     }
 
     /// 缺少必填参数。
@@ -1777,9 +2134,19 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.resourceInUse_GroupCannotDelete)
     }
 
+    /// 集群下存在分组。
+    public static var resourceInUse_GroupExists: TCTsfError {
+        TCTsfError(.resourceInUse_GroupExists)
+    }
+
     /// 部署组在更新中 请稍后再执行该操作。
     public static var resourceInUse_GroupInOperation: TCTsfError {
         TCTsfError(.resourceInUse_GroupInOperation)
+    }
+
+    /// 实例已经存在。
+    public static var resourceInUse_InstanceExists: TCTsfError {
+        TCTsfError(.resourceInUse_InstanceExists)
     }
 
     /// 机器实例已经被使用。
@@ -1790,6 +2157,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 此命名空间下存在资源，无法执行删除操作。
     public static var resourceInUse_NamespaceCannotDelete: TCTsfError {
         TCTsfError(.resourceInUse_NamespaceCannotDelete)
+    }
+
+    /// 集群下存在非默认命名空间。
+    public static var resourceInUse_NonDefaultNamespaceExists: TCTsfError {
+        TCTsfError(.resourceInUse_NonDefaultNamespaceExists)
     }
 
     /// 资源对象已存在。
@@ -1812,8 +2184,6 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.resourceNotFound_ApplicationNotExist)
     }
 
-    /// 应用不存在或应用不属于当前项目。
-    ///
     /// 无法获取应用或应用不属于当前项目。
     public static var resourceNotFound_ApplicationProjectNotMatch: TCTsfError {
         TCTsfError(.resourceNotFound_ApplicationProjectNotMatch)

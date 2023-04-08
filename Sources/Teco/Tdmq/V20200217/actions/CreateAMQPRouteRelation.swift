@@ -70,26 +70,30 @@ extension Tdmq {
     }
 
     /// 创建AMQP路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPRouteRelationResponse> {
-        self.client.execute(action: "CreateAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPRouteRelation is no longer available.")
     }
 
     /// 创建AMQP路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPRouteRelationResponse {
-        try await self.client.execute(action: "CreateAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAMQPRouteRelation is no longer available.")
     }
 
     /// 创建AMQP路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPRouteRelation(clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPRouteRelationResponse> {
-        self.createAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPRouteRelation is no longer available.")
     }
 
     /// 创建AMQP路由关系
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPRouteRelation(clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPRouteRelationResponse {
-        try await self.createAMQPRouteRelation(.init(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPRouteRelation is no longer available.")
     }
 }

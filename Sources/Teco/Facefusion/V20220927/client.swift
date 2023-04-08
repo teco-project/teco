@@ -49,7 +49,7 @@ public struct Facefusion: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCFacefusionError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

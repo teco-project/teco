@@ -49,6 +49,7 @@ public struct TCAnicloudError: TCAnicloudErrorType {
         self.context = context
     }
 
+    /// 参数错误。
     public static var invalidParameter: TCAnicloudError {
         TCAnicloudError(.invalidParameter)
     }

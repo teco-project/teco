@@ -62,7 +62,12 @@ extension Cls {
         /// 默认值为1
         public let samplingRate: Float?
 
-        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil) {
+        /// 检索语法规则，默认值为0。
+        /// 0：Lucene语法，1：CQL语法。
+        /// 详细说明参见https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules
+        public let syntaxRule: UInt64?
+
+        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil) {
             self.from = from
             self.to = to
             self.query = query
@@ -72,6 +77,7 @@ extension Cls {
             self.sort = sort
             self.useNewAnalysis = useNewAnalysis
             self.samplingRate = samplingRate
+            self.syntaxRule = syntaxRule
         }
 
         enum CodingKeys: String, CodingKey {
@@ -84,6 +90,7 @@ extension Cls {
             case sort = "Sort"
             case useNewAnalysis = "UseNewAnalysis"
             case samplingRate = "SamplingRate"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -159,15 +166,15 @@ extension Cls {
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
-        self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
+        self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
-        try await self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
+        try await self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 }

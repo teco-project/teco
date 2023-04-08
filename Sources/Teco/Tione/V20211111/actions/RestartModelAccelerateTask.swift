@@ -74,7 +74,10 @@ extension Tione {
         /// SavedModel保存时配置的签名
         public let modelSignature: String?
 
-        public init(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil) {
+        /// 加速引擎对应的框架版本
+        public let frameworkVersion: String?
+
+        public init(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil, frameworkVersion: String? = nil) {
             self.modelAccTaskId = modelAccTaskId
             self.modelAccTaskName = modelAccTaskName
             self.modelSource = modelSource
@@ -94,6 +97,7 @@ extension Tione {
             self.accEngineVersion = accEngineVersion
             self.tags = tags
             self.modelSignature = modelSignature
+            self.frameworkVersion = frameworkVersion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -116,6 +120,7 @@ extension Tione {
             case accEngineVersion = "AccEngineVersion"
             case tags = "Tags"
             case modelSignature = "ModelSignature"
+            case frameworkVersion = "FrameworkVersion"
         }
     }
 
@@ -143,13 +148,13 @@ extension Tione {
 
     /// 重启模型加速任务
     @inlinable @discardableResult
-    public func restartModelAccelerateTask(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartModelAccelerateTaskResponse> {
-        self.restartModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId, modelAccTaskName: modelAccTaskName, modelSource: modelSource, algorithmFramework: algorithmFramework, modelId: modelId, modelName: modelName, modelVersion: modelVersion, modelInputPath: modelInputPath, optimizationLevel: optimizationLevel, modelInputNum: modelInputNum, modelInputInfos: modelInputInfos, modelOutputPath: modelOutputPath, modelFormat: modelFormat, tensorInfos: tensorInfos, gpuType: gpuType, hyperParameter: hyperParameter, accEngineVersion: accEngineVersion, tags: tags, modelSignature: modelSignature), region: region, logger: logger, on: eventLoop)
+    public func restartModelAccelerateTask(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil, frameworkVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartModelAccelerateTaskResponse> {
+        self.restartModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId, modelAccTaskName: modelAccTaskName, modelSource: modelSource, algorithmFramework: algorithmFramework, modelId: modelId, modelName: modelName, modelVersion: modelVersion, modelInputPath: modelInputPath, optimizationLevel: optimizationLevel, modelInputNum: modelInputNum, modelInputInfos: modelInputInfos, modelOutputPath: modelOutputPath, modelFormat: modelFormat, tensorInfos: tensorInfos, gpuType: gpuType, hyperParameter: hyperParameter, accEngineVersion: accEngineVersion, tags: tags, modelSignature: modelSignature, frameworkVersion: frameworkVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启模型加速任务
     @inlinable @discardableResult
-    public func restartModelAccelerateTask(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartModelAccelerateTaskResponse {
-        try await self.restartModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId, modelAccTaskName: modelAccTaskName, modelSource: modelSource, algorithmFramework: algorithmFramework, modelId: modelId, modelName: modelName, modelVersion: modelVersion, modelInputPath: modelInputPath, optimizationLevel: optimizationLevel, modelInputNum: modelInputNum, modelInputInfos: modelInputInfos, modelOutputPath: modelOutputPath, modelFormat: modelFormat, tensorInfos: tensorInfos, gpuType: gpuType, hyperParameter: hyperParameter, accEngineVersion: accEngineVersion, tags: tags, modelSignature: modelSignature), region: region, logger: logger, on: eventLoop)
+    public func restartModelAccelerateTask(modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil, frameworkVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartModelAccelerateTaskResponse {
+        try await self.restartModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId, modelAccTaskName: modelAccTaskName, modelSource: modelSource, algorithmFramework: algorithmFramework, modelId: modelId, modelName: modelName, modelVersion: modelVersion, modelInputPath: modelInputPath, optimizationLevel: optimizationLevel, modelInputNum: modelInputNum, modelInputInfos: modelInputInfos, modelOutputPath: modelOutputPath, modelFormat: modelFormat, tensorInfos: tensorInfos, gpuType: gpuType, hyperParameter: hyperParameter, accEngineVersion: accEngineVersion, tags: tags, modelSignature: modelSignature, frameworkVersion: frameworkVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -28,7 +28,7 @@ extension Redis {
         /// 结束时间。
         public let endTime: String
 
-        /// 慢查询平均执行时间阈值（单位：微秒）。
+        /// 慢查询平均执行时间阈值（单位：毫秒）。
         public let minQueryTime: Int64?
 
         /// 每个页面展示的慢查询条数，默认值为20。

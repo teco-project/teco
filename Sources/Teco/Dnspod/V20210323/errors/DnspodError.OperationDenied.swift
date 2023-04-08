@@ -131,6 +131,7 @@ extension TCDnspodError {
             OperationDenied(.notOrderOwner)
         }
 
+        /// 您没有权限操作此资源。
         public static var notResourceOwner: OperationDenied {
             OperationDenied(.notResourceOwner)
         }
@@ -145,6 +146,7 @@ extension TCDnspodError {
             OperationDenied(.postRequestAcceptOnly)
         }
 
+        /// 该资源不允许续费。
         public static var resourceNotAllowRenew: OperationDenied {
             OperationDenied(.resourceNotAllowRenew)
         }

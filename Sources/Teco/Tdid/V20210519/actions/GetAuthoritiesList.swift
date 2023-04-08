@@ -78,46 +78,53 @@ extension Tdid {
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
-        self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        try await self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
-        self.getAuthoritiesList(.init(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        try await self.getAuthoritiesList(.init(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesListPaginated(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [Authority])> {
-        self.client.paginate(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func getAuthoritiesListPaginated(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, onResponse: @escaping (GetAuthoritiesListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.getAuthoritiesList, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 
     /// 权威机构列表
     ///
     /// - Returns: `AsyncSequence`s of `Authority` and `GetAuthoritiesListResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getAuthoritiesListPaginator(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAuthoritiesListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
+        fatalError("GetAuthoritiesList is no longer available.")
     }
 }

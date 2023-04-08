@@ -53,26 +53,30 @@ extension Tdmq {
     }
 
     /// 获取单个Amqp集群信息
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCluster(_ input: DescribeAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPClusterResponse> {
-        self.client.execute(action: "DescribeAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCluster is no longer available.")
     }
 
     /// 获取单个Amqp集群信息
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCluster(_ input: DescribeAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClusterResponse {
-        try await self.client.execute(action: "DescribeAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAMQPCluster is no longer available.")
     }
 
     /// 获取单个Amqp集群信息
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPClusterResponse> {
-        self.describeAMQPCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCluster is no longer available.")
     }
 
     /// 获取单个Amqp集群信息
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClusterResponse {
-        try await self.describeAMQPCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCluster is no longer available.")
     }
 }

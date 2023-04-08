@@ -34,12 +34,17 @@ extension Tse {
         ///
         /// 引擎各版本及可选择的规格、节点数说明：
         /// apollo - STANDARD版本
-        /// 规格列表：spec-qcr53kf1t（1C2G）,spec-qdr53kf2w（2C4G）
+        /// 规格列表：1C2G、2C4G、4C8G、8C16G、16C32G
         /// 节点数：1，2，3，4，5
         ///
         /// eureka - STANDARD版本
-        /// 规格列表：spec-qvj6k7t4q（1C2G）,spec-qcr53kfjt（2C4G）,spec-qvj6k7t4m（4G8G）,spec-qcr54kfjt（8C16G）,spec-qcr55kfjt（16C32G）
+        /// 规格列表：1C2G、2C4G、4C8G、8C16G、16C32G
         /// 节点数：3，4，5
+        ///
+        /// polarismesh - STANDARD版本
+        /// 规格列表：NUM50、NUM100、NUM200、NUM500、NUM1000、NUM5000、NUM10000、NUM50000
+        ///
+        /// 兼容原spec-xxxxxx形式的规格ID
         public let engineProductVersion: String
 
         /// 引擎所在地域。参考值说明：
@@ -69,7 +74,7 @@ extension Tse {
 
         /// 付费类型。参考值：
         /// - 0：后付费
-        /// - 1：预付费
+        /// - 1：预付费（接口暂不支持创建预付费实例）
         public let tradeType: Int64
 
         /// 引擎的节点规格 ID。参见EngineProductVersion字段说明
@@ -113,7 +118,10 @@ extension Tse {
         /// - 1：自动续费
         public let prepaidRenewFlag: Int64?
 
-        public init(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil) {
+        /// 跨地域部署的引擎地域配置详情
+        public let engineRegionInfos: [EngineRegionInfo]?
+
+        public init(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, engineRegionInfos: [EngineRegionInfo]? = nil) {
             self.engineType = engineType
             self.engineVersion = engineVersion
             self.engineProductVersion = engineProductVersion
@@ -129,6 +137,7 @@ extension Tse {
             self.engineAdmin = engineAdmin
             self.prepaidPeriod = prepaidPeriod
             self.prepaidRenewFlag = prepaidRenewFlag
+            self.engineRegionInfos = engineRegionInfos
         }
 
         enum CodingKeys: String, CodingKey {
@@ -147,6 +156,7 @@ extension Tse {
             case engineAdmin = "EngineAdmin"
             case prepaidPeriod = "PrepaidPeriod"
             case prepaidRenewFlag = "PrepaidRenewFlag"
+            case engineRegionInfos = "EngineRegionInfos"
         }
     }
 
@@ -178,13 +188,13 @@ extension Tse {
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
-        self.createEngine(.init(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), region: region, logger: logger, on: eventLoop)
+    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, engineRegionInfos: [EngineRegionInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
+        self.createEngine(.init(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag, engineRegionInfos: engineRegionInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
-        try await self.createEngine(.init(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), region: region, logger: logger, on: eventLoop)
+    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, engineRegionInfos: [EngineRegionInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
+        try await self.createEngine(.init(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag, engineRegionInfos: engineRegionInfos), region: region, logger: logger, on: eventLoop)
     }
 }

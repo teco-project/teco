@@ -40,26 +40,30 @@ extension Tdid {
     }
 
     /// 启用合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func enableHash(_ input: EnableHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
-        self.client.execute(action: "EnableHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("EnableHash is no longer available.")
     }
 
     /// 启用合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func enableHash(_ input: EnableHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
-        try await self.client.execute(action: "EnableHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("EnableHash is no longer available.")
     }
 
     /// 启用合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func enableHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
-        self.enableHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("EnableHash is no longer available.")
     }
 
     /// 启用合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func enableHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
-        try await self.enableHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("EnableHash is no longer available.")
     }
 }

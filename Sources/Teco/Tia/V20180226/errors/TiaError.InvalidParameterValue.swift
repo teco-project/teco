@@ -17,14 +17,8 @@
 extension TCTiaError {
     public struct InvalidParameterValue: TCTiaErrorType {
         enum Code: String {
-            case code = "InvalidParameterValue.Code"
-            case description = "InvalidParameterValue.Description"
-            case environment = "InvalidParameterValue.Environment"
-            case functionName = "InvalidParameterValue.FunctionName"
-            case handler = "InvalidParameterValue.Handler"
             case order = "InvalidParameterValue.Order"
             case orderby = "InvalidParameterValue.Orderby"
-            case runtime = "InvalidParameterValue.Runtime"
             case other = "InvalidParameterValue"
         }
 
@@ -50,31 +44,6 @@ extension TCTiaError {
             self.context = context
         }
 
-        /// Code传入错误。
-        public static var code: InvalidParameterValue {
-            InvalidParameterValue(.code)
-        }
-
-        /// Description传入错误。
-        public static var description: InvalidParameterValue {
-            InvalidParameterValue(.description)
-        }
-
-        /// Environment传入错误。
-        public static var environment: InvalidParameterValue {
-            InvalidParameterValue(.environment)
-        }
-
-        /// 函数不存在。
-        public static var functionName: InvalidParameterValue {
-            InvalidParameterValue(.functionName)
-        }
-
-        /// Handler传入错误。
-        public static var handler: InvalidParameterValue {
-            InvalidParameterValue(.handler)
-        }
-
         /// Order传入错误。
         public static var order: InvalidParameterValue {
             InvalidParameterValue(.order)
@@ -85,11 +54,6 @@ extension TCTiaError {
             InvalidParameterValue(.orderby)
         }
 
-        /// Runtime传入错误。
-        public static var runtime: InvalidParameterValue {
-            InvalidParameterValue(.runtime)
-        }
-
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
@@ -98,22 +62,10 @@ extension TCTiaError {
         public func asTiaError() -> TCTiaError {
             let code: TCTiaError.Code
             switch self.error {
-            case .code:
-                code = .invalidParameterValue_Code
-            case .description:
-                code = .invalidParameterValue_Description
-            case .environment:
-                code = .invalidParameterValue_Environment
-            case .functionName:
-                code = .invalidParameterValue_FunctionName
-            case .handler:
-                code = .invalidParameterValue_Handler
             case .order:
                 code = .invalidParameterValue_Order
             case .orderby:
                 code = .invalidParameterValue_Orderby
-            case .runtime:
-                code = .invalidParameterValue_Runtime
             case .other:
                 code = .invalidParameterValue
             }

@@ -23,14 +23,24 @@ extension Eb {
         /// 事件集描述，不限字符类型，200字符描述以内
         public let description: String?
 
-        public init(eventBusName: String, description: String? = nil) {
+        /// EB存储时长
+        public let saveDays: Int64?
+
+        /// EB是否开启存储
+        public let enableStore: Bool?
+
+        public init(eventBusName: String, description: String? = nil, saveDays: Int64? = nil, enableStore: Bool? = nil) {
             self.eventBusName = eventBusName
             self.description = description
+            self.saveDays = saveDays
+            self.enableStore = enableStore
         }
 
         enum CodingKeys: String, CodingKey {
             case eventBusName = "EventBusName"
             case description = "Description"
+            case saveDays = "SaveDays"
+            case enableStore = "EnableStore"
         }
     }
 
@@ -68,15 +78,15 @@ extension Eb {
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
-        self.createEventBus(.init(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
+    public func createEventBus(eventBusName: String, description: String? = nil, saveDays: Int64? = nil, enableStore: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
+        self.createEventBus(.init(eventBusName: eventBusName, description: description, saveDays: saveDays, enableStore: enableStore), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件集
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
-        try await self.createEventBus(.init(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
+    public func createEventBus(eventBusName: String, description: String? = nil, saveDays: Int64? = nil, enableStore: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
+        try await self.createEventBus(.init(eventBusName: eventBusName, description: description, saveDays: saveDays, enableStore: enableStore), region: region, logger: logger, on: eventLoop)
     }
 }

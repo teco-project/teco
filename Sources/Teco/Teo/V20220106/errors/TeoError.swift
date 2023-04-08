@@ -182,8 +182,6 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.internalError_RouteError)
     }
 
-    /// 内部错误。
-    ///
     /// 内部错误-系统错误。
     public static var internalError_SystemError: TCTeoError {
         TCTeoError(.internalError_SystemError)
@@ -359,14 +357,12 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_ParameterError)
     }
 
-    /// 安全参数错误。
+    /// 参数错误
     public static var invalidParameter_Security: TCTeoError {
         TCTeoError(.invalidParameter_Security)
     }
 
-    /// 域名配置错误。
-    ///
-    /// 参数错误-setting非法参数。
+    /// 配置项参数错误。
     public static var invalidParameter_SettingInvalidParam: TCTeoError {
         TCTeoError(.invalidParameter_SettingInvalidParam)
     }

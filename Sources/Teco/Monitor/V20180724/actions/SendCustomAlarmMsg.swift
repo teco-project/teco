@@ -20,7 +20,7 @@ extension Monitor {
         /// 接口模块名，当前取值monitor
         public let module: String
 
-        /// 消息策略ID，在云监控自定义消息页面配置
+        /// 消息策略ID，在自定义消息页面配置
         public let policyId: String
 
         /// 用户想要发送的自定义消息内容

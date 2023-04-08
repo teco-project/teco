@@ -19,7 +19,9 @@ import TecoPaginationHelpers
 extension Tdmq {
     /// DescribeRocketMQVipInstances请求参数结构体
     public struct DescribeRocketMQVipInstancesRequest: TCPaginatedRequest {
-        /// 查询条件过滤器
+        /// 查询条件过滤器，支持的查询条件如下：
+        /// instanceIds - 实例ID
+        /// instanceName - 实例名称
         public let filters: [Filter]?
 
         /// 查询数目上限，默认20

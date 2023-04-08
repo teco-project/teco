@@ -40,26 +40,30 @@ extension Tdid {
     }
 
     /// 撤消权威机构认证
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
-        self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CancelAuthorityIssuer is no longer available.")
     }
 
     /// 撤消权威机构认证
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
-        try await self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CancelAuthorityIssuer is no longer available.")
     }
 
     /// 撤消权威机构认证
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
-        self.cancelAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("CancelAuthorityIssuer is no longer available.")
     }
 
     /// 撤消权威机构认证
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
-        try await self.cancelAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("CancelAuthorityIssuer is no longer available.")
     }
 }

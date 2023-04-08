@@ -39,16 +39,16 @@ extension Vpc {
         /// NAT网关实例ID，形如：`nat-ltjahce6`。
         public let natId: String?
 
-        /// 偏移量。
+        /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 返回数量。
+        /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
 
-        /// 排序字段。支持 `InPkg` `OutPkg` `InTraffic` `OutTraffic`。
+        /// 排序字段。支持 `InPkg` `OutPkg` `InTraffic` `OutTraffic`。默认值`OutTraffic`。
         public let orderField: String?
 
-        /// 排序方法。顺序：`ASC`，倒序：`DESC`。
+        /// 排序方法。顺序：`ASC`，倒序：`DESC`。默认值`DESC`。
         public let orderDirection: String?
 
         public init(timePoint: Date, vpnId: String? = nil, directConnectGatewayId: String? = nil, peeringConnectionId: String? = nil, natId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {

@@ -36,6 +36,8 @@ extension TCTsfError {
             case cvmCaeMasterDispatchError = "InternalError.CvmCaeMasterDispatchError"
             case cvmCaeMasterInternalError = "InternalError.CvmCaeMasterInternalError"
             case cvmCaeMasterNonAlive = "InternalError.CvmCaeMasterNonAlive"
+            case cvmCaeMasterQueryError = "InternalError.CvmCaeMasterQueryError"
+            case dispatchCommonError = "InternalError.DispatchCommonError"
             case gatewayCommonError = "InternalError.GatewayCommonError"
             case gatewayConsistencyError = "InternalError.GatewayConsistencyError"
             case gatewayConsulError = "InternalError.GatewayConsulError"
@@ -177,6 +179,16 @@ extension TCTsfError {
         /// MASTER通道查询失败。
         public static var cvmCaeMasterNonAlive: InternalError {
             InternalError(.cvmCaeMasterNonAlive)
+        }
+
+        /// 数据查询失败。
+        public static var cvmCaeMasterQueryError: InternalError {
+            InternalError(.cvmCaeMasterQueryError)
+        }
+
+        /// TSF暂时不能响应请求。。
+        public static var dispatchCommonError: InternalError {
+            InternalError(.dispatchCommonError)
         }
 
         /// 网关通用异常:%s。
@@ -340,6 +352,10 @@ extension TCTsfError {
                 code = .internalError_CvmCaeMasterInternalError
             case .cvmCaeMasterNonAlive:
                 code = .internalError_CvmCaeMasterNonAlive
+            case .cvmCaeMasterQueryError:
+                code = .internalError_CvmCaeMasterQueryError
+            case .dispatchCommonError:
+                code = .internalError_DispatchCommonError
             case .gatewayCommonError:
                 code = .internalError_GatewayCommonError
             case .gatewayConsistencyError:

@@ -46,7 +46,12 @@ extension Cfw {
 
     /// DescribeTLogInfo返回参数结构体
     public struct DescribeTLogInfoResponse: TCResponseModel {
-        /// 无
+        /// "NetworkNum":网络扫描探测
+        ///  "HandleNum": 待处理事件
+        /// "BanNum":
+        ///   "VulNum": 漏洞利用
+        ///   "OutNum": 失陷主机
+        /// "BruteForceNum": 0
         public let data: TLogInfo
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

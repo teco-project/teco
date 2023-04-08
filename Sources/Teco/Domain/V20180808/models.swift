@@ -354,6 +354,7 @@ extension Domain {
         /// 是否已设置自动续费 。
         /// 0：未设置
         /// 1：已设置
+        /// 2：设置后，关闭
         public let autoRenew: UInt64
 
         /// 注册时间。
@@ -603,6 +604,9 @@ extension Domain {
         /// 不符合规范原因
         public let invalidReason: String
 
+        /// 是包含黑名单手机或邮箱
+        public let isBlack: Bool?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case auditStatus = "AuditStatus"
@@ -615,6 +619,7 @@ extension Domain {
             case contactInfo = "ContactInfo"
             case isValidTemplate = "IsValidTemplate"
             case invalidReason = "InvalidReason"
+            case isBlack = "IsBlack"
         }
     }
 }

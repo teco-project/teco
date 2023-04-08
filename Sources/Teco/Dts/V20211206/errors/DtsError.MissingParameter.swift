@@ -43,6 +43,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 参数丢失。
         public static var missingParameterError: MissingParameter {
             MissingParameter(.missingParameterError)
         }

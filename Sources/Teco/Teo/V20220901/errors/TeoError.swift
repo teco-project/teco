@@ -28,8 +28,6 @@ public struct TCTeoError: TCTeoErrorType {
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_CertificateNotFound = "FailedOperation.CertificateNotFound"
-        case failedOperation_CreateClsLogSetFailed = "FailedOperation.CreateClsLogSetFailed"
-        case failedOperation_CreateClsLogTopicTaskFailed = "FailedOperation.CreateClsLogTopicTaskFailed"
         case failedOperation_InvalidZoneStatus = "FailedOperation.InvalidZoneStatus"
         case internalError = "InternalError"
         case internalError_BackendError = "InternalError.BackendError"
@@ -43,18 +41,15 @@ public struct TCTeoError: TCTeoErrorType {
         case internalError_SystemError = "InternalError.SystemError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
-        case invalidParameterValue_ConflictRecord = "InvalidParameterValue.ConflictRecord"
         case invalidParameterValue_ConflictWithDNSSEC = "InvalidParameterValue.ConflictWithDNSSEC"
-        case invalidParameterValue_ConflictWithLBRecord = "InvalidParameterValue.ConflictWithLBRecord"
-        case invalidParameterValue_ConflictWithNSRecord = "InvalidParameterValue.ConflictWithNSRecord"
+        case invalidParameterValue_ContentSameAsName = "InvalidParameterValue.ContentSameAsName"
+        case invalidParameterValue_DomainNotMatchZone = "InvalidParameterValue.DomainNotMatchZone"
         case invalidParameterValue_InvalidDNSContent = "InvalidParameterValue.InvalidDNSContent"
         case invalidParameterValue_InvalidDNSName = "InvalidParameterValue.InvalidDNSName"
         case invalidParameterValue_InvalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
-        case invalidParameterValue_InvalidProxyName = "InvalidParameterValue.InvalidProxyName"
-        case invalidParameterValue_InvalidProxyOrigin = "InvalidParameterValue.InvalidProxyOrigin"
-        case invalidParameterValue_RecordAlreadyExists = "InvalidParameterValue.RecordAlreadyExists"
-        case invalidParameterValue_RecordNotAllowed = "InvalidParameterValue.RecordNotAllowed"
+        case invalidParameterValue_ZoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
         case invalidParameter_ActionInProgress = "InvalidParameter.ActionInProgress"
+        case invalidParameter_CacheKeyQueryStringTooManyValue = "InvalidParameter.CacheKeyQueryStringTooManyValue"
         case invalidParameter_CertChainError = "InvalidParameter.CertChainError"
         case invalidParameter_CertCheckError = "InvalidParameter.CertCheckError"
         case invalidParameter_CertCompleteError = "InvalidParameter.CertCompleteError"
@@ -69,26 +64,53 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_CertToExpire = "InvalidParameter.CertToExpire"
         case invalidParameter_CertTooShortKeySize = "InvalidParameter.CertTooShortKeySize"
         case invalidParameter_CertUnsupportedType = "InvalidParameter.CertUnsupportedType"
+        case invalidParameter_CnameWildHostNotAllowApplyCertificate = "InvalidParameter.CnameWildHostNotAllowApplyCertificate"
         case invalidParameter_DomainNotFound = "InvalidParameter.DomainNotFound"
         case invalidParameter_DomainOnTrafficScheduling = "InvalidParameter.DomainOnTrafficScheduling"
+        case invalidParameter_ErrActionUnsupportTarget = "InvalidParameter.ErrActionUnsupportTarget"
         case invalidParameter_ErrInvalidAction = "InvalidParameter.ErrInvalidAction"
         case invalidParameter_ErrInvalidActionParam = "InvalidParameter.ErrInvalidActionParam"
+        case invalidParameter_ErrInvalidActionParamAction = "InvalidParameter.ErrInvalidActionParamAction"
+        case invalidParameter_ErrInvalidActionParamBadValueType = "InvalidParameter.ErrInvalidActionParamBadValueType"
         case invalidParameter_ErrInvalidActionParamDuplicateName = "InvalidParameter.ErrInvalidActionParamDuplicateName"
+        case invalidParameter_ErrInvalidActionParamName = "InvalidParameter.ErrInvalidActionParamName"
         case invalidParameter_ErrInvalidActionParamTooManyValues = "InvalidParameter.ErrInvalidActionParamTooManyValues"
+        case invalidParameter_ErrInvalidActionType = "InvalidParameter.ErrInvalidActionType"
         case invalidParameter_ErrInvalidConditionIgnoreCase = "InvalidParameter.ErrInvalidConditionIgnoreCase"
+        case invalidParameter_ErrInvalidConditionNameBadName = "InvalidParameter.ErrInvalidConditionNameBadName"
         case invalidParameter_ErrInvalidConditionNameTargetNotSupportName = "InvalidParameter.ErrInvalidConditionNameTargetNotSupportName"
+        case invalidParameter_ErrInvalidConditionValueBadRegular = "InvalidParameter.ErrInvalidConditionValueBadRegular"
+        case invalidParameter_ErrInvalidConditionValueBadUrl = "InvalidParameter.ErrInvalidConditionValueBadUrl"
         case invalidParameter_ErrInvalidConditionValueBadValue = "InvalidParameter.ErrInvalidConditionValueBadValue"
         case invalidParameter_ErrInvalidConditionValueBadValueContainFileNameExtension = "InvalidParameter.ErrInvalidConditionValueBadValueContainFileNameExtension"
         case invalidParameter_ErrInvalidConditionValueTooLongValue = "InvalidParameter.ErrInvalidConditionValueTooLongValue"
+        case invalidParameter_ErrInvalidConditionValueTooManyRegular = "InvalidParameter.ErrInvalidConditionValueTooManyRegular"
+        case invalidParameter_ErrInvalidConditionValueTooManyWildcard = "InvalidParameter.ErrInvalidConditionValueTooManyWildcard"
+        case invalidParameter_ErrInvalidConditionValueZeroLength = "InvalidParameter.ErrInvalidConditionValueZeroLength"
+        case invalidParameter_GrpcRequireHttp2 = "InvalidParameter.GrpcRequireHttp2"
         case invalidParameter_HostNotFound = "InvalidParameter.HostNotFound"
+        case invalidParameter_HostStatusNotAllowApplyCertificate = "InvalidParameter.HostStatusNotAllowApplyCertificate"
+        case invalidParameter_InvalidAccelerateType = "InvalidParameter.InvalidAccelerateType"
+        case invalidParameter_InvalidAuthentication = "InvalidParameter.InvalidAuthentication"
+        case invalidParameter_InvalidAuthenticationTypeSecretKey = "InvalidParameter.InvalidAuthenticationTypeSecretKey"
         case invalidParameter_InvalidAuthenticationTypeSignParam = "InvalidParameter.InvalidAuthenticationTypeSignParam"
+        case invalidParameter_InvalidBackupServerName = "InvalidParameter.InvalidBackupServerName"
+        case invalidParameter_InvalidCacheConfigCache = "InvalidParameter.InvalidCacheConfigCache"
+        case invalidParameter_InvalidCacheConfigFollowOrigin = "InvalidParameter.InvalidCacheConfigFollowOrigin"
         case invalidParameter_InvalidCacheKey = "InvalidParameter.InvalidCacheKey"
+        case invalidParameter_InvalidCacheKeyIgnoreCase = "InvalidParameter.InvalidCacheKeyIgnoreCase"
         case invalidParameter_InvalidCacheKeyQueryStringValue = "InvalidParameter.InvalidCacheKeyQueryStringValue"
+        case invalidParameter_InvalidCacheKeyScheme = "InvalidParameter.InvalidCacheKeyScheme"
         case invalidParameter_InvalidCacheOnlyOnSwitch = "InvalidParameter.InvalidCacheOnlyOnSwitch"
+        case invalidParameter_InvalidCacheTime = "InvalidParameter.InvalidCacheTime"
         case invalidParameter_InvalidCertInfo = "InvalidParameter.InvalidCertInfo"
         case invalidParameter_InvalidClientIpHeaderName = "InvalidParameter.InvalidClientIpHeaderName"
+        case invalidParameter_InvalidClientIpOrigin = "InvalidParameter.InvalidClientIpOrigin"
         case invalidParameter_InvalidDynamicRoutine = "InvalidParameter.InvalidDynamicRoutine"
+        case invalidParameter_InvalidDynamicRoutineBilling = "InvalidParameter.InvalidDynamicRoutineBilling"
         case invalidParameter_InvalidErrorPageRedirectUrl = "InvalidParameter.InvalidErrorPageRedirectUrl"
+        case invalidParameter_InvalidHttps = "InvalidParameter.InvalidHttps"
+        case invalidParameter_InvalidHttpsCipherSuiteAndTlsVersion = "InvalidParameter.InvalidHttpsCipherSuiteAndTlsVersion"
         case invalidParameter_InvalidHttpsHstsMaxAge = "InvalidParameter.InvalidHttpsHstsMaxAge"
         case invalidParameter_InvalidHttpsTlsVersion = "InvalidParameter.InvalidHttpsTlsVersion"
         case invalidParameter_InvalidIpv6Switch = "InvalidParameter.InvalidIpv6Switch"
@@ -96,9 +118,14 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
         case invalidParameter_InvalidPostMaxSizeBilling = "InvalidParameter.InvalidPostMaxSizeBilling"
         case invalidParameter_InvalidPostSizeValue = "InvalidParameter.InvalidPostSizeValue"
+        case invalidParameter_InvalidQuicBilling = "InvalidParameter.InvalidQuicBilling"
+        case invalidParameter_InvalidRangeOriginPull = "InvalidParameter.InvalidRangeOriginPull"
         case invalidParameter_InvalidRequestHeaderName = "InvalidParameter.InvalidRequestHeaderName"
+        case invalidParameter_InvalidRequestHeaderNameXff = "InvalidParameter.InvalidRequestHeaderNameXff"
+        case invalidParameter_InvalidRequestHeaderValue = "InvalidParameter.InvalidRequestHeaderValue"
         case invalidParameter_InvalidResourceIdBilling = "InvalidParameter.InvalidResourceIdBilling"
         case invalidParameter_InvalidResponseHeaderName = "InvalidParameter.InvalidResponseHeaderName"
+        case invalidParameter_InvalidResponseHeaderValue = "InvalidParameter.InvalidResponseHeaderValue"
         case invalidParameter_InvalidRuleEngine = "InvalidParameter.InvalidRuleEngine"
         case invalidParameter_InvalidRuleEngineAction = "InvalidParameter.InvalidRuleEngineAction"
         case invalidParameter_InvalidRuleEngineNotFound = "InvalidParameter.InvalidRuleEngineNotFound"
@@ -106,34 +133,47 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_InvalidRuleEngineTargetsExtension = "InvalidParameter.InvalidRuleEngineTargetsExtension"
         case invalidParameter_InvalidRuleEngineTargetsUrl = "InvalidParameter.InvalidRuleEngineTargetsUrl"
         case invalidParameter_InvalidServerName = "InvalidParameter.InvalidServerName"
+        case invalidParameter_InvalidUpstreamRequestQueryStringValue = "InvalidParameter.InvalidUpstreamRequestQueryStringValue"
         case invalidParameter_InvalidUrlRedirectHost = "InvalidParameter.InvalidUrlRedirectHost"
         case invalidParameter_InvalidUrlRedirectUrl = "InvalidParameter.InvalidUrlRedirectUrl"
         case invalidParameter_InvalidWebSocketTimeout = "InvalidParameter.InvalidWebSocketTimeout"
         case invalidParameter_KeyRulesInvalidQueryStringValue = "InvalidParameter.KeyRulesInvalidQueryStringValue"
         case invalidParameter_LengthExceedsLimit = "InvalidParameter.LengthExceedsLimit"
+        case invalidParameter_OriginIsInnerIp = "InvalidParameter.OriginIsInnerIp"
+        case invalidParameter_OriginOriginGroupIdIsRequired = "InvalidParameter.OriginOriginGroupIdIsRequired"
         case invalidParameter_ParameterError = "InvalidParameter.ParameterError"
         case invalidParameter_PlanNotFound = "InvalidParameter.PlanNotFound"
+        case invalidParameter_PostMaxSizeLimitExceeded = "InvalidParameter.PostMaxSizeLimitExceeded"
         case invalidParameter_Security = "InvalidParameter.Security"
         case invalidParameter_SettingInvalidParam = "InvalidParameter.SettingInvalidParam"
         case invalidParameter_Target = "InvalidParameter.Target"
         case invalidParameter_TaskNotGenerated = "InvalidParameter.TaskNotGenerated"
+        case invalidParameter_TaskSystemError = "InvalidParameter.TaskSystemError"
         case invalidParameter_UploadUrl = "InvalidParameter.UploadUrl"
         case invalidParameter_ZoneHasBeenBound = "InvalidParameter.ZoneHasBeenBound"
         case invalidParameter_ZoneNotFound = "InvalidParameter.ZoneNotFound"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_BatchQuota = "LimitExceeded.BatchQuota"
         case limitExceeded_DailyQuota = "LimitExceeded.DailyQuota"
+        case limitExceeded_QueryTimeLimitExceeded = "LimitExceeded.QueryTimeLimitExceeded"
         case limitExceeded_RateLimitExceeded = "LimitExceeded.RateLimitExceeded"
         case operationDenied = "OperationDenied"
+        case operationDenied_DomainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
         case operationDenied_DomainIsBlocked = "OperationDenied.DomainIsBlocked"
         case operationDenied_DomainNoICP = "OperationDenied.DomainNoICP"
         case operationDenied_L4ProxyInBannedStatus = "OperationDenied.L4ProxyInBannedStatus"
+        case operationDenied_L4StatusNotInOnline = "OperationDenied.L4StatusNotInOnline"
+        case operationDenied_LatestVersionNow = "OperationDenied.LatestVersionNow"
         case operationDenied_MultipleCnameZone = "OperationDenied.MultipleCnameZone"
         case operationDenied_NSNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
+        case operationDenied_RecordIsForbidden = "OperationDenied.RecordIsForbidden"
+        case operationDenied_ResourceLockedTemporary = "OperationDenied.ResourceLockedTemporary"
         case resourceInUse = "ResourceInUse"
         case resourceInUse_AliasDomain = "ResourceInUse.AliasDomain"
+        case resourceInUse_AliasName = "ResourceInUse.AliasName"
         case resourceInUse_Cname = "ResourceInUse.Cname"
         case resourceInUse_Dns = "ResourceInUse.Dns"
+        case resourceInUse_DnsRecord = "ResourceInUse.DnsRecord"
         case resourceInUse_DuplicateName = "ResourceInUse.DuplicateName"
         case resourceInUse_GenericHost = "ResourceInUse.GenericHost"
         case resourceInUse_Host = "ResourceInUse.Host"
@@ -148,23 +188,24 @@ public struct TCTeoError: TCTeoErrorType {
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
-        case resourceUnavailable_AvailableDomainNotFound = "ResourceUnavailable.AvailableDomainNotFound"
         case resourceUnavailable_CertNotFound = "ResourceUnavailable.CertNotFound"
+        case resourceUnavailable_DomainAlreadyExists = "ResourceUnavailable.DomainAlreadyExists"
+        case resourceUnavailable_DomainNotFound = "ResourceUnavailable.DomainNotFound"
         case resourceUnavailable_HostNotFound = "ResourceUnavailable.HostNotFound"
         case resourceUnavailable_ProxyZoneNotFound = "ResourceUnavailable.ProxyZoneNotFound"
         case resourceUnavailable_ZoneNotFound = "ResourceUnavailable.ZoneNotFound"
+        case resourcesSoldOut_L7LackOfResources = "ResourcesSoldOut.L7LackOfResources"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_CamUnauthorized = "UnauthorizedOperation.CamUnauthorized"
         case unauthorizedOperation_DomainEmpty = "UnauthorizedOperation.DomainEmpty"
         case unauthorizedOperation_NoPermission = "UnauthorizedOperation.NoPermission"
         case unauthorizedOperation_Unknown = "UnauthorizedOperation.Unknown"
-        case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
     }
 
     /// Error domains affliated to ``TCTeoError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceInUse.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceInUse.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self]
     }
 
     private let error: Code
@@ -209,16 +250,7 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.failedOperation_CertificateNotFound)
     }
 
-    /// 创建日志集失败，请检查日志集名是否已存在。
-    public static var failedOperation_CreateClsLogSetFailed: TCTeoError {
-        TCTeoError(.failedOperation_CreateClsLogSetFailed)
-    }
-
-    /// 创建日志主题任务失败，请检查日志主题名或任务名是否已存在。
-    public static var failedOperation_CreateClsLogTopicTaskFailed: TCTeoError {
-        TCTeoError(.failedOperation_CreateClsLogTopicTaskFailed)
-    }
-
+    /// 站点状态不正确。
     public static var failedOperation_InvalidZoneStatus: TCTeoError {
         TCTeoError(.failedOperation_InvalidZoneStatus)
     }
@@ -268,8 +300,6 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.internalError_RouteError)
     }
 
-    /// 内部错误。
-    ///
     /// 内部错误-系统错误。
     public static var internalError_SystemError: TCTeoError {
         TCTeoError(.internalError_SystemError)
@@ -285,24 +315,19 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameterValue)
     }
 
-    /// 与已经添加的记录冲突。
-    public static var invalidParameterValue_ConflictRecord: TCTeoError {
-        TCTeoError(.invalidParameterValue_ConflictRecord)
-    }
-
     /// DNS 记录与 DNSSEC 功能冲突。
     public static var invalidParameterValue_ConflictWithDNSSEC: TCTeoError {
         TCTeoError(.invalidParameterValue_ConflictWithDNSSEC)
     }
 
-    /// DNS 记录与 LB 记录冲突。
-    public static var invalidParameterValue_ConflictWithLBRecord: TCTeoError {
-        TCTeoError(.invalidParameterValue_ConflictWithLBRecord)
+    /// 主机记录与记录值不能取值相同。
+    public static var invalidParameterValue_ContentSameAsName: TCTeoError {
+        TCTeoError(.invalidParameterValue_ContentSameAsName)
     }
 
-    /// DNS 记录与 NS 记录冲突。
-    public static var invalidParameterValue_ConflictWithNSRecord: TCTeoError {
-        TCTeoError(.invalidParameterValue_ConflictWithNSRecord)
+    /// 入参中的域名与站点参数不匹配，请更正后重试。
+    public static var invalidParameterValue_DomainNotMatchZone: TCTeoError {
+        TCTeoError(.invalidParameterValue_DomainNotMatchZone)
     }
 
     /// DNS 记录内容错误。
@@ -315,33 +340,26 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameterValue_InvalidDNSName)
     }
 
+    /// 加速域名状态不符合要求。
     public static var invalidParameterValue_InvalidDomainStatus: TCTeoError {
         TCTeoError(.invalidParameterValue_InvalidDomainStatus)
     }
 
-    /// DNS 代理域名错误。
-    public static var invalidParameterValue_InvalidProxyName: TCTeoError {
-        TCTeoError(.invalidParameterValue_InvalidProxyName)
-    }
-
-    /// DNS 代理域名源站错误。
-    public static var invalidParameterValue_InvalidProxyOrigin: TCTeoError {
-        TCTeoError(.invalidParameterValue_InvalidProxyOrigin)
-    }
-
-    /// 记录已存在。
-    public static var invalidParameterValue_RecordAlreadyExists: TCTeoError {
-        TCTeoError(.invalidParameterValue_RecordAlreadyExists)
-    }
-
-    /// 记录不允许添加。
-    public static var invalidParameterValue_RecordNotAllowed: TCTeoError {
-        TCTeoError(.invalidParameterValue_RecordNotAllowed)
+    /// 该同名站点标识已被占用，请重新输入。
+    ///
+    /// 同名站点标识已被使用，用户需重新输入不一样的
+    public static var invalidParameterValue_ZoneSameAsName: TCTeoError {
+        TCTeoError(.invalidParameterValue_ZoneSameAsName)
     }
 
     /// 操作频繁，请稍后重试。
     public static var invalidParameter_ActionInProgress: TCTeoError {
         TCTeoError(.invalidParameter_ActionInProgress)
+    }
+
+    /// 查询字符串规则超过了限制。
+    public static var invalidParameter_CacheKeyQueryStringTooManyValue: TCTeoError {
+        TCTeoError(.invalidParameter_CacheKeyQueryStringTooManyValue)
     }
 
     /// HTTPS证书链错误。
@@ -414,13 +432,24 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_CertUnsupportedType)
     }
 
+    /// CNAME模式下无法申请泛域名证书。
+    public static var invalidParameter_CnameWildHostNotAllowApplyCertificate: TCTeoError {
+        TCTeoError(.invalidParameter_CnameWildHostNotAllowApplyCertificate)
+    }
+
     /// 域名不存在或不属于该账号。
     public static var invalidParameter_DomainNotFound: TCTeoError {
         TCTeoError(.invalidParameter_DomainNotFound)
     }
 
+    /// 当前域名已开启流量调度功能。
     public static var invalidParameter_DomainOnTrafficScheduling: TCTeoError {
         TCTeoError(.invalidParameter_DomainOnTrafficScheduling)
+    }
+
+    /// 操作不支持条件。
+    public static var invalidParameter_ErrActionUnsupportTarget: TCTeoError {
+        TCTeoError(.invalidParameter_ErrActionUnsupportTarget)
     }
 
     /// 非法操作。
@@ -433,9 +462,24 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_ErrInvalidActionParam)
     }
 
+    /// 非法操作-非法参数-无效action。
+    public static var invalidParameter_ErrInvalidActionParamAction: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidActionParamAction)
+    }
+
+    /// 非法操作-非法参数-无效参数值类型。
+    public static var invalidParameter_ErrInvalidActionParamBadValueType: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidActionParamBadValueType)
+    }
+
     /// 非法操作-非法参数-参数名重复。
     public static var invalidParameter_ErrInvalidActionParamDuplicateName: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidActionParamDuplicateName)
+    }
+
+    /// 非法操作-非法参数-无效参数值类型。
+    public static var invalidParameter_ErrInvalidActionParamName: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidActionParamName)
     }
 
     /// 非法操作-非法参数-参数值数量超出限制。
@@ -443,14 +487,34 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_ErrInvalidActionParamTooManyValues)
     }
 
+    /// 非法操作-非法类型。
+    public static var invalidParameter_ErrInvalidActionType: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidActionType)
+    }
+
     /// 非法条件-非法忽略大小写。
     public static var invalidParameter_ErrInvalidConditionIgnoreCase: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionIgnoreCase)
     }
 
+    /// 非法条件-非法参数名称-无效的参数名称。
+    public static var invalidParameter_ErrInvalidConditionNameBadName: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionNameBadName)
+    }
+
     /// 非法条件-非法参数名称-匹配类型不支持参数名称。
     public static var invalidParameter_ErrInvalidConditionNameTargetNotSupportName: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionNameTargetNotSupportName)
+    }
+
+    /// 非法条件-非法参数值-无效的正则表达式。
+    public static var invalidParameter_ErrInvalidConditionValueBadRegular: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionValueBadRegular)
+    }
+
+    /// 非法条件-非法参数值-无效的url。
+    public static var invalidParameter_ErrInvalidConditionValueBadUrl: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionValueBadUrl)
     }
 
     /// 非法条件-非法参数值-无效的参数值。
@@ -468,9 +532,49 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_ErrInvalidConditionValueTooLongValue)
     }
 
+    /// 非法条件-非法参数值-正则表达式数量超出限制。
+    public static var invalidParameter_ErrInvalidConditionValueTooManyRegular: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionValueTooManyRegular)
+    }
+
+    /// 非法条件-非法参数值-通配符数量超出限制。
+    public static var invalidParameter_ErrInvalidConditionValueTooManyWildcard: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionValueTooManyWildcard)
+    }
+
+    /// 非法条件-非法参数值-参数值数量为0。
+    public static var invalidParameter_ErrInvalidConditionValueZeroLength: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidConditionValueZeroLength)
+    }
+
+    /// 开启 Grpc 协议支持需要同时开启 HTTP/2 协议支持。
+    public static var invalidParameter_GrpcRequireHttp2: TCTeoError {
+        TCTeoError(.invalidParameter_GrpcRequireHttp2)
+    }
+
     /// 域名不存在。
     public static var invalidParameter_HostNotFound: TCTeoError {
         TCTeoError(.invalidParameter_HostNotFound)
+    }
+
+    /// CNAME 未切换或者源站未路由到EO服务器。
+    public static var invalidParameter_HostStatusNotAllowApplyCertificate: TCTeoError {
+        TCTeoError(.invalidParameter_HostStatusNotAllowApplyCertificate)
+    }
+
+    /// 参数错误。
+    public static var invalidParameter_InvalidAccelerateType: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidAccelerateType)
+    }
+
+    /// 无效的token鉴权。
+    public static var invalidParameter_InvalidAuthentication: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidAuthentication)
+    }
+
+    /// 无效的token鉴权密钥。
+    public static var invalidParameter_InvalidAuthenticationTypeSecretKey: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidAuthenticationTypeSecretKey)
     }
 
     /// 无效的token鉴权参数。
@@ -478,9 +582,29 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidAuthenticationTypeSignParam)
     }
 
+    /// 无效的备源回源Host。
+    public static var invalidParameter_InvalidBackupServerName: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidBackupServerName)
+    }
+
+    /// 无效的节点缓存。
+    public static var invalidParameter_InvalidCacheConfigCache: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheConfigCache)
+    }
+
+    /// 无效的节点缓存，遵循源站行为。
+    public static var invalidParameter_InvalidCacheConfigFollowOrigin: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheConfigFollowOrigin)
+    }
+
     /// 无效的缓存键。
     public static var invalidParameter_InvalidCacheKey: TCTeoError {
         TCTeoError(.invalidParameter_InvalidCacheKey)
+    }
+
+    /// 无效的缓存键忽略大小写。
+    public static var invalidParameter_InvalidCacheKeyIgnoreCase: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheKeyIgnoreCase)
     }
 
     /// 无效的查询字符串。
@@ -488,9 +612,19 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidCacheKeyQueryStringValue)
     }
 
+    /// 无效的自定义Cache Key Scheme无效。
+    public static var invalidParameter_InvalidCacheKeyScheme: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheKeyScheme)
+    }
+
     /// 无效的节点缓存。
     public static var invalidParameter_InvalidCacheOnlyOnSwitch: TCTeoError {
         TCTeoError(.invalidParameter_InvalidCacheOnlyOnSwitch)
+    }
+
+    /// 无效的节点缓存时间。
+    public static var invalidParameter_InvalidCacheTime: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheTime)
     }
 
     /// 证书信息错误。
@@ -503,14 +637,34 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidClientIpHeaderName)
     }
 
+    /// 分区域回源的源站无效。
+    public static var invalidParameter_InvalidClientIpOrigin: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidClientIpOrigin)
+    }
+
     /// 无效的智能加速。
     public static var invalidParameter_InvalidDynamicRoutine: TCTeoError {
         TCTeoError(.invalidParameter_InvalidDynamicRoutine)
     }
 
+    /// 套餐包不支持智能加速配置。
+    public static var invalidParameter_InvalidDynamicRoutineBilling: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidDynamicRoutineBilling)
+    }
+
     /// 无效的自定义错误页面。
     public static var invalidParameter_InvalidErrorPageRedirectUrl: TCTeoError {
         TCTeoError(.invalidParameter_InvalidErrorPageRedirectUrl)
+    }
+
+    /// 无效的HTTPS。
+    public static var invalidParameter_InvalidHttps: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidHttps)
+    }
+
+    /// 加密套件与TLS版本不匹配。
+    public static var invalidParameter_InvalidHttpsCipherSuiteAndTlsVersion: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidHttpsCipherSuiteAndTlsVersion)
     }
 
     /// 无效的HTTPS HSTS。
@@ -523,6 +677,7 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidHttpsTlsVersion)
     }
 
+    /// 无效的Ipv6开关配置。
     public static var invalidParameter_InvalidIpv6Switch: TCTeoError {
         TCTeoError(.invalidParameter_InvalidIpv6Switch)
     }
@@ -547,9 +702,31 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidPostSizeValue)
     }
 
+    /// 套餐包不支持Quic配置。
+    public static var invalidParameter_InvalidQuicBilling: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidQuicBilling)
+    }
+
+    /// 无效的分片回源。
+    public static var invalidParameter_InvalidRangeOriginPull: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidRangeOriginPull)
+    }
+
     /// 无效的请求头header。
     public static var invalidParameter_InvalidRequestHeaderName: TCTeoError {
         TCTeoError(.invalidParameter_InvalidRequestHeaderName)
+    }
+
+    /// x-forwarded-for 请求头配置无效
+    ///
+    /// x-forwarded-for 请求头无法自定义，请删除后提交
+    public static var invalidParameter_InvalidRequestHeaderNameXff: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidRequestHeaderNameXff)
+    }
+
+    /// 无效的请求头header。
+    public static var invalidParameter_InvalidRequestHeaderValue: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidRequestHeaderValue)
     }
 
     /// 无套餐包。
@@ -562,6 +739,12 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidResponseHeaderName)
     }
 
+    /// 无效的响应头header。
+    public static var invalidParameter_InvalidResponseHeaderValue: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidResponseHeaderValue)
+    }
+
+    /// 无效的规则引擎配置。
     public static var invalidParameter_InvalidRuleEngine: TCTeoError {
         TCTeoError(.invalidParameter_InvalidRuleEngine)
     }
@@ -596,6 +779,11 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidServerName)
     }
 
+    /// 无效的回源请求参数设置-无效查询字符串值。
+    public static var invalidParameter_InvalidUpstreamRequestQueryStringValue: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidUpstreamRequestQueryStringValue)
+    }
+
     /// URL重写的目标HOST无效。
     public static var invalidParameter_InvalidUrlRedirectHost: TCTeoError {
         TCTeoError(.invalidParameter_InvalidUrlRedirectHost)
@@ -621,6 +809,16 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_LengthExceedsLimit)
     }
 
+    /// 源站是内网IP。
+    public static var invalidParameter_OriginIsInnerIp: TCTeoError {
+        TCTeoError(.invalidParameter_OriginIsInnerIp)
+    }
+
+    /// 修改源站操作中源站组Id必填。
+    public static var invalidParameter_OriginOriginGroupIdIsRequired: TCTeoError {
+        TCTeoError(.invalidParameter_OriginOriginGroupIdIsRequired)
+    }
+
     /// 参数错误。
     public static var invalidParameter_ParameterError: TCTeoError {
         TCTeoError(.invalidParameter_ParameterError)
@@ -631,14 +829,17 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_PlanNotFound)
     }
 
-    /// 安全参数错误。
+    /// 最大上传大小超出限制
+    public static var invalidParameter_PostMaxSizeLimitExceeded: TCTeoError {
+        TCTeoError(.invalidParameter_PostMaxSizeLimitExceeded)
+    }
+
+    /// 参数错误
     public static var invalidParameter_Security: TCTeoError {
         TCTeoError(.invalidParameter_Security)
     }
 
-    /// 域名配置错误。
-    ///
-    /// 参数错误-setting非法参数。
+    /// 配置项参数错误。
     public static var invalidParameter_SettingInvalidParam: TCTeoError {
         TCTeoError(.invalidParameter_SettingInvalidParam)
     }
@@ -651,6 +852,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 任务无法生成。
     public static var invalidParameter_TaskNotGenerated: TCTeoError {
         TCTeoError(.invalidParameter_TaskNotGenerated)
+    }
+
+    /// 内部错误。
+    public static var invalidParameter_TaskSystemError: TCTeoError {
+        TCTeoError(.invalidParameter_TaskSystemError)
     }
 
     /// 文件上传链接存在问题。
@@ -683,6 +889,13 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.limitExceeded_DailyQuota)
     }
 
+    /// 查询时间范围超出限制。
+    ///
+    /// 减少时间查询范围
+    public static var limitExceeded_QueryTimeLimitExceeded: TCTeoError {
+        TCTeoError(.limitExceeded_QueryTimeLimitExceeded)
+    }
+
     /// 单位时间内接口请求频率达到限制。
     public static var limitExceeded_RateLimitExceeded: TCTeoError {
         TCTeoError(.limitExceeded_RateLimitExceeded)
@@ -691,6 +904,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 操作被拒绝。
     public static var operationDenied: TCTeoError {
         TCTeoError(.operationDenied)
+    }
+
+    /// 有域名在共享cname组内，不可切换接入类型。
+    public static var operationDenied_DomainInShareCnameGroup: TCTeoError {
+        TCTeoError(.operationDenied_DomainInShareCnameGroup)
     }
 
     /// 域名被封禁，暂时无法操作。
@@ -703,16 +921,38 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.operationDenied_DomainNoICP)
     }
 
+    /// 4层代理资源处于封禁中，禁止操作。
     public static var operationDenied_L4ProxyInBannedStatus: TCTeoError {
         TCTeoError(.operationDenied_L4ProxyInBannedStatus)
     }
 
+    /// 绑定4层实例有处于非运行中的状态，禁止操作。
+    public static var operationDenied_L4StatusNotInOnline: TCTeoError {
+        TCTeoError(.operationDenied_L4StatusNotInOnline)
+    }
+
+    /// 回源白名单已经是最新版本，无需更新。
+    public static var operationDenied_LatestVersionNow: TCTeoError {
+        TCTeoError(.operationDenied_LatestVersionNow)
+    }
+
+    /// 已存在多个Cname接入站点，不允许切换至NS。
     public static var operationDenied_MultipleCnameZone: TCTeoError {
         TCTeoError(.operationDenied_MultipleCnameZone)
     }
 
+    /// NS接入模式不支持域名流量调度功能。
     public static var operationDenied_NSNotAllowTrafficStrategy: TCTeoError {
         TCTeoError(.operationDenied_NSNotAllowTrafficStrategy)
+    }
+
+    /// DNS 记录不允许添加。
+    public static var operationDenied_RecordIsForbidden: TCTeoError {
+        TCTeoError(.operationDenied_RecordIsForbidden)
+    }
+
+    public static var operationDenied_ResourceLockedTemporary: TCTeoError {
+        TCTeoError(.operationDenied_ResourceLockedTemporary)
     }
 
     /// 资源被占用。
@@ -720,30 +960,47 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.resourceInUse)
     }
 
+    /// 资源被本账号别称域名占用。
     public static var resourceInUse_AliasDomain: TCTeoError {
         TCTeoError(.resourceInUse_AliasDomain)
     }
 
+    /// 当前已存在相同的别称域名，不支持重复添加
+    public static var resourceInUse_AliasName: TCTeoError {
+        TCTeoError(.resourceInUse_AliasName)
+    }
+
+    /// 资源被本账号Cname接入占用。
     public static var resourceInUse_Cname: TCTeoError {
         TCTeoError(.resourceInUse_Cname)
     }
 
+    /// Dns资源被占用。
     public static var resourceInUse_Dns: TCTeoError {
         TCTeoError(.resourceInUse_Dns)
     }
 
+    /// 该域名正在解析中，如果您需要开启加速，请前往 DNS 记录页开启加速。
+    public static var resourceInUse_DnsRecord: TCTeoError {
+        TCTeoError(.resourceInUse_DnsRecord)
+    }
+
+    /// 已存在相同的别称域名。
     public static var resourceInUse_DuplicateName: TCTeoError {
         TCTeoError(.resourceInUse_DuplicateName)
     }
 
+    /// 资源已被泛域名占用。
     public static var resourceInUse_GenericHost: TCTeoError {
         TCTeoError(.resourceInUse_GenericHost)
     }
 
+    /// 资源被本账号的子域名占用。
     public static var resourceInUse_Host: TCTeoError {
         TCTeoError(.resourceInUse_Host)
     }
 
+    /// 资源被本账号NS接入占用。
     public static var resourceInUse_NS: TCTeoError {
         TCTeoError(.resourceInUse_NS)
     }
@@ -753,26 +1010,32 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.resourceInUse_Others)
     }
 
+    /// 资源被其他账号别称域名占用。
     public static var resourceInUse_OthersAliasDomain: TCTeoError {
         TCTeoError(.resourceInUse_OthersAliasDomain)
     }
 
+    /// 资源被其他账号Cname接入占用。
     public static var resourceInUse_OthersCname: TCTeoError {
         TCTeoError(.resourceInUse_OthersCname)
     }
 
+    /// 资源被其他账号的子域名占用。
     public static var resourceInUse_OthersHost: TCTeoError {
         TCTeoError(.resourceInUse_OthersHost)
     }
 
+    /// 资源被其他账号NS接入占用。
     public static var resourceInUse_OthersNS: TCTeoError {
         TCTeoError(.resourceInUse_OthersNS)
     }
 
+    /// 资源被本账号和其他账号同时Cname接入占用。
     public static var resourceInUse_SelfAndOthersCname: TCTeoError {
         TCTeoError(.resourceInUse_SelfAndOthersCname)
     }
 
+    /// 别称域名已站点接入。
     public static var resourceInUse_Zone: TCTeoError {
         TCTeoError(.resourceInUse_Zone)
     }
@@ -792,14 +1055,19 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.resourceUnavailable)
     }
 
-    /// 无剩余可创建新任务的域名。
-    public static var resourceUnavailable_AvailableDomainNotFound: TCTeoError {
-        TCTeoError(.resourceUnavailable_AvailableDomainNotFound)
-    }
-
     /// 证书不存在或未授权。
     public static var resourceUnavailable_CertNotFound: TCTeoError {
         TCTeoError(.resourceUnavailable_CertNotFound)
+    }
+
+    /// 当前域名已接入EdgeOne，如确认需要接入到当前账号，请进行域名找回。
+    public static var resourceUnavailable_DomainAlreadyExists: TCTeoError {
+        TCTeoError(.resourceUnavailable_DomainAlreadyExists)
+    }
+
+    /// 请求的加速域名不存在，请更正后重试。
+    public static var resourceUnavailable_DomainNotFound: TCTeoError {
+        TCTeoError(.resourceUnavailable_DomainNotFound)
     }
 
     /// 域名不存在或未开启代理。
@@ -815,6 +1083,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 站点不存在或不属于该账号。
     public static var resourceUnavailable_ZoneNotFound: TCTeoError {
         TCTeoError(.resourceUnavailable_ZoneNotFound)
+    }
+
+    /// 资源售卖火爆，已售罄，正在加紧补货中，当前无法新增域名，请您耐心等待。
+    public static var resourcesSoldOut_L7LackOfResources: TCTeoError {
+        TCTeoError(.resourcesSoldOut_L7LackOfResources)
     }
 
     /// 未授权操作。
@@ -840,11 +1113,6 @@ public struct TCTeoError: TCTeoErrorType {
     /// 后端服务器发生未知错误。
     public static var unauthorizedOperation_Unknown: TCTeoError {
         TCTeoError(.unauthorizedOperation_Unknown)
-    }
-
-    /// 未知参数错误。
-    public static var unknownParameter: TCTeoError {
-        TCTeoError(.unknownParameter)
     }
 
     /// 操作不支持。

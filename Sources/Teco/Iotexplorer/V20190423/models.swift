@@ -886,19 +886,20 @@ extension Iotexplorer {
         /// 产品分组模板ID
         public let categoryId: Int64
 
-        /// 加密类型
+        /// 加密类型。1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         public let encryptionType: String
 
-        /// 连接类型
+        /// 连接类型。如：
+        /// wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
         public let netType: String
 
-        /// 数据协议
+        /// 数据协议 (1 使用物模型 2 为自定义类型)
         public let dataProtocol: Int64
 
         /// 产品描述
         public let productDesc: String
 
-        /// 状态
+        /// 状态 如：all 全部, dev 开发中, audit 审核中 released 已发布
         public let devStatus: String
 
         /// 创建时间
@@ -910,7 +911,7 @@ extension Iotexplorer {
         /// 区域
         public let region: String
 
-        /// 产品类型
+        /// 产品类型。如： 0 普通产品 ， 5 网关产品
         public let productType: Int64
 
         /// 项目ID
@@ -931,6 +932,10 @@ extension Iotexplorer {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creatorNickName: String?
 
+        /// 绑定策略（1：强踢；2：非强踢；0：表示无意义）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindStrategy: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case productName = "ProductName"
@@ -949,6 +954,7 @@ extension Iotexplorer {
             case enableProductScript = "EnableProductScript"
             case createUserId = "CreateUserId"
             case creatorNickName = "CreatorNickName"
+            case bindStrategy = "BindStrategy"
         }
     }
 

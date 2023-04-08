@@ -18,6 +18,7 @@ extension TCCynosdbError {
     public struct InvalidParameter: TCCynosdbErrorType {
         enum Code: String {
             case controllerNotFoundError = "InvalidParameter.ControllerNotFoundError"
+            case exceptionParam = "InvalidParameter.ExceptionParam"
             case invalidParameterError = "InvalidParameter.InvalidParameterError"
             case isolateNotAllowed = "InvalidParameter.IsolateNotAllowed"
             case other = "InvalidParameter"
@@ -52,6 +53,11 @@ extension TCCynosdbError {
             InvalidParameter(.controllerNotFoundError)
         }
 
+        /// 参数传参错误。
+        public static var exceptionParam: InvalidParameter {
+            InvalidParameter(.exceptionParam)
+        }
+
         /// 未知参数，请检查参数是否有效。
         public static var invalidParameterError: InvalidParameter {
             InvalidParameter(.invalidParameterError)
@@ -72,6 +78,8 @@ extension TCCynosdbError {
             switch self.error {
             case .controllerNotFoundError:
                 code = .invalidParameter_ControllerNotFoundError
+            case .exceptionParam:
+                code = .invalidParameter_ExceptionParam
             case .invalidParameterError:
                 code = .invalidParameter_InvalidParameterError
             case .isolateNotAllowed:

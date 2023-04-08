@@ -17,7 +17,7 @@
 extension Ess {
     /// CreateDocument请求参数结构体
     public struct CreateDocumentRequest: TCRequestModel {
-        /// 调用方用户信息，userId 必填
+        /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         public let `operator`: UserInfo
 
         /// 签署流程编号,由CreateFlow接口返回
@@ -39,7 +39,7 @@ extension Ess {
         /// 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
         public let previewType: Int64?
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         /// 客户端Token，保持接口幂等性,最大长度64个字符
@@ -92,8 +92,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
-    ///
+    /// 适用场景：见创建签署流程接口。x0b
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
@@ -103,8 +102,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
-    ///
+    /// 适用场景：见创建签署流程接口。x0b
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
@@ -114,8 +112,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
-    ///
+    /// 适用场景：见创建签署流程接口。x0b
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
@@ -125,8 +122,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
-    ///
+    /// 适用场景：见创建签署流程接口。x0b
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {

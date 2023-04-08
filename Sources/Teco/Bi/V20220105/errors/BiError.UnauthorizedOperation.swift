@@ -18,6 +18,7 @@ extension TCBiError {
     public struct UnauthorizedOperation: TCBiErrorType {
         enum Code: String {
             case authorize = "UnauthorizedOperation.Authorize"
+            case userNotExist = "UnauthorizedOperation.UserNotExist"
             case other = "UnauthorizedOperation"
         }
 
@@ -48,6 +49,11 @@ extension TCBiError {
             UnauthorizedOperation(.authorize)
         }
 
+        /// 用户不存在。
+        public static var userNotExist: UnauthorizedOperation {
+            UnauthorizedOperation(.userNotExist)
+        }
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
@@ -58,6 +64,8 @@ extension TCBiError {
             switch self.error {
             case .authorize:
                 code = .unauthorizedOperation_Authorize
+            case .userNotExist:
+                code = .unauthorizedOperation_UserNotExist
             case .other:
                 code = .unauthorizedOperation
             }

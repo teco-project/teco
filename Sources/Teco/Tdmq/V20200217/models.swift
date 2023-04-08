@@ -1015,6 +1015,21 @@ extension Tdmq {
         }
     }
 
+    /// exchange使用配额信息
+    public struct ExchangeQuota: TCOutputModel {
+        /// 可创建最大exchange数
+        public let maxExchange: Int64?
+
+        /// 已创建exchange数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedExchange: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case maxExchange = "MaxExchange"
+            case usedExchange = "UsedExchange"
+        }
+    }
+
     /// 过滤参数
     public struct Filter: TCInputModel {
         /// 过滤参数的名字
@@ -1060,6 +1075,24 @@ extension Tdmq {
             case consumerHasBacklog = "ConsumerHasBacklog"
             case consumerHasExpired = "ConsumerHasExpired"
             case subscriptionNames = "SubscriptionNames"
+        }
+    }
+
+    /// 实例节点分布信息
+    public struct InstanceNodeDistribution: TCOutputModel {
+        /// 可用区
+        public let zoneName: String
+
+        /// 可用区id
+        public let zoneId: String
+
+        /// 节点数
+        public let nodeCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case zoneName = "ZoneName"
+            case zoneId = "ZoneId"
+            case nodeCount = "NodeCount"
         }
     }
 
@@ -1131,6 +1164,10 @@ extension Tdmq {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRetentionSizeInMB: UInt64?
 
+        /// public Access Enabled
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicAccessEnabled: Bool?
+
         enum CodingKeys: String, CodingKey {
             case tenantId = "TenantId"
             case tenantName = "TenantName"
@@ -1153,6 +1190,7 @@ extension Tdmq {
             case maxDispatchRateInBytes = "MaxDispatchRateInBytes"
             case maxPublishRateInBytes = "MaxPublishRateInBytes"
             case maxRetentionSizeInMB = "MaxRetentionSizeInMB"
+            case publicAccessEnabled = "PublicAccessEnabled"
         }
     }
 
@@ -1227,6 +1265,32 @@ extension Tdmq {
         }
     }
 
+    /// rabbitmq Prometheus信息
+    public struct PrometheusEndpointInfo: TCOutputModel {
+        /// Prometheus开关的状态。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prometheusEndpointStatus: String?
+
+        /// prometheus信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcPrometheusEndpoint: [String]?
+
+        /// 节点信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodePrometheusAddress: [String]?
+
+        /// vpc信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcEndpointInfo: VpcEndpointInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case prometheusEndpointStatus = "PrometheusEndpointStatus"
+            case vpcPrometheusEndpoint = "VpcPrometheusEndpoint"
+            case nodePrometheusAddress = "NodePrometheusAddress"
+            case vpcEndpointInfo = "VpcEndpointInfo"
+        }
+    }
+
     /// 生产者信息
     public struct Publisher: TCOutputModel {
         /// 生产者id
@@ -1278,14 +1342,252 @@ extension Tdmq {
         }
     }
 
+    /// queue使用配额信息
+    public struct QueueQuota: TCOutputModel {
+        /// 可创建最大Queue数
+        public let maxQueue: Int64?
+
+        /// 已创建Queue数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedQueue: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case maxQueue = "MaxQueue"
+            case usedQueue = "UsedQueue"
+        }
+    }
+
+    /// RabbitMQ集群访问信息
+    public struct RabbitMQClusterAccessInfo: TCOutputModel {
+        /// 集群公网接入地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicAccessEndpoint: String?
+
+        /// 集群控制台访问地址
+        public let webConsoleEndpoint: String
+
+        /// 集群控制台登录用户名
+        public let webConsoleUsername: String
+
+        /// 集群控制台登录密码
+        public let webConsolePassword: String
+
+        /// 已废弃
+        public let publicAccessEndpointStatus: Bool
+
+        /// 已废弃
+        public let publicControlConsoleSwitchStatus: Bool
+
+        /// 已废弃
+        public let vpcControlConsoleSwitchStatus: Bool
+
+        /// Vpc管控台访问地址，示例值，http://1.1.1.1:15672
+        public let vpcWebConsoleEndpoint: String
+
+        /// 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicWebConsoleSwitchStatus: String?
+
+        /// Vpc管控台开关状态，示例值，
+        /// OFF/ON/CREATING/DELETING
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcWebConsoleSwitchStatus: String?
+
+        /// 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicDataStreamStatus: String?
+
+        /// Prometheus信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prometheusEndpointInfo: PrometheusEndpointInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case publicAccessEndpoint = "PublicAccessEndpoint"
+            case webConsoleEndpoint = "WebConsoleEndpoint"
+            case webConsoleUsername = "WebConsoleUsername"
+            case webConsolePassword = "WebConsolePassword"
+            case publicAccessEndpointStatus = "PublicAccessEndpointStatus"
+            case publicControlConsoleSwitchStatus = "PublicControlConsoleSwitchStatus"
+            case vpcControlConsoleSwitchStatus = "VpcControlConsoleSwitchStatus"
+            case vpcWebConsoleEndpoint = "VpcWebConsoleEndpoint"
+            case publicWebConsoleSwitchStatus = "PublicWebConsoleSwitchStatus"
+            case vpcWebConsoleSwitchStatus = "VpcWebConsoleSwitchStatus"
+            case publicDataStreamStatus = "PublicDataStreamStatus"
+            case prometheusEndpointInfo = "PrometheusEndpointInfo"
+        }
+    }
+
+    /// RabbiteMQ集群基本信息
+    public struct RabbitMQClusterInfo: TCOutputModel {
+        /// 集群ID
+        public let clusterId: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 地域信息
+        public let region: String
+
+        /// 创建时间，毫秒为单位
+        public let createTime: UInt64
+
+        /// 集群说明信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        /// VPC及网络信息
+        public let vpcs: [VpcEndpointInfo]
+
+        /// 虚拟主机数量
+        public let virtualHostNumber: Int64
+
+        /// 队列数量
+        public let queueNumber: Int64
+
+        /// 每秒生产消息数 单位：条/秒
+        public let messagePublishRate: Float
+
+        /// 堆积消息数 单位：条
+        public let messageStackNumber: Int64
+
+        /// 过期时间
+        public let expireTime: Int64
+
+        /// Channel数量
+        public let channelNumber: Int64
+
+        /// Connection数量
+        public let connectionNumber: Int64
+
+        /// Consumer数量
+        public let consumerNumber: Int64
+
+        /// Exchang数量
+        public let exchangeNumber: Int64
+
+        /// 集群异常。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let exceptionInformation: String?
+
+        /// 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterStatus: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case region = "Region"
+            case createTime = "CreateTime"
+            case remark = "Remark"
+            case vpcs = "Vpcs"
+            case virtualHostNumber = "VirtualHostNumber"
+            case queueNumber = "QueueNumber"
+            case messagePublishRate = "MessagePublishRate"
+            case messageStackNumber = "MessageStackNumber"
+            case expireTime = "ExpireTime"
+            case channelNumber = "ChannelNumber"
+            case connectionNumber = "ConnectionNumber"
+            case consumerNumber = "ConsumerNumber"
+            case exchangeNumber = "ExchangeNumber"
+            case exceptionInformation = "ExceptionInformation"
+            case clusterStatus = "ClusterStatus"
+        }
+    }
+
+    /// RabbitMQ集群规格信息
+    public struct RabbitMQClusterSpecInfo: TCOutputModel {
+        /// 集群规格名称
+        public let specName: String
+
+        /// 节点数量
+        public let nodeCount: UInt64
+
+        /// 峰值tps
+        public let maxTps: UInt64
+
+        /// 峰值带宽。单位：mbps
+        public let maxBandWidth: UInt64
+
+        /// 存储容量。单位：GB
+        public let maxStorage: UInt64
+
+        /// 公网带宽tps。单位：Mbps
+        public let publicNetworkTps: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case specName = "SpecName"
+            case nodeCount = "NodeCount"
+            case maxTps = "MaxTps"
+            case maxBandWidth = "MaxBandWidth"
+            case maxStorage = "MaxStorage"
+            case publicNetworkTps = "PublicNetworkTps"
+        }
+    }
+
+    /// RabbiteMQ集群白名单信息
+    public struct RabbitMQClusterWhiteListInfo: TCOutputModel {
+        /// 废弃
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let whiteList: String?
+
+        /// 公网管控台白名单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicControlConsoleWhiteList: String?
+
+        /// 公网数据流白名单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicDataStreamWhiteList: String?
+
+        /// 公网管控台白名单状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicControlConsoleWhiteListStatus: String?
+
+        /// 公网数据流白名单状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicDataStreamWhiteListStatus: String?
+
+        enum CodingKeys: String, CodingKey {
+            case whiteList = "WhiteList"
+            case publicControlConsoleWhiteList = "PublicControlConsoleWhiteList"
+            case publicDataStreamWhiteList = "PublicDataStreamWhiteList"
+            case publicControlConsoleWhiteListStatus = "PublicControlConsoleWhiteListStatus"
+            case publicDataStreamWhiteListStatus = "PublicDataStreamWhiteListStatus"
+        }
+    }
+
     /// RabbitMQ节点信息
     public struct RabbitMQPrivateNode: TCOutputModel {
         /// 节点名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
 
+        /// 节点状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeStatus: String?
+
+        /// CPU使用率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpuUsage: String?
+
+        /// 内存使用情况，单位MB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memory: UInt64?
+
+        /// 磁盘使用率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskUsage: String?
+
+        /// Rabbitmq的Erlang进程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processNumber: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case nodeName = "NodeName"
+            case nodeStatus = "NodeStatus"
+            case cpuUsage = "CPUUsage"
+            case memory = "Memory"
+            case diskUsage = "DiskUsage"
+            case processNumber = "ProcessNumber"
         }
     }
 
@@ -1335,6 +1637,10 @@ extension Tdmq {
         /// 实例配置ID
         public let specName: String
 
+        /// 集群异常。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let exceptionInformation: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -1350,6 +1656,7 @@ extension Tdmq {
             case payMode = "PayMode"
             case remark = "Remark"
             case specName = "SpecName"
+            case exceptionInformation = "ExceptionInformation"
         }
     }
 
@@ -1375,31 +1682,35 @@ extension Tdmq {
     /// RocketMQ集群配置
     public struct RocketMQClusterConfig: TCOutputModel {
         /// 单命名空间TPS上线
-        public let maxTpsPerNamespace: UInt64
+        public let maxTpsPerNamespace: UInt64?
 
         /// 最大命名空间数量
-        public let maxNamespaceNum: UInt64
+        public let maxNamespaceNum: UInt64?
 
         /// 已使用命名空间数量
-        public let usedNamespaceNum: UInt64
+        public let usedNamespaceNum: UInt64?
 
         /// 最大Topic数量
-        public let maxTopicNum: UInt64
+        public let maxTopicNum: UInt64?
 
         /// 已使用Topic数量
-        public let usedTopicNum: UInt64
+        public let usedTopicNum: UInt64?
 
         /// 最大Group数量
-        public let maxGroupNum: UInt64
+        public let maxGroupNum: UInt64?
 
         /// 已使用Group数量
-        public let usedGroupNum: UInt64
+        public let usedGroupNum: UInt64?
 
         /// 消息最大保留时间，以毫秒为单位
-        public let maxRetentionTime: UInt64
+        public let maxRetentionTime: UInt64?
 
         /// 消息最长延时，以毫秒为单位
-        public let maxLatencyTime: UInt64
+        public let maxLatencyTime: UInt64?
+
+        /// 单个主题最大队列数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxQueuesPerTopic: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case maxTpsPerNamespace = "MaxTpsPerNamespace"
@@ -1411,6 +1722,7 @@ extension Tdmq {
             case usedGroupNum = "UsedGroupNum"
             case maxRetentionTime = "MaxRetentionTime"
             case maxLatencyTime = "MaxLatencyTime"
+            case maxQueuesPerTopic = "MaxQueuesPerTopic"
         }
     }
 
@@ -1601,6 +1913,61 @@ extension Tdmq {
         }
     }
 
+    /// RocketMQ专享集群实例配置
+    public struct RocketMQInstanceConfig: TCOutputModel {
+        /// 单命名空间TPS上线
+        public let maxTpsPerNamespace: UInt64?
+
+        /// 最大命名空间数量
+        public let maxNamespaceNum: UInt64?
+
+        /// 已使用命名空间数量
+        public let usedNamespaceNum: UInt64?
+
+        /// 最大Topic数量
+        public let maxTopicNum: UInt64?
+
+        /// 已使用Topic数量
+        public let usedTopicNum: UInt64?
+
+        /// 最大Group数量
+        public let maxGroupNum: UInt64?
+
+        /// 已使用Group数量
+        public let usedGroupNum: UInt64?
+
+        /// 集群类型
+        public let configDisplay: String?
+
+        /// 集群节点数
+        public let nodeCount: UInt64?
+
+        /// 节点分布情况
+        public let nodeDistribution: [InstanceNodeDistribution]?
+
+        /// topic分布情况
+        public let topicDistribution: [RocketMQTopicDistribution]?
+
+        /// 每个主题最大队列数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxQueuesPerTopic: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case maxTpsPerNamespace = "MaxTpsPerNamespace"
+            case maxNamespaceNum = "MaxNamespaceNum"
+            case usedNamespaceNum = "UsedNamespaceNum"
+            case maxTopicNum = "MaxTopicNum"
+            case usedTopicNum = "UsedTopicNum"
+            case maxGroupNum = "MaxGroupNum"
+            case usedGroupNum = "UsedGroupNum"
+            case configDisplay = "ConfigDisplay"
+            case nodeCount = "NodeCount"
+            case nodeDistribution = "NodeDistribution"
+            case topicDistribution = "TopicDistribution"
+            case maxQueuesPerTopic = "MaxQueuesPerTopic"
+        }
+    }
+
     /// RocketMQ命名空间信息
     public struct RocketMQNamespace: TCOutputModel {
         /// 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -1669,6 +2036,20 @@ extension Tdmq {
         }
     }
 
+    /// RocketMQtopic分布情况
+    public struct RocketMQTopicDistribution: TCOutputModel {
+        /// topic类型
+        public let topicType: String
+
+        /// topic数量
+        public let count: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case topicType = "TopicType"
+            case count = "Count"
+        }
+    }
+
     /// RocketMQ专享实例信息
     public struct RocketMQVipInstance: TCOutputModel {
         /// 实例id
@@ -1681,7 +2062,7 @@ extension Tdmq {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceVersion: String?
 
-        /// 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常
+        /// 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
         public let status: UInt64
 
         /// 节点数量
@@ -2087,6 +2468,21 @@ extension Tdmq {
         }
     }
 
+    /// vhost使用配额信息
+    public struct VirtualHostQuota: TCOutputModel {
+        /// 允许创建最大vhost数
+        public let maxVirtualHost: Int64?
+
+        /// 已创建vhost数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedVirtualHost: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case maxVirtualHost = "MaxVirtualHost"
+            case usedVirtualHost = "UsedVirtualHost"
+        }
+    }
+
     /// vcp绑定记录
     public struct VpcBindRecord: TCOutputModel {
         /// 租户Vpc Id
@@ -2134,6 +2530,37 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+        }
+    }
+
+    /// VPC接入点信息
+    public struct VpcEndpointInfo: TCInputModel, TCOutputModel {
+        /// vpc的id
+        public let vpcId: String
+
+        /// 子网id
+        public let subnetId: String
+
+        /// vpc接入点信息
+        public let vpcEndpoint: String
+
+        /// vpc接入点状态
+        /// OFF/ON/CREATING/DELETING
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcDataStreamEndpointStatus: String?
+
+        public init(vpcId: String, subnetId: String, vpcEndpoint: String, vpcDataStreamEndpointStatus: String? = nil) {
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+            self.vpcEndpoint = vpcEndpoint
+            self.vpcDataStreamEndpointStatus = vpcDataStreamEndpointStatus
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case vpcEndpoint = "VpcEndpoint"
+            case vpcDataStreamEndpointStatus = "VpcDataStreamEndpointStatus"
         }
     }
 }

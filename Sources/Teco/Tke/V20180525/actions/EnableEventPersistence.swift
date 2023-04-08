@@ -26,16 +26,21 @@ extension Tke {
         /// cls服务的topicID
         public let topicId: String?
 
-        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
+        /// topic所在地域，默认为集群所在地域
+        public let topicRegion: String?
+
+        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
+            self.topicRegion = topicRegion
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case logsetId = "LogsetId"
             case topicId = "TopicId"
+            case topicRegion = "TopicRegion"
         }
     }
 
@@ -63,13 +68,13 @@ extension Tke {
 
     /// 开启事件持久化功能
     @inlinable @discardableResult
-    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableEventPersistenceResponse> {
-        self.enableEventPersistence(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableEventPersistenceResponse> {
+        self.enableEventPersistence(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId, topicRegion: topicRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启事件持久化功能
     @inlinable @discardableResult
-    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
-        try await self.enableEventPersistence(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
+        try await self.enableEventPersistence(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId, topicRegion: topicRegion), region: region, logger: logger, on: eventLoop)
     }
 }

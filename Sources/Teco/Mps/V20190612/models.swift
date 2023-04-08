@@ -137,6 +137,98 @@ extension Mps {
         }
     }
 
+    /// 编排原子任务
+    public struct Activity: TCInputModel, TCOutputModel {
+        /// 原子任务类型：
+        /// <li>input: 起始节点</li>
+        /// <li>output：终止节点</li>
+        /// <li>action-trans：转码</li>
+        /// <li>action-samplesnapshot：采样截图</li>
+        /// <li>action-AIAnalysis: 分析</li>
+        /// <li>action-AIRecognition：识别</li>
+        /// <li>action-aiReview：审核</li>
+        /// <li>action-animated-graphics：转动图</li>
+        /// <li>action-image-sprite：雪碧图</li>
+        /// <li>action-snapshotByTimeOffset: 时间点截图</li>
+        /// <li>action-adaptive-substream：自适应码流</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activityType: String?
+
+        /// 后驱节点索引数组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reardriveIndex: [Int64]?
+
+        /// 原子任务参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activityPara: ActivityPara?
+
+        public init(activityType: String, reardriveIndex: [Int64]? = nil, activityPara: ActivityPara? = nil) {
+            self.activityType = activityType
+            self.reardriveIndex = reardriveIndex
+            self.activityPara = activityPara
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case activityType = "ActivityType"
+            case reardriveIndex = "ReardriveIndex"
+            case activityPara = "ActivityPara"
+        }
+    }
+
+    /// 编排原子任务
+    public struct ActivityPara: TCInputModel {
+        /// 视频转码任务
+        public let transcodeTask: TranscodeTaskInput?
+
+        /// 视频转动图任务
+        public let animatedGraphicTask: AnimatedGraphicTaskInput?
+
+        /// 视频按时间点截图任务
+        public let snapshotByTimeOffsetTask: SnapshotByTimeOffsetTaskInput?
+
+        /// 视频采样截图任务
+        public let sampleSnapshotTask: SampleSnapshotTaskInput?
+
+        /// 视频截雪碧图任务
+        public let imageSpriteTask: ImageSpriteTaskInput?
+
+        /// 转自适应码流任务
+        public let adaptiveDynamicStreamingTask: AdaptiveDynamicStreamingTaskInput?
+
+        /// 视频内容审核类型任务
+        public let aiContentReviewTask: AiContentReviewTaskInput?
+
+        /// 视频内容分析类型任务
+        public let aiAnalysisTask: AiAnalysisTaskInput?
+
+        /// 视频内容识别类型任务
+        public let aiRecognitionTask: AiRecognitionTaskInput?
+
+        public init(transcodeTask: TranscodeTaskInput? = nil, animatedGraphicTask: AnimatedGraphicTaskInput? = nil, snapshotByTimeOffsetTask: SnapshotByTimeOffsetTaskInput? = nil, sampleSnapshotTask: SampleSnapshotTaskInput? = nil, imageSpriteTask: ImageSpriteTaskInput? = nil, adaptiveDynamicStreamingTask: AdaptiveDynamicStreamingTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil) {
+            self.transcodeTask = transcodeTask
+            self.animatedGraphicTask = animatedGraphicTask
+            self.snapshotByTimeOffsetTask = snapshotByTimeOffsetTask
+            self.sampleSnapshotTask = sampleSnapshotTask
+            self.imageSpriteTask = imageSpriteTask
+            self.adaptiveDynamicStreamingTask = adaptiveDynamicStreamingTask
+            self.aiContentReviewTask = aiContentReviewTask
+            self.aiAnalysisTask = aiAnalysisTask
+            self.aiRecognitionTask = aiRecognitionTask
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case transcodeTask = "TranscodeTask"
+            case animatedGraphicTask = "AnimatedGraphicTask"
+            case snapshotByTimeOffsetTask = "SnapshotByTimeOffsetTask"
+            case sampleSnapshotTask = "SampleSnapshotTask"
+            case imageSpriteTask = "ImageSpriteTask"
+            case adaptiveDynamicStreamingTask = "AdaptiveDynamicStreamingTask"
+            case aiContentReviewTask = "AiContentReviewTask"
+            case aiAnalysisTask = "AiAnalysisTask"
+            case aiRecognitionTask = "AiRecognitionTask"
+        }
+    }
+
     /// 编排子任务输出
     public struct ActivityResItem: TCOutputModel {
         /// 转码任务输出
@@ -386,12 +478,17 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameTagTask: AiAnalysisTaskFrameTagResult?
 
+        /// 视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let highlightTask: AiAnalysisTaskHighlightResult?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case classificationTask = "ClassificationTask"
             case coverTask = "CoverTask"
             case tagTask = "TagTask"
             case frameTagTask = "FrameTagTask"
+            case highlightTask = "HighlightTask"
         }
     }
 
@@ -545,6 +642,57 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case input = "Input"
+            case output = "Output"
+        }
+    }
+
+    /// 智能精彩片段任务输入类型
+    public struct AiAnalysisTaskHighlightInput: TCOutputModel {
+        /// 视频智能精彩片段模板 ID。
+        public let definition: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+        }
+    }
+
+    /// 智能精彩片段结果信息
+    public struct AiAnalysisTaskHighlightOutput: TCOutputModel {
+        /// 视频智能精彩片段列表。
+        public let highlightSet: [MediaAiAnalysisHighlightItem]
+
+        /// 精彩片段的存储位置。
+        public let outputStorage: TaskOutputStorage
+
+        enum CodingKeys: String, CodingKey {
+            case highlightSet = "HighlightSet"
+            case outputStorage = "OutputStorage"
+        }
+    }
+
+    /// 智能精彩片段结果类型
+    public struct AiAnalysisTaskHighlightResult: TCOutputModel {
+        /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        public let status: String
+
+        /// 错误码，0：成功，其他值：失败。
+        public let errCode: Int64
+
+        /// 错误信息。
+        public let message: String
+
+        /// 智能精彩片段任务输入。
+        public let input: AiAnalysisTaskHighlightInput
+
+        /// 智能精彩片段任务输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: AiAnalysisTaskHighlightOutput?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
             case errCode = "ErrCode"
             case message = "Message"
             case input = "Input"
@@ -713,6 +861,27 @@ extension Mps {
 
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
+        }
+    }
+
+    /// 视频质检输入参数类型
+    public struct AiQualityControlTaskInput: TCInputModel, TCOutputModel {
+        /// 视频质检模板 ID 。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let definition: UInt64?
+
+        /// 渠道扩展参数json序列化字符串。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelExtPara: String?
+
+        public init(definition: UInt64? = nil, channelExtPara: String? = nil) {
+            self.definition = definition
+            self.channelExtPara = channelExtPara
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case channelExtPara = "ChannelExtPara"
         }
     }
 
@@ -2499,6 +2668,83 @@ extension Mps {
         }
     }
 
+    /// AWS S3 文件是上传触发器。
+    public struct AwsS3FileUploadTrigger: TCInputModel, TCOutputModel {
+        /// 绑定的 AWS S3 存储桶。
+        public let s3Bucket: String
+
+        /// 绑定的桶所在 AWS 区域。
+        public let s3Region: String
+
+        /// 绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
+        public let dir: String?
+
+        /// 允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
+        public let formats: [String]?
+
+        /// 绑定的 AWS S3 存储桶的秘钥ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3SecretId: String?
+
+        /// 绑定的 AWS S3 存储桶的秘钥Key。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3SecretKey: String?
+
+        /// 绑定的 AWS S3 存储桶对应的 SQS事件队列。
+        /// 注意：队列和桶需要在同一区域。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let awsSQS: AwsSQS?
+
+        public init(s3Bucket: String, s3Region: String, dir: String? = nil, formats: [String]? = nil, s3SecretId: String? = nil, s3SecretKey: String? = nil, awsSQS: AwsSQS? = nil) {
+            self.s3Bucket = s3Bucket
+            self.s3Region = s3Region
+            self.dir = dir
+            self.formats = formats
+            self.s3SecretId = s3SecretId
+            self.s3SecretKey = s3SecretKey
+            self.awsSQS = awsSQS
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case s3Bucket = "S3Bucket"
+            case s3Region = "S3Region"
+            case dir = "Dir"
+            case formats = "Formats"
+            case s3SecretId = "S3SecretId"
+            case s3SecretKey = "S3SecretKey"
+            case awsSQS = "AwsSQS"
+        }
+    }
+
+    /// Aws SQS 队列信息
+    public struct AwsSQS: TCInputModel {
+        /// SQS 队列区域。
+        public let sqsRegion: String
+
+        /// SQS 队列名称。
+        public let sqsQueueName: String
+
+        /// 读写SQS的秘钥id。
+        public let s3SecretId: String?
+
+        /// 读写SQS的秘钥key。
+        public let s3SecretKey: String?
+
+        public init(sqsRegion: String, sqsQueueName: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+            self.sqsRegion = sqsRegion
+            self.sqsQueueName = sqsQueueName
+            self.s3SecretId = s3SecretId
+            self.s3SecretKey = s3SecretKey
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sqsRegion = "SQSRegion"
+            case sqsQueueName = "SQSQueueName"
+            case s3SecretId = "S3SecretId"
+            case s3SecretKey = "S3SecretKey"
+        }
+    }
+
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能分类任务开关，可选值：
@@ -2928,7 +3174,10 @@ extension Mps {
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
 
-        public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
+        /// 最大拉流并发数，最大4，默认4。
+        public let maxConcurrent: UInt64?
+
+        public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil) {
             self.outputName = outputName
             self.description = description
             self.protocol = `protocol`
@@ -2937,6 +3186,7 @@ extension Mps {
             self.rtmpSettings = rtmpSettings
             self.rtpSettings = rtpSettings
             self.allowIpList = allowIpList
+            self.maxConcurrent = maxConcurrent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2948,6 +3198,7 @@ extension Mps {
             case rtmpSettings = "RTMPSettings"
             case rtpSettings = "RTPSettings"
             case allowIpList = "AllowIpList"
+            case maxConcurrent = "MaxConcurrent"
         }
     }
 
@@ -3387,6 +3638,9 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hlsPullSettings: DescribeOutputHLSPullSettings?
 
+        /// 最大拉流并发数，最大为4，默认4。
+        public let maxConcurrent: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case outputId = "OutputId"
             case outputName = "OutputName"
@@ -3402,6 +3656,7 @@ extension Mps {
             case allowIpList = "AllowIpList"
             case rtspPullSettings = "RTSPPullSettings"
             case hlsPullSettings = "HLSPullSettings"
+            case maxConcurrent = "MaxConcurrent"
         }
     }
 
@@ -4330,6 +4585,24 @@ extension Mps {
         }
     }
 
+    /// 智能精彩集锦片段列表。
+    public struct HighlightSegmentItem: TCOutputModel {
+        /// 置信度。
+        public let confidence: Float
+
+        /// 片段起始时间偏移。
+        public let startTimeOffset: Float
+
+        /// 片段结束时间偏移。
+        public let endTimeOffset: Float
+
+        enum CodingKeys: String, CodingKey {
+            case confidence = "Confidence"
+            case startTimeOffset = "StartTimeOffset"
+            case endTimeOffset = "EndTimeOffset"
+        }
+    }
+
     /// 综合增强配置
     public struct ImageQualityEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -4803,7 +5076,7 @@ extension Mps {
         /// <li>ImagePorn：图片鉴黄</li>
         /// <li>ImageTerrorism：图片涉敏</li>
         /// <li>ImagePolitical：图片涉敏</li>
-        /// <li>PornVoice：声音鉴黄</li>
+        /// <li>VoicePorn：声音违规</li>
         public let type: String
 
         /// 图片鉴黄的结果，当 Type 为 ImagePorn 时有效。
@@ -4815,7 +5088,7 @@ extension Mps {
         /// 图片涉敏的结果，当 Type 为 ImagePolitical 时有效。
         public let imagePoliticalResultSet: [LiveStreamAiReviewImagePoliticalResult]
 
-        /// 声音鉴黄的结果，当 Type 为 PornVoice 时有效。
+        /// 声音违规的结果，当 Type 为 VoicePorn 时有效。
         public let voicePornResultSet: [LiveStreamAiReviewVoicePornResult]
 
         enum CodingKeys: String, CodingKey {
@@ -5189,6 +5462,32 @@ extension Mps {
         }
     }
 
+    /// 智能精彩片段信息
+    public struct MediaAiAnalysisHighlightItem: TCOutputModel {
+        /// 智能精彩集锦地址。
+        public let highlightPath: String
+
+        /// 智能精彩集锦封面地址。
+        public let covImgPath: String
+
+        /// 智能精彩集锦的可信度，取值范围是 0 到 100。
+        public let confidence: Float
+
+        /// 智能精彩集锦持续时间。
+        public let duration: Float
+
+        /// 智能精彩集锦子片段列表。
+        public let segmentSet: [HighlightSegmentItem]
+
+        enum CodingKeys: String, CodingKey {
+            case highlightPath = "HighlightPath"
+            case covImgPath = "CovImgPath"
+            case confidence = "Confidence"
+            case duration = "Duration"
+            case segmentSet = "SegmentSet"
+        }
+    }
+
     /// 智能标签结果信息
     public struct MediaAiAnalysisTagItem: TCOutputModel {
         /// 标签名称。
@@ -5490,7 +5789,10 @@ extension Mps {
 
     /// 媒体处理的输入对象信息。
     public struct MediaInputInfo: TCInputModel, TCOutputModel {
-        /// 输入来源对象的类型，支持 COS、URL 两种。
+        /// 输入来源对象的类型，支持：
+        /// <li> COS：COS源</li>
+        /// <li> URL：URL源</li>
+        /// <li> AWS-S3：AWS 源，目前只支持转码任务 </li>
         public let type: String
 
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
@@ -5500,16 +5802,22 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlInputInfo: UrlInputInfo?
 
-        public init(type: String, cosInputInfo: CosInputInfo? = nil, urlInputInfo: UrlInputInfo? = nil) {
+        /// 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 对象信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3InputInfo: S3InputInfo?
+
+        public init(type: String, cosInputInfo: CosInputInfo? = nil, urlInputInfo: UrlInputInfo? = nil, s3InputInfo: S3InputInfo? = nil) {
             self.type = type
             self.cosInputInfo = cosInputInfo
             self.urlInputInfo = urlInputInfo
+            self.s3InputInfo = s3InputInfo
         }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosInputInfo = "CosInputInfo"
             case urlInputInfo = "UrlInputInfo"
+            case s3InputInfo = "S3InputInfo"
         }
     }
 
@@ -6109,7 +6417,10 @@ extension Mps {
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
 
-        public init(outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil) {
+        /// 最大拉流并发数，最大4，默认4。
+        public let maxConcurrent: UInt64?
+
+        public init(outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil) {
             self.outputId = outputId
             self.outputName = outputName
             self.description = description
@@ -6118,6 +6429,7 @@ extension Mps {
             self.rtpSettings = rtpSettings
             self.rtmpSettings = rtmpSettings
             self.allowIpList = allowIpList
+            self.maxConcurrent = maxConcurrent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6129,6 +6441,7 @@ extension Mps {
             case rtpSettings = "RTPSettings"
             case rtmpSettings = "RTMPSettings"
             case allowIpList = "AllowIpList"
+            case maxConcurrent = "MaxConcurrent"
         }
     }
 
@@ -6357,7 +6670,11 @@ extension Mps {
         /// 字幕流配置参数。
         public let subtitleTemplate: SubtitleTemplate?
 
-        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil) {
+        /// 外挂音轨参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addonAudioStream: [MediaInputInfo]?
+
+        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil, addonAudioStream: [MediaInputInfo]? = nil) {
             self.container = container
             self.removeVideo = removeVideo
             self.removeAudio = removeAudio
@@ -6365,6 +6682,7 @@ extension Mps {
             self.audioTemplate = audioTemplate
             self.tehdConfig = tehdConfig
             self.subtitleTemplate = subtitleTemplate
+            self.addonAudioStream = addonAudioStream
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6375,6 +6693,7 @@ extension Mps {
             case audioTemplate = "AudioTemplate"
             case tehdConfig = "TEHDConfig"
             case subtitleTemplate = "SubtitleTemplate"
+            case addonAudioStream = "AddonAudioStream"
         }
     }
 
@@ -6974,6 +7293,86 @@ extension Mps {
         }
     }
 
+    /// 质检结果输出。
+    public struct QualityControlData: TCOutputModel {
+        /// 为true时表示视频无音频轨。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noAudio: Bool?
+
+        /// 为true时表示视频无视频轨。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noVideo: Bool?
+
+        /// 视频无参考质量打分，百分制。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityEvaluationScore: Int64?
+
+        /// 质检检出异常项。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityControlResultSet: [QualityControlResult]?
+
+        enum CodingKeys: String, CodingKey {
+            case noAudio = "NoAudio"
+            case noVideo = "NoVideo"
+            case qualityEvaluationScore = "QualityEvaluationScore"
+            case qualityControlResultSet = "QualityControlResultSet"
+        }
+    }
+
+    /// 质检结果项
+    public struct QualityControlItem: TCOutputModel {
+        /// 置信度，取值范围是 0 到 100。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let confidence: Int64?
+
+        /// 出现的起始时间戳，秒。
+        public let startTimeOffset: Float
+
+        /// 出现的结束时间戳，秒。
+        public let endTimeOffset: Float
+
+        /// 区域坐标(px)，即左上角坐标、右下角坐标。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let areaCoordSet: [Int64]?
+
+        enum CodingKeys: String, CodingKey {
+            case confidence = "Confidence"
+            case startTimeOffset = "StartTimeOffset"
+            case endTimeOffset = "EndTimeOffset"
+            case areaCoordSet = "AreaCoordSet"
+        }
+    }
+
+    /// 质检异常项。
+    public struct QualityControlResult: TCOutputModel {
+        /// 异常类型，取值范围：
+        /// Jitter：抖动，
+        /// Blur：模糊，
+        /// LowLighting：低光照，
+        /// HighLighting：过曝，
+        /// CrashScreen：花屏，
+        /// BlackWhiteEdge：黑白边，
+        /// SolidColorScreen：纯色屏，
+        /// Noise：噪点，
+        /// Mosaic：马赛克，
+        /// QRCode：二维码，
+        /// AppletCode：小程序码，
+        /// BarCode：条形码，
+        /// LowVoice：低音，
+        /// HighVoice：爆音，
+        /// NoVoice：静音，
+        /// LowEvaluation：无参考打分低于阈值。
+        public let type: String
+
+        /// 质检结果项。
+        public let qualityControlItems: [QualityControlItem]
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case qualityControlItems = "QualityControlItems"
+        }
+    }
+
     /// RTMP转推的目标地址信息。
     public struct RTMPAddressDestination: TCOutputModel {
         /// 转推RTMP的目标Url，格式如'rtmp://domain/live'。
@@ -7192,6 +7591,69 @@ extension Mps {
         }
     }
 
+    /// AWS S3存储输入
+    public struct S3InputInfo: TCInputModel {
+        /// S3 bucket。
+        public let s3Bucket: String
+
+        /// S3 bucket 对应的区域。
+        public let s3Region: String
+
+        /// S3 bucket 中的媒体资源路径。
+        public let s3Object: String
+
+        /// AWS 内网访问 媒体资源的秘钥id。
+        public let s3SecretId: String?
+
+        /// AWS 内网访问 媒体资源的秘钥key。
+        public let s3SecretKey: String?
+
+        public init(s3Bucket: String, s3Region: String, s3Object: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+            self.s3Bucket = s3Bucket
+            self.s3Region = s3Region
+            self.s3Object = s3Object
+            self.s3SecretId = s3SecretId
+            self.s3SecretKey = s3SecretKey
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case s3Bucket = "S3Bucket"
+            case s3Region = "S3Region"
+            case s3Object = "S3Object"
+            case s3SecretId = "S3SecretId"
+            case s3SecretKey = "S3SecretKey"
+        }
+    }
+
+    /// AWS S3 输出位置
+    public struct S3OutputStorage: TCInputModel {
+        /// S3 bucket。
+        public let s3Bucket: String
+
+        /// S3 bucket 对应的区域。
+        public let s3Region: String
+
+        /// AWS 内网上传 媒体资源的秘钥id。
+        public let s3SecretId: String?
+
+        /// AWS 内网上传 媒体资源的秘钥key。
+        public let s3SecretKey: String?
+
+        public init(s3Bucket: String, s3Region: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+            self.s3Bucket = s3Bucket
+            self.s3Region = s3Region
+            self.s3SecretId = s3SecretId
+            self.s3SecretKey = s3SecretKey
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case s3Bucket = "S3Bucket"
+            case s3Region = "S3Region"
+            case s3SecretId = "S3SecretId"
+            case s3SecretKey = "S3SecretKey"
+        }
+    }
+
     /// 转推的目标地址信息。
     public struct SRTAddressDestination: TCOutputModel {
         /// 目标地址的IP。
@@ -7389,6 +7851,37 @@ extension Mps {
         }
     }
 
+    /// 质检任务结果类型
+    public struct ScheduleQualityControlTaskResult: TCOutputModel {
+        /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        public let status: String
+
+        /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        public let errCodeExt: String
+
+        /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        public let errCode: Int64
+
+        /// 错误信息。
+        public let message: String
+
+        /// 质检任务的输入。
+        public let input: AiQualityControlTaskInput
+
+        /// 质检任务的输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: QualityControlData?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case errCodeExt = "ErrCodeExt"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case input = "Input"
+            case output = "Output"
+        }
+    }
+
     /// 编排视频识别任务结果类型
     public struct ScheduleRecognitionTaskResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
@@ -7461,6 +7954,12 @@ extension Mps {
         /// <li>FINISH：已完成。</li>
         public let status: String
 
+        /// 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
+        public let errCode: Int64?
+
+        /// 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
+        public let message: String?
+
         /// 媒体处理的目标文件信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputInfo: MediaInputInfo?
@@ -7476,9 +7975,68 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
+            case errCode = "ErrCode"
+            case message = "Message"
             case inputInfo = "InputInfo"
             case metaData = "MetaData"
             case activityResultSet = "ActivityResultSet"
+        }
+    }
+
+    /// 编排详情。
+    public struct SchedulesInfo: TCOutputModel {
+        /// 编排唯一标识。
+        public let scheduleId: Int64
+
+        /// 编排名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scheduleName: String?
+
+        /// 编排状态，取值范围：
+        /// Enabled：已启用，
+        /// Disabled：已禁用。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: [String]?
+
+        /// 编排绑定的触发规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trigger: WorkflowTrigger?
+
+        /// 编排任务列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activities: [Activity]?
+
+        /// 媒体处理的文件输出存储位置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStorage: TaskOutputStorage?
+
+        /// 媒体处理生成的文件输出的目标目录。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputDir: String?
+
+        /// 任务的事件通知配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskNotifyConfig: TaskNotifyConfig?
+
+        /// 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 最后编辑时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case scheduleId = "ScheduleId"
+            case scheduleName = "ScheduleName"
+            case status = "Status"
+            case trigger = "Trigger"
+            case activities = "Activities"
+            case outputStorage = "OutputStorage"
+            case outputDir = "OutputDir"
+            case taskNotifyConfig = "TaskNotifyConfig"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
         }
     }
 
@@ -7906,13 +8464,19 @@ extension Mps {
         /// <li>TDMQ-CMQ：消息队列</li>
         /// <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
         /// <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
+        /// <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
         /// <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         public let notifyType: String?
 
         /// HTTP回调地址，NotifyType为URL时必填。
         public let notifyUrl: String?
 
-        public init(cmqModel: String? = nil, cmqRegion: String? = nil, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
+        /// AWS SQS 回调，NotifyType为 AWS-SQS 时必填。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let awsSQS: AwsSQS?
+
+        public init(cmqModel: String? = nil, cmqRegion: String? = nil, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil, awsSQS: AwsSQS? = nil) {
             self.cmqModel = cmqModel
             self.cmqRegion = cmqRegion
             self.topicName = topicName
@@ -7920,6 +8484,7 @@ extension Mps {
             self.notifyMode = notifyMode
             self.notifyType = notifyType
             self.notifyUrl = notifyUrl
+            self.awsSQS = awsSQS
         }
 
         enum CodingKeys: String, CodingKey {
@@ -7930,26 +8495,35 @@ extension Mps {
             case notifyMode = "NotifyMode"
             case notifyType = "NotifyType"
             case notifyUrl = "NotifyUrl"
+            case awsSQS = "AwsSQS"
         }
     }
 
     /// 媒体处理输出对象信息。
     public struct TaskOutputStorage: TCInputModel, TCOutputModel {
-        /// 媒体处理输出对象存储位置的类型，现在仅支持 COS。
+        /// 媒体处理输出对象存储位置的类型，支持：
+        /// <li>COS：COS存储</li>
+        /// <li>AWS-S3：AWS 存储，只适用于AWS任务，且要求同区域</li>
         public let type: String
 
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 输出位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosOutputStorage: CosOutputStorage?
 
-        public init(type: String, cosOutputStorage: CosOutputStorage? = nil) {
+        /// 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 输出位置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3OutputStorage: S3OutputStorage?
+
+        public init(type: String, cosOutputStorage: CosOutputStorage? = nil, s3OutputStorage: S3OutputStorage? = nil) {
             self.type = type
             self.cosOutputStorage = cosOutputStorage
+            self.s3OutputStorage = s3OutputStorage
         }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosOutputStorage = "CosOutputStorage"
+            case s3OutputStorage = "S3OutputStorage"
         }
     }
 
@@ -9117,6 +9691,10 @@ extension Mps {
         /// 视频内容识别任务的执行状态与结果。
         public let aiRecognitionResultSet: [AiRecognitionResult]
 
+        /// 视频质检任务的执行状态与结果。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiQualityControlTaskResult: ScheduleQualityControlTaskResult?
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -9128,26 +9706,37 @@ extension Mps {
             case aiContentReviewResultSet = "AiContentReviewResultSet"
             case aiAnalysisResultSet = "AiAnalysisResultSet"
             case aiRecognitionResultSet = "AiRecognitionResultSet"
+            case aiQualityControlTaskResult = "AiQualityControlTaskResult"
         }
     }
 
     /// 输入规则，当上传视频命中该规则时，即触发工作流。
     public struct WorkflowTrigger: TCInputModel, TCOutputModel {
-        /// 触发器的类型，目前仅支持 CosFileUpload。
+        /// 触发器的类型，可选值：
+        /// <li>CosFileUpload：COS触发</li>
+        /// <li>AwsS3FileUpload：AWS触发，目前只支持转码任务。只有编排支持，工作流不支持。  </li>
         public let type: String
 
         /// 当 Type 为 CosFileUpload 时必填且有效，为 COS 触发规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosFileUploadTrigger: CosFileUploadTrigger?
 
-        public init(type: String, cosFileUploadTrigger: CosFileUploadTrigger? = nil) {
+        /// 当 Type 为 AwsS3FileUpload 时必填且有效，为 AWS S3 触发规则。
+        ///
+        /// 注意：目前AWS的S3、对应触发队列SQS、回调队列SQS的秘钥需要一致。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let awsS3FileUploadTrigger: AwsS3FileUploadTrigger?
+
+        public init(type: String, cosFileUploadTrigger: CosFileUploadTrigger? = nil, awsS3FileUploadTrigger: AwsS3FileUploadTrigger? = nil) {
             self.type = type
             self.cosFileUploadTrigger = cosFileUploadTrigger
+            self.awsS3FileUploadTrigger = awsS3FileUploadTrigger
         }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosFileUploadTrigger = "CosFileUploadTrigger"
+            case awsS3FileUploadTrigger = "AwsS3FileUploadTrigger"
         }
     }
 }

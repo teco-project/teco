@@ -19,6 +19,7 @@ extension TCScfError {
         enum Code: String {
             case alias = "LimitExceeded.Alias"
             case cdn = "LimitExceeded.Cdn"
+            case containerImageAccelerate = "LimitExceeded.ContainerImageAccelerate"
             case containerImageAccelerateQuota = "LimitExceeded.ContainerImageAccelerateQuota"
             case eip = "LimitExceeded.Eip"
             case function = "LimitExceeded.Function"
@@ -28,6 +29,7 @@ extension TCScfError {
             case functionTotalProvisionedConcurrencyMemory = "LimitExceeded.FunctionTotalProvisionedConcurrencyMemory"
             case functionTotalProvisionedConcurrencyNum = "LimitExceeded.FunctionTotalProvisionedConcurrencyNum"
             case initTimeout = "LimitExceeded.InitTimeout"
+            case intraIp = "LimitExceeded.IntraIp"
             case layerVersions = "LimitExceeded.LayerVersions"
             case layers = "LimitExceeded.Layers"
             case maxCapacity = "LimitExceeded.MaxCapacity"
@@ -77,6 +79,12 @@ extension TCScfError {
             LimitExceeded(.cdn)
         }
 
+        /// 用户开启镜像加速函数版本超限。
+        public static var containerImageAccelerate: LimitExceeded {
+            LimitExceeded(.containerImageAccelerate)
+        }
+
+        /// 用户开启镜像加速函数版本超限。
         public static var containerImageAccelerateQuota: LimitExceeded {
             LimitExceeded(.containerImageAccelerateQuota)
         }
@@ -119,6 +127,11 @@ extension TCScfError {
         /// InitTimeout达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
         public static var initTimeout: LimitExceeded {
             LimitExceeded(.initTimeout)
+        }
+
+        /// 内网固定IP个数超限。
+        public static var intraIp: LimitExceeded {
+            LimitExceeded(.intraIp)
         }
 
         /// layer版本数量超出最大限制。
@@ -203,6 +216,8 @@ extension TCScfError {
                 code = .limitExceeded_Alias
             case .cdn:
                 code = .limitExceeded_Cdn
+            case .containerImageAccelerate:
+                code = .limitExceeded_ContainerImageAccelerate
             case .containerImageAccelerateQuota:
                 code = .limitExceeded_ContainerImageAccelerateQuota
             case .eip:
@@ -221,6 +236,8 @@ extension TCScfError {
                 code = .limitExceeded_FunctionTotalProvisionedConcurrencyNum
             case .initTimeout:
                 code = .limitExceeded_InitTimeout
+            case .intraIp:
+                code = .limitExceeded_IntraIp
             case .layerVersions:
                 code = .limitExceeded_LayerVersions
             case .layers:

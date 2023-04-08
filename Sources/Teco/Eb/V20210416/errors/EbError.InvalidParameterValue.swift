@@ -17,6 +17,7 @@
 extension TCEbError {
     public struct InvalidParameterValue: TCEbErrorType {
         enum Code: String {
+            case action = "InvalidParameterValue.Action"
             case ampParams = "InvalidParameterValue.AMPParams"
             case batchEventCount = "InvalidParameterValue.BatchEventCount"
             case batchTimeout = "InvalidParameterValue.BatchTimeout"
@@ -82,6 +83,11 @@ extension TCEbError {
             self.context = context
         }
 
+        /// Action 操作参数取值与规范不符，请修正后再试。
+        public static var action: InvalidParameterValue {
+            InvalidParameterValue(.action)
+        }
+
         /// AMPParams取值与规范不符，请修正后再试。
         public static var ampParams: InvalidParameterValue {
             InvalidParameterValue(.ampParams)
@@ -142,6 +148,7 @@ extension TCEbError {
             InvalidParameterValue(.dtsParams)
         }
 
+        /// ES目标参数错误。
         public static var elasticSearchTargetParams: InvalidParameterValue {
             InvalidParameterValue(.elasticSearchTargetParams)
         }
@@ -201,6 +208,7 @@ extension TCEbError {
             InvalidParameterValue(.limit)
         }
 
+        /// LinkMode取值与规范不符，请修正后再试。
         public static var linkMode: InvalidParameterValue {
             InvalidParameterValue(.linkMode)
         }
@@ -255,6 +263,7 @@ extension TCEbError {
             InvalidParameterValue(.ruleName)
         }
 
+        /// 标签参数错误。
         public static var tags: InvalidParameterValue {
             InvalidParameterValue(.tags)
         }
@@ -287,6 +296,8 @@ extension TCEbError {
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
+            case .action:
+                code = .invalidParameterValue_Action
             case .ampParams:
                 code = .invalidParameterValue_AMPParams
             case .batchEventCount:

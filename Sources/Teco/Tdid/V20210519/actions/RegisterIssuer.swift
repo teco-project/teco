@@ -50,26 +50,30 @@ extension Tdid {
     }
 
     /// 注册为权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
-        self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RegisterIssuer is no longer available.")
     }
 
     /// 注册为权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
-        try await self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RegisterIssuer is no longer available.")
     }
 
     /// 注册为权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
-        self.registerIssuer(.init(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterIssuer is no longer available.")
     }
 
     /// 注册为权威机构
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
-        try await self.registerIssuer(.init(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterIssuer is no longer available.")
     }
 }

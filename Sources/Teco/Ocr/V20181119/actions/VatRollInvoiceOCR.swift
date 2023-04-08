@@ -72,6 +72,8 @@ extension Ocr {
     /// 增值税发票（卷票）识别
     ///
     /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func vatRollInvoiceOCR(_ input: VatRollInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VatRollInvoiceOCRResponse> {
         self.client.execute(action: "VatRollInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 增值税发票（卷票）识别
     ///
     /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func vatRollInvoiceOCR(_ input: VatRollInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatRollInvoiceOCRResponse {
         try await self.client.execute(action: "VatRollInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 增值税发票（卷票）识别
     ///
     /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func vatRollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VatRollInvoiceOCRResponse> {
         self.vatRollInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 增值税发票（卷票）识别
     ///
     /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func vatRollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatRollInvoiceOCRResponse {
         try await self.vatRollInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

@@ -17,7 +17,7 @@
 extension Cam {
     /// CreateRole请求参数结构体
     public struct CreateRoleRequest: TCRequestModel {
-        /// 角色名称
+        /// 角色名称。长度为1~128个字符，可包含英文字母、数字和+=,.@-_。
         public let roleName: String
 
         /// 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo

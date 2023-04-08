@@ -43,6 +43,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 未知参数。
         public static var unknownParameterError: UnknownParameter {
             UnknownParameter(.unknownParameterError)
         }

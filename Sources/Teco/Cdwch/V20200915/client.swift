@@ -49,7 +49,7 @@ public struct Cdwch: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCCdwchError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

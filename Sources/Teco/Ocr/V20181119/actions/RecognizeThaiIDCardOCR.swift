@@ -25,14 +25,20 @@ extension Ocr {
         /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         public let imageUrl: String?
 
-        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
+        /// 图片开关。默认为false，不返回泰国身份证头像照片的base64编码。
+        /// 设置为true时，返回旋转矫正后的泰国身份证头像照片的base64编码
+        public let cropPortrait: Bool?
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, cropPortrait: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
+            self.cropPortrait = cropPortrait
         }
 
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
+            case cropPortrait = "CropPortrait"
         }
     }
 
@@ -62,6 +68,9 @@ extension Ocr {
         /// 英文姓名
         public let enLastName: String
 
+        /// 证件人像照片抠取
+        public let portraitImage: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -74,6 +83,7 @@ extension Ocr {
             case issueDate = "IssueDate"
             case expirationDate = "ExpirationDate"
             case enLastName = "EnLastName"
+            case portraitImage = "PortraitImage"
             case requestId = "RequestId"
         }
     }
@@ -101,8 +111,8 @@ extension Ocr {
     /// 本接口支持泰国身份证识别，识别字段包括泰文姓名、英文姓名、地址、出生日期、身份证号码。
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
-    public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeThaiIDCardOCRResponse> {
-        self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+    public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cropPortrait: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeThaiIDCardOCRResponse> {
+        self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cropPortrait: cropPortrait), region: region, logger: logger, on: eventLoop)
     }
 
     /// 泰国身份证识别
@@ -110,7 +120,7 @@ extension Ocr {
     /// 本接口支持泰国身份证识别，识别字段包括泰文姓名、英文姓名、地址、出生日期、身份证号码。
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
-    public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeThaiIDCardOCRResponse {
-        try await self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+    public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cropPortrait: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeThaiIDCardOCRResponse {
+        try await self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cropPortrait: cropPortrait), region: region, logger: logger, on: eventLoop)
     }
 }

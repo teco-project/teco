@@ -17,7 +17,20 @@
 extension TCCccError {
     public struct InvalidParameter: TCCccErrorType {
         enum Code: String {
+            case duplicateAddress = "InvalidParameter.DuplicateAddress"
+            case duplicatePhoneNumber = "InvalidParameter.DuplicatePhoneNumber"
+            case duplicateSipAccount = "InvalidParameter.DuplicateSipAccount"
+            case illegalAddress = "InvalidParameter.IllegalAddress"
+            case illegalPhoneNumber = "InvalidParameter.IllegalPhoneNumber"
             case instanceNotExist = "InvalidParameter.InstanceNotExist"
+            case invalidAddress = "InvalidParameter.InvalidAddress"
+            case invalidIP = "InvalidParameter.InvalidIP"
+            case invalidPhoneNumber = "InvalidParameter.InvalidPhoneNumber"
+            case invalidPort = "InvalidParameter.InvalidPort"
+            case sipAccountPasswordFormat = "InvalidParameter.SipAccountPasswordFormat"
+            case sipAccountUserFormat = "InvalidParameter.SipAccountUserFormat"
+            case sipTrunkInUsed = "InvalidParameter.SipTrunkInUsed"
+            case sipTrunkNotFound = "InvalidParameter.SipTrunkNotFound"
             case other = "InvalidParameter"
         }
 
@@ -43,9 +56,100 @@ extension TCCccError {
             self.context = context
         }
 
+        /// 重复的地址
+        ///
+        /// 检查输入参数
+        public static var duplicateAddress: InvalidParameter {
+            InvalidParameter(.duplicateAddress)
+        }
+
+        /// 重复的号码
+        ///
+        /// 检查输入参数
+        public static var duplicatePhoneNumber: InvalidParameter {
+            InvalidParameter(.duplicatePhoneNumber)
+        }
+
+        /// 重复的SIP账号
+        ///
+        /// 检查输入参数
+        public static var duplicateSipAccount: InvalidParameter {
+            InvalidParameter(.duplicateSipAccount)
+        }
+
+        /// 非法的地址
+        ///
+        /// 检查输入参数
+        public static var illegalAddress: InvalidParameter {
+            InvalidParameter(.illegalAddress)
+        }
+
+        /// 非法的号码
+        ///
+        /// 检查输入参数
+        public static var illegalPhoneNumber: InvalidParameter {
+            InvalidParameter(.illegalPhoneNumber)
+        }
+
         /// 实例不存在。
         public static var instanceNotExist: InvalidParameter {
             InvalidParameter(.instanceNotExist)
+        }
+
+        /// 无效的地址
+        ///
+        /// 检查输入参数
+        public static var invalidAddress: InvalidParameter {
+            InvalidParameter(.invalidAddress)
+        }
+
+        /// 无效的IP信息
+        ///
+        /// 检查输入参数
+        public static var invalidIP: InvalidParameter {
+            InvalidParameter(.invalidIP)
+        }
+
+        /// 无效的号码
+        ///
+        /// 检查输入参数
+        public static var invalidPhoneNumber: InvalidParameter {
+            InvalidParameter(.invalidPhoneNumber)
+        }
+
+        /// 无效的端口信息
+        ///
+        /// 检查输入参数
+        public static var invalidPort: InvalidParameter {
+            InvalidParameter(.invalidPort)
+        }
+
+        /// 密码不合法(长度大于等于八位，必须包含大小写字母以及数字)
+        ///
+        /// 检查输入参数
+        public static var sipAccountPasswordFormat: InvalidParameter {
+            InvalidParameter(.sipAccountPasswordFormat)
+        }
+
+        /// 用户名不合法(只能包含A-Z、a-z、以及数字)
+        ///
+        /// 检查输入参数
+        public static var sipAccountUserFormat: InvalidParameter {
+            InvalidParameter(.sipAccountUserFormat)
+        }
+
+        /// SIP通道仍在使用中
+        ///
+        /// 检查输入参数
+        public static var sipTrunkInUsed: InvalidParameter {
+            InvalidParameter(.sipTrunkInUsed)
+        }
+
+        /// 未找到SIP通道信息
+        ///
+        /// 检查输入参数
+        public static var sipTrunkNotFound: InvalidParameter {
+            InvalidParameter(.sipTrunkNotFound)
         }
 
         /// 参数错误。
@@ -56,8 +160,34 @@ extension TCCccError {
         public func asCccError() -> TCCccError {
             let code: TCCccError.Code
             switch self.error {
+            case .duplicateAddress:
+                code = .invalidParameter_DuplicateAddress
+            case .duplicatePhoneNumber:
+                code = .invalidParameter_DuplicatePhoneNumber
+            case .duplicateSipAccount:
+                code = .invalidParameter_DuplicateSipAccount
+            case .illegalAddress:
+                code = .invalidParameter_IllegalAddress
+            case .illegalPhoneNumber:
+                code = .invalidParameter_IllegalPhoneNumber
             case .instanceNotExist:
                 code = .invalidParameter_InstanceNotExist
+            case .invalidAddress:
+                code = .invalidParameter_InvalidAddress
+            case .invalidIP:
+                code = .invalidParameter_InvalidIP
+            case .invalidPhoneNumber:
+                code = .invalidParameter_InvalidPhoneNumber
+            case .invalidPort:
+                code = .invalidParameter_InvalidPort
+            case .sipAccountPasswordFormat:
+                code = .invalidParameter_SipAccountPasswordFormat
+            case .sipAccountUserFormat:
+                code = .invalidParameter_SipAccountUserFormat
+            case .sipTrunkInUsed:
+                code = .invalidParameter_SipTrunkInUsed
+            case .sipTrunkNotFound:
+                code = .invalidParameter_SipTrunkNotFound
             case .other:
                 code = .invalidParameter
             }

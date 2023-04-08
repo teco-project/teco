@@ -29,7 +29,7 @@ extension Vpc {
         /// 弹性网卡描述，可任意命名，但不得超过60个字符。
         public let networkInterfaceDescription: String?
 
-        /// 新申请的内网IP地址个数，内网IP地址个数总和不能超过配数。
+        /// 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         public let secondaryPrivateIpAddressCount: UInt64?
 
         /// 指定绑定的安全组，例如：['sg-1dd51d']。

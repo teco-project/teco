@@ -74,6 +74,7 @@ public struct TCCdcError: TCCdcErrorType {
         self.context = context
     }
 
+    /// CDC绑定VPC失败。
     public static var failedOperation_CdcBindVpcFail: TCCdcError {
         TCCdcError(.failedOperation_CdcBindVpcFail)
     }
@@ -125,6 +126,8 @@ public struct TCCdcError: TCCdcErrorType {
         TCCdcError(.invalidParameterValue_LimitExceeded)
     }
 
+    /// 无效Region ID 。
+    ///
     /// 请确认Region ID 是否存在。
     public static var invalidParameterValue_Region: TCCdcError {
         TCCdcError(.invalidParameterValue_Region)

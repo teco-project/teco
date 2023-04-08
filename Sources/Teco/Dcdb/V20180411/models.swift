@@ -742,6 +742,56 @@ extension Dcdb {
         }
     }
 
+    /// 实例备份文件信息
+    public struct InstanceBackupFileItem: TCOutputModel {
+        /// 实例ID
+        public let instanceId: String
+
+        /// 实例名称
+        public let instanceName: String
+
+        /// 实例状态
+        public let instanceStatus: Int64
+
+        /// 分片ID
+        public let shardId: String
+
+        /// 文件路径
+        public let filePath: String
+
+        /// 文件名
+        public let fileName: String
+
+        /// 文件大小
+        public let fileSize: Int64
+
+        /// 备份类型，Data:数据备份，Binlog:Binlog备份，Errlog:错误日志，Slowlog:慢日志
+        public let backupType: String
+
+        /// 手动备份，0:否，1:是
+        public let manualBackup: Int64
+
+        /// 备份开始时间
+        public let startTime: String
+
+        /// 备份结束时间
+        public let endTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case instanceStatus = "InstanceStatus"
+            case shardId = "ShardId"
+            case filePath = "FilePath"
+            case fileName = "FileName"
+            case fileSize = "FileSize"
+            case backupType = "BackupType"
+            case manualBackup = "ManualBackup"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+
     /// 拉取的日志信息
     public struct LogFileInfo: TCOutputModel {
         /// Log最后修改时间
@@ -761,6 +811,20 @@ extension Dcdb {
             case length = "Length"
             case uri = "Uri"
             case fileName = "FileName"
+        }
+    }
+
+    /// 描述DB节点信息
+    public struct NodeInfo: TCOutputModel {
+        /// DB节点ID
+        public let nodeId: String
+
+        /// DB节点角色，取值为master或者slave
+        public let role: String
+
+        enum CodingKeys: String, CodingKey {
+            case nodeId = "NodeId"
+            case role = "Role"
         }
     }
 
@@ -917,7 +981,7 @@ extension Dcdb {
     }
 
     /// 标签对象，包含tagKey & tagValue
-    public struct ResourceTag: TCInputModel {
+    public struct ResourceTag: TCInputModel, TCOutputModel {
         /// 标签键key
         public let tagKey: String
 
@@ -988,6 +1052,76 @@ extension Dcdb {
             case action = "Action"
             case portRange = "PortRange"
             case ipProtocol = "IpProtocol"
+        }
+    }
+
+    /// DCDB分片信息
+    public struct ShardBriefInfo: TCOutputModel {
+        /// 分片SerialId
+        public let shardSerialId: String
+
+        /// 分片ID，形如shard-7vg1o339
+        public let shardInstanceId: String
+
+        /// 分片运行状态
+        public let status: Int64
+
+        /// 分片运行状态描述
+        public let statusDesc: String
+
+        /// 分片创建时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var createTime: Date
+
+        /// 分片内存大小，单位GB
+        public let memory: Int64
+
+        /// 分片磁盘大小，单位GB
+        public let storage: Int64
+
+        /// 分片日志磁盘空间大小，单位GB
+        public let logDisk: Int64
+
+        /// 分片节点个数
+        public let nodeCount: Int64
+
+        /// 分片磁盘空间使用率
+        public let storageUsage: Float
+
+        /// 分片Proxy版本信息
+        public let proxyVersion: String
+
+        /// 分片主DB可用区
+        public let shardMasterZone: String
+
+        /// 分片从DB可用区
+        public let shardSlaveZones: [String]
+
+        /// 分片Cpu核数
+        public let cpu: Int64
+
+        /// DB节点信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodesInfo: [NodeInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case shardSerialId = "ShardSerialId"
+            case shardInstanceId = "ShardInstanceId"
+            case status = "Status"
+            case statusDesc = "StatusDesc"
+            case createTime = "CreateTime"
+            case memory = "Memory"
+            case storage = "Storage"
+            case logDisk = "LogDisk"
+            case nodeCount = "NodeCount"
+            case storageUsage = "StorageUsage"
+            case proxyVersion = "ProxyVersion"
+            case shardMasterZone = "ShardMasterZone"
+            case shardSlaveZones = "ShardSlaveZones"
+            case cpu = "Cpu"
+            case nodesInfo = "NodesInfo"
         }
     }
 

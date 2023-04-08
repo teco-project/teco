@@ -18,6 +18,7 @@ extension TCTmtError {
     public struct InternalError: TCTmtErrorType {
         enum Code: String {
             case backendTimeout = "InternalError.BackendTimeout"
+            case errorGetRoute = "InternalError.ErrorGetRoute"
             case errorUnknown = "InternalError.ErrorUnknown"
             case requestFailed = "InternalError.RequestFailed"
             case other = "InternalError"
@@ -50,6 +51,11 @@ extension TCTmtError {
             InternalError(.backendTimeout)
         }
 
+        /// 路由获取错误。
+        public static var errorGetRoute: InternalError {
+            InternalError(.errorGetRoute)
+        }
+
         /// 未知错误。
         public static var errorUnknown: InternalError {
             InternalError(.errorUnknown)
@@ -70,6 +76,8 @@ extension TCTmtError {
             switch self.error {
             case .backendTimeout:
                 code = .internalError_BackendTimeout
+            case .errorGetRoute:
+                code = .internalError_ErrorGetRoute
             case .errorUnknown:
                 code = .internalError_ErrorUnknown
             case .requestFailed:

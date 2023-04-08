@@ -51,7 +51,7 @@ extension Monitor {
 
     /// 修改告警策略的触发任务
     ///
-    /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
+    /// 修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(_ input: ModifyAlarmPolicyTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyTasksResponse> {
         self.client.execute(action: "ModifyAlarmPolicyTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Monitor {
 
     /// 修改告警策略的触发任务
     ///
-    /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
+    /// 修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(_ input: ModifyAlarmPolicyTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyTasksResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Monitor {
 
     /// 修改告警策略的触发任务
     ///
-    /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
+    /// 修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(module: String, policyId: String, triggerTasks: [AlarmPolicyTriggerTask]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyTasksResponse> {
         self.modifyAlarmPolicyTasks(.init(module: module, policyId: policyId, triggerTasks: triggerTasks), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Monitor {
 
     /// 修改告警策略的触发任务
     ///
-    /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
+    /// 修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(module: String, policyId: String, triggerTasks: [AlarmPolicyTriggerTask]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyTasksResponse {
         try await self.modifyAlarmPolicyTasks(.init(module: module, policyId: policyId, triggerTasks: triggerTasks), region: region, logger: logger, on: eventLoop)

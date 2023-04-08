@@ -234,11 +234,9 @@ extension Cloudaudit {
     /// 检索条件
     public struct LookupAttribute: TCInputModel {
         /// AttributeKey的有效取值范围是:RequestId、EventName、ReadOnly、Username、ResourceType、ResourceName和AccessKeyId，EventId
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeKey: String?
 
         /// AttributeValue的值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeValue: String?
 
         public init(attributeKey: String, attributeValue: String? = nil) {
@@ -258,7 +256,6 @@ extension Cloudaudit {
         public let resourceType: String?
 
         /// 资源名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
 
         public init(resourceType: String? = nil, resourceName: String? = nil) {

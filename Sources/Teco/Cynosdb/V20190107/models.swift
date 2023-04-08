@@ -1153,6 +1153,18 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceTags: [Tag]?
 
+        /// 主可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterZone: String?
+
+        /// 备可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaveZones: [String]?
+
+        /// 实例网络信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceNetInfo: [InstanceNetInfo]?
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case appId = "AppId"
@@ -1201,6 +1213,9 @@ extension Cynosdb {
             case tasks = "Tasks"
             case isFreeze = "IsFreeze"
             case resourceTags = "ResourceTags"
+            case masterZone = "MasterZone"
+            case slaveZones = "SlaveZones"
+            case instanceNetInfo = "InstanceNetInfo"
         }
     }
 
@@ -1586,6 +1601,67 @@ extension Cynosdb {
         }
     }
 
+    /// 实例网络信息
+    public struct InstanceNetInfo: TCOutputModel {
+        /// 网络类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceGroupType: String?
+
+        /// 实例组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceGroupId: String?
+
+        /// 私有网络ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 网络类型, 0-基础网络, 1-vpc网络, 2-黑石网络
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netType: Int64?
+
+        /// 私有网络IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 私有网络端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vport: Int64?
+
+        /// 外网域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanDomain: String?
+
+        /// 外网Ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanIP: String?
+
+        /// 外网端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanPort: Int64?
+
+        /// 外网开启状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanStatus: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceGroupType = "InstanceGroupType"
+            case instanceGroupId = "InstanceGroupId"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case netType = "NetType"
+            case vip = "Vip"
+            case vport = "Vport"
+            case wanDomain = "WanDomain"
+            case wanIP = "WanIP"
+            case wanPort = "WanPort"
+            case wanStatus = "WanStatus"
+        }
+    }
+
     /// 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
     public struct InstanceSpec: TCOutputModel {
         /// 实例CPU，单位：核
@@ -1660,6 +1736,20 @@ extension Cynosdb {
             case paramName = "ParamName"
             case currentValue = "CurrentValue"
             case oldValue = "OldValue"
+        }
+    }
+
+    /// 系统支持的模块
+    public struct Module: TCOutputModel {
+        /// 是否支持，可选值:yes,no
+        public let isDisable: String
+
+        /// 模块名
+        public let moduleName: String
+
+        enum CodingKeys: String, CodingKey {
+            case isDisable = "IsDisable"
+            case moduleName = "ModuleName"
         }
     }
 
@@ -2103,6 +2193,79 @@ extension Cynosdb {
             case type = "Type"
             case compare = "Compare"
             case value = "Value"
+        }
+    }
+
+    /// 售卖地域信息
+    public struct SaleRegion: TCOutputModel {
+        /// 地域英文名
+        public let region: String
+
+        /// 地域数字ID
+        public let regionId: Int64
+
+        /// 地域中文名
+        public let regionZh: String
+
+        /// 可售卖可用区列表
+        public let zoneSet: [SaleZone]
+
+        /// 引擎类型
+        public let dbType: String
+
+        /// 地域模块支持情况
+        public let modules: [Module]
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case regionId = "RegionId"
+            case regionZh = "RegionZh"
+            case zoneSet = "ZoneSet"
+            case dbType = "DbType"
+            case modules = "Modules"
+        }
+    }
+
+    /// 售卖可用区信息
+    public struct SaleZone: TCOutputModel {
+        /// 可用区英文名
+        public let zone: String
+
+        /// 可用区数字ID
+        public let zoneId: Int64
+
+        /// 可用区中文名
+        public let zoneZh: String
+
+        /// 是否支持serverless集群<br>
+        /// 0:不支持<br>
+        /// 1:支持
+        public let isSupportServerless: Int64
+
+        /// 是否支持普通集群<br>
+        /// 0:不支持<br>
+        /// 1:支持
+        public let isSupportNormal: Int64
+
+        /// 物理区
+        public let physicalZone: String
+
+        /// 用户是否有可用区权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasPermission: Bool?
+
+        /// 是否为全链路RDMA可用区
+        public let isWholeRdmaZone: String?
+
+        enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+            case zoneId = "ZoneId"
+            case zoneZh = "ZoneZh"
+            case isSupportServerless = "IsSupportServerless"
+            case isSupportNormal = "IsSupportNormal"
+            case physicalZone = "PhysicalZone"
+            case hasPermission = "HasPermission"
+            case isWholeRdmaZone = "IsWholeRdmaZone"
         }
     }
 

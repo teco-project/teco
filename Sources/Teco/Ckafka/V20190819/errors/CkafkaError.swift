@@ -38,9 +38,11 @@ public struct TCCkafkaError: TCCkafkaErrorType {
         case invalidParameterValue_VpcIdInvalid = "InvalidParameterValue.VpcIdInvalid"
         case invalidParameterValue_WrongAction = "InvalidParameterValue.WrongAction"
         case invalidParameterValue_ZoneNotSupport = "InvalidParameterValue.ZoneNotSupport"
+        case invalidParameter_TopicExist = "InvalidParameter.TopicExist"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_RouteOverLimit = "LimitExceeded.RouteOverLimit"
         case limitExceeded_RouteSASLOverLimit = "LimitExceeded.RouteSASLOverLimit"
+        case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case operationDenied_ResourceTaskPaused = "OperationDenied.ResourceTaskPaused"
         case requestLimitExceeded = "RequestLimitExceeded"
@@ -57,7 +59,7 @@ public struct TCCkafkaError: TCCkafkaErrorType {
 
     /// Error domains affliated to ``TCCkafkaError``.
     public static var domains: [TCErrorType.Type] {
-        [InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, UnsupportedOperation.self]
+        [InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -152,6 +154,11 @@ public struct TCCkafkaError: TCCkafkaErrorType {
         TCCkafkaError(.invalidParameterValue_ZoneNotSupport)
     }
 
+    /// 已存在同名Topic。
+    public static var invalidParameter_TopicExist: TCCkafkaError {
+        TCCkafkaError(.invalidParameter_TopicExist)
+    }
+
     /// 超过配额限制。
     public static var limitExceeded: TCCkafkaError {
         TCCkafkaError(.limitExceeded)
@@ -165,6 +172,11 @@ public struct TCCkafkaError: TCCkafkaErrorType {
     /// SASL路由超过限制。
     public static var limitExceeded_RouteSASLOverLimit: TCCkafkaError {
         TCCkafkaError(.limitExceeded_RouteSASLOverLimit)
+    }
+
+    /// 缺少参数错误。
+    public static var missingParameter: TCCkafkaError {
+        TCCkafkaError(.missingParameter)
     }
 
     /// 操作被拒绝。

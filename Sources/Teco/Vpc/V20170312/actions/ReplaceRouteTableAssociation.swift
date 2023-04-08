@@ -46,7 +46,7 @@ extension Vpc {
 
     /// 替换路由表绑定关系
     ///
-    /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
+    /// 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable @discardableResult
     public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
@@ -55,7 +55,7 @@ extension Vpc {
 
     /// 替换路由表绑定关系
     ///
-    /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
+    /// 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable @discardableResult
     public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
@@ -64,7 +64,7 @@ extension Vpc {
 
     /// 替换路由表绑定关系
     ///
-    /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
+    /// 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable @discardableResult
     public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
@@ -73,7 +73,7 @@ extension Vpc {
 
     /// 替换路由表绑定关系
     ///
-    /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
+    /// 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable @discardableResult
     public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {

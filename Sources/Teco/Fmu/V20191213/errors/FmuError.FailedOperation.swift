@@ -124,7 +124,7 @@ extension TCFmuError {
             FailedOperation(.imageNotSupported)
         }
 
-        /// 图片分辨率过大。
+        /// 图片分辨率过大，超过2000*2000。
         public static var imageResolutionExceed: FailedOperation {
             FailedOperation(.imageResolutionExceed)
         }

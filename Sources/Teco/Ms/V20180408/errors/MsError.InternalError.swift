@@ -44,6 +44,8 @@ extension TCMsError {
             self.context = context
         }
 
+        /// Apk检测服务端无法响应。
+        ///
         /// 请联系客服或稍后重试。
         public static var apkServerError: InternalError {
             InternalError(.apkServerError)

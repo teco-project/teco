@@ -54,6 +54,7 @@ extension TCTemError {
             case osNotSupport = "InvalidParameterValue.OsNotSupport"
             case portDuplicateError = "InvalidParameterValue.PortDuplicateError"
             case portIsReserved = "InvalidParameterValue.PortIsReserved"
+            case postStartNotValid = "InvalidParameterValue.PostStartNotValid"
             case publicRepoTypeParameterError = "InvalidParameterValue.PublicRepoTypeParameterError"
             case registryNotBind = "InvalidParameterValue.RegistryNotBind"
             case scalerNameDuplicated = "InvalidParameterValue.ScalerNameDuplicated"
@@ -70,6 +71,7 @@ extension TCTemError {
             case versionLengthLimit = "InvalidParameterValue.VersionLengthLimit"
             case versionLowerCase = "InvalidParameterValue.VersionLowerCase"
             case versionRouteRateNotZero = "InvalidParameterValue.VersionRouteRateNotZero"
+            case vpcInvalid = "InvalidParameterValue.VpcInvalid"
         }
 
         private let error: Code
@@ -94,22 +96,27 @@ extension TCTemError {
             self.context = context
         }
 
+        /// APM 没有与当前环境绑定。
         public static var apmNotBind: InvalidParameterValue {
             InvalidParameterValue(.apmNotBind)
         }
 
+        /// 应用访问配置服务数量达到上限。
         public static var applicationAccessServiceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.applicationAccessServiceReachMaximum)
         }
 
+        /// 已存在同名访问方式。
         public static var applicationServiceAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.applicationServiceAlreadyExist)
         }
 
+        /// 没有找到该访问方式。
         public static var applicationServiceNotFound: InvalidParameterValue {
             InvalidParameterValue(.applicationServiceNotFound)
         }
 
+        /// 请至少启用一种弹性规则。
         public static var atLeastOneScalerRuleShouldBeApplied: InvalidParameterValue {
             InvalidParameterValue(.atLeastOneScalerRuleShouldBeApplied)
         }
@@ -119,10 +126,12 @@ extension TCTemError {
             InvalidParameterValue(.autoScalerLargerThanOne)
         }
 
+        /// 不能覆盖其他应用的访问方式。
         public static var cannotOverWriteOtherApplicationService: InvalidParameterValue {
             InvalidParameterValue(.cannotOverWriteOtherApplicationService)
         }
 
+        /// 不能同时使用全量以及单条更新。
         public static var cannotUpdateServiceByBothMethods: InvalidParameterValue {
             InvalidParameterValue(.cannotUpdateServiceByBothMethods)
         }
@@ -137,34 +146,42 @@ extension TCTemError {
             InvalidParameterValue(.configDataInvalid)
         }
 
+        /// 定时弹性伸缩目标实例数不合法。
         public static var cronHpaReplicasInvalid: InvalidParameterValue {
             InvalidParameterValue(.cronHpaReplicasInvalid)
         }
 
+        /// 每日环境创建次数超过上限。
         public static var dailyCreateNamespaceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.dailyCreateNamespaceReachMaximum)
         }
 
+        /// 弹性伸缩启用中，请停用后再删除。
         public static var disableScalerBeforeDelete: InvalidParameterValue {
             InvalidParameterValue(.disableScalerBeforeDelete)
         }
 
+        /// 环境名称不可变。
         public static var environmentNameImmutable: InvalidParameterValue {
             InvalidParameterValue(.environmentNameImmutable)
         }
 
+        /// 弹性伸缩指标不合法。
         public static var hpaMetricsInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaMetricsInvalid)
         }
 
+        /// 弹性伸缩最小值/最大值不合法。
         public static var hpaMinMaxInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaMinMaxInvalid)
         }
 
+        /// 弹性伸缩阈值不合法。
         public static var hpaThresholdInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaThresholdInvalid)
         }
 
+        /// 访问配置重定向需要启用 HTTPS。
         public static var ingressRewriteRequiredHttpsEnable: InvalidParameterValue {
             InvalidParameterValue(.ingressRewriteRequiredHttpsEnable)
         }
@@ -184,14 +201,17 @@ extension TCTemError {
             InvalidParameterValue(.invalidEksServiceType)
         }
 
+        /// 环境变量名非法，要求有由字母、数字，"."，"_" 和 "-" 组成，不能由数字开头。
         public static var invalidEnvName: InvalidParameterValue {
             InvalidParameterValue(.invalidEnvName)
         }
 
+        /// 环境变量长度不能超过1000。
         public static var invalidEnvValue: InvalidParameterValue {
             InvalidParameterValue(.invalidEnvValue)
         }
 
+        /// 挂载路径不合法，不能为 /app。
         public static var invalidMountPath: InvalidParameterValue {
             InvalidParameterValue(.invalidMountPath)
         }
@@ -206,14 +226,17 @@ extension TCTemError {
             InvalidParameterValue(.invalidTenantInfo)
         }
 
+        /// JDK 版本不能为空。
         public static var jdkVersionRequired: InvalidParameterValue {
             InvalidParameterValue(.jdkVersionRequired)
         }
 
+        /// LogConfig 配置已存在。
         public static var logConfigAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.logConfigAlreadyExist)
         }
 
+        /// 必须提供PortMapping规则。
         public static var mustProvidePortMappingRules: InvalidParameterValue {
             InvalidParameterValue(.mustProvidePortMappingRules)
         }
@@ -243,6 +266,7 @@ extension TCTemError {
             InvalidParameterValue(.namespaceResourceReachMaximum)
         }
 
+        /// 操作系统不支持。
         public static var osNotSupport: InvalidParameterValue {
             InvalidParameterValue(.osNotSupport)
         }
@@ -252,8 +276,14 @@ extension TCTemError {
             InvalidParameterValue(.portDuplicateError)
         }
 
+        /// 服务端口是保留端口。
         public static var portIsReserved: InvalidParameterValue {
             InvalidParameterValue(.portIsReserved)
+        }
+
+        /// post start 不合法。
+        public static var postStartNotValid: InvalidParameterValue {
+            InvalidParameterValue(.postStartNotValid)
         }
 
         /// 公有镜像参数错误。
@@ -261,10 +291,12 @@ extension TCTemError {
             InvalidParameterValue(.publicRepoTypeParameterError)
         }
 
+        /// 注册中心没有与当前环境绑定。
         public static var registryNotBind: InvalidParameterValue {
             InvalidParameterValue(.registryNotBind)
         }
 
+        /// 弹性伸缩名称已存在。
         public static var scalerNameDuplicated: InvalidParameterValue {
             InvalidParameterValue(.scalerNameDuplicated)
         }
@@ -299,14 +331,17 @@ extension TCTemError {
             InvalidParameterValue(.serviceReachMaximum)
         }
 
+        /// 服务名使用了保留后缀。
         public static var serviceUseReserveSuffix: InvalidParameterValue {
             InvalidParameterValue(.serviceUseReserveSuffix)
         }
 
+        /// 企业版 TCR 实例名称不合法。
         public static var tcrEntInstanceNameNotValid: InvalidParameterValue {
             InvalidParameterValue(.tcrEntInstanceNameNotValid)
         }
 
+        /// 不是合法的TEM ID。
         public static var temIdInvalid: InvalidParameterValue {
             InvalidParameterValue(.temIdInvalid)
         }
@@ -316,6 +351,7 @@ extension TCTemError {
             InvalidParameterValue(.traitsTracingNotSupported)
         }
 
+        /// version 不能超过128位。
         public static var versionLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.versionLengthLimit)
         }
@@ -328,6 +364,11 @@ extension TCTemError {
         /// 版本的路由流量不为0。
         public static var versionRouteRateNotZero: InvalidParameterValue {
             InvalidParameterValue(.versionRouteRateNotZero)
+        }
+
+        /// vpc错误, 与环境vpc不一致。
+        public static var vpcInvalid: InvalidParameterValue {
+            InvalidParameterValue(.vpcInvalid)
         }
 
         public func asTemError() -> TCTemError {
@@ -407,6 +448,8 @@ extension TCTemError {
                 code = .invalidParameterValue_PortDuplicateError
             case .portIsReserved:
                 code = .invalidParameterValue_PortIsReserved
+            case .postStartNotValid:
+                code = .invalidParameterValue_PostStartNotValid
             case .publicRepoTypeParameterError:
                 code = .invalidParameterValue_PublicRepoTypeParameterError
             case .registryNotBind:
@@ -439,6 +482,8 @@ extension TCTemError {
                 code = .invalidParameterValue_VersionLowerCase
             case .versionRouteRateNotZero:
                 code = .invalidParameterValue_VersionRouteRateNotZero
+            case .vpcInvalid:
+                code = .invalidParameterValue_VpcInvalid
             }
             return TCTemError(code, context: self.context)
         }

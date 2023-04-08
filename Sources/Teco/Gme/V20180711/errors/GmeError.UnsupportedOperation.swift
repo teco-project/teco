@@ -18,6 +18,7 @@ extension TCGmeError {
     public struct UnsupportedOperation: TCGmeErrorType {
         enum Code: String {
             case pttSwitchOff = "UnsupportedOperation.PTTSwitchOff"
+            case serviceNotOpened = "UnsupportedOperation.ServiceNotOpened"
             case other = "UnsupportedOperation"
         }
 
@@ -43,8 +44,14 @@ extension TCGmeError {
             self.context = context
         }
 
+        /// 语音转文本开关未开启。
         public static var pttSwitchOff: UnsupportedOperation {
             UnsupportedOperation(.pttSwitchOff)
+        }
+
+        /// 录制服务未开通
+        public static var serviceNotOpened: UnsupportedOperation {
+            UnsupportedOperation(.serviceNotOpened)
         }
 
         /// 操作不支持。
@@ -57,6 +64,8 @@ extension TCGmeError {
             switch self.error {
             case .pttSwitchOff:
                 code = .unsupportedOperation_PTTSwitchOff
+            case .serviceNotOpened:
+                code = .unsupportedOperation_ServiceNotOpened
             case .other:
                 code = .unsupportedOperation
             }

@@ -222,6 +222,7 @@ public struct TCAmsError: TCAmsErrorType {
         TCAmsError(.unauthorizedOperation)
     }
 
+    /// 未开通权限/无有效套餐包/账号已欠费。
     public static var unauthorizedOperation_Unauthorized: TCAmsError {
         TCAmsError(.unauthorizedOperation_Unauthorized)
     }

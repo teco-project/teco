@@ -54,32 +54,36 @@ extension Tdmq {
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
-        self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCreateQuota is no longer available.")
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
-        try await self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAMQPCreateQuota is no longer available.")
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
-        self.describeAMQPCreateQuota(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCreateQuota is no longer available.")
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
-        try await self.describeAMQPCreateQuota(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPCreateQuota is no longer available.")
     }
 }

@@ -45,7 +45,7 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
 
-        /// 导出文件Id 可通过ExportTasks接口下载
+        /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

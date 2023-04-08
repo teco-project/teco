@@ -23,7 +23,7 @@ extension Domain {
         /// 批量续费的域名。
         public let domains: [String]
 
-        /// 付费模式 0手动在线付费，1使用余额付费。
+        /// 付费模式 0手动在线付费，1使用余额付费，2使用特惠包。
         public let payMode: Int64
 
         /// 自动续费开关。有三个可选值：
@@ -32,11 +32,27 @@ extension Domain {
         /// 2 表示不处理，保留域名原有状态（默认值）
         public let autoRenewFlag: Int64?
 
-        public init(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil) {
+        /// 特惠包ID
+        public let packageResourceId: String?
+
+        /// 渠道来源，pc/miniprogram/h5等
+        public let channelFrom: String?
+
+        /// 订单来源，common正常/dianshi_active点石活动等
+        public let orderFrom: String?
+
+        /// 活动id
+        public let activityId: String?
+
+        public init(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil) {
             self.period = period
             self.domains = domains
             self.payMode = payMode
             self.autoRenewFlag = autoRenewFlag
+            self.packageResourceId = packageResourceId
+            self.channelFrom = channelFrom
+            self.orderFrom = orderFrom
+            self.activityId = activityId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -44,6 +60,10 @@ extension Domain {
             case domains = "Domains"
             case payMode = "PayMode"
             case autoRenewFlag = "AutoRenewFlag"
+            case packageResourceId = "PackageResourceId"
+            case channelFrom = "ChannelFrom"
+            case orderFrom = "OrderFrom"
+            case activityId = "ActivityId"
         }
     }
 
@@ -81,15 +101,15 @@ extension Domain {
     ///
     /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
     @inlinable
-    public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDomainBatchResponse> {
-        self.renewDomainBatch(.init(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+    public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDomainBatchResponse> {
+        self.renewDomainBatch(.init(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量域名续费
     ///
     /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
     @inlinable
-    public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDomainBatchResponse {
-        try await self.renewDomainBatch(.init(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+    public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, channelFrom: String? = nil, orderFrom: String? = nil, activityId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDomainBatchResponse {
+        try await self.renewDomainBatch(.init(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, channelFrom: channelFrom, orderFrom: orderFrom, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 }

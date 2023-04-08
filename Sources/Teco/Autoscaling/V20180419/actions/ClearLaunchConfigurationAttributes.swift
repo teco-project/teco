@@ -32,11 +32,16 @@ extension As {
         /// 填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置。
         public let clearInstanceNameSettings: Bool?
 
-        public init(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil) {
+        /// 是否清空置放群组信息，非必填，默认为 false。
+        /// 填 true 代表清空置放群组信息，清空后基于此新创建的云主机将不指定任何置放群组。
+        public let clearDisasterRecoverGroupIds: Bool?
+
+        public init(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil, clearDisasterRecoverGroupIds: Bool? = nil) {
             self.launchConfigurationId = launchConfigurationId
             self.clearDataDisks = clearDataDisks
             self.clearHostNameSettings = clearHostNameSettings
             self.clearInstanceNameSettings = clearInstanceNameSettings
+            self.clearDisasterRecoverGroupIds = clearDisasterRecoverGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -44,6 +49,7 @@ extension As {
             case clearDataDisks = "ClearDataDisks"
             case clearHostNameSettings = "ClearHostNameSettings"
             case clearInstanceNameSettings = "ClearInstanceNameSettings"
+            case clearDisasterRecoverGroupIds = "ClearDisasterRecoverGroupIds"
         }
     }
 
@@ -77,15 +83,15 @@ extension As {
     ///
     /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
     @inlinable @discardableResult
-    public func clearLaunchConfigurationAttributes(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearLaunchConfigurationAttributesResponse> {
-        self.clearLaunchConfigurationAttributes(.init(launchConfigurationId: launchConfigurationId, clearDataDisks: clearDataDisks, clearHostNameSettings: clearHostNameSettings, clearInstanceNameSettings: clearInstanceNameSettings), region: region, logger: logger, on: eventLoop)
+    public func clearLaunchConfigurationAttributes(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil, clearDisasterRecoverGroupIds: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearLaunchConfigurationAttributesResponse> {
+        self.clearLaunchConfigurationAttributes(.init(launchConfigurationId: launchConfigurationId, clearDataDisks: clearDataDisks, clearHostNameSettings: clearHostNameSettings, clearInstanceNameSettings: clearInstanceNameSettings, clearDisasterRecoverGroupIds: clearDisasterRecoverGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清除启动配置属性
     ///
     /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
     @inlinable @discardableResult
-    public func clearLaunchConfigurationAttributes(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearLaunchConfigurationAttributesResponse {
-        try await self.clearLaunchConfigurationAttributes(.init(launchConfigurationId: launchConfigurationId, clearDataDisks: clearDataDisks, clearHostNameSettings: clearHostNameSettings, clearInstanceNameSettings: clearInstanceNameSettings), region: region, logger: logger, on: eventLoop)
+    public func clearLaunchConfigurationAttributes(launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil, clearDisasterRecoverGroupIds: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearLaunchConfigurationAttributesResponse {
+        try await self.clearLaunchConfigurationAttributes(.init(launchConfigurationId: launchConfigurationId, clearDataDisks: clearDataDisks, clearHostNameSettings: clearHostNameSettings, clearInstanceNameSettings: clearInstanceNameSettings, clearDisasterRecoverGroupIds: clearDisasterRecoverGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

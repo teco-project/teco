@@ -29,11 +29,17 @@ extension Clb {
         /// 监听器端口。
         public let port: Int64?
 
-        public init(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil) {
+        /// 查询负载均衡绑定的后端服务列表，过滤条件如下：
+        /// <li> location-id - String - 是否必填：否 - （过滤条件）按照 规则ID 过滤，如："loc-12345678"。</li>
+        /// <li> private-ip-address - String - 是否必填：否 - （过滤条件）按照 后端服务内网IP 过滤，如："172.16.1.1"。</li>
+        public let filters: [Filter]?
+
+        public init(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, filters: [Filter]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
             self.protocol = `protocol`
             self.port = port
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +47,7 @@ extension Clb {
             case listenerIds = "ListenerIds"
             case `protocol` = "Protocol"
             case port = "Port"
+            case filters = "Filters"
         }
     }
 
@@ -79,15 +86,15 @@ extension Clb {
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
-        self.describeTargets(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
+        self.describeTargets(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡绑定的后端服务列表
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
-        try await self.describeTargets(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
+        try await self.describeTargets(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

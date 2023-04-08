@@ -59,7 +59,7 @@ extension Monitor {
         /// 聚合维度列表，指定按哪些维度 key 来做 group by
         public let groupBy: [String]?
 
-        /// 模版绑定的标签
+        /// 模板绑定的标签
         public let tags: [Tag]?
 
         /// 日志告警信息
@@ -137,25 +137,25 @@ extension Monitor {
         }
     }
 
-    /// 创建云监控告警策略
+    /// 创建告警策略
     @inlinable
     public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmPolicyResponse> {
         self.client.execute(action: "CreateAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建云监控告警策略
+    /// 创建告警策略
     @inlinable
     public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
         try await self.client.execute(action: "CreateAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建云监控告警策略
+    /// 创建告警策略
     @inlinable
     public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmPolicyResponse> {
         self.createAlarmPolicy(.init(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建云监控告警策略
+    /// 创建告警策略
     @inlinable
     public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
         try await self.createAlarmPolicy(.init(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)

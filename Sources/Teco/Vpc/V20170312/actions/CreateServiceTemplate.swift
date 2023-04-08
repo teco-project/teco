@@ -17,7 +17,7 @@
 extension Vpc {
     /// CreateServiceTemplate请求参数结构体
     public struct CreateServiceTemplateRequest: TCRequestModel {
-        /// 协议端口模板名称
+        /// 协议端口模板名称。
         public let serviceTemplateName: String
 
         /// 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
@@ -55,7 +55,7 @@ extension Vpc {
 
     /// 创建协议端口模板
     ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板。
     @inlinable
     public func createServiceTemplate(_ input: CreateServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateResponse> {
         self.client.execute(action: "CreateServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +63,7 @@ extension Vpc {
 
     /// 创建协议端口模板
     ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板。
     @inlinable
     public func createServiceTemplate(_ input: CreateServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
         try await self.client.execute(action: "CreateServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Vpc {
 
     /// 创建协议端口模板
     ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板。
     @inlinable
     public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateResponse> {
         self.createServiceTemplate(.init(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
@@ -79,7 +79,7 @@ extension Vpc {
 
     /// 创建协议端口模板
     ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板。
     @inlinable
     public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
         try await self.createServiceTemplate(.init(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)

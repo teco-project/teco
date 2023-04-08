@@ -34,6 +34,7 @@ extension TCCmeError {
             case input = "InvalidParameterValue.Input"
             case limit = "InvalidParameterValue.Limit"
             case materialId = "InvalidParameterValue.MaterialId"
+            case mediaCastSourceInfosInvalid = "InvalidParameterValue.MediaCastSourceInfosInvalid"
             case mediaReplacementInfo = "InvalidParameterValue.MediaReplacementInfo"
             case memberIds = "InvalidParameterValue.MemberIds"
             case memberNotExist = "InvalidParameterValue.MemberNotExist"
@@ -41,6 +42,7 @@ extension TCCmeError {
             case nameLenLimt = "InvalidParameterValue.NameLenLimt"
             case notTeamMemberError = "InvalidParameterValue.NotTeamMemberError"
             case offset = "InvalidParameterValue.Offset"
+            case operationInvalid = "InvalidParameterValue.OperationInvalid"
             case `operator` = "InvalidParameterValue.Operator"
             case ownerId = "InvalidParameterValue.OwnerId"
             case ownerRemark = "InvalidParameterValue.OwnerRemark"
@@ -151,6 +153,7 @@ extension TCCmeError {
             InvalidParameterValue(.exportDestination)
         }
 
+        /// 拓展信息不合法。
         public static var extInfoInvalid: InvalidParameterValue {
             InvalidParameterValue(.extInfoInvalid)
         }
@@ -175,6 +178,11 @@ extension TCCmeError {
         /// 媒体 ID 无效。
         public static var materialId: InvalidParameterValue {
             InvalidParameterValue(.materialId)
+        }
+
+        /// 输入源信息非法。
+        public static var mediaCastSourceInfosInvalid: InvalidParameterValue {
+            InvalidParameterValue(.mediaCastSourceInfosInvalid)
         }
 
         /// 媒体替换信息无效。
@@ -212,6 +220,11 @@ extension TCCmeError {
         /// 分页偏移不合法。
         public static var offset: InvalidParameterValue {
             InvalidParameterValue(.offset)
+        }
+
+        /// 转推操作非法。
+        public static var operationInvalid: InvalidParameterValue {
+            InvalidParameterValue(.operationInvalid)
         }
 
         /// 无效的操作者。
@@ -387,6 +400,8 @@ extension TCCmeError {
                 code = .invalidParameterValue_Limit
             case .materialId:
                 code = .invalidParameterValue_MaterialId
+            case .mediaCastSourceInfosInvalid:
+                code = .invalidParameterValue_MediaCastSourceInfosInvalid
             case .mediaReplacementInfo:
                 code = .invalidParameterValue_MediaReplacementInfo
             case .memberIds:
@@ -401,6 +416,8 @@ extension TCCmeError {
                 code = .invalidParameterValue_NotTeamMemberError
             case .offset:
                 code = .invalidParameterValue_Offset
+            case .operationInvalid:
+                code = .invalidParameterValue_OperationInvalid
             case .operator:
                 code = .invalidParameterValue_Operator
             case .ownerId:

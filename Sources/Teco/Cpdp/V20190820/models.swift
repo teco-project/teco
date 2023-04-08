@@ -4198,12 +4198,10 @@ extension Cpdp {
     public struct OpenBankSettlementRulesInfo: TCInputModel {
         /// ONCE：仅单次解冻（默认）
         /// MULTI：多次解冻
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unfreezeRule: String?
 
         /// ONCE：仅单次退款（默认）
         /// MULTI：多次退款
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundRule: String?
 
         public init(unfreezeRule: String? = nil, refundRule: String? = nil) {

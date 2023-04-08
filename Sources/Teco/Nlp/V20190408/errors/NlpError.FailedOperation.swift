@@ -17,10 +17,15 @@
 extension TCNlpError {
     public struct FailedOperation: TCNlpErrorType {
         enum Code: String {
+            case balanceInsufficient = "FailedOperation.BalanceInsufficient"
             case illegalTextError = "FailedOperation.IllegalTextError"
+            case noCouplets = "FailedOperation.NoCouplets"
+            case noPoetry = "FailedOperation.NoPoetry"
+            case notFoundData = "FailedOperation.NotFoundData"
             case requestTimeout = "FailedOperation.RequestTimeout"
             case rpcFail = "FailedOperation.RpcFail"
             case textEmbeddingFailed = "FailedOperation.TextEmbeddingFailed"
+            case unKnowError = "FailedOperation.UnKnowError"
             case unknown = "FailedOperation.Unknown"
             case wordNotFound = "FailedOperation.WordNotFound"
             case other = "FailedOperation"
@@ -48,9 +53,29 @@ extension TCNlpError {
             self.context = context
         }
 
+        /// 余额不足，开通失败，请充值后再开通。
+        public static var balanceInsufficient: FailedOperation {
+            FailedOperation(.balanceInsufficient)
+        }
+
         /// 非法文本输入导致返回异常
         public static var illegalTextError: FailedOperation {
             FailedOperation(.illegalTextError)
+        }
+
+        /// 暂无春联生成，请更换关键词重试。
+        public static var noCouplets: FailedOperation {
+            FailedOperation(.noCouplets)
+        }
+
+        /// 暂无诗词生成，请更换关键词重试。
+        public static var noPoetry: FailedOperation {
+            FailedOperation(.noPoetry)
+        }
+
+        /// 未查询到结果。
+        public static var notFoundData: FailedOperation {
+            FailedOperation(.notFoundData)
         }
 
         /// 后端服务超时。
@@ -58,6 +83,7 @@ extension TCNlpError {
             FailedOperation(.requestTimeout)
         }
 
+        /// RPC请求失败，一般为算法微服务故障。
         public static var rpcFail: FailedOperation {
             FailedOperation(.rpcFail)
         }
@@ -67,6 +93,12 @@ extension TCNlpError {
             FailedOperation(.textEmbeddingFailed)
         }
 
+        /// 内部错误。
+        public static var unKnowError: FailedOperation {
+            FailedOperation(.unKnowError)
+        }
+
+        /// 未知错误。
         public static var unknown: FailedOperation {
             FailedOperation(.unknown)
         }
@@ -84,14 +116,24 @@ extension TCNlpError {
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
+            case .balanceInsufficient:
+                code = .failedOperation_BalanceInsufficient
             case .illegalTextError:
                 code = .failedOperation_IllegalTextError
+            case .noCouplets:
+                code = .failedOperation_NoCouplets
+            case .noPoetry:
+                code = .failedOperation_NoPoetry
+            case .notFoundData:
+                code = .failedOperation_NotFoundData
             case .requestTimeout:
                 code = .failedOperation_RequestTimeout
             case .rpcFail:
                 code = .failedOperation_RpcFail
             case .textEmbeddingFailed:
                 code = .failedOperation_TextEmbeddingFailed
+            case .unKnowError:
+                code = .failedOperation_UnKnowError
             case .unknown:
                 code = .failedOperation_Unknown
             case .wordNotFound:

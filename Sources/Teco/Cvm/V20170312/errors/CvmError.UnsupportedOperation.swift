@@ -18,10 +18,12 @@ extension TCCvmError {
     public struct UnsupportedOperation: TCCvmErrorType {
         enum Code: String {
             case bandwidthPackageIdNotSupported = "UnsupportedOperation.BandwidthPackageIdNotSupported"
+            case diskSnapCreateTimeTooOld = "UnsupportedOperation.DiskSnapCreateTimeTooOld"
             case edgeZoneNotSupportCloudDisk = "UnsupportedOperation.EdgeZoneNotSupportCloudDisk"
             case elasticNetworkInterface = "UnsupportedOperation.ElasticNetworkInterface"
             case encryptedImagesNotSupported = "UnsupportedOperation.EncryptedImagesNotSupported"
             case heterogeneousChangeInstanceFamily = "UnsupportedOperation.HeterogeneousChangeInstanceFamily"
+            case hibernationForNormalInstance = "UnsupportedOperation.HibernationForNormalInstance"
             case iPv6NotSupportVpcMigrate = "UnsupportedOperation.IPv6NotSupportVpcMigrate"
             case imageTooLargeExportUnsupported = "UnsupportedOperation.ImageTooLargeExportUnsupported"
             case instanceChargeType = "UnsupportedOperation.InstanceChargeType"
@@ -52,8 +54,10 @@ extension TCCvmError {
             case insufficientClusterQuota = "UnsupportedOperation.InsufficientClusterQuota"
             case invalidDataDisk = "UnsupportedOperation.InvalidDataDisk"
             case invalidDisk = "UnsupportedOperation.InvalidDisk"
+            case invalidDiskBackupQuota = "UnsupportedOperation.InvalidDiskBackupQuota"
             case invalidImageLicenseTypeForReset = "UnsupportedOperation.InvalidImageLicenseTypeForReset"
             case invalidInstanceNotSupportedProtectedInstance = "UnsupportedOperation.InvalidInstanceNotSupportedProtectedInstance"
+            case invalidInstanceWithSwapDisk = "UnsupportedOperation.InvalidInstanceWithSwapDisk"
             case invalidPermissionNonInternationalAccount = "UnsupportedOperation.InvalidPermissionNonInternationalAccount"
             case invalidRegionDiskEncrypt = "UnsupportedOperation.InvalidRegionDiskEncrypt"
             case invalidZone = "UnsupportedOperation.InvalidZone"
@@ -63,6 +67,7 @@ extension TCCvmError {
             case marketImageExportUnsupported = "UnsupportedOperation.MarketImageExportUnsupported"
             case modifyEncryptionNotSupported = "UnsupportedOperation.ModifyEncryptionNotSupported"
             case modifyVPCWithCLB = "UnsupportedOperation.ModifyVPCWithCLB"
+            case modifyVPCWithClassLink = "UnsupportedOperation.ModifyVPCWithClassLink"
             case noInstanceTypeSupportSpot = "UnsupportedOperation.NoInstanceTypeSupportSpot"
             case noVpcNetwork = "UnsupportedOperation.NoVpcNetwork"
             case notFpgaInstance = "UnsupportedOperation.NotFpgaInstance"
@@ -70,8 +75,10 @@ extension TCCvmError {
             case notSupportInstanceImage = "UnsupportedOperation.NotSupportInstanceImage"
             case onlyForPrepaidAccount = "UnsupportedOperation.OnlyForPrepaidAccount"
             case originalInstanceTypeInvalid = "UnsupportedOperation.OriginalInstanceTypeInvalid"
+            case preheatImage = "UnsupportedOperation.PreheatImage"
             case publicImageExportUnsupported = "UnsupportedOperation.PublicImageExportUnsupported"
             case rawLocalDiskInsReinstalltoQcow2 = "UnsupportedOperation.RawLocalDiskInsReinstalltoQcow2"
+            case redHatImageExportUnsupported = "UnsupportedOperation.RedHatImageExportUnsupported"
             case redHatInstanceTerminateUnsupported = "UnsupportedOperation.RedHatInstanceTerminateUnsupported"
             case redHatInstanceUnsupported = "UnsupportedOperation.RedHatInstanceUnsupported"
             case region = "UnsupportedOperation.Region"
@@ -119,14 +126,22 @@ extension TCCvmError {
             UnsupportedOperation(.bandwidthPackageIdNotSupported)
         }
 
+        /// 实例创建快照的时间距今不到24小时。
+        public static var diskSnapCreateTimeTooOld: UnsupportedOperation {
+            UnsupportedOperation(.diskSnapCreateTimeTooOld)
+        }
+
+        /// 所选择的边缘可用区不支持云盘操作。
         public static var edgeZoneNotSupportCloudDisk: UnsupportedOperation {
             UnsupportedOperation(.edgeZoneNotSupportCloudDisk)
         }
 
+        /// 云服务器绑定了弹性网卡，请解绑弹性网卡后再切换私有网络。
         public static var elasticNetworkInterface: UnsupportedOperation {
             UnsupportedOperation(.elasticNetworkInterface)
         }
 
+        /// 不支持加密镜像。
         public static var encryptedImagesNotSupported: UnsupportedOperation {
             UnsupportedOperation(.encryptedImagesNotSupported)
         }
@@ -134,6 +149,11 @@ extension TCCvmError {
         /// 异构机型不支持跨机型调整。
         public static var heterogeneousChangeInstanceFamily: UnsupportedOperation {
             UnsupportedOperation(.heterogeneousChangeInstanceFamily)
+        }
+
+        /// 不支持未开启休眠功能的实例。
+        public static var hibernationForNormalInstance: UnsupportedOperation {
+            UnsupportedOperation(.hibernationForNormalInstance)
         }
 
         /// IPv6实例不支持VPC迁移
@@ -156,6 +176,8 @@ extension TCCvmError {
             UnsupportedOperation(.instanceMixedPricingModel)
         }
 
+        /// 中心可用区和边缘可用区实例不能混用批量操作。
+        ///
         /// 请单独选择中心可用区实例或者边缘可用区实例进行批量操作。
         public static var instanceMixedZoneType: UnsupportedOperation {
             UnsupportedOperation(.instanceMixedZoneType)
@@ -206,6 +228,7 @@ extension TCCvmError {
             UnsupportedOperation(.instanceStateIsolating)
         }
 
+        /// 不支持操作创建失败的实例。
         public static var instanceStateLaunchFailed: UnsupportedOperation {
             UnsupportedOperation(.instanceStateLaunchFailed)
         }
@@ -285,6 +308,12 @@ extension TCCvmError {
             UnsupportedOperation(.invalidDisk)
         }
 
+        /// 不支持带有云硬盘备份点。
+        public static var invalidDiskBackupQuota: UnsupportedOperation {
+            UnsupportedOperation(.invalidDiskBackupQuota)
+        }
+
+        /// 镜像许可类型与实例不符，请选择其他镜像。
         public static var invalidImageLicenseTypeForReset: UnsupportedOperation {
             UnsupportedOperation(.invalidImageLicenseTypeForReset)
         }
@@ -292,6 +321,11 @@ extension TCCvmError {
         /// 不支持已经设置了释放时间的实例，请在实例详情页撤销实例定时销毁后再试。
         public static var invalidInstanceNotSupportedProtectedInstance: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceNotSupportedProtectedInstance)
+        }
+
+        /// 不支持有swap盘的实例。
+        public static var invalidInstanceWithSwapDisk: UnsupportedOperation {
+            UnsupportedOperation(.invalidInstanceWithSwapDisk)
         }
 
         /// 当前操作只支持国际版用户。
@@ -304,6 +338,7 @@ extension TCCvmError {
             UnsupportedOperation(.invalidRegionDiskEncrypt)
         }
 
+        /// 该可用区不可售卖。
         public static var invalidZone: UnsupportedOperation {
             UnsupportedOperation(.invalidZone)
         }
@@ -328,6 +363,7 @@ extension TCCvmError {
             UnsupportedOperation(.marketImageExportUnsupported)
         }
 
+        /// 不支持修改系统盘的加密属性，例如使用非加密镜像重装加密系统盘。
         public static var modifyEncryptionNotSupported: UnsupportedOperation {
             UnsupportedOperation(.modifyEncryptionNotSupported)
         }
@@ -337,6 +373,11 @@ extension TCCvmError {
         /// 实例已绑定CLB，不支持修改VPC，请自行解绑内外网 CLB 以及弹性网卡，并释放主网卡的辅助 IP，迁移后再进行绑定。
         public static var modifyVPCWithCLB: UnsupportedOperation {
             UnsupportedOperation(.modifyVPCWithCLB)
+        }
+
+        /// 实例基础网络已互通VPC网络，请自行解除关联，再进行切换VPC。
+        public static var modifyVPCWithClassLink: UnsupportedOperation {
+            UnsupportedOperation(.modifyVPCWithClassLink)
         }
 
         /// 该实例类型不支持竞价计费
@@ -378,6 +419,11 @@ extension TCCvmError {
             UnsupportedOperation(.originalInstanceTypeInvalid)
         }
 
+        /// 你的账户不支持镜像预热
+        public static var preheatImage: UnsupportedOperation {
+            UnsupportedOperation(.preheatImage)
+        }
+
         /// 公共镜像或市场镜像不支持导出。
         public static var publicImageExportUnsupported: UnsupportedOperation {
             UnsupportedOperation(.publicImageExportUnsupported)
@@ -388,10 +434,17 @@ extension TCCvmError {
             UnsupportedOperation(.rawLocalDiskInsReinstalltoQcow2)
         }
 
+        /// RedHat镜像不支持导出。
+        public static var redHatImageExportUnsupported: UnsupportedOperation {
+            UnsupportedOperation(.redHatImageExportUnsupported)
+        }
+
+        /// 实例使用商业操作系统，不支持退还。
         public static var redHatInstanceTerminateUnsupported: UnsupportedOperation {
             UnsupportedOperation(.redHatInstanceTerminateUnsupported)
         }
 
+        /// 请求不支持操作系统为RedHat的实例。
         public static var redHatInstanceUnsupported: UnsupportedOperation {
             UnsupportedOperation(.redHatInstanceUnsupported)
         }
@@ -421,6 +474,7 @@ extension TCCvmError {
             UnsupportedOperation(.specialInstanceType)
         }
 
+        /// 该地域不支持竞价实例。
         public static var spotUnsupportedRegion: UnsupportedOperation {
             UnsupportedOperation(.spotUnsupportedRegion)
         }
@@ -482,6 +536,8 @@ extension TCCvmError {
             switch self.error {
             case .bandwidthPackageIdNotSupported:
                 code = .unsupportedOperation_BandwidthPackageIdNotSupported
+            case .diskSnapCreateTimeTooOld:
+                code = .unsupportedOperation_DiskSnapCreateTimeTooOld
             case .edgeZoneNotSupportCloudDisk:
                 code = .unsupportedOperation_EdgeZoneNotSupportCloudDisk
             case .elasticNetworkInterface:
@@ -490,6 +546,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_EncryptedImagesNotSupported
             case .heterogeneousChangeInstanceFamily:
                 code = .unsupportedOperation_HeterogeneousChangeInstanceFamily
+            case .hibernationForNormalInstance:
+                code = .unsupportedOperation_HibernationForNormalInstance
             case .iPv6NotSupportVpcMigrate:
                 code = .unsupportedOperation_IPv6NotSupportVpcMigrate
             case .imageTooLargeExportUnsupported:
@@ -550,10 +608,14 @@ extension TCCvmError {
                 code = .unsupportedOperation_InvalidDataDisk
             case .invalidDisk:
                 code = .unsupportedOperation_InvalidDisk
+            case .invalidDiskBackupQuota:
+                code = .unsupportedOperation_InvalidDiskBackupQuota
             case .invalidImageLicenseTypeForReset:
                 code = .unsupportedOperation_InvalidImageLicenseTypeForReset
             case .invalidInstanceNotSupportedProtectedInstance:
                 code = .unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance
+            case .invalidInstanceWithSwapDisk:
+                code = .unsupportedOperation_InvalidInstanceWithSwapDisk
             case .invalidPermissionNonInternationalAccount:
                 code = .unsupportedOperation_InvalidPermissionNonInternationalAccount
             case .invalidRegionDiskEncrypt:
@@ -572,6 +634,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_ModifyEncryptionNotSupported
             case .modifyVPCWithCLB:
                 code = .unsupportedOperation_ModifyVPCWithCLB
+            case .modifyVPCWithClassLink:
+                code = .unsupportedOperation_ModifyVPCWithClassLink
             case .noInstanceTypeSupportSpot:
                 code = .unsupportedOperation_NoInstanceTypeSupportSpot
             case .noVpcNetwork:
@@ -586,10 +650,14 @@ extension TCCvmError {
                 code = .unsupportedOperation_OnlyForPrepaidAccount
             case .originalInstanceTypeInvalid:
                 code = .unsupportedOperation_OriginalInstanceTypeInvalid
+            case .preheatImage:
+                code = .unsupportedOperation_PreheatImage
             case .publicImageExportUnsupported:
                 code = .unsupportedOperation_PublicImageExportUnsupported
             case .rawLocalDiskInsReinstalltoQcow2:
                 code = .unsupportedOperation_RawLocalDiskInsReinstalltoQcow2
+            case .redHatImageExportUnsupported:
+                code = .unsupportedOperation_RedHatImageExportUnsupported
             case .redHatInstanceTerminateUnsupported:
                 code = .unsupportedOperation_RedHatInstanceTerminateUnsupported
             case .redHatInstanceUnsupported:

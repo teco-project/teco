@@ -29,6 +29,7 @@ public struct TCCarError: TCCarErrorType {
         case failedOperation_ProcessTimeout = "FailedOperation.ProcessTimeout"
         case failedOperation_SlowDown = "FailedOperation.SlowDown"
         case internalError = "InternalError"
+        case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_JsonParseError = "InvalidParameter.JsonParseError"
         case operationDenied = "OperationDenied"
@@ -89,6 +90,11 @@ public struct TCCarError: TCCarErrorType {
     /// 内部错误。
     public static var internalError: TCCarError {
         TCCarError(.internalError)
+    }
+
+    /// 参数错误。
+    public static var invalidParameter: TCCarError {
+        TCCarError(.invalidParameter)
     }
 
     /// 参数取值错误。

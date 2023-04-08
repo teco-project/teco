@@ -23,14 +23,14 @@ extension Thpc {
         /// 集群ID。
         public let clusterId: String
 
-        /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜。
-        public let imageId: String
-
         /// 私有网络相关信息配置。
         public let virtualPrivateCloud: VirtualPrivateCloud
 
         /// 添加节点数量。
         public let count: Int64
+
+        /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和特定自定义镜像。
+        public let imageId: String?
 
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
@@ -64,10 +64,10 @@ extension Thpc {
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
 
-        /// 队列名称。
+        /// 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。<li>SGE默认队列为：all.q。
         public let queueName: String?
 
-        /// 添加节点类型。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
+        /// 添加节点角色。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
         public let nodeRole: String?
 
         /// 是否只预检此次请求。
@@ -77,12 +77,15 @@ extension Thpc {
         /// false（默认）：发送正常请求，通过检查后直接创建实例
         public let dryRun: Bool?
 
-        public init(placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil) {
+        /// 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。<li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
+        public let nodeType: String?
+
+        public init(placement: Placement, clusterId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, imageId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, nodeType: String? = nil) {
             self.placement = placement
             self.clusterId = clusterId
-            self.imageId = imageId
             self.virtualPrivateCloud = virtualPrivateCloud
             self.count = count
+            self.imageId = imageId
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -96,14 +99,15 @@ extension Thpc {
             self.queueName = queueName
             self.nodeRole = nodeRole
             self.dryRun = dryRun
+            self.nodeType = nodeType
         }
 
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case clusterId = "ClusterId"
-            case imageId = "ImageId"
             case virtualPrivateCloud = "VirtualPrivateCloud"
             case count = "Count"
+            case imageId = "ImageId"
             case instanceChargeType = "InstanceChargeType"
             case instanceChargePrepaid = "InstanceChargePrepaid"
             case instanceType = "InstanceType"
@@ -117,6 +121,7 @@ extension Thpc {
             case queueName = "QueueName"
             case nodeRole = "NodeRole"
             case dryRun = "DryRun"
+            case nodeType = "NodeType"
         }
     }
 
@@ -150,15 +155,15 @@ extension Thpc {
     ///
     /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
     @inlinable @discardableResult
-    public func addNodes(placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNodesResponse> {
-        self.addNodes(.init(placement: placement, clusterId: clusterId, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, count: count, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+    public func addNodes(placement: Placement, clusterId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, imageId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, nodeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNodesResponse> {
+        self.addNodes(.init(placement: placement, clusterId: clusterId, virtualPrivateCloud: virtualPrivateCloud, count: count, imageId: imageId, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加节点
     ///
     /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
     @inlinable @discardableResult
-    public func addNodes(placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
-        try await self.addNodes(.init(placement: placement, clusterId: clusterId, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, count: count, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+    public func addNodes(placement: Placement, clusterId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, imageId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, nodeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
+        try await self.addNodes(.init(placement: placement, clusterId: clusterId, virtualPrivateCloud: virtualPrivateCloud, count: count, imageId: imageId, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 }

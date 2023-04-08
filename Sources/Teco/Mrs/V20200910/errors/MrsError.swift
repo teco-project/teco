@@ -45,6 +45,7 @@ public struct TCMrsError: TCMrsErrorType {
         case invalidParameter_OcrEngineType = "InvalidParameter.OcrEngineType"
         case invalidParameter_RotateTheAngle = "InvalidParameter.RotateTheAngle"
         case invalidParameter_Text = "InvalidParameter.Text"
+        case limitExceeded_TextSizeLimitExceeded = "LimitExceeded.TextSizeLimitExceeded"
         case operationDenied_UnSupportThisType = "OperationDenied.UnSupportThisType"
         case unauthorizedOperation_PermissionDeniedError = "UnauthorizedOperation.PermissionDeniedError"
         case unsupportedOperation_UnSupportThisType = "UnsupportedOperation.UnSupportThisType"
@@ -52,7 +53,7 @@ public struct TCMrsError: TCMrsErrorType {
 
     /// Error domains affliated to ``TCMrsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, OperationDenied.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -186,6 +187,13 @@ public struct TCMrsError: TCMrsErrorType {
     /// 参数Text无效。
     public static var invalidParameter_Text: TCMrsError {
         TCMrsError(.invalidParameter_Text)
+    }
+
+    /// 文本大小超过限制。
+    ///
+    /// 单次调用传入的图片内容或文本不宜超过 2000 字
+    public static var limitExceeded_TextSizeLimitExceeded: TCMrsError {
+        TCMrsError(.limitExceeded_TextSizeLimitExceeded)
     }
 
     /// 不支持的报告类型。

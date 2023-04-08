@@ -59,14 +59,17 @@ extension Cvm {
     }
 
     /// 定时任务
-    public struct ActionTimer: TCInputModel {
-        /// 定时器名称，目前仅支持销毁一个值：TerminateInstances。
+    public struct ActionTimer: TCInputModel, TCOutputModel {
+        /// 定时器动作，目前仅支持销毁一个值：TerminateInstances。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerAction: String?
 
-        /// 执行时间，格式形如：2018-5-29 11:26:40,执行时间必须大于当前时间5分钟。
+        /// 执行时间，按照ISO8601标准表示，并且使用UTC时间。格式为 YYYY-MM-DDThh:mm:ssZ。例如 2018-05-29T11:26:40Z，执行时间必须大于当前时间5分钟。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionTime: String?
 
         /// 扩展数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externals: Externals?
 
         public init(timerAction: String? = nil, actionTime: String? = nil, externals: Externals? = nil) {
@@ -948,11 +951,13 @@ extension Cvm {
     }
 
     /// 描述了实例的计费模式
-    public struct InstanceChargePrepaid: TCInputModel {
+    public struct InstanceChargePrepaid: TCInputModel, TCOutputModel {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
-        public let period: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let period: Int64?
 
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: String?
 
         public init(period: Int64, renewFlag: String? = nil) {
@@ -982,11 +987,13 @@ extension Cvm {
     }
 
     /// 竞价请求相关选项
-    public struct InstanceMarketOptionsRequest: TCInputModel {
+    public struct InstanceMarketOptionsRequest: TCInputModel, TCOutputModel {
         /// 竞价相关选项
-        public let spotOptions: SpotMarketOptions
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spotOptions: SpotMarketOptions?
 
         /// 市场选项类型，当前只支持取值：spot
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let marketType: String?
 
         public init(spotOptions: SpotMarketOptions, marketType: String? = nil) {
@@ -1569,6 +1576,15 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [TagSpecification]?
 
+        /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
+        ///
+        /// TRUE：表示开启实例保护，不允许通过api接口删除实例
+        /// FALSE：表示关闭实例保护，允许通过api接口删除实例
+        ///
+        /// 默认取值：FALSE。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disableApiTermination: Bool?
+
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case instanceType = "InstanceType"
@@ -1593,6 +1609,7 @@ extension Cvm {
             case clientToken = "ClientToken"
             case instanceChargePrepaid = "InstanceChargePrepaid"
             case tagSpecification = "TagSpecification"
+            case disableApiTermination = "DisableApiTermination"
         }
     }
 
@@ -1839,6 +1856,173 @@ extension Cvm {
             case region = "Region"
             case regionName = "RegionName"
             case regionState = "RegionState"
+        }
+    }
+
+    /// 描述维修任务的相关信息
+    public struct RepairTaskInfo: TCOutputModel {
+        /// 维修任务ID
+        public let taskId: String
+
+        /// 实例ID
+        public let instanceId: String
+
+        /// 实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alias: String?
+
+        /// 任务类型ID，与任务类型中文名的对应关系如下：
+        ///
+        /// - `101`：实例运行隐患
+        /// - `102`：实例运行异常
+        /// - `103`：实例硬盘异常
+        /// - `104`：实例网络连接异常
+        /// - `105`：实例运行预警
+        /// - `106`：实例硬盘预警
+        /// - `107`：实例维护升级
+        ///
+        /// 各任务类型的具体含义，可参考 [维修任务分类](https://cloud.tencent.com/document/product/213/67789#.E7.BB.B4.E4.BF.AE.E4.BB.BB.E5.8A.A1.E5.88.86.E7.B1.BB)。
+        public let taskTypeId: UInt64
+
+        /// 任务类型中文名
+        public let taskTypeName: String?
+
+        /// 任务状态ID，与任务状态中文名的对应关系如下：
+        ///
+        /// - `1`：待授权
+        /// - `2`：处理中
+        /// - `3`：已结束
+        /// - `4`：已预约
+        /// - `5`：已取消
+        /// - `6`：已避免
+        ///
+        /// 各任务状态的具体含义，可参考 [任务状态](https://cloud.tencent.com/document/product/213/67789#.E4.BB.BB.E5.8A.A1.E7.8A.B6.E6.80.81)。
+        public let taskStatus: UInt64
+
+        /// 设备状态ID，与设备状态中文名的对应关系如下：
+        ///
+        /// - `1`：故障中
+        /// - `2`：处理中
+        /// - `3`：正常
+        /// - `4`：已预约
+        /// - `5`：已取消
+        /// - `6`：已避免
+        public let deviceStatus: UInt64?
+
+        /// 操作状态ID，与操作状态中文名的对应关系如下：
+        ///
+        /// - `1`：未授权
+        /// - `2`：已授权
+        /// - `3`：已处理
+        /// - `4`：已预约
+        /// - `5`：已取消
+        /// - `6`：已避免
+        public let operateStatus: UInt64?
+
+        /// 任务创建时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var createTime: Date
+
+        /// 任务授权时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var authTime: Date?
+
+        /// 任务结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var endTime: Date?
+
+        /// 任务详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskDetail: String?
+
+        /// 可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 所在私有网络ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 所在私有网络名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcName: String?
+
+        /// 所在子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 所在子网名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetName: String?
+
+        /// 实例公网IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanIp: String?
+
+        /// 实例内网IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lanIp: String?
+
+        /// 产品类型，支持取值：
+        ///
+        /// - `CVM`：云服务器
+        /// - `CDH`：专用宿主机
+        /// - `CPM2.0`：裸金属云服务器
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let product: String?
+
+        /// 任务子类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskSubType: String?
+
+        /// 任务授权类型
+        public let authType: UInt64?
+
+        /// 授权渠道，支持取值：
+        ///
+        /// - `Waiting_auth`：待授权
+        /// - `Customer_auth`：客户操作授权
+        /// - `System_mandatory_auth`：系统默认授权
+        /// - `Pre_policy_auth`：预置策略授权
+        public let authSource: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case instanceId = "InstanceId"
+            case alias = "Alias"
+            case taskTypeId = "TaskTypeId"
+            case taskTypeName = "TaskTypeName"
+            case taskStatus = "TaskStatus"
+            case deviceStatus = "DeviceStatus"
+            case operateStatus = "OperateStatus"
+            case createTime = "CreateTime"
+            case authTime = "AuthTime"
+            case endTime = "EndTime"
+            case taskDetail = "TaskDetail"
+            case zone = "Zone"
+            case region = "Region"
+            case vpcId = "VpcId"
+            case vpcName = "VpcName"
+            case subnetId = "SubnetId"
+            case subnetName = "SubnetName"
+            case wanIp = "WanIp"
+            case lanIp = "LanIp"
+            case product = "Product"
+            case taskSubType = "TaskSubType"
+            case authType = "AuthType"
+            case authSource = "AuthSource"
         }
     }
 
@@ -2334,12 +2518,14 @@ extension Cvm {
     }
 
     /// 创建资源实例时同时绑定的标签对说明
-    public struct TagSpecification: TCInputModel {
+    public struct TagSpecification: TCInputModel, TCOutputModel {
         /// 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”，密钥为“keypair”
-        public let resourceType: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceType: String?
 
         /// 标签对列表
-        public let tags: [Tag]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
 
         public init(resourceType: String, tags: [Tag]) {
             self.resourceType = resourceType

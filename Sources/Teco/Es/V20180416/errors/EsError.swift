@@ -143,7 +143,7 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.failedOperation_UnsupportResetNodeTypeAndScaleoutDisk)
     }
 
-    /// 不支持滚动缩容计算资源同时修改磁盘大小。
+    /// 不支持在滚动重启缩容计算资源同时修改磁盘大小
     public static var failedOperation_UnsupportResetScaledownAndModifyDisk: TCEsError {
         TCEsError(.failedOperation_UnsupportResetScaledownAndModifyDisk)
     }

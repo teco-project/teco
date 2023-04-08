@@ -43,6 +43,8 @@ extension TCSslError {
             case invalidFileType = "FailedOperation.InvalidFileType"
             case invalidParam = "FailedOperation.InvalidParam"
             case mainDomainCertificateCountLimit = "FailedOperation.MainDomainCertificateCountLimit"
+            case managerCanNotDeleteCa = "FailedOperation.ManagerCanNotDeleteCa"
+            case managerCanNotDeleteCert = "FailedOperation.ManagerCanNotDeleteCert"
             case networkError = "FailedOperation.NetworkError"
             case noProjectPermission = "FailedOperation.NoProjectPermission"
             case noRealNameAuth = "FailedOperation.NoRealNameAuth"
@@ -53,6 +55,7 @@ extension TCSslError {
             case revokeFailed = "FailedOperation.RevokeFailed"
             case revokeResourceFailed = "FailedOperation.RevokeResourceFailed"
             case roleNotFoundAuthorization = "FailedOperation.RoleNotFoundAuthorization"
+            case systemError = "FailedOperation.SystemError"
             case other = "FailedOperation"
         }
 
@@ -168,6 +171,7 @@ extension TCSslError {
             FailedOperation(.fileTooSmall)
         }
 
+        /// 公司管理人状态错误。
         public static var illegalManagerStatus: FailedOperation {
             FailedOperation(.illegalManagerStatus)
         }
@@ -207,6 +211,16 @@ extension TCSslError {
         /// 主域申请的免费证书数量已达到20个上限，请购买付费证书
         public static var mainDomainCertificateCountLimit: FailedOperation {
             FailedOperation(.mainDomainCertificateCountLimit)
+        }
+
+        /// 管理人信息已提交CA，不可以删除。
+        public static var managerCanNotDeleteCa: FailedOperation {
+            FailedOperation(.managerCanNotDeleteCa)
+        }
+
+        /// 管理人信息已关联证书，不可以删除。
+        public static var managerCanNotDeleteCert: FailedOperation {
+            FailedOperation(.managerCanNotDeleteCert)
         }
 
         /// 当前 CA 机构访问繁忙，请稍后重试。
@@ -259,6 +273,13 @@ extension TCSslError {
         /// 服务角色授权
         public static var roleNotFoundAuthorization: FailedOperation {
             FailedOperation(.roleNotFoundAuthorization)
+        }
+
+        /// 系统错误。
+        ///
+        /// 系统错误
+        public static var systemError: FailedOperation {
+            FailedOperation(.systemError)
         }
 
         /// 操作失败。
@@ -321,6 +342,10 @@ extension TCSslError {
                 code = .failedOperation_InvalidParam
             case .mainDomainCertificateCountLimit:
                 code = .failedOperation_MainDomainCertificateCountLimit
+            case .managerCanNotDeleteCa:
+                code = .failedOperation_ManagerCanNotDeleteCa
+            case .managerCanNotDeleteCert:
+                code = .failedOperation_ManagerCanNotDeleteCert
             case .networkError:
                 code = .failedOperation_NetworkError
             case .noProjectPermission:
@@ -341,6 +366,8 @@ extension TCSslError {
                 code = .failedOperation_RevokeResourceFailed
             case .roleNotFoundAuthorization:
                 code = .failedOperation_RoleNotFoundAuthorization
+            case .systemError:
+                code = .failedOperation_SystemError
             case .other:
                 code = .failedOperation
             }

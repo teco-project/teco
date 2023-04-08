@@ -20,27 +20,27 @@ extension Cwp {
         /// 机器 Quuid
         public let quuid: String
 
-        /// 服务器地区 如: ap-guangzhou
-        public let machineRegion: String
-
-        /// 服务器类型(CVM|BM|ECM|LH|Other)
-        public let machineArea: String
-
         /// 标签ID，该操作会覆盖原有的标签列表
         public let tagIds: [UInt64]?
 
-        public init(quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil) {
+        /// 服务器地区 如: ap-guangzhou
+        public let machineRegion: String?
+
+        /// 服务器类型(CVM|BM|ECM|LH|Other)
+        public let machineArea: String?
+
+        public init(quuid: String, tagIds: [UInt64]? = nil, machineRegion: String? = nil, machineArea: String? = nil) {
             self.quuid = quuid
+            self.tagIds = tagIds
             self.machineRegion = machineRegion
             self.machineArea = machineArea
-            self.tagIds = tagIds
         }
 
         enum CodingKeys: String, CodingKey {
             case quuid = "Quuid"
+            case tagIds = "TagIds"
             case machineRegion = "MachineRegion"
             case machineArea = "MachineArea"
-            case tagIds = "TagIds"
         }
     }
 
@@ -68,13 +68,13 @@ extension Cwp {
 
     /// 关联机器标签列表
     @inlinable @discardableResult
-    public func updateMachineTags(quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateMachineTagsResponse> {
-        self.updateMachineTags(.init(quuid: quuid, machineRegion: machineRegion, machineArea: machineArea, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
+    public func updateMachineTags(quuid: String, tagIds: [UInt64]? = nil, machineRegion: String? = nil, machineArea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateMachineTagsResponse> {
+        self.updateMachineTags(.init(quuid: quuid, tagIds: tagIds, machineRegion: machineRegion, machineArea: machineArea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联机器标签列表
     @inlinable @discardableResult
-    public func updateMachineTags(quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
-        try await self.updateMachineTags(.init(quuid: quuid, machineRegion: machineRegion, machineArea: machineArea, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
+    public func updateMachineTags(quuid: String, tagIds: [UInt64]? = nil, machineRegion: String? = nil, machineArea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
+        try await self.updateMachineTags(.init(quuid: quuid, tagIds: tagIds, machineRegion: machineRegion, machineArea: machineArea), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -48,6 +48,7 @@ extension TCMongodbError {
             case replicaNotFound = "InvalidParameterValue.ReplicaNotFound"
             case replicaSetNumError = "InvalidParameterValue.ReplicaSetNumError"
             case secondaryNumError = "InvalidParameterValue.SecondaryNumError"
+            case securityGroupId = "InvalidParameterValue.SecurityGroupId"
             case setDiskLessThanUsed = "InvalidParameterValue.SetDiskLessThanUsed"
             case slowMSBelowLimit = "InvalidParameterValue.SlowMSBelowLimit"
             case specNotOnSale = "InvalidParameterValue.SpecNotOnSale"
@@ -238,6 +239,13 @@ extension TCMongodbError {
             InvalidParameterValue(.secondaryNumError)
         }
 
+        /// 安全组ID无效。
+        ///
+        /// 请输入正确的安全组ID。
+        public static var securityGroupId: InvalidParameterValue {
+            InvalidParameterValue(.securityGroupId)
+        }
+
         /// 设置的磁盘大小不得低于已用磁盘的1.2倍。
         public static var setDiskLessThanUsed: InvalidParameterValue {
             InvalidParameterValue(.setDiskLessThanUsed)
@@ -358,6 +366,8 @@ extension TCMongodbError {
                 code = .invalidParameterValue_ReplicaSetNumError
             case .secondaryNumError:
                 code = .invalidParameterValue_SecondaryNumError
+            case .securityGroupId:
+                code = .invalidParameterValue_SecurityGroupId
             case .setDiskLessThanUsed:
                 code = .invalidParameterValue_SetDiskLessThanUsed
             case .slowMSBelowLimit:

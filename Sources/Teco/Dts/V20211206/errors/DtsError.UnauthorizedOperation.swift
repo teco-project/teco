@@ -55,6 +55,7 @@ extension TCDtsError {
             UnauthorizedOperation(.permissionDenied)
         }
 
+        /// 未授权的操作。
         public static var unauthorizedOperationError: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorizedOperationError)
         }

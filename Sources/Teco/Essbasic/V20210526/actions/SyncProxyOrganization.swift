@@ -21,19 +21,19 @@ extension Essbasic {
         /// 此接口Agent.AppId、Agent.ProxyOrganizationOpenId必填
         public let agent: Agent
 
-        /// 渠道侧合作企业名称，最大长度64个字符
+        /// 第三方平台子客企业名称，最大长度64个字符
         public let proxyOrganizationName: String
 
         /// 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
         public let businessLicense: String?
 
-        /// 渠道侧合作企业统一社会信用代码，最大长度200个字符
+        /// 第三方平台子客企业统一社会信用代码，最大长度200个字符
         public let uniformSocialCreditCode: String?
 
-        /// 渠道侧合作企业法人/负责人姓名
+        /// 第三方平台子客企业法人/负责人姓名
         public let proxyLegalName: String?
 
-        /// 操作者的信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil) {
@@ -67,7 +67,7 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步渠道子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
     @inlinable @discardableResult
     public func syncProxyOrganization(_ input: SyncProxyOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
         self.client.execute(action: "SyncProxyOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步渠道子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
     @inlinable @discardableResult
     public func syncProxyOrganization(_ input: SyncProxyOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
         try await self.client.execute(action: "SyncProxyOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,7 +83,7 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步渠道子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
     @inlinable @discardableResult
     public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
         self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -91,7 +91,7 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步渠道子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
     @inlinable @discardableResult
     public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
         try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)

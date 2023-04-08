@@ -587,7 +587,6 @@ extension Iai {
     /// 需要修改的人员库自定义描述字段key-value
     public struct GroupExDescriptionInfo: TCInputModel {
         /// 人员库自定义描述字段Index，从0开始
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupExDescriptionIndex: UInt64?
 
         /// 需要更新的人员库自定义描述字段内容
@@ -708,7 +707,6 @@ extension Iai {
     /// 需要修改的人员描述字段内容，key-value
     public struct PersonExDescriptionInfo: TCInputModel {
         /// 人员描述字段Index，从0开始
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let personExDescriptionIndex: UInt64?
 
         /// 需要更新的人员描述字段内容

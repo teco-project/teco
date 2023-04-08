@@ -111,6 +111,23 @@ extension Vod {
         /// <li> DEEP_ARCHIVE：深度归档存储。</li>
         public let storageClasses: [String]?
 
+        /// 媒体文件封装格式集合，匹配集合中任意元素。
+        /// <li>数组长度限制：10。</li>
+        public let mediaTypes: [String]?
+
+        /// 媒体文件状态，匹配集合中任意元素。
+        /// <li> Normal：正常；</li>
+        /// <li> SystemForbidden：平台封禁；</li>
+        /// <li> Forbidden：主动封禁。</li>
+        public let status: [String]?
+
+        /// 媒体文件审核结果，匹配集合中任意元素。
+        /// <li> pass：审核通过；</li>
+        /// <li> review：疑似违规，建议复审；</li>
+        /// <li> block：确认违规，建议封禁；</li>
+        /// <li> notModerated：未审核。</li>
+        public let reviewResults: [String]?
+
         /// TRTC 应用 ID 集合。匹配集合中的任意元素。
         /// <li>数组长度限制：10。</li>
         public let trtcSdkAppIds: [UInt64]?
@@ -152,7 +169,7 @@ extension Vod {
         /// 该字段已无效。
         public let vid: String?
 
-        public init(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil) {
+        public init(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, mediaTypes: [String]? = nil, status: [String]? = nil, reviewResults: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil) {
             self.subAppId = subAppId
             self.fileIds = fileIds
             self.names = names
@@ -171,6 +188,9 @@ extension Vod {
             self.filters = filters
             self.storageRegions = storageRegions
             self.storageClasses = storageClasses
+            self.mediaTypes = mediaTypes
+            self.status = status
+            self.reviewResults = reviewResults
             self.trtcSdkAppIds = trtcSdkAppIds
             self.trtcRoomIds = trtcRoomIds
             self.text = text
@@ -201,6 +221,9 @@ extension Vod {
             case filters = "Filters"
             case storageRegions = "StorageRegions"
             case storageClasses = "StorageClasses"
+            case mediaTypes = "MediaTypes"
+            case status = "Status"
+            case reviewResults = "ReviewResults"
             case trtcSdkAppIds = "TrtcSdkAppIds"
             case trtcRoomIds = "TrtcRoomIds"
             case text = "Text"
@@ -217,7 +240,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchMediaRequest(subAppId: self.subAppId, fileIds: self.fileIds, names: self.names, namePrefixes: self.namePrefixes, descriptions: self.descriptions, classIds: self.classIds, tags: self.tags, categories: self.categories, sourceTypes: self.sourceTypes, streamIds: self.streamIds, createTime: self.createTime, expireTime: self.expireTime, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, storageRegions: self.storageRegions, storageClasses: self.storageClasses, trtcSdkAppIds: self.trtcSdkAppIds, trtcRoomIds: self.trtcRoomIds, text: self.text, sourceType: self.sourceType, streamId: self.streamId, startTime: self.startTime, endTime: self.endTime, vids: self.vids, vid: self.vid)
+            return SearchMediaRequest(subAppId: self.subAppId, fileIds: self.fileIds, names: self.names, namePrefixes: self.namePrefixes, descriptions: self.descriptions, classIds: self.classIds, tags: self.tags, categories: self.categories, sourceTypes: self.sourceTypes, streamIds: self.streamIds, createTime: self.createTime, expireTime: self.expireTime, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, storageRegions: self.storageRegions, storageClasses: self.storageClasses, mediaTypes: self.mediaTypes, status: self.status, reviewResults: self.reviewResults, trtcSdkAppIds: self.trtcSdkAppIds, trtcRoomIds: self.trtcRoomIds, text: self.text, sourceType: self.sourceType, streamId: self.streamId, startTime: self.startTime, endTime: self.endTime, vids: self.vids, vid: self.vid)
         }
     }
 
@@ -260,6 +283,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -301,6 +327,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -342,6 +371,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -369,8 +401,8 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
-        self.searchMedia(.init(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
+    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, mediaTypes: [String]? = nil, status: [String]? = nil, reviewResults: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
+        self.searchMedia(.init(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, mediaTypes: mediaTypes, status: status, reviewResults: reviewResults, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体信息
@@ -383,6 +415,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -410,8 +445,8 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
-        try await self.searchMedia(.init(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
+    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, mediaTypes: [String]? = nil, status: [String]? = nil, reviewResults: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
+        try await self.searchMedia(.init(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, mediaTypes: mediaTypes, status: status, reviewResults: reviewResults, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体信息
@@ -424,6 +459,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -465,6 +503,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。
@@ -506,6 +547,9 @@ extension Vod {
     /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
     /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
     /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定文件封装格式集合 MediaTypes（见输入参数），返回满足集合中任意封装格式的媒体。例如：封装格式有 MP4、AVI、MP3 等。如果 MediaTypes 指定了 MP4 和 MP3，那么符合这些封装格式的媒体都会被检索出来。
+    /// - 指定文件状态集合 Status（见输入参数），返回满足集合种任意状态的媒体。例如：文件状态有 Normal（正常）、SystemForbidden（平台封禁）、Forbidden（主动封禁）。如果 Status 指定了 Normal 和 Forbidden 2种文件状态，那么符合这些状态的媒体都会被检索出来。
+    /// - 指定文件审核结果集合 ReviewResults（见输入参数），返回满足集合种任意状态的媒体。例如：文件审核结果有 pass（通过）、block（违规）等。如果 ReviewResults 指定了 pass 和 block 2种审核结果，那么符合这些审核结果的媒体都会被检索出来。
     /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
     /// - 指定媒体的创建时间范围筛选媒体。
     /// - 指定 TRTC 应用 ID 集合筛选媒体。

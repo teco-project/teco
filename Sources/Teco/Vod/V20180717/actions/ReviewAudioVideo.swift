@@ -30,7 +30,7 @@ extension Vod {
         public let reviewContents: [String]?
 
         /// 审核模板 ID，默认值为 10。取值范围：
-        /// <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
+        /// <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴力（Terror）和不适宜的信息（Polity）。</li>
         public let definition: UInt64?
 
         /// 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。

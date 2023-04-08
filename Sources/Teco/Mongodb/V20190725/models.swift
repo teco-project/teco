@@ -279,115 +279,115 @@ extension Mongodb {
 
     /// 实例详情
     public struct InstanceDetail: TCOutputModel {
-        /// 实例ID
+        /// 实例ID。
         public let instanceId: String
 
-        /// 实例名称
+        /// 实例名称。
         public let instanceName: String
 
         /// 付费类型，可能的返回值：1-包年包月；0-按量计费
         public let payMode: UInt64
 
-        /// 项目ID
+        /// 项目ID。
         public let projectId: UInt64
 
-        /// 集群类型，可能的返回值：0-副本集实例，1-分片实例，
+        /// 集群类型，可能的返回值：0-副本集实例，1-分片实例。
         public let clusterType: UInt64
 
-        /// 地域信息
+        /// 地域信息。
         public let region: String
 
-        /// 可用区信息
+        /// 可用区信息。
         public let zone: String
 
         /// 网络类型，可能的返回值：0-基础网络，1-私有网络
         public let netType: UInt64
 
-        /// 私有网络的ID
+        /// 私有网络的ID。
         public let vpcId: String
 
-        /// 私有网络的子网ID
+        /// 私有网络的子网ID。
         public let subnetId: String
 
-        /// 实例状态，可能的返回值：0-待初始化，1-流程处理中，2-运行中，-2-实例已过期
+        /// 实例状态，可能的返回值：0-待初始化，1-流程处理中，2-运行中，-2-实例已过期。
         public let status: Int64
 
-        /// 实例IP
+        /// 实例IP。
         public let vip: String
 
-        /// 端口号
+        /// 端口号。
         public let vport: UInt64
 
-        /// 实例创建时间
+        /// 实例创建时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
-        /// 实例到期时间
+        /// 实例到期时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadLine: Date
 
-        /// 实例版本信息
+        /// 实例版本信息。
         public let mongoVersion: String
 
-        /// 实例内存规格，单位为MB
+        /// 实例内存规格，单位为MB。
         public let memory: UInt64
 
-        /// 实例磁盘规格，单位为MB
+        /// 实例磁盘规格，单位为MB。
         public let volume: UInt64
 
-        /// 实例CPU核心数
+        /// 实例CPU核心数。
         public let cpuNum: UInt64
 
-        /// 实例机器类型
+        /// 实例机器类型。
         public let machineType: String
 
-        /// 实例从节点数
+        /// 实例从节点数。
         public let secondaryNum: UInt64
 
-        /// 实例分片数
+        /// 实例分片数。
         public let replicationSetNum: UInt64
 
-        /// 实例自动续费标志，可能的返回值：0-手动续费，1-自动续费，2-确认不续费
+        /// 实例自动续费标志，可能的返回值：0-手动续费，1-自动续费，2-确认不续费。
         public let autoRenewFlag: Int64
 
-        /// 已用容量，单位MB
+        /// 已用容量，单位MB。
         public let usedVolume: UInt64
 
-        /// 维护窗口起始时间
+        /// 维护窗口起始时间。
         public let maintenanceStart: String
 
-        /// 维护窗口结束时间
+        /// 维护窗口结束时间。
         public let maintenanceEnd: String
 
-        /// 分片信息
+        /// 分片信息。
         public let replicaSets: [ShardInfo]
 
-        /// 只读实例信息
+        /// 只读实例信息。
         public let readonlyInstances: [DBInstanceInfo]
 
-        /// 灾备实例信息
+        /// 灾备实例信息。
         public let standbyInstances: [DBInstanceInfo]
 
-        /// 临时实例信息
+        /// 临时实例信息。
         public let cloneInstances: [DBInstanceInfo]
 
-        /// 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息
+        /// 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息。
         public let relatedInstance: DBInstanceInfo
 
-        /// 实例标签信息集合
+        /// 实例标签信息集合。
         public let tags: [TagInfo]
 
-        /// 实例版本标记
+        /// 实例版本标记。
         public let instanceVer: UInt64
 
-        /// 实例版本标记
+        /// 实例版本标记。
         public let clusterVer: UInt64
 
-        /// 协议信息，可能的返回值：1-mongodb，2-dynamodb
+        /// 协议信息，可能的返回值：1-mongodb，2-dynamodb。
         public let `protocol`: UInt64
 
         /// 实例类型，可能的返回值，1-正式实例，2-临时实例，3-只读实例，4-灾备实例
@@ -398,6 +398,38 @@ extension Mongodb {
 
         /// 实例对应的物理实例id，回档并替换过的实例有不同的InstanceId和RealInstanceId，从barad获取监控数据等场景下需要用物理id获取
         public let realInstanceId: String
+
+        /// mongos节点个数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mongosNodeNum: UInt64?
+
+        /// mongos节点内存。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mongosMemory: UInt64?
+
+        /// mongos节点CPU核数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mongosCpuNum: UInt64?
+
+        /// Config Server节点个数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configServerNodeNum: UInt64?
+
+        /// Config Server节点内存。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configServerMemory: UInt64?
+
+        /// Config Server节点磁盘大小。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configServerVolume: UInt64?
+
+        /// Config Server节点CPU核数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configServerCpuNum: UInt64?
+
+        /// readonly节点个数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let readonlyNodeNum: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -438,6 +470,14 @@ extension Mongodb {
             case instanceType = "InstanceType"
             case instanceStatusDesc = "InstanceStatusDesc"
             case realInstanceId = "RealInstanceId"
+            case mongosNodeNum = "MongosNodeNum"
+            case mongosMemory = "MongosMemory"
+            case mongosCpuNum = "MongosCpuNum"
+            case configServerNodeNum = "ConfigServerNodeNum"
+            case configServerMemory = "ConfigServerMemory"
+            case configServerVolume = "ConfigServerVolume"
+            case configServerCpuNum = "ConfigServerCpuNum"
+            case readonlyNodeNum = "ReadonlyNodeNum"
         }
     }
 
@@ -996,7 +1036,7 @@ extension Mongodb {
     }
 
     /// 实例标签信息
-    public struct TagInfo: TCInputModel {
+    public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
 

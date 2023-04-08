@@ -19,6 +19,7 @@ extension TCAaiError {
         enum Code: String {
             case accountArrears = "UnsupportedOperation.AccountArrears"
             case noFreeAccount = "UnsupportedOperation.NoFreeAccount"
+            case pkgExhausted = "UnsupportedOperation.PkgExhausted"
             case serverNotOpen = "UnsupportedOperation.ServerNotOpen"
             case serverStopped = "UnsupportedOperation.ServerStopped"
             case textTooLong = "UnsupportedOperation.TextTooLong"
@@ -56,11 +57,17 @@ extension TCAaiError {
             UnsupportedOperation(.noFreeAccount)
         }
 
+        /// 资源包余量已用尽。
+        public static var pkgExhausted: UnsupportedOperation {
+            UnsupportedOperation(.pkgExhausted)
+        }
+
         /// 服务未开通。
         public static var serverNotOpen: UnsupportedOperation {
             UnsupportedOperation(.serverNotOpen)
         }
 
+        /// 服务停服。
         public static var serverStopped: UnsupportedOperation {
             UnsupportedOperation(.serverStopped)
         }
@@ -77,6 +84,8 @@ extension TCAaiError {
                 code = .unsupportedOperation_AccountArrears
             case .noFreeAccount:
                 code = .unsupportedOperation_NoFreeAccount
+            case .pkgExhausted:
+                code = .unsupportedOperation_PkgExhausted
             case .serverNotOpen:
                 code = .unsupportedOperation_ServerNotOpen
             case .serverStopped:

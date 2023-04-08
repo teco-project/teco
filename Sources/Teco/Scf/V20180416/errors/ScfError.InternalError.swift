@@ -24,6 +24,7 @@ extension TCScfError {
             case es = "InternalError.ES"
             case exception = "InternalError.Exception"
             case getRoleError = "InternalError.GetRoleError"
+            case getStsTokenFailed = "InternalError.GetStsTokenFailed"
             case system = "InternalError.System"
             case systemError = "InternalError.SystemError"
             case other = "InternalError"
@@ -86,6 +87,11 @@ extension TCScfError {
             InternalError(.getRoleError)
         }
 
+        /// 获取sts票据信息失败。
+        public static var getStsTokenFailed: InternalError {
+            InternalError(.getStsTokenFailed)
+        }
+
         /// 内部系统错误。
         public static var system: InternalError {
             InternalError(.system)
@@ -118,6 +124,8 @@ extension TCScfError {
                 code = .internalError_Exception
             case .getRoleError:
                 code = .internalError_GetRoleError
+            case .getStsTokenFailed:
+                code = .internalError_GetStsTokenFailed
             case .system:
                 code = .internalError_System
             case .systemError:

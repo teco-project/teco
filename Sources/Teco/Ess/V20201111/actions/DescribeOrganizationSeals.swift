@@ -34,12 +34,26 @@ extension Ess {
         /// 印章id（没有输入返回所有）
         public let sealId: String?
 
-        public init(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil) {
+        /// 印章类型列表（都是组织机构印章）。
+        /// 为空时查询所有类型的印章。
+        /// 目前支持以下类型：
+        /// OFFICIAL：企业公章；
+        /// CONTRACT：合同专用章；
+        /// ORGANIZATION_SEAL：企业印章(图片上传创建)；
+        /// LEGAL_PERSON_SEAL：法定代表人章
+        public let sealTypes: [String]?
+
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, sealTypes: [String]? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.limit = limit
             self.offset = offset
             self.infoType = infoType
             self.sealId = sealId
+            self.sealTypes = sealTypes
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -48,6 +62,8 @@ extension Ess {
             case offset = "Offset"
             case infoType = "InfoType"
             case sealId = "SealId"
+            case sealTypes = "SealTypes"
+            case agent = "Agent"
         }
 
         /// Compute the next request based on API response.
@@ -55,7 +71,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationSealsRequest(operator: self.operator, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId)
+            return DescribeOrganizationSealsRequest(operator: self.operator, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId, sealTypes: self.sealTypes, agent: self.agent)
         }
     }
 
@@ -110,8 +126,8 @@ extension Ess {
     /// 查询企业印章的列表，需要操作者具有查询印章权限
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
     @inlinable
-    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationSealsResponse> {
-        self.describeOrganizationSeals(.init(operator: `operator`, limit: limit, offset: offset, infoType: infoType, sealId: sealId), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, sealTypes: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationSealsResponse> {
+        self.describeOrganizationSeals(.init(operator: `operator`, limit: limit, offset: offset, infoType: infoType, sealId: sealId, sealTypes: sealTypes, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业电子印章
@@ -119,8 +135,8 @@ extension Ess {
     /// 查询企业印章的列表，需要操作者具有查询印章权限
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
     @inlinable
-    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationSealsResponse {
-        try await self.describeOrganizationSeals(.init(operator: `operator`, limit: limit, offset: offset, infoType: infoType, sealId: sealId), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, sealTypes: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationSealsResponse {
+        try await self.describeOrganizationSeals(.init(operator: `operator`, limit: limit, offset: offset, infoType: infoType, sealId: sealId, sealTypes: sealTypes, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业电子印章

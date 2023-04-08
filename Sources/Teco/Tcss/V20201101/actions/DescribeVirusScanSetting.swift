@@ -57,6 +57,12 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clickTimeout: UInt64?
 
+        /// 扫描路径模式：
+        /// SCAN_PATH_ALL：全部路径
+        /// SCAN_PATH_DEFAULT：默认路径
+        /// SCAN_PATH_USER_DEFINE：用户自定义路径
+        public let scanPathMode: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -72,6 +78,7 @@ extension Tcss {
             case scanIds = "ScanIds"
             case scanPath = "ScanPath"
             case clickTimeout = "ClickTimeout"
+            case scanPathMode = "ScanPathMode"
             case requestId = "RequestId"
         }
     }
