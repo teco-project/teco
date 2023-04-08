@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoCore
 import TecoDateHelpers
 
 extension Wedata {
