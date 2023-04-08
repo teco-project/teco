@@ -58,14 +58,12 @@ extension Cms {
     /// 人工审核对外接口
     @inlinable
     public func manualReview(reviewContent: ManualReviewContent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualReviewResponse> {
-        let input = ManualReviewRequest(reviewContent: reviewContent)
-        return self.client.execute(action: "ManualReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.manualReview(.init(reviewContent: reviewContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人工审核对外接口
     @inlinable
     public func manualReview(reviewContent: ManualReviewContent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
-        let input = ManualReviewRequest(reviewContent: reviewContent)
-        return try await self.client.execute(action: "ManualReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.manualReview(.init(reviewContent: reviewContent), region: region, logger: logger, on: eventLoop)
     }
 }

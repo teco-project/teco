@@ -64,14 +64,12 @@ extension Hasim {
     /// 编辑标签
     @inlinable @discardableResult
     public func modifyTag(name: String, tagID: Int64, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagResponse> {
-        let input = ModifyTagRequest(name: name, tagID: tagID, comment: comment)
-        return self.client.execute(action: "ModifyTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTag(.init(name: name, tagID: tagID, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑标签
     @inlinable @discardableResult
     public func modifyTag(name: String, tagID: Int64, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagResponse {
-        let input = ModifyTagRequest(name: name, tagID: tagID, comment: comment)
-        return try await self.client.execute(action: "ModifyTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTag(.init(name: name, tagID: tagID, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

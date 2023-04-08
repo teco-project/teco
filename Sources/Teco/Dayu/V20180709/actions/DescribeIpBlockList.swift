@@ -50,14 +50,12 @@ extension Dayu {
     /// 获取IP封堵列表
     @inlinable
     public func describeIpBlockList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
-        let input = DescribeIpBlockListRequest()
-        return self.client.execute(action: "DescribeIpBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIpBlockList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取IP封堵列表
     @inlinable
     public func describeIpBlockList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
-        let input = DescribeIpBlockListRequest()
-        return try await self.client.execute(action: "DescribeIpBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIpBlockList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

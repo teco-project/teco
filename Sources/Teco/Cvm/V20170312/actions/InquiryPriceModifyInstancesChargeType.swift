@@ -88,8 +88,7 @@ extension Cvm {
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
     public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceModifyInstancesChargeTypeResponse> {
-        let input = InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk)
-        return self.client.execute(action: "InquiryPriceModifyInstancesChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceModifyInstancesChargeType(.init(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例计费模式询价
@@ -100,7 +99,6 @@ extension Cvm {
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
     public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceModifyInstancesChargeTypeResponse {
-        let input = InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk)
-        return try await self.client.execute(action: "InquiryPriceModifyInstancesChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceModifyInstancesChargeType(.init(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 }

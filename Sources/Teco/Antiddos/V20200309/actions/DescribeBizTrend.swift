@@ -111,14 +111,12 @@ extension Antiddos {
     /// 获取业务流量曲线
     @inlinable
     public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
-        let input = DescribeBizTrendRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo)
-        return self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取业务流量曲线
     @inlinable
     public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        let input = DescribeBizTrendRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo)
-        return try await self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
     }
 }

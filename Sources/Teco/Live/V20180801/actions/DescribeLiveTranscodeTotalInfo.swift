@@ -95,8 +95,7 @@ extension Live {
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
     public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTotalInfoResponse> {
-        let input = DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea)
-        return self.client.execute(action: "DescribeLiveTranscodeTotalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveTranscodeTotalInfo(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转码总量数据
@@ -107,7 +106,6 @@ extension Live {
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
     public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
-        let input = DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea)
-        return try await self.client.execute(action: "DescribeLiveTranscodeTotalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveTranscodeTotalInfo(.init(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 }

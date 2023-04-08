@@ -117,14 +117,12 @@ extension Teo {
     /// 修改应用代理规则
     @inlinable @discardableResult
     public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyRuleResponse> {
-        let input = ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort)
-        return self.client.execute(action: "ModifyApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理规则
     @inlinable @discardableResult
     public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
-        let input = ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort)
-        return try await self.client.execute(action: "ModifyApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
     }
 }

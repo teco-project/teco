@@ -115,8 +115,7 @@ extension Tcb {
     /// 查询一键部署任务 （特定接口：外部查询使用）
     @inlinable
     public func describeCloudBaseRunOneClickTaskExternal(externalId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunOneClickTaskExternalResponse> {
-        let input = DescribeCloudBaseRunOneClickTaskExternalRequest(externalId: externalId)
-        return self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseRunOneClickTaskExternal(.init(externalId: externalId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一键部署任务
@@ -124,7 +123,6 @@ extension Tcb {
     /// 查询一键部署任务 （特定接口：外部查询使用）
     @inlinable
     public func describeCloudBaseRunOneClickTaskExternal(externalId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOneClickTaskExternalResponse {
-        let input = DescribeCloudBaseRunOneClickTaskExternalRequest(externalId: externalId)
-        return try await self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseRunOneClickTaskExternal(.init(externalId: externalId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -119,14 +119,12 @@ extension Ocr {
     /// 菲律宾驾驶证识别
     @inlinable
     public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesDrivingLicenseOCRResponse> {
-        let input = RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage)
-        return self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizePhilippinesDrivingLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾驾驶证识别
     @inlinable
     public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
-        let input = RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage)
-        return try await self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizePhilippinesDrivingLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), region: region, logger: logger, on: eventLoop)
     }
 }

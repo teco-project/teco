@@ -92,8 +92,7 @@ extension Cdb {
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
     public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditLogFileResponse> {
-        let input = CreateAuditLogFileRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter)
-        return self.client.execute(action: "CreateAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建审计日志文件
@@ -101,7 +100,6 @@ extension Cdb {
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
     public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
-        let input = CreateAuditLogFileRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter)
-        return try await self.client.execute(action: "CreateAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 }

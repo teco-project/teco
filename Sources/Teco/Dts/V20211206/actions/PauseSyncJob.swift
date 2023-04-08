@@ -60,8 +60,7 @@ extension Dts {
     /// 暂停处于同步中的数据同步任务。
     @inlinable @discardableResult
     public func pauseSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PauseSyncJobResponse> {
-        let input = PauseSyncJobRequest(jobId: jobId)
-        return self.client.execute(action: "PauseSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.pauseSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 暂停同步任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 暂停处于同步中的数据同步任务。
     @inlinable @discardableResult
     public func pauseSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseSyncJobResponse {
-        let input = PauseSyncJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "PauseSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.pauseSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

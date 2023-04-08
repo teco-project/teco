@@ -60,8 +60,7 @@ extension Cwp {
     /// 根据基线策略id删除策略
     @inlinable @discardableResult
     public func deleteBaselineStrategy(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselineStrategyResponse> {
-        let input = DeleteBaselineStrategyRequest(strategyId: strategyId)
-        return self.client.execute(action: "DeleteBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBaselineStrategy(.init(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略
@@ -69,7 +68,6 @@ extension Cwp {
     /// 根据基线策略id删除策略
     @inlinable @discardableResult
     public func deleteBaselineStrategy(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselineStrategyResponse {
-        let input = DeleteBaselineStrategyRequest(strategyId: strategyId)
-        return try await self.client.execute(action: "DeleteBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBaselineStrategy(.init(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

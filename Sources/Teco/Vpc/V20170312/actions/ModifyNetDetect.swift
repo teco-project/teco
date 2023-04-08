@@ -97,8 +97,7 @@ extension Vpc {
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
     @inlinable @discardableResult
     public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetDetectResponse> {
-        let input = ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription)
-        return self.client.execute(action: "ModifyNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNetDetect(.init(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网络探测
@@ -106,7 +105,6 @@ extension Vpc {
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
     @inlinable @discardableResult
     public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
-        let input = ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription)
-        return try await self.client.execute(action: "ModifyNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNetDetect(.init(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 }

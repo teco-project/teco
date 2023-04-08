@@ -117,15 +117,13 @@ extension Tdmq {
     /// 获取Amqp队列列表
     @inlinable
     public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPQueuesResponse> {
-        let input = DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue)
-        return self.client.execute(action: "DescribeAMQPQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAMQPQueues(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp队列列表
     @inlinable
     public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
-        let input = DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue)
-        return try await self.client.execute(action: "DescribeAMQPQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAMQPQueues(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp队列列表

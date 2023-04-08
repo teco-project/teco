@@ -89,14 +89,12 @@ extension Trp {
     /// 编辑商品
     @inlinable
     public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        let input = ModifyProductRequest(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext)
-        return self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyProduct(.init(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑商品
     @inlinable
     public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        let input = ModifyProductRequest(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext)
-        return try await self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyProduct(.init(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext), region: region, logger: logger, on: eventLoop)
     }
 }

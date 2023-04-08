@@ -56,8 +56,7 @@ extension Vpc {
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
     public func describeBandwidthPackageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageQuotaResponse> {
-        let input = DescribeBandwidthPackageQuotaRequest()
-        return self.client.execute(action: "DescribeBandwidthPackageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBandwidthPackageQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询带宽包配额
@@ -65,7 +64,6 @@ extension Vpc {
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
     public func describeBandwidthPackageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageQuotaResponse {
-        let input = DescribeBandwidthPackageQuotaRequest()
-        return try await self.client.execute(action: "DescribeBandwidthPackageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBandwidthPackageQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

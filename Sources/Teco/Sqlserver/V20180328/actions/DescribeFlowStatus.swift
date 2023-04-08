@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
     public func describeFlowStatus(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowStatusResponse> {
-        let input = DescribeFlowStatusRequest(flowId: flowId)
-        return self.client.execute(action: "DescribeFlowStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFlowStatus(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程状态
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
     public func describeFlowStatus(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
-        let input = DescribeFlowStatusRequest(flowId: flowId)
-        return try await self.client.execute(action: "DescribeFlowStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFlowStatus(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Tdmq {
     /// 删除Amqp队列
     @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPQueueResponse> {
-        let input = DeleteAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue)
-        return self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp队列
     @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPQueueResponse {
-        let input = DeleteAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue)
-        return try await self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
     }
 }

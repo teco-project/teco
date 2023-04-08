@@ -80,14 +80,12 @@ extension Teo {
     /// 创建负载均衡
     @inlinable
     public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancingResponse> {
-        let input = CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl)
-        return self.client.execute(action: "CreateLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLoadBalancing(.init(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡
     @inlinable
     public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
-        let input = CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl)
-        return try await self.client.execute(action: "CreateLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLoadBalancing(.init(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

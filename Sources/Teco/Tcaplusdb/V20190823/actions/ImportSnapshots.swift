@@ -95,8 +95,7 @@ extension Tcaplusdb {
     /// 将快照数据导入到新表或当前表
     @inlinable
     public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportSnapshotsResponse> {
-        let input = ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName)
-        return self.client.execute(action: "ImportSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.importSnapshots(.init(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入快照数据
@@ -104,7 +103,6 @@ extension Tcaplusdb {
     /// 将快照数据导入到新表或当前表
     @inlinable
     public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
-        let input = ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName)
-        return try await self.client.execute(action: "ImportSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.importSnapshots(.init(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), region: region, logger: logger, on: eventLoop)
     }
 }

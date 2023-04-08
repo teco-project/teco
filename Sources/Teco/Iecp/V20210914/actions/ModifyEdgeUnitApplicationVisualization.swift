@@ -109,14 +109,12 @@ extension Iecp {
     /// 可视化修改应用配置
     @inlinable @discardableResult
     public func modifyEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationVisualizationResponse> {
-        let input = ModifyEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler)
-        return self.client.execute(action: "ModifyEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEdgeUnitApplicationVisualization(.init(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler), region: region, logger: logger, on: eventLoop)
     }
 
     /// 可视化修改应用配置
     @inlinable @discardableResult
     public func modifyEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationVisualizationResponse {
-        let input = ModifyEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler)
-        return try await self.client.execute(action: "ModifyEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEdgeUnitApplicationVisualization(.init(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler), region: region, logger: logger, on: eventLoop)
     }
 }

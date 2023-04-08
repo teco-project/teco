@@ -91,8 +91,7 @@ extension Teo {
     /// 开启，关闭 CNAME 加速
     @inlinable
     public func modifyZoneCnameSpeedUp(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
-        let input = ModifyZoneCnameSpeedUpRequest(id: id, status: status)
-        return self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyZoneCnameSpeedUp(.init(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 CNAME 加速状态
@@ -100,7 +99,6 @@ extension Teo {
     /// 开启，关闭 CNAME 加速
     @inlinable
     public func modifyZoneCnameSpeedUp(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
-        let input = ModifyZoneCnameSpeedUpRequest(id: id, status: status)
-        return try await self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyZoneCnameSpeedUp(.init(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

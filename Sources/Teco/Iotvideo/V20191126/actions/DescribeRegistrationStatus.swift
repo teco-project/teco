@@ -64,8 +64,7 @@ extension Iotvideo {
     /// 本接口（DescribeRegistrationStatus）用于查询终端用户的注册状态。
     @inlinable
     public func describeRegistrationStatus(cunionIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegistrationStatusResponse> {
-        let input = DescribeRegistrationStatusRequest(cunionIds: cunionIds)
-        return self.client.execute(action: "DescribeRegistrationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRegistrationStatus(.init(cunionIds: cunionIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端用户的注册状态
@@ -73,7 +72,6 @@ extension Iotvideo {
     /// 本接口（DescribeRegistrationStatus）用于查询终端用户的注册状态。
     @inlinable
     public func describeRegistrationStatus(cunionIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegistrationStatusResponse {
-        let input = DescribeRegistrationStatusRequest(cunionIds: cunionIds)
-        return try await self.client.execute(action: "DescribeRegistrationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRegistrationStatus(.init(cunionIds: cunionIds), region: region, logger: logger, on: eventLoop)
     }
 }

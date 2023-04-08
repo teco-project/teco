@@ -81,8 +81,7 @@ extension Tcss {
     /// DescribeEscapeEventDetail  查询容器逃逸事件详情
     @inlinable
     public func describeEscapeEventDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventDetailResponse> {
-        let input = DescribeEscapeEventDetailRequest(eventId: eventId)
-        return self.client.execute(action: "DescribeEscapeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEscapeEventDetail(.init(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸事件详情
@@ -90,7 +89,6 @@ extension Tcss {
     /// DescribeEscapeEventDetail  查询容器逃逸事件详情
     @inlinable
     public func describeEscapeEventDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventDetailResponse {
-        let input = DescribeEscapeEventDetailRequest(eventId: eventId)
-        return try await self.client.execute(action: "DescribeEscapeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEscapeEventDetail(.init(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Iecp {
     /// 删除命名空间
     @inlinable @discardableResult
     public func deleteNamespace(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
-        let input = DeleteNamespaceRequest(edgeUnitID: edgeUnitID, namespace: namespace)
-        return self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNamespace(.init(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
     @inlinable @discardableResult
     public func deleteNamespace(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
-        let input = DeleteNamespaceRequest(edgeUnitID: edgeUnitID, namespace: namespace)
-        return try await self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNamespace(.init(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

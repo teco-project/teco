@@ -123,8 +123,7 @@ extension Dcdb {
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
     public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserTasksResponse> {
-        let input = DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeUserTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserTasks(.init(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取用户任务列表
@@ -132,8 +131,7 @@ extension Dcdb {
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
     public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
-        let input = DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeUserTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserTasks(.init(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取用户任务列表

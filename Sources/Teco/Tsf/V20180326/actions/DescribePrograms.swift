@@ -88,15 +88,13 @@ extension Tsf {
     /// 查询数据集列表
     @inlinable
     public func describePrograms(searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProgramsResponse> {
-        let input = DescribeProgramsRequest(searchWord: searchWord, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribePrograms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrograms(.init(searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据集列表
     @inlinable
     public func describePrograms(searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProgramsResponse {
-        let input = DescribeProgramsRequest(searchWord: searchWord, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribePrograms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrograms(.init(searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据集列表

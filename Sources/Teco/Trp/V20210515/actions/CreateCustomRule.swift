@@ -79,14 +79,12 @@ extension Trp {
     /// 新建自定义码规则
     @inlinable
     public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomRuleResponse> {
-        let input = CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId)
-        return self.client.execute(action: "CreateCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCustomRule(.init(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建自定义码规则
     @inlinable
     public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
-        let input = CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId)
-        return try await self.client.execute(action: "CreateCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCustomRule(.init(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

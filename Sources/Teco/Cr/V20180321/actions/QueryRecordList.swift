@@ -130,15 +130,13 @@ extension Cr {
     /// 查询录音列表
     @inlinable
     public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRecordListResponse> {
-        let input = QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate)
-        return self.client.execute(action: "QueryRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryRecordList(.init(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录音列表
     @inlinable
     public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
-        let input = QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate)
-        return try await self.client.execute(action: "QueryRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryRecordList(.init(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录音列表

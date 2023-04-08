@@ -56,8 +56,7 @@ extension Batch {
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
     public func describeInstanceCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
-        let input = DescribeInstanceCategoriesRequest()
-        return self.client.execute(action: "DescribeInstanceCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceCategories(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例分类信息
@@ -65,7 +64,6 @@ extension Batch {
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
     public func describeInstanceCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
-        let input = DescribeInstanceCategoriesRequest()
-        return try await self.client.execute(action: "DescribeInstanceCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceCategories(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

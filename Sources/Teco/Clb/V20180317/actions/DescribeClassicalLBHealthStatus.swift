@@ -70,8 +70,7 @@ extension Clb {
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
     public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
-        let input = DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId)
-        return self.client.execute(action: "DescribeClassicalLBHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClassicalLBHealthStatus(.init(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡后端的健康状态
@@ -79,7 +78,6 @@ extension Clb {
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
     public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
-        let input = DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId)
-        return try await self.client.execute(action: "DescribeClassicalLBHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClassicalLBHealthStatus(.init(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 }

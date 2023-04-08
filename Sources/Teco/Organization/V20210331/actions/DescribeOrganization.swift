@@ -139,14 +139,12 @@ extension Organization {
     /// 获取企业组织信息
     @inlinable
     public func describeOrganization(lang: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationResponse> {
-        let input = DescribeOrganizationRequest(lang: lang, product: product)
-        return self.client.execute(action: "DescribeOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganization(.init(lang: lang, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织信息
     @inlinable
     public func describeOrganization(lang: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationResponse {
-        let input = DescribeOrganizationRequest(lang: lang, product: product)
-        return try await self.client.execute(action: "DescribeOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganization(.init(lang: lang, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

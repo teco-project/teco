@@ -93,14 +93,12 @@ extension Ckafka {
     /// 设置Groups 消费分组offset
     @inlinable
     public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupOffsetsResponse> {
-        let input = ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions)
-        return self.client.execute(action: "ModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyGroupOffsets(.init(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置Groups 消费分组offset
     @inlinable
     public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
-        let input = ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions)
-        return try await self.client.execute(action: "ModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyGroupOffsets(.init(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 }

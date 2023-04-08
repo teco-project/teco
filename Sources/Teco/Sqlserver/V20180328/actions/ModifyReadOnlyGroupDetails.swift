@@ -100,8 +100,7 @@ extension Sqlserver {
     /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
     @inlinable @discardableResult
     public func modifyReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String? = nil, isOfflineDelay: Int64? = nil, readOnlyMaxDelayTime: Int64? = nil, minReadOnlyInGroup: Int64? = nil, weightPairs: [ReadOnlyInstanceWeightPair]? = nil, autoWeight: Int64? = nil, balanceWeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupDetailsResponse> {
-        let input = ModifyReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight)
-        return self.client.execute(action: "ModifyReadOnlyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyReadOnlyGroupDetails(.init(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改只读组详情
@@ -109,7 +108,6 @@ extension Sqlserver {
     /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
     @inlinable @discardableResult
     public func modifyReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String? = nil, isOfflineDelay: Int64? = nil, readOnlyMaxDelayTime: Int64? = nil, minReadOnlyInGroup: Int64? = nil, weightPairs: [ReadOnlyInstanceWeightPair]? = nil, autoWeight: Int64? = nil, balanceWeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupDetailsResponse {
-        let input = ModifyReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight)
-        return try await self.client.execute(action: "ModifyReadOnlyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyReadOnlyGroupDetails(.init(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight), region: region, logger: logger, on: eventLoop)
     }
 }

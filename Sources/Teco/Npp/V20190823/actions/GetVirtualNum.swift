@@ -160,8 +160,7 @@ extension Npp {
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
     public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVirtualNumResponse> {
-        let input = GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl)
-        return self.client.execute(action: "GetVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getVirtualNum(.init(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直拨获取中间号
@@ -169,7 +168,6 @@ extension Npp {
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
     public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
-        let input = GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl)
-        return try await self.client.execute(action: "GetVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getVirtualNum(.init(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Cdc {
     /// 查询专用集群内cos的容量信息
     @inlinable
     public func describeDedicatedClusterCosCapacity(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterCosCapacityResponse> {
-        let input = DescribeDedicatedClusterCosCapacityRequest(dedicatedClusterId: dedicatedClusterId)
-        return self.client.execute(action: "DescribeDedicatedClusterCosCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDedicatedClusterCosCapacity(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群内cos的容量信息
     @inlinable
     public func describeDedicatedClusterCosCapacity(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterCosCapacityResponse {
-        let input = DescribeDedicatedClusterCosCapacityRequest(dedicatedClusterId: dedicatedClusterId)
-        return try await self.client.execute(action: "DescribeDedicatedClusterCosCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDedicatedClusterCosCapacity(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

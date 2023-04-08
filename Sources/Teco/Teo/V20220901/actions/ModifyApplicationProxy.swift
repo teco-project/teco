@@ -83,14 +83,12 @@ extension Teo {
     /// 修改应用代理
     @inlinable @discardableResult
     public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyResponse> {
-        let input = ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6)
-        return self.client.execute(action: "ModifyApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理
     @inlinable @discardableResult
     public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
-        let input = ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6)
-        return try await self.client.execute(action: "ModifyApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }
 }

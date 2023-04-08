@@ -96,14 +96,12 @@ extension Tcm {
     /// 获取AccessLog配置
     @inlinable
     public func describeAccessLogConfig(meshId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessLogConfigResponse> {
-        let input = DescribeAccessLogConfigRequest(meshId: meshId)
-        return self.client.execute(action: "DescribeAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccessLogConfig(.init(meshId: meshId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取AccessLog配置
     @inlinable
     public func describeAccessLogConfig(meshId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
-        let input = DescribeAccessLogConfigRequest(meshId: meshId)
-        return try await self.client.execute(action: "DescribeAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccessLogConfig(.init(meshId: meshId), region: region, logger: logger, on: eventLoop)
     }
 }

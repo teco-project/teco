@@ -183,8 +183,7 @@ extension Ocr {
     /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
     @inlinable
     public func verifyBasicBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, regCapital: Int64? = nil, establishTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyBasicBizLicenseResponse> {
-        let input = VerifyBasicBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address, regCapital: regCapital, establishTime: establishTime)
-        return self.client.execute(action: "VerifyBasicBizLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyBasicBizLicense(.init(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address, regCapital: regCapital, establishTime: establishTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 营业执照识别及核验（基础版）
@@ -194,7 +193,6 @@ extension Ocr {
     /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
     @inlinable
     public func verifyBasicBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, regCapital: Int64? = nil, establishTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBasicBizLicenseResponse {
-        let input = VerifyBasicBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address, regCapital: regCapital, establishTime: establishTime)
-        return try await self.client.execute(action: "VerifyBasicBizLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyBasicBizLicense(.init(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address, regCapital: regCapital, establishTime: establishTime), region: region, logger: logger, on: eventLoop)
     }
 }

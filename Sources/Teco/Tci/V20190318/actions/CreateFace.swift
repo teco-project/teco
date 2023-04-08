@@ -73,14 +73,12 @@ extension Tci {
     /// 创建人脸
     @inlinable
     public func createFace(personId: String, images: [String]? = nil, libraryId: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
-        let input = CreateFaceRequest(personId: personId, images: images, libraryId: libraryId, urls: urls)
-        return self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFace(.init(personId: personId, images: images, libraryId: libraryId, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人脸
     @inlinable
     public func createFace(personId: String, images: [String]? = nil, libraryId: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        let input = CreateFaceRequest(personId: personId, images: images, libraryId: libraryId, urls: urls)
-        return try await self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFace(.init(personId: personId, images: images, libraryId: libraryId, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

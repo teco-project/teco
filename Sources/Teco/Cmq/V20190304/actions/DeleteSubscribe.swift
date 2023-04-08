@@ -59,14 +59,12 @@ extension Cmq {
     /// 删除订阅
     @inlinable @discardableResult
     public func deleteSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscribeResponse> {
-        let input = DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return self.client.execute(action: "DeleteSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSubscribe(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅
     @inlinable @discardableResult
     public func deleteSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscribeResponse {
-        let input = DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName)
-        return try await self.client.execute(action: "DeleteSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSubscribe(.init(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 }

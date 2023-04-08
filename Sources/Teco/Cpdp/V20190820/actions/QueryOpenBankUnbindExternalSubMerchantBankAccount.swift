@@ -92,14 +92,12 @@ extension Cpdp {
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
     public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankUnbindExternalSubMerchantBankAccountResponse> {
-        let input = QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId)
-        return self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankUnbindExternalSubMerchantBankAccount(.init(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
     public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
-        let input = QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId)
-        return try await self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankUnbindExternalSubMerchantBankAccount(.init(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
     }
 }

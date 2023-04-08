@@ -102,8 +102,7 @@ extension Cdn {
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
     public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlViolationsResponse> {
-        let input = DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains)
-        return self.client.execute(action: "DescribeUrlViolations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUrlViolations(.init(offset: offset, limit: limit, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 违规历史查询
@@ -112,8 +111,7 @@ extension Cdn {
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
     public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
-        let input = DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains)
-        return try await self.client.execute(action: "DescribeUrlViolations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUrlViolations(.init(offset: offset, limit: limit, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 违规历史查询

@@ -74,8 +74,7 @@ extension Eb {
     /// 用于创建转换器
     @inlinable
     public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransformationResponse> {
-        let input = CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations)
-        return self.client.execute(action: "CreateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转换器
@@ -83,7 +82,6 @@ extension Eb {
     /// 用于创建转换器
     @inlinable
     public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
-        let input = CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations)
-        return try await self.client.execute(action: "CreateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -126,8 +126,7 @@ extension Vod {
     /// * 只能查询到最近三天（72 小时）内的任务。
     @inlinable
     public func describeTasks(subAppId: UInt64? = nil, status: String? = nil, fileId: String? = nil, createTime: TimeRange? = nil, finishTime: TimeRange? = nil, sort: SortBy? = nil, limit: UInt64? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        let input = DescribeTasksRequest(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken)
-        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTasks(.init(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务列表
@@ -137,8 +136,7 @@ extension Vod {
     /// * 只能查询到最近三天（72 小时）内的任务。
     @inlinable
     public func describeTasks(subAppId: UInt64? = nil, status: String? = nil, fileId: String? = nil, createTime: TimeRange? = nil, finishTime: TimeRange? = nil, sort: SortBy? = nil, limit: UInt64? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        let input = DescribeTasksRequest(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken)
-        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTasks(.init(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务列表

@@ -126,8 +126,7 @@ extension Mongodb {
     /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
     @inlinable
     public func describeSlowLogPatterns(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogPatternsResponse> {
-        let input = DescribeSlowLogPatternsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format)
-        return self.client.execute(action: "DescribeSlowLogPatterns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSlowLogPatterns(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志统计信息
@@ -135,8 +134,7 @@ extension Mongodb {
     /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
     @inlinable
     public func describeSlowLogPatterns(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogPatternsResponse {
-        let input = DescribeSlowLogPatternsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format)
-        return try await self.client.execute(action: "DescribeSlowLogPatterns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSlowLogPatterns(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志统计信息

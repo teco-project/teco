@@ -59,14 +59,12 @@ extension Antiddos {
     /// 删除DDoS防护的特征过滤规则
     @inlinable @discardableResult
     public func deletePacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePacketFilterConfigResponse> {
-        let input = DeletePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig)
-        return self.client.execute(action: "DeletePacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePacketFilterConfig(.init(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的特征过滤规则
     @inlinable @discardableResult
     public func deletePacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePacketFilterConfigResponse {
-        let input = DeletePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig)
-        return try await self.client.execute(action: "DeletePacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePacketFilterConfig(.init(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 }

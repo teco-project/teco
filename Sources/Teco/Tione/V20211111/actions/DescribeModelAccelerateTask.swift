@@ -74,14 +74,12 @@ extension Tione {
     /// 查询模型优化任务详情
     @inlinable
     public func describeModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelAccelerateTaskResponse> {
-        let input = DescribeModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
-        return self.client.execute(action: "DescribeModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模型优化任务详情
     @inlinable
     public func describeModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTaskResponse {
-        let input = DescribeModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
-        return try await self.client.execute(action: "DescribeModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelAccelerateTask(.init(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

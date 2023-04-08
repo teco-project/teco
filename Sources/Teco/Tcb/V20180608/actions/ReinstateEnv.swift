@@ -60,8 +60,7 @@ extension Tcb {
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable @discardableResult
     public func reinstateEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
-        let input = ReinstateEnvRequest(envId: envId)
-        return self.client.execute(action: "ReinstateEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reinstateEnv(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复环境，解除隔离状态
@@ -69,7 +68,6 @@ extension Tcb {
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable @discardableResult
     public func reinstateEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
-        let input = ReinstateEnvRequest(envId: envId)
-        return try await self.client.execute(action: "ReinstateEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reinstateEnv(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

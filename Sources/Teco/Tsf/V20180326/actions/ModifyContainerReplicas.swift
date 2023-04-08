@@ -63,14 +63,12 @@ extension Tsf {
     /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(groupId: String, instanceNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerReplicasResponse> {
-        let input = ModifyContainerReplicasRequest(groupId: groupId, instanceNum: instanceNum)
-        return self.client.execute(action: "ModifyContainerReplicas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyContainerReplicas(.init(groupId: groupId, instanceNum: instanceNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(groupId: String, instanceNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerReplicasResponse {
-        let input = ModifyContainerReplicasRequest(groupId: groupId, instanceNum: instanceNum)
-        return try await self.client.execute(action: "ModifyContainerReplicas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyContainerReplicas(.init(groupId: groupId, instanceNum: instanceNum), region: region, logger: logger, on: eventLoop)
     }
 }

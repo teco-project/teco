@@ -70,8 +70,7 @@ extension Tiw {
     /// 停止白板推流任务
     @inlinable
     public func stopWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopWhiteboardPushResponse> {
-        let input = StopWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return self.client.execute(action: "StopWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopWhiteboardPush(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结束白板推流
@@ -79,7 +78,6 @@ extension Tiw {
     /// 停止白板推流任务
     @inlinable
     public func stopWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWhiteboardPushResponse {
-        let input = StopWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return try await self.client.execute(action: "StopWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopWhiteboardPush(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

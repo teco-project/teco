@@ -175,8 +175,7 @@ extension Sqlserver {
     /// 本接口(DescribeDBInstances)用于查询实例列表。
     @inlinable
     public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
-        let input = DescribeDBInstancesRequest(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType)
-        return self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
@@ -184,8 +183,7 @@ extension Sqlserver {
     /// 本接口(DescribeDBInstances)用于查询实例列表。
     @inlinable
     public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        let input = DescribeDBInstancesRequest(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType)
-        return try await self.client.execute(action: "DescribeDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表

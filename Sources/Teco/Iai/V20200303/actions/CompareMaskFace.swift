@@ -134,8 +134,7 @@ extension Iai {
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
-        let input = CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl)
-        return self.client.execute(action: "CompareMaskFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.compareMaskFace(.init(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 防疫场景人脸比对
@@ -147,7 +146,6 @@ extension Iai {
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
-        let input = CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl)
-        return try await self.client.execute(action: "CompareMaskFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.compareMaskFace(.init(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -92,15 +92,13 @@ extension Dayu {
     /// 获取调度域名列表
     @inlinable
     public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulingDomainListResponse> {
-        let input = DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain)
-        return self.client.execute(action: "DescribeSchedulingDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSchedulingDomainList(.init(limit: limit, offset: offset, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取调度域名列表
     @inlinable
     public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
-        let input = DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain)
-        return try await self.client.execute(action: "DescribeSchedulingDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSchedulingDomainList(.init(limit: limit, offset: offset, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取调度域名列表

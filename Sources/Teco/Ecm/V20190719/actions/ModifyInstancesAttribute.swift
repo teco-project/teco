@@ -70,8 +70,7 @@ extension Ecm {
     /// 修改实例的属性。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        let input = ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups)
-        return self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstancesAttribute(.init(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例属性
@@ -79,7 +78,6 @@ extension Ecm {
     /// 修改实例的属性。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        let input = ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups)
-        return try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstancesAttribute(.init(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 }

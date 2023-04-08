@@ -81,14 +81,12 @@ extension Tcss {
     /// 创建逃逸白名单导出任务
     @inlinable
     public func createEscapeWhiteListExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEscapeWhiteListExportJobResponse> {
-        let input = CreateEscapeWhiteListExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "CreateEscapeWhiteListExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEscapeWhiteListExportJob(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建逃逸白名单导出任务
     @inlinable
     public func createEscapeWhiteListExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeWhiteListExportJobResponse {
-        let input = CreateEscapeWhiteListExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "CreateEscapeWhiteListExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEscapeWhiteListExportJob(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

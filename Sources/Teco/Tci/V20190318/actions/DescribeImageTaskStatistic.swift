@@ -62,14 +62,12 @@ extension Tci {
     /// 获取图像任务统计信息
     @inlinable
     public func describeImageTaskStatistic(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTaskStatisticResponse> {
-        let input = DescribeImageTaskStatisticRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeImageTaskStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageTaskStatistic(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图像任务统计信息
     @inlinable
     public func describeImageTaskStatistic(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskStatisticResponse {
-        let input = DescribeImageTaskStatisticRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeImageTaskStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageTaskStatistic(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

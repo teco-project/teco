@@ -89,14 +89,12 @@ extension Redis {
     /// 创建实例子账号
     @inlinable
     public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceAccountResponse> {
-        let input = CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark)
-        return self.client.execute(action: "CreateInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createInstanceAccount(.init(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例子账号
     @inlinable
     public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
-        let input = CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark)
-        return try await self.client.execute(action: "CreateInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createInstanceAccount(.init(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

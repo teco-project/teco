@@ -54,14 +54,12 @@ extension Cam {
     /// 删除OIDC身份提供商
     @inlinable @discardableResult
     public func deleteOIDCConfig(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
-        let input = DeleteOIDCConfigRequest(name: name)
-        return self.client.execute(action: "DeleteOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteOIDCConfig(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除OIDC身份提供商
     @inlinable @discardableResult
     public func deleteOIDCConfig(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
-        let input = DeleteOIDCConfigRequest(name: name)
-        return try await self.client.execute(action: "DeleteOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteOIDCConfig(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

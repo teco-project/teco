@@ -58,14 +58,12 @@ extension Tdid {
     /// 检查部署情况
     @inlinable
     public func checkDidDeploy(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDidDeployResponse> {
-        let input = CheckDidDeployRequest(taskId: taskId)
-        return self.client.execute(action: "CheckDidDeploy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkDidDeploy(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查部署情况
     @inlinable
     public func checkDidDeploy(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDidDeployResponse {
-        let input = CheckDidDeployRequest(taskId: taskId)
-        return try await self.client.execute(action: "CheckDidDeploy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkDidDeploy(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

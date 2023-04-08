@@ -69,14 +69,12 @@ extension Tdmq {
     /// 更新Amqp交换机
     @inlinable @discardableResult
     public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPExchangeResponse> {
-        let input = ModifyAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark)
-        return self.client.execute(action: "ModifyAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新Amqp交换机
     @inlinable @discardableResult
     public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
-        let input = ModifyAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark)
-        return try await self.client.execute(action: "ModifyAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

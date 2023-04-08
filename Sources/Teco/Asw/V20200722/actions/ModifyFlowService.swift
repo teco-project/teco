@@ -108,8 +108,7 @@ extension Asw {
     /// 该接口用于修改状态机
     @inlinable
     public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
-        let input = ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS)
-        return self.client.execute(action: "ModifyFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyFlowService(.init(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改状态机
@@ -117,7 +116,6 @@ extension Asw {
     /// 该接口用于修改状态机
     @inlinable
     public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
-        let input = ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS)
-        return try await self.client.execute(action: "ModifyFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyFlowService(.init(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Mariadb {
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
     public func destroyHourDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDBInstanceResponse> {
-        let input = DestroyHourDBInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "DestroyHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyHourDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量计费实例
@@ -77,7 +76,6 @@ extension Mariadb {
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
     public func destroyHourDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
-        let input = DestroyHourDBInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DestroyHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyHourDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

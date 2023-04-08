@@ -89,14 +89,12 @@ extension Cam {
     /// 更新子用户
     @inlinable @discardableResult
     public func updateUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
-        let input = UpdateUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email)
-        return self.client.execute(action: "UpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateUser(.init(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新子用户
     @inlinable @discardableResult
     public func updateUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
-        let input = UpdateUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email)
-        return try await self.client.execute(action: "UpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateUser(.init(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), region: region, logger: logger, on: eventLoop)
     }
 }

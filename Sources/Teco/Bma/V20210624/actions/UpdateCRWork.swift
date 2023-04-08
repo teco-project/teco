@@ -77,14 +77,12 @@ extension Bma {
     /// 更新作品
     @inlinable
     public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCRWorkResponse> {
-        let input = UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType)
-        return self.client.execute(action: "UpdateCRWork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateCRWork(.init(workId: workId, contentType: contentType, content: content, certType: certType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新作品
     @inlinable
     public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
-        let input = UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType)
-        return try await self.client.execute(action: "UpdateCRWork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateCRWork(.init(workId: workId, contentType: contentType, content: content, certType: certType), region: region, logger: logger, on: eventLoop)
     }
 }

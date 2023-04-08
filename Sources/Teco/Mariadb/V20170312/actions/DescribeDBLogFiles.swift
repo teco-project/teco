@@ -89,8 +89,7 @@ extension Mariadb {
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
     public func describeDBLogFiles(instanceId: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
-        let input = DescribeDBLogFilesRequest(instanceId: instanceId, type: type)
-        return self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBLogFiles(.init(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
@@ -98,7 +97,6 @@ extension Mariadb {
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
     public func describeDBLogFiles(instanceId: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
-        let input = DescribeDBLogFilesRequest(instanceId: instanceId, type: type)
-        return try await self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBLogFiles(.init(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,14 +79,12 @@ extension Antiddos {
     /// 新增CC频率限制策略
     @inlinable @discardableResult
     public func createCCReqLimitPolicy(instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCReqLimitPolicyResponse> {
-        let input = CreateCCReqLimitPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal)
-        return self.client.execute(action: "CreateCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCCReqLimitPolicy(.init(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增CC频率限制策略
     @inlinable @discardableResult
     public func createCCReqLimitPolicy(instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCReqLimitPolicyResponse {
-        let input = CreateCCReqLimitPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal)
-        return try await self.client.execute(action: "CreateCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCCReqLimitPolicy(.init(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -83,8 +83,7 @@ extension Gaap {
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
     public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionAndPriceResponse> {
-        let input = DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType)
-        return self.client.execute(action: "DescribeRegionAndPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRegionAndPrice(.init(ipAddressVersion: ipAddressVersion, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站区域和带宽梯度价格
@@ -92,7 +91,6 @@ extension Gaap {
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
     public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
-        let input = DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType)
-        return try await self.client.execute(action: "DescribeRegionAndPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRegionAndPrice(.init(ipAddressVersion: ipAddressVersion, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 }

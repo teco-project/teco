@@ -76,8 +76,7 @@ extension Cwp {
     /// 专家服务-可用订单详情
     @inlinable
     public func describeAvailableExpertServiceDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableExpertServiceDetailResponse> {
-        let input = DescribeAvailableExpertServiceDetailRequest()
-        return self.client.execute(action: "DescribeAvailableExpertServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableExpertServiceDetail(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 可用订单详情
@@ -85,7 +84,6 @@ extension Cwp {
     /// 专家服务-可用订单详情
     @inlinable
     public func describeAvailableExpertServiceDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
-        let input = DescribeAvailableExpertServiceDetailRequest()
-        return try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableExpertServiceDetail(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

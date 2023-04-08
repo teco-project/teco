@@ -109,8 +109,7 @@ extension Iotvideo {
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
     public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        let input = DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProducts(.init(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
@@ -118,8 +117,7 @@ extension Iotvideo {
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
     public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        let input = DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProducts(.init(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表

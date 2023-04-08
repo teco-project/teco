@@ -181,8 +181,7 @@ extension Billing {
     /// 获取收支明细列表，支持翻页和参数过滤
     @inlinable
     public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillListResponse> {
-        let input = DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount)
-        return self.client.execute(action: "DescribeBillList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillList(.init(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取收支明细列表
@@ -190,8 +189,7 @@ extension Billing {
     /// 获取收支明细列表，支持翻页和参数过滤
     @inlinable
     public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
-        let input = DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount)
-        return try await self.client.execute(action: "DescribeBillList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillList(.init(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取收支明细列表

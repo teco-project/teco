@@ -79,14 +79,12 @@ extension Apm {
     /// 获取Apm Agent信息
     @inlinable
     public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmAgentResponse> {
-        let input = DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod)
-        return self.client.execute(action: "DescribeApmAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApmAgent(.init(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Apm Agent信息
     @inlinable
     public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
-        let input = DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod)
-        return try await self.client.execute(action: "DescribeApmAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApmAgent(.init(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), region: region, logger: logger, on: eventLoop)
     }
 }

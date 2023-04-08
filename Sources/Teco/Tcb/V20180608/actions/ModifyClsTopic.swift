@@ -59,14 +59,12 @@ extension Tcb {
     /// 修改日志主题
     @inlinable @discardableResult
     public func modifyClsTopic(envId: String, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClsTopicResponse> {
-        let input = ModifyClsTopicRequest(envId: envId, period: period)
-        return self.client.execute(action: "ModifyClsTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClsTopic(.init(envId: envId, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     @inlinable @discardableResult
     public func modifyClsTopic(envId: String, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
-        let input = ModifyClsTopicRequest(envId: envId, period: period)
-        return try await self.client.execute(action: "ModifyClsTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClsTopic(.init(envId: envId, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

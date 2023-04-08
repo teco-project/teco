@@ -186,8 +186,7 @@ extension Bm {
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
     public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        let input = DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus)
-        return self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDevices(.init(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机信息
@@ -195,8 +194,7 @@ extension Bm {
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
     public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        let input = DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus)
-        return try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDevices(.init(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机信息

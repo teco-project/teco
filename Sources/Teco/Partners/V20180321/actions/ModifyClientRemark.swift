@@ -65,8 +65,7 @@ extension Partners {
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable @discardableResult
     public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
-        let input = ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin)
-        return self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClientRemark(.init(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改客户备注
@@ -74,7 +73,6 @@ extension Partners {
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable @discardableResult
     public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
-        let input = ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin)
-        return try await self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClientRemark(.init(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

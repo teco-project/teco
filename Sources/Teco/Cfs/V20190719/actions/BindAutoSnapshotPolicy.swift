@@ -69,8 +69,7 @@ extension Cfs {
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
     public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
-        let input = BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds)
-        return self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件系统绑定快照策略
@@ -78,7 +77,6 @@ extension Cfs {
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
     public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        let input = BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds)
-        return try await self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), region: region, logger: logger, on: eventLoop)
     }
 }

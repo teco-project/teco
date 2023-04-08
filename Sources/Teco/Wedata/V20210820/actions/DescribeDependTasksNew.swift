@@ -87,8 +87,7 @@ extension Wedata {
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
-        let input = DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId)
-        return self.client.execute(action: "DescribeDependTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDependTasksNew(.init(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
@@ -97,7 +96,6 @@ extension Wedata {
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
-        let input = DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId)
-        return try await self.client.execute(action: "DescribeDependTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDependTasksNew(.init(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }
 }

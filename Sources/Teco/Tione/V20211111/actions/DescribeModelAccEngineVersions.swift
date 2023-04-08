@@ -51,14 +51,12 @@ extension Tione {
     /// 查询模型加速引擎版本列表
     @inlinable
     public func describeModelAccEngineVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelAccEngineVersionsResponse> {
-        let input = DescribeModelAccEngineVersionsRequest()
-        return self.client.execute(action: "DescribeModelAccEngineVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelAccEngineVersions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模型加速引擎版本列表
     @inlinable
     public func describeModelAccEngineVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccEngineVersionsResponse {
-        let input = DescribeModelAccEngineVersionsRequest()
-        return try await self.client.execute(action: "DescribeModelAccEngineVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelAccEngineVersions(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable @discardableResult
     public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
-        let input = DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId)
-        return self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDirectConnectGateway(.init(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除专线网关
@@ -81,7 +80,6 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable @discardableResult
     public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
-        let input = DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId)
-        return try await self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDirectConnectGateway(.init(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

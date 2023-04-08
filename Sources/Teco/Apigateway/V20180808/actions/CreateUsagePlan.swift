@@ -83,8 +83,7 @@ extension Apigateway {
     /// 用户在使用 API 网关时，需要创建使用计划并将其绑定到服务的环境中使用。
     @inlinable
     public func createUsagePlan(usagePlanName: String, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUsagePlanResponse> {
-        let input = CreateUsagePlanRequest(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec)
-        return self.client.execute(action: "CreateUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createUsagePlan(.init(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建使用计划
@@ -93,7 +92,6 @@ extension Apigateway {
     /// 用户在使用 API 网关时，需要创建使用计划并将其绑定到服务的环境中使用。
     @inlinable
     public func createUsagePlan(usagePlanName: String, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsagePlanResponse {
-        let input = CreateUsagePlanRequest(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec)
-        return try await self.client.execute(action: "CreateUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createUsagePlan(.init(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
     }
 }

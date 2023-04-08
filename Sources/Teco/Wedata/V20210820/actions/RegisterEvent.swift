@@ -113,8 +113,7 @@ extension Wedata {
     /// 注册事件
     @inlinable
     public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
-        let input = RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description)
-        return self.client.execute(action: "RegisterEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.registerEvent(.init(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册事件【Beta版本】
@@ -123,7 +122,6 @@ extension Wedata {
     /// 注册事件
     @inlinable
     public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
-        let input = RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description)
-        return try await self.client.execute(action: "RegisterEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.registerEvent(.init(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

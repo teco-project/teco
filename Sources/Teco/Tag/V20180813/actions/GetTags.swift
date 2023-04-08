@@ -97,8 +97,7 @@ extension Tag {
     /// 用于获取已建立的标签列表。
     @inlinable
     public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagsResponse> {
-        let input = GetTagsRequest(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys)
-        return self.client.execute(action: "GetTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表
@@ -106,8 +105,7 @@ extension Tag {
     /// 用于获取已建立的标签列表。
     @inlinable
     public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
-        let input = GetTagsRequest(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys)
-        return try await self.client.execute(action: "GetTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表

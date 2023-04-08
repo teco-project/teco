@@ -56,8 +56,7 @@ extension Mna {
     /// 通过此接口设置和更新预置密钥
     @inlinable
     public func createEncryptedKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
-        let input = CreateEncryptedKeyRequest()
-        return self.client.execute(action: "CreateEncryptedKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEncryptedKey(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置或更新密钥
@@ -65,7 +64,6 @@ extension Mna {
     /// 通过此接口设置和更新预置密钥
     @inlinable
     public func createEncryptedKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
-        let input = CreateEncryptedKeyRequest()
-        return try await self.client.execute(action: "CreateEncryptedKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEncryptedKey(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -62,14 +62,12 @@ extension Tcss {
     /// 隔离容器网络状态
     @inlinable @discardableResult
     public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
-        let input = ModifyContainerNetStatusRequest(containerID: containerID, status: status)
-        return self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyContainerNetStatus(.init(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离容器网络状态
     @inlinable @discardableResult
     public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
-        let input = ModifyContainerNetStatusRequest(containerID: containerID, status: status)
-        return try await self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyContainerNetStatus(.init(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Cdb {
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
     public func startBatchRollback(instances: [RollbackInstancesInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBatchRollbackResponse> {
-        let input = StartBatchRollbackRequest(instances: instances)
-        return self.client.execute(action: "StartBatchRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startBatchRollback(.init(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回档数据库表
@@ -73,7 +72,6 @@ extension Cdb {
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
     public func startBatchRollback(instances: [RollbackInstancesInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBatchRollbackResponse {
-        let input = StartBatchRollbackRequest(instances: instances)
-        return try await self.client.execute(action: "StartBatchRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startBatchRollback(.init(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

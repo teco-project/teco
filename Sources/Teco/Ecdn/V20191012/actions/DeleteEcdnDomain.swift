@@ -66,8 +66,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func deleteEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEcdnDomainResponse> {
-        let input = DeleteEcdnDomainRequest(domain: domain)
-        return self.client.execute(action: "DeleteEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEcdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除加速域名
@@ -77,7 +76,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func deleteEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEcdnDomainResponse {
-        let input = DeleteEcdnDomainRequest(domain: domain)
-        return try await self.client.execute(action: "DeleteEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEcdnDomain(.init(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

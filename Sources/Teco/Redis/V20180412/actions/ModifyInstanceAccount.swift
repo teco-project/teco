@@ -88,14 +88,12 @@ extension Redis {
     /// 修改实例子账号
     @inlinable
     public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAccountResponse> {
-        let input = ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth)
-        return self.client.execute(action: "ModifyInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceAccount(.init(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例子账号
     @inlinable
     public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
-        let input = ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth)
-        return try await self.client.execute(action: "ModifyInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceAccount(.init(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), region: region, logger: logger, on: eventLoop)
     }
 }

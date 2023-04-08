@@ -77,14 +77,12 @@ extension Tdid {
     /// 凭证模版新建
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        let input = RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId)
-        return self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.registerCpt(.init(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版新建
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        let input = RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId)
-        return try await self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.registerCpt(.init(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
     }
 }

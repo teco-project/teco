@@ -73,8 +73,7 @@ extension Ecm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
-        let input = ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription)
-        return self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyImageAttribute(.init(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
@@ -82,7 +81,6 @@ extension Ecm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        let input = ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription)
-        return try await self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyImageAttribute(.init(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 }

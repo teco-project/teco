@@ -77,8 +77,7 @@ extension Tcss {
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
     public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRiskListExportResponse> {
-        let input = DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters)
-        return self.client.execute(action: "DescribeAssetImageRiskListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageRiskListExport(.init(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像风险列表导出
@@ -86,7 +85,6 @@ extension Tcss {
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
     public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
-        let input = DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters)
-        return try await self.client.execute(action: "DescribeAssetImageRiskListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageRiskListExport(.init(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

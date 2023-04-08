@@ -60,8 +60,7 @@ extension Tat {
     /// 此接口用于启用执行器。
     @inlinable @discardableResult
     public func enableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableInvokerResponse> {
-        let input = EnableInvokerRequest(invokerId: invokerId)
-        return self.client.execute(action: "EnableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableInvoker(.init(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用执行器
@@ -69,7 +68,6 @@ extension Tat {
     /// 此接口用于启用执行器。
     @inlinable @discardableResult
     public func enableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
-        let input = EnableInvokerRequest(invokerId: invokerId)
-        return try await self.client.execute(action: "EnableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableInvoker(.init(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 }

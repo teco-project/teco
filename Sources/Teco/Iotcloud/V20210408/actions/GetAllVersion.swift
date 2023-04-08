@@ -64,8 +64,7 @@ extension Iotcloud {
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
     public func getAllVersion(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllVersionResponse> {
-        let input = GetAllVersionRequest(productId: productId)
-        return self.client.execute(action: "GetAllVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getAllVersion(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有版本列表
@@ -73,7 +72,6 @@ extension Iotcloud {
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
     public func getAllVersion(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
-        let input = GetAllVersionRequest(productId: productId)
-        return try await self.client.execute(action: "GetAllVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getAllVersion(.init(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

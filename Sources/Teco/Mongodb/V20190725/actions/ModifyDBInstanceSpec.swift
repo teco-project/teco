@@ -94,8 +94,7 @@ extension Mongodb {
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
     public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
-        let input = ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance)
-        return self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceSpec(.init(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云数据库实例配置
@@ -103,7 +102,6 @@ extension Mongodb {
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
     public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        let input = ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance)
-        return try await self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceSpec(.init(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), region: region, logger: logger, on: eventLoop)
     }
 }

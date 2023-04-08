@@ -94,14 +94,12 @@ extension Tsf {
     /// 创建配置项
     @inlinable
     public func createConfig(configName: String, configVersion: String, configValue: String, applicationId: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigResponse> {
-        let input = CreateConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, applicationId: applicationId, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
-        return self.client.execute(action: "CreateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConfig(.init(configName: configName, configVersion: configVersion, configValue: configValue, applicationId: applicationId, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建配置项
     @inlinable
     public func createConfig(configName: String, configVersion: String, configValue: String, applicationId: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
-        let input = CreateConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, applicationId: applicationId, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
-        return try await self.client.execute(action: "CreateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConfig(.init(configName: configName, configVersion: configVersion, configValue: configValue, applicationId: applicationId, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

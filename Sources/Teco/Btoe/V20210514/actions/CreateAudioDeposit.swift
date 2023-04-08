@@ -99,8 +99,7 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
     public func createAudioDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioDepositResponse> {
-        let input = CreateAudioDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
-        return self.client.execute(action: "CreateAudioDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAudioDeposit(.init(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音频文件存证
@@ -108,7 +107,6 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
     public func createAudioDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
-        let input = CreateAudioDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
-        return try await self.client.execute(action: "CreateAudioDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAudioDeposit(.init(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Tke {
     /// 创建集群路由
     @inlinable @discardableResult
     public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
-        let input = CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp)
-        return self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createClusterRoute(.init(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由
     @inlinable @discardableResult
     public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
-        let input = CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp)
-        return try await self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createClusterRoute(.init(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }
 }

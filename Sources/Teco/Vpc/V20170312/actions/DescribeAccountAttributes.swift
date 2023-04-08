@@ -56,8 +56,7 @@ extension Vpc {
     /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
     @inlinable
     public func describeAccountAttributes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAttributesResponse> {
-        let input = DescribeAccountAttributesRequest()
-        return self.client.execute(action: "DescribeAccountAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccountAttributes(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账户属性
@@ -65,7 +64,6 @@ extension Vpc {
     /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
     @inlinable
     public func describeAccountAttributes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAttributesResponse {
-        let input = DescribeAccountAttributesRequest()
-        return try await self.client.execute(action: "DescribeAccountAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccountAttributes(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

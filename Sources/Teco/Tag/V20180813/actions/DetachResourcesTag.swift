@@ -80,8 +80,7 @@ extension Tag {
     /// 解绑多个资源关联的某个标签
     @inlinable @discardableResult
     public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachResourcesTagResponse> {
-        let input = DetachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
-        return self.client.execute(action: "DetachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachResourcesTag(.init(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标签解绑批量资源
@@ -89,7 +88,6 @@ extension Tag {
     /// 解绑多个资源关联的某个标签
     @inlinable @discardableResult
     public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachResourcesTagResponse {
-        let input = DetachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
-        return try await self.client.execute(action: "DetachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachResourcesTag(.init(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 }

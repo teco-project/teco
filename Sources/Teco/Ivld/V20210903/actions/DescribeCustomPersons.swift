@@ -97,15 +97,13 @@ extension Ivld {
     /// 批量描述自定义人物
     @inlinable
     public func describeCustomPersons(pageNumber: Int64, pageSize: Int64, sortBy: SortBy? = nil, filter: CustomPersonFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonsResponse> {
-        let input = DescribeCustomPersonsRequest(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter)
-        return self.client.execute(action: "DescribeCustomPersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCustomPersons(.init(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述自定义人物
     @inlinable
     public func describeCustomPersons(pageNumber: Int64, pageSize: Int64, sortBy: SortBy? = nil, filter: CustomPersonFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonsResponse {
-        let input = DescribeCustomPersonsRequest(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter)
-        return try await self.client.execute(action: "DescribeCustomPersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCustomPersons(.init(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述自定义人物

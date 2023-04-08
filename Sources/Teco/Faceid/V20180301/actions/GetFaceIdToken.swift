@@ -101,8 +101,7 @@ extension Faceid {
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
     @inlinable
     public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdTokenResponse> {
-        let input = GetFaceIdTokenRequest(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption)
-        return self.client.execute(action: "GetFaceIdToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getFaceIdToken(.init(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SDKToken
@@ -110,7 +109,6 @@ extension Faceid {
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
     @inlinable
     public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
-        let input = GetFaceIdTokenRequest(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption)
-        return try await self.client.execute(action: "GetFaceIdToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getFaceIdToken(.init(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

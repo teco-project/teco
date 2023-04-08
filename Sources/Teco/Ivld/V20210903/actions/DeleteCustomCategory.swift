@@ -64,8 +64,7 @@ extension Ivld {
     /// 删除自定义分类信息
     @inlinable
     public func deleteCustomCategory(categoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomCategoryResponse> {
-        let input = DeleteCustomCategoryRequest(categoryId: categoryId)
-        return self.client.execute(action: "DeleteCustomCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCustomCategory(.init(categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义分类
@@ -73,7 +72,6 @@ extension Ivld {
     /// 删除自定义分类信息
     @inlinable
     public func deleteCustomCategory(categoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomCategoryResponse {
-        let input = DeleteCustomCategoryRequest(categoryId: categoryId)
-        return try await self.client.execute(action: "DeleteCustomCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCustomCategory(.init(categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 }

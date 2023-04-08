@@ -103,14 +103,12 @@ extension Wedata {
     /// 生成建hive表的sql
     @inlinable
     public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenHiveTableDDLSqlResponse> {
-        let input = GenHiveTableDDLSqlRequest(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList)
-        return self.client.execute(action: "GenHiveTableDDLSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成建hive表的sql
     @inlinable
     public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
-        let input = GenHiveTableDDLSqlRequest(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList)
-        return try await self.client.execute(action: "GenHiveTableDDLSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList), region: region, logger: logger, on: eventLoop)
     }
 }

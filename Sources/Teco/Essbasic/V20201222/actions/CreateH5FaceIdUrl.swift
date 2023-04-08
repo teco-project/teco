@@ -104,8 +104,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
     @inlinable
     public func createH5FaceIdUrl(caller: Caller, wbAppId: String? = nil, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, jumpUrl: String? = nil, jumpType: String? = nil, openFrom: String? = nil, redirectType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateH5FaceIdUrlResponse> {
-        let input = CreateH5FaceIdUrlRequest(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType)
-        return self.client.execute(action: "CreateH5FaceIdUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createH5FaceIdUrl(.init(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慧眼H5人脸核身Url
@@ -113,7 +112,6 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
     @inlinable
     public func createH5FaceIdUrl(caller: Caller, wbAppId: String? = nil, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, jumpUrl: String? = nil, jumpType: String? = nil, openFrom: String? = nil, redirectType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateH5FaceIdUrlResponse {
-        let input = CreateH5FaceIdUrlRequest(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType)
-        return try await self.client.execute(action: "CreateH5FaceIdUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createH5FaceIdUrl(.init(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType), region: region, logger: logger, on: eventLoop)
     }
 }

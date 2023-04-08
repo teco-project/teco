@@ -59,14 +59,12 @@ extension Iotvideoindustry {
     /// 直播录像编辑
     @inlinable @discardableResult
     public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
-        let input = ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime)
-        return self.client.execute(action: "ModifyLiveVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLiveVideo(.init(intIDs: intIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录像编辑
     @inlinable @discardableResult
     public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
-        let input = ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime)
-        return try await self.client.execute(action: "ModifyLiveVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLiveVideo(.init(intIDs: intIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 }

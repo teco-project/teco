@@ -120,8 +120,7 @@ extension Cdb {
     /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
     @inlinable
     public func describeAuditPolicies(instanceId: String? = nil, policyId: String? = nil, policyName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditPoliciesResponse> {
-        let input = DescribeAuditPoliciesRequest(instanceId: instanceId, policyId: policyId, policyName: policyName, limit: limit, offset: offset, ruleId: ruleId, instanceName: instanceName)
-        return self.client.execute(action: "DescribeAuditPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuditPolicies(.init(instanceId: instanceId, policyId: policyId, policyName: policyName, limit: limit, offset: offset, ruleId: ruleId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计策略
@@ -129,8 +128,7 @@ extension Cdb {
     /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
     @inlinable
     public func describeAuditPolicies(instanceId: String? = nil, policyId: String? = nil, policyName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditPoliciesResponse {
-        let input = DescribeAuditPoliciesRequest(instanceId: instanceId, policyId: policyId, policyName: policyName, limit: limit, offset: offset, ruleId: ruleId, instanceName: instanceName)
-        return try await self.client.execute(action: "DescribeAuditPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuditPolicies(.init(instanceId: instanceId, policyId: policyId, policyName: policyName, limit: limit, offset: offset, ruleId: ruleId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计策略

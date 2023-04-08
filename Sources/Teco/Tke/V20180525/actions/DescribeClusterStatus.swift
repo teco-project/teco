@@ -62,14 +62,12 @@ extension Tke {
     /// 查看集群状态列表
     @inlinable
     public func describeClusterStatus(clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStatusResponse> {
-        let input = DescribeClusterStatusRequest(clusterIds: clusterIds)
-        return self.client.execute(action: "DescribeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterStatus(.init(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看集群状态列表
     @inlinable
     public func describeClusterStatus(clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
-        let input = DescribeClusterStatusRequest(clusterIds: clusterIds)
-        return try await self.client.execute(action: "DescribeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterStatus(.init(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

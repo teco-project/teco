@@ -60,8 +60,7 @@ extension Asr {
     /// 用户通过该接口可以删除自学习模型
     @inlinable @discardableResult
     public func deleteCustomization(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
-        let input = DeleteCustomizationRequest(modelId: modelId)
-        return self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCustomization(.init(modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自学习模型
@@ -69,7 +68,6 @@ extension Asr {
     /// 用户通过该接口可以删除自学习模型
     @inlinable @discardableResult
     public func deleteCustomization(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
-        let input = DeleteCustomizationRequest(modelId: modelId)
-        return try await self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCustomization(.init(modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 }

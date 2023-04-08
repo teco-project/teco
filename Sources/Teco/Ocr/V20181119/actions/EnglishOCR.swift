@@ -103,8 +103,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func englishOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCoordPoint: Bool? = nil, enableCandWord: Bool? = nil, preprocess: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnglishOCRResponse> {
-        let input = EnglishOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess)
-        return self.client.execute(action: "EnglishOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.englishOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess), region: region, logger: logger, on: eventLoop)
     }
 
     /// 英文识别
@@ -114,7 +113,6 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func englishOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCoordPoint: Bool? = nil, enableCandWord: Bool? = nil, preprocess: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnglishOCRResponse {
-        let input = EnglishOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess)
-        return try await self.client.execute(action: "EnglishOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.englishOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess), region: region, logger: logger, on: eventLoop)
     }
 }

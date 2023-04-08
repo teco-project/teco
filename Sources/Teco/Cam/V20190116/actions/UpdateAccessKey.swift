@@ -70,8 +70,7 @@ extension Cam {
     /// 为CAM用户更新访问密钥
     @inlinable @discardableResult
     public func updateAccessKey(accessKeyId: String, status: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAccessKeyResponse> {
-        let input = UpdateAccessKeyRequest(accessKeyId: accessKeyId, status: status, targetUin: targetUin)
-        return self.client.execute(action: "UpdateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAccessKey(.init(accessKeyId: accessKeyId, status: status, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新访问密钥
@@ -79,7 +78,6 @@ extension Cam {
     /// 为CAM用户更新访问密钥
     @inlinable @discardableResult
     public func updateAccessKey(accessKeyId: String, status: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAccessKeyResponse {
-        let input = UpdateAccessKeyRequest(accessKeyId: accessKeyId, status: status, targetUin: targetUin)
-        return try await self.client.execute(action: "UpdateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAccessKey(.init(accessKeyId: accessKeyId, status: status, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 }

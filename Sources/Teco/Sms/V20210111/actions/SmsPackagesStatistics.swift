@@ -107,8 +107,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func smsPackagesStatistics(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
-        let input = SmsPackagesStatisticsRequest(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
-        return self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.smsPackagesStatistics(.init(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 套餐包信息统计
@@ -118,8 +117,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func smsPackagesStatistics(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
-        let input = SmsPackagesStatisticsRequest(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime)
-        return try await self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.smsPackagesStatistics(.init(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 套餐包信息统计

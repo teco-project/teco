@@ -87,15 +87,13 @@ extension Iotcloud {
     /// 查询所有设备列表
     @inlinable
     public func describeAllDevices(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllDevicesResponse> {
-        let input = DescribeAllDevicesRequest(offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAllDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAllDevices(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有设备列表
     @inlinable
     public func describeAllDevices(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDevicesResponse {
-        let input = DescribeAllDevicesRequest(offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAllDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAllDevices(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有设备列表

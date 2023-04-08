@@ -60,8 +60,7 @@ extension Postgres {
     /// 本接口 (DescribeZones) 用于查询支持的可用区信息。
     @inlinable
     public func describeZones(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
-        let input = DescribeZonesRequest()
-        return self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZones(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖可用区
@@ -69,7 +68,6 @@ extension Postgres {
     /// 本接口 (DescribeZones) 用于查询支持的可用区信息。
     @inlinable
     public func describeZones(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        let input = DescribeZonesRequest()
-        return try await self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZones(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

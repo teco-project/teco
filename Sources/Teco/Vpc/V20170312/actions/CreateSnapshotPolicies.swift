@@ -64,8 +64,7 @@ extension Vpc {
     /// 本接口（CreateSnapshotPolicies）用于创建快照策略。
     @inlinable
     public func createSnapshotPolicies(snapshotPolicies: [SnapshotPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotPoliciesResponse> {
-        let input = CreateSnapshotPoliciesRequest(snapshotPolicies: snapshotPolicies)
-        return self.client.execute(action: "CreateSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSnapshotPolicies(.init(snapshotPolicies: snapshotPolicies), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建快照策略
@@ -73,7 +72,6 @@ extension Vpc {
     /// 本接口（CreateSnapshotPolicies）用于创建快照策略。
     @inlinable
     public func createSnapshotPolicies(snapshotPolicies: [SnapshotPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotPoliciesResponse {
-        let input = CreateSnapshotPoliciesRequest(snapshotPolicies: snapshotPolicies)
-        return try await self.client.execute(action: "CreateSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSnapshotPolicies(.init(snapshotPolicies: snapshotPolicies), region: region, logger: logger, on: eventLoop)
     }
 }

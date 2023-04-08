@@ -59,14 +59,12 @@ extension Tsf {
     /// 停止虚拟机部署组
     @inlinable
     public func stopGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGroupResponse> {
-        let input = StopGroupRequest(groupId: groupId)
-        return self.client.execute(action: "StopGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止虚拟机部署组
     @inlinable
     public func stopGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
-        let input = StopGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "StopGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Tke {
     /// 根据镜像列表，查询匹配的镜像缓存
     @inlinable
     public func getMostSuitableImageCache(images: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMostSuitableImageCacheResponse> {
-        let input = GetMostSuitableImageCacheRequest(images: images)
-        return self.client.execute(action: "GetMostSuitableImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getMostSuitableImageCache(.init(images: images), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配的镜像缓存
@@ -78,7 +77,6 @@ extension Tke {
     /// 根据镜像列表，查询匹配的镜像缓存
     @inlinable
     public func getMostSuitableImageCache(images: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMostSuitableImageCacheResponse {
-        let input = GetMostSuitableImageCacheRequest(images: images)
-        return try await self.client.execute(action: "GetMostSuitableImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getMostSuitableImageCache(.init(images: images), region: region, logger: logger, on: eventLoop)
     }
 }

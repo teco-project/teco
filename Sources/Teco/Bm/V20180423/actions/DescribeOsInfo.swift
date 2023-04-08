@@ -64,8 +64,7 @@ extension Bm {
     /// 查询指定机型所支持的操作系统
     @inlinable
     public func describeOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsInfoResponse> {
-        let input = DescribeOsInfoRequest(deviceClassCode: deviceClassCode)
-        return self.client.execute(action: "DescribeOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOsInfo(.init(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询操作系统信息
@@ -73,7 +72,6 @@ extension Bm {
     /// 查询指定机型所支持的操作系统
     @inlinable
     public func describeOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
-        let input = DescribeOsInfoRequest(deviceClassCode: deviceClassCode)
-        return try await self.client.execute(action: "DescribeOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOsInfo(.init(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 }

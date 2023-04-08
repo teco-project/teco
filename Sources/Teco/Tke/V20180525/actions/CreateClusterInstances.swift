@@ -79,8 +79,7 @@ extension Tke {
     /// 扩展(新建)集群节点
     @inlinable
     public func createClusterInstances(clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, skipValidateOptions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterInstancesResponse> {
-        let input = CreateClusterInstancesRequest(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions)
-        return self.client.execute(action: "CreateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createClusterInstances(.init(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩展集群节点
@@ -88,7 +87,6 @@ extension Tke {
     /// 扩展(新建)集群节点
     @inlinable
     public func createClusterInstances(clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, skipValidateOptions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
-        let input = CreateClusterInstancesRequest(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions)
-        return try await self.client.execute(action: "CreateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createClusterInstances(.init(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions), region: region, logger: logger, on: eventLoop)
     }
 }

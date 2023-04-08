@@ -64,14 +64,12 @@ extension Eiam {
     /// 加入用户到用户组
     @inlinable
     public func addUserToUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToUserGroupResponse> {
-        let input = AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId)
-        return self.client.execute(action: "AddUserToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addUserToUserGroup(.init(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 加入用户到用户组
     @inlinable
     public func addUserToUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
-        let input = AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId)
-        return try await self.client.execute(action: "AddUserToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addUserToUserGroup(.init(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

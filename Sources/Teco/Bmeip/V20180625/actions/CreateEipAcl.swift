@@ -75,14 +75,12 @@ extension Bmeip {
     /// 创建黑石弹性公网 EIPACL
     @inlinable
     public func createEipAcl(aclName: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipAclResponse> {
-        let input = CreateEipAclRequest(aclName: aclName, status: status)
-        return self.client.execute(action: "CreateEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEipAcl(.init(aclName: aclName, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石弹性公网 EIPACL
     @inlinable
     public func createEipAcl(aclName: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {
-        let input = CreateEipAclRequest(aclName: aclName, status: status)
-        return try await self.client.execute(action: "CreateEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEipAcl(.init(aclName: aclName, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

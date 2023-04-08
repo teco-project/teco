@@ -59,14 +59,12 @@ extension Iecp {
     /// 创建边缘节点
     @inlinable @discardableResult
     public func createEdgeNode(edgeUnitId: UInt64, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeResponse> {
-        let input = CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name)
-        return self.client.execute(action: "CreateEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEdgeNode(.init(edgeUnitId: edgeUnitId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘节点
     @inlinable @discardableResult
     public func createEdgeNode(edgeUnitId: UInt64, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
-        let input = CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name)
-        return try await self.client.execute(action: "CreateEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEdgeNode(.init(edgeUnitId: edgeUnitId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

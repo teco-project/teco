@@ -103,8 +103,7 @@ extension Cme {
     /// 查询视频编码配置信息。
     @inlinable
     public func describeVideoEncodingPresets(platform: String, ids: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoEncodingPresetsResponse> {
-        let input = DescribeVideoEncodingPresetsRequest(platform: platform, ids: ids, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeVideoEncodingPresets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVideoEncodingPresets(.init(platform: platform, ids: ids, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频编码配置
@@ -112,8 +111,7 @@ extension Cme {
     /// 查询视频编码配置信息。
     @inlinable
     public func describeVideoEncodingPresets(platform: String, ids: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoEncodingPresetsResponse {
-        let input = DescribeVideoEncodingPresetsRequest(platform: platform, ids: ids, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeVideoEncodingPresets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVideoEncodingPresets(.init(platform: platform, ids: ids, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频编码配置

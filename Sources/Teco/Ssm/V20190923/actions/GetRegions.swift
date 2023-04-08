@@ -50,14 +50,12 @@ extension Ssm {
     /// 获取控制台展示region列表
     @inlinable
     public func getRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
-        let input = GetRegionsRequest()
-        return self.client.execute(action: "GetRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取控制台展示region列表
     @inlinable
     public func getRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
-        let input = GetRegionsRequest()
-        return try await self.client.execute(action: "GetRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

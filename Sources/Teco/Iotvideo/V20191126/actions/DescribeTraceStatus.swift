@@ -65,8 +65,7 @@ extension Iotvideo {
     /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
     @inlinable
     public func describeTraceStatus(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceStatusResponse> {
-        let input = DescribeTraceStatusRequest(tids: tids)
-        return self.client.execute(action: "DescribeTraceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTraceStatus(.init(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定设备是否在白名单
@@ -74,7 +73,6 @@ extension Iotvideo {
     /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
     @inlinable
     public func describeTraceStatus(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceStatusResponse {
-        let input = DescribeTraceStatusRequest(tids: tids)
-        return try await self.client.execute(action: "DescribeTraceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTraceStatus(.init(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 }

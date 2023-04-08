@@ -69,8 +69,7 @@ extension Bmlb {
     /// 创建流量镜像实例。
     @inlinable
     public func createTrafficMirror(alias: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
-        let input = CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId)
-        return self.client.execute(action: "CreateTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTrafficMirror(.init(alias: alias, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建流量镜像实例
@@ -78,7 +77,6 @@ extension Bmlb {
     /// 创建流量镜像实例。
     @inlinable
     public func createTrafficMirror(alias: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
-        let input = CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId)
-        return try await self.client.execute(action: "CreateTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTrafficMirror(.init(alias: alias, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -56,8 +56,7 @@ extension Mps {
     /// 查询媒体传输开通状态。
     @inlinable
     public func describeStreamLinkActivateState(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkActivateStateResponse> {
-        let input = DescribeStreamLinkActivateStateRequest()
-        return self.client.execute(action: "DescribeStreamLinkActivateState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStreamLinkActivateState(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体传输开通状态
@@ -65,7 +64,6 @@ extension Mps {
     /// 查询媒体传输开通状态。
     @inlinable
     public func describeStreamLinkActivateState(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkActivateStateResponse {
-        let input = DescribeStreamLinkActivateStateRequest()
-        return try await self.client.execute(action: "DescribeStreamLinkActivateState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStreamLinkActivateState(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

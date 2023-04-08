@@ -93,8 +93,7 @@ extension Rkp {
     /// 获取token接口。
     @inlinable
     public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTokenResponse> {
-        let input = GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken)
-        return self.client.execute(action: "GetToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getToken(.init(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取token
@@ -102,7 +101,6 @@ extension Rkp {
     /// 获取token接口。
     @inlinable
     public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTokenResponse {
-        let input = GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken)
-        return try await self.client.execute(action: "GetToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getToken(.init(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), region: region, logger: logger, on: eventLoop)
     }
 }

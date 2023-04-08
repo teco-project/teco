@@ -102,15 +102,13 @@ extension Cvm {
     /// 查询高性能集群信息
     @inlinable
     public func describeHpcClusters(hpcClusterIds: [String]? = nil, name: String? = nil, zone: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHpcClustersResponse> {
-        let input = DescribeHpcClustersRequest(hpcClusterIds: hpcClusterIds, name: name, zone: zone, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHpcClusters(.init(hpcClusterIds: hpcClusterIds, name: name, zone: zone, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询高性能集群信息
     @inlinable
     public func describeHpcClusters(hpcClusterIds: [String]? = nil, name: String? = nil, zone: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHpcClustersResponse {
-        let input = DescribeHpcClustersRequest(hpcClusterIds: hpcClusterIds, name: name, zone: zone, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHpcClusters(.init(hpcClusterIds: hpcClusterIds, name: name, zone: zone, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询高性能集群信息

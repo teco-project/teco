@@ -92,8 +92,7 @@ extension Mariadb {
     /// 本接口(UpgradeDBInstance)用于扩容云数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones)
-        return self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容实例
@@ -101,7 +100,6 @@ extension Mariadb {
     /// 本接口(UpgradeDBInstance)用于扩容云数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones)
-        return try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 }

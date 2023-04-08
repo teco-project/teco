@@ -65,8 +65,7 @@ extension Bm {
     /// 服务器绑定CAM角色，该角色授权访问黑石物理服务器服务，为黑石物理服务器提供了访问资源的权限，如请求服务器的临时证书
     @inlinable @discardableResult
     public func attachCamRole(instanceId: String, roleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCamRoleResponse> {
-        let input = AttachCamRoleRequest(instanceId: instanceId, roleName: roleName)
-        return self.client.execute(action: "AttachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachCamRole(.init(instanceId: instanceId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务器绑定CAM角色
@@ -74,7 +73,6 @@ extension Bm {
     /// 服务器绑定CAM角色，该角色授权访问黑石物理服务器服务，为黑石物理服务器提供了访问资源的权限，如请求服务器的临时证书
     @inlinable @discardableResult
     public func attachCamRole(instanceId: String, roleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCamRoleResponse {
-        let input = AttachCamRoleRequest(instanceId: instanceId, roleName: roleName)
-        return try await self.client.execute(action: "AttachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachCamRole(.init(instanceId: instanceId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

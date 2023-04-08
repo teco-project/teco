@@ -75,8 +75,7 @@ extension Iotcloud {
     /// 模拟lora类型的设备端向服务器端发送消息
     @inlinable @discardableResult
     public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishAsDeviceResponse> {
-        let input = PublishAsDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload)
-        return self.client.execute(action: "PublishAsDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.publishAsDevice(.init(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模拟lora设备发送消息
@@ -84,7 +83,6 @@ extension Iotcloud {
     /// 模拟lora类型的设备端向服务器端发送消息
     @inlinable @discardableResult
     public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishAsDeviceResponse {
-        let input = PublishAsDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload)
-        return try await self.client.execute(action: "PublishAsDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.publishAsDevice(.init(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 }

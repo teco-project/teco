@@ -94,15 +94,13 @@ extension Iotvideoindustry {
     /// 获取场景绑定通道列表
     @inlinable
     public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneChannelsResponse> {
-        let input = DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset)
-        return self.client.execute(action: "DescribeBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBindSceneChannels(.init(limit: limit, sceneId: sceneId, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定通道列表
     @inlinable
     public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
-        let input = DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset)
-        return try await self.client.execute(action: "DescribeBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBindSceneChannels(.init(limit: limit, sceneId: sceneId, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定通道列表

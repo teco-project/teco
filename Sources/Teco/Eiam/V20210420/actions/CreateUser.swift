@@ -115,8 +115,7 @@ extension Eiam {
     /// 新建一个用户
     @inlinable
     public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        let input = CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList)
-        return self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createUser(.init(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建用户
@@ -124,7 +123,6 @@ extension Eiam {
     /// 新建一个用户
     @inlinable
     public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        let input = CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList)
-        return try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createUser(.init(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -119,8 +119,7 @@ extension Cdb {
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
     public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTablesResponse> {
-        let input = DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeBackupTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupTables(.init(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定数据库的备份数据表
@@ -130,8 +129,7 @@ extension Cdb {
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
     public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTablesResponse {
-        let input = DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeBackupTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupTables(.init(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定数据库的备份数据表

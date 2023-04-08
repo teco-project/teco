@@ -100,8 +100,7 @@ extension Cii {
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
     public func describeStructCompareData(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructCompareDataResponse> {
-        let input = DescribeStructCompareDataRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeStructCompareData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStructCompareData(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结构化对比查询
@@ -109,7 +108,6 @@ extension Cii {
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
     public func describeStructCompareData(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
-        let input = DescribeStructCompareDataRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeStructCompareData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStructCompareData(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

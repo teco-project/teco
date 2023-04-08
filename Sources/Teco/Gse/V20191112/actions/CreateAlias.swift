@@ -64,7 +64,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(_ input: CreateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
-        self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAlias is no longer available.")
     }
 
     /// 创建别名
@@ -73,7 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(_ input: CreateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
-        try await self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAlias is no longer available.")
     }
 
     /// 创建别名
@@ -82,8 +82,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
-        let input = CreateAliasRequest(name: name, routingStrategy: routingStrategy, description: description, tags: tags)
-        return self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAlias is no longer available.")
     }
 
     /// 创建别名
@@ -92,7 +91,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
-        let input = CreateAliasRequest(name: name, routingStrategy: routingStrategy, description: description, tags: tags)
-        return try await self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAlias is no longer available.")
     }
 }

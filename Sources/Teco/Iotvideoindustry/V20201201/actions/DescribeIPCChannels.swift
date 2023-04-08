@@ -108,8 +108,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeChannels接口
     @inlinable
     public func describeIPCChannels(offset: UInt64? = nil, limit: UInt64? = nil, deviceId: String? = nil, channelTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPCChannelsResponse> {
-        let input = DescribeIPCChannelsRequest(offset: offset, limit: limit, deviceId: deviceId, channelTypes: channelTypes)
-        return self.client.execute(action: "DescribeIPCChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIPCChannels(.init(offset: offset, limit: limit, deviceId: deviceId, channelTypes: channelTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取IPC设备下属通道（旧）
@@ -118,8 +117,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeChannels接口
     @inlinable
     public func describeIPCChannels(offset: UInt64? = nil, limit: UInt64? = nil, deviceId: String? = nil, channelTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPCChannelsResponse {
-        let input = DescribeIPCChannelsRequest(offset: offset, limit: limit, deviceId: deviceId, channelTypes: channelTypes)
-        return try await self.client.execute(action: "DescribeIPCChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIPCChannels(.init(offset: offset, limit: limit, deviceId: deviceId, channelTypes: channelTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取IPC设备下属通道（旧）

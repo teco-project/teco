@@ -126,15 +126,13 @@ extension Tag {
     /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagsResponse> {
-        let input = DescribeResourcesByTagsRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
-        return self.client.execute(action: "DescribeResourcesByTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourcesByTags(.init(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsResponse {
-        let input = DescribeResourcesByTagsRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType)
-        return try await self.client.execute(action: "DescribeResourcesByTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourcesByTags(.init(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过标签查询资源列表

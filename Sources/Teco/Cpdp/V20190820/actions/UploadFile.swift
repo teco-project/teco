@@ -82,14 +82,12 @@ extension Cpdp {
     /// 直播平台-文件上传
     @inlinable
     public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        let input = UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo)
-        return self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadFile(.init(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-文件上传
     @inlinable
     public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        let input = UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo)
-        return try await self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadFile(.init(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), region: region, logger: logger, on: eventLoop)
     }
 }

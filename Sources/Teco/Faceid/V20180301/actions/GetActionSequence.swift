@@ -64,8 +64,7 @@ extension Faceid {
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
     public func getActionSequence(actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetActionSequenceResponse> {
-        let input = GetActionSequenceRequest(actionType: actionType)
-        return self.client.execute(action: "GetActionSequence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getActionSequence(.init(actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取动作顺序
@@ -73,7 +72,6 @@ extension Faceid {
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
     public func getActionSequence(actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
-        let input = GetActionSequenceRequest(actionType: actionType)
-        return try await self.client.execute(action: "GetActionSequence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getActionSequence(.init(actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 }

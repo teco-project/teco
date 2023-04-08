@@ -125,8 +125,7 @@ extension Tat {
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
     public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeCommandResponse> {
-        let input = InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix)
-        return self.client.execute(action: "InvokeCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.invokeCommand(.init(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 触发命令
@@ -140,7 +139,6 @@ extension Tat {
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
     public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
-        let input = InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix)
-        return try await self.client.execute(action: "InvokeCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.invokeCommand(.init(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

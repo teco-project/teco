@@ -63,14 +63,12 @@ extension Tsf {
     /// 重新执行任务批次
     @inlinable
     public func redoTaskBatch(taskId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskBatchResponse> {
-        let input = RedoTaskBatchRequest(taskId: taskId, batchId: batchId)
-        return self.client.execute(action: "RedoTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.redoTaskBatch(.init(taskId: taskId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务批次
     @inlinable
     public func redoTaskBatch(taskId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
-        let input = RedoTaskBatchRequest(taskId: taskId, batchId: batchId)
-        return try await self.client.execute(action: "RedoTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.redoTaskBatch(.init(taskId: taskId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

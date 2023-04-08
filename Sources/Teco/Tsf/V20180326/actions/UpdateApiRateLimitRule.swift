@@ -68,14 +68,12 @@ extension Tsf {
     /// 更新API限流规则
     @inlinable
     public func updateApiRateLimitRule(ruleId: String, usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRuleResponse> {
-        let input = UpdateApiRateLimitRuleRequest(ruleId: ruleId, usableStatus: usableStatus, maxQps: maxQps)
-        return self.client.execute(action: "UpdateApiRateLimitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateApiRateLimitRule(.init(ruleId: ruleId, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新API限流规则
     @inlinable
     public func updateApiRateLimitRule(ruleId: String, usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRuleResponse {
-        let input = UpdateApiRateLimitRuleRequest(ruleId: ruleId, usableStatus: usableStatus, maxQps: maxQps)
-        return try await self.client.execute(action: "UpdateApiRateLimitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateApiRateLimitRule(.init(ruleId: ruleId, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
     }
 }

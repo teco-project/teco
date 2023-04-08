@@ -57,29 +57,27 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
-        self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("ChangeRoomPlayerProfile is no longer available.")
     }
 
     /// 修改房间玩家自定义属性
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
-        try await self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("ChangeRoomPlayerProfile is no longer available.")
     }
 
     /// 修改房间玩家自定义属性
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
-        let input = ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile)
-        return self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("ChangeRoomPlayerProfile is no longer available.")
     }
 
     /// 修改房间玩家自定义属性
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
-        let input = ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile)
-        return try await self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("ChangeRoomPlayerProfile is no longer available.")
     }
 }

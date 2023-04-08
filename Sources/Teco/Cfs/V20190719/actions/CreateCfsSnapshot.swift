@@ -68,14 +68,12 @@ extension Cfs {
     /// 创建文件系统快照
     @inlinable
     public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
-        let input = CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags)
-        return self.client.execute(action: "CreateCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCfsSnapshot(.init(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统快照
     @inlinable
     public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
-        let input = CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags)
-        return try await self.client.execute(action: "CreateCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCfsSnapshot(.init(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 }

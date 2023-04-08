@@ -68,14 +68,12 @@ extension Bmeip {
     /// 黑石EIP解绑VPCIP
     @inlinable
     public func unbindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindVpcIpResponse> {
-        let input = UnbindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp)
-        return self.client.execute(action: "UnbindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindVpcIp(.init(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP解绑VPCIP
     @inlinable
     public func unbindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindVpcIpResponse {
-        let input = UnbindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp)
-        return try await self.client.execute(action: "UnbindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindVpcIp(.init(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
     }
 }

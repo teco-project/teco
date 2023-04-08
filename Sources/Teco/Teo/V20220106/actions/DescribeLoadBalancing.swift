@@ -102,15 +102,13 @@ extension Teo {
     /// 获取负载均衡列表
     @inlinable
     public func describeLoadBalancing(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancingResponse> {
-        let input = DescribeLoadBalancingRequest(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy)
-        return self.client.execute(action: "DescribeLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoadBalancing(.init(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡列表
     @inlinable
     public func describeLoadBalancing(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
-        let input = DescribeLoadBalancingRequest(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy)
-        return try await self.client.execute(action: "DescribeLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoadBalancing(.init(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡列表

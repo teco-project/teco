@@ -81,8 +81,7 @@ extension Cdb {
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
     public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorInfoResponse> {
-        let input = DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count)
-        return self.client.execute(action: "DescribeDeviceMonitorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceMonitorInfo(.init(instanceId: instanceId, count: count), region: region, logger: logger, on: eventLoop)
     }
 
     /// 物理机监控信息
@@ -90,7 +89,6 @@ extension Cdb {
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
     public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
-        let input = DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count)
-        return try await self.client.execute(action: "DescribeDeviceMonitorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceMonitorInfo(.init(instanceId: instanceId, count: count), region: region, logger: logger, on: eventLoop)
     }
 }

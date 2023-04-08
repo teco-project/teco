@@ -79,14 +79,12 @@ extension Cdb {
     /// 升级数据库代理版本
     @inlinable
     public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
-        let input = UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime)
-        return self.client.execute(action: "UpgradeCDBProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeCDBProxyVersion(.init(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级数据库代理版本
     @inlinable
     public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
-        let input = UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime)
-        return try await self.client.execute(action: "UpgradeCDBProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeCDBProxyVersion(.init(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 }

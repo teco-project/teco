@@ -69,8 +69,7 @@ extension Tke {
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
     public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterKubeconfigResponse> {
-        let input = DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet)
-        return self.client.execute(action: "DescribeClusterKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterKubeconfig(.init(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群kubeconfig文件
@@ -78,7 +77,6 @@ extension Tke {
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
     public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterKubeconfigResponse {
-        let input = DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet)
-        return try await self.client.execute(action: "DescribeClusterKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterKubeconfig(.init(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 }

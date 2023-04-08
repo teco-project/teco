@@ -70,8 +70,7 @@ extension Cme {
     /// 根据媒体 Id 删除媒体。
     @inlinable @discardableResult
     public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
-        let input = DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`)
-        return self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMaterial(.init(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体
@@ -79,7 +78,6 @@ extension Cme {
     /// 根据媒体 Id 删除媒体。
     @inlinable @discardableResult
     public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
-        let input = DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`)
-        return try await self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMaterial(.init(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

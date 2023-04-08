@@ -60,8 +60,7 @@ extension Cls {
     /// 本接口用于删除告警策略。
     @inlinable @discardableResult
     public func deleteAlarm(alarmId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmResponse> {
-        let input = DeleteAlarmRequest(alarmId: alarmId)
-        return self.client.execute(action: "DeleteAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAlarm(.init(alarmId: alarmId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警策略
@@ -69,7 +68,6 @@ extension Cls {
     /// 本接口用于删除告警策略。
     @inlinable @discardableResult
     public func deleteAlarm(alarmId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmResponse {
-        let input = DeleteAlarmRequest(alarmId: alarmId)
-        return try await self.client.execute(action: "DeleteAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAlarm(.init(alarmId: alarmId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Vod {
     /// 删除雪碧图模板。
     @inlinable @discardableResult
     public func deleteImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageSpriteTemplateResponse> {
-        let input = DeleteImageSpriteTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImageSpriteTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除雪碧图模板
@@ -74,7 +73,6 @@ extension Vod {
     /// 删除雪碧图模板。
     @inlinable @discardableResult
     public func deleteImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
-        let input = DeleteImageSpriteTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImageSpriteTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

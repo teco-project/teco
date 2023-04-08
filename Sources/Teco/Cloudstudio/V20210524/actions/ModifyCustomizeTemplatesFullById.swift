@@ -68,14 +68,12 @@ extension Cloudstudio {
     /// 全量修改自定义模板，不忽略空
     @inlinable
     public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesFullByIdResponse> {
-        let input = ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams)
-        return self.client.execute(action: "ModifyCustomizeTemplatesFullById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCustomizeTemplatesFullById(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，不忽略空
     @inlinable
     public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
-        let input = ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams)
-        return try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCustomizeTemplatesFullById(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), region: region, logger: logger, on: eventLoop)
     }
 }

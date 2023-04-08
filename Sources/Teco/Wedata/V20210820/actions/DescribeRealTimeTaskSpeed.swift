@@ -82,14 +82,12 @@ extension Wedata {
     /// 实时任务同步速度趋势
     @inlinable
     public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskSpeedResponse> {
-        let input = DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId)
-        return self.client.execute(action: "DescribeRealTimeTaskSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRealTimeTaskSpeed(.init(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时任务同步速度趋势
     @inlinable
     public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
-        let input = DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRealTimeTaskSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRealTimeTaskSpeed(.init(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

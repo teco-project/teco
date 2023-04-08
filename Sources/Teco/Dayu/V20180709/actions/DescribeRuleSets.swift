@@ -75,14 +75,12 @@ extension Dayu {
     /// 获取资源的规则数
     @inlinable
     public func describeRuleSets(business: String, idList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleSetsResponse> {
-        let input = DescribeRuleSetsRequest(business: business, idList: idList)
-        return self.client.execute(action: "DescribeRuleSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleSets(.init(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的规则数
     @inlinable
     public func describeRuleSets(business: String, idList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
-        let input = DescribeRuleSetsRequest(business: business, idList: idList)
-        return try await self.client.execute(action: "DescribeRuleSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleSets(.init(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

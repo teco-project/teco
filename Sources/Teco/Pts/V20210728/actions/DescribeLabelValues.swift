@@ -85,8 +85,7 @@ extension Pts {
     /// 查询标签内容
     @inlinable
     public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLabelValuesResponse> {
-        let input = DescribeLabelValuesRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId)
-        return self.client.execute(action: "DescribeLabelValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLabelValues(.init(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值
@@ -94,7 +93,6 @@ extension Pts {
     /// 查询标签内容
     @inlinable
     public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
-        let input = DescribeLabelValuesRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId)
-        return try await self.client.execute(action: "DescribeLabelValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLabelValues(.init(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -126,8 +126,7 @@ extension Trtc {
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
     public func describeRoomInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
-        let input = DescribeRoomInfoRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId, pageNumber: pageNumber, pageSize: pageSize)
-        return self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRoomInfo(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询历史房间列表
@@ -138,8 +137,7 @@ extension Trtc {
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
     public func describeRoomInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
-        let input = DescribeRoomInfoRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId, pageNumber: pageNumber, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRoomInfo(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询历史房间列表

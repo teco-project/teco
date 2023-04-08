@@ -54,14 +54,12 @@ extension Solar {
     /// 下线项目
     @inlinable @discardableResult
     public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
-        let input = OffLineProjectRequest(projectId: projectId)
-        return self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.offLineProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线项目
     @inlinable @discardableResult
     public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
-        let input = OffLineProjectRequest(projectId: projectId)
-        return try await self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.offLineProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

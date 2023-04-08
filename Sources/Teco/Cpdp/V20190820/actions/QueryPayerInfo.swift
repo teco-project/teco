@@ -63,14 +63,12 @@ extension Cpdp {
     /// 跨境-付款人查询
     @inlinable
     public func queryPayerInfo(payerId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPayerInfoResponse> {
-        let input = QueryPayerInfoRequest(payerId: payerId, profile: profile)
-        return self.client.execute(action: "QueryPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryPayerInfo(.init(payerId: payerId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-付款人查询
     @inlinable
     public func queryPayerInfo(payerId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
-        let input = QueryPayerInfoRequest(payerId: payerId, profile: profile)
-        return try await self.client.execute(action: "QueryPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryPayerInfo(.init(payerId: payerId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Es {
     /// 用于下发并且部署管道
     @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveAndDeployLogstashPipelineResponse> {
-        let input = SaveAndDeployLogstashPipelineRequest(instanceId: instanceId, pipeline: pipeline, opType: opType)
-        return self.client.execute(action: "SaveAndDeployLogstashPipeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.saveAndDeployLogstashPipeline(.init(instanceId: instanceId, pipeline: pipeline, opType: opType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存并部署管道
@@ -79,7 +78,6 @@ extension Es {
     /// 用于下发并且部署管道
     @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveAndDeployLogstashPipelineResponse {
-        let input = SaveAndDeployLogstashPipelineRequest(instanceId: instanceId, pipeline: pipeline, opType: opType)
-        return try await self.client.execute(action: "SaveAndDeployLogstashPipeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.saveAndDeployLogstashPipeline(.init(instanceId: instanceId, pipeline: pipeline, opType: opType), region: region, logger: logger, on: eventLoop)
     }
 }

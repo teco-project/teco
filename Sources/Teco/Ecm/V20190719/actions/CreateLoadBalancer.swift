@@ -116,8 +116,7 @@ extension Ecm {
     /// 购买负载均衡实例。
     @inlinable
     public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, addressIPVersion: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
-        let input = CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId)
-        return self.client.execute(action: "CreateLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLoadBalancer(.init(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买负载均衡实例
@@ -125,7 +124,6 @@ extension Ecm {
     /// 购买负载均衡实例。
     @inlinable
     public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, addressIPVersion: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        let input = CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId)
-        return try await self.client.execute(action: "CreateLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLoadBalancer(.init(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -112,8 +112,7 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
     public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketScaleMetricDataResponse> {
-        let input = DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period)
-        return self.client.execute(action: "DescribeTRTCMarketScaleMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTRTCMarketScaleMetricData(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC数据大盘规模指标
@@ -128,7 +127,6 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
     public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketScaleMetricDataResponse {
-        let input = DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period)
-        return try await self.client.execute(action: "DescribeTRTCMarketScaleMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTRTCMarketScaleMetricData(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

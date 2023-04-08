@@ -62,14 +62,12 @@ extension Cwp {
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
-        let input = ExportReverseShellEventsRequest(filters: filters)
-        return self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportReverseShellEvents(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
-        let input = ExportReverseShellEventsRequest(filters: filters)
-        return try await self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportReverseShellEvents(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

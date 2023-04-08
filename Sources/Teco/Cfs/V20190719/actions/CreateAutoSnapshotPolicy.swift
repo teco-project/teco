@@ -73,14 +73,12 @@ extension Cfs {
     /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
-        let input = CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays)
-        return self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAutoSnapshotPolicy(.init(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
-        let input = CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays)
-        return try await self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAutoSnapshotPolicy(.init(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), region: region, logger: logger, on: eventLoop)
     }
 }

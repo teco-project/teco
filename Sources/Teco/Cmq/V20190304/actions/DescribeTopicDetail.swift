@@ -102,15 +102,13 @@ extension Cmq {
     /// 查询主题详情
     @inlinable
     public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
-        let input = DescribeTopicDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName)
-        return self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopicDetail(.init(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主题详情
     @inlinable
     public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
-        let input = DescribeTopicDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName)
-        return try await self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopicDetail(.init(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主题详情

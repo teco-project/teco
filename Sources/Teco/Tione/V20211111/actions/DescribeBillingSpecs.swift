@@ -74,8 +74,7 @@ extension Tione {
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
     public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
-        let input = DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType)
-        return self.client.execute(action: "DescribeBillingSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillingSpecs(.init(taskType: taskType, chargeType: chargeType, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询计费项列表
@@ -83,7 +82,6 @@ extension Tione {
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
     public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
-        let input = DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType)
-        return try await self.client.execute(action: "DescribeBillingSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillingSpecs(.init(taskType: taskType, chargeType: chargeType, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 }

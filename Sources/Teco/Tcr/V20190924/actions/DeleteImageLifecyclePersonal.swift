@@ -60,8 +60,7 @@ extension Tcr {
     /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
     @inlinable @discardableResult
     public func deleteImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecyclePersonalResponse> {
-        let input = DeleteImageLifecyclePersonalRequest(repoName: repoName)
-        return self.client.execute(action: "DeleteImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImageLifecyclePersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版镜像仓库Tag自动清理策略
@@ -69,7 +68,6 @@ extension Tcr {
     /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
     @inlinable @discardableResult
     public func deleteImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecyclePersonalResponse {
-        let input = DeleteImageLifecyclePersonalRequest(repoName: repoName)
-        return try await self.client.execute(action: "DeleteImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImageLifecyclePersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

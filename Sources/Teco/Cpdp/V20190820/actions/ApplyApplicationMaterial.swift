@@ -109,8 +109,7 @@ extension Cpdp {
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
     public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyApplicationMaterialResponse> {
-        let input = ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile)
-        return self.client.execute(action: "ApplyApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyApplicationMaterial(.init(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-提交申报材料
@@ -118,7 +117,6 @@ extension Cpdp {
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
     public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
-        let input = ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile)
-        return try await self.client.execute(action: "ApplyApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyApplicationMaterial(.init(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -104,15 +104,13 @@ extension Tsf {
     /// 查询虚拟机部署组云主机列表
     @inlinable
     public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
-        let input = DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroupInstances(.init(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
     public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
-        let input = DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroupInstances(.init(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询虚拟机部署组云主机列表

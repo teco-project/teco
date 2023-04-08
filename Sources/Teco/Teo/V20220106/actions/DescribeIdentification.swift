@@ -87,8 +87,7 @@ extension Teo {
     /// 查询验证结果
     @inlinable
     public func describeIdentification(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdentificationResponse> {
-        let input = DescribeIdentificationRequest(name: name)
-        return self.client.execute(action: "DescribeIdentification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIdentification(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点的验证状态
@@ -96,7 +95,6 @@ extension Teo {
     /// 查询验证结果
     @inlinable
     public func describeIdentification(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationResponse {
-        let input = DescribeIdentificationRequest(name: name)
-        return try await self.client.execute(action: "DescribeIdentification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIdentification(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

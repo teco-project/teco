@@ -103,8 +103,7 @@ extension Cpdp {
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。
     @inlinable
     public func downloadBill(stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBillResponse> {
-        let input = DownloadBillRequest(stateDate: stateDate, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment)
-        return self.client.execute(action: "DownloadBill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadBill(.init(stateDate: stateDate, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-账单下载
@@ -112,7 +111,6 @@ extension Cpdp {
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。
     @inlinable
     public func downloadBill(stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBillResponse {
-        let input = DownloadBillRequest(stateDate: stateDate, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment)
-        return try await self.client.execute(action: "DownloadBill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadBill(.init(stateDate: stateDate, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

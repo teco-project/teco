@@ -58,14 +58,12 @@ extension Tcbr {
     /// 查询环境基础信息
     @inlinable
     public func describeEnvBaseInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvBaseInfoResponse> {
-        let input = DescribeEnvBaseInfoRequest(envId: envId)
-        return self.client.execute(action: "DescribeEnvBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnvBaseInfo(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境基础信息
     @inlinable
     public func describeEnvBaseInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
-        let input = DescribeEnvBaseInfoRequest(envId: envId)
-        return try await self.client.execute(action: "DescribeEnvBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnvBaseInfo(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

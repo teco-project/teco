@@ -122,14 +122,12 @@ extension Msp {
     /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
-        let input = RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType)
-        return self.client.execute(action: "RegisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.registerMigrationTask(.init(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
-        let input = RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType)
-        return try await self.client.execute(action: "RegisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.registerMigrationTask(.init(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), region: region, logger: logger, on: eventLoop)
     }
 }

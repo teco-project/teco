@@ -64,14 +64,12 @@ extension Cloudstudio {
     /// 根据模板创建工作空间
     @inlinable
     public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
-        let input = CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return self.client.execute(action: "CreateWorkspaceByVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createWorkspaceByVersionControl(.init(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据模板创建工作空间
     @inlinable
     public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
-        let input = CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam)
-        return try await self.client.execute(action: "CreateWorkspaceByVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createWorkspaceByVersionControl(.init(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

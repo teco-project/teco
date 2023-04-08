@@ -59,14 +59,12 @@ extension Hasim {
     /// 编辑云兔高级日志状态
     @inlinable @discardableResult
     public func modifyLinkAdvancedLog(linkID: Int64, isAdLog: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLinkAdvancedLogResponse> {
-        let input = ModifyLinkAdvancedLogRequest(linkID: linkID, isAdLog: isAdLog)
-        return self.client.execute(action: "ModifyLinkAdvancedLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLinkAdvancedLog(.init(linkID: linkID, isAdLog: isAdLog), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑云兔高级日志状态
     @inlinable @discardableResult
     public func modifyLinkAdvancedLog(linkID: Int64, isAdLog: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLinkAdvancedLogResponse {
-        let input = ModifyLinkAdvancedLogRequest(linkID: linkID, isAdLog: isAdLog)
-        return try await self.client.execute(action: "ModifyLinkAdvancedLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLinkAdvancedLog(.init(linkID: linkID, isAdLog: isAdLog), region: region, logger: logger, on: eventLoop)
     }
 }

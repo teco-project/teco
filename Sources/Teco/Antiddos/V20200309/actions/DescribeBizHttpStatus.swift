@@ -93,14 +93,12 @@ extension Antiddos {
     /// 获取业务流量状态码统计列表
     @inlinable
     public func describeBizHttpStatus(statistics: String, business: String, period: Int64, startTime: String, endTime: String, id: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizHttpStatusResponse> {
-        let input = DescribeBizHttpStatusRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain, protoInfo: protoInfo)
-        return self.client.execute(action: "DescribeBizHttpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBizHttpStatus(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取业务流量状态码统计列表
     @inlinable
     public func describeBizHttpStatus(statistics: String, business: String, period: Int64, startTime: String, endTime: String, id: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {
-        let input = DescribeBizHttpStatusRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain, protoInfo: protoInfo)
-        return try await self.client.execute(action: "DescribeBizHttpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBizHttpStatus(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
     }
 }

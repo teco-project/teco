@@ -69,8 +69,7 @@ extension Tsf {
     /// 停止执行中的任务批次， 非运行中的任务不可调用。
     @inlinable
     public func stopTaskBatch(batchId: String, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskBatchResponse> {
-        let input = StopTaskBatchRequest(batchId: batchId, taskId: taskId)
-        return self.client.execute(action: "StopTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopTaskBatch(.init(batchId: batchId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止执行中的任务批次
@@ -78,7 +77,6 @@ extension Tsf {
     /// 停止执行中的任务批次， 非运行中的任务不可调用。
     @inlinable
     public func stopTaskBatch(batchId: String, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
-        let input = StopTaskBatchRequest(batchId: batchId, taskId: taskId)
-        return try await self.client.execute(action: "StopTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopTaskBatch(.init(batchId: batchId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

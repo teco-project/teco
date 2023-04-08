@@ -80,8 +80,7 @@ extension Iotvideoindustry {
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable @discardableResult
     public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelLocalRecordResponse> {
-        let input = ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command)
-        return self.client.execute(action: "ControlChannelLocalRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.controlChannelLocalRecord(.init(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), region: region, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流
@@ -89,7 +88,6 @@ extension Iotvideoindustry {
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable @discardableResult
     public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
-        let input = ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command)
-        return try await self.client.execute(action: "ControlChannelLocalRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.controlChannelLocalRecord(.init(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), region: region, logger: logger, on: eventLoop)
     }
 }

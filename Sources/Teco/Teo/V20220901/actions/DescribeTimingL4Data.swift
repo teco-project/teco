@@ -129,8 +129,7 @@ extension Teo {
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable
     public func describeTimingL4Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, proxyIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL4DataResponse> {
-        let input = DescribeTimingL4DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, proxyIds: proxyIds, interval: interval, filters: filters, area: area)
-        return self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTimingL4Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, proxyIds: proxyIds, interval: interval, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询四层流量时序数据
@@ -138,7 +137,6 @@ extension Teo {
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable
     public func describeTimingL4Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, proxyIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL4DataResponse {
-        let input = DescribeTimingL4DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, proxyIds: proxyIds, interval: interval, filters: filters, area: area)
-        return try await self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTimingL4Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, proxyIds: proxyIds, interval: interval, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

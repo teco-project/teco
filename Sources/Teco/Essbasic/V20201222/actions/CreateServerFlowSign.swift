@@ -93,8 +93,7 @@ extension Essbasic {
     /// 2、仅合同发起者可使用流程静默签署能力。
     @inlinable
     public func createServerFlowSign(caller: Caller, flowId: String, signComponents: [Component], sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerFlowSignResponse> {
-        let input = CreateServerFlowSignRequest(caller: caller, flowId: flowId, signComponents: signComponents, sourceIp: sourceIp)
-        return self.client.execute(action: "CreateServerFlowSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createServerFlowSign(.init(caller: caller, flowId: flowId, signComponents: signComponents, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流程静默签署
@@ -106,7 +105,6 @@ extension Essbasic {
     /// 2、仅合同发起者可使用流程静默签署能力。
     @inlinable
     public func createServerFlowSign(caller: Caller, flowId: String, signComponents: [Component], sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerFlowSignResponse {
-        let input = CreateServerFlowSignRequest(caller: caller, flowId: flowId, signComponents: signComponents, sourceIp: sourceIp)
-        return try await self.client.execute(action: "CreateServerFlowSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createServerFlowSign(.init(caller: caller, flowId: flowId, signComponents: signComponents, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 }

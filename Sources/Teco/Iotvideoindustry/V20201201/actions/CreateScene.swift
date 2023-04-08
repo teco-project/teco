@@ -84,14 +84,12 @@ extension Iotvideoindustry {
     /// 创建场景
     @inlinable
     public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSceneResponse> {
-        let input = CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels)
-        return self.client.execute(action: "CreateScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createScene(.init(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
     public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSceneResponse {
-        let input = CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels)
-        return try await self.client.execute(action: "CreateScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createScene(.init(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

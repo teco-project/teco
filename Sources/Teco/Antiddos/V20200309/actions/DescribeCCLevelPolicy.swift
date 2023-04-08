@@ -73,14 +73,12 @@ extension Antiddos {
     /// 获取CC分级策略
     @inlinable
     public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelPolicyResponse> {
-        let input = DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return self.client.execute(action: "DescribeCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCCLevelPolicy(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC分级策略
     @inlinable
     public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
-        let input = DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
-        return try await self.client.execute(action: "DescribeCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCCLevelPolicy(.init(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

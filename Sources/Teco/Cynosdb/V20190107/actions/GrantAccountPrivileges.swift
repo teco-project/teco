@@ -69,14 +69,12 @@ extension Cynosdb {
     /// 批量授权账号权限
     @inlinable @discardableResult
     public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        let input = GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables)
-        return self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.grantAccountPrivileges(.init(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量授权账号权限
     @inlinable @discardableResult
     public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        let input = GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables)
-        return try await self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.grantAccountPrivileges(.init(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 }

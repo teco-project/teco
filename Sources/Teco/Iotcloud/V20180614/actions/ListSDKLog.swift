@@ -96,8 +96,7 @@ extension Iotcloud {
     /// 获取设备上报的日志
     @inlinable
     public func listSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSDKLogResponse> {
-        let input = ListSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return self.client.execute(action: "ListSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listSDKLog(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备sdk日志
@@ -105,7 +104,6 @@ extension Iotcloud {
     /// 获取设备上报的日志
     @inlinable
     public func listSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSDKLogResponse {
-        let input = ListSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return try await self.client.execute(action: "ListSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listSDKLog(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

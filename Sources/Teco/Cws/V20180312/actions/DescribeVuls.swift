@@ -108,8 +108,7 @@ extension Cws {
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
     public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
-        let input = DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVuls(.init(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看漏洞列表
@@ -117,8 +116,7 @@ extension Cws {
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
     public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        let input = DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVuls(.init(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看漏洞列表

@@ -134,8 +134,7 @@ extension Mps {
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
     public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageSpriteTemplateResponse> {
-        let input = CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format)
-        return self.client.execute(action: "CreateImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createImageSpriteTemplate(.init(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建雪碧图模板
@@ -143,7 +142,6 @@ extension Mps {
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
     public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
-        let input = CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format)
-        return try await self.client.execute(action: "CreateImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createImageSpriteTemplate(.init(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 }

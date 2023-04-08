@@ -93,14 +93,12 @@ extension Iotexplorer {
     /// 创建设备
     @inlinable
     public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        let input = CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk)
-        return self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDevice(.init(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
     @inlinable
     public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        let input = CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk)
-        return try await self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDevice(.init(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -272,8 +272,7 @@ extension Ssl {
     /// 获取证书详情。
     @inlinable
     public func describeCertificateDetail(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateDetailResponse> {
-        let input = DescribeCertificateDetailRequest(certificateId: certificateId)
-        return self.client.execute(action: "DescribeCertificateDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCertificateDetail(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书详情
@@ -281,7 +280,6 @@ extension Ssl {
     /// 获取证书详情。
     @inlinable
     public func describeCertificateDetail(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
-        let input = DescribeCertificateDetailRequest(certificateId: certificateId)
-        return try await self.client.execute(action: "DescribeCertificateDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCertificateDetail(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

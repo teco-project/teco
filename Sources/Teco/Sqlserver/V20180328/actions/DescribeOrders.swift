@@ -68,8 +68,7 @@ extension Sqlserver {
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        let input = DescribeOrdersRequest(dealNames: dealNames)
-        return self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
@@ -77,7 +76,6 @@ extension Sqlserver {
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        let input = DescribeOrdersRequest(dealNames: dealNames)
-        return try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

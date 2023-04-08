@@ -64,14 +64,12 @@ extension Trp {
     /// 查询商品信息
     @inlinable
     public func describeProductById(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductByIdResponse> {
-        let input = DescribeProductByIdRequest(productId: productId, corpId: corpId)
-        return self.client.execute(action: "DescribeProductById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProductById(.init(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商品信息
     @inlinable
     public func describeProductById(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
-        let input = DescribeProductByIdRequest(productId: productId, corpId: corpId)
-        return try await self.client.execute(action: "DescribeProductById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProductById(.init(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,14 +68,12 @@ extension Teo {
     /// 修改DDoS防护分区配置
     @inlinable
     public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
-        let input = ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule)
-        return self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSPolicy(.init(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护分区配置
     @inlinable
     public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        let input = ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule)
-        return try await self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSPolicy(.init(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Kms {
     /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
     @inlinable @discardableResult
     public func unbindCloudResource(keyId: String, productId: String, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCloudResourceResponse> {
-        let input = UnbindCloudResourceRequest(keyId: keyId, productId: productId, resourceId: resourceId)
-        return self.client.execute(action: "UnbindCloudResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindCloudResource(.init(keyId: keyId, productId: productId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑CMK和云资源的关联关系
@@ -79,7 +78,6 @@ extension Kms {
     /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
     @inlinable @discardableResult
     public func unbindCloudResource(keyId: String, productId: String, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCloudResourceResponse {
-        let input = UnbindCloudResourceRequest(keyId: keyId, productId: productId, resourceId: resourceId)
-        return try await self.client.execute(action: "UnbindCloudResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindCloudResource(.init(keyId: keyId, productId: productId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

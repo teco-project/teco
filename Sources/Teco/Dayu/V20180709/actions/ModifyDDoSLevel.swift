@@ -83,8 +83,7 @@ extension Dayu {
     /// 读取或修改DDoS的防护等级
     @inlinable
     public func modifyDDoSLevel(business: String, id: String, method: String, dDoSLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSLevelResponse> {
-        let input = ModifyDDoSLevelRequest(business: business, id: id, method: method, dDoSLevel: dDoSLevel)
-        return self.client.execute(action: "ModifyDDoSLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSLevel(.init(business: business, id: id, method: method, dDoSLevel: dDoSLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoSIP防护等级
@@ -92,7 +91,6 @@ extension Dayu {
     /// 读取或修改DDoS的防护等级
     @inlinable
     public func modifyDDoSLevel(business: String, id: String, method: String, dDoSLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
-        let input = ModifyDDoSLevelRequest(business: business, id: id, method: method, dDoSLevel: dDoSLevel)
-        return try await self.client.execute(action: "ModifyDDoSLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSLevel(.init(business: business, id: id, method: method, dDoSLevel: dDoSLevel), region: region, logger: logger, on: eventLoop)
     }
 }

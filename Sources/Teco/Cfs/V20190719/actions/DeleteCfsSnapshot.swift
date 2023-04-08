@@ -63,14 +63,12 @@ extension Cfs {
     /// 删除文件系统快照
     @inlinable
     public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsSnapshotResponse> {
-        let input = DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds)
-        return self.client.execute(action: "DeleteCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCfsSnapshot(.init(snapshotId: snapshotId, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统快照
     @inlinable
     public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
-        let input = DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds)
-        return try await self.client.execute(action: "DeleteCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCfsSnapshot(.init(snapshotId: snapshotId, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

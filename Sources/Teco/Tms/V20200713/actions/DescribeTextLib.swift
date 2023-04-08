@@ -64,8 +64,7 @@ extension Tms {
     /// 控制台获取用户词库列表
     @inlinable
     public func describeTextLib(strategyType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextLibResponse> {
-        let input = DescribeTextLibRequest(strategyType: strategyType)
-        return self.client.execute(action: "DescribeTextLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTextLib(.init(strategyType: strategyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户词库列表
@@ -73,7 +72,6 @@ extension Tms {
     /// 控制台获取用户词库列表
     @inlinable
     public func describeTextLib(strategyType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextLibResponse {
-        let input = DescribeTextLibRequest(strategyType: strategyType)
-        return try await self.client.execute(action: "DescribeTextLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTextLib(.init(strategyType: strategyType), region: region, logger: logger, on: eventLoop)
     }
 }

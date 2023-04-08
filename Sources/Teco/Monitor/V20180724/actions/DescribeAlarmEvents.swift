@@ -68,14 +68,12 @@ extension Monitor {
     /// 查询告警事件列表
     @inlinable
     public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
-        let input = DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType)
-        return self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAlarmEvents(.init(module: module, namespace: namespace, monitorType: monitorType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警事件列表
     @inlinable
     public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        let input = DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType)
-        return try await self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAlarmEvents(.init(module: module, namespace: namespace, monitorType: monitorType), region: region, logger: logger, on: eventLoop)
     }
 }

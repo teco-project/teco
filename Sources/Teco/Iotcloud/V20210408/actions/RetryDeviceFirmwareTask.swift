@@ -69,14 +69,12 @@ extension Iotcloud {
     /// 重试设备升级任务
     @inlinable @discardableResult
     public func retryDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
-        let input = RetryDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId)
-        return self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.retryDeviceFirmwareTask(.init(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试设备升级任务
     @inlinable @discardableResult
     public func retryDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
-        let input = RetryDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId)
-        return try await self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.retryDeviceFirmwareTask(.init(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

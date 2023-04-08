@@ -79,8 +79,7 @@ extension Postgres {
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
     public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        let input = InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset)
-        return self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.initDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
@@ -88,7 +87,6 @@ extension Postgres {
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
     public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        let input = InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset)
-        return try await self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.initDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)
     }
 }

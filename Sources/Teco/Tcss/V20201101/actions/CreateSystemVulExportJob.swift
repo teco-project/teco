@@ -93,14 +93,12 @@ extension Tcss {
     /// 创建系统漏洞导出任务
     @inlinable
     public func createSystemVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSystemVulExportJobResponse> {
-        let input = CreateSystemVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return self.client.execute(action: "CreateSystemVulExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSystemVulExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建系统漏洞导出任务
     @inlinable
     public func createSystemVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSystemVulExportJobResponse {
-        let input = CreateSystemVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return try await self.client.execute(action: "CreateSystemVulExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSystemVulExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

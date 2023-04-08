@@ -96,14 +96,12 @@ extension Dayu {
     /// 获取CC的Url白名单
     @inlinable
     public func describeCCUrlAllow(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCUrlAllowResponse> {
-        let input = DescribeCCUrlAllowRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`)
-        return self.client.execute(action: "DescribeCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCCUrlAllow(.init(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC的Url白名单
     @inlinable
     public func describeCCUrlAllow(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCUrlAllowResponse {
-        let input = DescribeCCUrlAllowRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`)
-        return try await self.client.execute(action: "DescribeCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCCUrlAllow(.init(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

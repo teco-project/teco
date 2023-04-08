@@ -64,14 +64,12 @@ extension Tke {
     /// 修改节点池的机型配置
     @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(clusterId: String, nodePoolId: String, instanceTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodePoolInstanceTypesResponse> {
-        let input = ModifyNodePoolInstanceTypesRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes)
-        return self.client.execute(action: "ModifyNodePoolInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNodePoolInstanceTypes(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改节点池的机型配置
     @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(clusterId: String, nodePoolId: String, instanceTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {
-        let input = ModifyNodePoolInstanceTypesRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes)
-        return try await self.client.execute(action: "ModifyNodePoolInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNodePoolInstanceTypes(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes), region: region, logger: logger, on: eventLoop)
     }
 }

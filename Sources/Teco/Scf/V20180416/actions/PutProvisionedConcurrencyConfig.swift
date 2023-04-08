@@ -105,8 +105,7 @@ extension Scf {
     /// 设置函数某一非$LATEST版本的预置并发。
     @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String? = nil, triggerActions: [TriggerAction]? = nil, provisionedType: String? = nil, trackingTarget: Float? = nil, minCapacity: UInt64? = nil, maxCapacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutProvisionedConcurrencyConfigResponse> {
-        let input = PutProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity)
-        return self.client.execute(action: "PutProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.putProvisionedConcurrencyConfig(.init(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置预置并发
@@ -114,7 +113,6 @@ extension Scf {
     /// 设置函数某一非$LATEST版本的预置并发。
     @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String? = nil, triggerActions: [TriggerAction]? = nil, provisionedType: String? = nil, trackingTarget: Float? = nil, minCapacity: UInt64? = nil, maxCapacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutProvisionedConcurrencyConfigResponse {
-        let input = PutProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity)
-        return try await self.client.execute(action: "PutProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.putProvisionedConcurrencyConfig(.init(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity), region: region, logger: logger, on: eventLoop)
     }
 }

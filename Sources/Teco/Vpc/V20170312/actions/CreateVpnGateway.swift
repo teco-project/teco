@@ -109,8 +109,7 @@ extension Vpc {
     /// 本接口（CreateVpnGateway）用于创建VPN网关。
     @inlinable
     public func createVpnGateway(vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewayResponse> {
-        let input = CreateVpnGatewayRequest(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection)
-        return self.client.execute(action: "CreateVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVpnGateway(.init(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建VPN网关
@@ -118,7 +117,6 @@ extension Vpc {
     /// 本接口（CreateVpnGateway）用于创建VPN网关。
     @inlinable
     public func createVpnGateway(vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayResponse {
-        let input = CreateVpnGatewayRequest(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection)
-        return try await self.client.execute(action: "CreateVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVpnGateway(.init(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection), region: region, logger: logger, on: eventLoop)
     }
 }

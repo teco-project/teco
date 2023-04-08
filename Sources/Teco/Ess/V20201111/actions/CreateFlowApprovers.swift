@@ -82,8 +82,7 @@ extension Ess {
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
-        let input = CreateFlowApproversRequest(operator: `operator`, flowId: flowId, approvers: approvers)
-        return self.client.execute(action: "CreateFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 补充签署流程本企业签署人信息
@@ -95,7 +94,6 @@ extension Ess {
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
-        let input = CreateFlowApproversRequest(operator: `operator`, flowId: flowId, approvers: approvers)
-        return try await self.client.execute(action: "CreateFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers), region: region, logger: logger, on: eventLoop)
     }
 }

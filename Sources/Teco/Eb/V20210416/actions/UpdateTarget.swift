@@ -79,14 +79,12 @@ extension Eb {
     /// 更新事件目标
     @inlinable @discardableResult
     public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
-        let input = UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount)
-        return self.client.execute(action: "UpdateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateTarget(.init(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新事件目标
     @inlinable @discardableResult
     public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
-        let input = UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount)
-        return try await self.client.execute(action: "UpdateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateTarget(.init(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), region: region, logger: logger, on: eventLoop)
     }
 }

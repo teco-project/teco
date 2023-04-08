@@ -63,14 +63,12 @@ extension Bmvpc {
     /// 获取子网内可用IP列表
     @inlinable
     public func describeSubnetAvailableIps(subnetId: String, cidr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetAvailableIpsResponse> {
-        let input = DescribeSubnetAvailableIpsRequest(subnetId: subnetId, cidr: cidr)
-        return self.client.execute(action: "DescribeSubnetAvailableIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSubnetAvailableIps(.init(subnetId: subnetId, cidr: cidr), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取子网内可用IP列表
     @inlinable
     public func describeSubnetAvailableIps(subnetId: String, cidr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetAvailableIpsResponse {
-        let input = DescribeSubnetAvailableIpsRequest(subnetId: subnetId, cidr: cidr)
-        return try await self.client.execute(action: "DescribeSubnetAvailableIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSubnetAvailableIps(.init(subnetId: subnetId, cidr: cidr), region: region, logger: logger, on: eventLoop)
     }
 }

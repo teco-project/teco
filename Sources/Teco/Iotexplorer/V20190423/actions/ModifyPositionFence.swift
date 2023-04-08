@@ -46,14 +46,12 @@ extension Iotexplorer {
     /// 更新围栏
     @inlinable @discardableResult
     public func modifyPositionFence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionFenceResponse> {
-        let input = ModifyPositionFenceRequest()
-        return self.client.execute(action: "ModifyPositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPositionFence(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新围栏
     @inlinable @discardableResult
     public func modifyPositionFence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
-        let input = ModifyPositionFenceRequest()
-        return try await self.client.execute(action: "ModifyPositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPositionFence(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

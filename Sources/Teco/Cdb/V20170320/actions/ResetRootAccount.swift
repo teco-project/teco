@@ -60,8 +60,7 @@ extension Cdb {
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable @discardableResult
     public func resetRootAccount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
-        let input = ResetRootAccountRequest(instanceId: instanceId)
-        return self.client.execute(action: "ResetRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetRootAccount(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置ROOT账号
@@ -69,7 +68,6 @@ extension Cdb {
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable @discardableResult
     public func resetRootAccount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
-        let input = ResetRootAccountRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "ResetRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetRootAccount(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

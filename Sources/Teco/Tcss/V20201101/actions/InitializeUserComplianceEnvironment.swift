@@ -52,8 +52,7 @@ extension Tcss {
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
     @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeUserComplianceEnvironmentResponse> {
-        let input = InitializeUserComplianceEnvironmentRequest()
-        return self.client.execute(action: "InitializeUserComplianceEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.initializeUserComplianceEnvironment(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规初始化用户的合规基线检测环境
@@ -61,7 +60,6 @@ extension Tcss {
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
     @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
-        let input = InitializeUserComplianceEnvironmentRequest()
-        return try await self.client.execute(action: "InitializeUserComplianceEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.initializeUserComplianceEnvironment(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -104,14 +104,12 @@ extension Wedata {
     /// 创建规则模版
     @inlinable
     public func createRuleTemplate(type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleTemplateResponse> {
-        let input = CreateRuleTemplateRequest(type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag)
-        return self.client.execute(action: "CreateRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRuleTemplate(.init(type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建规则模版
     @inlinable
     public func createRuleTemplate(type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleTemplateResponse {
-        let input = CreateRuleTemplateRequest(type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag)
-        return try await self.client.execute(action: "CreateRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRuleTemplate(.init(type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag), region: region, logger: logger, on: eventLoop)
     }
 }

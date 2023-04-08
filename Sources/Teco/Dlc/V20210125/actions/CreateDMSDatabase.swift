@@ -69,14 +69,12 @@ extension Dlc {
     /// DMS元数据创建库
     @inlinable @discardableResult
     public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDMSDatabaseResponse> {
-        let input = CreateDMSDatabaseRequest(asset: asset, schemaName: schemaName, location: location, name: name)
-        return self.client.execute(action: "CreateDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDMSDatabase(.init(asset: asset, schemaName: schemaName, location: location, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据创建库
     @inlinable @discardableResult
     public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
-        let input = CreateDMSDatabaseRequest(asset: asset, schemaName: schemaName, location: location, name: name)
-        return try await self.client.execute(action: "CreateDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDMSDatabase(.init(asset: asset, schemaName: schemaName, location: location, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

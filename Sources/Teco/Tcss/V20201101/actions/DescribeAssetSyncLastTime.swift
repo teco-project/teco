@@ -50,14 +50,12 @@ extension Tcss {
     /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSyncLastTimeResponse> {
-        let input = DescribeAssetSyncLastTimeRequest()
-        return self.client.execute(action: "DescribeAssetSyncLastTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetSyncLastTime(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {
-        let input = DescribeAssetSyncLastTimeRequest()
-        return try await self.client.execute(action: "DescribeAssetSyncLastTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetSyncLastTime(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

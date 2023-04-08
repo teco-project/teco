@@ -69,8 +69,7 @@ extension Iot {
     /// 批量获取设备的当前状态，状态包括在线、离线或未激活状态。
     @inlinable
     public func getDeviceStatuses(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceStatusesResponse> {
-        let input = GetDeviceStatusesRequest(productId: productId, deviceNames: deviceNames)
-        return self.client.execute(action: "GetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDeviceStatuses(.init(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取设备状态
@@ -78,7 +77,6 @@ extension Iot {
     /// 批量获取设备的当前状态，状态包括在线、离线或未激活状态。
     @inlinable
     public func getDeviceStatuses(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatusesResponse {
-        let input = GetDeviceStatusesRequest(productId: productId, deviceNames: deviceNames)
-        return try await self.client.execute(action: "GetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDeviceStatuses(.init(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

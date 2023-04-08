@@ -87,14 +87,12 @@ extension Dayu {
     /// 获取基础防护CC防护阈值
     @inlinable
     public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicCCThresholdResponse> {
-        let input = DescribeBasicCCThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode)
-        return self.client.execute(action: "DescribeBasicCCThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBasicCCThreshold(.init(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护CC防护阈值
     @inlinable
     public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
-        let input = DescribeBasicCCThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode)
-        return try await self.client.execute(action: "DescribeBasicCCThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBasicCCThreshold(.init(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
     }
 }

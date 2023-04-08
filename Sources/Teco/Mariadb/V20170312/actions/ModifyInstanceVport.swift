@@ -65,8 +65,7 @@ extension Mariadb {
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable @discardableResult
     public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
-        let input = ModifyInstanceVportRequest(instanceId: instanceId, vport: vport)
-        return self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceVport(.init(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例VPORT
@@ -74,7 +73,6 @@ extension Mariadb {
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable @discardableResult
     public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
-        let input = ModifyInstanceVportRequest(instanceId: instanceId, vport: vport)
-        return try await self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceVport(.init(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 }

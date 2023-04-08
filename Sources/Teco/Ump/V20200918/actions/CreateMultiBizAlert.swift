@@ -98,8 +98,7 @@ extension Ump {
     /// 集团广场的多经点位告警
     @inlinable @discardableResult
     public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
-        let input = CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings)
-        return self.client.execute(action: "CreateMultiBizAlert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMultiBizAlert(.init(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多经点位告警
@@ -107,7 +106,6 @@ extension Ump {
     /// 集团广场的多经点位告警
     @inlinable @discardableResult
     public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
-        let input = CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings)
-        return try await self.client.execute(action: "CreateMultiBizAlert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMultiBizAlert(.init(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), region: region, logger: logger, on: eventLoop)
     }
 }

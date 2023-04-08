@@ -70,8 +70,7 @@ extension Iai {
     /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
     @inlinable @discardableResult
     public func modifyPersonBaseInfo(personId: String, personName: String? = nil, gender: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonBaseInfoResponse> {
-        let input = ModifyPersonBaseInfoRequest(personId: personId, personName: personName, gender: gender)
-        return self.client.execute(action: "ModifyPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPersonBaseInfo(.init(personId: personId, personName: personName, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人员基础信息
@@ -79,7 +78,6 @@ extension Iai {
     /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
     @inlinable @discardableResult
     public func modifyPersonBaseInfo(personId: String, personName: String? = nil, gender: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonBaseInfoResponse {
-        let input = ModifyPersonBaseInfoRequest(personId: personId, personName: personName, gender: gender)
-        return try await self.client.execute(action: "ModifyPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPersonBaseInfo(.init(personId: personId, personName: personName, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,14 +68,12 @@ extension Teo {
     /// 批量创建应用代理规则
     @inlinable
     public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
-        let input = CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule)
-        return self.client.execute(action: "CreateApplicationProxyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createApplicationProxyRules(.init(zoneId: zoneId, proxyId: proxyId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建应用代理规则
     @inlinable
     public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
-        let input = CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule)
-        return try await self.client.execute(action: "CreateApplicationProxyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createApplicationProxyRules(.init(zoneId: zoneId, proxyId: proxyId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 }

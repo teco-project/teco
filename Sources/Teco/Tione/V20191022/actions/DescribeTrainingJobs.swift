@@ -122,15 +122,13 @@ extension Tione {
     /// 查询训练任务列表
     @inlinable
     public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobsResponse> {
-        let input = DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters)
-        return self.client.execute(action: "DescribeTrainingJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrainingJobs(.init(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询训练任务列表
     @inlinable
     public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
-        let input = DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters)
-        return try await self.client.execute(action: "DescribeTrainingJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrainingJobs(.init(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询训练任务列表

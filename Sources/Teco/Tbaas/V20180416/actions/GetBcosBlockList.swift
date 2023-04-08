@@ -113,8 +113,7 @@ extension Tbaas {
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
     public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockListResponse> {
-        let input = GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash)
-        return self.client.execute(action: "GetBcosBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getBcosBlockList(.init(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos区块列表
@@ -122,8 +121,7 @@ extension Tbaas {
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
     public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
-        let input = GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash)
-        return try await self.client.execute(action: "GetBcosBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getBcosBlockList(.init(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos区块列表

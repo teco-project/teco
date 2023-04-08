@@ -108,15 +108,13 @@ extension Ckafka {
     /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, targetType: String? = nil, taskType: String? = nil, sourceType: String? = nil, resource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTasksResponse> {
-        let input = DescribeDatahubTasksRequest(limit: limit, offset: offset, searchWord: searchWord, targetType: targetType, taskType: taskType, sourceType: sourceType, resource: resource)
-        return self.client.execute(action: "DescribeDatahubTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDatahubTasks(.init(limit: limit, offset: offset, searchWord: searchWord, targetType: targetType, taskType: taskType, sourceType: sourceType, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, targetType: String? = nil, taskType: String? = nil, sourceType: String? = nil, resource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTasksResponse {
-        let input = DescribeDatahubTasksRequest(limit: limit, offset: offset, searchWord: searchWord, targetType: targetType, taskType: taskType, sourceType: sourceType, resource: resource)
-        return try await self.client.execute(action: "DescribeDatahubTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDatahubTasks(.init(limit: limit, offset: offset, searchWord: searchWord, targetType: targetType, taskType: taskType, sourceType: sourceType, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub任务列表

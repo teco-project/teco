@@ -81,14 +81,12 @@ extension Tcss {
     /// 查询漏洞风险统计概览
     @inlinable
     public func describeVulSummary(filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulSummaryResponse> {
-        let input = DescribeVulSummaryRequest(filters: filters)
-        return self.client.execute(action: "DescribeVulSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulSummary(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险统计概览
     @inlinable
     public func describeVulSummary(filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
-        let input = DescribeVulSummaryRequest(filters: filters)
-        return try await self.client.execute(action: "DescribeVulSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulSummary(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

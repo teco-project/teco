@@ -64,8 +64,7 @@ extension Cdb {
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
     public func switchDrInstanceToMaster(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDrInstanceToMasterResponse> {
-        let input = SwitchDrInstanceToMasterRequest(instanceId: instanceId)
-        return self.client.execute(action: "SwitchDrInstanceToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.switchDrInstanceToMaster(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云数据库灾备实例切换为主实例
@@ -73,7 +72,6 @@ extension Cdb {
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
     public func switchDrInstanceToMaster(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
-        let input = SwitchDrInstanceToMasterRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "SwitchDrInstanceToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.switchDrInstanceToMaster(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

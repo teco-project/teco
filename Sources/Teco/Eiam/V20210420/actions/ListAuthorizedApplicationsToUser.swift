@@ -70,8 +70,7 @@ extension Eiam {
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
-        let input = ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations)
-        return self.client.execute(action: "ListAuthorizedApplicationsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAuthorizedApplicationsToUser(.init(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户被授权访问的应用列表
@@ -79,7 +78,6 @@ extension Eiam {
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
-        let input = ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations)
-        return try await self.client.execute(action: "ListAuthorizedApplicationsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAuthorizedApplicationsToUser(.init(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 }

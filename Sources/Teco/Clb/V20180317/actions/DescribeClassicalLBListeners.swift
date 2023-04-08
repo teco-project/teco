@@ -85,8 +85,7 @@ extension Clb {
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
     public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBListenersResponse> {
-        let input = DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status)
-        return self.client.execute(action: "DescribeClassicalLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClassicalLBListeners(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡监听器列表
@@ -94,7 +93,6 @@ extension Clb {
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
     public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBListenersResponse {
-        let input = DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status)
-        return try await self.client.execute(action: "DescribeClassicalLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClassicalLBListeners(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

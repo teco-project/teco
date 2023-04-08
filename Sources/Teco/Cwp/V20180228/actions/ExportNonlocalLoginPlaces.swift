@@ -68,8 +68,7 @@ extension Cwp {
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
     public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportNonlocalLoginPlacesResponse> {
-        let input = ExportNonlocalLoginPlacesRequest(filters: filters)
-        return self.client.execute(action: "ExportNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportNonlocalLoginPlaces(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出异地登录记录
@@ -77,7 +76,6 @@ extension Cwp {
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
     public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
-        let input = ExportNonlocalLoginPlacesRequest(filters: filters)
-        return try await self.client.execute(action: "ExportNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportNonlocalLoginPlaces(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

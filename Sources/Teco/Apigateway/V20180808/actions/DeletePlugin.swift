@@ -64,8 +64,7 @@ extension Apigateway {
     /// 删除API网关插件
     @inlinable
     public func deletePlugin(pluginId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePluginResponse> {
-        let input = DeletePluginRequest(pluginId: pluginId)
-        return self.client.execute(action: "DeletePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePlugin(.init(pluginId: pluginId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除插件
@@ -73,7 +72,6 @@ extension Apigateway {
     /// 删除API网关插件
     @inlinable
     public func deletePlugin(pluginId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
-        let input = DeletePluginRequest(pluginId: pluginId)
-        return try await self.client.execute(action: "DeletePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePlugin(.init(pluginId: pluginId), region: region, logger: logger, on: eventLoop)
     }
 }

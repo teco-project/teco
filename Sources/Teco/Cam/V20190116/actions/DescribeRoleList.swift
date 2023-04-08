@@ -79,8 +79,7 @@ extension Cam {
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
     public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoleListResponse> {
-        let input = DescribeRoleListRequest(page: page, rp: rp, tags: tags)
-        return self.client.execute(action: "DescribeRoleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRoleList(.init(page: page, rp: rp, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
@@ -88,7 +87,6 @@ extension Cam {
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
     public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
-        let input = DescribeRoleListRequest(page: page, rp: rp, tags: tags)
-        return try await self.client.execute(action: "DescribeRoleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRoleList(.init(page: page, rp: rp, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

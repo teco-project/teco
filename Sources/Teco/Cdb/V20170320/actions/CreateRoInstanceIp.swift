@@ -86,8 +86,7 @@ extension Cdb {
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
     public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoInstanceIpResponse> {
-        let input = CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId)
-        return self.client.execute(action: "CreateRoInstanceIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRoInstanceIp(.init(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云数据库只读实例的独立VIP
@@ -95,7 +94,6 @@ extension Cdb {
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
     public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
-        let input = CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId)
-        return try await self.client.execute(action: "CreateRoInstanceIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRoInstanceIp(.init(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 }

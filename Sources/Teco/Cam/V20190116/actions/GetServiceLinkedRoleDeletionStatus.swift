@@ -78,8 +78,7 @@ extension Cam {
     /// 根据删除TaskId获取服务相关角色删除状态
     @inlinable
     public func getServiceLinkedRoleDeletionStatus(deletionTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceLinkedRoleDeletionStatusResponse> {
-        let input = GetServiceLinkedRoleDeletionStatusRequest(deletionTaskId: deletionTaskId)
-        return self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getServiceLinkedRoleDeletionStatus(.init(deletionTaskId: deletionTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务相关角色删除状态
@@ -87,7 +86,6 @@ extension Cam {
     /// 根据删除TaskId获取服务相关角色删除状态
     @inlinable
     public func getServiceLinkedRoleDeletionStatus(deletionTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceLinkedRoleDeletionStatusResponse {
-        let input = GetServiceLinkedRoleDeletionStatusRequest(deletionTaskId: deletionTaskId)
-        return try await self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getServiceLinkedRoleDeletionStatus(.init(deletionTaskId: deletionTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

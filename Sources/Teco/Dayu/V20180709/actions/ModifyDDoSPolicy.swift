@@ -88,14 +88,12 @@ extension Dayu {
     /// 修改DDoS高级策略
     @inlinable
     public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
-        let input = ModifyDDoSPolicyRequest(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint)
-        return self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSPolicy(.init(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS高级策略
     @inlinable
     public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        let input = ModifyDDoSPolicyRequest(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint)
-        return try await self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSPolicy(.init(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -89,8 +89,7 @@ extension Cme {
     /// 资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable @discardableResult
     public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeResourceAuthorizationResponse> {
-        let input = RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`)
-        return self.client.execute(action: "RevokeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revokeResourceAuthorization(.init(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销资源授权
@@ -98,7 +97,6 @@ extension Cme {
     /// 资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable @discardableResult
     public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
-        let input = RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`)
-        return try await self.client.execute(action: "RevokeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revokeResourceAuthorization(.init(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

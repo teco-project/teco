@@ -70,8 +70,7 @@ extension Cbs {
     /// * 支持批量操作，当传入多个云服务器实例ID，返回结果会分别列出每个云服务器挂载的云硬盘数量。
     @inlinable
     public func describeInstancesDiskNum(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDiskNumResponse> {
-        let input = DescribeInstancesDiskNumRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeInstancesDiskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesDiskNum(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例关联的云硬盘数量
@@ -81,7 +80,6 @@ extension Cbs {
     /// * 支持批量操作，当传入多个云服务器实例ID，返回结果会分别列出每个云服务器挂载的云硬盘数量。
     @inlinable
     public func describeInstancesDiskNum(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDiskNumResponse {
-        let input = DescribeInstancesDiskNumRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeInstancesDiskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesDiskNum(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

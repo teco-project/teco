@@ -60,8 +60,7 @@ extension Cwp {
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
-        let input = DeleteMachineRequest(uuid: uuid)
-        return self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMachine(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载云镜客户端
@@ -69,7 +68,6 @@ extension Cwp {
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
-        let input = DeleteMachineRequest(uuid: uuid)
-        return try await self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMachine(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -97,8 +97,7 @@ extension Tke {
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
     public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeScriptResponse> {
-        let input = DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion)
-        return self.client.execute(action: "DescribeTKEEdgeScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTKEEdgeScript(.init(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘脚本链接
@@ -106,7 +105,6 @@ extension Tke {
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
     public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeScriptResponse {
-        let input = DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion)
-        return try await self.client.execute(action: "DescribeTKEEdgeScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTKEEdgeScript(.init(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), region: region, logger: logger, on: eventLoop)
     }
 }

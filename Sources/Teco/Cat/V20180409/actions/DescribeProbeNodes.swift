@@ -87,14 +87,12 @@ extension Cat {
     /// 查询拨测节点
     @inlinable
     public func describeProbeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeNodesResponse> {
-        let input = DescribeProbeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode)
-        return self.client.execute(action: "DescribeProbeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProbeNodes(.init(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询拨测节点
     @inlinable
     public func describeProbeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeNodesResponse {
-        let input = DescribeProbeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode)
-        return try await self.client.execute(action: "DescribeProbeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProbeNodes(.init(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Apcas {
     /// 按时间维度获取调用量统计
     @inlinable
     public func queryCallStat(type: UInt64, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallStatResponse> {
-        let input = QueryCallStatRequest(type: type, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "QueryCallStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryCallStat(.init(type: type, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取调用量统计
@@ -83,7 +82,6 @@ extension Apcas {
     /// 按时间维度获取调用量统计
     @inlinable
     public func queryCallStat(type: UInt64, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallStatResponse {
-        let input = QueryCallStatRequest(type: type, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "QueryCallStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryCallStat(.init(type: type, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

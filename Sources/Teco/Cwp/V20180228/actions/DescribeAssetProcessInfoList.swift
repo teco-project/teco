@@ -126,15 +126,13 @@ extension Cwp {
     /// 获取资产管理进程列表
     @inlinable
     public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessInfoListResponse> {
-        let input = DescribeAssetProcessInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeAssetProcessInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetProcessInfoList(.init(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理进程列表
     @inlinable
     public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
-        let input = DescribeAssetProcessInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeAssetProcessInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetProcessInfoList(.init(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理进程列表

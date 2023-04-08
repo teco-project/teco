@@ -59,14 +59,12 @@ extension Cls {
     /// 删除应用到机器组的采集配置
     @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
-        let input = DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId)
-        return self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteConfigFromMachineGroup(.init(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用到机器组的采集配置
     @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
-        let input = DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId)
-        return try await self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteConfigFromMachineGroup(.init(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

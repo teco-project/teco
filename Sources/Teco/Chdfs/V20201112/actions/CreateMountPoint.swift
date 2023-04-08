@@ -74,8 +74,7 @@ extension Chdfs {
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
-        let input = CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus)
-        return self.client.execute(action: "CreateMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMountPoint(.init(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建挂载点
@@ -83,7 +82,6 @@ extension Chdfs {
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
-        let input = CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus)
-        return try await self.client.execute(action: "CreateMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMountPoint(.init(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,14 +80,12 @@ extension Cwp {
     /// 查询批量导入机器信息
     @inlinable
     public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportMachineInfoResponse> {
-        let input = DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters)
-        return self.client.execute(action: "DescribeImportMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImportMachineInfo(.init(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询批量导入机器信息
     @inlinable
     public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
-        let input = DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters)
-        return try await self.client.execute(action: "DescribeImportMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImportMachineInfo(.init(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

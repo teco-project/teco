@@ -92,15 +92,13 @@ extension Tci {
     /// 拉取人员列表
     @inlinable
     public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonsResponse> {
-        let input = DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribePersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePersons(.init(libraryId: libraryId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取人员列表
     @inlinable
     public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
-        let input = DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribePersons", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePersons(.init(libraryId: libraryId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取人员列表

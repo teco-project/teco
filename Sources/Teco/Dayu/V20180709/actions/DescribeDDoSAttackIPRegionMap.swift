@@ -97,8 +97,7 @@ extension Dayu {
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
     public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackIPRegionMapResponse> {
-        let input = DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList)
-        return self.client.execute(action: "DescribeDDoSAttackIPRegionMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSAttackIPRegionMap(.init(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// DDoS攻击源IP地域分布图
@@ -106,7 +105,6 @@ extension Dayu {
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
     public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
-        let input = DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList)
-        return try await self.client.execute(action: "DescribeDDoSAttackIPRegionMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSAttackIPRegionMap(.init(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

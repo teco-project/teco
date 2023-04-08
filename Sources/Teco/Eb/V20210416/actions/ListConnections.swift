@@ -102,15 +102,13 @@ extension Eb {
     /// 获取事件连接器列表
     @inlinable
     public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListConnectionsResponse> {
-        let input = ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset)
-        return self.client.execute(action: "ListConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listConnections(.init(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件连接器列表
     @inlinable
     public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
-        let input = ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset)
-        return try await self.client.execute(action: "ListConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listConnections(.init(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件连接器列表

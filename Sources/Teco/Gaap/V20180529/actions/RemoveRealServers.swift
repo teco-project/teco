@@ -60,8 +60,7 @@ extension Gaap {
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable @discardableResult
     public func removeRealServers(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRealServersResponse> {
-        let input = RemoveRealServersRequest(realServerIds: realServerIds)
-        return self.client.execute(action: "RemoveRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeRealServers(.init(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除源站
@@ -69,7 +68,6 @@ extension Gaap {
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable @discardableResult
     public func removeRealServers(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
-        let input = RemoveRealServersRequest(realServerIds: realServerIds)
-        return try await self.client.execute(action: "RemoveRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeRealServers(.init(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 }

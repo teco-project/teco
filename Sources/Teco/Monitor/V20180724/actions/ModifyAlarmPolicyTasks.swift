@@ -70,8 +70,7 @@ extension Monitor {
     /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(module: String, policyId: String, triggerTasks: [AlarmPolicyTriggerTask]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyTasksResponse> {
-        let input = ModifyAlarmPolicyTasksRequest(module: module, policyId: policyId, triggerTasks: triggerTasks)
-        return self.client.execute(action: "ModifyAlarmPolicyTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAlarmPolicyTasks(.init(module: module, policyId: policyId, triggerTasks: triggerTasks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略的触发任务
@@ -79,7 +78,6 @@ extension Monitor {
     /// 云监控告警修改告警策略的触发任务，TriggerTasks字段放触发任务列表，TriggerTasks传空数组时，代表解绑该策略的所有触发任务。
     @inlinable @discardableResult
     public func modifyAlarmPolicyTasks(module: String, policyId: String, triggerTasks: [AlarmPolicyTriggerTask]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyTasksResponse {
-        let input = ModifyAlarmPolicyTasksRequest(module: module, policyId: policyId, triggerTasks: triggerTasks)
-        return try await self.client.execute(action: "ModifyAlarmPolicyTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAlarmPolicyTasks(.init(module: module, policyId: policyId, triggerTasks: triggerTasks), region: region, logger: logger, on: eventLoop)
     }
 }

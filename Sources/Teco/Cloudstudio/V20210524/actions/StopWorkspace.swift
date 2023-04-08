@@ -64,14 +64,12 @@ extension Cloudstudio {
     /// 停止运行空间
     @inlinable @discardableResult
     public func stopWorkspace(spaceKey: String, cloudStudioSessionTeam: String, force: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopWorkspaceResponse> {
-        let input = StopWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam, force: force)
-        return self.client.execute(action: "StopWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopWorkspace(.init(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止运行空间
     @inlinable @discardableResult
     public func stopWorkspace(spaceKey: String, cloudStudioSessionTeam: String, force: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWorkspaceResponse {
-        let input = StopWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam, force: force)
-        return try await self.client.execute(action: "StopWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopWorkspace(.init(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

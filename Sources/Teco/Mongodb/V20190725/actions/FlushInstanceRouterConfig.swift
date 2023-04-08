@@ -60,8 +60,7 @@ extension Mongodb {
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable @discardableResult
     public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
-        let input = FlushInstanceRouterConfigRequest(instanceId: instanceId)
-        return self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.flushInstanceRouterConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新路由配置
@@ -69,7 +68,6 @@ extension Mongodb {
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable @discardableResult
     public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
-        let input = FlushInstanceRouterConfigRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.flushInstanceRouterConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

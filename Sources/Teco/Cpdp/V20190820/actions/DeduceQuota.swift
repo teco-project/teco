@@ -77,14 +77,12 @@ extension Cpdp {
     /// 直播平台-扣减额度
     @inlinable
     public func deduceQuota(anchorId: String, amount: Int64, orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeduceQuotaResponse> {
-        let input = DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId)
-        return self.client.execute(action: "DeduceQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deduceQuota(.init(anchorId: anchorId, amount: amount, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-扣减额度
     @inlinable
     public func deduceQuota(anchorId: String, amount: Int64, orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
-        let input = DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId)
-        return try await self.client.execute(action: "DeduceQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deduceQuota(.init(anchorId: anchorId, amount: amount, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

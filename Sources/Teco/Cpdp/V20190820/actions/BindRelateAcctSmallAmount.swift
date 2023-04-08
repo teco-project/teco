@@ -146,8 +146,7 @@ extension Cpdp {
     /// 来账鉴权：该接口发起成功后，银行以短信通知客户查看，客户查看后，需通过待绑定的账户往市场的监管账户转入短信上指定的金额。银行检索到该笔指定金额的来账是源自待绑定账户，则绑定成功。平安银行的账户，即BankType送1时，大小额行号和超级网银号都不用送。
     @inlinable
     public func bindRelateAcctSmallAmount(mrchCode: String, tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAcctSmallAmountResponse> {
-        let input = BindRelateAcctSmallAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile)
-        return self.client.execute(action: "BindRelateAcctSmallAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindRelateAcctSmallAmount(.init(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员绑定提现账户-小额鉴权
@@ -158,7 +157,6 @@ extension Cpdp {
     /// 来账鉴权：该接口发起成功后，银行以短信通知客户查看，客户查看后，需通过待绑定的账户往市场的监管账户转入短信上指定的金额。银行检索到该笔指定金额的来账是源自待绑定账户，则绑定成功。平安银行的账户，即BankType送1时，大小额行号和超级网银号都不用送。
     @inlinable
     public func bindRelateAcctSmallAmount(mrchCode: String, tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctSmallAmountResponse {
-        let input = BindRelateAcctSmallAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile)
-        return try await self.client.execute(action: "BindRelateAcctSmallAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindRelateAcctSmallAmount(.init(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

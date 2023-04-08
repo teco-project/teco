@@ -123,8 +123,7 @@ extension Cr {
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
     @inlinable
     public func describeRecords(module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordsResponse> {
-        let input = DescribeRecordsRequest(module: module, operation: operation, productId: productId, accountNum: accountNum, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate, offset: offset, limit: limit, instId: instId)
-        return self.client.execute(action: "DescribeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecords(.init(module: module, operation: operation, productId: productId, accountNum: accountNum, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate, offset: offset, limit: limit, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 录音查询（接口）
@@ -132,7 +131,6 @@ extension Cr {
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
     @inlinable
     public func describeRecords(module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordsResponse {
-        let input = DescribeRecordsRequest(module: module, operation: operation, productId: productId, accountNum: accountNum, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate, offset: offset, limit: limit, instId: instId)
-        return try await self.client.execute(action: "DescribeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecords(.init(module: module, operation: operation, productId: productId, accountNum: accountNum, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate, offset: offset, limit: limit, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,14 +79,12 @@ extension Es {
     /// 变更插件列表
     @inlinable @discardableResult
     public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
-        let input = UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType)
-        return self.client.execute(action: "UpdatePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updatePlugins(.init(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 变更插件列表
     @inlinable @discardableResult
     public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
-        let input = UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType)
-        return try await self.client.execute(action: "UpdatePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updatePlugins(.init(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), region: region, logger: logger, on: eventLoop)
     }
 }

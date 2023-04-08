@@ -85,8 +85,7 @@ extension Tke {
     /// 修改prometheus配置，如果配置项不存在，则会新增
     @inlinable @discardableResult
     public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusConfigResponse> {
-        let input = ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
-        return self.client.execute(action: "ModifyPrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrometheusConfig(.init(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改prometheus配置
@@ -94,7 +93,6 @@ extension Tke {
     /// 修改prometheus配置，如果配置项不存在，则会新增
     @inlinable @discardableResult
     public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
-        let input = ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
-        return try await self.client.execute(action: "ModifyPrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrometheusConfig(.init(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 }

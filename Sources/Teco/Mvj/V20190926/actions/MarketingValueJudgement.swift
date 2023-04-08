@@ -95,8 +95,7 @@ extension Mvj {
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
-        let input = MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer)
-        return self.client.execute(action: "MarketingValueJudgement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.marketingValueJudgement(.init(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), region: region, logger: logger, on: eventLoop)
     }
 
     /// 营销价值判断
@@ -106,7 +105,6 @@ extension Mvj {
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
-        let input = MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer)
-        return try await self.client.execute(action: "MarketingValueJudgement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.marketingValueJudgement(.init(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), region: region, logger: logger, on: eventLoop)
     }
 }

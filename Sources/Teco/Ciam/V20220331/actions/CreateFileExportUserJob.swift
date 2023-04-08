@@ -79,14 +79,12 @@ extension Ciam {
     /// 新建文件导出用户任务
     @inlinable
     public func createFileExportUserJob(userStoreId: String, format: String? = nil, filters: [Filter]? = nil, exportPropertyMaps: [ExportPropertyMap]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileExportUserJobResponse> {
-        let input = CreateFileExportUserJobRequest(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps)
-        return self.client.execute(action: "CreateFileExportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFileExportUserJob(.init(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建文件导出用户任务
     @inlinable
     public func createFileExportUserJob(userStoreId: String, format: String? = nil, filters: [Filter]? = nil, exportPropertyMaps: [ExportPropertyMap]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {
-        let input = CreateFileExportUserJobRequest(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps)
-        return try await self.client.execute(action: "CreateFileExportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFileExportUserJob(.init(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps), region: region, logger: logger, on: eventLoop)
     }
 }

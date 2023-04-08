@@ -94,8 +94,7 @@ extension Fmu {
     /// 查询已注册的唇色素材。
     @inlinable
     public func getModelList(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetModelListResponse> {
-        let input = GetModelListRequest(offset: offset, limit: limit)
-        return self.client.execute(action: "GetModelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getModelList(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询唇色素材
@@ -103,8 +102,7 @@ extension Fmu {
     /// 查询已注册的唇色素材。
     @inlinable
     public func getModelList(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetModelListResponse {
-        let input = GetModelListRequest(offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetModelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getModelList(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询唇色素材

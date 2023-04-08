@@ -113,8 +113,7 @@ extension Ecc {
     /// 纯文本英语作文批改
     @inlinable
     public func ecc(content: String, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, eccAppid: String? = nil, isAsync: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ECCResponse> {
-        let input = ECCRequest(content: content, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, eccAppid: eccAppid, isAsync: isAsync, sessionId: sessionId)
-        return self.client.execute(action: "ECC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.ecc(.init(content: content, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, eccAppid: eccAppid, isAsync: isAsync, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 纯文本英语作文批改
@@ -123,7 +122,6 @@ extension Ecc {
     /// 纯文本英语作文批改
     @inlinable
     public func ecc(content: String, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, eccAppid: String? = nil, isAsync: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ECCResponse {
-        let input = ECCRequest(content: content, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, eccAppid: eccAppid, isAsync: isAsync, sessionId: sessionId)
-        return try await self.client.execute(action: "ECC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.ecc(.init(content: content, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, eccAppid: eccAppid, isAsync: isAsync, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

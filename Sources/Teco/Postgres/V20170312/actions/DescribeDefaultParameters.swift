@@ -74,8 +74,7 @@ extension Postgres {
     /// 本接口（DescribeDefaultParameters）主要用于查询某个数据库版本和引擎支持的所有参数。
     @inlinable
     public func describeDefaultParameters(dbMajorVersion: String, dbEngine: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultParametersResponse> {
-        let input = DescribeDefaultParametersRequest(dbMajorVersion: dbMajorVersion, dbEngine: dbEngine)
-        return self.client.execute(action: "DescribeDefaultParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDefaultParameters(.init(dbMajorVersion: dbMajorVersion, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询默认参数列表
@@ -83,7 +82,6 @@ extension Postgres {
     /// 本接口（DescribeDefaultParameters）主要用于查询某个数据库版本和引擎支持的所有参数。
     @inlinable
     public func describeDefaultParameters(dbMajorVersion: String, dbEngine: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParametersResponse {
-        let input = DescribeDefaultParametersRequest(dbMajorVersion: dbMajorVersion, dbEngine: dbEngine)
-        return try await self.client.execute(action: "DescribeDefaultParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDefaultParameters(.init(dbMajorVersion: dbMajorVersion, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,8 +79,7 @@ extension Dcdb {
     /// 本接口（ModifyInstanceVip）用于修改实例Vip
     @inlinable
     public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVipResponse> {
-        let input = ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay)
-        return self.client.execute(action: "ModifyInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceVip(.init(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例Vip
@@ -88,7 +87,6 @@ extension Dcdb {
     /// 本接口（ModifyInstanceVip）用于修改实例Vip
     @inlinable
     public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
-        let input = ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay)
-        return try await self.client.execute(action: "ModifyInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceVip(.init(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 }

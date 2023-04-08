@@ -107,15 +107,13 @@ extension Ccc {
     /// 获取技能组信息列表
     @inlinable
     public func describeSkillGroupInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64? = nil, modifiedTime: Int64? = nil, skillGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSkillGroupInfoListResponse> {
-        let input = DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName)
-        return self.client.execute(action: "DescribeSkillGroupInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSkillGroupInfoList(.init(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取技能组信息列表
     @inlinable
     public func describeSkillGroupInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64? = nil, modifiedTime: Int64? = nil, skillGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSkillGroupInfoListResponse {
-        let input = DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName)
-        return try await self.client.execute(action: "DescribeSkillGroupInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSkillGroupInfoList(.init(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取技能组信息列表

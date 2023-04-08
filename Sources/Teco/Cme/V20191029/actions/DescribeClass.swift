@@ -74,8 +74,7 @@ extension Cme {
     /// 获取指定归属者下所有的分类信息。
     @inlinable
     public func describeClass(platform: String, owner: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassResponse> {
-        let input = DescribeClassRequest(platform: platform, owner: owner, operator: `operator`)
-        return self.client.execute(action: "DescribeClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClass(.init(platform: platform, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分类列表
@@ -83,7 +82,6 @@ extension Cme {
     /// 获取指定归属者下所有的分类信息。
     @inlinable
     public func describeClass(platform: String, owner: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassResponse {
-        let input = DescribeClassRequest(platform: platform, owner: owner, operator: `operator`)
-        return try await self.client.execute(action: "DescribeClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClass(.init(platform: platform, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

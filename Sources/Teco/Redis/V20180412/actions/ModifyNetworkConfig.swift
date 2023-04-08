@@ -95,14 +95,12 @@ extension Redis {
     /// 修改实例网络配置
     @inlinable
     public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
-        let input = ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle)
-        return self.client.execute(action: "ModifyNetworkConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNetworkConfig(.init(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络配置
     @inlinable
     public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
-        let input = ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle)
-        return try await self.client.execute(action: "ModifyNetworkConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNetworkConfig(.init(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), region: region, logger: logger, on: eventLoop)
     }
 }

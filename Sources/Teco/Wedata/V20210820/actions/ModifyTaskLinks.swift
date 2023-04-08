@@ -93,8 +93,7 @@ extension Wedata {
     /// 添加父任务依赖
     @inlinable
     public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
-        let input = ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType)
-        return self.client.execute(action: "ModifyTaskLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTaskLinks(.init(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加父任务依赖【Beta版本】
@@ -103,7 +102,6 @@ extension Wedata {
     /// 添加父任务依赖
     @inlinable
     public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
-        let input = ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType)
-        return try await self.client.execute(action: "ModifyTaskLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTaskLinks(.init(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), region: region, logger: logger, on: eventLoop)
     }
 }

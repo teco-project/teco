@@ -95,8 +95,7 @@ extension Vod {
     /// 用于提取溯源水印。
     @inlinable
     public func extractTraceWatermark(url: String, fileId: String? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
-        let input = ExtractTraceWatermarkRequest(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo)
-        return self.client.execute(action: "ExtractTraceWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.extractTraceWatermark(.init(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提取溯源水印
@@ -104,7 +103,6 @@ extension Vod {
     /// 用于提取溯源水印。
     @inlinable
     public func extractTraceWatermark(url: String, fileId: String? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
-        let input = ExtractTraceWatermarkRequest(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo)
-        return try await self.client.execute(action: "ExtractTraceWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.extractTraceWatermark(.init(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

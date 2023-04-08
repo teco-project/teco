@@ -58,14 +58,12 @@ extension Tsf {
     /// 删除模板
     @inlinable
     public func deleteConfigTemplate(configTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigTemplateResponse> {
-        let input = DeleteConfigTemplateRequest(configTemplateId: configTemplateId)
-        return self.client.execute(action: "DeleteConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteConfigTemplate(.init(configTemplateId: configTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模板
     @inlinable
     public func deleteConfigTemplate(configTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigTemplateResponse {
-        let input = DeleteConfigTemplateRequest(configTemplateId: configTemplateId)
-        return try await self.client.execute(action: "DeleteConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteConfigTemplate(.init(configTemplateId: configTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

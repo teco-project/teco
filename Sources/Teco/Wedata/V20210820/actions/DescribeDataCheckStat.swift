@@ -74,8 +74,7 @@ extension Wedata {
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
     public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataCheckStatResponse> {
-        let input = DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
-        return self.client.execute(action: "DescribeDataCheckStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataCheckStat(.init(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据质量数据监测情况接口
@@ -83,7 +82,6 @@ extension Wedata {
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
     public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
-        let input = DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeDataCheckStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataCheckStat(.init(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

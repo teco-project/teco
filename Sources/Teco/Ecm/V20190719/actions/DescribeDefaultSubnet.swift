@@ -63,14 +63,12 @@ extension Ecm {
     /// 查询可用区的默认子网
     @inlinable
     public func describeDefaultSubnet(ecmRegion: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultSubnetResponse> {
-        let input = DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone)
-        return self.client.execute(action: "DescribeDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDefaultSubnet(.init(ecmRegion: ecmRegion, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可用区的默认子网
     @inlinable
     public func describeDefaultSubnet(ecmRegion: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
-        let input = DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone)
-        return try await self.client.execute(action: "DescribeDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDefaultSubnet(.init(ecmRegion: ecmRegion, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

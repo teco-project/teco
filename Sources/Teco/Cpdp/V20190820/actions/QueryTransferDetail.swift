@@ -199,8 +199,7 @@ extension Cpdp {
     /// 通过商家或者微信批次明细单号查询明细单
     @inlinable
     public func queryTransferDetail(merchantId: String, merchantBatchNo: String? = nil, merchantDetailNo: String? = nil, batchId: String? = nil, detailId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferDetailResponse> {
-        let input = QueryTransferDetailRequest(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile)
-        return self.client.execute(action: "QueryTransferDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryTransferDetail(.init(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧薪酬-通过明细单号查询批明细单
@@ -208,7 +207,6 @@ extension Cpdp {
     /// 通过商家或者微信批次明细单号查询明细单
     @inlinable
     public func queryTransferDetail(merchantId: String, merchantBatchNo: String? = nil, merchantDetailNo: String? = nil, batchId: String? = nil, detailId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferDetailResponse {
-        let input = QueryTransferDetailRequest(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile)
-        return try await self.client.execute(action: "QueryTransferDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryTransferDetail(.init(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

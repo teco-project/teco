@@ -119,8 +119,7 @@ extension Clb {
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
     @inlinable
     public func describeLoadBalancersDetail(limit: UInt64? = nil, offset: UInt64? = nil, fields: [String]? = nil, targetType: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersDetailResponse> {
-        let input = DescribeLoadBalancersDetailRequest(limit: limit, offset: offset, fields: fields, targetType: targetType, filters: filters)
-        return self.client.execute(action: "DescribeLoadBalancersDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoadBalancersDetail(.init(limit: limit, offset: offset, fields: fields, targetType: targetType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡详细信息
@@ -128,8 +127,7 @@ extension Clb {
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
     @inlinable
     public func describeLoadBalancersDetail(limit: UInt64? = nil, offset: UInt64? = nil, fields: [String]? = nil, targetType: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersDetailResponse {
-        let input = DescribeLoadBalancersDetailRequest(limit: limit, offset: offset, fields: fields, targetType: targetType, filters: filters)
-        return try await self.client.execute(action: "DescribeLoadBalancersDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoadBalancersDetail(.init(limit: limit, offset: offset, fields: fields, targetType: targetType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡详细信息

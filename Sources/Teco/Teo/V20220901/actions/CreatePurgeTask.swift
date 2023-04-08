@@ -94,14 +94,12 @@ extension Teo {
     /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
-        let input = CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl)
-        return self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPurgeTask(.init(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
-        let input = CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl)
-        return try await self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPurgeTask(.init(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)
     }
 }

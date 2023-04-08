@@ -64,14 +64,12 @@ extension Pts {
     /// 删除项目
     @inlinable @discardableResult
     public func deleteProjects(projectIds: [String], deleteScenarios: Bool? = nil, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectsResponse> {
-        let input = DeleteProjectsRequest(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs)
-        return self.client.execute(action: "DeleteProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteProjects(.init(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除项目
     @inlinable @discardableResult
     public func deleteProjects(projectIds: [String], deleteScenarios: Bool? = nil, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectsResponse {
-        let input = DeleteProjectsRequest(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs)
-        return try await self.client.execute(action: "DeleteProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteProjects(.init(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }
 }

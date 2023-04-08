@@ -99,8 +99,7 @@ extension Gaap {
     /// 本接口（CreateProxyGroup）用于创建通道组。
     @inlinable
     public func createProxyGroup(projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]? = nil, accessRegionSet: [AccessConfiguration]? = nil, ipAddressVersion: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupResponse> {
-        let input = CreateProxyGroupRequest(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported)
-        return self.client.execute(action: "CreateProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProxyGroup(.init(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通道组
@@ -108,7 +107,6 @@ extension Gaap {
     /// 本接口（CreateProxyGroup）用于创建通道组。
     @inlinable
     public func createProxyGroup(projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]? = nil, accessRegionSet: [AccessConfiguration]? = nil, ipAddressVersion: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupResponse {
-        let input = CreateProxyGroupRequest(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported)
-        return try await self.client.execute(action: "CreateProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProxyGroup(.init(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 }

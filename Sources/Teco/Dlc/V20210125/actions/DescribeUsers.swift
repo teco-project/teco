@@ -107,15 +107,13 @@ extension Dlc {
     /// 获取用户列表信息
     @inlinable
     public func describeUsers(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        let input = DescribeUsersRequest(userId: userId, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting, filters: filters)
-        return self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUsers(.init(userId: userId, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息
     @inlinable
     public func describeUsers(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        let input = DescribeUsersRequest(userId: userId, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting, filters: filters)
-        return try await self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUsers(.init(userId: userId, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息

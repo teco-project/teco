@@ -50,14 +50,12 @@ extension Dnspod {
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
-        let input = DescribeUserDetailRequest()
-        return self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserDetail(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
-        let input = DescribeUserDetailRequest()
-        return try await self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserDetail(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

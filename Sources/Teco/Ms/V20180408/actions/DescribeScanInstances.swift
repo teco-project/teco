@@ -116,8 +116,7 @@ extension Ms {
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
     @inlinable
     public func describeScanInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanInstancesResponse> {
-        let input = DescribeScanInstancesRequest(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanInstances(.init(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫描列表
@@ -126,8 +125,7 @@ extension Ms {
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
     @inlinable
     public func describeScanInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanInstancesResponse {
-        let input = DescribeScanInstancesRequest(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanInstances(.init(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫描列表

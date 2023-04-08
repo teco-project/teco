@@ -74,8 +74,7 @@ extension Cbs {
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult
     public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, diskIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
-        let input = BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds)
-        return self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定定期快照策略
@@ -86,7 +85,6 @@ extension Cbs {
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult
     public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, diskIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        let input = BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds)
-        return try await self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

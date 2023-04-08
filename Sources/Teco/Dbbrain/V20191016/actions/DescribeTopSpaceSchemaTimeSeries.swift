@@ -98,8 +98,7 @@ extension Dbbrain {
     /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
     public func describeTopSpaceSchemaTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceSchemaTimeSeriesResponse> {
-        let input = DescribeTopSpaceSchemaTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product)
-        return self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopSpaceSchemaTimeSeries(.init(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Top库在指定时间段内的每日空间统计信息
@@ -107,7 +106,6 @@ extension Dbbrain {
     /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
     public func describeTopSpaceSchemaTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemaTimeSeriesResponse {
-        let input = DescribeTopSpaceSchemaTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product)
-        return try await self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopSpaceSchemaTimeSeries(.init(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

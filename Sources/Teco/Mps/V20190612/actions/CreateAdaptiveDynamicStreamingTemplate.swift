@@ -98,8 +98,7 @@ extension Mps {
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
     public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], name: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAdaptiveDynamicStreamingTemplateResponse> {
-        let input = CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, name: name, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment)
-        return self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAdaptiveDynamicStreamingTemplate(.init(format: format, streamInfos: streamInfos, name: name, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转自适应码流模板
@@ -107,7 +106,6 @@ extension Mps {
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
     public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], name: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
-        let input = CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, name: name, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment)
-        return try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAdaptiveDynamicStreamingTemplate(.init(format: format, streamInfos: streamInfos, name: name, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Ie {
     /// 删除正在进行的画质重生任务
     @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
-        let input = StopMediaQualityRestorationTaskRequest(taskId: taskId)
-        return self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopMediaQualityRestorationTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除画质重生任务
@@ -69,7 +68,6 @@ extension Ie {
     /// 删除正在进行的画质重生任务
     @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
-        let input = StopMediaQualityRestorationTaskRequest(taskId: taskId)
-        return try await self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopMediaQualityRestorationTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

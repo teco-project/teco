@@ -64,8 +64,7 @@ extension Iottid {
     /// 查询企业用户TID平台控制台权限
     @inlinable
     public func describePermission(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePermissionResponse> {
-        let input = DescribePermissionRequest()
-        return self.client.execute(action: "DescribePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePermission(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询权限
@@ -73,7 +72,6 @@ extension Iottid {
     /// 查询企业用户TID平台控制台权限
     @inlinable
     public func describePermission(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
-        let input = DescribePermissionRequest()
-        return try await self.client.execute(action: "DescribePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePermission(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

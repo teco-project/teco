@@ -60,8 +60,7 @@ extension Cwp {
     /// 网站防篡改-查询动态防护信息
     @inlinable
     public func describeWebPageProtectStat(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageProtectStatResponse> {
-        let input = DescribeWebPageProtectStatRequest()
-        return self.client.execute(action: "DescribeWebPageProtectStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWebPageProtectStat(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网页防篡改防护统计
@@ -69,7 +68,6 @@ extension Cwp {
     /// 网站防篡改-查询动态防护信息
     @inlinable
     public func describeWebPageProtectStat(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
-        let input = DescribeWebPageProtectStatRequest()
-        return try await self.client.execute(action: "DescribeWebPageProtectStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWebPageProtectStat(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

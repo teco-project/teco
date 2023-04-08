@@ -90,8 +90,7 @@ extension Vpc {
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable @discardableResult
     public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
-        let input = AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone)
-        return self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateNatGatewayAddress(.init(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定弹性IP
@@ -99,7 +98,6 @@ extension Vpc {
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable @discardableResult
     public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
-        let input = AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone)
-        return try await self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateNatGatewayAddress(.init(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 }

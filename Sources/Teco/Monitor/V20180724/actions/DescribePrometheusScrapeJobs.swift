@@ -108,15 +108,13 @@ extension Monitor {
     /// 列出 Prometheus 抓取任务
     @inlinable
     public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusScrapeJobsResponse> {
-        let input = DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusScrapeJobs(.init(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 抓取任务
     @inlinable
     public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusScrapeJobsResponse {
-        let input = DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusScrapeJobs(.init(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 抓取任务

@@ -72,8 +72,7 @@ extension Tav {
     /// 获取TAV本地引擎
     @inlinable
     public func getLocalEngine(key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLocalEngineResponse> {
-        let input = GetLocalEngineRequest(key: key)
-        return self.client.execute(action: "GetLocalEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getLocalEngine(.init(key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 本地引擎下载地址获取
@@ -81,7 +80,6 @@ extension Tav {
     /// 获取TAV本地引擎
     @inlinable
     public func getLocalEngine(key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
-        let input = GetLocalEngineRequest(key: key)
-        return try await self.client.execute(action: "GetLocalEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getLocalEngine(.init(key: key), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -97,15 +97,13 @@ extension Iecp {
     /// 获取组件市场组件列表
     @inlinable
     public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMarketComponentListResponse> {
-        let input = GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order)
-        return self.client.execute(action: "GetMarketComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getMarketComponentList(.init(offset: offset, limit: limit, filter: filter, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件市场组件列表
     @inlinable
     public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
-        let input = GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order)
-        return try await self.client.execute(action: "GetMarketComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getMarketComponentList(.init(offset: offset, limit: limit, filter: filter, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件市场组件列表

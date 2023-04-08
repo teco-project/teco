@@ -95,8 +95,7 @@ extension Ckafka {
     /// 枚举地域,只支持广州地域
     @inlinable
     public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
-        let input = DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId)
-        return self.client.execute(action: "DescribeRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRegion(.init(offset: offset, limit: limit, business: business, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举地域
@@ -104,8 +103,7 @@ extension Ckafka {
     /// 枚举地域,只支持广州地域
     @inlinable
     public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
-        let input = DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId)
-        return try await self.client.execute(action: "DescribeRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRegion(.init(offset: offset, limit: limit, business: business, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举地域

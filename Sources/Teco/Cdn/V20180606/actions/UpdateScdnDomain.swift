@@ -89,8 +89,7 @@ extension Cdn {
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
     public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
-        let input = UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot)
-        return self.client.execute(action: "UpdateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateScdnDomain(.init(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新SCDN域名配置
@@ -98,7 +97,6 @@ extension Cdn {
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
     public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
-        let input = UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot)
-        return try await self.client.execute(action: "UpdateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateScdnDomain(.init(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Gaap {
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
     @inlinable
     public func closeProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProxyGroupResponse> {
-        let input = CloseProxyGroupRequest(groupId: groupId)
-        return self.client.execute(action: "CloseProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeProxyGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭通道组
@@ -77,7 +76,6 @@ extension Gaap {
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
     @inlinable
     public func closeProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxyGroupResponse {
-        let input = CloseProxyGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "CloseProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeProxyGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

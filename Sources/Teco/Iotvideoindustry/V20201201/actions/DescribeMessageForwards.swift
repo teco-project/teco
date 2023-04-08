@@ -89,15 +89,13 @@ extension Iotvideoindustry {
     /// 查看消息转发配置列表
     @inlinable
     public func describeMessageForwards(limit: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardsResponse> {
-        let input = DescribeMessageForwardsRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeMessageForwards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMessageForwards(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看消息转发配置列表
     @inlinable
     public func describeMessageForwards(limit: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardsResponse {
-        let input = DescribeMessageForwardsRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeMessageForwards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMessageForwards(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看消息转发配置列表

@@ -70,8 +70,7 @@ extension Vpc {
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
     @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
-        let input = ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription)
-        return self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySecurityGroupAttribute(.init(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组属性
@@ -79,7 +78,6 @@ extension Vpc {
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
     @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
-        let input = ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription)
-        return try await self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySecurityGroupAttribute(.init(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }
 }

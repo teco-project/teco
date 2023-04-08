@@ -59,14 +59,12 @@ extension Tke {
     /// 查询全局告警通知渠道
     @inlinable
     public func describePrometheusGlobalNotification(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalNotificationResponse> {
-        let input = DescribePrometheusGlobalNotificationRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribePrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusGlobalNotification(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全局告警通知渠道
     @inlinable
     public func describePrometheusGlobalNotification(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalNotificationResponse {
-        let input = DescribePrometheusGlobalNotificationRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribePrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusGlobalNotification(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

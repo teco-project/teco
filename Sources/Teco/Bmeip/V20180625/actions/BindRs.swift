@@ -63,14 +63,12 @@ extension Bmeip {
     /// 绑定黑石EIP
     @inlinable
     public func bindRs(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRsResponse> {
-        let input = BindRsRequest(eipId: eipId, instanceId: instanceId)
-        return self.client.execute(action: "BindRs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindRs(.init(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定黑石EIP
     @inlinable
     public func bindRs(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRsResponse {
-        let input = BindRsRequest(eipId: eipId, instanceId: instanceId)
-        return try await self.client.execute(action: "BindRs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindRs(.init(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

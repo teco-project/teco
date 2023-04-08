@@ -103,8 +103,7 @@ extension Vpc {
     /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
     @inlinable
     public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBandwidthPackageResponse> {
-        let input = CreateBandwidthPackageRequest(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`)
-        return self.client.execute(action: "CreateBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建共享带宽包
@@ -112,7 +111,6 @@ extension Vpc {
     /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
     @inlinable
     public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBandwidthPackageResponse {
-        let input = CreateBandwidthPackageRequest(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`)
-        return try await self.client.execute(action: "CreateBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

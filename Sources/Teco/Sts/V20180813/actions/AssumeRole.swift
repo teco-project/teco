@@ -106,14 +106,12 @@ extension Sts {
     /// 申请扮演角色
     @inlinable
     public func assumeRole(roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, policy: String? = nil, externalId: String? = nil, tags: [Tag]? = nil, sourceIdentity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleResponse> {
-        let input = AssumeRoleRequest(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity)
-        return self.client.execute(action: "AssumeRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.assumeRole(.init(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请扮演角色
     @inlinable
     public func assumeRole(roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, policy: String? = nil, externalId: String? = nil, tags: [Tag]? = nil, sourceIdentity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {
-        let input = AssumeRoleRequest(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity)
-        return try await self.client.execute(action: "AssumeRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.assumeRole(.init(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity), region: region, logger: logger, on: eventLoop)
     }
 }

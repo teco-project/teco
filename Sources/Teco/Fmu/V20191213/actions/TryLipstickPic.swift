@@ -110,8 +110,7 @@ extension Fmu {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(lipColorInfos: [LipColorInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TryLipstickPicResponse> {
-        let input = TryLipstickPicRequest(lipColorInfos: lipColorInfos, image: image, url: url, rspImgType: rspImgType)
-        return self.client.execute(action: "TryLipstickPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.tryLipstickPic(.init(lipColorInfos: lipColorInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 试唇色
@@ -126,7 +125,6 @@ extension Fmu {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(lipColorInfos: [LipColorInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TryLipstickPicResponse {
-        let input = TryLipstickPicRequest(lipColorInfos: lipColorInfos, image: image, url: url, rspImgType: rspImgType)
-        return try await self.client.execute(action: "TryLipstickPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.tryLipstickPic(.init(lipColorInfos: lipColorInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

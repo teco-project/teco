@@ -58,14 +58,12 @@ extension Tcss {
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchExportListResponse> {
-        let input = DescribeSearchExportListRequest(query: query)
-        return self.client.execute(action: "DescribeSearchExportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSearchExportList(.init(query: query), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {
-        let input = DescribeSearchExportListRequest(query: query)
-        return try await self.client.execute(action: "DescribeSearchExportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSearchExportList(.init(query: query), region: region, logger: logger, on: eventLoop)
     }
 }

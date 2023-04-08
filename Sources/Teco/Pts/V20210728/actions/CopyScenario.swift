@@ -63,14 +63,12 @@ extension Pts {
     /// 复制场景
     @inlinable
     public func copyScenario(projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyScenarioResponse> {
-        let input = CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId)
-        return self.client.execute(action: "CopyScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copyScenario(.init(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制场景
     @inlinable
     public func copyScenario(projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
-        let input = CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId)
-        return try await self.client.execute(action: "CopyScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copyScenario(.init(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 }

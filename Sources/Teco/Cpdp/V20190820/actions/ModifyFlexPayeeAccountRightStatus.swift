@@ -90,14 +90,12 @@ extension Cpdp {
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
     public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexPayeeAccountRightStatusResponse> {
-        let input = ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment)
-        return self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyFlexPayeeAccountRightStatus(.init(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
     public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
-        let input = ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment)
-        return try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyFlexPayeeAccountRightStatus(.init(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

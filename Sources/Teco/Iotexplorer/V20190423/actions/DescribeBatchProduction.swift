@@ -89,8 +89,7 @@ extension Iotexplorer {
     /// 获取量产详情信息。
     @inlinable
     public func describeBatchProduction(productId: String, batchProductionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchProductionResponse> {
-        let input = DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId)
-        return self.client.execute(action: "DescribeBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBatchProduction(.init(productId: productId, batchProductionId: batchProductionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取量产详情
@@ -98,7 +97,6 @@ extension Iotexplorer {
     /// 获取量产详情信息。
     @inlinable
     public func describeBatchProduction(productId: String, batchProductionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
-        let input = DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId)
-        return try await self.client.execute(action: "DescribeBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBatchProduction(.init(productId: productId, batchProductionId: batchProductionId), region: region, logger: logger, on: eventLoop)
     }
 }

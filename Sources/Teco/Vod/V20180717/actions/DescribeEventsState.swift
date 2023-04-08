@@ -64,8 +64,7 @@ extension Vod {
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
     public func describeEventsState(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventsStateResponse> {
-        let input = DescribeEventsStateRequest(subAppId: subAppId)
-        return self.client.execute(action: "DescribeEventsState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEventsState(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件通知状态
@@ -73,7 +72,6 @@ extension Vod {
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
     public func describeEventsState(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsStateResponse {
-        let input = DescribeEventsStateRequest(subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeEventsState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEventsState(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

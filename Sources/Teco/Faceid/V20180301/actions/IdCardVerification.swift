@@ -88,8 +88,7 @@ extension Faceid {
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
     public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardVerificationResponse> {
-        let input = IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption)
-        return self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.idCardVerification(.init(idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份信息认证
@@ -97,7 +96,6 @@ extension Faceid {
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
     public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
-        let input = IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption)
-        return try await self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.idCardVerification(.init(idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

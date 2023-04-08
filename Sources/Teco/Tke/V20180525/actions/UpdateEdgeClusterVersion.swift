@@ -75,8 +75,7 @@ extension Tke {
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable @discardableResult
     public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEdgeClusterVersionResponse> {
-        let input = UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck)
-        return self.client.execute(action: "UpdateEdgeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateEdgeClusterVersion(.init(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级边缘集群
@@ -84,7 +83,6 @@ extension Tke {
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable @discardableResult
     public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
-        let input = UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck)
-        return try await self.client.execute(action: "UpdateEdgeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateEdgeClusterVersion(.init(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }
 }

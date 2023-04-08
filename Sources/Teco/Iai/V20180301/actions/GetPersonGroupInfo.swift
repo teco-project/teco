@@ -104,8 +104,7 @@ extension Iai {
     /// 获取指定人员的信息，包括加入的人员库、描述内容等。
     @inlinable
     public func getPersonGroupInfo(personId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonGroupInfoResponse> {
-        let input = GetPersonGroupInfoRequest(personId: personId, offset: offset, limit: limit)
-        return self.client.execute(action: "GetPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getPersonGroupInfo(.init(personId: personId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员归属信息
@@ -113,8 +112,7 @@ extension Iai {
     /// 获取指定人员的信息，包括加入的人员库、描述内容等。
     @inlinable
     public func getPersonGroupInfo(personId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonGroupInfoResponse {
-        let input = GetPersonGroupInfoRequest(personId: personId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getPersonGroupInfo(.init(personId: personId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员归属信息

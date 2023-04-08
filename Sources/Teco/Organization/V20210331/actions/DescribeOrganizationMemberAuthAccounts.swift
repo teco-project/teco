@@ -99,15 +99,13 @@ extension Organization {
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
     public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthAccountsResponse> {
-        let input = DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId)
-        return self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganizationMemberAuthAccounts(.init(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
     public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
-        let input = DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId)
-        return try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganizationMemberAuthAccounts(.init(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员被绑定授权关系的子账号列表

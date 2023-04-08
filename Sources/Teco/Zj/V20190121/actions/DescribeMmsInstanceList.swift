@@ -98,15 +98,13 @@ extension Zj {
     /// 获取彩信实例列表
     @inlinable
     public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceListResponse> {
-        let input = DescribeMmsInstanceListRequest(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title)
-        return self.client.execute(action: "DescribeMmsInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMmsInstanceList(.init(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取彩信实例列表
     @inlinable
     public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
-        let input = DescribeMmsInstanceListRequest(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title)
-        return try await self.client.execute(action: "DescribeMmsInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMmsInstanceList(.init(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取彩信实例列表

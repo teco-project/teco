@@ -69,14 +69,12 @@ extension Tcb {
     /// 获取下载文件信息
     @inlinable
     public func describeDownloadFile(codeUri: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadFileResponse> {
-        let input = DescribeDownloadFileRequest(codeUri: codeUri)
-        return self.client.execute(action: "DescribeDownloadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDownloadFile(.init(codeUri: codeUri), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取下载文件信息
     @inlinable
     public func describeDownloadFile(codeUri: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadFileResponse {
-        let input = DescribeDownloadFileRequest(codeUri: codeUri)
-        return try await self.client.execute(action: "DescribeDownloadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDownloadFile(.init(codeUri: codeUri), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -108,8 +108,7 @@ extension Dc {
     /// 查询物理专线列表。
     @inlinable
     public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectsResponse> {
-        let input = DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeDirectConnects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDirectConnects(.init(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理专线列表
@@ -117,8 +116,7 @@ extension Dc {
     /// 查询物理专线列表。
     @inlinable
     public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectsResponse {
-        let input = DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeDirectConnects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDirectConnects(.init(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理专线列表

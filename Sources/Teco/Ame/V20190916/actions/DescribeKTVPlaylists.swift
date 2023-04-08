@@ -103,8 +103,7 @@ extension Ame {
     /// 获取直播互动曲库推荐歌单列表。
     @inlinable
     public func describeKTVPlaylists(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistsResponse> {
-        let input = DescribeKTVPlaylistsRequest(type: type, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVPlaylists(.init(type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库推荐歌单列表
@@ -112,8 +111,7 @@ extension Ame {
     /// 获取直播互动曲库推荐歌单列表。
     @inlinable
     public func describeKTVPlaylists(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
-        let input = DescribeKTVPlaylistsRequest(type: type, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVPlaylists(.init(type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库推荐歌单列表

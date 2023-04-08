@@ -72,8 +72,7 @@ extension Wedata {
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
     public func batchStopTasksNew(taskIdList: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStopTasksNewResponse> {
-        let input = BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId)
-        return self.client.execute(action: "BatchStopTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchStopTasksNew(.init(taskIdList: taskIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量停止任务【Beta版本】
@@ -82,7 +81,6 @@ extension Wedata {
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
     public func batchStopTasksNew(taskIdList: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
-        let input = BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId)
-        return try await self.client.execute(action: "BatchStopTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchStopTasksNew(.init(taskIdList: taskIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

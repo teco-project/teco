@@ -114,15 +114,13 @@ extension Iecp {
     /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeOperationLogsResponse> {
-        let input = DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition)
-        return self.client.execute(action: "DescribeEdgeOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeOperationLogs(.init(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
-        let input = DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition)
-        return try await self.client.execute(action: "DescribeEdgeOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeOperationLogs(.init(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘操作日志

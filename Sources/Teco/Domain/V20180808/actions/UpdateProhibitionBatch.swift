@@ -71,8 +71,7 @@ extension Domain {
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
     public func updateProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProhibitionBatchResponse> {
-        let input = UpdateProhibitionBatchRequest(domains: domains, status: status)
-        return self.client.execute(action: "UpdateProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateProhibitionBatch(.init(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止更新锁
@@ -80,7 +79,6 @@ extension Domain {
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
     public func updateProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
-        let input = UpdateProhibitionBatchRequest(domains: domains, status: status)
-        return try await self.client.execute(action: "UpdateProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateProhibitionBatch(.init(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

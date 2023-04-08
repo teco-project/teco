@@ -64,14 +64,12 @@ extension Iecp {
     /// 获取命名空间下的资源信息
     @inlinable
     public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
-        let input = DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace)
-        return self.client.execute(action: "DescribeNamespaceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNamespaceResources(.init(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间下的资源信息
     @inlinable
     public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
-        let input = DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace)
-        return try await self.client.execute(action: "DescribeNamespaceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNamespaceResources(.init(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

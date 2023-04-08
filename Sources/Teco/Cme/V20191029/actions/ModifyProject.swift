@@ -88,8 +88,7 @@ extension Cme {
     /// 修改项目信息。
     @inlinable @discardableResult
     public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        let input = ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode)
-        return self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyProject(.init(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
@@ -97,7 +96,6 @@ extension Cme {
     /// 修改项目信息。
     @inlinable @discardableResult
     public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        let input = ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode)
-        return try await self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyProject(.init(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 }

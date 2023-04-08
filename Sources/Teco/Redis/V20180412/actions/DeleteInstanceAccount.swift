@@ -63,14 +63,12 @@ extension Redis {
     /// 删除实例子账号
     @inlinable
     public func deleteInstanceAccount(instanceId: String, accountName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceAccountResponse> {
-        let input = DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName)
-        return self.client.execute(action: "DeleteInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteInstanceAccount(.init(instanceId: instanceId, accountName: accountName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例子账号
     @inlinable
     public func deleteInstanceAccount(instanceId: String, accountName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
-        let input = DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName)
-        return try await self.client.execute(action: "DeleteInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteInstanceAccount(.init(instanceId: instanceId, accountName: accountName), region: region, logger: logger, on: eventLoop)
     }
 }

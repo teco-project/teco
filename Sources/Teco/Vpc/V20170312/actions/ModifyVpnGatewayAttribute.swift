@@ -70,8 +70,7 @@ extension Vpc {
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable @discardableResult
     public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String? = nil, instanceChargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayAttributeResponse> {
-        let input = ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName, instanceChargeType: instanceChargeType)
-        return self.client.execute(action: "ModifyVpnGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpnGatewayAttribute(.init(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN网关属性
@@ -79,7 +78,6 @@ extension Vpc {
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable @discardableResult
     public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String? = nil, instanceChargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
-        let input = ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName, instanceChargeType: instanceChargeType)
-        return try await self.client.execute(action: "ModifyVpnGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpnGatewayAttribute(.init(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
     }
 }

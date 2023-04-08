@@ -146,8 +146,7 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
     public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SpeechTranslateResponse> {
-        let input = SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType)
-        return self.client.execute(action: "SpeechTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.speechTranslate(.init(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音翻译
@@ -158,7 +157,6 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
     public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SpeechTranslateResponse {
-        let input = SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType)
-        return try await self.client.execute(action: "SpeechTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.speechTranslate(.init(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), region: region, logger: logger, on: eventLoop)
     }
 }

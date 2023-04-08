@@ -71,8 +71,7 @@ extension Vpc {
     /// * 平台对用户每地域每日解绑 EIP 重新分配普通公网 IP 次数有所限制（可参见 [EIP 产品简介](/document/product/213/1941)）。上述配额可通过 [DescribeAddressQuota](https://cloud.tencent.com/document/api/213/1378) 接口获取。
     @inlinable
     public func transformAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformAddressResponse> {
-        let input = TransformAddressRequest(instanceId: instanceId)
-        return self.client.execute(action: "TransformAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.transformAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 普通IP转弹性IP
@@ -81,7 +80,6 @@ extension Vpc {
     /// * 平台对用户每地域每日解绑 EIP 重新分配普通公网 IP 次数有所限制（可参见 [EIP 产品简介](/document/product/213/1941)）。上述配额可通过 [DescribeAddressQuota](https://cloud.tencent.com/document/api/213/1378) 接口获取。
     @inlinable
     public func transformAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformAddressResponse {
-        let input = TransformAddressRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "TransformAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.transformAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

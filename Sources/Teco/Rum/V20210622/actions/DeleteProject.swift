@@ -64,8 +64,7 @@ extension Rum {
     /// 删除给定的 rum 的项目
     @inlinable
     public func deleteProject(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
-        let input = DeleteProjectRequest(id: id)
-        return self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteProject(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 RUM 应用
@@ -73,7 +72,6 @@ extension Rum {
     /// 删除给定的 rum 的项目
     @inlinable
     public func deleteProject(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        let input = DeleteProjectRequest(id: id)
-        return try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteProject(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

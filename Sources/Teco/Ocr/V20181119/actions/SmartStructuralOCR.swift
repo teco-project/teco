@@ -109,8 +109,7 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmartStructuralOCRResponse> {
-        let input = SmartStructuralOCRRequest(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText)
-        return self.client.execute(action: "SmartStructuralOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.smartStructuralOCR(.init(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能结构化识别
@@ -120,7 +119,6 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRResponse {
-        let input = SmartStructuralOCRRequest(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText)
-        return try await self.client.execute(action: "SmartStructuralOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.smartStructuralOCR(.init(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText), region: region, logger: logger, on: eventLoop)
     }
 }

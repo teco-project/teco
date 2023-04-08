@@ -76,8 +76,7 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，本接口不能对云产品凭据进行操作。
     @inlinable
     public func deleteSecretVersion(secretName: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretVersionResponse> {
-        let input = DeleteSecretVersionRequest(secretName: secretName, versionId: versionId)
-        return self.client.execute(action: "DeleteSecretVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSecretVersion(.init(secretName: secretName, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除指定版本的凭据
@@ -86,7 +85,6 @@ extension Ssm {
     /// 本接口仅适用于用户自定义凭据，本接口不能对云产品凭据进行操作。
     @inlinable
     public func deleteSecretVersion(secretName: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretVersionResponse {
-        let input = DeleteSecretVersionRequest(secretName: secretName, versionId: versionId)
-        return try await self.client.execute(action: "DeleteSecretVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSecretVersion(.init(secretName: secretName, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

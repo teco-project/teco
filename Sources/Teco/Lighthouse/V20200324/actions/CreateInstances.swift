@@ -120,8 +120,7 @@ extension Lighthouse {
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
     public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        let input = CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher)
-        return self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
@@ -129,7 +128,6 @@ extension Lighthouse {
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
     public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        let input = CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher)
-        return try await self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -137,8 +137,7 @@ extension Essbasic {
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
     public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
-        let input = CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes)
-        return self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成控制台、移动端链接
@@ -149,7 +148,6 @@ extension Essbasic {
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
     public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
-        let input = CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes)
-        return try await self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 }

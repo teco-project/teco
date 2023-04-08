@@ -59,14 +59,12 @@ extension Antiddos {
     /// 修改DDoS防护的特征过滤规则
     @inlinable @discardableResult
     public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPacketFilterConfigResponse> {
-        let input = ModifyPacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig)
-        return self.client.execute(action: "ModifyPacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPacketFilterConfig(.init(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的特征过滤规则
     @inlinable @discardableResult
     public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPacketFilterConfigResponse {
-        let input = ModifyPacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig)
-        return try await self.client.execute(action: "ModifyPacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPacketFilterConfig(.init(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 }

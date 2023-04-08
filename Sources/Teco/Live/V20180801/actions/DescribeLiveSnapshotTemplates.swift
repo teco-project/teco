@@ -56,8 +56,7 @@ extension Live {
     /// 获取截图模板列表。
     @inlinable
     public func describeLiveSnapshotTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotTemplatesResponse> {
-        let input = DescribeLiveSnapshotTemplatesRequest()
-        return self.client.execute(action: "DescribeLiveSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveSnapshotTemplates(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取截图模板列表
@@ -65,7 +64,6 @@ extension Live {
     /// 获取截图模板列表。
     @inlinable
     public func describeLiveSnapshotTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotTemplatesResponse {
-        let input = DescribeLiveSnapshotTemplatesRequest()
-        return try await self.client.execute(action: "DescribeLiveSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveSnapshotTemplates(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

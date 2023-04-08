@@ -90,8 +90,7 @@ extension Live {
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupProIspPlayInfoListResponse> {
-        let input = DescribeGroupProIspPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea)
-        return self.client.execute(action: "DescribeGroupProIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroupProIspPlayInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询按省份和运营商分组的播放数据
@@ -99,7 +98,6 @@ extension Live {
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
-        let input = DescribeGroupProIspPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea)
-        return try await self.client.execute(action: "DescribeGroupProIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroupProIspPlayInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 }

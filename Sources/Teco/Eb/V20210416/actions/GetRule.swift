@@ -104,14 +104,12 @@ extension Eb {
     /// 获取事件规则详情
     @inlinable
     public func getRule(eventBusId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuleResponse> {
-        let input = GetRuleRequest(eventBusId: eventBusId, ruleId: ruleId)
-        return self.client.execute(action: "GetRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRule(.init(eventBusId: eventBusId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件规则详情
     @inlinable
     public func getRule(eventBusId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
-        let input = GetRuleRequest(eventBusId: eventBusId, ruleId: ruleId)
-        return try await self.client.execute(action: "GetRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRule(.init(eventBusId: eventBusId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

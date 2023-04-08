@@ -50,14 +50,12 @@ extension Tcss {
     /// 查询当天未授权核数趋势
     @inlinable
     public func describeUnauthorizedCoresTendency(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnauthorizedCoresTendencyResponse> {
-        let input = DescribeUnauthorizedCoresTendencyRequest()
-        return self.client.execute(action: "DescribeUnauthorizedCoresTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUnauthorizedCoresTendency(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询当天未授权核数趋势
     @inlinable
     public func describeUnauthorizedCoresTendency(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {
-        let input = DescribeUnauthorizedCoresTendencyRequest()
-        return try await self.client.execute(action: "DescribeUnauthorizedCoresTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUnauthorizedCoresTendency(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

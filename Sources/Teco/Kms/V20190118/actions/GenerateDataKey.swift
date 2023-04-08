@@ -98,8 +98,7 @@ extension Kms {
     /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
     @inlinable
     public func generateDataKey(keyId: String, keySpec: String? = nil, numberOfBytes: UInt64? = nil, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateDataKeyResponse> {
-        let input = GenerateDataKeyRequest(keyId: keyId, keySpec: keySpec, numberOfBytes: numberOfBytes, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm)
-        return self.client.execute(action: "GenerateDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.generateDataKey(.init(keyId: keyId, keySpec: keySpec, numberOfBytes: numberOfBytes, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成数据密钥
@@ -107,7 +106,6 @@ extension Kms {
     /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
     @inlinable
     public func generateDataKey(keyId: String, keySpec: String? = nil, numberOfBytes: UInt64? = nil, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDataKeyResponse {
-        let input = GenerateDataKeyRequest(keyId: keyId, keySpec: keySpec, numberOfBytes: numberOfBytes, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm)
-        return try await self.client.execute(action: "GenerateDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.generateDataKey(.init(keyId: keyId, keySpec: keySpec, numberOfBytes: numberOfBytes, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Dcdb {
     /// 本接口（DescribeFlow）用于查询流程状态
     @inlinable
     public func describeFlow(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
-        let input = DescribeFlowRequest(flowId: flowId)
-        return self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程状态
@@ -73,7 +72,6 @@ extension Dcdb {
     /// 本接口（DescribeFlow）用于查询流程状态
     @inlinable
     public func describeFlow(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
-        let input = DescribeFlowRequest(flowId: flowId)
-        return try await self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

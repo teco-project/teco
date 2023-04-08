@@ -59,14 +59,12 @@ extension Tke {
     /// 删除集群访问端口
     @inlinable @discardableResult
     public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
-        let input = DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet)
-        return self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterEndpoint(.init(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群访问端口
     @inlinable @discardableResult
     public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
-        let input = DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet)
-        return try await self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterEndpoint(.init(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 }

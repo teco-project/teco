@@ -59,14 +59,12 @@ extension Ame {
     /// 根据歌曲ID查询歌曲信息
     @inlinable
     public func describeItemById(itemIDs: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemByIdResponse> {
-        let input = DescribeItemByIdRequest(itemIDs: itemIDs)
-        return self.client.execute(action: "DescribeItemById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeItemById(.init(itemIDs: itemIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据歌曲ID查询歌曲信息
     @inlinable
     public func describeItemById(itemIDs: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemByIdResponse {
-        let input = DescribeItemByIdRequest(itemIDs: itemIDs)
-        return try await self.client.execute(action: "DescribeItemById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeItemById(.init(itemIDs: itemIDs), region: region, logger: logger, on: eventLoop)
     }
 }

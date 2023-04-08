@@ -52,8 +52,7 @@ extension Rce {
     /// 此接口用于查询风险评估结果
     @inlinable @discardableResult
     public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
-        let input = DescribeRiskAssessmentRequest()
-        return self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRiskAssessment(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询风险评估结果
@@ -61,7 +60,6 @@ extension Rce {
     /// 此接口用于查询风险评估结果
     @inlinable @discardableResult
     public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
-        let input = DescribeRiskAssessmentRequest()
-        return try await self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRiskAssessment(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

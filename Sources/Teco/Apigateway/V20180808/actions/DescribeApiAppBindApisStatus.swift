@@ -100,8 +100,7 @@ extension Apigateway {
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
     public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppBindApisStatusResponse> {
-        let input = DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeApiAppBindApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApiAppBindApisStatus(.init(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用绑定的Api列表
@@ -109,8 +108,7 @@ extension Apigateway {
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
     public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppBindApisStatusResponse {
-        let input = DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeApiAppBindApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApiAppBindApisStatus(.init(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用绑定的Api列表

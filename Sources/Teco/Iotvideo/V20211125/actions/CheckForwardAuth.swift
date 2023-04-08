@@ -79,14 +79,12 @@ extension Iotvideo {
     /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
-        let input = CheckForwardAuthRequest(skey: skey, queueType: queueType)
-        return self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkForwardAuth(.init(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
-        let input = CheckForwardAuthRequest(skey: skey, queueType: queueType)
-        return try await self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkForwardAuth(.init(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 }

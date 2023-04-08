@@ -89,8 +89,7 @@ extension Ds {
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
     public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonalAccountResponse> {
-        let input = CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone)
-        return self.client.execute(action: "CreatePersonalAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPersonalAccount(.init(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人开户
@@ -98,7 +97,6 @@ extension Ds {
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
     public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonalAccountResponse {
-        let input = CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone)
-        return try await self.client.execute(action: "CreatePersonalAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPersonalAccount(.init(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), region: region, logger: logger, on: eventLoop)
     }
 }

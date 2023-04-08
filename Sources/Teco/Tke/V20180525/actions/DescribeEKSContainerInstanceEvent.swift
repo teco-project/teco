@@ -67,14 +67,12 @@ extension Tke {
     /// 查询容器实例的事件
     @inlinable
     public func describeEKSContainerInstanceEvent(eksCiId: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSContainerInstanceEventResponse> {
-        let input = DescribeEKSContainerInstanceEventRequest(eksCiId: eksCiId, limit: limit)
-        return self.client.execute(action: "DescribeEKSContainerInstanceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEKSContainerInstanceEvent(.init(eksCiId: eksCiId, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例的事件
     @inlinable
     public func describeEKSContainerInstanceEvent(eksCiId: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceEventResponse {
-        let input = DescribeEKSContainerInstanceEventRequest(eksCiId: eksCiId, limit: limit)
-        return try await self.client.execute(action: "DescribeEKSContainerInstanceEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEKSContainerInstanceEvent(.init(eksCiId: eksCiId, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -71,14 +71,12 @@ extension Wedata {
     /// 批量重跑集成任务实例
     @inlinable
     public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRerunIntegrationTaskInstancesResponse> {
-        let input = BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId)
-        return self.client.execute(action: "BatchRerunIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchRerunIntegrationTaskInstances(.init(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量重跑集成任务实例
     @inlinable
     public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
-        let input = BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId)
-        return try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchRerunIntegrationTaskInstances(.init(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

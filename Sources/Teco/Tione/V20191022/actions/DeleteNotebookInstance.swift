@@ -60,8 +60,7 @@ extension Tione {
     /// 删除notebook实例
     @inlinable @discardableResult
     public func deleteNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookInstanceResponse> {
-        let input = DeleteNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
-        return self.client.execute(action: "DeleteNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNotebookInstance(.init(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Notebook实例
@@ -69,7 +68,6 @@ extension Tione {
     /// 删除notebook实例
     @inlinable @discardableResult
     public func deleteNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookInstanceResponse {
-        let input = DeleteNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
-        return try await self.client.execute(action: "DeleteNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNotebookInstance(.init(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
 }

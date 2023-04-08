@@ -66,8 +66,7 @@ extension Vpc {
     /// * 删除私有网络是不可逆的操作，请谨慎处理。
     @inlinable @discardableResult
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        let input = DeleteVpcRequest(vpcId: vpcId)
-        return self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteVpc(.init(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除VPC
@@ -77,7 +76,6 @@ extension Vpc {
     /// * 删除私有网络是不可逆的操作，请谨慎处理。
     @inlinable @discardableResult
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        let input = DeleteVpcRequest(vpcId: vpcId)
-        return try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteVpc(.init(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

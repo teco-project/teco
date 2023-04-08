@@ -87,15 +87,13 @@ extension Cwp {
     /// 获取快速检索列表
     @inlinable
     public func describeSearchTemplates(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchTemplatesResponse> {
-        let input = DescribeSearchTemplatesRequest(offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSearchTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSearchTemplates(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取快速检索列表
     @inlinable
     public func describeSearchTemplates(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchTemplatesResponse {
-        let input = DescribeSearchTemplatesRequest(offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSearchTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSearchTemplates(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取快速检索列表

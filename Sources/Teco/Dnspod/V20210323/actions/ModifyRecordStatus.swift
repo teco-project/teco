@@ -79,8 +79,7 @@ extension Dnspod {
     /// 修改解析记录的状态
     @inlinable
     public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordStatusResponse> {
-        let input = ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId)
-        return self.client.execute(action: "ModifyRecordStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordStatus(.init(domain: domain, recordId: recordId, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置记录状态
@@ -88,7 +87,6 @@ extension Dnspod {
     /// 修改解析记录的状态
     @inlinable
     public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
-        let input = ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId)
-        return try await self.client.execute(action: "ModifyRecordStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordStatus(.init(domain: domain, recordId: recordId, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

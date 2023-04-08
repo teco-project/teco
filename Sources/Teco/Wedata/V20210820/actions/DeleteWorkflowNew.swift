@@ -84,8 +84,7 @@ extension Wedata {
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
-        let input = DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId)
-        return self.client.execute(action: "DeleteWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteWorkflowNew(.init(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除工作流【Beta版本】
@@ -94,7 +93,6 @@ extension Wedata {
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
-        let input = DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId)
-        return try await self.client.execute(action: "DeleteWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteWorkflowNew(.init(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

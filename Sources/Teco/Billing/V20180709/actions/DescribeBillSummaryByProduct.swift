@@ -88,14 +88,12 @@ extension Billing {
     /// 获取产品汇总费用分布
     @inlinable
     public func describeBillSummaryByProduct(beginTime: String, endTime: String, payerUin: String? = nil, payType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProductResponse> {
-        let input = DescribeBillSummaryByProductRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin, payType: payType)
-        return self.client.execute(action: "DescribeBillSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBillSummaryByProduct(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin, payType: payType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品汇总费用分布
     @inlinable
     public func describeBillSummaryByProduct(beginTime: String, endTime: String, payerUin: String? = nil, payType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProductResponse {
-        let input = DescribeBillSummaryByProductRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin, payType: payType)
-        return try await self.client.execute(action: "DescribeBillSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBillSummaryByProduct(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin, payType: payType), region: region, logger: logger, on: eventLoop)
     }
 }

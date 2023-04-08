@@ -68,8 +68,7 @@ extension Gaap {
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
     @inlinable
     public func describeRules(listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesResponse> {
-        let input = DescribeRulesRequest(listenerId: listenerId)
-        return self.client.execute(action: "DescribeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRules(.init(listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转发规则信息
@@ -77,7 +76,6 @@ extension Gaap {
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
     @inlinable
     public func describeRules(listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
-        let input = DescribeRulesRequest(listenerId: listenerId)
-        return try await self.client.execute(action: "DescribeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRules(.init(listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 }

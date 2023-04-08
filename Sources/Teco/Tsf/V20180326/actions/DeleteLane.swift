@@ -58,14 +58,12 @@ extension Tsf {
     /// 删除泳道
     @inlinable
     public func deleteLane(laneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneResponse> {
-        let input = DeleteLaneRequest(laneId: laneId)
-        return self.client.execute(action: "DeleteLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLane(.init(laneId: laneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除泳道
     @inlinable
     public func deleteLane(laneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneResponse {
-        let input = DeleteLaneRequest(laneId: laneId)
-        return try await self.client.execute(action: "DeleteLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLane(.init(laneId: laneId), region: region, logger: logger, on: eventLoop)
     }
 }

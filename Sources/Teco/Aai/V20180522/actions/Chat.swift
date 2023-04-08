@@ -74,8 +74,7 @@ extension Aai {
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
     public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
-        let input = ChatRequest(text: text, projectId: projectId, user: user)
-        return self.client.execute(action: "Chat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.chat(.init(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能闲聊
@@ -83,7 +82,6 @@ extension Aai {
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
     public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
-        let input = ChatRequest(text: text, projectId: projectId, user: user)
-        return try await self.client.execute(action: "Chat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.chat(.init(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 }

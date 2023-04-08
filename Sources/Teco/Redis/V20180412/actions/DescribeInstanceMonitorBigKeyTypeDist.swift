@@ -63,14 +63,12 @@ extension Redis {
     /// 查询实例大Key类型分布
     @inlinable
     public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
-        let input = DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date)
-        return self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceMonitorBigKeyTypeDist(.init(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key类型分布
     @inlinable
     public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
-        let input = DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date)
-        return try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceMonitorBigKeyTypeDist(.init(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 }

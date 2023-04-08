@@ -81,8 +81,7 @@ extension As {
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable @discardableResult
     public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteLifecycleActionResponse> {
-        let input = CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken)
-        return self.client.execute(action: "CompleteLifecycleAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.completeLifecycleAction(.init(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 完成生命周期动作
@@ -92,7 +91,6 @@ extension As {
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable @discardableResult
     public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
-        let input = CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken)
-        return try await self.client.execute(action: "CompleteLifecycleAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.completeLifecycleAction(.init(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), region: region, logger: logger, on: eventLoop)
     }
 }

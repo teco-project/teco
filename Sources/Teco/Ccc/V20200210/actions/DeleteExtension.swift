@@ -59,14 +59,12 @@ extension Ccc {
     /// 删除话机账号
     @inlinable @discardableResult
     public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
-        let input = DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId)
-        return self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除话机账号
     @inlinable @discardableResult
     public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
-        let input = DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId)
-        return try await self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 }

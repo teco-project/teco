@@ -54,14 +54,12 @@ extension Tke {
     /// 删除边缘计算集群
     @inlinable @discardableResult
     public func deleteTKEEdgeCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTKEEdgeClusterResponse> {
-        let input = DeleteTKEEdgeClusterRequest(clusterId: clusterId)
-        return self.client.execute(action: "DeleteTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTKEEdgeCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘计算集群
     @inlinable @discardableResult
     public func deleteTKEEdgeCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
-        let input = DeleteTKEEdgeClusterRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DeleteTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTKEEdgeCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

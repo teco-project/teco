@@ -69,14 +69,12 @@ extension Pts {
     /// 查询指标所有的label及values值
     @inlinable
     public func describeMetricLabelWithValues(jobId: String, projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMetricLabelWithValuesResponse> {
-        let input = DescribeMetricLabelWithValuesRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId)
-        return self.client.execute(action: "DescribeMetricLabelWithValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMetricLabelWithValues(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指标所有的label及values值
     @inlinable
     public func describeMetricLabelWithValues(jobId: String, projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricLabelWithValuesResponse {
-        let input = DescribeMetricLabelWithValuesRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId)
-        return try await self.client.execute(action: "DescribeMetricLabelWithValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMetricLabelWithValues(.init(jobId: jobId, projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Iecp {
     /// 修改边缘单元NodeUnit模板
     @inlinable @discardableResult
     public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
-        let input = ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes)
-        return self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNodeUnitTemplate(.init(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元NodeUnit模板
     @inlinable @discardableResult
     public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
-        let input = ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes)
-        return try await self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNodeUnitTemplate(.init(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 }

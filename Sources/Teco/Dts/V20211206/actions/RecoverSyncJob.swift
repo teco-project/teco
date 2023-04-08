@@ -60,8 +60,7 @@ extension Dts {
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable @discardableResult
     public func recoverSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverSyncJobResponse> {
-        let input = RecoverSyncJobRequest(jobId: jobId)
-        return self.client.execute(action: "RecoverSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recoverSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除隔离同步任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable @discardableResult
     public func recoverSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
-        let input = RecoverSyncJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "RecoverSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recoverSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

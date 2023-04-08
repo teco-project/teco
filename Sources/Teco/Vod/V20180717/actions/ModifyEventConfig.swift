@@ -98,8 +98,7 @@ extension Vod {
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable @discardableResult
     public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
-        let input = ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId)
-        return self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEventConfig(.init(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改事件通知配置
@@ -112,7 +111,6 @@ extension Vod {
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable @discardableResult
     public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
-        let input = ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId)
-        return try await self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEventConfig(.init(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

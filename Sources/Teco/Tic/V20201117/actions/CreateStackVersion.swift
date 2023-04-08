@@ -79,8 +79,7 @@ extension Tic {
     /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
     @inlinable
     public func createStackVersion(stackId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStackVersionResponse> {
-        let input = CreateStackVersionRequest(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description)
-        return self.client.execute(action: "CreateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStackVersion(.init(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 给资源栈新增一个版本
@@ -88,7 +87,6 @@ extension Tic {
     /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
     @inlinable
     public func createStackVersion(stackId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackVersionResponse {
-        let input = CreateStackVersionRequest(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description)
-        return try await self.client.execute(action: "CreateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStackVersion(.init(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

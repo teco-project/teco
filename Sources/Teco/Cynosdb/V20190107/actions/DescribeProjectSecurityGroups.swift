@@ -97,15 +97,13 @@ extension Cynosdb {
     /// 查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroups(projectId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        let input = DescribeProjectSecurityGroupsRequest(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey)
-        return self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProjectSecurityGroups(.init(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroups(projectId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        let input = DescribeProjectSecurityGroupsRequest(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey)
-        return try await self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProjectSecurityGroups(.init(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息

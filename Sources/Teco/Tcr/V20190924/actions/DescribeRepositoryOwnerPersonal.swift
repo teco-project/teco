@@ -94,8 +94,7 @@ extension Tcr {
     /// 用于在个人版中获取用户全部的镜像仓库列表
     @inlinable
     public func describeRepositoryOwnerPersonal(offset: Int64? = nil, limit: Int64? = nil, repoName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryOwnerPersonalResponse> {
-        let input = DescribeRepositoryOwnerPersonalRequest(offset: offset, limit: limit, repoName: repoName)
-        return self.client.execute(action: "DescribeRepositoryOwnerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRepositoryOwnerPersonal(.init(offset: offset, limit: limit, repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版所有仓库
@@ -103,8 +102,7 @@ extension Tcr {
     /// 用于在个人版中获取用户全部的镜像仓库列表
     @inlinable
     public func describeRepositoryOwnerPersonal(offset: Int64? = nil, limit: Int64? = nil, repoName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryOwnerPersonalResponse {
-        let input = DescribeRepositoryOwnerPersonalRequest(offset: offset, limit: limit, repoName: repoName)
-        return try await self.client.execute(action: "DescribeRepositoryOwnerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRepositoryOwnerPersonal(.init(offset: offset, limit: limit, repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版所有仓库

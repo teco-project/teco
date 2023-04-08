@@ -121,15 +121,13 @@ extension Cwp {
     /// 查询资产管理环境变量列表
     @inlinable
     public func describeAssetEnvList(uuid: String? = nil, quuid: String? = nil, type: UInt64? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetEnvListResponse> {
-        let input = DescribeAssetEnvListRequest(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by)
-        return self.client.execute(action: "DescribeAssetEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetEnvList(.init(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产管理环境变量列表
     @inlinable
     public func describeAssetEnvList(uuid: String? = nil, quuid: String? = nil, type: UInt64? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetEnvListResponse {
-        let input = DescribeAssetEnvListRequest(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by)
-        return try await self.client.execute(action: "DescribeAssetEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetEnvList(.init(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产管理环境变量列表

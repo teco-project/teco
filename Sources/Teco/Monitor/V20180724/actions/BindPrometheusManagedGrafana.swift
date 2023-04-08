@@ -59,14 +59,12 @@ extension Monitor {
     /// 绑定 Grafana 可视化服务实例
     @inlinable @discardableResult
     public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPrometheusManagedGrafanaResponse> {
-        let input = BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId)
-        return self.client.execute(action: "BindPrometheusManagedGrafana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindPrometheusManagedGrafana(.init(instanceId: instanceId, grafanaId: grafanaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定 Grafana 可视化服务实例
     @inlinable @discardableResult
     public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
-        let input = BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId)
-        return try await self.client.execute(action: "BindPrometheusManagedGrafana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindPrometheusManagedGrafana(.init(instanceId: instanceId, grafanaId: grafanaId), region: region, logger: logger, on: eventLoop)
     }
 }

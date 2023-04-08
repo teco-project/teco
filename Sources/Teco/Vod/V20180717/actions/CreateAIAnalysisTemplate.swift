@@ -99,8 +99,7 @@ extension Vod {
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
     public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
-        let input = CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure)
-        return self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAIAnalysisTemplate(.init(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音视频内容分析模板
@@ -108,7 +107,6 @@ extension Vod {
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
     public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        let input = CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure)
-        return try await self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAIAnalysisTemplate(.init(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

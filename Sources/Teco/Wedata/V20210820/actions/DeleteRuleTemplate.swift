@@ -64,14 +64,12 @@ extension Wedata {
     /// 删除规则模版
     @inlinable
     public func deleteRuleTemplate(projectId: String? = nil, ids: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleTemplateResponse> {
-        let input = DeleteRuleTemplateRequest(projectId: projectId, ids: ids)
-        return self.client.execute(action: "DeleteRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRuleTemplate(.init(projectId: projectId, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则模版
     @inlinable
     public func deleteRuleTemplate(projectId: String? = nil, ids: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleTemplateResponse {
-        let input = DeleteRuleTemplateRequest(projectId: projectId, ids: ids)
-        return try await self.client.execute(action: "DeleteRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRuleTemplate(.init(projectId: projectId, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

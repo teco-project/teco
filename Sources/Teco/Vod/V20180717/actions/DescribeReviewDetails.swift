@@ -97,8 +97,7 @@ extension Vod {
     /// 2. 查询时间跨度不超过90天。
     @inlinable
     public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewDetailsResponse> {
-        let input = DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
-        return self.client.execute(action: "DescribeReviewDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReviewDetails(.init(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询内容智能识别详情
@@ -111,7 +110,6 @@ extension Vod {
     /// 2. 查询时间跨度不超过90天。
     @inlinable
     public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
-        let input = DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeReviewDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReviewDetails(.init(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

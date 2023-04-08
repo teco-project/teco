@@ -123,8 +123,7 @@ extension Vod {
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
     public func describeMediaInfos(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
-        let input = DescribeMediaInfosRequest(fileIds: fileIds, subAppId: subAppId, filters: filters)
-        return self.client.execute(action: "DescribeMediaInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMediaInfos(.init(fileIds: fileIds, subAppId: subAppId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详细信息
@@ -143,7 +142,6 @@ extension Vod {
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
     public func describeMediaInfos(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
-        let input = DescribeMediaInfosRequest(fileIds: fileIds, subAppId: subAppId, filters: filters)
-        return try await self.client.execute(action: "DescribeMediaInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMediaInfos(.init(fileIds: fileIds, subAppId: subAppId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -85,8 +85,7 @@ extension Ecm {
     /// 修改模块配置，已关联实例的模块不支持调整配置。
     @inlinable @discardableResult
     public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleConfigResponse> {
-        let input = ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks)
-        return self.client.execute(action: "ModifyModuleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModuleConfig(.init(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块配置
@@ -94,7 +93,6 @@ extension Ecm {
     /// 修改模块配置，已关联实例的模块不支持调整配置。
     @inlinable @discardableResult
     public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
-        let input = ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks)
-        return try await self.client.execute(action: "ModifyModuleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModuleConfig(.init(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 }

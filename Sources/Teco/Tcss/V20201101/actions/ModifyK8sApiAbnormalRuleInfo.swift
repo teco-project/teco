@@ -54,14 +54,12 @@ extension Tcss {
     /// 修改k8sapi异常规则信息
     @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleInfoResponse> {
-        let input = ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo)
-        return self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyK8sApiAbnormalRuleInfo(.init(ruleInfo: ruleInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常规则信息
     @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
-        let input = ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo)
-        return try await self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyK8sApiAbnormalRuleInfo(.init(ruleInfo: ruleInfo), region: region, logger: logger, on: eventLoop)
     }
 }

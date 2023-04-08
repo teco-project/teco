@@ -74,14 +74,12 @@ extension Tsf {
     /// 更新单元化规则
     @inlinable
     public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUnitRuleResponse> {
-        let input = UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList)
-        return self.client.execute(action: "UpdateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateUnitRule(.init(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新单元化规则
     @inlinable
     public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
-        let input = UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList)
-        return try await self.client.execute(action: "UpdateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateUnitRule(.init(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 }

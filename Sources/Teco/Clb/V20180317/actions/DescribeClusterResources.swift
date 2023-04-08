@@ -102,8 +102,7 @@ extension Clb {
     /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
     @inlinable
     public func describeClusterResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterResourcesResponse> {
-        let input = DescribeClusterResourcesRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeClusterResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterResources(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群中资源列表
@@ -111,8 +110,7 @@ extension Clb {
     /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
     @inlinable
     public func describeClusterResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterResourcesResponse {
-        let input = DescribeClusterResourcesRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeClusterResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterResources(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群中资源列表

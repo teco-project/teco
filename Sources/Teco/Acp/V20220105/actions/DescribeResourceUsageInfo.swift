@@ -83,8 +83,7 @@ extension Acp {
     /// 查询应用合规平台用户资源的使用情况
     @inlinable
     public func describeResourceUsageInfo(priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageInfoResponse> {
-        let input = DescribeResourceUsageInfoRequest(priceName: priceName, taskType: taskType, platform: platform, source: source)
-        return self.client.execute(action: "DescribeResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceUsageInfo(.init(priceName: priceName, taskType: taskType, platform: platform, source: source), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用合规资源使用情况
@@ -92,7 +91,6 @@ extension Acp {
     /// 查询应用合规平台用户资源的使用情况
     @inlinable
     public func describeResourceUsageInfo(priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
-        let input = DescribeResourceUsageInfoRequest(priceName: priceName, taskType: taskType, platform: platform, source: source)
-        return try await self.client.execute(action: "DescribeResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceUsageInfo(.init(priceName: priceName, taskType: taskType, platform: platform, source: source), region: region, logger: logger, on: eventLoop)
     }
 }

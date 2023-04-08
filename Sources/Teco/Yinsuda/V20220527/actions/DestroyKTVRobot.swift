@@ -70,8 +70,7 @@ extension Yinsuda {
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable @discardableResult
     public func destroyKTVRobot(appName: String, userId: String, robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
-        let input = DestroyKTVRobotRequest(appName: appName, userId: userId, robotId: robotId)
-        return self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyKTVRobot(.init(appName: appName, userId: userId, robotId: robotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁机器人
@@ -79,7 +78,6 @@ extension Yinsuda {
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable @discardableResult
     public func destroyKTVRobot(appName: String, userId: String, robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
-        let input = DestroyKTVRobotRequest(appName: appName, userId: userId, robotId: robotId)
-        return try await self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyKTVRobot(.init(appName: appName, userId: userId, robotId: robotId), region: region, logger: logger, on: eventLoop)
     }
 }

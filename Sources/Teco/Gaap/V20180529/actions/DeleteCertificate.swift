@@ -60,8 +60,7 @@ extension Gaap {
     /// 本接口（DeleteCertificate）用于删除证书。
     @inlinable @discardableResult
     public func deleteCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertificateResponse> {
-        let input = DeleteCertificateRequest(certificateId: certificateId)
-        return self.client.execute(action: "DeleteCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCertificate(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除证书
@@ -69,7 +68,6 @@ extension Gaap {
     /// 本接口（DeleteCertificate）用于删除证书。
     @inlinable @discardableResult
     public func deleteCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
-        let input = DeleteCertificateRequest(certificateId: certificateId)
-        return try await self.client.execute(action: "DeleteCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCertificate(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -75,8 +75,7 @@ extension Cwp {
     /// 对订单属性编辑
     @inlinable @discardableResult
     public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
-        let input = ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue)
-        return self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyOrderAttribute(.init(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑订单属性
@@ -84,7 +83,6 @@ extension Cwp {
     /// 对订单属性编辑
     @inlinable @discardableResult
     public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
-        let input = ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue)
-        return try await self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyOrderAttribute(.init(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }
 }

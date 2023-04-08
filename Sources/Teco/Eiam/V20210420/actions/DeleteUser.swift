@@ -65,8 +65,7 @@ extension Eiam {
     /// 通过用户名或用户 id 删除用户。
     @inlinable @discardableResult
     public func deleteUser(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserResponse> {
-        let input = DeleteUserRequest(userName: userName, userId: userId)
-        return self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUser(.init(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户
@@ -74,7 +73,6 @@ extension Eiam {
     /// 通过用户名或用户 id 删除用户。
     @inlinable @discardableResult
     public func deleteUser(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
-        let input = DeleteUserRequest(userName: userName, userId: userId)
-        return try await self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUser(.init(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

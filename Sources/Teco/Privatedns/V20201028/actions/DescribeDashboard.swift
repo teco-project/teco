@@ -62,14 +62,12 @@ extension Privatedns {
     /// 获取私有域解析概览
     @inlinable
     public func describeDashboard(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDashboardResponse> {
-        let input = DescribeDashboardRequest()
-        return self.client.execute(action: "DescribeDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDashboard(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析概览
     @inlinable
     public func describeDashboard(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
-        let input = DescribeDashboardRequest()
-        return try await self.client.execute(action: "DescribeDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDashboard(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
     @inlinable @discardableResult
     public func deleteNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclQuintupleEntriesResponse> {
-        let input = DeleteNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet)
-        return self.client.execute(action: "DeleteNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNetworkAclQuintupleEntries(.init(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络ACL五元组指定的部分条目接口。
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
     @inlinable @discardableResult
     public func deleteNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclQuintupleEntriesResponse {
-        let input = DeleteNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet)
-        return try await self.client.execute(action: "DeleteNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNetworkAclQuintupleEntries(.init(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

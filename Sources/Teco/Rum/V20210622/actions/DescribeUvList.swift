@@ -79,8 +79,7 @@ extension Rum {
     /// 获取项目下的UV列表
     @inlinable
     public func describeUvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUvListResponse> {
-        let input = DescribeUvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension)
-        return self.client.execute(action: "DescribeUvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUvList(.init(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取UV列表
@@ -88,7 +87,6 @@ extension Rum {
     /// 获取项目下的UV列表
     @inlinable
     public func describeUvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUvListResponse {
-        let input = DescribeUvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension)
-        return try await self.client.execute(action: "DescribeUvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUvList(.init(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 }

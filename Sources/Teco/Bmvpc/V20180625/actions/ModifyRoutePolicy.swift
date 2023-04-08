@@ -63,14 +63,12 @@ extension Bmvpc {
     /// 修改自定义路由
     @inlinable
     public func modifyRoutePolicy(routeTableId: String, routePolicy: RoutePolicy, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoutePolicyResponse> {
-        let input = ModifyRoutePolicyRequest(routeTableId: routeTableId, routePolicy: routePolicy)
-        return self.client.execute(action: "ModifyRoutePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRoutePolicy(.init(routeTableId: routeTableId, routePolicy: routePolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义路由
     @inlinable
     public func modifyRoutePolicy(routeTableId: String, routePolicy: RoutePolicy, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoutePolicyResponse {
-        let input = ModifyRoutePolicyRequest(routeTableId: routeTableId, routePolicy: routePolicy)
-        return try await self.client.execute(action: "ModifyRoutePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRoutePolicy(.init(routeTableId: routeTableId, routePolicy: routePolicy), region: region, logger: logger, on: eventLoop)
     }
 }

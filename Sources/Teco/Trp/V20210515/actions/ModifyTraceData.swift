@@ -138,14 +138,12 @@ extension Trp {
     /// 修改溯源信息
     @inlinable
     public func modifyTraceData(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataResponse> {
-        let input = ModifyTraceDataRequest(traceId: traceId, batchId: batchId, taskId: taskId, traceItems: traceItems, phaseName: phaseName, type: type, code: code, rank: rank, phase: phase, traceTime: traceTime, createTime: createTime, chainStatus: chainStatus, chainTime: chainTime, chainData: chainData, corpId: corpId, status: status, phaseData: phaseData)
-        return self.client.execute(action: "ModifyTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTraceData(.init(traceId: traceId, batchId: batchId, taskId: taskId, traceItems: traceItems, phaseName: phaseName, type: type, code: code, rank: rank, phase: phase, traceTime: traceTime, createTime: createTime, chainStatus: chainStatus, chainTime: chainTime, chainData: chainData, corpId: corpId, status: status, phaseData: phaseData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改溯源信息
     @inlinable
     public func modifyTraceData(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataResponse {
-        let input = ModifyTraceDataRequest(traceId: traceId, batchId: batchId, taskId: taskId, traceItems: traceItems, phaseName: phaseName, type: type, code: code, rank: rank, phase: phase, traceTime: traceTime, createTime: createTime, chainStatus: chainStatus, chainTime: chainTime, chainData: chainData, corpId: corpId, status: status, phaseData: phaseData)
-        return try await self.client.execute(action: "ModifyTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTraceData(.init(traceId: traceId, batchId: batchId, taskId: taskId, traceItems: traceItems, phaseName: phaseName, type: type, code: code, rank: rank, phase: phase, traceTime: traceTime, createTime: createTime, chainStatus: chainStatus, chainTime: chainTime, chainData: chainData, corpId: corpId, status: status, phaseData: phaseData), region: region, logger: logger, on: eventLoop)
     }
 }

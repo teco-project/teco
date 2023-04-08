@@ -111,8 +111,7 @@ extension Dlc {
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
     public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
-        let input = DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters)
-        return self.client.execute(action: "DescribeScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScripts(.init(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询script列表
@@ -120,8 +119,7 @@ extension Dlc {
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
     public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
-        let input = DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters)
-        return try await self.client.execute(action: "DescribeScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScripts(.init(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询script列表

@@ -64,14 +64,12 @@ extension Cdb {
     /// 修改数据库代理描述
     @inlinable @discardableResult
     public func modifyCDBProxyDesc(instanceId: String, proxyGroupId: String, desc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCDBProxyDescResponse> {
-        let input = ModifyCDBProxyDescRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, desc: desc)
-        return self.client.execute(action: "ModifyCDBProxyDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCDBProxyDesc(.init(instanceId: instanceId, proxyGroupId: proxyGroupId, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库代理描述
     @inlinable @discardableResult
     public func modifyCDBProxyDesc(instanceId: String, proxyGroupId: String, desc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyDescResponse {
-        let input = ModifyCDBProxyDescRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, desc: desc)
-        return try await self.client.execute(action: "ModifyCDBProxyDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCDBProxyDesc(.init(instanceId: instanceId, proxyGroupId: proxyGroupId, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 }

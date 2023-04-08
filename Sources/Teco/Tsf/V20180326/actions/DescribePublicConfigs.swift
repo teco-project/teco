@@ -104,15 +104,13 @@ extension Tsf {
     /// 查询公共配置项列表
     @inlinable
     public func describePublicConfigs(configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigsResponse> {
-        let input = DescribePublicConfigsRequest(configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion)
-        return self.client.execute(action: "DescribePublicConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublicConfigs(.init(configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置项列表
     @inlinable
     public func describePublicConfigs(configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigsResponse {
-        let input = DescribePublicConfigsRequest(configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion)
-        return try await self.client.execute(action: "DescribePublicConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublicConfigs(.init(configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置项列表

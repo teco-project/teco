@@ -89,15 +89,13 @@ extension Tsf {
     /// 查询公共配置发布历史
     @inlinable
     public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleaseLogsResponse> {
-        let input = DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePublicConfigReleaseLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublicConfigReleaseLogs(.init(namespaceId: namespaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置发布历史
     @inlinable
     public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
-        let input = DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePublicConfigReleaseLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublicConfigReleaseLogs(.init(namespaceId: namespaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置发布历史

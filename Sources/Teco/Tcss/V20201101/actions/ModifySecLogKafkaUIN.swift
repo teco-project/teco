@@ -54,14 +54,12 @@ extension Tcss {
     /// 修改安全日志kafkaUIN
     @inlinable @discardableResult
     public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
-        let input = ModifySecLogKafkaUINRequest(dstUIN: dstUIN)
-        return self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySecLogKafkaUIN(.init(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志kafkaUIN
     @inlinable @discardableResult
     public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
-        let input = ModifySecLogKafkaUINRequest(dstUIN: dstUIN)
-        return try await self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySecLogKafkaUIN(.init(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }
 }

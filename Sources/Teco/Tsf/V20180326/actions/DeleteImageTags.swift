@@ -65,14 +65,12 @@ extension Tsf {
     /// 批量删除镜像版本
     @inlinable
     public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageTagsResponse> {
-        let input = DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType)
-        return self.client.execute(action: "DeleteImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImageTags(.init(imageTags: imageTags, repoType: repoType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除镜像版本
     @inlinable
     public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
-        let input = DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType)
-        return try await self.client.execute(action: "DeleteImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImageTags(.init(imageTags: imageTags, repoType: repoType), region: region, logger: logger, on: eventLoop)
     }
 }

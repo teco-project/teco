@@ -68,14 +68,12 @@ extension Cwp {
     /// 获取Jar包详情
     @inlinable
     public func describeAssetJarInfo(quuid: String, uuid: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetJarInfoResponse> {
-        let input = DescribeAssetJarInfoRequest(quuid: quuid, uuid: uuid, id: id)
-        return self.client.execute(action: "DescribeAssetJarInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetJarInfo(.init(quuid: quuid, uuid: uuid, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Jar包详情
     @inlinable
     public func describeAssetJarInfo(quuid: String, uuid: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetJarInfoResponse {
-        let input = DescribeAssetJarInfoRequest(quuid: quuid, uuid: uuid, id: id)
-        return try await self.client.execute(action: "DescribeAssetJarInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetJarInfo(.init(quuid: quuid, uuid: uuid, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

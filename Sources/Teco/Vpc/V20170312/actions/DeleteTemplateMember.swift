@@ -65,8 +65,7 @@ extension Vpc {
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable @discardableResult
     public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
-        let input = DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember)
-        return self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTemplateMember(.init(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模板对象成员
@@ -74,7 +73,6 @@ extension Vpc {
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable @discardableResult
     public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
-        let input = DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember)
-        return try await self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTemplateMember(.init(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 }

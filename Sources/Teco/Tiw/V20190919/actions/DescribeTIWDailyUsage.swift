@@ -100,8 +100,7 @@ extension Tiw {
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
     public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWDailyUsageResponse> {
-        let input = DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeTIWDailyUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTIWDailyUsage(.init(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询天维度计费用量
@@ -111,7 +110,6 @@ extension Tiw {
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
     public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
-        let input = DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeTIWDailyUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTIWDailyUsage(.init(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

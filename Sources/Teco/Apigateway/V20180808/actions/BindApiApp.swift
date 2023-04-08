@@ -80,8 +80,7 @@ extension Apigateway {
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
     public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiAppResponse> {
-        let input = BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId)
-        return self.client.execute(action: "BindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindApiApp(.init(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定应用到API
@@ -89,7 +88,6 @@ extension Apigateway {
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
     public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
-        let input = BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId)
-        return try await self.client.execute(action: "BindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindApiApp(.init(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

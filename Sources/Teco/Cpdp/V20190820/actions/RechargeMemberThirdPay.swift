@@ -165,8 +165,7 @@ extension Cpdp {
     /// 见证宝-会员在途充值(经第三方支付渠道)
     @inlinable
     public func rechargeMemberThirdPay(tranNetMemberCode: String, memberFillAmt: String, commission: String, ccy: String, payChannelType: String, payChannelAssignMerNo: String, payChannelTranSeqNo: String, ejzbOrderNo: String, mrchCode: String, ejzbOrderContent: String? = nil, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeMemberThirdPayResponse> {
-        let input = RechargeMemberThirdPayRequest(tranNetMemberCode: tranNetMemberCode, memberFillAmt: memberFillAmt, commission: commission, ccy: ccy, payChannelType: payChannelType, payChannelAssignMerNo: payChannelAssignMerNo, payChannelTranSeqNo: payChannelTranSeqNo, ejzbOrderNo: ejzbOrderNo, mrchCode: mrchCode, ejzbOrderContent: ejzbOrderContent, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
-        return self.client.execute(action: "RechargeMemberThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rechargeMemberThirdPay(.init(tranNetMemberCode: tranNetMemberCode, memberFillAmt: memberFillAmt, commission: commission, ccy: ccy, payChannelType: payChannelType, payChannelAssignMerNo: payChannelAssignMerNo, payChannelTranSeqNo: payChannelTranSeqNo, ejzbOrderNo: ejzbOrderNo, mrchCode: mrchCode, ejzbOrderContent: ejzbOrderContent, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员在途充值(经第三方支付渠道)
@@ -174,7 +173,6 @@ extension Cpdp {
     /// 见证宝-会员在途充值(经第三方支付渠道)
     @inlinable
     public func rechargeMemberThirdPay(tranNetMemberCode: String, memberFillAmt: String, commission: String, ccy: String, payChannelType: String, payChannelAssignMerNo: String, payChannelTranSeqNo: String, ejzbOrderNo: String, mrchCode: String, ejzbOrderContent: String? = nil, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeMemberThirdPayResponse {
-        let input = RechargeMemberThirdPayRequest(tranNetMemberCode: tranNetMemberCode, memberFillAmt: memberFillAmt, commission: commission, ccy: ccy, payChannelType: payChannelType, payChannelAssignMerNo: payChannelAssignMerNo, payChannelTranSeqNo: payChannelTranSeqNo, ejzbOrderNo: ejzbOrderNo, mrchCode: mrchCode, ejzbOrderContent: ejzbOrderContent, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
-        return try await self.client.execute(action: "RechargeMemberThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rechargeMemberThirdPay(.init(tranNetMemberCode: tranNetMemberCode, memberFillAmt: memberFillAmt, commission: commission, ccy: ccy, payChannelType: payChannelType, payChannelAssignMerNo: payChannelAssignMerNo, payChannelTranSeqNo: payChannelTranSeqNo, ejzbOrderNo: ejzbOrderNo, mrchCode: mrchCode, ejzbOrderContent: ejzbOrderContent, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

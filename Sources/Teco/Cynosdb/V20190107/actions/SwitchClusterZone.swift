@@ -73,14 +73,12 @@ extension Cynosdb {
     /// 切换到从可用区
     @inlinable
     public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchClusterZoneResponse> {
-        let input = SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod)
-        return self.client.execute(action: "SwitchClusterZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.switchClusterZone(.init(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换到从可用区
     @inlinable
     public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
-        let input = SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod)
-        return try await self.client.execute(action: "SwitchClusterZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.switchClusterZone(.init(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

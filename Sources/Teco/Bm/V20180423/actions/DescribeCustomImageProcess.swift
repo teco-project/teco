@@ -58,14 +58,12 @@ extension Bm {
     /// 查询自定义镜像制作进度
     @inlinable
     public func describeCustomImageProcess(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageProcessResponse> {
-        let input = DescribeCustomImageProcessRequest(imageId: imageId)
-        return self.client.execute(action: "DescribeCustomImageProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCustomImageProcess(.init(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义镜像制作进度
     @inlinable
     public func describeCustomImageProcess(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
-        let input = DescribeCustomImageProcessRequest(imageId: imageId)
-        return try await self.client.execute(action: "DescribeCustomImageProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCustomImageProcess(.init(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

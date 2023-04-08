@@ -93,14 +93,12 @@ extension Cpdp {
     /// 云支付-分账撤销接口
     @inlinable
     public func distributeCancel(openId: String, openKey: String, orderNo: String, outDistributeNo: String? = nil, distributeNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeCancelResponse> {
-        let input = DistributeCancelRequest(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile)
-        return self.client.execute(action: "DistributeCancel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.distributeCancel(.init(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账撤销接口
     @inlinable
     public func distributeCancel(openId: String, openKey: String, orderNo: String, outDistributeNo: String? = nil, distributeNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeCancelResponse {
-        let input = DistributeCancelRequest(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile)
-        return try await self.client.execute(action: "DistributeCancel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.distributeCancel(.init(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

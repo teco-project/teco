@@ -102,8 +102,7 @@ extension Live {
     /// 添加域名，一次只能提交一个域名。域名必须已备案。
     @inlinable @discardableResult
     public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveDomainResponse> {
-        let input = AddLiveDomainRequest(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType)
-        return self.client.execute(action: "AddLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addLiveDomain(.init(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名
@@ -111,7 +110,6 @@ extension Live {
     /// 添加域名，一次只能提交一个域名。域名必须已备案。
     @inlinable @discardableResult
     public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
-        let input = AddLiveDomainRequest(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType)
-        return try await self.client.execute(action: "AddLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addLiveDomain(.init(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType), region: region, logger: logger, on: eventLoop)
     }
 }

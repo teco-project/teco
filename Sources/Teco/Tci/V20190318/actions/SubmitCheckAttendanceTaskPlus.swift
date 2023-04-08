@@ -110,8 +110,7 @@ extension Tci {
     /// 支持多路视频流，提交高级人员考勤任务
     @inlinable
     public func submitCheckAttendanceTaskPlus(fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskPlusResponse> {
-        let input = SubmitCheckAttendanceTaskPlusRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold)
-        return self.client.execute(action: "SubmitCheckAttendanceTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.submitCheckAttendanceTaskPlus(.init(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交高级人员考勤任务
@@ -119,7 +118,6 @@ extension Tci {
     /// 支持多路视频流，提交高级人员考勤任务
     @inlinable
     public func submitCheckAttendanceTaskPlus(fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskPlusResponse {
-        let input = SubmitCheckAttendanceTaskPlusRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold)
-        return try await self.client.execute(action: "SubmitCheckAttendanceTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.submitCheckAttendanceTaskPlus(.init(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 }

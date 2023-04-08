@@ -58,14 +58,12 @@ extension Tsf {
     /// 撤回已发布的配置
     @inlinable
     public func revocationConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationConfigResponse> {
-        let input = RevocationConfigRequest(configReleaseId: configReleaseId)
-        return self.client.execute(action: "RevocationConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revocationConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤回已发布的配置
     @inlinable
     public func revocationConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationConfigResponse {
-        let input = RevocationConfigRequest(configReleaseId: configReleaseId)
-        return try await self.client.execute(action: "RevocationConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revocationConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 }

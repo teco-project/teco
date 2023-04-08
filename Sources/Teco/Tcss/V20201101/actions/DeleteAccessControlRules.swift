@@ -60,8 +60,7 @@ extension Tcss {
     /// 删除运行访问控制策略
     @inlinable @discardableResult
     public func deleteAccessControlRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessControlRulesResponse> {
-        let input = DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet)
-        return self.client.execute(action: "DeleteAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAccessControlRules(.init(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时访问控制策略
@@ -69,7 +68,6 @@ extension Tcss {
     /// 删除运行访问控制策略
     @inlinable @discardableResult
     public func deleteAccessControlRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
-        let input = DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet)
-        return try await self.client.execute(action: "DeleteAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAccessControlRules(.init(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

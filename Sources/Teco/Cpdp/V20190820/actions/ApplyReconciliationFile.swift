@@ -93,14 +93,12 @@ extension Cpdp {
     /// 聚鑫-申请对账文件
     @inlinable
     public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReconciliationFileResponse> {
-        let input = ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment)
-        return self.client.execute(action: "ApplyReconciliationFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyReconciliationFile(.init(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-申请对账文件
     @inlinable
     public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
-        let input = ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment)
-        return try await self.client.execute(action: "ApplyReconciliationFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyReconciliationFile(.init(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

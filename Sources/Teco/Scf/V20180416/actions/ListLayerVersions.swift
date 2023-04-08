@@ -69,8 +69,7 @@ extension Scf {
     /// 返回指定层的全部版本的信息
     @inlinable
     public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayerVersionsResponse> {
-        let input = ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime)
-        return self.client.execute(action: "ListLayerVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listLayerVersions(.init(layerName: layerName, compatibleRuntime: compatibleRuntime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取层版本列表
@@ -78,7 +77,6 @@ extension Scf {
     /// 返回指定层的全部版本的信息
     @inlinable
     public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
-        let input = ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime)
-        return try await self.client.execute(action: "ListLayerVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listLayerVersions(.init(layerName: layerName, compatibleRuntime: compatibleRuntime), region: region, logger: logger, on: eventLoop)
     }
 }

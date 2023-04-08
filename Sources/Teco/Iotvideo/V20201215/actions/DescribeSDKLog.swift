@@ -90,14 +90,12 @@ extension Iotvideo {
     /// 获取设备sdk日志
     @inlinable
     public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSDKLogResponse> {
-        let input = DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return self.client.execute(action: "DescribeSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSDKLog(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备sdk日志
     @inlinable
     public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
-        let input = DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
-        return try await self.client.execute(action: "DescribeSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSDKLog(.init(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

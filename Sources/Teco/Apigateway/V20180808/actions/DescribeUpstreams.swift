@@ -88,15 +88,13 @@ extension Apigateway {
     /// 查询后端通道列表详情
     @inlinable
     public func describeUpstreams(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamsResponse> {
-        let input = DescribeUpstreamsRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeUpstreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUpstreams(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道列表详情
     @inlinable
     public func describeUpstreams(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamsResponse {
-        let input = DescribeUpstreamsRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeUpstreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUpstreams(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道列表详情

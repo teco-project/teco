@@ -70,8 +70,7 @@ extension Tia {
     /// 删除指定的部署模型。模型有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable @discardableResult
     public func deleteModel(name: String, cluster: String? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
-        let input = DeleteModelRequest(name: name, cluster: cluster, servType: servType)
-        return self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteModel(.init(name: name, cluster: cluster, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Model
@@ -79,7 +78,6 @@ extension Tia {
     /// 删除指定的部署模型。模型有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable @discardableResult
     public func deleteModel(name: String, cluster: String? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
-        let input = DeleteModelRequest(name: name, cluster: cluster, servType: servType)
-        return try await self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteModel(.init(name: name, cluster: cluster, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 }

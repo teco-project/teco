@@ -64,8 +64,7 @@ extension Vpc {
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
     public func checkDefaultSubnet(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDefaultSubnetResponse> {
-        let input = CheckDefaultSubnetRequest(zone: zone)
-        return self.client.execute(action: "CheckDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkDefaultSubnet(.init(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预判是否可建默认子网
@@ -73,7 +72,6 @@ extension Vpc {
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
     public func checkDefaultSubnet(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
-        let input = CheckDefaultSubnetRequest(zone: zone)
-        return try await self.client.execute(action: "CheckDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkDefaultSubnet(.init(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

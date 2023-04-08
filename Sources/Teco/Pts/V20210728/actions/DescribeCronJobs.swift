@@ -124,8 +124,7 @@ extension Pts {
     /// 列出定时任务，非必填数组为空就默认全选
     @inlinable
     public func describeCronJobs(projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, cronJobIds: [String]? = nil, cronJobName: String? = nil, cronJobStatus: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCronJobsResponse> {
-        let input = DescribeCronJobsRequest(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend)
-        return self.client.execute(action: "DescribeCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCronJobs(.init(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出定时任务
@@ -133,8 +132,7 @@ extension Pts {
     /// 列出定时任务，非必填数组为空就默认全选
     @inlinable
     public func describeCronJobs(projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, cronJobIds: [String]? = nil, cronJobName: String? = nil, cronJobStatus: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCronJobsResponse {
-        let input = DescribeCronJobsRequest(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend)
-        return try await self.client.execute(action: "DescribeCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCronJobs(.init(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出定时任务

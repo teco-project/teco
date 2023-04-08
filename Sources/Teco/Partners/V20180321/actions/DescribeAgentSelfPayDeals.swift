@@ -131,8 +131,7 @@ extension Partners {
     /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
     @inlinable
     public func describeAgentSelfPayDeals(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentSelfPayDealsResponse> {
-        let input = DescribeAgentSelfPayDealsRequest(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames)
-        return self.client.execute(action: "DescribeAgentSelfPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAgentSelfPayDeals(.init(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商自付订单查询接口（禁止接入）
@@ -140,8 +139,7 @@ extension Partners {
     /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
     @inlinable
     public func describeAgentSelfPayDeals(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsResponse {
-        let input = DescribeAgentSelfPayDealsRequest(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames)
-        return try await self.client.execute(action: "DescribeAgentSelfPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAgentSelfPayDeals(.init(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商自付订单查询接口（禁止接入）

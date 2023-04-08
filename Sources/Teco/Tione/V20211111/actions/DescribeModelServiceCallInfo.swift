@@ -64,14 +64,12 @@ extension Tione {
     /// 展示服务的调用信息
     @inlinable
     public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
-        let input = DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId)
-        return self.client.execute(action: "DescribeModelServiceCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的调用信息
     @inlinable
     public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
-        let input = DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId)
-        return try await self.client.execute(action: "DescribeModelServiceCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

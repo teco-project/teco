@@ -74,14 +74,12 @@ extension Cfw {
     /// 修改规则表状态
     @inlinable
     public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableStatusResponse> {
-        let input = ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction)
-        return self.client.execute(action: "ModifyTableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTableStatus(.init(edgeId: edgeId, status: status, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则表状态
     @inlinable
     public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
-        let input = ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction)
-        return try await self.client.execute(action: "ModifyTableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTableStatus(.init(edgeId: edgeId, status: status, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -119,8 +119,7 @@ extension Tdmq {
     /// 获取生产者信息列表
     @inlinable
     public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishersResponse> {
-        let input = DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort)
-        return self.client.execute(action: "DescribePublishers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublishers(.init(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取生产者信息
@@ -128,8 +127,7 @@ extension Tdmq {
     /// 获取生产者信息列表
     @inlinable
     public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
-        let input = DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort)
-        return try await self.client.execute(action: "DescribePublishers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublishers(.init(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取生产者信息

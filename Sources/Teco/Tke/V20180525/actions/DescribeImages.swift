@@ -56,14 +56,12 @@ extension Tke {
     /// 获取镜像信息
     @inlinable
     public func describeImages(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
-        let input = DescribeImagesRequest()
-        return self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImages(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取镜像信息
     @inlinable
     public func describeImages(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        let input = DescribeImagesRequest()
-        return try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImages(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -96,14 +96,12 @@ extension Cpdp {
     /// 智慧零售-发票查询V2
     @inlinable
     public func queryInvoiceV2(invoicePlatformId: Int64, orderId: String, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInvoiceV2Response> {
-        let input = QueryInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum)
-        return self.client.execute(action: "QueryInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryInvoiceV2(.init(invoicePlatformId: invoicePlatformId, orderId: orderId, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票查询V2
     @inlinable
     public func queryInvoiceV2(invoicePlatformId: Int64, orderId: String, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceV2Response {
-        let input = QueryInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum)
-        return try await self.client.execute(action: "QueryInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryInvoiceV2(.init(invoicePlatformId: invoicePlatformId, orderId: orderId, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), region: region, logger: logger, on: eventLoop)
     }
 }

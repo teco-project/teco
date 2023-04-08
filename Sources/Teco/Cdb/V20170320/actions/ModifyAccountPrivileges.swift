@@ -107,8 +107,7 @@ extension Cdb {
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
     public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
-        let input = ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction)
-        return self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccountPrivileges(.init(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的权限
@@ -119,7 +118,6 @@ extension Cdb {
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
     public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
-        let input = ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction)
-        return try await self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccountPrivileges(.init(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), region: region, logger: logger, on: eventLoop)
     }
 }

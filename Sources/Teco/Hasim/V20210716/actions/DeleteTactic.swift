@@ -54,14 +54,12 @@ extension Hasim {
     /// 删除策略
     @inlinable @discardableResult
     public func deleteTactic(tacticID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTacticResponse> {
-        let input = DeleteTacticRequest(tacticID: tacticID)
-        return self.client.execute(action: "DeleteTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTactic(.init(tacticID: tacticID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除策略
     @inlinable @discardableResult
     public func deleteTactic(tacticID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTacticResponse {
-        let input = DeleteTacticRequest(tacticID: tacticID)
-        return try await self.client.execute(action: "DeleteTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTactic(.init(tacticID: tacticID), region: region, logger: logger, on: eventLoop)
     }
 }

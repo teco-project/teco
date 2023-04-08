@@ -72,8 +72,7 @@ extension Ses {
     /// 在使用身份发送电子邮件之前，您需要有一个电子邮件域名，该域名可以是您的网站或者移动应用的域名。您首先必须进行验证，证明自己是该域名的所有者，并且授权给腾讯云SES发送许可，才可以从该域名发送电子邮件。
     @inlinable
     public func createEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmailIdentityResponse> {
-        let input = CreateEmailIdentityRequest(emailIdentity: emailIdentity)
-        return self.client.execute(action: "CreateEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEmailIdentity(.init(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建发信域名
@@ -81,7 +80,6 @@ extension Ses {
     /// 在使用身份发送电子邮件之前，您需要有一个电子邮件域名，该域名可以是您的网站或者移动应用的域名。您首先必须进行验证，证明自己是该域名的所有者，并且授权给腾讯云SES发送许可，才可以从该域名发送电子邮件。
     @inlinable
     public func createEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmailIdentityResponse {
-        let input = CreateEmailIdentityRequest(emailIdentity: emailIdentity)
-        return try await self.client.execute(action: "CreateEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEmailIdentity(.init(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 }

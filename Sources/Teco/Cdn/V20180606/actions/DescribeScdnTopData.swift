@@ -143,14 +143,12 @@ extension Cdn {
     /// 获取SCDN的Top数据
     @inlinable
     public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
-        let input = DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode)
-        return self.client.execute(action: "DescribeScdnTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScdnTopData(.init(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SCDN的Top数据
     @inlinable
     public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
-        let input = DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode)
-        return try await self.client.execute(action: "DescribeScdnTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScdnTopData(.init(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), region: region, logger: logger, on: eventLoop)
     }
 }

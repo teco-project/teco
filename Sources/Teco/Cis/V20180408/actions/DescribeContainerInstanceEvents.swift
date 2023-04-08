@@ -64,8 +64,7 @@ extension Cis {
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表
     @inlinable
     public func describeContainerInstanceEvents(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstanceEventsResponse> {
-        let input = DescribeContainerInstanceEventsRequest(instanceName: instanceName)
-        return self.client.execute(action: "DescribeContainerInstanceEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeContainerInstanceEvents(.init(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例事件
@@ -73,7 +72,6 @@ extension Cis {
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表
     @inlinable
     public func describeContainerInstanceEvents(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstanceEventsResponse {
-        let input = DescribeContainerInstanceEventsRequest(instanceName: instanceName)
-        return try await self.client.execute(action: "DescribeContainerInstanceEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeContainerInstanceEvents(.init(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Ckafka {
     /// 创建主题ip白名单
     @inlinable
     public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicIpWhiteListResponse> {
-        let input = CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList)
-        return self.client.execute(action: "CreateTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTopicIpWhiteList(.init(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建主题IP白名单
@@ -83,7 +82,6 @@ extension Ckafka {
     /// 创建主题ip白名单
     @inlinable
     public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
-        let input = CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList)
-        return try await self.client.execute(action: "CreateTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTopicIpWhiteList(.init(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 }

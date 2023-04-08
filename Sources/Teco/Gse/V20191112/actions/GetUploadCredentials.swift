@@ -63,7 +63,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(_ input: GetUploadCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
-        self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetUploadCredentials is no longer available.")
     }
 
     /// 获取上传文件授权信息
@@ -73,7 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(_ input: GetUploadCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        try await self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetUploadCredentials is no longer available.")
     }
 
     /// 获取上传文件授权信息
@@ -83,8 +83,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
-        let input = GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey)
-        return self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetUploadCredentials is no longer available.")
     }
 
     /// 获取上传文件授权信息
@@ -94,7 +93,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        let input = GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey)
-        return try await self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetUploadCredentials is no longer available.")
     }
 }

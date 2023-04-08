@@ -89,14 +89,12 @@ extension Privatedns {
     /// 修改私有域解析记录
     @inlinable @discardableResult
     public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneRecordResponse> {
-        let input = ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl)
-        return self.client.execute(action: "ModifyPrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPrivateZoneRecord(.init(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域解析记录
     @inlinable @discardableResult
     public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
-        let input = ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl)
-        return try await self.client.execute(action: "ModifyPrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPrivateZoneRecord(.init(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

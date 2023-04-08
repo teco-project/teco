@@ -71,8 +71,7 @@ extension Ivld {
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedia(mediaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaResponse> {
-        let input = DescribeMediaRequest(mediaId: mediaId)
-        return self.client.execute(action: "DescribeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMedia(.init(mediaId: mediaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述媒资文件
@@ -82,7 +81,6 @@ extension Ivld {
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedia(mediaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaResponse {
-        let input = DescribeMediaRequest(mediaId: mediaId)
-        return try await self.client.execute(action: "DescribeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMedia(.init(mediaId: mediaId), region: region, logger: logger, on: eventLoop)
     }
 }

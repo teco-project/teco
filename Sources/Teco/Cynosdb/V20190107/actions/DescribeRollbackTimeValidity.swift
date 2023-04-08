@@ -86,8 +86,7 @@ extension Cynosdb {
     /// 指定时间和集群查询是否可回滚
     @inlinable
     public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeValidityResponse> {
-        let input = DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh)
-        return self.client.execute(action: "DescribeRollbackTimeValidity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRollbackTimeValidity(.init(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定时间是否可回滚
@@ -95,7 +94,6 @@ extension Cynosdb {
     /// 指定时间和集群查询是否可回滚
     @inlinable
     public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
-        let input = DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh)
-        return try await self.client.execute(action: "DescribeRollbackTimeValidity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRollbackTimeValidity(.init(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), region: region, logger: logger, on: eventLoop)
     }
 }

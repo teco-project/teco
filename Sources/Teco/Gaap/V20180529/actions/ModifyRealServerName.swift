@@ -65,8 +65,7 @@ extension Gaap {
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable @discardableResult
     public func modifyRealServerName(realServerName: String, realServerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
-        let input = ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId)
-        return self.client.execute(action: "ModifyRealServerName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRealServerName(.init(realServerName: realServerName, realServerId: realServerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改源站名称
@@ -74,7 +73,6 @@ extension Gaap {
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable @discardableResult
     public func modifyRealServerName(realServerName: String, realServerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
-        let input = ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId)
-        return try await self.client.execute(action: "ModifyRealServerName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRealServerName(.init(realServerName: realServerName, realServerId: realServerId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Cme {
     /// 删除项目。
     @inlinable @discardableResult
     public func deleteProject(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
-        let input = DeleteProjectRequest(platform: platform, projectId: projectId, operator: `operator`)
-        return self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteProject(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除项目
@@ -79,7 +78,6 @@ extension Cme {
     /// 删除项目。
     @inlinable @discardableResult
     public func deleteProject(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        let input = DeleteProjectRequest(platform: platform, projectId: projectId, operator: `operator`)
-        return try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteProject(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

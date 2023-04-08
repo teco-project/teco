@@ -69,8 +69,7 @@ extension Cdb {
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
     public func deleteAccounts(instanceId: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
-        let input = DeleteAccountsRequest(instanceId: instanceId, accounts: accounts)
-        return self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAccounts(.init(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库的账号
@@ -78,7 +77,6 @@ extension Cdb {
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
     public func deleteAccounts(instanceId: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
-        let input = DeleteAccountsRequest(instanceId: instanceId, accounts: accounts)
-        return try await self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAccounts(.init(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

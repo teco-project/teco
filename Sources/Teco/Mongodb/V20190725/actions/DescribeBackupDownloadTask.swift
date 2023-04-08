@@ -122,15 +122,13 @@ extension Mongodb {
     /// 查询备份下载任务信息
     @inlinable
     public func describeBackupDownloadTask(instanceId: String, backupName: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadTaskResponse> {
-        let input = DescribeBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status)
-        return self.client.execute(action: "DescribeBackupDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupDownloadTask(.init(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份下载任务信息
     @inlinable
     public func describeBackupDownloadTask(instanceId: String, backupName: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {
-        let input = DescribeBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status)
-        return try await self.client.execute(action: "DescribeBackupDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupDownloadTask(.init(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份下载任务信息

@@ -59,14 +59,12 @@ extension Antiddos {
     /// 删除DDoS防护的区域封禁配置
     @inlinable @discardableResult
     public func deleteDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSGeoIPBlockConfigResponse> {
-        let input = DeleteDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig)
-        return self.client.execute(action: "DeleteDDoSGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDDoSGeoIPBlockConfig(.init(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的区域封禁配置
     @inlinable @discardableResult
     public func deleteDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSGeoIPBlockConfigResponse {
-        let input = DeleteDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig)
-        return try await self.client.execute(action: "DeleteDDoSGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDDoSGeoIPBlockConfig(.init(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 }

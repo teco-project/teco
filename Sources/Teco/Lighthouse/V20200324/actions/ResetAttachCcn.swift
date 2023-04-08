@@ -60,8 +60,7 @@ extension Lighthouse {
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable @discardableResult
     public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
-        let input = ResetAttachCcnRequest(ccnId: ccnId)
-        return self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetAttachCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新申请关联云联网
@@ -69,7 +68,6 @@ extension Lighthouse {
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable @discardableResult
     public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
-        let input = ResetAttachCcnRequest(ccnId: ccnId)
-        return try await self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetAttachCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

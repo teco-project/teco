@@ -95,8 +95,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
     public func describeStatisticSummary(date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
-        let input = DescribeStatisticSummaryRequest(date: date)
-        return self.client.execute(action: "DescribeStatisticSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStatisticSummary(.init(date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询统计指标概览数据
@@ -104,7 +103,6 @@ extension Iotvideoindustry {
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
     public func describeStatisticSummary(date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
-        let input = DescribeStatisticSummaryRequest(date: date)
-        return try await self.client.execute(action: "DescribeStatisticSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStatisticSummary(.init(date: date), region: region, logger: logger, on: eventLoop)
     }
 }

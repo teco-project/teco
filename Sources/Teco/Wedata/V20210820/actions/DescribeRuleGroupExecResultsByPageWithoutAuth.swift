@@ -99,15 +99,13 @@ extension Wedata {
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
     public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageWithoutAuthResponse> {
-        let input = DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleGroupExecResultsByPageWithoutAuth(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
     public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageWithoutAuthResponse {
-        let input = DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleGroupExecResultsByPageWithoutAuth(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则组执行结果分页查询接口不带鉴权

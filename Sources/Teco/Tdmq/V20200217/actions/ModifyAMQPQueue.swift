@@ -84,14 +84,12 @@ extension Tdmq {
     /// 更新Amqp队列
     @inlinable @discardableResult
     public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPQueueResponse> {
-        let input = ModifyAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey)
-        return self.client.execute(action: "ModifyAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新Amqp队列
     @inlinable @discardableResult
     public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
-        let input = ModifyAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey)
-        return try await self.client.execute(action: "ModifyAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
     }
 }

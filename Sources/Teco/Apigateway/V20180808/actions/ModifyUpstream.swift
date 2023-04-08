@@ -114,14 +114,12 @@ extension Apigateway {
     /// 修改后端通道
     @inlinable
     public func modifyUpstream(upstreamId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, scheme: String? = nil, upstreamType: String? = nil, algorithm: String? = nil, uniqVpcId: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUpstreamResponse> {
-        let input = ModifyUpstreamRequest(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService)
-        return self.client.execute(action: "ModifyUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUpstream(.init(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改后端通道
     @inlinable
     public func modifyUpstream(upstreamId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, scheme: String? = nil, upstreamType: String? = nil, algorithm: String? = nil, uniqVpcId: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {
-        let input = ModifyUpstreamRequest(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService)
-        return try await self.client.execute(action: "ModifyUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUpstream(.init(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)
     }
 }

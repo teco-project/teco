@@ -103,8 +103,7 @@ extension Iot {
     /// 提供分页查询某个产品Id下设备信息的能力。
     @inlinable
     public func getDevices(productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
-        let input = GetDevicesRequest(productId: productId, offset: offset, length: length, keyword: keyword)
-        return self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDevices(.init(productId: productId, offset: offset, length: length, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表
@@ -112,8 +111,7 @@ extension Iot {
     /// 提供分页查询某个产品Id下设备信息的能力。
     @inlinable
     public func getDevices(productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
-        let input = GetDevicesRequest(productId: productId, offset: offset, length: length, keyword: keyword)
-        return try await self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDevices(.init(productId: productId, offset: offset, length: length, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表

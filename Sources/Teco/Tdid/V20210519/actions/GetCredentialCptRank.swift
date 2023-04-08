@@ -74,8 +74,7 @@ extension Tdid {
     /// 凭证颁发按机构排行
     @inlinable
     public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialCptRankResponse> {
-        let input = GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId)
-        return self.client.execute(action: "GetCredentialCptRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getCredentialCptRank(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发模板排行
@@ -83,7 +82,6 @@ extension Tdid {
     /// 凭证颁发按机构排行
     @inlinable
     public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialCptRankResponse {
-        let input = GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId)
-        return try await self.client.execute(action: "GetCredentialCptRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getCredentialCptRank(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -82,14 +82,12 @@ extension Cloudhsm {
     /// 修改VSM属性
     @inlinable @discardableResult
     public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVsmAttributesResponse> {
-        let input = ModifyVsmAttributesRequest(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId)
-        return self.client.execute(action: "ModifyVsmAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VSM属性
     @inlinable @discardableResult
     public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
-        let input = ModifyVsmAttributesRequest(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId)
-        return try await self.client.execute(action: "ModifyVsmAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Vod {
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
     @inlinable @discardableResult
     public func modifySubAppIdStatus(subAppId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdStatusResponse> {
-        let input = ModifySubAppIdStatusRequest(subAppId: subAppId, status: status)
-        return self.client.execute(action: "ModifySubAppIdStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySubAppIdStatus(.init(subAppId: subAppId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子应用状态
@@ -78,7 +77,6 @@ extension Vod {
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
     @inlinable @discardableResult
     public func modifySubAppIdStatus(subAppId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
-        let input = ModifySubAppIdStatusRequest(subAppId: subAppId, status: status)
-        return try await self.client.execute(action: "ModifySubAppIdStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySubAppIdStatus(.init(subAppId: subAppId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

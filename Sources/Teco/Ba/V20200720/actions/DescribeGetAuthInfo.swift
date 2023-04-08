@@ -58,14 +58,12 @@ extension Ba {
     /// 获取实名认证信息
     @inlinable
     public func describeGetAuthInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGetAuthInfoResponse> {
-        let input = DescribeGetAuthInfoRequest()
-        return self.client.execute(action: "DescribeGetAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGetAuthInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实名认证信息
     @inlinable
     public func describeGetAuthInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGetAuthInfoResponse {
-        let input = DescribeGetAuthInfoRequest()
-        return try await self.client.execute(action: "DescribeGetAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGetAuthInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

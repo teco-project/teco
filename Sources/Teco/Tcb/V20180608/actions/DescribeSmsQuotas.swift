@@ -74,8 +74,7 @@ extension Tcb {
     /// 3 都没有返回为空数组
     @inlinable
     public func describeSmsQuotas(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsQuotasResponse> {
-        let input = DescribeSmsQuotasRequest(envId: envId)
-        return self.client.execute(action: "DescribeSmsQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSmsQuotas(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费短信资源量
@@ -86,7 +85,6 @@ extension Tcb {
     /// 3 都没有返回为空数组
     @inlinable
     public func describeSmsQuotas(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsQuotasResponse {
-        let input = DescribeSmsQuotasRequest(envId: envId)
-        return try await self.client.execute(action: "DescribeSmsQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSmsQuotas(.init(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,8 +68,7 @@ extension Rum {
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
     public func describeOfflineLogConfigs(projectKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
-        let input = DescribeOfflineLogConfigsRequest(projectKey: projectKey)
-        return self.client.execute(action: "DescribeOfflineLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOfflineLogConfigs(.init(projectKey: projectKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设置的离线日志监听配置
@@ -77,7 +76,6 @@ extension Rum {
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
     public func describeOfflineLogConfigs(projectKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
-        let input = DescribeOfflineLogConfigsRequest(projectKey: projectKey)
-        return try await self.client.execute(action: "DescribeOfflineLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOfflineLogConfigs(.init(projectKey: projectKey), region: region, logger: logger, on: eventLoop)
     }
 }

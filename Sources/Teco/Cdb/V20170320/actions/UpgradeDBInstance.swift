@@ -143,8 +143,7 @@ extension Cdb {
     /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId)
-        return self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云数据库实例的配置
@@ -152,7 +151,6 @@ extension Cdb {
     /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
     public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        let input = UpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId)
-        return try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

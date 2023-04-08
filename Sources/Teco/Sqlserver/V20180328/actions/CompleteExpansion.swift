@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
     public func completeExpansion(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteExpansionResponse> {
-        let input = CompleteExpansionRequest(instanceId: instanceId)
-        return self.client.execute(action: "CompleteExpansion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.completeExpansion(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 立刻完成扩容任务
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
     public func completeExpansion(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteExpansionResponse {
-        let input = CompleteExpansionRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "CompleteExpansion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.completeExpansion(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

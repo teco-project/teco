@@ -84,8 +84,7 @@ extension Cls {
     /// 获取制定机器组下的机器状态
     @inlinable
     public func describeMachines(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachinesResponse> {
-        let input = DescribeMachinesRequest(groupId: groupId)
-        return self.client.execute(action: "DescribeMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMachines(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机器状态
@@ -93,7 +92,6 @@ extension Cls {
     /// 获取制定机器组下的机器状态
     @inlinable
     public func describeMachines(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
-        let input = DescribeMachinesRequest(groupId: groupId)
-        return try await self.client.execute(action: "DescribeMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMachines(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

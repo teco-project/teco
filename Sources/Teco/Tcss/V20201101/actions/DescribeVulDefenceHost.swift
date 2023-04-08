@@ -104,15 +104,13 @@ extension Tcss {
     /// 查询漏洞防御的主机列表
     @inlinable
     public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceHostResponse> {
-        let input = DescribeVulDefenceHostRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeVulDefenceHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulDefenceHost(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御的主机列表
     @inlinable
     public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceHostResponse {
-        let input = DescribeVulDefenceHostRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeVulDefenceHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulDefenceHost(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御的主机列表

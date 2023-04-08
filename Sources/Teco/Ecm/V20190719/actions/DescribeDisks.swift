@@ -127,8 +127,7 @@ extension Ecm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
     public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
-        let input = DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order)
-        return self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDisks(.init(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘列表
@@ -139,8 +138,7 @@ extension Ecm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
     public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
-        let input = DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order)
-        return try await self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDisks(.init(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘列表

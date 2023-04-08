@@ -64,8 +64,7 @@ extension Tsf {
     /// 查询任务最近一次执行状态
     @inlinable
     public func describeTaskLastStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLastStatusResponse> {
-        let input = DescribeTaskLastStatusRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeTaskLastStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskLastStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看任务最近执行批次状态
@@ -73,7 +72,6 @@ extension Tsf {
     /// 查询任务最近一次执行状态
     @inlinable
     public func describeTaskLastStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
-        let input = DescribeTaskLastStatusRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeTaskLastStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskLastStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

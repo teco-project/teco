@@ -114,15 +114,13 @@ extension Wedata {
     /// 查询任务告警规则列表
     @inlinable
     public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskAlarmRegulationsResponse> {
-        let input = DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields)
-        return self.client.execute(action: "DescribeTaskAlarmRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTaskAlarmRegulations(.init(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务告警规则列表
     @inlinable
     public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
-        let input = DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields)
-        return try await self.client.execute(action: "DescribeTaskAlarmRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTaskAlarmRegulations(.init(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务告警规则列表

@@ -69,8 +69,7 @@ extension Redis {
     /// 应用参数模板到实例
     @inlinable
     public func applyParamsTemplate(instanceIds: [String], templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyParamsTemplateResponse> {
-        let input = ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId)
-        return self.client.execute(action: "ApplyParamsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyParamsTemplate(.init(instanceIds: instanceIds, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用参数模板
@@ -78,7 +77,6 @@ extension Redis {
     /// 应用参数模板到实例
     @inlinable
     public func applyParamsTemplate(instanceIds: [String], templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
-        let input = ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId)
-        return try await self.client.execute(action: "ApplyParamsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyParamsTemplate(.init(instanceIds: instanceIds, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

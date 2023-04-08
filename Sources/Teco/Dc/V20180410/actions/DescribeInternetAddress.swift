@@ -98,15 +98,13 @@ extension Dc {
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
-        let input = DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInternetAddress(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
-        let input = DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInternetAddress(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户互联网公网地址信息

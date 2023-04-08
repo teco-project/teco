@@ -99,8 +99,7 @@ extension Tcr {
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
     public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagePersonalResponse> {
-        let input = DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag)
-        return self.client.execute(action: "DescribeImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImagePersonal(.init(repoName: repoName, offset: offset, limit: limit, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版镜像仓库tag列表
@@ -108,8 +107,7 @@ extension Tcr {
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
     public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
-        let input = DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag)
-        return try await self.client.execute(action: "DescribeImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImagePersonal(.init(repoName: repoName, offset: offset, limit: limit, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版镜像仓库tag列表

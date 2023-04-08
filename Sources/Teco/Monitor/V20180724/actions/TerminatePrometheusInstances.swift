@@ -54,14 +54,12 @@ extension Monitor {
     /// 销毁按量 Prometheus 实例
     @inlinable @discardableResult
     public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
-        let input = TerminatePrometheusInstancesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.terminatePrometheusInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量 Prometheus 实例
     @inlinable @discardableResult
     public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
-        let input = TerminatePrometheusInstancesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.terminatePrometheusInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

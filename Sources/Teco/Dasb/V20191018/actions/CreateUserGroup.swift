@@ -63,14 +63,12 @@ extension Dasb {
     /// 新建用户组
     @inlinable
     public func createUserGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
-        let input = CreateUserGroupRequest(name: name, departmentId: departmentId)
-        return self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createUserGroup(.init(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建用户组
     @inlinable
     public func createUserGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        let input = CreateUserGroupRequest(name: name, departmentId: departmentId)
-        return try await self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createUserGroup(.init(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

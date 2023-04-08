@@ -74,8 +74,7 @@ extension Cbs {
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable @discardableResult
     public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
-        let input = RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId)
-        return self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewDisk(.init(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘
@@ -86,7 +85,6 @@ extension Cbs {
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable @discardableResult
     public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
-        let input = RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId)
-        return try await self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewDisk(.init(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 }

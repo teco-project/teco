@@ -117,8 +117,7 @@ extension Cwp {
     /// 用于网页防篡改获取区域主机列表。
     @inlinable
     public func describeMachineList(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineListResponse> {
-        let input = DescribeMachineListRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeMachineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMachineList(.init(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网页防篡改获取区域主机列表
@@ -126,8 +125,7 @@ extension Cwp {
     /// 用于网页防篡改获取区域主机列表。
     @inlinable
     public func describeMachineList(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineListResponse {
-        let input = DescribeMachineListRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeMachineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMachineList(.init(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网页防篡改获取区域主机列表

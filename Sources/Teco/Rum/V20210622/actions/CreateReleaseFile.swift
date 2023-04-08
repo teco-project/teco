@@ -69,8 +69,7 @@ extension Rum {
     /// 创建对应项目的文件记录
     @inlinable
     public func createReleaseFile(projectID: Int64, files: [ReleaseFile], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFileResponse> {
-        let input = CreateReleaseFileRequest(projectID: projectID, files: files)
-        return self.client.execute(action: "CreateReleaseFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createReleaseFile(.init(projectID: projectID, files: files), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建发布文件记录
@@ -78,7 +77,6 @@ extension Rum {
     /// 创建对应项目的文件记录
     @inlinable
     public func createReleaseFile(projectID: Int64, files: [ReleaseFile], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
-        let input = CreateReleaseFileRequest(projectID: projectID, files: files)
-        return try await self.client.execute(action: "CreateReleaseFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createReleaseFile(.init(projectID: projectID, files: files), region: region, logger: logger, on: eventLoop)
     }
 }

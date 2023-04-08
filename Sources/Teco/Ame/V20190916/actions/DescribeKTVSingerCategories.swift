@@ -54,14 +54,12 @@ extension Ame {
     /// 获取直播互动曲库歌手分类信息
     @inlinable
     public func describeKTVSingerCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerCategoriesResponse> {
-        let input = DescribeKTVSingerCategoriesRequest()
-        return self.client.execute(action: "DescribeKTVSingerCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVSingerCategories(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌手分类信息
     @inlinable
     public func describeKTVSingerCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {
-        let input = DescribeKTVSingerCategoriesRequest()
-        return try await self.client.execute(action: "DescribeKTVSingerCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVSingerCategories(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

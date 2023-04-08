@@ -43,29 +43,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRsgAsGroupResponse> {
-        self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DisableRsgAsGroup is no longer available.")
     }
 
     /// 停用资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
-        try await self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DisableRsgAsGroup is no longer available.")
     }
 
     /// 停用资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func disableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRsgAsGroupResponse> {
-        let input = DisableRsgAsGroupRequest(id: id)
-        return self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DisableRsgAsGroup is no longer available.")
     }
 
     /// 停用资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func disableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
-        let input = DisableRsgAsGroupRequest(id: id)
-        return try await self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DisableRsgAsGroup is no longer available.")
     }
 }

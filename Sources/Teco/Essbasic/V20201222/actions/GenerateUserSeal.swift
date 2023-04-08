@@ -96,8 +96,7 @@ extension Essbasic {
     /// 2. 个人用户仅支持拥有一个系统生成的电子签名。
     @inlinable
     public func generateUserSeal(caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateUserSealResponse> {
-        let input = GenerateUserSealRequest(caller: caller, userId: userId, sourceIp: sourceIp, sealName: sealName, isDefault: isDefault)
-        return self.client.execute(action: "GenerateUserSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.generateUserSeal(.init(caller: caller, userId: userId, sourceIp: sourceIp, sealName: sealName, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成个人电子签名
@@ -109,7 +108,6 @@ extension Essbasic {
     /// 2. 个人用户仅支持拥有一个系统生成的电子签名。
     @inlinable
     public func generateUserSeal(caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateUserSealResponse {
-        let input = GenerateUserSealRequest(caller: caller, userId: userId, sourceIp: sourceIp, sealName: sealName, isDefault: isDefault)
-        return try await self.client.execute(action: "GenerateUserSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.generateUserSeal(.init(caller: caller, userId: userId, sourceIp: sourceIp, sealName: sealName, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 }

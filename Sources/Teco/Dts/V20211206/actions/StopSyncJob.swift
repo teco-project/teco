@@ -60,8 +60,7 @@ extension Dts {
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable @discardableResult
     public func stopSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSyncJobResponse> {
-        let input = StopSyncJobRequest(jobId: jobId)
-        return self.client.execute(action: "StopSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结束同步任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable @discardableResult
     public func stopSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
-        let input = StopSyncJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "StopSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopSyncJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

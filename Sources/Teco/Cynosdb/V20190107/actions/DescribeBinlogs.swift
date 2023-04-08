@@ -109,8 +109,7 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     @inlinable
     public func describeBinlogs(clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
-        let input = DescribeBinlogsRequest(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeBinlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBinlogs(.init(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Binlog列表
@@ -118,8 +117,7 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     @inlinable
     public func describeBinlogs(clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
-        let input = DescribeBinlogsRequest(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeBinlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBinlogs(.init(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Binlog列表

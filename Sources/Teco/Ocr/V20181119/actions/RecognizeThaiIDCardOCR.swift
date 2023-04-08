@@ -102,8 +102,7 @@ extension Ocr {
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
     public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeThaiIDCardOCRResponse> {
-        let input = RecognizeThaiIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "RecognizeThaiIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 泰国身份证识别
@@ -112,7 +111,6 @@ extension Ocr {
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
     public func recognizeThaiIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeThaiIDCardOCRResponse {
-        let input = RecognizeThaiIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "RecognizeThaiIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeThaiIDCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

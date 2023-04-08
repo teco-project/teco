@@ -93,8 +93,7 @@ extension As {
     /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
     @inlinable
     public func modifyLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, loadBalancersCheckPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancersResponse> {
-        let input = ModifyLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers, loadBalancersCheckPolicy: loadBalancersCheckPolicy)
-        return self.client.execute(action: "ModifyLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoadBalancers(.init(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers, loadBalancersCheckPolicy: loadBalancersCheckPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改伸缩组的负载均衡器
@@ -106,7 +105,6 @@ extension As {
     /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
     @inlinable
     public func modifyLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, loadBalancersCheckPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancersResponse {
-        let input = ModifyLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers, loadBalancersCheckPolicy: loadBalancersCheckPolicy)
-        return try await self.client.execute(action: "ModifyLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoadBalancers(.init(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers, loadBalancersCheckPolicy: loadBalancersCheckPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

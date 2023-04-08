@@ -105,8 +105,7 @@ extension Monitor {
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
     public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductListResponse> {
-        let input = DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProductList(.init(module: module, order: order, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云监控产品列表
@@ -114,8 +113,7 @@ extension Monitor {
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
     public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
-        let input = DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProductList(.init(module: module, order: order, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云监控产品列表

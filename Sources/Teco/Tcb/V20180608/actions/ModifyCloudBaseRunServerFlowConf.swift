@@ -79,14 +79,12 @@ extension Tcb {
     /// 修改容器内的版本流量配置
     @inlinable
     public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerFlowConfResponse> {
-        let input = ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark)
-        return self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCloudBaseRunServerFlowConf(.init(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改容器内的版本流量配置
     @inlinable
     public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
-        let input = ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark)
-        return try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCloudBaseRunServerFlowConf(.init(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 }

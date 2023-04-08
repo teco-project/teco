@@ -69,8 +69,7 @@ extension Lighthouse {
     /// 本接口 ( CreateDiskBackup  ) 用于创建指定云硬盘（当前只支持数据盘）的备份点。
     @inlinable
     public func createDiskBackup(diskId: String, diskBackupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDiskBackupResponse> {
-        let input = CreateDiskBackupRequest(diskId: diskId, diskBackupName: diskBackupName)
-        return self.client.execute(action: "CreateDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDiskBackup(.init(diskId: diskId, diskBackupName: diskBackupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云硬盘备份点
@@ -78,7 +77,6 @@ extension Lighthouse {
     /// 本接口 ( CreateDiskBackup  ) 用于创建指定云硬盘（当前只支持数据盘）的备份点。
     @inlinable
     public func createDiskBackup(diskId: String, diskBackupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiskBackupResponse {
-        let input = CreateDiskBackupRequest(diskId: diskId, diskBackupName: diskBackupName)
-        return try await self.client.execute(action: "CreateDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDiskBackup(.init(diskId: diskId, diskBackupName: diskBackupName), region: region, logger: logger, on: eventLoop)
     }
 }

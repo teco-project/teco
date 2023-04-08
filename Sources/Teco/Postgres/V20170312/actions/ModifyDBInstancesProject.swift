@@ -69,8 +69,7 @@ extension Postgres {
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
     public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
-        let input = ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId)
-        return self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstancesProject(.init(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将实例转至其他项目
@@ -78,7 +77,6 @@ extension Postgres {
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
     public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
-        let input = ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId)
-        return try await self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstancesProject(.init(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -114,8 +114,7 @@ extension Tcss {
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
     public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedNodeListResponse> {
-        let input = DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeAffectedNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAffectedNodeList(.init(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点类型的影响范围
@@ -123,8 +122,7 @@ extension Tcss {
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
     public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
-        let input = DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeAffectedNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAffectedNodeList(.init(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点类型的影响范围

@@ -98,14 +98,12 @@ extension Youmall {
     /// 获取指定区域性别占比
     @inlinable
     public func describeZoneFlowGenderInfoByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowGenderInfoByZoneIdResponse> {
-        let input = DescribeZoneFlowGenderInfoByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate)
-        return self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZoneFlowGenderInfoByZoneId(.init(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定区域性别占比
     @inlinable
     public func describeZoneFlowGenderInfoByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderInfoByZoneIdResponse {
-        let input = DescribeZoneFlowGenderInfoByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZoneFlowGenderInfoByZoneId(.init(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

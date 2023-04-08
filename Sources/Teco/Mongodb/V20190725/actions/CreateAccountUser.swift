@@ -89,8 +89,7 @@ extension Mongodb {
     /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
     @inlinable
     public func createAccountUser(instanceId: String, userName: String, password: String, mongoUserPassword: String, userDesc: String? = nil, authRole: [Auth]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountUserResponse> {
-        let input = CreateAccountUserRequest(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole)
-        return self.client.execute(action: "CreateAccountUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAccountUser(.init(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建账号
@@ -98,7 +97,6 @@ extension Mongodb {
     /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
     @inlinable
     public func createAccountUser(instanceId: String, userName: String, password: String, mongoUserPassword: String, userDesc: String? = nil, authRole: [Auth]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountUserResponse {
-        let input = CreateAccountUserRequest(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole)
-        return try await self.client.execute(action: "CreateAccountUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAccountUser(.init(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole), region: region, logger: logger, on: eventLoop)
     }
 }

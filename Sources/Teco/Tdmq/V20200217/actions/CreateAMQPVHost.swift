@@ -69,14 +69,12 @@ extension Tdmq {
     /// 创建Amqp Vhost
     @inlinable @discardableResult
     public func createAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPVHostResponse> {
-        let input = CreateAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark)
-        return self.client.execute(action: "CreateAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Amqp Vhost
     @inlinable @discardableResult
     public func createAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {
-        let input = CreateAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark)
-        return try await self.client.execute(action: "CreateAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

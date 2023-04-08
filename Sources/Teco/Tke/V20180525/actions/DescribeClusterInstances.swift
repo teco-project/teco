@@ -113,8 +113,7 @@ extension Tke {
     /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters)
-        return self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterInstances(.init(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群节点信息
@@ -122,8 +121,7 @@ extension Tke {
     /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters)
-        return try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterInstances(.init(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群节点信息

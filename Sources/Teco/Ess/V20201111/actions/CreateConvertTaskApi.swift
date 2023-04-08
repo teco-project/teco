@@ -83,14 +83,12 @@ extension Ess {
     /// 创建文件转换任务
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
-        let input = CreateConvertTaskApiRequest(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization)
-        return self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件转换任务
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
-        let input = CreateConvertTaskApiRequest(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization)
-        return try await self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

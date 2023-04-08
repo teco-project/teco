@@ -92,15 +92,13 @@ extension Iotexplorer {
     /// 获取围栏绑定信息列表
     @inlinable
     public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceBindListResponse> {
-        let input = DescribeFenceBindListRequest(fenceId: fenceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeFenceBindList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFenceBindList(.init(fenceId: fenceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏绑定信息列表
     @inlinable
     public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
-        let input = DescribeFenceBindListRequest(fenceId: fenceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeFenceBindList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFenceBindList(.init(fenceId: fenceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏绑定信息列表

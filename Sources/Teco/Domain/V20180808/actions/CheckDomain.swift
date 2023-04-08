@@ -121,8 +121,7 @@ extension Domain {
     /// 检查域名是否可以注册。
     @inlinable
     public func checkDomain(domainName: String, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
-        let input = CheckDomainRequest(domainName: domainName, period: period)
-        return self.client.execute(action: "CheckDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkDomain(.init(domainName: domainName, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名注册查询
@@ -130,7 +129,6 @@ extension Domain {
     /// 检查域名是否可以注册。
     @inlinable
     public func checkDomain(domainName: String, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
-        let input = CheckDomainRequest(domainName: domainName, period: period)
-        return try await self.client.execute(action: "CheckDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkDomain(.init(domainName: domainName, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

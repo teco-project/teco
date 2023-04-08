@@ -114,14 +114,12 @@ extension Iotvideo {
     /// 拉取云存事件列表
     @inlinable
     public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageEventsResponse> {
-        let input = DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId)
-        return self.client.execute(action: "DescribeCloudStorageEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudStorageEvents(.init(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件列表
     @inlinable
     public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
-        let input = DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId)
-        return try await self.client.execute(action: "DescribeCloudStorageEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudStorageEvents(.init(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

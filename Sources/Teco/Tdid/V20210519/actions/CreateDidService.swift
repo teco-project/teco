@@ -88,14 +88,12 @@ extension Tdid {
     /// 创建DID服务
     @inlinable
     public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDidServiceResponse> {
-        let input = CreateDidServiceRequest(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName)
-        return self.client.execute(action: "CreateDidService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDidService(.init(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建DID服务
     @inlinable
     public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDidServiceResponse {
-        let input = CreateDidServiceRequest(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName)
-        return try await self.client.execute(action: "CreateDidService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDidService(.init(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 }

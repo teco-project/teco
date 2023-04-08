@@ -69,8 +69,7 @@ extension Tdmq {
     /// 删除角色，支持批量。
     @inlinable
     public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
-        let input = DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId)
-        return self.client.execute(action: "DeleteRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRoles(.init(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
@@ -78,7 +77,6 @@ extension Tdmq {
     /// 删除角色，支持批量。
     @inlinable
     public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
-        let input = DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId)
-        return try await self.client.execute(action: "DeleteRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRoles(.init(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Apigateway {
     /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
     @inlinable
     public func unBindIPStrategy(serviceId: String, strategyId: String, environmentName: String, unBindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindIPStrategyResponse> {
-        let input = UnBindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds)
-        return self.client.execute(action: "UnBindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unBindIPStrategy(.init(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务解绑IP策略
@@ -89,7 +88,6 @@ extension Apigateway {
     /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
     @inlinable
     public func unBindIPStrategy(serviceId: String, strategyId: String, environmentName: String, unBindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindIPStrategyResponse {
-        let input = UnBindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds)
-        return try await self.client.execute(action: "UnBindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unBindIPStrategy(.init(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds), region: region, logger: logger, on: eventLoop)
     }
 }

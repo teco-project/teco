@@ -84,8 +84,7 @@ extension Ivld {
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomPersonImageResponse> {
-        let input = AddCustomPersonImageRequest(personId: personId, imageURL: imageURL, image: image)
-        return self.client.execute(action: "AddCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addCustomPersonImage(.init(personId: personId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加自定义人脸图片
@@ -95,7 +94,6 @@ extension Ivld {
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomPersonImageResponse {
-        let input = AddCustomPersonImageRequest(personId: personId, imageURL: imageURL, image: image)
-        return try await self.client.execute(action: "AddCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addCustomPersonImage(.init(personId: personId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 }

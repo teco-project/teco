@@ -108,8 +108,7 @@ extension Cdn {
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
     public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
-        let input = DescribePayTypeRequest(area: area, product: product)
-        return self.client.execute(action: "DescribePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePayType(.init(area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询计费方式
@@ -117,7 +116,6 @@ extension Cdn {
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
     public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
-        let input = DescribePayTypeRequest(area: area, product: product)
-        return try await self.client.execute(action: "DescribePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePayType(.init(area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

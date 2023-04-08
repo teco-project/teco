@@ -97,15 +97,13 @@ extension Tdmq {
     /// 获取RocketMQ命名空间列表
     @inlinable
     public func describeRocketMQNamespaces(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQNamespacesResponse> {
-        let input = DescribeRocketMQNamespacesRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword)
-        return self.client.execute(action: "DescribeRocketMQNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRocketMQNamespaces(.init(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ命名空间列表
     @inlinable
     public func describeRocketMQNamespaces(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQNamespacesResponse {
-        let input = DescribeRocketMQNamespacesRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword)
-        return try await self.client.execute(action: "DescribeRocketMQNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRocketMQNamespaces(.init(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ命名空间列表

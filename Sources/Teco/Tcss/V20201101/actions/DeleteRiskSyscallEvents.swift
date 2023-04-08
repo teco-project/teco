@@ -54,14 +54,12 @@ extension Tcss {
     /// 删除运行时高危系统调用事件
     @inlinable @discardableResult
     public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
-        let input = DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet)
-        return self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRiskSyscallEvents(.init(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用事件
     @inlinable @discardableResult
     public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
-        let input = DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet)
-        return try await self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRiskSyscallEvents(.init(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

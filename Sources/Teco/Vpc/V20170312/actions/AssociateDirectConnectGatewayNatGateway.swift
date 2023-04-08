@@ -70,8 +70,7 @@ extension Vpc {
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
     @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDirectConnectGatewayNatGatewayResponse> {
-        let input = AssociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId)
-        return self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateDirectConnectGatewayNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 专线网关绑定NAT网关
@@ -79,7 +78,6 @@ extension Vpc {
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
     @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDirectConnectGatewayNatGatewayResponse {
-        let input = AssociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId)
-        return try await self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateDirectConnectGatewayNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

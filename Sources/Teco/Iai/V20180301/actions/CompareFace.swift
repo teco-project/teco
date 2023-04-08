@@ -146,8 +146,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareFaceResponse> {
-        let input = CompareFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
-        return self.client.execute(action: "CompareFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.compareFace(.init(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸比对
@@ -160,7 +159,6 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareFaceResponse {
-        let input = CompareFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
-        return try await self.client.execute(action: "CompareFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.compareFace(.init(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Tsf {
     /// 查询公共配置（单条）
     @inlinable
     public func describePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigResponse> {
-        let input = DescribePublicConfigRequest(configId: configId)
-        return self.client.execute(action: "DescribePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublicConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置（单条）
     @inlinable
     public func describePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
-        let input = DescribePublicConfigRequest(configId: configId)
-        return try await self.client.execute(action: "DescribePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublicConfig(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

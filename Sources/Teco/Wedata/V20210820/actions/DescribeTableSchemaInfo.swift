@@ -84,14 +84,12 @@ extension Wedata {
     /// 获取表schema信息
     @inlinable
     public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
-        let input = DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName)
-        return self.client.execute(action: "DescribeTableSchemaInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTableSchemaInfo(.init(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取表schema信息
     @inlinable
     public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
-        let input = DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName)
-        return try await self.client.execute(action: "DescribeTableSchemaInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTableSchemaInfo(.init(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), region: region, logger: logger, on: eventLoop)
     }
 }

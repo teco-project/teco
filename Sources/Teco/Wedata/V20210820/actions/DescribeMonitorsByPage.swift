@@ -99,15 +99,13 @@ extension Wedata {
     /// 分页查询质量监控组
     @inlinable
     public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsByPageResponse> {
-        let input = DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber)
-        return self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMonitorsByPage(.init(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量监控组
     @inlinable
     public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
-        let input = DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber)
-        return try await self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMonitorsByPage(.init(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量监控组

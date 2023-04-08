@@ -64,14 +64,12 @@ extension Cam {
     /// 角色绑定标签
     @inlinable @discardableResult
     public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagRoleResponse> {
-        let input = TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId)
-        return self.client.execute(action: "TagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.tagRole(.init(tags: tags, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 角色绑定标签
     @inlinable @discardableResult
     public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
-        let input = TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId)
-        return try await self.client.execute(action: "TagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.tagRole(.init(tags: tags, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 }

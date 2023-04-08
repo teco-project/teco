@@ -58,14 +58,12 @@ extension Es {
     /// 获取接收客户端请求的节点类型
     @inlinable
     public func getRequestTargetNodeTypes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestTargetNodeTypesResponse> {
-        let input = GetRequestTargetNodeTypesRequest(instanceId: instanceId)
-        return self.client.execute(action: "GetRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getRequestTargetNodeTypes(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取接收客户端请求的节点类型
     @inlinable
     public func getRequestTargetNodeTypes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestTargetNodeTypesResponse {
-        let input = GetRequestTargetNodeTypesRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "GetRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getRequestTargetNodeTypes(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

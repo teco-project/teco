@@ -69,14 +69,12 @@ extension Cfw {
     /// 互联网边界防火墙一键开关
     @inlinable
     public func modifyAllPublicIPSwitchStatus(status: Int64, fireWallPublicIPs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllPublicIPSwitchStatusResponse> {
-        let input = ModifyAllPublicIPSwitchStatusRequest(status: status, fireWallPublicIPs: fireWallPublicIPs)
-        return self.client.execute(action: "ModifyAllPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAllPublicIPSwitchStatus(.init(status: status, fireWallPublicIPs: fireWallPublicIPs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 互联网边界防火墙一键开关
     @inlinable
     public func modifyAllPublicIPSwitchStatus(status: Int64, fireWallPublicIPs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllPublicIPSwitchStatusResponse {
-        let input = ModifyAllPublicIPSwitchStatusRequest(status: status, fireWallPublicIPs: fireWallPublicIPs)
-        return try await self.client.execute(action: "ModifyAllPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAllPublicIPSwitchStatus(.init(status: status, fireWallPublicIPs: fireWallPublicIPs), region: region, logger: logger, on: eventLoop)
     }
 }

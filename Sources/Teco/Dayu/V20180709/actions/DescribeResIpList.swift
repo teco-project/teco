@@ -63,14 +63,12 @@ extension Dayu {
     /// 获取资源的IP列表
     @inlinable
     public func describeResIpList(business: String, idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResIpListResponse> {
-        let input = DescribeResIpListRequest(business: business, idList: idList)
-        return self.client.execute(action: "DescribeResIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResIpList(.init(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的IP列表
     @inlinable
     public func describeResIpList(business: String, idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
-        let input = DescribeResIpListRequest(business: business, idList: idList)
-        return try await self.client.execute(action: "DescribeResIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResIpList(.init(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

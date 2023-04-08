@@ -70,8 +70,7 @@ extension Cwp {
     /// 根据策略id查询基线检测项TOP
     @inlinable
     public func describeBaselineTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineTopResponse> {
-        let input = DescribeBaselineTopRequest(top: top, strategyId: strategyId)
-        return self.client.execute(action: "DescribeBaselineTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaselineTop(.init(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 基线检测项TOP
@@ -79,7 +78,6 @@ extension Cwp {
     /// 根据策略id查询基线检测项TOP
     @inlinable
     public func describeBaselineTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
-        let input = DescribeBaselineTopRequest(top: top, strategyId: strategyId)
-        return try await self.client.execute(action: "DescribeBaselineTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaselineTop(.init(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

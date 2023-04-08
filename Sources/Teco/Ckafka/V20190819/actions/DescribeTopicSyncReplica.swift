@@ -104,8 +104,7 @@ extension Ckafka {
     /// 获取Topic 副本详情信息
     @inlinable
     public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSyncReplicaResponse> {
-        let input = DescribeTopicSyncReplicaRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly)
-        return self.client.execute(action: "DescribeTopicSyncReplica", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopicSyncReplica(.init(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic 同步副本信息
@@ -113,8 +112,7 @@ extension Ckafka {
     /// 获取Topic 副本详情信息
     @inlinable
     public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSyncReplicaResponse {
-        let input = DescribeTopicSyncReplicaRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly)
-        return try await self.client.execute(action: "DescribeTopicSyncReplica", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopicSyncReplica(.init(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic 同步副本信息

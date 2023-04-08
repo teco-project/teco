@@ -59,14 +59,12 @@ extension Hasim {
     /// 修改云兔运营商
     @inlinable @discardableResult
     public func modifyLinkTele(linkID: Int64, teleOperator: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLinkTeleResponse> {
-        let input = ModifyLinkTeleRequest(linkID: linkID, teleOperator: teleOperator)
-        return self.client.execute(action: "ModifyLinkTele", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLinkTele(.init(linkID: linkID, teleOperator: teleOperator), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云兔运营商
     @inlinable @discardableResult
     public func modifyLinkTele(linkID: Int64, teleOperator: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLinkTeleResponse {
-        let input = ModifyLinkTeleRequest(linkID: linkID, teleOperator: teleOperator)
-        return try await self.client.execute(action: "ModifyLinkTele", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLinkTele(.init(linkID: linkID, teleOperator: teleOperator), region: region, logger: logger, on: eventLoop)
     }
 }

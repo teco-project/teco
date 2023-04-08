@@ -111,15 +111,13 @@ extension Tcss {
     /// 查询漏洞扫描任务的本地镜像列表
     @inlinable
     public func describeVulScanLocalImageList(taskID: Int64, filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanLocalImageListResponse> {
-        let input = DescribeVulScanLocalImageListRequest(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeVulScanLocalImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulScanLocalImageList(.init(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞扫描任务的本地镜像列表
     @inlinable
     public func describeVulScanLocalImageList(taskID: Int64, filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanLocalImageListResponse {
-        let input = DescribeVulScanLocalImageListRequest(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeVulScanLocalImageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulScanLocalImageList(.init(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞扫描任务的本地镜像列表

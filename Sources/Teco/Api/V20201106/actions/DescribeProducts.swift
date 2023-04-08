@@ -93,8 +93,7 @@ extension Api {
     /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
     @inlinable
     public func describeProducts(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        let input = DescribeProductsRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProducts(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询支持地域列表查询的产品
@@ -102,8 +101,7 @@ extension Api {
     /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
     @inlinable
     public func describeProducts(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        let input = DescribeProductsRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProducts(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询支持地域列表查询的产品

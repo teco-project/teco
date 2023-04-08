@@ -98,14 +98,12 @@ extension Cpdp {
     /// 云支付-分账结果查询接口
     @inlinable
     public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
-        let input = DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile)
-        return self.client.execute(action: "DistributeQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.distributeQuery(.init(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账结果查询接口
     @inlinable
     public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
-        let input = DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile)
-        return try await self.client.execute(action: "DistributeQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.distributeQuery(.init(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

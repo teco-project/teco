@@ -66,8 +66,7 @@ extension Ecm {
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable @discardableResult
     public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
-        let input = DeleteSecurityGroupRequest(securityGroupId: securityGroupId)
-        return self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSecurityGroup(.init(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除安全组
@@ -77,7 +76,6 @@ extension Ecm {
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable @discardableResult
     public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
-        let input = DeleteSecurityGroupRequest(securityGroupId: securityGroupId)
-        return try await self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSecurityGroup(.init(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

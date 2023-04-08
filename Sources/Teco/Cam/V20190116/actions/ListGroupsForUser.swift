@@ -77,14 +77,12 @@ extension Cam {
     /// 列出用户关联的用户组
     @inlinable
     public func listGroupsForUser(uid: UInt64? = nil, rp: UInt64? = nil, page: UInt64? = nil, subUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListGroupsForUserResponse> {
-        let input = ListGroupsForUserRequest(uid: uid, rp: rp, page: page, subUin: subUin)
-        return self.client.execute(action: "ListGroupsForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listGroupsForUser(.init(uid: uid, rp: rp, page: page, subUin: subUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出用户关联的用户组
     @inlinable
     public func listGroupsForUser(uid: UInt64? = nil, rp: UInt64? = nil, page: UInt64? = nil, subUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsForUserResponse {
-        let input = ListGroupsForUserRequest(uid: uid, rp: rp, page: page, subUin: subUin)
-        return try await self.client.execute(action: "ListGroupsForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listGroupsForUser(.init(uid: uid, rp: rp, page: page, subUin: subUin), region: region, logger: logger, on: eventLoop)
     }
 }

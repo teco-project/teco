@@ -64,14 +64,12 @@ extension Tke {
     /// 删除集群伸缩组
     @inlinable @discardableResult
     public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterAsGroupsResponse> {
-        let input = DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance)
-        return self.client.execute(action: "DeleteClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterAsGroups(.init(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群伸缩组
     @inlinable @discardableResult
     public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
-        let input = DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance)
-        return try await self.client.execute(action: "DeleteClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterAsGroups(.init(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
     }
 }

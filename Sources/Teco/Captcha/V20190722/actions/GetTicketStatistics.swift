@@ -88,8 +88,7 @@ extension Captcha {
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
     public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTicketStatisticsResponse> {
-        let input = GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension)
-        return self.client.execute(action: "GetTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getTicketStatistics(.init(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个CaptchaAppID票据校验数据
@@ -97,7 +96,6 @@ extension Captcha {
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
     public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
-        let input = GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension)
-        return try await self.client.execute(action: "GetTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getTicketStatistics(.init(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 }

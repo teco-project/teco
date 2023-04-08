@@ -74,8 +74,7 @@ extension Yinsuda {
     /// 根据关键词获取联想词列表。
     @inlinable
     public func describeKTVSuggestions(appName: String, userId: String, keyWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSuggestionsResponse> {
-        let input = DescribeKTVSuggestionsRequest(appName: appName, userId: userId, keyWord: keyWord)
-        return self.client.execute(action: "DescribeKTVSuggestions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVSuggestions(.init(appName: appName, userId: userId, keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联想词
@@ -83,7 +82,6 @@ extension Yinsuda {
     /// 根据关键词获取联想词列表。
     @inlinable
     public func describeKTVSuggestions(appName: String, userId: String, keyWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
-        let input = DescribeKTVSuggestionsRequest(appName: appName, userId: userId, keyWord: keyWord)
-        return try await self.client.execute(action: "DescribeKTVSuggestions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVSuggestions(.init(appName: appName, userId: userId, keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 }

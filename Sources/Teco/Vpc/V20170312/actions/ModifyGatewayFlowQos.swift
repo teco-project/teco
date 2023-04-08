@@ -73,8 +73,7 @@ extension Vpc {
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable @discardableResult
     public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGatewayFlowQosResponse> {
-        let input = ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses)
-        return self.client.execute(action: "ModifyGatewayFlowQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyGatewayFlowQos(.init(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整网关流控带宽
@@ -82,7 +81,6 @@ extension Vpc {
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable @discardableResult
     public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
-        let input = ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses)
-        return try await self.client.execute(action: "ModifyGatewayFlowQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyGatewayFlowQos(.init(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), region: region, logger: logger, on: eventLoop)
     }
 }

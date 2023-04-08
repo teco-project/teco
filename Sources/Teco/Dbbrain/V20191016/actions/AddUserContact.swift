@@ -74,8 +74,7 @@ extension Dbbrain {
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
     public func addUserContact(name: String, contactInfo: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserContactResponse> {
-        let input = AddUserContactRequest(name: name, contactInfo: contactInfo, product: product)
-        return self.client.execute(action: "AddUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addUserContact(.init(name: name, contactInfo: contactInfo, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加联系人信息
@@ -83,7 +82,6 @@ extension Dbbrain {
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
     public func addUserContact(name: String, contactInfo: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
-        let input = AddUserContactRequest(name: name, contactInfo: contactInfo, product: product)
-        return try await self.client.execute(action: "AddUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addUserContact(.init(name: name, contactInfo: contactInfo, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

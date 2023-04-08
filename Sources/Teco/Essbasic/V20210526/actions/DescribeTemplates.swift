@@ -146,8 +146,7 @@ extension Essbasic {
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
     public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
-        let input = DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId)
-        return self.client.execute(action: "DescribeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTemplates(.init(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板信息列表
@@ -155,8 +154,7 @@ extension Essbasic {
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
     public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
-        let input = DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId)
-        return try await self.client.execute(action: "DescribeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTemplates(.init(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板信息列表

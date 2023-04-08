@@ -70,8 +70,7 @@ extension Apigateway {
     /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
     @inlinable
     public func unBindSecretIds(usagePlanId: String, accessKeyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindSecretIdsResponse> {
-        let input = UnBindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds)
-        return self.client.execute(action: "UnBindSecretIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unBindSecretIds(.init(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用计划解绑密钥
@@ -79,7 +78,6 @@ extension Apigateway {
     /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
     @inlinable
     public func unBindSecretIds(usagePlanId: String, accessKeyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSecretIdsResponse {
-        let input = UnBindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds)
-        return try await self.client.execute(action: "UnBindSecretIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unBindSecretIds(.init(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), region: region, logger: logger, on: eventLoop)
     }
 }

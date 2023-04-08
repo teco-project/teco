@@ -90,8 +90,7 @@ extension Tke {
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
     public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
-        let input = DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion)
-        return self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeClusterUpgradeInfo(.init(clusterId: clusterId, edgeVersion: edgeVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群升级信息
@@ -99,7 +98,6 @@ extension Tke {
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
     public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
-        let input = DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion)
-        return try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeClusterUpgradeInfo(.init(clusterId: clusterId, edgeVersion: edgeVersion), region: region, logger: logger, on: eventLoop)
     }
 }

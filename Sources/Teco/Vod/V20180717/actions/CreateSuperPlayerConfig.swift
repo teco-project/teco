@@ -141,8 +141,7 @@ extension Vod {
     /// 创建播放器配置，数量上限：100。
     @inlinable @discardableResult
     public func createSuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfo? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSuperPlayerConfigResponse> {
-        let input = CreateSuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment)
-        return self.client.execute(action: "CreateSuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSuperPlayerConfig(.init(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建播放器配置
@@ -151,7 +150,6 @@ extension Vod {
     /// 创建播放器配置，数量上限：100。
     @inlinable @discardableResult
     public func createSuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfo? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSuperPlayerConfigResponse {
-        let input = CreateSuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment)
-        return try await self.client.execute(action: "CreateSuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSuperPlayerConfig(.init(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

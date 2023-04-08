@@ -98,8 +98,7 @@ extension Apigateway {
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
     @inlinable
     public func describeServiceUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceUsagePlanResponse> {
-        let input = DescribeServiceUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeServiceUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeServiceUsagePlan(.init(serviceId: serviceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务使用计划详情
@@ -108,8 +107,7 @@ extension Apigateway {
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
     @inlinable
     public func describeServiceUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceUsagePlanResponse {
-        let input = DescribeServiceUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeServiceUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeServiceUsagePlan(.init(serviceId: serviceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务使用计划详情

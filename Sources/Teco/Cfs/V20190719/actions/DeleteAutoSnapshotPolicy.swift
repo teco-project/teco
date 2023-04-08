@@ -64,8 +64,7 @@ extension Cfs {
     /// 删除快照定期策略
     @inlinable
     public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
-        let input = DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId)
-        return self.client.execute(action: "DeleteAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除快照策略
@@ -73,7 +72,6 @@ extension Cfs {
     /// 删除快照定期策略
     @inlinable
     public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
-        let input = DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId)
-        return try await self.client.execute(action: "DeleteAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAutoSnapshotPolicy(.init(autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -99,14 +99,12 @@ extension Hasim {
     /// 查询云兔连接列表
     @inlinable
     public func describeLinks(linkID: Int64? = nil, iccid: String? = nil, imei: String? = nil, status: UInt64? = nil, teleOperator: UInt64? = nil, tagID: UInt64? = nil, tacticID: UInt64? = nil, linkedState: Int64? = nil, tagIDs: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLinksResponse> {
-        let input = DescribeLinksRequest(linkID: linkID, iccid: iccid, imei: imei, status: status, teleOperator: teleOperator, tagID: tagID, tacticID: tacticID, linkedState: linkedState, tagIDs: tagIDs)
-        return self.client.execute(action: "DescribeLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLinks(.init(linkID: linkID, iccid: iccid, imei: imei, status: status, teleOperator: teleOperator, tagID: tagID, tacticID: tacticID, linkedState: linkedState, tagIDs: tagIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云兔连接列表
     @inlinable
     public func describeLinks(linkID: Int64? = nil, iccid: String? = nil, imei: String? = nil, status: UInt64? = nil, teleOperator: UInt64? = nil, tagID: UInt64? = nil, tacticID: UInt64? = nil, linkedState: Int64? = nil, tagIDs: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLinksResponse {
-        let input = DescribeLinksRequest(linkID: linkID, iccid: iccid, imei: imei, status: status, teleOperator: teleOperator, tagID: tagID, tacticID: tacticID, linkedState: linkedState, tagIDs: tagIDs)
-        return try await self.client.execute(action: "DescribeLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLinks(.init(linkID: linkID, iccid: iccid, imei: imei, status: status, teleOperator: teleOperator, tagID: tagID, tacticID: tacticID, linkedState: linkedState, tagIDs: tagIDs), region: region, logger: logger, on: eventLoop)
     }
 }

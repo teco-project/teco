@@ -118,8 +118,7 @@ extension Mps {
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
     public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonSamplesResponse> {
-        let input = DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePersonSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePersonSamples(.init(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取素材样本列表
@@ -127,8 +126,7 @@ extension Mps {
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
     public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
-        let input = DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePersonSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePersonSamples(.init(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取素材样本列表

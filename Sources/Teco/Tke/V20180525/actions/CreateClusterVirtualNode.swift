@@ -78,14 +78,12 @@ extension Tke {
     /// 创建虚拟节点
     @inlinable
     public func createClusterVirtualNode(clusterId: String, nodePoolId: String, subnetId: String? = nil, subnetIds: [String]? = nil, virtualNodes: [VirtualNodeSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterVirtualNodeResponse> {
-        let input = CreateClusterVirtualNodeRequest(clusterId: clusterId, nodePoolId: nodePoolId, subnetId: subnetId, subnetIds: subnetIds, virtualNodes: virtualNodes)
-        return self.client.execute(action: "CreateClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createClusterVirtualNode(.init(clusterId: clusterId, nodePoolId: nodePoolId, subnetId: subnetId, subnetIds: subnetIds, virtualNodes: virtualNodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建虚拟节点
     @inlinable
     public func createClusterVirtualNode(clusterId: String, nodePoolId: String, subnetId: String? = nil, subnetIds: [String]? = nil, virtualNodes: [VirtualNodeSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterVirtualNodeResponse {
-        let input = CreateClusterVirtualNodeRequest(clusterId: clusterId, nodePoolId: nodePoolId, subnetId: subnetId, subnetIds: subnetIds, virtualNodes: virtualNodes)
-        return try await self.client.execute(action: "CreateClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createClusterVirtualNode(.init(clusterId: clusterId, nodePoolId: nodePoolId, subnetId: subnetId, subnetIds: subnetIds, virtualNodes: virtualNodes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,14 +74,12 @@ extension Wedata {
     /// 查询规则组数据对象列表
     @inlinable
     public func describeDataObjects(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataObjectsResponse> {
-        let input = DescribeDataObjectsRequest(datasourceId: datasourceId, tableId: tableId, ruleGroupId: ruleGroupId, projectId: projectId)
-        return self.client.execute(action: "DescribeDataObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataObjects(.init(datasourceId: datasourceId, tableId: tableId, ruleGroupId: ruleGroupId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则组数据对象列表
     @inlinable
     public func describeDataObjects(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataObjectsResponse {
-        let input = DescribeDataObjectsRequest(datasourceId: datasourceId, tableId: tableId, ruleGroupId: ruleGroupId, projectId: projectId)
-        return try await self.client.execute(action: "DescribeDataObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataObjects(.init(datasourceId: datasourceId, tableId: tableId, ruleGroupId: ruleGroupId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

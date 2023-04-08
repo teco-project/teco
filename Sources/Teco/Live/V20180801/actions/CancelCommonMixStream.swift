@@ -61,8 +61,7 @@ extension Live {
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable @discardableResult
     public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
-        let input = CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId)
-        return self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cancelCommonMixStream(.init(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消通用混流
@@ -70,7 +69,6 @@ extension Live {
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable @discardableResult
     public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
-        let input = CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId)
-        return try await self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cancelCommonMixStream(.init(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }
 }

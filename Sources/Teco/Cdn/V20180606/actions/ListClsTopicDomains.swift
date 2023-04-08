@@ -105,8 +105,7 @@ extension Cdn {
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
     public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
-        let input = ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel)
-        return self.client.execute(action: "ListClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listClsTopicDomains(.init(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题下绑定的域名
@@ -114,7 +113,6 @@ extension Cdn {
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
     public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
-        let input = ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel)
-        return try await self.client.execute(action: "ListClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listClsTopicDomains(.init(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

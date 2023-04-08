@@ -103,8 +103,7 @@ extension Tcss {
     /// 容器安全搜索查询容器组件列表
     @inlinable
     public func describeAssetComponentList(containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetComponentListResponse> {
-        let input = DescribeAssetComponentListRequest(containerID: containerID, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeAssetComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetComponentList(.init(containerID: containerID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器组件列表
@@ -112,8 +111,7 @@ extension Tcss {
     /// 容器安全搜索查询容器组件列表
     @inlinable
     public func describeAssetComponentList(containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetComponentListResponse {
-        let input = DescribeAssetComponentListRequest(containerID: containerID, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeAssetComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetComponentList(.init(containerID: containerID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器组件列表

@@ -64,14 +64,12 @@ extension Iotvideoindustry {
     /// 直播录制计划绑定解绑直播频道
     @inlinable @discardableResult
     public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
-        let input = ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds)
-        return self.client.execute(action: "ModifyBindPlanLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBindPlanLiveChannel(.init(planId: planId, type: type, liveChannelIds: liveChannelIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录制计划绑定解绑直播频道
     @inlinable @discardableResult
     public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
-        let input = ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds)
-        return try await self.client.execute(action: "ModifyBindPlanLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBindPlanLiveChannel(.init(planId: planId, type: type, liveChannelIds: liveChannelIds), region: region, logger: logger, on: eventLoop)
     }
 }

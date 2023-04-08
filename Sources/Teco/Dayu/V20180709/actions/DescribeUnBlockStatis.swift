@@ -71,14 +71,12 @@ extension Dayu {
     /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
-        let input = DescribeUnBlockStatisRequest()
-        return self.client.execute(action: "DescribeUnBlockStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUnBlockStatis(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
-        let input = DescribeUnBlockStatisRequest()
-        return try await self.client.execute(action: "DescribeUnBlockStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUnBlockStatis(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

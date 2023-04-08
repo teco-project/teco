@@ -67,14 +67,12 @@ extension Tcss {
     /// 容器网络创建网络策略撤销任务
     @inlinable
     public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallUndoPublishResponse> {
-        let input = CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id)
-        return self.client.execute(action: "CreateNetworkFirewallUndoPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetworkFirewallUndoPublish(.init(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略撤销任务
     @inlinable
     public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
-        let input = CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id)
-        return try await self.client.execute(action: "CreateNetworkFirewallUndoPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetworkFirewallUndoPublish(.init(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

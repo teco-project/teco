@@ -90,8 +90,7 @@ extension Pts {
     /// 查询指标，返回固定时间点指标内容
     @inlinable
     public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleQueryResponse> {
-        let input = DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels)
-        return self.client.execute(action: "DescribeSampleQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSampleQuery(.init(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指标
@@ -99,7 +98,6 @@ extension Pts {
     /// 查询指标，返回固定时间点指标内容
     @inlinable
     public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
-        let input = DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels)
-        return try await self.client.execute(action: "DescribeSampleQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSampleQuery(.init(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), region: region, logger: logger, on: eventLoop)
     }
 }

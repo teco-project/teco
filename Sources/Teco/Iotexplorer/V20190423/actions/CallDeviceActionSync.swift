@@ -88,8 +88,7 @@ extension Iotexplorer {
     /// 为用户提供同步调用设备行为的能力。
     @inlinable
     public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
-        let input = CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
-        return self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.callDeviceActionSync(.init(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步调用设备行为
@@ -97,7 +96,6 @@ extension Iotexplorer {
     /// 为用户提供同步调用设备行为的能力。
     @inlinable
     public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
-        let input = CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
-        return try await self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.callDeviceActionSync(.init(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 }

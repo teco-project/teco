@@ -66,8 +66,7 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func deleteDhcpIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDhcpIpResponse> {
-        let input = DeleteDhcpIpRequest(dhcpIpId: dhcpIpId)
-        return self.client.execute(action: "DeleteDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDhcpIp(.init(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除DhcpIp
@@ -77,7 +76,6 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func deleteDhcpIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDhcpIpResponse {
-        let input = DeleteDhcpIpRequest(dhcpIpId: dhcpIpId)
-        return try await self.client.execute(action: "DeleteDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDhcpIp(.init(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }
 }

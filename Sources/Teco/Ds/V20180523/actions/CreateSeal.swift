@@ -84,8 +84,7 @@ extension Ds {
     /// 此接口用于客户电子合同平台增加某用户的印章图片。客户平台可以调用此接口增加某用户的印章图片。
     @inlinable
     public func createSeal(module: String, operation: String, accountResId: String, imgUrl: String, imgData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
-        let input = CreateSealRequest(module: module, operation: operation, accountResId: accountResId, imgUrl: imgUrl, imgData: imgData)
-        return self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSeal(.init(module: module, operation: operation, accountResId: accountResId, imgUrl: imgUrl, imgData: imgData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增签章
@@ -93,7 +92,6 @@ extension Ds {
     /// 此接口用于客户电子合同平台增加某用户的印章图片。客户平台可以调用此接口增加某用户的印章图片。
     @inlinable
     public func createSeal(module: String, operation: String, accountResId: String, imgUrl: String, imgData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        let input = CreateSealRequest(module: module, operation: operation, accountResId: accountResId, imgUrl: imgUrl, imgData: imgData)
-        return try await self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSeal(.init(module: module, operation: operation, accountResId: accountResId, imgUrl: imgUrl, imgData: imgData), region: region, logger: logger, on: eventLoop)
     }
 }

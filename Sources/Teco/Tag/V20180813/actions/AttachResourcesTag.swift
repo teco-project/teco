@@ -85,8 +85,7 @@ extension Tag {
     /// 给多个资源关联某个标签
     @inlinable @discardableResult
     public func attachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachResourcesTagResponse> {
-        let input = AttachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
-        return self.client.execute(action: "AttachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachResourcesTag(.init(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标签关联批量资源
@@ -94,7 +93,6 @@ extension Tag {
     /// 给多个资源关联某个标签
     @inlinable @discardableResult
     public func attachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachResourcesTagResponse {
-        let input = AttachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
-        return try await self.client.execute(action: "AttachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachResourcesTag(.init(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 }

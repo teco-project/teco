@@ -84,14 +84,12 @@ extension Cr {
     /// 导出机器人数据
     @inlinable
     public func exportBotData(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBotDataResponse> {
-        let input = ExportBotDataRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName)
-        return self.client.execute(action: "ExportBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportBotData(.init(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出机器人数据
     @inlinable
     public func exportBotData(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBotDataResponse {
-        let input = ExportBotDataRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName)
-        return try await self.client.execute(action: "ExportBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportBotData(.init(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 }

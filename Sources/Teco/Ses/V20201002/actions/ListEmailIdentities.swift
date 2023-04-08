@@ -64,8 +64,7 @@ extension Ses {
     /// 获取当前发信域名列表，包含已验证通过与未验证的域名
     @inlinable
     public func listEmailIdentities(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailIdentitiesResponse> {
-        let input = ListEmailIdentitiesRequest()
-        return self.client.execute(action: "ListEmailIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listEmailIdentities(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取当前发信域名列表
@@ -73,7 +72,6 @@ extension Ses {
     /// 获取当前发信域名列表，包含已验证通过与未验证的域名
     @inlinable
     public func listEmailIdentities(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailIdentitiesResponse {
-        let input = ListEmailIdentitiesRequest()
-        return try await self.client.execute(action: "ListEmailIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listEmailIdentities(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

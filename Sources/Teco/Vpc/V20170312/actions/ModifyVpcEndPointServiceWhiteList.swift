@@ -70,8 +70,7 @@ extension Vpc {
     /// 修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceWhiteListResponse> {
-        let input = ModifyVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description)
-        return self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改终端节点服务白名单属性
@@ -79,7 +78,6 @@ extension Vpc {
     /// 修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointServiceWhiteListResponse {
-        let input = ModifyVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description)
-        return try await self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

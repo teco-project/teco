@@ -74,8 +74,7 @@ extension Bmvpc {
     /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
     @inlinable
     public func unbindEipsFromNatGateway(natId: String, vpcId: String, assignedEips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEipsFromNatGatewayResponse> {
-        let input = UnbindEipsFromNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips)
-        return self.client.execute(action: "UnbindEipsFromNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindEipsFromNatGateway(.init(natId: natId, vpcId: vpcId, assignedEips: assignedEips), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关解绑EIP
@@ -83,7 +82,6 @@ extension Bmvpc {
     /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
     @inlinable
     public func unbindEipsFromNatGateway(natId: String, vpcId: String, assignedEips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipsFromNatGatewayResponse {
-        let input = UnbindEipsFromNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips)
-        return try await self.client.execute(action: "UnbindEipsFromNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindEipsFromNatGateway(.init(natId: natId, vpcId: vpcId, assignedEips: assignedEips), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -124,14 +124,12 @@ extension Tcb {
     /// 创建云应用服务
     @inlinable
     public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishCloudBaseRunServerResponse> {
-        let input = EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath)
-        return self.client.execute(action: "EstablishCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.establishCloudBaseRunServer(.init(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云应用服务
     @inlinable
     public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
-        let input = EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath)
-        return try await self.client.execute(action: "EstablishCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.establishCloudBaseRunServer(.init(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), region: region, logger: logger, on: eventLoop)
     }
 }

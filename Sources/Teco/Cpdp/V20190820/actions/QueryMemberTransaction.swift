@@ -167,8 +167,7 @@ extension Cpdp {
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
     public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionResponse> {
-        let input = QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile)
-        return self.client.execute(action: "QueryMemberTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMemberTransaction(.init(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员间交易-不验证
@@ -176,7 +175,6 @@ extension Cpdp {
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
     public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
-        let input = QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile)
-        return try await self.client.execute(action: "QueryMemberTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMemberTransaction(.init(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

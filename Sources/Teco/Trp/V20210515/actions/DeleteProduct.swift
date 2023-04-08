@@ -70,8 +70,7 @@ extension Trp {
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
     public func deleteProduct(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
-        let input = DeleteProductRequest(productId: productId, corpId: corpId)
-        return self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteProduct(.init(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除商品
@@ -79,7 +78,6 @@ extension Trp {
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
     public func deleteProduct(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        let input = DeleteProductRequest(productId: productId, corpId: corpId)
-        return try await self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteProduct(.init(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

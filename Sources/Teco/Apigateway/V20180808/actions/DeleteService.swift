@@ -70,8 +70,7 @@ extension Apigateway {
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
     public func deleteService(serviceId: String, skipVerification: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceResponse> {
-        let input = DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification)
-        return self.client.execute(action: "DeleteService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteService(.init(serviceId: serviceId, skipVerification: skipVerification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务
@@ -79,7 +78,6 @@ extension Apigateway {
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
     public func deleteService(serviceId: String, skipVerification: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
-        let input = DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification)
-        return try await self.client.execute(action: "DeleteService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteService(.init(serviceId: serviceId, skipVerification: skipVerification), region: region, logger: logger, on: eventLoop)
     }
 }

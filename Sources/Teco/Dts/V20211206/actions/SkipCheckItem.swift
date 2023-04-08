@@ -75,8 +75,7 @@ extension Dts {
     /// 本接口用于校验检查项不通过后，可进行跳过此校验项操作，后端将不再校验该项。任何校验步骤都是不应该跳过的，通过校验是能正确执行的前置条件。支持跳过的产品及链路的校验项可 [参考文档](https://cloud.tencent.com/document/product/571/61639)。
     @inlinable
     public func skipCheckItem(jobId: String, stepIds: [String], foreignKeyFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SkipCheckItemResponse> {
-        let input = SkipCheckItemRequest(jobId: jobId, stepIds: stepIds, foreignKeyFlag: foreignKeyFlag)
-        return self.client.execute(action: "SkipCheckItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.skipCheckItem(.init(jobId: jobId, stepIds: stepIds, foreignKeyFlag: foreignKeyFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跳过迁移校验检查项
@@ -84,7 +83,6 @@ extension Dts {
     /// 本接口用于校验检查项不通过后，可进行跳过此校验项操作，后端将不再校验该项。任何校验步骤都是不应该跳过的，通过校验是能正确执行的前置条件。支持跳过的产品及链路的校验项可 [参考文档](https://cloud.tencent.com/document/product/571/61639)。
     @inlinable
     public func skipCheckItem(jobId: String, stepIds: [String], foreignKeyFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SkipCheckItemResponse {
-        let input = SkipCheckItemRequest(jobId: jobId, stepIds: stepIds, foreignKeyFlag: foreignKeyFlag)
-        return try await self.client.execute(action: "SkipCheckItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.skipCheckItem(.init(jobId: jobId, stepIds: stepIds, foreignKeyFlag: foreignKeyFlag), region: region, logger: logger, on: eventLoop)
     }
 }

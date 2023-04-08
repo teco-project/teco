@@ -59,14 +59,12 @@ extension Tcr {
     /// 删除版本保留规则
     @inlinable @discardableResult
     public func deleteTagRetentionRule(registryId: String, retentionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagRetentionRuleResponse> {
-        let input = DeleteTagRetentionRuleRequest(registryId: registryId, retentionId: retentionId)
-        return self.client.execute(action: "DeleteTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTagRetentionRule(.init(registryId: registryId, retentionId: retentionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除版本保留规则
     @inlinable @discardableResult
     public func deleteTagRetentionRule(registryId: String, retentionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagRetentionRuleResponse {
-        let input = DeleteTagRetentionRuleRequest(registryId: registryId, retentionId: retentionId)
-        return try await self.client.execute(action: "DeleteTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTagRetentionRule(.init(registryId: registryId, retentionId: retentionId), region: region, logger: logger, on: eventLoop)
     }
 }

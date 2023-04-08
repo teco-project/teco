@@ -88,8 +88,7 @@ extension Cbs {
     /// * 仅支持分享数据盘快照。
     @inlinable @discardableResult
     public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
-        let input = ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds)
-        return self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySnapshotsSharePermission(.init(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照分享信息
@@ -103,7 +102,6 @@ extension Cbs {
     /// * 仅支持分享数据盘快照。
     @inlinable @discardableResult
     public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
-        let input = ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds)
-        return try await self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySnapshotsSharePermission(.init(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

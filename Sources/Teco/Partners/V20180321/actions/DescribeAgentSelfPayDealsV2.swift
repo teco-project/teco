@@ -136,8 +136,7 @@ extension Partners {
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
     public func describeAgentSelfPayDealsV2(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentSelfPayDealsV2Response> {
-        let input = DescribeAgentSelfPayDealsV2Request(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames, bigDealIds: bigDealIds)
-        return self.client.execute(action: "DescribeAgentSelfPayDealsV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAgentSelfPayDealsV2(.init(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商自付订单查询接口（预付费）
@@ -145,8 +144,7 @@ extension Partners {
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
     public func describeAgentSelfPayDealsV2(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsV2Response {
-        let input = DescribeAgentSelfPayDealsV2Request(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames, bigDealIds: bigDealIds)
-        return try await self.client.execute(action: "DescribeAgentSelfPayDealsV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAgentSelfPayDealsV2(.init(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商自付订单查询接口（预付费）

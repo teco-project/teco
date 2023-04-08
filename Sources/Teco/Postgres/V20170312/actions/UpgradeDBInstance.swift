@@ -108,8 +108,7 @@ extension Postgres {
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
     public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        let input = UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime)
-        return self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeDBInstance(.init(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例配置（废弃）
@@ -117,7 +116,6 @@ extension Postgres {
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
     public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        let input = UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime)
-        return try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeDBInstance(.init(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 }

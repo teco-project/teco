@@ -110,8 +110,7 @@ extension Eiam {
     /// 获取应用列表信息。
     @inlinable
     public func listApplications(searchCondition: ApplicationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationsResponse> {
-        let input = ListApplicationsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList)
-        return self.client.execute(action: "ListApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listApplications(.init(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表信息
@@ -119,8 +118,7 @@ extension Eiam {
     /// 获取应用列表信息。
     @inlinable
     public func listApplications(searchCondition: ApplicationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationsResponse {
-        let input = ListApplicationsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList)
-        return try await self.client.execute(action: "ListApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listApplications(.init(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表信息

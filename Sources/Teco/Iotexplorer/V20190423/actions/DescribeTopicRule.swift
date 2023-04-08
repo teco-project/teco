@@ -59,14 +59,12 @@ extension Iotexplorer {
     /// 获取规则信息
     @inlinable
     public func describeTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicRuleResponse> {
-        let input = DescribeTopicRuleRequest(ruleName: ruleName)
-        return self.client.execute(action: "DescribeTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopicRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取规则信息
     @inlinable
     public func describeTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicRuleResponse {
-        let input = DescribeTopicRuleRequest(ruleName: ruleName)
-        return try await self.client.execute(action: "DescribeTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopicRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

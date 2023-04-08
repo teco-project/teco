@@ -64,8 +64,7 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
     @inlinable
     public func describeBinlogSaveDays(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogSaveDaysResponse> {
-        let input = DescribeBinlogSaveDaysRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeBinlogSaveDays", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBinlogSaveDays(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Binlog保留天数
@@ -73,7 +72,6 @@ extension Cynosdb {
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
     @inlinable
     public func describeBinlogSaveDays(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogSaveDaysResponse {
-        let input = DescribeBinlogSaveDaysRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeBinlogSaveDays", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBinlogSaveDays(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

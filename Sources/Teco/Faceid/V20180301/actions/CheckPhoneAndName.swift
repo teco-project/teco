@@ -85,8 +85,7 @@ extension Faceid {
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
     public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckPhoneAndNameResponse> {
-        let input = CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption)
-        return self.client.execute(action: "CheckPhoneAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkPhoneAndName(.init(mobile: mobile, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
@@ -94,7 +93,6 @@ extension Faceid {
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
     public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckPhoneAndNameResponse {
-        let input = CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption)
-        return try await self.client.execute(action: "CheckPhoneAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkPhoneAndName(.init(mobile: mobile, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

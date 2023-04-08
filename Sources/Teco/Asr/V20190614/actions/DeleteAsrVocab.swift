@@ -60,8 +60,7 @@ extension Asr {
     /// 用户通过本接口进行热词表的删除。
     @inlinable @discardableResult
     public func deleteAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
-        let input = DeleteAsrVocabRequest(vocabId: vocabId)
-        return self.client.execute(action: "DeleteAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAsrVocab(.init(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除热词表
@@ -69,7 +68,6 @@ extension Asr {
     /// 用户通过本接口进行热词表的删除。
     @inlinable @discardableResult
     public func deleteAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
-        let input = DeleteAsrVocabRequest(vocabId: vocabId)
-        return try await self.client.execute(action: "DeleteAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAsrVocab(.init(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 }

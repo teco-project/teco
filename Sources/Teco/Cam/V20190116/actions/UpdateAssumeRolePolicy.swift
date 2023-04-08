@@ -70,8 +70,7 @@ extension Cam {
     /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
     @inlinable @discardableResult
     public func updateAssumeRolePolicy(policyDocument: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssumeRolePolicyResponse> {
-        let input = UpdateAssumeRolePolicyRequest(policyDocument: policyDocument, roleId: roleId, roleName: roleName)
-        return self.client.execute(action: "UpdateAssumeRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateAssumeRolePolicy(.init(policyDocument: policyDocument, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改角色信任策略
@@ -79,7 +78,6 @@ extension Cam {
     /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
     @inlinable @discardableResult
     public func updateAssumeRolePolicy(policyDocument: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssumeRolePolicyResponse {
-        let input = UpdateAssumeRolePolicyRequest(policyDocument: policyDocument, roleId: roleId, roleName: roleName)
-        return try await self.client.execute(action: "UpdateAssumeRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateAssumeRolePolicy(.init(policyDocument: policyDocument, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

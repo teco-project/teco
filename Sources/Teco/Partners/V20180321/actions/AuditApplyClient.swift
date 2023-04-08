@@ -87,8 +87,7 @@ extension Partners {
     /// 代理商可以审核其名下申请中代客
     @inlinable
     public func auditApplyClient(clientUin: String, auditResult: String, note: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditApplyClientResponse> {
-        let input = AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note)
-        return self.client.execute(action: "AuditApplyClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.auditApplyClient(.init(clientUin: clientUin, auditResult: auditResult, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 审核客户
@@ -96,7 +95,6 @@ extension Partners {
     /// 代理商可以审核其名下申请中代客
     @inlinable
     public func auditApplyClient(clientUin: String, auditResult: String, note: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
-        let input = AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note)
-        return try await self.client.execute(action: "AuditApplyClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.auditApplyClient(.init(clientUin: clientUin, auditResult: auditResult, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

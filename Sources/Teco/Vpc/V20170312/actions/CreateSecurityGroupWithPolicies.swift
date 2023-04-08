@@ -118,8 +118,7 @@ extension Vpc {
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
     public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
-        let input = CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet)
-        return self.client.execute(action: "CreateSecurityGroupWithPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSecurityGroupWithPolicies(.init(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组和规则
@@ -140,7 +139,6 @@ extension Vpc {
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
     public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
-        let input = CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet)
-        return try await self.client.execute(action: "CreateSecurityGroupWithPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSecurityGroupWithPolicies(.init(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

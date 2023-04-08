@@ -107,8 +107,7 @@ extension Mps {
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     @inlinable
     public func describeWatermarkTemplates(definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWatermarkTemplatesResponse> {
-        let input = DescribeWatermarkTemplatesRequest(definitions: definitions, type: type, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeWatermarkTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWatermarkTemplates(.init(definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取水印模板列表
@@ -116,8 +115,7 @@ extension Mps {
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     @inlinable
     public func describeWatermarkTemplates(definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
-        let input = DescribeWatermarkTemplatesRequest(definitions: definitions, type: type, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeWatermarkTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWatermarkTemplates(.init(definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取水印模板列表

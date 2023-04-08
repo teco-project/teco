@@ -64,8 +64,7 @@ extension Ssl {
     /// 取消证书订单。
     @inlinable
     public func cancelCertificateOrder(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
-        let input = CancelCertificateOrderRequest(certificateId: certificateId)
-        return self.client.execute(action: "CancelCertificateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cancelCertificateOrder(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消证书订单
@@ -73,7 +72,6 @@ extension Ssl {
     /// 取消证书订单。
     @inlinable
     public func cancelCertificateOrder(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
-        let input = CancelCertificateOrderRequest(certificateId: certificateId)
-        return try await self.client.execute(action: "CancelCertificateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cancelCertificateOrder(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

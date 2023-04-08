@@ -104,15 +104,13 @@ extension Eiam {
     /// 获取账号组中的账号列表
     @inlinable
     public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccountInAccountGroupResponse> {
-        let input = ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit)
-        return self.client.execute(action: "ListAccountInAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAccountInAccountGroup(.init(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号组中的账号列表
     @inlinable
     public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
-        let input = ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListAccountInAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAccountInAccountGroup(.init(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号组中的账号列表

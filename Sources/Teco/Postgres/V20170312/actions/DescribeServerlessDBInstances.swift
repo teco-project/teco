@@ -109,8 +109,7 @@ extension Postgres {
     /// 用于查询一个或多个serverlessDB实例的详细信息
     @inlinable
     public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServerlessDBInstancesResponse> {
-        let input = DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return self.client.execute(action: "DescribeServerlessDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeServerlessDBInstances(.init(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询ServerlessDB实例列表
@@ -118,8 +117,7 @@ extension Postgres {
     /// 用于查询一个或多个serverlessDB实例的详细信息
     @inlinable
     public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
-        let input = DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeServerlessDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeServerlessDBInstances(.init(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询ServerlessDB实例列表

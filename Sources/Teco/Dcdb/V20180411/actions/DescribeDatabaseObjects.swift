@@ -89,8 +89,7 @@ extension Dcdb {
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
     public func describeDatabaseObjects(instanceId: String, dbName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseObjectsResponse> {
-        let input = DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName)
-        return self.client.execute(action: "DescribeDatabaseObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDatabaseObjects(.init(instanceId: instanceId, dbName: dbName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库对象列表
@@ -98,7 +97,6 @@ extension Dcdb {
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
     public func describeDatabaseObjects(instanceId: String, dbName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
-        let input = DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName)
-        return try await self.client.execute(action: "DescribeDatabaseObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDatabaseObjects(.init(instanceId: instanceId, dbName: dbName), region: region, logger: logger, on: eventLoop)
     }
 }

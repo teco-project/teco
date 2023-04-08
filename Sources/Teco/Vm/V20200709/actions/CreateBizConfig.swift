@@ -87,8 +87,7 @@ extension Vm {
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
     @inlinable @discardableResult
     public func createBizConfig(bizType: String, mediaModeration: MediaModerationConfig, bizName: String? = nil, moderationCategories: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBizConfigResponse> {
-        let input = CreateBizConfigRequest(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories)
-        return self.client.execute(action: "CreateBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBizConfig(.init(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建业务配置
@@ -100,7 +99,6 @@ extension Vm {
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
     @inlinable @discardableResult
     public func createBizConfig(bizType: String, mediaModeration: MediaModerationConfig, bizName: String? = nil, moderationCategories: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBizConfigResponse {
-        let input = CreateBizConfigRequest(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories)
-        return try await self.client.execute(action: "CreateBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBizConfig(.init(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories), region: region, logger: logger, on: eventLoop)
     }
 }

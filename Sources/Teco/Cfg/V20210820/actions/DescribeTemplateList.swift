@@ -107,15 +107,13 @@ extension Cfg {
     /// 查询经验库列表
     @inlinable
     public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
-        let input = DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags)
-        return self.client.execute(action: "DescribeTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表
     @inlinable
     public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
-        let input = DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags)
-        return try await self.client.execute(action: "DescribeTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表

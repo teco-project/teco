@@ -75,8 +75,7 @@ extension Cme {
     /// 新增分类，用于管理素材。分类层数不能超过20。
     @inlinable @discardableResult
     public func createClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClassResponse> {
-        let input = CreateClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`)
-        return self.client.execute(action: "CreateClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createClass(.init(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建分类
@@ -84,7 +83,6 @@ extension Cme {
     /// 新增分类，用于管理素材。分类层数不能超过20。
     @inlinable @discardableResult
     public func createClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
-        let input = CreateClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`)
-        return try await self.client.execute(action: "CreateClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createClass(.init(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

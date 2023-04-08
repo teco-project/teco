@@ -91,14 +91,12 @@ extension Tcss {
     /// 运行时查询文件查杀设置
     @inlinable
     public func describeVirusScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanSettingResponse> {
-        let input = DescribeVirusScanSettingRequest()
-        return self.client.execute(action: "DescribeVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusScanSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀设置
     @inlinable
     public func describeVirusScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanSettingResponse {
-        let input = DescribeVirusScanSettingRequest()
-        return try await self.client.execute(action: "DescribeVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusScanSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

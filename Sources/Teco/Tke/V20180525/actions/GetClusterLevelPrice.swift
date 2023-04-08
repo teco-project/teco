@@ -62,14 +62,12 @@ extension Tke {
     /// 获取集群规模价格
     @inlinable
     public func getClusterLevelPrice(clusterLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterLevelPriceResponse> {
-        let input = GetClusterLevelPriceRequest(clusterLevel: clusterLevel)
-        return self.client.execute(action: "GetClusterLevelPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getClusterLevelPrice(.init(clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群规模价格
     @inlinable
     public func getClusterLevelPrice(clusterLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
-        let input = GetClusterLevelPriceRequest(clusterLevel: clusterLevel)
-        return try await self.client.execute(action: "GetClusterLevelPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getClusterLevelPrice(.init(clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 }

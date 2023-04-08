@@ -169,8 +169,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
-        let input = SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection)
-        return self.client.execute(action: "SearchFaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchFaces(.init(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索
@@ -190,7 +189,6 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
-        let input = SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection)
-        return try await self.client.execute(action: "SearchFaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchFaces(.init(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

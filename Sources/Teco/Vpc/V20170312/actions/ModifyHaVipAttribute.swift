@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable @discardableResult
     public func modifyHaVipAttribute(haVipId: String, haVipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
-        let input = ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName)
-        return self.client.execute(action: "ModifyHaVipAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyHaVipAttribute(.init(haVipId: haVipId, haVipName: haVipName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改HAVIP属性
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable @discardableResult
     public func modifyHaVipAttribute(haVipId: String, haVipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
-        let input = ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName)
-        return try await self.client.execute(action: "ModifyHaVipAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyHaVipAttribute(.init(haVipId: haVipId, haVipName: haVipName), region: region, logger: logger, on: eventLoop)
     }
 }

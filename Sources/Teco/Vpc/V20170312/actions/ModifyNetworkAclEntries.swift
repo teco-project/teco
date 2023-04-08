@@ -76,8 +76,7 @@ extension Vpc {
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable @discardableResult
     public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
-        let input = ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet)
-        return self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网络ACL规则
@@ -87,7 +86,6 @@ extension Vpc {
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable @discardableResult
     public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
-        let input = ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet)
-        return try await self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

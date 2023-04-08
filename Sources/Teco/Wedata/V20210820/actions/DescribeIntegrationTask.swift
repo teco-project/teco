@@ -69,14 +69,12 @@ extension Wedata {
     /// 查询集成任务
     @inlinable
     public func describeIntegrationTask(taskId: String, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationTaskResponse> {
-        let input = DescribeIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType)
-        return self.client.execute(action: "DescribeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIntegrationTask(.init(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集成任务
     @inlinable
     public func describeIntegrationTask(taskId: String, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTaskResponse {
-        let input = DescribeIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType)
-        return try await self.client.execute(action: "DescribeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIntegrationTask(.init(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

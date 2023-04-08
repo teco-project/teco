@@ -107,8 +107,7 @@ extension Batch {
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
     public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
-        let input = DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeComputeEnvCreateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeComputeEnvCreateInfos(.init(envIds: envIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境创建信息列表
@@ -116,8 +115,7 @@ extension Batch {
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
     public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
-        let input = DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeComputeEnvCreateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeComputeEnvCreateInfos(.init(envIds: envIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境创建信息列表

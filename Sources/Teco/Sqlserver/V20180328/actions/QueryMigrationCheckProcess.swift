@@ -72,8 +72,7 @@ extension Sqlserver {
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
     public func queryMigrationCheckProcess(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMigrationCheckProcessResponse> {
-        let input = QueryMigrationCheckProcessRequest(migrateId: migrateId)
-        return self.client.execute(action: "QueryMigrationCheckProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMigrationCheckProcess(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询迁移校验任务进度
@@ -81,7 +80,6 @@ extension Sqlserver {
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
     public func queryMigrationCheckProcess(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMigrationCheckProcessResponse {
-        let input = QueryMigrationCheckProcessRequest(migrateId: migrateId)
-        return try await self.client.execute(action: "QueryMigrationCheckProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMigrationCheckProcess(.init(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

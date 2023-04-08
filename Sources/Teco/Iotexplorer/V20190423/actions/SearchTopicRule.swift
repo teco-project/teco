@@ -62,14 +62,12 @@ extension Iotexplorer {
     /// 搜索规则
     @inlinable
     public func searchTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTopicRuleResponse> {
-        let input = SearchTopicRuleRequest(ruleName: ruleName)
-        return self.client.execute(action: "SearchTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchTopicRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索规则
     @inlinable
     public func searchTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTopicRuleResponse {
-        let input = SearchTopicRuleRequest(ruleName: ruleName)
-        return try await self.client.execute(action: "SearchTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchTopicRule(.init(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

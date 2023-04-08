@@ -97,15 +97,13 @@ extension Iotvideo {
     /// 查看AI模型资源包
     @inlinable
     public func describeAIModelUsage(modelId: String, productId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelUsageResponse> {
-        let input = DescribeAIModelUsageRequest(modelId: modelId, productId: productId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAIModelUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAIModelUsage(.init(modelId: modelId, productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看AI模型资源包
     @inlinable
     public func describeAIModelUsage(modelId: String, productId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelUsageResponse {
-        let input = DescribeAIModelUsageRequest(modelId: modelId, productId: productId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAIModelUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAIModelUsage(.init(modelId: modelId, productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看AI模型资源包

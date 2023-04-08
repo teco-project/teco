@@ -113,15 +113,13 @@ extension Tsf {
     /// 容器部署组列表
     @inlinable
     public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupsResponse> {
-        let input = DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId)
-        return self.client.execute(action: "DescribeContainerGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeContainerGroups(.init(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器部署组列表
     @inlinable
     public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
-        let input = DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId)
-        return try await self.client.execute(action: "DescribeContainerGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeContainerGroups(.init(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器部署组列表

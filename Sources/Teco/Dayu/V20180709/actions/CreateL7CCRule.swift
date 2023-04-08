@@ -84,8 +84,7 @@ extension Dayu {
     /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
     @inlinable
     public func createL7CCRule(business: String, id: String, method: String, ruleId: String, ruleConfig: [CCRuleConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7CCRuleResponse> {
-        let input = CreateL7CCRuleRequest(business: business, id: id, method: method, ruleId: ruleId, ruleConfig: ruleConfig)
-        return self.client.execute(action: "CreateL7CCRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createL7CCRule(.init(business: business, id: id, method: method, ruleId: ruleId, ruleConfig: ruleConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建7层CC自定义规则
@@ -93,7 +92,6 @@ extension Dayu {
     /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
     @inlinable
     public func createL7CCRule(business: String, id: String, method: String, ruleId: String, ruleConfig: [CCRuleConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7CCRuleResponse {
-        let input = CreateL7CCRuleRequest(business: business, id: id, method: method, ruleId: ruleId, ruleConfig: ruleConfig)
-        return try await self.client.execute(action: "CreateL7CCRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createL7CCRule(.init(business: business, id: id, method: method, ruleId: ruleId, ruleConfig: ruleConfig), region: region, logger: logger, on: eventLoop)
     }
 }

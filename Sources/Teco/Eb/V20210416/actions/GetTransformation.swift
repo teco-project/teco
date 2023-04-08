@@ -74,8 +74,7 @@ extension Eb {
     /// 用于获取转换器详情
     @inlinable
     public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransformationResponse> {
-        let input = GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId)
-        return self.client.execute(action: "GetTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转换器详情
@@ -83,7 +82,6 @@ extension Eb {
     /// 用于获取转换器详情
     @inlinable
     public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
-        let input = GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId)
-        return try await self.client.execute(action: "GetTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getTransformation(.init(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 }

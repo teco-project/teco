@@ -64,14 +64,12 @@ extension Tsf {
     /// 取消关联业务日志配置项和应用
     @inlinable
     public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
-        let input = DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId)
-        return self.client.execute(action: "DisassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disassociateBusinessLogConfig(.init(configIdList: configIdList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消关联业务日志配置项和应用
     @inlinable
     public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
-        let input = DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId)
-        return try await self.client.execute(action: "DisassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disassociateBusinessLogConfig(.init(configIdList: configIdList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

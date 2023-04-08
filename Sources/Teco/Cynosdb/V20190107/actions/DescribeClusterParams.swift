@@ -74,8 +74,7 @@ extension Cynosdb {
     /// 本接口（DescribeClusterParams）用于查询集群参数
     @inlinable
     public func describeClusterParams(clusterId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamsResponse> {
-        let input = DescribeClusterParamsRequest(clusterId: clusterId, paramName: paramName)
-        return self.client.execute(action: "DescribeClusterParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterParams(.init(clusterId: clusterId, paramName: paramName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群参数
@@ -83,7 +82,6 @@ extension Cynosdb {
     /// 本接口（DescribeClusterParams）用于查询集群参数
     @inlinable
     public func describeClusterParams(clusterId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
-        let input = DescribeClusterParamsRequest(clusterId: clusterId, paramName: paramName)
-        return try await self.client.execute(action: "DescribeClusterParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterParams(.init(clusterId: clusterId, paramName: paramName), region: region, logger: logger, on: eventLoop)
     }
 }

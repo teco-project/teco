@@ -86,8 +86,7 @@ extension Gaap {
     /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
     @inlinable
     public func createCertificate(certificateType: Int64, certificateContent: String, certificateAlias: String? = nil, certificateKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
-        let input = CreateCertificateRequest(certificateType: certificateType, certificateContent: certificateContent, certificateAlias: certificateAlias, certificateKey: certificateKey)
-        return self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCertificate(.init(certificateType: certificateType, certificateContent: certificateContent, certificateAlias: certificateAlias, certificateKey: certificateKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建证书
@@ -95,7 +94,6 @@ extension Gaap {
     /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
     @inlinable
     public func createCertificate(certificateType: Int64, certificateContent: String, certificateAlias: String? = nil, certificateKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
-        let input = CreateCertificateRequest(certificateType: certificateType, certificateContent: certificateContent, certificateAlias: certificateAlias, certificateKey: certificateKey)
-        return try await self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCertificate(.init(certificateType: certificateType, certificateContent: certificateContent, certificateAlias: certificateAlias, certificateKey: certificateKey), region: region, logger: logger, on: eventLoop)
     }
 }

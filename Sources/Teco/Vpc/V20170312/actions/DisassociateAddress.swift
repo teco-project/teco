@@ -81,8 +81,7 @@ extension Vpc {
     /// * EIP 如果被封堵，则不能进行解绑定操作。
     @inlinable
     public func disassociateAddress(addressId: String, reallocateNormalPublicIp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAddressResponse> {
-        let input = DisassociateAddressRequest(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp)
-        return self.client.execute(action: "DisassociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disassociateAddress(.init(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑定弹性公网IP
@@ -94,7 +93,6 @@ extension Vpc {
     /// * EIP 如果被封堵，则不能进行解绑定操作。
     @inlinable
     public func disassociateAddress(addressId: String, reallocateNormalPublicIp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAddressResponse {
-        let input = DisassociateAddressRequest(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp)
-        return try await self.client.execute(action: "DisassociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disassociateAddress(.init(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp), region: region, logger: logger, on: eventLoop)
     }
 }

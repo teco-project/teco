@@ -98,8 +98,7 @@ extension Mmps {
     /// 获取小程序合规诊断任务报告url
     @inlinable
     public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
-        let input = DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType)
-        return self.client.execute(action: "DescribeScanTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanTaskReportUrl(.init(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取合规诊断任务报告url
@@ -107,7 +106,6 @@ extension Mmps {
     /// 获取小程序合规诊断任务报告url
     @inlinable
     public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
-        let input = DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType)
-        return try await self.client.execute(action: "DescribeScanTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanTaskReportUrl(.init(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Dbbrain {
     /// 获取邮件发送中联系人的相关信息。
     @inlinable
     public func describeAllUserContact(product: String, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllUserContactResponse> {
-        let input = DescribeAllUserContactRequest(product: product, names: names)
-        return self.client.execute(action: "DescribeAllUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAllUserContact(.init(product: product, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取邮件发送中联系人信息
@@ -83,7 +82,6 @@ extension Dbbrain {
     /// 获取邮件发送中联系人的相关信息。
     @inlinable
     public func describeAllUserContact(product: String, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserContactResponse {
-        let input = DescribeAllUserContactRequest(product: product, names: names)
-        return try await self.client.execute(action: "DescribeAllUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAllUserContact(.init(product: product, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

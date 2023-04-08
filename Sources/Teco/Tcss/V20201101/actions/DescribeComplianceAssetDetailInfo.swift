@@ -84,8 +84,7 @@ extension Tcss {
     /// 查询某个资产的详情
     @inlinable
     public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
-        let input = DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId)
-        return self.client.execute(action: "DescribeComplianceAssetDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeComplianceAssetDetailInfo(.init(customerAssetId: customerAssetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某个资产的详情
@@ -93,7 +92,6 @@ extension Tcss {
     /// 查询某个资产的详情
     @inlinable
     public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
-        let input = DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId)
-        return try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeComplianceAssetDetailInfo(.init(customerAssetId: customerAssetId), region: region, logger: logger, on: eventLoop)
     }
 }

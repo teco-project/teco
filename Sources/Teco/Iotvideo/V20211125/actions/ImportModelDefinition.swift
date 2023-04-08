@@ -65,8 +65,7 @@ extension Iotvideo {
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
     @inlinable @discardableResult
     public func importModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportModelDefinitionResponse> {
-        let input = ImportModelDefinitionRequest(productId: productId, modelSchema: modelSchema)
-        return self.client.execute(action: "ImportModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.importModelDefinition(.init(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入其它产品的数据模板
@@ -74,7 +73,6 @@ extension Iotvideo {
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
     @inlinable @discardableResult
     public func importModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
-        let input = ImportModelDefinitionRequest(productId: productId, modelSchema: modelSchema)
-        return try await self.client.execute(action: "ImportModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.importModelDefinition(.init(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
 }

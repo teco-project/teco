@@ -70,8 +70,7 @@ extension Es {
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable @discardableResult
     public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
-        let input = RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode)
-        return self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartInstance(.init(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启ES集群实例
@@ -79,7 +78,6 @@ extension Es {
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable @discardableResult
     public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
-        let input = RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode)
-        return try await self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartInstance(.init(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }
 }

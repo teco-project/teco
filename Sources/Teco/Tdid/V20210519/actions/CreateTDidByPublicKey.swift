@@ -73,14 +73,12 @@ extension Tdid {
     /// 新建DID根据公钥生成Tdid
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
-        let input = CreateTDidByPublicKeyRequest(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey)
-        return self.client.execute(action: "CreateTDidByPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTDidByPublicKey(.init(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建DID根据公钥生成Tdid
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
-        let input = CreateTDidByPublicKeyRequest(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey)
-        return try await self.client.execute(action: "CreateTDidByPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTDidByPublicKey(.init(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey), region: region, logger: logger, on: eventLoop)
     }
 }

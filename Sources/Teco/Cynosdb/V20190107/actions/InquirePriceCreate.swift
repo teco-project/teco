@@ -113,8 +113,7 @@ extension Cynosdb {
     /// 查询新购集群价格
     @inlinable
     public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
-        let input = InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit)
-        return self.client.execute(action: "InquirePriceCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquirePriceCreate(.init(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新购集群询价
@@ -122,7 +121,6 @@ extension Cynosdb {
     /// 查询新购集群价格
     @inlinable
     public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
-        let input = InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit)
-        return try await self.client.execute(action: "InquirePriceCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquirePriceCreate(.init(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 }

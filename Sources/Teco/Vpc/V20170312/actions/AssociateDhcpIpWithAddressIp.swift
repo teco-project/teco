@@ -71,8 +71,7 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDhcpIpWithAddressIpResponse> {
-        let input = AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp)
-        return self.client.execute(action: "AssociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateDhcpIpWithAddressIp(.init(dhcpIpId: dhcpIpId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp绑定EIP
@@ -82,7 +81,6 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
-        let input = AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp)
-        return try await self.client.execute(action: "AssociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateDhcpIpWithAddressIp(.init(dhcpIpId: dhcpIpId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
     }
 }

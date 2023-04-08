@@ -65,8 +65,7 @@ extension Tcr {
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
     public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointDnsStatusResponse> {
-        let input = DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet)
-        return self.client.execute(action: "DescribeInternalEndpointDnsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInternalEndpointDnsStatus(.init(vpcSet: vpcSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询私有域名解析状态
@@ -74,7 +73,6 @@ extension Tcr {
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
     public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
-        let input = DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet)
-        return try await self.client.execute(action: "DescribeInternalEndpointDnsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInternalEndpointDnsStatus(.init(vpcSet: vpcSet), region: region, logger: logger, on: eventLoop)
     }
 }

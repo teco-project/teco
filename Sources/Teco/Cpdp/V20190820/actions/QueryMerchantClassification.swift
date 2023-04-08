@@ -78,14 +78,12 @@ extension Cpdp {
     /// 云支付-查询商户分类接口
     @inlinable
     public func queryMerchantClassification(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantClassificationResponse> {
-        let input = QueryMerchantClassificationRequest(openId: openId, openKey: openKey, profile: profile)
-        return self.client.execute(action: "QueryMerchantClassification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMerchantClassification(.init(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询商户分类接口
     @inlinable
     public func queryMerchantClassification(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantClassificationResponse {
-        let input = QueryMerchantClassificationRequest(openId: openId, openKey: openKey, profile: profile)
-        return try await self.client.execute(action: "QueryMerchantClassification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMerchantClassification(.init(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

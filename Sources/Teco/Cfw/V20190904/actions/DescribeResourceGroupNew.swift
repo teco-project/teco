@@ -86,8 +86,7 @@ extension Cfw {
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
     public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupNewResponse> {
-        let input = DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType)
-        return self.client.execute(action: "DescribeResourceGroupNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceGroupNew(.init(queryType: queryType, groupId: groupId, showType: showType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询new
@@ -95,7 +94,6 @@ extension Cfw {
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
     public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
-        let input = DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType)
-        return try await self.client.execute(action: "DescribeResourceGroupNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceGroupNew(.init(queryType: queryType, groupId: groupId, showType: showType), region: region, logger: logger, on: eventLoop)
     }
 }

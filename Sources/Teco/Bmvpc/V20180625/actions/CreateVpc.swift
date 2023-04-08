@@ -78,14 +78,12 @@ extension Bmvpc {
     /// 创建黑石私有网络
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
-        let input = CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring)
-        return self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石私有网络
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        let input = CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring)
-        return try await self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), region: region, logger: logger, on: eventLoop)
     }
 }

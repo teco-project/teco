@@ -95,14 +95,12 @@ extension Antiddos {
     /// 获取高防包流量折线图
     @inlinable
     public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBgpBizTrendResponse> {
-        let input = DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag)
-        return self.client.execute(action: "DescribeBgpBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBgpBizTrend(.init(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包流量折线图
     @inlinable
     public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
-        let input = DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag)
-        return try await self.client.execute(action: "DescribeBgpBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBgpBizTrend(.init(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

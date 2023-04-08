@@ -94,15 +94,13 @@ extension Iotexplorer {
     /// 获取围栏列表
     @inlinable
     public func describePositionFenceList(spaceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePositionFenceListResponse> {
-        let input = DescribePositionFenceListRequest(spaceId: spaceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePositionFenceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePositionFenceList(.init(spaceId: spaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏列表
     @inlinable
     public func describePositionFenceList(spaceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePositionFenceListResponse {
-        let input = DescribePositionFenceListRequest(spaceId: spaceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePositionFenceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePositionFenceList(.init(spaceId: spaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏列表

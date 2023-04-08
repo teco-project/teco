@@ -76,8 +76,7 @@ extension Ocr {
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
     public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VinOCRResponse> {
-        let input = VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "VinOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.vinOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 车辆VIN码识别
@@ -85,7 +84,6 @@ extension Ocr {
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
     public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
-        let input = VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "VinOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.vinOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Cfs {
     /// 指定条件删除文件系统配额
     @inlinable @discardableResult
     public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserQuotaResponse> {
-        let input = DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId)
-        return self.client.execute(action: "DeleteUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUserQuota(.init(fileSystemId: fileSystemId, userType: userType, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统配额
@@ -79,7 +78,6 @@ extension Cfs {
     /// 指定条件删除文件系统配额
     @inlinable @discardableResult
     public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
-        let input = DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId)
-        return try await self.client.execute(action: "DeleteUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUserQuota(.init(fileSystemId: fileSystemId, userType: userType, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

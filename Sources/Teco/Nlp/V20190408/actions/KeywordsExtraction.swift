@@ -70,8 +70,7 @@ extension Nlp {
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
     public func keywordsExtraction(text: String, num: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KeywordsExtractionResponse> {
-        let input = KeywordsExtractionRequest(text: text, num: num)
-        return self.client.execute(action: "KeywordsExtraction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.keywordsExtraction(.init(text: text, num: num), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关键词提取
@@ -79,7 +78,6 @@ extension Nlp {
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
     public func keywordsExtraction(text: String, num: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
-        let input = KeywordsExtractionRequest(text: text, num: num)
-        return try await self.client.execute(action: "KeywordsExtraction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.keywordsExtraction(.init(text: text, num: num), region: region, logger: logger, on: eventLoop)
     }
 }

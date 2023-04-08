@@ -152,14 +152,12 @@ extension Teo {
     /// 获取应用代理详细信息
     @inlinable
     public func describeApplicationProxyDetail(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyDetailResponse> {
-        let input = DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId)
-        return self.client.execute(action: "DescribeApplicationProxyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationProxyDetail(.init(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用代理详细信息
     @inlinable
     public func describeApplicationProxyDetail(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
-        let input = DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId)
-        return try await self.client.execute(action: "DescribeApplicationProxyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationProxyDetail(.init(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 }

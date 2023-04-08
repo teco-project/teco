@@ -118,8 +118,7 @@ extension Cvm {
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
     public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchTemplateVersionsResponse> {
-        let input = DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion)
-        return self.client.execute(action: "DescribeLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLaunchTemplateVersions(.init(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例模板版本信息
@@ -127,8 +126,7 @@ extension Cvm {
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
     public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
-        let input = DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion)
-        return try await self.client.execute(action: "DescribeLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLaunchTemplateVersions(.init(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例模板版本信息

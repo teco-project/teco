@@ -61,8 +61,7 @@ extension Tag {
     /// 本接口用于创建多对标签键和标签值
     @inlinable @discardableResult
     public func createTags(tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagsResponse> {
-        let input = CreateTagsRequest(tags: tags)
-        return self.client.execute(action: "CreateTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTags(.init(tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建标签
@@ -70,7 +69,6 @@ extension Tag {
     /// 本接口用于创建多对标签键和标签值
     @inlinable @discardableResult
     public func createTags(tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagsResponse {
-        let input = CreateTagsRequest(tags: tags)
-        return try await self.client.execute(action: "CreateTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTags(.init(tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

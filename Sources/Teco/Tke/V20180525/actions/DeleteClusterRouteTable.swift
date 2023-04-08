@@ -54,14 +54,12 @@ extension Tke {
     /// 删除集群路由表
     @inlinable @discardableResult
     public func deleteClusterRouteTable(routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteTableResponse> {
-        let input = DeleteClusterRouteTableRequest(routeTableName: routeTableName)
-        return self.client.execute(action: "DeleteClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterRouteTable(.init(routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由表
     @inlinable @discardableResult
     public func deleteClusterRouteTable(routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
-        let input = DeleteClusterRouteTableRequest(routeTableName: routeTableName)
-        return try await self.client.execute(action: "DeleteClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterRouteTable(.init(routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 }

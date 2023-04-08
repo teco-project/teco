@@ -117,8 +117,7 @@ extension Ecdn {
     /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
     @inlinable
     public func describeEcdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainLogsResponse> {
-        let input = DescribeEcdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeEcdnDomainLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEcdnDomainLogs(.init(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名日志下载链接
@@ -126,8 +125,7 @@ extension Ecdn {
     /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
     @inlinable
     public func describeEcdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainLogsResponse {
-        let input = DescribeEcdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeEcdnDomainLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEcdnDomainLogs(.init(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名日志下载链接

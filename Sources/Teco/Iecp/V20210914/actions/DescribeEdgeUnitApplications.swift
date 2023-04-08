@@ -108,15 +108,13 @@ extension Iecp {
     /// 获取单元下应用列表
     @inlinable
     public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
-        let input = DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace)
-        return self.client.execute(action: "DescribeEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeUnitApplications(.init(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单元下应用列表
     @inlinable
     public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
-        let input = DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace)
-        return try await self.client.execute(action: "DescribeEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeUnitApplications(.init(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单元下应用列表

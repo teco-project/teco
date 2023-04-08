@@ -69,14 +69,12 @@ extension Dnspod {
     /// 设置记录备注
     @inlinable @discardableResult
     public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordRemarkResponse> {
-        let input = ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark)
-        return self.client.execute(action: "ModifyRecordRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordRemark(.init(domain: domain, recordId: recordId, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置记录备注
     @inlinable @discardableResult
     public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
-        let input = ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark)
-        return try await self.client.execute(action: "ModifyRecordRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordRemark(.init(domain: domain, recordId: recordId, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

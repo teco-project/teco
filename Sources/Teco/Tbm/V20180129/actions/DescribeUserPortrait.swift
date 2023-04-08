@@ -80,8 +80,7 @@ extension Tbm {
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
     @inlinable
     public func describeUserPortrait(brandId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserPortraitResponse> {
-        let input = DescribeUserPortraitRequest(brandId: brandId)
-        return self.client.execute(action: "DescribeUserPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserPortrait(.init(brandId: brandId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌画像结果
@@ -89,7 +88,6 @@ extension Tbm {
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
     @inlinable
     public func describeUserPortrait(brandId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserPortraitResponse {
-        let input = DescribeUserPortraitRequest(brandId: brandId)
-        return try await self.client.execute(action: "DescribeUserPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserPortrait(.init(brandId: brandId), region: region, logger: logger, on: eventLoop)
     }
 }

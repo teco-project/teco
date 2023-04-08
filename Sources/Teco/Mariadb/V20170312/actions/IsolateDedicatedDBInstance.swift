@@ -60,8 +60,7 @@ extension Mariadb {
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable @discardableResult
     public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
-        let input = IsolateDedicatedDBInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.isolateDedicatedDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离独享云数据库实例
@@ -69,7 +68,6 @@ extension Mariadb {
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable @discardableResult
     public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
-        let input = IsolateDedicatedDBInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.isolateDedicatedDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

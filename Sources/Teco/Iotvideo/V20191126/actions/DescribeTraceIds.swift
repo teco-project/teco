@@ -57,8 +57,7 @@ extension Iotvideo {
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
     public func describeTraceIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
-        let input = DescribeTraceIdsRequest()
-        return self.client.execute(action: "DescribeTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTraceIds(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志跟踪白名单
@@ -66,7 +65,6 @@ extension Iotvideo {
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
     public func describeTraceIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
-        let input = DescribeTraceIdsRequest()
-        return try await self.client.execute(action: "DescribeTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTraceIds(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

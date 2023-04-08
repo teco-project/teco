@@ -157,15 +157,13 @@ extension Bmlb {
     /// 获取黑石负载均衡实例列表
     @inlinable
     public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
-        let input = DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId)
-        return self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLoadBalancers(.init(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡实例列表
     @inlinable
     public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        let input = DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId)
-        return try await self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLoadBalancers(.init(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡实例列表

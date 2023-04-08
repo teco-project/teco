@@ -54,14 +54,12 @@ extension Iotvideoindustry {
     /// 删除场景
     @inlinable @discardableResult
     public func deleteScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSceneResponse> {
-        let input = DeleteSceneRequest(intId: intId)
-        return self.client.execute(action: "DeleteScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteScene(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
     @inlinable @discardableResult
     public func deleteScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
-        let input = DeleteSceneRequest(intId: intId)
-        return try await self.client.execute(action: "DeleteScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteScene(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 }

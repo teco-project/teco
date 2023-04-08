@@ -89,8 +89,7 @@ extension Ft {
     /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
     @inlinable
     public func changeAgePic(ageInfos: [AgeInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeAgePicResponse> {
-        let input = ChangeAgePicRequest(ageInfos: ageInfos, image: image, url: url, rspImgType: rspImgType)
-        return self.client.execute(action: "ChangeAgePic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.changeAgePic(.init(ageInfos: ageInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸年龄变化
@@ -98,7 +97,6 @@ extension Ft {
     /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
     @inlinable
     public func changeAgePic(ageInfos: [AgeInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeAgePicResponse {
-        let input = ChangeAgePicRequest(ageInfos: ageInfos, image: image, url: url, rspImgType: rspImgType)
-        return try await self.client.execute(action: "ChangeAgePic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.changeAgePic(.init(ageInfos: ageInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

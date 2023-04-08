@@ -132,8 +132,7 @@ extension Ocr {
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
     public func mlidCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MLIDCardOCRResponse> {
-        let input = MLIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retImage: retImage)
-        return self.client.execute(action: "MLIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.mlidCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, retImage: retImage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 马来西亚身份证识别
@@ -142,7 +141,6 @@ extension Ocr {
     /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
     @inlinable
     public func mlidCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDCardOCRResponse {
-        let input = MLIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retImage: retImage)
-        return try await self.client.execute(action: "MLIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.mlidCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, retImage: retImage), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -107,15 +107,13 @@ extension Cdc {
     /// 查询专用集群订单列表
     @inlinable
     public func describeDedicatedClusterOrders(dedicatedClusterIds: [String]? = nil, dedicatedClusterOrderIds: String? = nil, offset: Int64? = nil, limit: Int64? = nil, status: String? = nil, actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOrdersResponse> {
-        let input = DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType)
-        return self.client.execute(action: "DescribeDedicatedClusterOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDedicatedClusterOrders(.init(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群订单列表
     @inlinable
     public func describeDedicatedClusterOrders(dedicatedClusterIds: [String]? = nil, dedicatedClusterOrderIds: String? = nil, offset: Int64? = nil, limit: Int64? = nil, status: String? = nil, actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOrdersResponse {
-        let input = DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType)
-        return try await self.client.execute(action: "DescribeDedicatedClusterOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDedicatedClusterOrders(.init(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群订单列表

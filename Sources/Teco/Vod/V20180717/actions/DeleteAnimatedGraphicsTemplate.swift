@@ -65,8 +65,7 @@ extension Vod {
     /// 删除用户自定义转动图模板。
     @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAnimatedGraphicsTemplateResponse> {
-        let input = DeleteAnimatedGraphicsTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAnimatedGraphicsTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转动图模板
@@ -74,7 +73,6 @@ extension Vod {
     /// 删除用户自定义转动图模板。
     @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
-        let input = DeleteAnimatedGraphicsTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAnimatedGraphicsTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

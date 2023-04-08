@@ -67,8 +67,7 @@ extension Ecm {
     /// 修改模块IP直通。
     @inlinable @discardableResult
     public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
-        let input = ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect)
-        return self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyModuleIpDirect(.init(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块IP直通
@@ -76,7 +75,6 @@ extension Ecm {
     /// 修改模块IP直通。
     @inlinable @discardableResult
     public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
-        let input = ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect)
-        return try await self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyModuleIpDirect(.init(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }
 }

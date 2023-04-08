@@ -88,8 +88,7 @@ extension Drm {
     /// 注意：该接口已下线。
     @inlinable @discardableResult
     public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEncryptionResponse> {
-        let input = StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects)
-        return self.client.execute(action: "StartEncryption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startEncryption(.init(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动DRM加密(该接口已下线)
@@ -98,7 +97,6 @@ extension Drm {
     /// 注意：该接口已下线。
     @inlinable @discardableResult
     public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
-        let input = StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects)
-        return try await self.client.execute(action: "StartEncryption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startEncryption(.init(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -81,8 +81,7 @@ extension Ssm {
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
     public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
-        let input = DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey)
-        return self.client.execute(action: "DeleteSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSecret(.init(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除凭据信息
@@ -90,7 +89,6 @@ extension Ssm {
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
     public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
-        let input = DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey)
-        return try await self.client.execute(action: "DeleteSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSecret(.init(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), region: region, logger: logger, on: eventLoop)
     }
 }

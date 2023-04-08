@@ -69,8 +69,7 @@ extension Postgres {
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。
     @inlinable
     public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoRenewFlagResponse> {
-        let input = SetAutoRenewFlagRequest(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag)
-        return self.client.execute(action: "SetAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setAutoRenewFlag(.init(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动续费
@@ -78,7 +77,6 @@ extension Postgres {
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。
     @inlinable
     public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
-        let input = SetAutoRenewFlagRequest(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag)
-        return try await self.client.execute(action: "SetAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setAutoRenewFlag(.init(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

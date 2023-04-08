@@ -59,14 +59,12 @@ extension Cam {
     /// 设置用户权限边界
     @inlinable @discardableResult
     public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
-        let input = PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId)
-        return self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.putUserPermissionsBoundary(.init(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置用户权限边界
     @inlinable @discardableResult
     public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
-        let input = PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId)
-        return try await self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.putUserPermissionsBoundary(.init(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

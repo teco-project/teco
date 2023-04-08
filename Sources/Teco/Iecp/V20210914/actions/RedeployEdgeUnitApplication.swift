@@ -59,14 +59,12 @@ extension Iecp {
     /// 单元应用重部署
     @inlinable @discardableResult
     public func redeployEdgeUnitApplication(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedeployEdgeUnitApplicationResponse> {
-        let input = RedeployEdgeUnitApplicationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return self.client.execute(action: "RedeployEdgeUnitApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.redeployEdgeUnitApplication(.init(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 单元应用重部署
     @inlinable @discardableResult
     public func redeployEdgeUnitApplication(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {
-        let input = RedeployEdgeUnitApplicationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return try await self.client.execute(action: "RedeployEdgeUnitApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.redeployEdgeUnitApplication(.init(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

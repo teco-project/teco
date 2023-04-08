@@ -79,14 +79,12 @@ extension Es {
     /// 删除索引
     @inlinable @discardableResult
     public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
-        let input = DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName)
-        return self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteIndex(.init(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除索引
     @inlinable @discardableResult
     public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        let input = DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName)
-        return try await self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteIndex(.init(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Tcss {
     /// 下发刷新任务，会刷新资产信息
     @inlinable
     public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
-        let input = CreateRefreshTaskRequest()
-        return self.client.execute(action: "CreateRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下发刷新任务
@@ -69,7 +68,6 @@ extension Tcss {
     /// 下发刷新任务，会刷新资产信息
     @inlinable
     public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
-        let input = CreateRefreshTaskRequest()
-        return try await self.client.execute(action: "CreateRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

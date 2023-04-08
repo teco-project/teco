@@ -64,8 +64,7 @@ extension Bm {
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
     public func recoverDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverDevicesResponse> {
-        let input = RecoverDevicesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "RecoverDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recoverDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复物理机
@@ -73,7 +72,6 @@ extension Bm {
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
     public func recoverDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
-        let input = RecoverDevicesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "RecoverDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recoverDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

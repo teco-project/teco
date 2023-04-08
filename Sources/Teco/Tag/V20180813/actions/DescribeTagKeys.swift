@@ -111,8 +111,7 @@ extension Tag {
     /// 用于查询已建立的标签列表中的标签键。
     @inlinable
     public func describeTagKeys(createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, showProject: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagKeysResponse> {
-        let input = DescribeTagKeysRequest(createUin: createUin, offset: offset, limit: limit, showProject: showProject)
-        return self.client.execute(action: "DescribeTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTagKeys(.init(createUin: createUin, offset: offset, limit: limit, showProject: showProject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签键
@@ -120,8 +119,7 @@ extension Tag {
     /// 用于查询已建立的标签列表中的标签键。
     @inlinable
     public func describeTagKeys(createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, showProject: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagKeysResponse {
-        let input = DescribeTagKeysRequest(createUin: createUin, offset: offset, limit: limit, showProject: showProject)
-        return try await self.client.execute(action: "DescribeTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTagKeys(.init(createUin: createUin, offset: offset, limit: limit, showProject: showProject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签键

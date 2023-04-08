@@ -78,8 +78,7 @@ extension Cvm {
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
     public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesTypeResponse> {
-        let input = InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType)
-        return self.client.execute(action: "InquiryPriceResetInstancesType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceResetInstancesType(.init(instanceIds: instanceIds, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整实例配置询价
@@ -90,7 +89,6 @@ extension Cvm {
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
     public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesTypeResponse {
-        let input = InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType)
-        return try await self.client.execute(action: "InquiryPriceResetInstancesType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceResetInstancesType(.init(instanceIds: instanceIds, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 }

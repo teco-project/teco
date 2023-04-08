@@ -97,15 +97,13 @@ extension Antiddos {
     /// 获取DDoS连接抑制配置列表
     @inlinable
     public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSConnectLimitListResponse> {
-        let input = DescribeDDoSConnectLimitListRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId)
-        return self.client.execute(action: "DescribeDDoSConnectLimitList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSConnectLimitList(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS连接抑制配置列表
     @inlinable
     public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
-        let input = DescribeDDoSConnectLimitListRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId)
-        return try await self.client.execute(action: "DescribeDDoSConnectLimitList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSConnectLimitList(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS连接抑制配置列表

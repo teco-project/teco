@@ -145,8 +145,7 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
     @inlinable
     public func describeWebManagedRulesLog(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesLogResponse> {
-        let input = DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset, queryCondition: queryCondition, area: area)
-        return self.client.execute(action: "DescribeWebManagedRulesLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWebManagedRulesLog(.init(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Web攻击日志
@@ -154,8 +153,7 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
     @inlinable
     public func describeWebManagedRulesLog(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
-        let input = DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset, queryCondition: queryCondition, area: area)
-        return try await self.client.execute(action: "DescribeWebManagedRulesLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWebManagedRulesLog(.init(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Web攻击日志

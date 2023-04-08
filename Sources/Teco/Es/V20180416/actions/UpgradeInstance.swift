@@ -89,14 +89,12 @@ extension Es {
     /// 升级ES集群版本
     @inlinable @discardableResult
     public func upgradeInstance(instanceId: String, esVersion: String, checkOnly: Bool? = nil, licenseType: String? = nil, basicSecurityType: UInt64? = nil, upgradeMode: String? = nil, cosBackup: Bool? = nil, skipCheckForceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
-        let input = UpgradeInstanceRequest(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart)
-        return self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeInstance(.init(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级ES集群版本
     @inlinable @discardableResult
     public func upgradeInstance(instanceId: String, esVersion: String, checkOnly: Bool? = nil, licenseType: String? = nil, basicSecurityType: UInt64? = nil, upgradeMode: String? = nil, cosBackup: Bool? = nil, skipCheckForceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        let input = UpgradeInstanceRequest(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart)
-        return try await self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeInstance(.init(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

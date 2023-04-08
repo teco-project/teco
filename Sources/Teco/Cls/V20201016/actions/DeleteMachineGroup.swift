@@ -54,14 +54,12 @@ extension Cls {
     /// 删除机器组
     @inlinable @discardableResult
     public func deleteMachineGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupResponse> {
-        let input = DeleteMachineGroupRequest(groupId: groupId)
-        return self.client.execute(action: "DeleteMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMachineGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组
     @inlinable @discardableResult
     public func deleteMachineGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
-        let input = DeleteMachineGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "DeleteMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMachineGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

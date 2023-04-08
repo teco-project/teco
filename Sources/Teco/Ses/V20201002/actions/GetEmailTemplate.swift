@@ -72,8 +72,7 @@ extension Ses {
     /// 根据模板ID获取模板详情
     @inlinable
     public func getEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailTemplateResponse> {
-        let input = GetEmailTemplateRequest(templateID: templateID)
-        return self.client.execute(action: "GetEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getEmailTemplate(.init(templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模板详情
@@ -81,7 +80,6 @@ extension Ses {
     /// 根据模板ID获取模板详情
     @inlinable
     public func getEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailTemplateResponse {
-        let input = GetEmailTemplateRequest(templateID: templateID)
-        return try await self.client.execute(action: "GetEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getEmailTemplate(.init(templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 }

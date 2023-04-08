@@ -70,8 +70,7 @@ extension Live {
     /// 删除截图规则。
     @inlinable @discardableResult
     public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotRuleResponse> {
-        let input = DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return self.client.execute(action: "DeleteLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveSnapshotRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除截图规则
@@ -79,7 +78,6 @@ extension Live {
     /// 删除截图规则。
     @inlinable @discardableResult
     public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
-        let input = DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName)
-        return try await self.client.execute(action: "DeleteLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveSnapshotRule(.init(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

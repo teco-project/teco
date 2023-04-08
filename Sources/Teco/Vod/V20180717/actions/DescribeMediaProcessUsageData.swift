@@ -96,8 +96,7 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     @inlinable
     public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessUsageDataResponse> {
-        let input = DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type)
-        return self.client.execute(action: "DescribeMediaProcessUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMediaProcessUsageData(.init(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频处理用量统计数据
@@ -107,7 +106,6 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     @inlinable
     public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
-        let input = DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type)
-        return try await self.client.execute(action: "DescribeMediaProcessUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMediaProcessUsageData(.init(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

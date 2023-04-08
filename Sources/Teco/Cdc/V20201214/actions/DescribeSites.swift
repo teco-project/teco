@@ -97,15 +97,13 @@ extension Cdc {
     /// 查询站点列表
     @inlinable
     public func describeSites(siteIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesResponse> {
-        let input = DescribeSitesRequest(siteIds: siteIds, name: name, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSites(.init(siteIds: siteIds, name: name, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点列表
     @inlinable
     public func describeSites(siteIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
-        let input = DescribeSitesRequest(siteIds: siteIds, name: name, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSites(.init(siteIds: siteIds, name: name, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点列表

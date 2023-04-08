@@ -64,8 +64,7 @@ extension Yunjing {
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
     public func describeUsualLoginPlaces(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsualLoginPlacesResponse> {
-        let input = DescribeUsualLoginPlacesRequest(uuid: uuid)
-        return self.client.execute(action: "DescribeUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUsualLoginPlaces(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询常用登录地
@@ -73,7 +72,6 @@ extension Yunjing {
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
     public func describeUsualLoginPlaces(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsualLoginPlacesResponse {
-        let input = DescribeUsualLoginPlacesRequest(uuid: uuid)
-        return try await self.client.execute(action: "DescribeUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUsualLoginPlaces(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

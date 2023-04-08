@@ -124,8 +124,7 @@ extension Cwp {
     /// 获取资产指纹页面的资源监控列表
     @inlinable
     public func describeAssetMachineList(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetMachineListResponse> {
-        let input = DescribeAssetMachineListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return self.client.execute(action: "DescribeAssetMachineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetMachineList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源监控列表
@@ -133,8 +132,7 @@ extension Cwp {
     /// 获取资产指纹页面的资源监控列表
     @inlinable
     public func describeAssetMachineList(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineListResponse {
-        let input = DescribeAssetMachineListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
-        return try await self.client.execute(action: "DescribeAssetMachineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetMachineList(.init(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源监控列表

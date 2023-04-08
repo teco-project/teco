@@ -121,8 +121,7 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateJobsResponse> {
-        let input = DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeMigrateJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMigrateJobs(.init(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据迁移任务
@@ -131,8 +130,7 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
-        let input = DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeMigrateJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMigrateJobs(.init(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据迁移任务

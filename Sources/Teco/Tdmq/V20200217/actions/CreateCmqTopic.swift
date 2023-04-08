@@ -83,14 +83,12 @@ extension Tdmq {
     /// 创建cmq主题
     @inlinable
     public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqTopicResponse> {
-        let input = CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags)
-        return self.client.execute(action: "CreateCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCmqTopic(.init(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq主题
     @inlinable
     public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
-        let input = CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags)
-        return try await self.client.execute(action: "CreateCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCmqTopic(.init(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

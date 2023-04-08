@@ -99,8 +99,7 @@ extension Vpc {
     /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
     @inlinable
     public func createDirectConnectGateway(directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String? = nil, modeType: String? = nil, zone: String? = nil, haZoneGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayResponse> {
-        let input = CreateDirectConnectGatewayRequest(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId)
-        return self.client.execute(action: "CreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDirectConnectGateway(.init(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关
@@ -108,7 +107,6 @@ extension Vpc {
     /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
     @inlinable
     public func createDirectConnectGateway(directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String? = nil, modeType: String? = nil, zone: String? = nil, haZoneGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayResponse {
-        let input = CreateDirectConnectGatewayRequest(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId)
-        return try await self.client.execute(action: "CreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDirectConnectGateway(.init(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -106,8 +106,7 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createLogExport(id: Int64, startTime: String, endTime: String, query: String, count: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogExportResponse> {
-        let input = CreateLogExportRequest(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format)
-        return self.client.execute(action: "CreateLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLogExport(.init(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志下载任务
@@ -119,7 +118,6 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createLogExport(id: Int64, startTime: String, endTime: String, query: String, count: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogExportResponse {
-        let input = CreateLogExportRequest(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format)
-        return try await self.client.execute(action: "CreateLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLogExport(.init(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format), region: region, logger: logger, on: eventLoop)
     }
 }

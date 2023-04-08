@@ -64,14 +64,12 @@ extension Tdmq {
     /// 更新Amqp集群信息
     @inlinable @discardableResult
     public func modifyAMQPCluster(clusterId: String, clusterName: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPClusterResponse> {
-        let input = ModifyAMQPClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark)
-        return self.client.execute(action: "ModifyAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAMQPCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新Amqp集群信息
     @inlinable @discardableResult
     public func modifyAMQPCluster(clusterId: String, clusterName: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPClusterResponse {
-        let input = ModifyAMQPClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark)
-        return try await self.client.execute(action: "ModifyAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAMQPCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

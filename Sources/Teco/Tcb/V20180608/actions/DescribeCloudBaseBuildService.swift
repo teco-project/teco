@@ -111,8 +111,7 @@ extension Tcb {
     /// 获取云托管代码上传url
     @inlinable
     public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
-        let input = DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix)
-        return self.client.execute(action: "DescribeCloudBaseBuildService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseBuildService(.init(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管代码上传和下载url
@@ -120,7 +119,6 @@ extension Tcb {
     /// 获取云托管代码上传url
     @inlinable
     public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
-        let input = DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix)
-        return try await self.client.execute(action: "DescribeCloudBaseBuildService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseBuildService(.init(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), region: region, logger: logger, on: eventLoop)
     }
 }

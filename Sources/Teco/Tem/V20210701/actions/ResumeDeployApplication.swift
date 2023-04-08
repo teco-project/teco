@@ -63,14 +63,12 @@ extension Tem {
     /// 开始下一批次发布
     @inlinable
     public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
-        let input = ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId)
-        return self.client.execute(action: "ResumeDeployApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resumeDeployApplication(.init(applicationId: applicationId, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始下一批次发布
     @inlinable
     public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
-        let input = ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId)
-        return try await self.client.execute(action: "ResumeDeployApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resumeDeployApplication(.init(applicationId: applicationId, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 }

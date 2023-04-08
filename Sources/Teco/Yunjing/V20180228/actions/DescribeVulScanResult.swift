@@ -72,8 +72,7 @@ extension Yunjing {
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
     public func describeVulScanResult(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
-        let input = DescribeVulScanResultRequest()
-        return self.client.execute(action: "DescribeVulScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulScanResult(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞检测结果
@@ -81,7 +80,6 @@ extension Yunjing {
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
     public func describeVulScanResult(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
-        let input = DescribeVulScanResultRequest()
-        return try await self.client.execute(action: "DescribeVulScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulScanResult(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

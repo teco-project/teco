@@ -74,8 +74,7 @@ extension Iotcloud {
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
     public func downloadDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDeviceResourceResponse> {
-        let input = DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName)
-        return self.client.execute(action: "DownloadDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadDeviceResource(.init(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载设备资源
@@ -83,7 +82,6 @@ extension Iotcloud {
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
     public func downloadDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
-        let input = DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName)
-        return try await self.client.execute(action: "DownloadDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadDeviceResource(.init(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

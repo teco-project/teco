@@ -130,8 +130,7 @@ extension Emr {
     /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmrApplicationStaticsResponse> {
-        let input = DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeEmrApplicationStatics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEmrApplicationStatics(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询YARN的任务统计信息
@@ -139,7 +138,6 @@ extension Emr {
     /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
-        let input = DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeEmrApplicationStatics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEmrApplicationStatics(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

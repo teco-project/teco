@@ -75,8 +75,7 @@ extension Cvm {
     /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
     @inlinable
     public func describeInstancesModification(instanceIds: [String], filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesModificationResponse> {
-        let input = DescribeInstancesModificationRequest(instanceIds: instanceIds, filters: filters)
-        return self.client.execute(action: "DescribeInstancesModification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstancesModification(.init(instanceIds: instanceIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例可调整配置
@@ -84,7 +83,6 @@ extension Cvm {
     /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
     @inlinable
     public func describeInstancesModification(instanceIds: [String], filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesModificationResponse {
-        let input = DescribeInstancesModificationRequest(instanceIds: instanceIds, filters: filters)
-        return try await self.client.execute(action: "DescribeInstancesModification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstancesModification(.init(instanceIds: instanceIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

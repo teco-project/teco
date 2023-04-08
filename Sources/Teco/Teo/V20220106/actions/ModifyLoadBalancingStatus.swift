@@ -70,14 +70,12 @@ extension Teo {
     /// 修改负载均衡状态
     @inlinable
     public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingStatusResponse> {
-        let input = ModifyLoadBalancingStatusRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status)
-        return self.client.execute(action: "ModifyLoadBalancingStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLoadBalancingStatus(.init(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡状态
     @inlinable
     public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
-        let input = ModifyLoadBalancingStatusRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status)
-        return try await self.client.execute(action: "ModifyLoadBalancingStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLoadBalancingStatus(.init(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

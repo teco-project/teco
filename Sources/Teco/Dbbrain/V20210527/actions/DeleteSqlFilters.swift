@@ -70,8 +70,7 @@ extension Dbbrain {
     /// 删除实例SQL限流任务。
     @inlinable @discardableResult
     public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSqlFiltersResponse> {
-        let input = DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds)
-        return self.client.execute(action: "DeleteSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例SQL限流任务
@@ -79,7 +78,6 @@ extension Dbbrain {
     /// 删除实例SQL限流任务。
     @inlinable @discardableResult
     public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
-        let input = DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds)
-        return try await self.client.execute(action: "DeleteSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
     }
 }

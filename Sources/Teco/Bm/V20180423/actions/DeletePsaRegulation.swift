@@ -54,14 +54,12 @@ extension Bm {
     /// 删除预授权规则
     @inlinable @discardableResult
     public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
-        let input = DeletePsaRegulationRequest(psaId: psaId)
-        return self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePsaRegulation(.init(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除预授权规则
     @inlinable @discardableResult
     public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
-        let input = DeletePsaRegulationRequest(psaId: psaId)
-        return try await self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePsaRegulation(.init(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -129,8 +129,7 @@ extension Tic {
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
     public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
-        let input = DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeStackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStackEvents(.init(eventIds: eventIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件列表
@@ -142,8 +141,7 @@ extension Tic {
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
     public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
-        let input = DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeStackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStackEvents(.init(eventIds: eventIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件列表

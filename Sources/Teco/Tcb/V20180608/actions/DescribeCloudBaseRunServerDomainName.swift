@@ -81,14 +81,12 @@ extension Tcb {
     /// 查询微信云托管服务域名
     @inlinable
     public func describeCloudBaseRunServerDomainName(serverName: String, userEnvId: String, userUin: String, externalId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunServerDomainNameResponse> {
-        let input = DescribeCloudBaseRunServerDomainNameRequest(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId)
-        return self.client.execute(action: "DescribeCloudBaseRunServerDomainName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseRunServerDomainName(.init(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询微信云托管服务域名
     @inlinable
     public func describeCloudBaseRunServerDomainName(serverName: String, userEnvId: String, userUin: String, externalId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerDomainNameResponse {
-        let input = DescribeCloudBaseRunServerDomainNameRequest(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId)
-        return try await self.client.execute(action: "DescribeCloudBaseRunServerDomainName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseRunServerDomainName(.init(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId), region: region, logger: logger, on: eventLoop)
     }
 }

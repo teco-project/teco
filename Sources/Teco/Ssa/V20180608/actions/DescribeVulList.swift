@@ -64,8 +64,7 @@ extension Ssa {
     /// 漏洞管理页，获取漏洞列表
     @inlinable
     public func describeVulList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulListResponse> {
-        let input = DescribeVulListRequest(params: params)
-        return self.client.execute(action: "DescribeVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulList(.init(params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-漏洞列表
@@ -73,7 +72,6 @@ extension Ssa {
     /// 漏洞管理页，获取漏洞列表
     @inlinable
     public func describeVulList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
-        let input = DescribeVulListRequest(params: params)
-        return try await self.client.execute(action: "DescribeVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulList(.init(params: params), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -102,14 +102,12 @@ extension Tbaas {
     /// 申请用户证书
     @inlinable
     public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUserCertResponse> {
-        let input = ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes)
-        return self.client.execute(action: "ApplyUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyUserCert(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请用户证书
     @inlinable
     public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
-        let input = ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes)
-        return try await self.client.execute(action: "ApplyUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyUserCert(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -88,14 +88,12 @@ extension Cpdp {
     /// 云支付-查询订单付款状态
     @inlinable
     public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderStatusResponse> {
-        let input = QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile)
-        return self.client.execute(action: "QueryOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOrderStatus(.init(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询订单付款状态
     @inlinable
     public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
-        let input = QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile)
-        return try await self.client.execute(action: "QueryOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOrderStatus(.init(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

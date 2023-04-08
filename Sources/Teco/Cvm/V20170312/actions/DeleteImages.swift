@@ -82,8 +82,7 @@ extension Cvm {
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable @discardableResult
     public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
-        let input = DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun)
-        return self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImages(.init(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像
@@ -95,7 +94,6 @@ extension Cvm {
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable @discardableResult
     public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        let input = DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun)
-        return try await self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImages(.init(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Solar {
     /// 员工渠道更改员工状态
     @inlinable @discardableResult
     public func checkStaffChUser(userId: [String], operateType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckStaffChUserResponse> {
-        let input = CheckStaffChUserRequest(userId: userId, operateType: operateType)
-        return self.client.execute(action: "CheckStaffChUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkStaffChUser(.init(userId: userId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 员工渠道更改员工状态
     @inlinable @discardableResult
     public func checkStaffChUser(userId: [String], operateType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
-        let input = CheckStaffChUserRequest(userId: userId, operateType: operateType)
-        return try await self.client.execute(action: "CheckStaffChUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkStaffChUser(.init(userId: userId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 }

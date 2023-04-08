@@ -70,8 +70,7 @@ extension Apigateway {
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
     public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiKeyResponse> {
-        let input = UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret)
-        return self.client.execute(action: "UpdateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateApiKey(.init(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更换密钥
@@ -79,7 +78,6 @@ extension Apigateway {
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
     public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiKeyResponse {
-        let input = UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret)
-        return try await self.client.execute(action: "UpdateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateApiKey(.init(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
     }
 }

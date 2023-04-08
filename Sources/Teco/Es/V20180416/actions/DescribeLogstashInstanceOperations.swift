@@ -108,8 +108,7 @@ extension Es {
     /// 查询实例指定条件下的操作记录
     @inlinable
     public func describeLogstashInstanceOperations(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashInstanceOperationsResponse> {
-        let input = DescribeLogstashInstanceOperationsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeLogstashInstanceOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogstashInstanceOperations(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Logstash实例操作记录
@@ -117,8 +116,7 @@ extension Es {
     /// 查询实例指定条件下的操作记录
     @inlinable
     public func describeLogstashInstanceOperations(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceOperationsResponse {
-        let input = DescribeLogstashInstanceOperationsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeLogstashInstanceOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogstashInstanceOperations(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Logstash实例操作记录

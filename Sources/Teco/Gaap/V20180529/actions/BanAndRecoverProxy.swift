@@ -52,8 +52,7 @@ extension Gaap {
     /// 本接口（BanAndRecoverProxy）用于联通封禁解封GAAP跨境通道实例，支持按照客户UIN维度下发请求。被封禁的实例带宽上限将会被限制到0Mbps，无法正常处理客户端和源站之间的请求。
     @inlinable @discardableResult
     public func banAndRecoverProxy(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BanAndRecoverProxyResponse> {
-        let input = BanAndRecoverProxyRequest()
-        return self.client.execute(action: "BanAndRecoverProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.banAndRecoverProxy(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 封禁解封跨境通道实例
@@ -61,7 +60,6 @@ extension Gaap {
     /// 本接口（BanAndRecoverProxy）用于联通封禁解封GAAP跨境通道实例，支持按照客户UIN维度下发请求。被封禁的实例带宽上限将会被限制到0Mbps，无法正常处理客户端和源站之间的请求。
     @inlinable @discardableResult
     public func banAndRecoverProxy(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BanAndRecoverProxyResponse {
-        let input = BanAndRecoverProxyRequest()
-        return try await self.client.execute(action: "BanAndRecoverProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.banAndRecoverProxy(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

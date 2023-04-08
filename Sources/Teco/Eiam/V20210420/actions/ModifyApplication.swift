@@ -85,8 +85,7 @@ extension Eiam {
     /// 更新一个应用的信息
     @inlinable @discardableResult
     public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationResponse> {
-        let input = ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description)
-        return self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyApplication(.init(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新应用
@@ -94,7 +93,6 @@ extension Eiam {
     /// 更新一个应用的信息
     @inlinable @discardableResult
     public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
-        let input = ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description)
-        return try await self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyApplication(.init(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

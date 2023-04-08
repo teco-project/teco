@@ -70,8 +70,7 @@ extension Vod {
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable @discardableResult
     public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
-        let input = ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description)
-        return self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySubAppIdInfo(.init(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子应用信息
@@ -79,7 +78,6 @@ extension Vod {
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable @discardableResult
     public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
-        let input = ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description)
-        return try await self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySubAppIdInfo(.init(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

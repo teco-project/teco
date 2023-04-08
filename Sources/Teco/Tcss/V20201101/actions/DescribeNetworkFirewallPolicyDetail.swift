@@ -111,14 +111,12 @@ extension Tcss {
     /// 容器网络集群查看策略详情
     @inlinable
     public func describeNetworkFirewallPolicyDetail(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyDetailResponse> {
-        let input = DescribeNetworkFirewallPolicyDetailRequest(id: id)
-        return self.client.execute(action: "DescribeNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNetworkFirewallPolicyDetail(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群查看策略详情
     @inlinable
     public func describeNetworkFirewallPolicyDetail(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyDetailResponse {
-        let input = DescribeNetworkFirewallPolicyDetailRequest(id: id)
-        return try await self.client.execute(action: "DescribeNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNetworkFirewallPolicyDetail(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

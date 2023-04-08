@@ -113,8 +113,7 @@ extension Cdn {
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
     public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        let input = SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort)
-        return self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchClsLog(.init(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
@@ -122,7 +121,6 @@ extension Cdn {
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
     public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        let input = SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort)
-        return try await self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchClsLog(.init(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

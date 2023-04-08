@@ -134,15 +134,13 @@ extension Dts {
     /// 查询同步任务信息
     @inlinable
     public func describeSyncJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, status: [String]? = nil, runMode: String? = nil, jobType: String? = nil, payMode: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSyncJobsResponse> {
-        let input = DescribeSyncJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, status: status, runMode: runMode, jobType: jobType, payMode: payMode, tagFilters: tagFilters)
-        return self.client.execute(action: "DescribeSyncJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSyncJobs(.init(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, status: status, runMode: runMode, jobType: jobType, payMode: payMode, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询同步任务信息
     @inlinable
     public func describeSyncJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, status: [String]? = nil, runMode: String? = nil, jobType: String? = nil, payMode: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSyncJobsResponse {
-        let input = DescribeSyncJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, status: status, runMode: runMode, jobType: jobType, payMode: payMode, tagFilters: tagFilters)
-        return try await self.client.execute(action: "DescribeSyncJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSyncJobs(.init(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, status: status, runMode: runMode, jobType: jobType, payMode: payMode, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询同步任务信息

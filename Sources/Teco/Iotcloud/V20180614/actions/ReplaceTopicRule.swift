@@ -75,8 +75,7 @@ extension Iotcloud {
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable @discardableResult
     public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64? = nil, actionIndex: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
-        let input = ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex)
-        return self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.replaceTopicRule(.init(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换规则
@@ -84,7 +83,6 @@ extension Iotcloud {
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable @discardableResult
     public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64? = nil, actionIndex: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
-        let input = ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex)
-        return try await self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.replaceTopicRule(.init(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex), region: region, logger: logger, on: eventLoop)
     }
 }

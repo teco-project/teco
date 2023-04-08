@@ -74,14 +74,12 @@ extension Dnspod {
     /// 暂停子域名的解析记录
     @inlinable @discardableResult
     public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
-        let input = ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain)
-        return self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySubdomainStatus(.init(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 暂停子域名的解析记录
     @inlinable @discardableResult
     public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
-        let input = ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain)
-        return try await self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySubdomainStatus(.init(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 }

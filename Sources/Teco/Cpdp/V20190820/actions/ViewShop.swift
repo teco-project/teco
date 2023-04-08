@@ -88,14 +88,12 @@ extension Cpdp {
     /// 云支付-查询门店明细接口
     @inlinable
     public func viewShop(openId: String, openKey: String, outShopId: String? = nil, shopNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ViewShopResponse> {
-        let input = ViewShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile)
-        return self.client.execute(action: "ViewShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.viewShop(.init(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询门店明细接口
     @inlinable
     public func viewShop(openId: String, openKey: String, outShopId: String? = nil, shopNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewShopResponse {
-        let input = ViewShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile)
-        return try await self.client.execute(action: "ViewShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.viewShop(.init(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

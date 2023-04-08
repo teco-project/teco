@@ -69,8 +69,7 @@ extension Mariadb {
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
     public func describeBackupTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTimeResponse> {
-        let input = DescribeBackupTimeRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份时间
@@ -78,7 +77,6 @@ extension Mariadb {
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
     public func describeBackupTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
-        let input = DescribeBackupTimeRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Postgres {
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
     @inlinable
     public func closeDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseDBExtranetAccessResponse> {
-        let input = CloseDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6)
-        return self.client.execute(action: "CloseDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.closeDBExtranetAccess(.init(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭实例外网链接
@@ -78,7 +77,6 @@ extension Postgres {
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
     @inlinable
     public func closeDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseDBExtranetAccessResponse {
-        let input = CloseDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6)
-        return try await self.client.execute(action: "CloseDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.closeDBExtranetAccess(.init(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)
     }
 }

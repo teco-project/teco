@@ -62,14 +62,12 @@ extension Antiddos {
     /// 设置单IP默认告警阈值配置
     @inlinable @discardableResult
     public func createDefaultAlarmThreshold(defaultAlarmConfig: DefaultAlarmThreshold, instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultAlarmThresholdResponse> {
-        let input = CreateDefaultAlarmThresholdRequest(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType)
-        return self.client.execute(action: "CreateDefaultAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDefaultAlarmThreshold(.init(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP默认告警阈值配置
     @inlinable @discardableResult
     public func createDefaultAlarmThreshold(defaultAlarmConfig: DefaultAlarmThreshold, instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {
-        let input = CreateDefaultAlarmThresholdRequest(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType)
-        return try await self.client.execute(action: "CreateDefaultAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDefaultAlarmThreshold(.init(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 }

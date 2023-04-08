@@ -78,14 +78,12 @@ extension Tke {
     /// 获得实例级别抓取配置
     @inlinable
     public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
-        let input = DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics)
-        return self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusGlobalConfig(.init(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获得实例级别抓取配置
     @inlinable
     public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
-        let input = DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics)
-        return try await self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusGlobalConfig(.init(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
     }
 }

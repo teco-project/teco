@@ -142,8 +142,7 @@ extension Dayu {
     /// 获取DDoS攻击流量带宽和攻击包速率数据
     @inlinable
     public func describeDDoSTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSTrendResponse> {
-        let input = DescribeDDoSTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id)
-        return self.client.execute(action: "DescribeDDoSTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSTrend(.init(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击指标数据
@@ -151,7 +150,6 @@ extension Dayu {
     /// 获取DDoS攻击流量带宽和攻击包速率数据
     @inlinable
     public func describeDDoSTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSTrendResponse {
-        let input = DescribeDDoSTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id)
-        return try await self.client.execute(action: "DescribeDDoSTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSTrend(.init(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

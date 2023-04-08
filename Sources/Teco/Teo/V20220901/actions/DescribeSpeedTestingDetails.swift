@@ -64,8 +64,7 @@ extension Teo {
     /// 用于查询拨测分地区数据
     @inlinable
     public func describeSpeedTestingDetails(zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingDetailsResponse> {
-        let input = DescribeSpeedTestingDetailsRequest(zoneId: zoneId)
-        return self.client.execute(action: "DescribeSpeedTestingDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSpeedTestingDetails(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询拨测分地区数据
@@ -73,7 +72,6 @@ extension Teo {
     /// 用于查询拨测分地区数据
     @inlinable
     public func describeSpeedTestingDetails(zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingDetailsResponse {
-        let input = DescribeSpeedTestingDetailsRequest(zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeSpeedTestingDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSpeedTestingDetails(.init(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

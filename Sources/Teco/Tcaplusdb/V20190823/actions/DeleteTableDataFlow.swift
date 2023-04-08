@@ -67,14 +67,12 @@ extension Tcaplusdb {
     /// 删除表格的数据订阅
     @inlinable
     public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableDataFlowResponse> {
-        let input = DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return self.client.execute(action: "DeleteTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTableDataFlow(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除表格的数据订阅
     @inlinable
     public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
-        let input = DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return try await self.client.execute(action: "DeleteTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTableDataFlow(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

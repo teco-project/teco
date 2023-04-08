@@ -77,14 +77,12 @@ extension Youmall {
     /// 修改顾客身份类型接口
     @inlinable @discardableResult
     public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
-        let input = ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType)
-        return self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPersonType(.init(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客身份类型接口
     @inlinable @discardableResult
     public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
-        let input = ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType)
-        return try await self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPersonType(.init(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }
 }

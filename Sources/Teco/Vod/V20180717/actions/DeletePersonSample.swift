@@ -65,8 +65,7 @@ extension Vod {
     /// 该接口用于根据人物 ID，删除素材样本。
     @inlinable @discardableResult
     public func deletePersonSample(personId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonSampleResponse> {
-        let input = DeletePersonSampleRequest(personId: personId, subAppId: subAppId)
-        return self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePersonSample(.init(personId: personId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除素材样本
@@ -74,7 +73,6 @@ extension Vod {
     /// 该接口用于根据人物 ID，删除素材样本。
     @inlinable @discardableResult
     public func deletePersonSample(personId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
-        let input = DeletePersonSampleRequest(personId: personId, subAppId: subAppId)
-        return try await self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePersonSample(.init(personId: personId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -97,15 +97,13 @@ extension Antiddos {
     /// 获取DDoS防护的端口acl策略列表
     @inlinable
     public func describeListPortAclList(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListPortAclListResponse> {
-        let input = DescribeListPortAclListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
-        return self.client.execute(action: "DescribeListPortAclList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeListPortAclList(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的端口acl策略列表
     @inlinable
     public func describeListPortAclList(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListPortAclListResponse {
-        let input = DescribeListPortAclListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
-        return try await self.client.execute(action: "DescribeListPortAclList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeListPortAclList(.init(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的端口acl策略列表

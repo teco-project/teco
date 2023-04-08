@@ -102,15 +102,13 @@ extension Oceanus {
     /// 查询作业
     @inlinable
     public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobsResponse> {
-        let input = DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJobs(.init(jobIds: jobIds, filters: filters, offset: offset, limit: limit, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询作业
     @inlinable
     public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
-        let input = DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJobs(.init(jobIds: jobIds, filters: filters, offset: offset, limit: limit, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询作业

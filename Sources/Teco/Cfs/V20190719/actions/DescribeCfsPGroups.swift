@@ -56,8 +56,7 @@ extension Cfs {
     /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
     @inlinable
     public func describeCfsPGroups(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsPGroupsResponse> {
-        let input = DescribeCfsPGroupsRequest()
-        return self.client.execute(action: "DescribeCfsPGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCfsPGroups(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询权限组列表
@@ -65,7 +64,6 @@ extension Cfs {
     /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
     @inlinable
     public func describeCfsPGroups(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsPGroupsResponse {
-        let input = DescribeCfsPGroupsRequest()
-        return try await self.client.execute(action: "DescribeCfsPGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCfsPGroups(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

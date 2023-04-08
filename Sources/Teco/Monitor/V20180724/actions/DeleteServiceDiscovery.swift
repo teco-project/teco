@@ -90,8 +90,7 @@ extension Monitor {
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable @discardableResult
     public func deleteServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceDiscoveryResponse> {
-        let input = DeleteServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml)
-        return self.client.execute(action: "DeleteServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务发现
@@ -101,7 +100,6 @@ extension Monitor {
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable @discardableResult
     public func deleteServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceDiscoveryResponse {
-        let input = DeleteServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml)
-        return try await self.client.execute(action: "DeleteServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

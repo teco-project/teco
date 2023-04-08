@@ -73,8 +73,7 @@ extension Vpc {
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable @discardableResult
     public func enableRoutes(routeTableId: String, routeIds: [UInt64]? = nil, routeItemIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
-        let input = EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds)
-        return self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableRoutes(.init(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用子网路由
@@ -83,7 +82,6 @@ extension Vpc {
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable @discardableResult
     public func enableRoutes(routeTableId: String, routeIds: [UInt64]? = nil, routeItemIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
-        let input = EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds)
-        return try await self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableRoutes(.init(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 }

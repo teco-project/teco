@@ -117,8 +117,7 @@ extension Sqlserver {
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     @inlinable
     public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        let input = DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType)
-        return self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccounts(.init(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取实例账户列表
@@ -126,8 +125,7 @@ extension Sqlserver {
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     @inlinable
     public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        let input = DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccounts(.init(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取实例账户列表

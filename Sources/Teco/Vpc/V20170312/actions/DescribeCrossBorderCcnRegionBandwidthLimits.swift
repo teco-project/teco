@@ -58,8 +58,7 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func describeCrossBorderCcnRegionBandwidthLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossBorderCcnRegionBandwidthLimitsResponse> {
-        let input = DescribeCrossBorderCcnRegionBandwidthLimitsRequest()
-        return self.client.execute(action: "DescribeCrossBorderCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCrossBorderCcnRegionBandwidthLimits(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网跨境限速实例
@@ -69,7 +68,6 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func describeCrossBorderCcnRegionBandwidthLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderCcnRegionBandwidthLimitsResponse {
-        let input = DescribeCrossBorderCcnRegionBandwidthLimitsRequest()
-        return try await self.client.execute(action: "DescribeCrossBorderCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCrossBorderCcnRegionBandwidthLimits(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

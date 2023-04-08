@@ -68,14 +68,12 @@ extension Tem {
     /// 销毁日志收集配置
     @inlinable
     public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyLogConfigResponse> {
-        let input = DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId)
-        return self.client.execute(action: "DestroyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyLogConfig(.init(environmentId: environmentId, name: name, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁日志收集配置
     @inlinable
     public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyLogConfigResponse {
-        let input = DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId)
-        return try await self.client.execute(action: "DestroyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyLogConfig(.init(environmentId: environmentId, name: name, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

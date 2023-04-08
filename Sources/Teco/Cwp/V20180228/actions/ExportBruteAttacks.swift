@@ -68,8 +68,7 @@ extension Cwp {
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
     public func exportBruteAttacks(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
-        let input = ExportBruteAttacksRequest(filters: filters)
-        return self.client.execute(action: "ExportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportBruteAttacks(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出密码破解记录
@@ -77,7 +76,6 @@ extension Cwp {
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
     public func exportBruteAttacks(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
-        let input = ExportBruteAttacksRequest(filters: filters)
-        return try await self.client.execute(action: "ExportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportBruteAttacks(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

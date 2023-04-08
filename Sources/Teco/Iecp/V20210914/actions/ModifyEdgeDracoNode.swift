@@ -69,14 +69,12 @@ extension Iecp {
     /// 编辑draco设备信息
     @inlinable @discardableResult
     public func modifyEdgeDracoNode(edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo? = nil, isReset: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeDracoNodeResponse> {
-        let input = ModifyEdgeDracoNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset)
-        return self.client.execute(action: "ModifyEdgeDracoNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEdgeDracoNode(.init(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑draco设备信息
     @inlinable @discardableResult
     public func modifyEdgeDracoNode(edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo? = nil, isReset: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeDracoNodeResponse {
-        let input = ModifyEdgeDracoNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset)
-        return try await self.client.execute(action: "ModifyEdgeDracoNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEdgeDracoNode(.init(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset), region: region, logger: logger, on: eventLoop)
     }
 }

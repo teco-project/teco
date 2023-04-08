@@ -97,8 +97,7 @@ extension Cfw {
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
     public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceAssetResponse> {
-        let input = DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeSourceAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSourceAsset(.init(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产组全部资产信息
@@ -106,7 +105,6 @@ extension Cfw {
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
     public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
-        let input = DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeSourceAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSourceAsset(.init(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

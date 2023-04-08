@@ -59,14 +59,12 @@ extension Iecp {
     /// 查询应用模板Yaml
     @inlinable
     public func describeApplicationYaml(applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationYamlResponse> {
-        let input = DescribeApplicationYamlRequest(applicationId: applicationId)
-        return self.client.execute(action: "DescribeApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationYaml(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用模板Yaml
     @inlinable
     public func describeApplicationYaml(applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlResponse {
-        let input = DescribeApplicationYamlRequest(applicationId: applicationId)
-        return try await self.client.execute(action: "DescribeApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationYaml(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

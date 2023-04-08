@@ -65,8 +65,7 @@ extension Dts {
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
     @inlinable @discardableResult
     public func startCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCompareResponse> {
-        let input = StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId)
-        return self.client.execute(action: "StartCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startCompare(.init(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动一致性校验任务
@@ -74,7 +73,6 @@ extension Dts {
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
     @inlinable @discardableResult
     public func startCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCompareResponse {
-        let input = StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId)
-        return try await self.client.execute(action: "StartCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startCompare(.init(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

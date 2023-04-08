@@ -68,14 +68,12 @@ extension Pts {
     /// 创建项目
     @inlinable
     public func createProject(name: String, description: String? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        let input = CreateProjectRequest(name: name, description: description, tags: tags)
-        return self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProject(.init(name: name, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建项目
     @inlinable
     public func createProject(name: String, description: String? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        let input = CreateProjectRequest(name: name, description: description, tags: tags)
-        return try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProject(.init(name: name, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

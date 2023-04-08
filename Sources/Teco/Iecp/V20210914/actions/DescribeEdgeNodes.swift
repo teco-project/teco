@@ -113,15 +113,13 @@ extension Iecp {
     /// 查询边缘节点列表
     @inlinable
     public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodesResponse> {
-        let input = DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType)
-        return self.client.execute(action: "DescribeEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEdgeNodes(.init(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘节点列表
     @inlinable
     public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
-        let input = DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType)
-        return try await self.client.execute(action: "DescribeEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEdgeNodes(.init(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘节点列表

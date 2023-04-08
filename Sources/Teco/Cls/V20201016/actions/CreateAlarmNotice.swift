@@ -82,8 +82,7 @@ extension Cls {
     /// 该接口用于创建通知渠道组。
     @inlinable
     public func createAlarmNotice(name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
-        let input = CreateAlarmNoticeRequest(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks)
-        return self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通知渠道组
@@ -91,7 +90,6 @@ extension Cls {
     /// 该接口用于创建通知渠道组。
     @inlinable
     public func createAlarmNotice(name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        let input = CreateAlarmNoticeRequest(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks)
-        return try await self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
     }
 }

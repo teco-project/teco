@@ -95,8 +95,7 @@ extension Vod {
     /// 修改片头片尾模板。
     @inlinable @discardableResult
     public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHeadTailTemplateResponse> {
-        let input = ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType)
-        return self.client.execute(action: "ModifyHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyHeadTailTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改片头片尾模板
@@ -104,7 +103,6 @@ extension Vod {
     /// 修改片头片尾模板。
     @inlinable @discardableResult
     public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
-        let input = ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType)
-        return try await self.client.execute(action: "ModifyHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyHeadTailTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

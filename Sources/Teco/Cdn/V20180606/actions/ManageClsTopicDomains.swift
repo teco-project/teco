@@ -75,8 +75,7 @@ extension Cdn {
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable @discardableResult
     public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageClsTopicDomainsResponse> {
-        let input = ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs)
-        return self.client.execute(action: "ManageClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.manageClsTopicDomains(.init(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 管理日志主题下绑定的域名
@@ -84,7 +83,6 @@ extension Cdn {
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable @discardableResult
     public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
-        let input = ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs)
-        return try await self.client.execute(action: "ManageClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.manageClsTopicDomains(.init(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), region: region, logger: logger, on: eventLoop)
     }
 }

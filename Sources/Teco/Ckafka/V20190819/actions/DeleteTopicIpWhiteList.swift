@@ -68,14 +68,12 @@ extension Ckafka {
     /// 删除主题IP白名单
     @inlinable
     public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicIpWhiteListResponse> {
-        let input = DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList)
-        return self.client.execute(action: "DeleteTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTopicIpWhiteList(.init(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除主题IP白名单
     @inlinable
     public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
-        let input = DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList)
-        return try await self.client.execute(action: "DeleteTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTopicIpWhiteList(.init(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 }

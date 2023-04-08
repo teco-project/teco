@@ -102,15 +102,13 @@ extension Rum {
     /// 查询片区信息
     @inlinable
     public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawAreasResponse> {
-        let input = DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset)
-        return self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTawAreas(.init(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询片区信息
     @inlinable
     public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
-        let input = DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset)
-        return try await self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTawAreas(.init(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询片区信息

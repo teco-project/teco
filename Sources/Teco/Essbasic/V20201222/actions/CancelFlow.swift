@@ -76,8 +76,7 @@ extension Essbasic {
     /// 注：已归档流程不可完成撤销动作。
     @inlinable @discardableResult
     public func cancelFlow(caller: Caller, flowId: String, cancelMessage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFlowResponse> {
-        let input = CancelFlowRequest(caller: caller, flowId: flowId, cancelMessage: cancelMessage)
-        return self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cancelFlow(.init(caller: caller, flowId: flowId, cancelMessage: cancelMessage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销流程
@@ -87,7 +86,6 @@ extension Essbasic {
     /// 注：已归档流程不可完成撤销动作。
     @inlinable @discardableResult
     public func cancelFlow(caller: Caller, flowId: String, cancelMessage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
-        let input = CancelFlowRequest(caller: caller, flowId: flowId, cancelMessage: cancelMessage)
-        return try await self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cancelFlow(.init(caller: caller, flowId: flowId, cancelMessage: cancelMessage), region: region, logger: logger, on: eventLoop)
     }
 }

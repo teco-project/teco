@@ -78,8 +78,7 @@ extension Sqlserver {
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(instanceId: String, period: UInt64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDBInstanceResponse> {
-        let input = InquiryPriceRenewDBInstanceRequest(instanceId: instanceId, period: period, timeUnit: timeUnit)
-        return self.client.execute(action: "InquiryPriceRenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceRenewDBInstance(.init(instanceId: instanceId, period: period, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例续费价格
@@ -87,7 +86,6 @@ extension Sqlserver {
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(instanceId: String, period: UInt64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
-        let input = InquiryPriceRenewDBInstanceRequest(instanceId: instanceId, period: period, timeUnit: timeUnit)
-        return try await self.client.execute(action: "InquiryPriceRenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceRenewDBInstance(.init(instanceId: instanceId, period: period, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 }

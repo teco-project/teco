@@ -92,15 +92,13 @@ extension Tdcpg {
     /// 查询集群的备份集
     @inlinable
     public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterBackupsResponse> {
-        let input = DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize)
-        return self.client.execute(action: "DescribeClusterBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterBackups(.init(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群的备份集
     @inlinable
     public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
-        let input = DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeClusterBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterBackups(.init(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群的备份集

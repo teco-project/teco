@@ -89,8 +89,7 @@ extension Batch {
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
     public func describeJobSubmitInfo(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
-        let input = DescribeJobSubmitInfoRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeJobSubmitInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJobSubmitInfo(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取作业的提交信息
@@ -98,7 +97,6 @@ extension Batch {
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
     public func describeJobSubmitInfo(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
-        let input = DescribeJobSubmitInfoRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeJobSubmitInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJobSubmitInfo(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

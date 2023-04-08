@@ -78,8 +78,7 @@ extension Ess {
     /// 验证合同文件
     @inlinable
     public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
-        let input = VerifyPdfRequest(flowId: flowId, operator: `operator`)
-        return self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合同文件验签
@@ -87,7 +86,6 @@ extension Ess {
     /// 验证合同文件
     @inlinable
     public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
-        let input = VerifyPdfRequest(flowId: flowId, operator: `operator`)
-        return try await self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

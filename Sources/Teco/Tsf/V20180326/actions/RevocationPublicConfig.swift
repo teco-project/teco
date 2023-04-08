@@ -59,14 +59,12 @@ extension Tsf {
     /// 撤回已发布的公共配置
     @inlinable
     public func revocationPublicConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationPublicConfigResponse> {
-        let input = RevocationPublicConfigRequest(configReleaseId: configReleaseId)
-        return self.client.execute(action: "RevocationPublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.revocationPublicConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤回已发布的公共配置
     @inlinable
     public func revocationPublicConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
-        let input = RevocationPublicConfigRequest(configReleaseId: configReleaseId)
-        return try await self.client.execute(action: "RevocationPublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.revocationPublicConfig(.init(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 }

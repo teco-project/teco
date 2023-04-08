@@ -109,14 +109,12 @@ extension Pts {
     /// 创建定时任务
     @inlinable
     public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
-        let input = CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note)
-        return self.client.execute(action: "CreateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCronJob(.init(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
     @inlinable
     public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
-        let input = CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note)
-        return try await self.client.execute(action: "CreateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCronJob(.init(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

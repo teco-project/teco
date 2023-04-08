@@ -91,14 +91,12 @@ extension Cpdp {
     /// 灵云V2-收款用户账户列表查询
     @inlinable
     public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountListResponse> {
-        let input = QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment)
-        return self.client.execute(action: "QueryFlexPayeeAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexPayeeAccountList(.init(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户列表查询
     @inlinable
     public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountListResponse {
-        let input = QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment)
-        return try await self.client.execute(action: "QueryFlexPayeeAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexPayeeAccountList(.init(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

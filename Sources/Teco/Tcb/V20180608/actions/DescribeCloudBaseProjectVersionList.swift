@@ -115,8 +115,7 @@ extension Tcb {
     /// 云项目部署列表
     @inlinable
     public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
-        let input = DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeCloudBaseProjectVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseProjectVersionList(.init(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云项目部署版本列表
@@ -124,8 +123,7 @@ extension Tcb {
     /// 云项目部署列表
     @inlinable
     public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
-        let input = DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeCloudBaseProjectVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseProjectVersionList(.init(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云项目部署版本列表

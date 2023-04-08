@@ -149,14 +149,12 @@ extension Npp {
     /// 回拨呼叫请求
     @inlinable
     public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallBackResponse> {
-        let input = CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId)
-        return self.client.execute(action: "CreateCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCallBack(.init(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨呼叫请求
     @inlinable
     public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
-        let input = CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId)
-        return try await self.client.execute(action: "CreateCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCallBack(.init(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

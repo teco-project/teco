@@ -70,8 +70,7 @@ extension Vpc {
     /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
     @inlinable @discardableResult
     public func modifyAddressTemplateGroupAttribute(addressTemplateGroupId: String, addressTemplateGroupName: String? = nil, addressTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressTemplateGroupAttributeResponse> {
-        let input = ModifyAddressTemplateGroupAttributeRequest(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds)
-        return self.client.execute(action: "ModifyAddressTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAddressTemplateGroupAttribute(.init(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改IP地址模板集合
@@ -79,7 +78,6 @@ extension Vpc {
     /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
     @inlinable @discardableResult
     public func modifyAddressTemplateGroupAttribute(addressTemplateGroupId: String, addressTemplateGroupName: String? = nil, addressTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateGroupAttributeResponse {
-        let input = ModifyAddressTemplateGroupAttributeRequest(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds)
-        return try await self.client.execute(action: "ModifyAddressTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAddressTemplateGroupAttribute(.init(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

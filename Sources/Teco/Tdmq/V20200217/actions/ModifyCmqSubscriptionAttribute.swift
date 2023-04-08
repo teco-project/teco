@@ -81,14 +81,12 @@ extension Tdmq {
     /// 修改cmq订阅属性
     @inlinable @discardableResult
     public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqSubscriptionAttributeResponse> {
-        let input = ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey)
-        return self.client.execute(action: "ModifyCmqSubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCmqSubscriptionAttribute(.init(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq订阅属性
     @inlinable @discardableResult
     public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
-        let input = ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey)
-        return try await self.client.execute(action: "ModifyCmqSubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCmqSubscriptionAttribute(.init(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 }

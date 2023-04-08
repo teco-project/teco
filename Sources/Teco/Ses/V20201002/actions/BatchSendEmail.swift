@@ -121,8 +121,7 @@ extension Ses {
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
     @inlinable
     public func batchSendEmail(fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSendEmailResponse> {
-        let input = BatchSendEmailRequest(fromEmailAddress: fromEmailAddress, receiverId: receiverId, subject: subject, taskType: taskType, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, cycleParam: cycleParam, timedParam: timedParam, unsubscribe: unsubscribe, adLocation: adLocation)
-        return self.client.execute(action: "BatchSendEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchSendEmail(.init(fromEmailAddress: fromEmailAddress, receiverId: receiverId, subject: subject, taskType: taskType, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, cycleParam: cycleParam, timedParam: timedParam, unsubscribe: unsubscribe, adLocation: adLocation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量发送邮件
@@ -130,7 +129,6 @@ extension Ses {
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
     @inlinable
     public func batchSendEmail(fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSendEmailResponse {
-        let input = BatchSendEmailRequest(fromEmailAddress: fromEmailAddress, receiverId: receiverId, subject: subject, taskType: taskType, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, cycleParam: cycleParam, timedParam: timedParam, unsubscribe: unsubscribe, adLocation: adLocation)
-        return try await self.client.execute(action: "BatchSendEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchSendEmail(.init(fromEmailAddress: fromEmailAddress, receiverId: receiverId, subject: subject, taskType: taskType, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, cycleParam: cycleParam, timedParam: timedParam, unsubscribe: unsubscribe, adLocation: adLocation), region: region, logger: logger, on: eventLoop)
     }
 }

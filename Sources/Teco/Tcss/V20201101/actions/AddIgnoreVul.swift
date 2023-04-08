@@ -54,14 +54,12 @@ extension Tcss {
     /// 新增漏洞扫描忽略漏洞
     @inlinable @discardableResult
     public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
-        let input = AddIgnoreVulRequest(list: list)
-        return self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addIgnoreVul(.init(list: list), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞扫描忽略漏洞
     @inlinable @discardableResult
     public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
-        let input = AddIgnoreVulRequest(list: list)
-        return try await self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addIgnoreVul(.init(list: list), region: region, logger: logger, on: eventLoop)
     }
 }

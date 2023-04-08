@@ -144,15 +144,13 @@ extension Monitor {
     /// 获取基础告警列表
     @inlinable
     public func describeBasicAlarmList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, occurTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, alarmStatus: [Int64]? = nil, objLike: String? = nil, instanceGroupIds: [Int64]? = nil, metricNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicAlarmListResponse> {
-        let input = DescribeBasicAlarmListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, occurTimeOrder: occurTimeOrder, projectIds: projectIds, viewNames: viewNames, alarmStatus: alarmStatus, objLike: objLike, instanceGroupIds: instanceGroupIds, metricNames: metricNames)
-        return self.client.execute(action: "DescribeBasicAlarmList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBasicAlarmList(.init(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, occurTimeOrder: occurTimeOrder, projectIds: projectIds, viewNames: viewNames, alarmStatus: alarmStatus, objLike: objLike, instanceGroupIds: instanceGroupIds, metricNames: metricNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础告警列表
     @inlinable
     public func describeBasicAlarmList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, occurTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, alarmStatus: [Int64]? = nil, objLike: String? = nil, instanceGroupIds: [Int64]? = nil, metricNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicAlarmListResponse {
-        let input = DescribeBasicAlarmListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, occurTimeOrder: occurTimeOrder, projectIds: projectIds, viewNames: viewNames, alarmStatus: alarmStatus, objLike: objLike, instanceGroupIds: instanceGroupIds, metricNames: metricNames)
-        return try await self.client.execute(action: "DescribeBasicAlarmList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBasicAlarmList(.init(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, occurTimeOrder: occurTimeOrder, projectIds: projectIds, viewNames: viewNames, alarmStatus: alarmStatus, objLike: objLike, instanceGroupIds: instanceGroupIds, metricNames: metricNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础告警列表

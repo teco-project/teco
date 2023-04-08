@@ -70,8 +70,7 @@ extension Cam {
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable @discardableResult
     public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleDescriptionResponse> {
-        let input = UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName)
-        return self.client.execute(action: "UpdateRoleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateRoleDescription(.init(description: description, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改角色描述信息
@@ -79,7 +78,6 @@ extension Cam {
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable @discardableResult
     public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
-        let input = UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName)
-        return try await self.client.execute(action: "UpdateRoleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateRoleDescription(.init(description: description, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

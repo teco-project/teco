@@ -124,8 +124,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeHealthCodeOCRResponse> {
-        let input = RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type)
-        return self.client.execute(action: "RecognizeHealthCodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeHealthCodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 健康码识别
@@ -135,7 +134,6 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeHealthCodeOCRResponse {
-        let input = RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type)
-        return try await self.client.execute(action: "RecognizeHealthCodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeHealthCodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

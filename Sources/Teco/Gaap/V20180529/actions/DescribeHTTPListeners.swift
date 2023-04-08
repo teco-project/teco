@@ -123,8 +123,7 @@ extension Gaap {
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
     public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPListenersResponse> {
-        let input = DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId)
-        return self.client.execute(action: "DescribeHTTPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHTTPListeners(.init(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTP监听器信息
@@ -132,8 +131,7 @@ extension Gaap {
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
     public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
-        let input = DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId)
-        return try await self.client.execute(action: "DescribeHTTPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHTTPListeners(.init(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTP监听器信息

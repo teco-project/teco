@@ -54,14 +54,12 @@ extension Tke {
     /// 关闭集群删除保护
     @inlinable @discardableResult
     public func disableClusterDeletionProtection(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClusterDeletionProtectionResponse> {
-        let input = DisableClusterDeletionProtectionRequest(clusterId: clusterId)
-        return self.client.execute(action: "DisableClusterDeletionProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableClusterDeletionProtection(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭集群删除保护
     @inlinable @discardableResult
     public func disableClusterDeletionProtection(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterDeletionProtectionResponse {
-        let input = DisableClusterDeletionProtectionRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DisableClusterDeletionProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableClusterDeletionProtection(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

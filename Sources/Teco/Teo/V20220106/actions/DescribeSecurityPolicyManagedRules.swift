@@ -81,14 +81,12 @@ extension Teo {
     /// 分页查询门神规则
     @inlinable
     public func describeSecurityPolicyManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesResponse> {
-        let input = DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage)
-        return self.client.execute(action: "DescribeSecurityPolicyManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecurityPolicyManagedRules(.init(zoneId: zoneId, entity: entity, page: page, perPage: perPage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询门神规则
     @inlinable
     public func describeSecurityPolicyManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesResponse {
-        let input = DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage)
-        return try await self.client.execute(action: "DescribeSecurityPolicyManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecurityPolicyManagedRules(.init(zoneId: zoneId, entity: entity, page: page, perPage: perPage), region: region, logger: logger, on: eventLoop)
     }
 }

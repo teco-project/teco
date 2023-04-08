@@ -114,15 +114,13 @@ extension Ecm {
     /// 获取模块列表
     @inlinable
     public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleResponse> {
-        let input = DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeModule(.init(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模块列表
     @inlinable
     public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
-        let input = DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeModule(.init(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模块列表

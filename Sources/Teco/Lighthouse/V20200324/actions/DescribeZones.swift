@@ -79,8 +79,7 @@ extension Lighthouse {
     /// 查询地域下可用区
     @inlinable
     public func describeZones(orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
-        let input = DescribeZonesRequest(orderField: orderField, order: order)
-        return self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZones(.init(orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可用区列表
@@ -88,7 +87,6 @@ extension Lighthouse {
     /// 查询地域下可用区
     @inlinable
     public func describeZones(orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        let input = DescribeZonesRequest(orderField: orderField, order: order)
-        return try await self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZones(.init(orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

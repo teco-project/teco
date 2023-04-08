@@ -78,8 +78,7 @@ extension Tms {
     /// 控制台识别统计
     @inlinable
     public func describeTextStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextStatResponse> {
-        let input = DescribeTextStatRequest(auditType: auditType, filters: filters)
-        return self.client.execute(action: "DescribeTextStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTextStat(.init(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
@@ -87,7 +86,6 @@ extension Tms {
     /// 控制台识别统计
     @inlinable
     public func describeTextStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
-        let input = DescribeTextStatRequest(auditType: auditType, filters: filters)
-        return try await self.client.execute(action: "DescribeTextStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTextStat(.init(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

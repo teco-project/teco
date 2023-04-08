@@ -64,8 +64,7 @@ extension Sslpod {
     /// 获取域名关联证书
     @inlinable
     public func describeDomainCerts(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
-        let input = DescribeDomainCertsRequest(domainId: domainId)
-        return self.client.execute(action: "DescribeDomainCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainCerts(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名证书
@@ -73,7 +72,6 @@ extension Sslpod {
     /// 获取域名关联证书
     @inlinable
     public func describeDomainCerts(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
-        let input = DescribeDomainCertsRequest(domainId: domainId)
-        return try await self.client.execute(action: "DescribeDomainCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainCerts(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

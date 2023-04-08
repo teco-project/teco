@@ -72,14 +72,12 @@ extension Redis {
     /// 查询参数模板列表
     @inlinable
     public func describeParamTemplates(productTypes: [Int64]? = nil, templateNames: [String]? = nil, templateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplatesResponse> {
-        let input = DescribeParamTemplatesRequest(productTypes: productTypes, templateNames: templateNames, templateIds: templateIds)
-        return self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeParamTemplates(.init(productTypes: productTypes, templateNames: templateNames, templateIds: templateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板列表
     @inlinable
     public func describeParamTemplates(productTypes: [Int64]? = nil, templateNames: [String]? = nil, templateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
-        let input = DescribeParamTemplatesRequest(productTypes: productTypes, templateNames: templateNames, templateIds: templateIds)
-        return try await self.client.execute(action: "DescribeParamTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeParamTemplates(.init(productTypes: productTypes, templateNames: templateNames, templateIds: templateIds), region: region, logger: logger, on: eventLoop)
     }
 }

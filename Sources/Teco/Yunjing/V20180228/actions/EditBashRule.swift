@@ -84,14 +84,12 @@ extension Yunjing {
     /// 新增或修改高危命令规则
     @inlinable @discardableResult
     public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
-        let input = EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal)
-        return self.client.execute(action: "EditBashRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.editBashRule(.init(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改高危命令规则
     @inlinable @discardableResult
     public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
-        let input = EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal)
-        return try await self.client.execute(action: "EditBashRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.editBashRule(.init(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

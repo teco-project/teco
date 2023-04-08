@@ -103,8 +103,7 @@ extension Cws {
     /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
     @inlinable
     public func describeMonitors(monitorIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsResponse> {
-        let input = DescribeMonitorsRequest(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMonitors(.init(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看监控任务
@@ -112,8 +111,7 @@ extension Cws {
     /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
     @inlinable
     public func describeMonitors(monitorIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsResponse {
-        let input = DescribeMonitorsRequest(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMonitors(.init(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看监控任务

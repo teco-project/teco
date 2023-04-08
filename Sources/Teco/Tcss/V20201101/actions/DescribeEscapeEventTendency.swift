@@ -72,14 +72,12 @@ extension Tcss {
     /// 查询待处理逃逸事件趋势
     @inlinable
     public func describeEscapeEventTendency(endTime: Date, startTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
-        let input = DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime)
-        return self.client.execute(action: "DescribeEscapeEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEscapeEventTendency(.init(endTime: endTime, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待处理逃逸事件趋势
     @inlinable
     public func describeEscapeEventTendency(endTime: Date, startTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
-        let input = DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime)
-        return try await self.client.execute(action: "DescribeEscapeEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEscapeEventTendency(.init(endTime: endTime, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 }

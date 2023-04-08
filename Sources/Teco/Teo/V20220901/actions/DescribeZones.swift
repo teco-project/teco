@@ -117,8 +117,7 @@ extension Teo {
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
     public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
-        let input = DescribeZonesRequest(offset: offset, limit: limit, filters: filters, order: order, direction: direction)
-        return self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZones(.init(offset: offset, limit: limit, filters: filters, order: order, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户站点信息列表
@@ -126,8 +125,7 @@ extension Teo {
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
     public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        let input = DescribeZonesRequest(offset: offset, limit: limit, filters: filters, order: order, direction: direction)
-        return try await self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZones(.init(offset: offset, limit: limit, filters: filters, order: order, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户站点信息列表

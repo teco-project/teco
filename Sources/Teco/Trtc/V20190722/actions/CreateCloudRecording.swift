@@ -149,8 +149,7 @@ extension Trtc {
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
     public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
-        let input = CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey)
-        return self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCloudRecording(.init(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始云端录制
@@ -169,7 +168,6 @@ extension Trtc {
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
     public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
-        let input = CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey)
-        return try await self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCloudRecording(.init(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Tsf {
     /// 批量导入API至api分组(也支持新建API到分组)
     @inlinable
     public func createGatewayApi(groupId: String, apiList: [ApiInfo], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGatewayApiResponse> {
-        let input = CreateGatewayApiRequest(groupId: groupId, apiList: apiList, programIdList: programIdList)
-        return self.client.execute(action: "CreateGatewayApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createGatewayApi(.init(groupId: groupId, apiList: apiList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量导入API至api分组
@@ -83,7 +82,6 @@ extension Tsf {
     /// 批量导入API至api分组(也支持新建API到分组)
     @inlinable
     public func createGatewayApi(groupId: String, apiList: [ApiInfo], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGatewayApiResponse {
-        let input = CreateGatewayApiRequest(groupId: groupId, apiList: apiList, programIdList: programIdList)
-        return try await self.client.execute(action: "CreateGatewayApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createGatewayApi(.init(groupId: groupId, apiList: apiList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

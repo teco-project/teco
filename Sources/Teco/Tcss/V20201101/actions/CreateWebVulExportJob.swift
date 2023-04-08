@@ -93,14 +93,12 @@ extension Tcss {
     /// 创建web漏洞导出任务
     @inlinable
     public func createWebVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebVulExportJobResponse> {
-        let input = CreateWebVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return self.client.execute(action: "CreateWebVulExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createWebVulExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建web漏洞导出任务
     @inlinable
     public func createWebVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebVulExportJobResponse {
-        let input = CreateWebVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return try await self.client.execute(action: "CreateWebVulExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createWebVulExportJob(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

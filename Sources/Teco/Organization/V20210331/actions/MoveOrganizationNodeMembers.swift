@@ -59,14 +59,12 @@ extension Organization {
     /// 移动成员到指定企业组织节点
     @inlinable @discardableResult
     public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
-        let input = MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin)
-        return self.client.execute(action: "MoveOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.moveOrganizationNodeMembers(.init(nodeId: nodeId, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动成员到指定企业组织节点
     @inlinable @discardableResult
     public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
-        let input = MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin)
-        return try await self.client.execute(action: "MoveOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.moveOrganizationNodeMembers(.init(nodeId: nodeId, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 }

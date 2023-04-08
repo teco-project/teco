@@ -106,8 +106,7 @@ extension Mps {
     /// 根据工作流 ID，获取工作流详情列表。
     @inlinable
     public func describeWorkflows(workflowIds: [Int64]? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkflowsResponse> {
-        let input = DescribeWorkflowsRequest(workflowIds: workflowIds, status: status, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeWorkflows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWorkflows(.init(workflowIds: workflowIds, status: status, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取工作流列表
@@ -115,8 +114,7 @@ extension Mps {
     /// 根据工作流 ID，获取工作流详情列表。
     @inlinable
     public func describeWorkflows(workflowIds: [Int64]? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkflowsResponse {
-        let input = DescribeWorkflowsRequest(workflowIds: workflowIds, status: status, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeWorkflows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWorkflows(.init(workflowIds: workflowIds, status: status, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取工作流列表

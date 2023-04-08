@@ -118,8 +118,7 @@ extension Teo {
     /// 七层查询缓存分析时序类流量数据
     @inlinable
     public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7CacheDataResponse> {
-        let input = DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
-        return self.client.execute(action: "DescribeTimingL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTimingL7CacheData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 七层缓存分析类时序流量数据接口
@@ -127,7 +126,6 @@ extension Teo {
     /// 七层查询缓存分析时序类流量数据
     @inlinable
     public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
-        let input = DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
-        return try await self.client.execute(action: "DescribeTimingL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTimingL7CacheData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

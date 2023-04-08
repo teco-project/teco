@@ -85,8 +85,7 @@ extension Cpdp {
     /// 商户新增的接口
     @inlinable
     public func createPayMerchant(platformCode: String, channelMerchantNo: String, channelCheckFlag: String, merchantName: String, businessPayFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayMerchantResponse> {
-        let input = CreatePayMerchantRequest(platformCode: platformCode, channelMerchantNo: channelMerchantNo, channelCheckFlag: channelCheckFlag, merchantName: merchantName, businessPayFlag: businessPayFlag)
-        return self.client.execute(action: "CreatePayMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPayMerchant(.init(platformCode: platformCode, channelMerchantNo: channelMerchantNo, channelCheckFlag: channelCheckFlag, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户新增接口
@@ -94,7 +93,6 @@ extension Cpdp {
     /// 商户新增的接口
     @inlinable
     public func createPayMerchant(platformCode: String, channelMerchantNo: String, channelCheckFlag: String, merchantName: String, businessPayFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayMerchantResponse {
-        let input = CreatePayMerchantRequest(platformCode: platformCode, channelMerchantNo: channelMerchantNo, channelCheckFlag: channelCheckFlag, merchantName: merchantName, businessPayFlag: businessPayFlag)
-        return try await self.client.execute(action: "CreatePayMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPayMerchant(.init(platformCode: platformCode, channelMerchantNo: channelMerchantNo, channelCheckFlag: channelCheckFlag, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
     }
 }

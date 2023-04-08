@@ -64,8 +64,7 @@ extension Cls {
     /// 本接口用于获取主题分区列表。
     @inlinable
     public func describePartitions(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePartitionsResponse> {
-        let input = DescribePartitionsRequest(topicId: topicId)
-        return self.client.execute(action: "DescribePartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePartitions(.init(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分区列表
@@ -73,7 +72,6 @@ extension Cls {
     /// 本接口用于获取主题分区列表。
     @inlinable
     public func describePartitions(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
-        let input = DescribePartitionsRequest(topicId: topicId)
-        return try await self.client.execute(action: "DescribePartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePartitions(.init(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

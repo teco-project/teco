@@ -98,8 +98,7 @@ extension Bmeip {
     /// 创建黑石弹性公网IP
     @inlinable
     public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipResponse> {
-        let input = CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList)
-        return self.client.execute(action: "CreateEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEip(.init(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石EIP
@@ -107,7 +106,6 @@ extension Bmeip {
     /// 创建黑石弹性公网IP
     @inlinable
     public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
-        let input = CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList)
-        return try await self.client.execute(action: "CreateEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEip(.init(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

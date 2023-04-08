@@ -152,14 +152,12 @@ extension Pts {
     /// 查询采样日志
     @inlinable
     public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleLogsResponse> {
-        let input = DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service)
-        return self.client.execute(action: "DescribeSampleLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSampleLogs(.init(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询采样日志
     @inlinable
     public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
-        let input = DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service)
-        return try await self.client.execute(action: "DescribeSampleLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSampleLogs(.init(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), region: region, logger: logger, on: eventLoop)
     }
 }

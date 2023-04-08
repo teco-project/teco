@@ -68,8 +68,7 @@ extension Cfs {
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
     public func describeMountTargets(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountTargetsResponse> {
-        let input = DescribeMountTargetsRequest(fileSystemId: fileSystemId)
-        return self.client.execute(action: "DescribeMountTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMountTargets(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统挂载点
@@ -77,7 +76,6 @@ extension Cfs {
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
     public func describeMountTargets(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
-        let input = DescribeMountTargetsRequest(fileSystemId: fileSystemId)
-        return try await self.client.execute(action: "DescribeMountTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMountTargets(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -76,8 +76,7 @@ extension Gaap {
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
     public func describeGroupDomainConfig(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDomainConfigResponse> {
-        let input = DescribeGroupDomainConfigRequest(groupId: groupId)
-        return self.client.execute(action: "DescribeGroupDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroupDomainConfig(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道组域名解析配置详情（废弃）
@@ -85,7 +84,6 @@ extension Gaap {
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
     public func describeGroupDomainConfig(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
-        let input = DescribeGroupDomainConfigRequest(groupId: groupId)
-        return try await self.client.execute(action: "DescribeGroupDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroupDomainConfig(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

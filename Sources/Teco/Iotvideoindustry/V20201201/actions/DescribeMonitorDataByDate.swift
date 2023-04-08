@@ -64,14 +64,12 @@ extension Iotvideoindustry {
     /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
-        let input = DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeMonitorDataByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMonitorDataByDate(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
-        let input = DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeMonitorDataByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMonitorDataByDate(.init(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

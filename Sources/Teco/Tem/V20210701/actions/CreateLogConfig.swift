@@ -108,14 +108,12 @@ extension Tem {
     /// 创建日志收集配置
     @inlinable
     public func createLogConfig(environmentId: String, name: String, inputType: String, applicationId: String? = nil, logsetId: String? = nil, topicId: String? = nil, logType: String? = nil, beginningRegex: String? = nil, logPath: String? = nil, filePattern: String? = nil, extractRule: LogConfigExtractRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogConfigResponse> {
-        let input = CreateLogConfigRequest(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule)
-        return self.client.execute(action: "CreateLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLogConfig(.init(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志收集配置
     @inlinable
     public func createLogConfig(environmentId: String, name: String, inputType: String, applicationId: String? = nil, logsetId: String? = nil, topicId: String? = nil, logType: String? = nil, beginningRegex: String? = nil, logPath: String? = nil, filePattern: String? = nil, extractRule: LogConfigExtractRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogConfigResponse {
-        let input = CreateLogConfigRequest(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule)
-        return try await self.client.execute(action: "CreateLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLogConfig(.init(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule), region: region, logger: logger, on: eventLoop)
     }
 }

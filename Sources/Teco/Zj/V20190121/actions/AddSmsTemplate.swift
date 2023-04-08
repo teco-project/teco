@@ -111,8 +111,7 @@ extension Zj {
     /// 根据短信标题、模板内容等创建短信模板
     @inlinable
     public func addSmsTemplate(license: String, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSmsTemplateResponse> {
-        let input = AddSmsTemplateRequest(license: license, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams)
-        return self.client.execute(action: "AddSmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addSmsTemplate(.init(license: license, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短信模板创建接口
@@ -120,7 +119,6 @@ extension Zj {
     /// 根据短信标题、模板内容等创建短信模板
     @inlinable
     public func addSmsTemplate(license: String, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsTemplateResponse {
-        let input = AddSmsTemplateRequest(license: license, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams)
-        return try await self.client.execute(action: "AddSmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addSmsTemplate(.init(license: license, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
     }
 }

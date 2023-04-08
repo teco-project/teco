@@ -89,8 +89,7 @@ extension Ccc {
     /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
     @inlinable
     public func createCallOutSession(sdkAppId: UInt64, userId: String, callee: String, caller: String? = nil, isForceUseMobile: Bool? = nil, uui: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallOutSessionResponse> {
-        let input = CreateCallOutSessionRequest(sdkAppId: sdkAppId, userId: userId, callee: callee, caller: caller, isForceUseMobile: isForceUseMobile, uui: uui)
-        return self.client.execute(action: "CreateCallOutSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCallOutSession(.init(sdkAppId: sdkAppId, userId: userId, callee: callee, caller: caller, isForceUseMobile: isForceUseMobile, uui: uui), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建外呼会话（当前仅支持双呼）
@@ -98,7 +97,6 @@ extension Ccc {
     /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
     @inlinable
     public func createCallOutSession(sdkAppId: UInt64, userId: String, callee: String, caller: String? = nil, isForceUseMobile: Bool? = nil, uui: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallOutSessionResponse {
-        let input = CreateCallOutSessionRequest(sdkAppId: sdkAppId, userId: userId, callee: callee, caller: caller, isForceUseMobile: isForceUseMobile, uui: uui)
-        return try await self.client.execute(action: "CreateCallOutSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCallOutSession(.init(sdkAppId: sdkAppId, userId: userId, callee: callee, caller: caller, isForceUseMobile: isForceUseMobile, uui: uui), region: region, logger: logger, on: eventLoop)
     }
 }

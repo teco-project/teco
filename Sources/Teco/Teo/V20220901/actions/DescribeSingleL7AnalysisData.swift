@@ -123,8 +123,7 @@ extension Teo {
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层流量数据分析单值数据列表，单值数据表示：指标在查询时间范围内的单个统计数据，通常表现为接口仅返回一个统计数值。
     @inlinable
     public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSingleL7AnalysisDataResponse> {
-        let input = DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area)
-        return self.client.execute(action: "DescribeSingleL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSingleL7AnalysisData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流量分析单值数据
@@ -132,7 +131,6 @@ extension Teo {
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层流量数据分析单值数据列表，单值数据表示：指标在查询时间范围内的单个统计数据，通常表现为接口仅返回一个统计数值。
     @inlinable
     public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
-        let input = DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area)
-        return try await self.client.execute(action: "DescribeSingleL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSingleL7AnalysisData(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

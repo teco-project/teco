@@ -50,14 +50,12 @@ extension Dnspod {
     /// 获取域名分组列表
     @inlinable
     public func describeDomainGroupList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
-        let input = DescribeDomainGroupListRequest()
-        return self.client.execute(action: "DescribeDomainGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDomainGroupList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名分组列表
     @inlinable
     public func describeDomainGroupList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
-        let input = DescribeDomainGroupListRequest()
-        return try await self.client.execute(action: "DescribeDomainGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDomainGroupList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

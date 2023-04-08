@@ -65,8 +65,7 @@ extension Tcss {
     /// 添加编辑运行时反弹shell白名单
     @inlinable @discardableResult
     public func addEditReverseShellWhiteList(whiteListInfo: ReverseShellWhiteListInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditReverseShellWhiteListResponse> {
-        let input = AddEditReverseShellWhiteListRequest(whiteListInfo: whiteListInfo, eventId: eventId)
-        return self.client.execute(action: "AddEditReverseShellWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addEditReverseShellWhiteList(.init(whiteListInfo: whiteListInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑反弹shell白名单
@@ -74,7 +73,6 @@ extension Tcss {
     /// 添加编辑运行时反弹shell白名单
     @inlinable @discardableResult
     public func addEditReverseShellWhiteList(whiteListInfo: ReverseShellWhiteListInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditReverseShellWhiteListResponse {
-        let input = AddEditReverseShellWhiteListRequest(whiteListInfo: whiteListInfo, eventId: eventId)
-        return try await self.client.execute(action: "AddEditReverseShellWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addEditReverseShellWhiteList(.init(whiteListInfo: whiteListInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

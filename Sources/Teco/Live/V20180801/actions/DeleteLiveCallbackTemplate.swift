@@ -62,8 +62,7 @@ extension Live {
     /// 删除回调模板。
     @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveCallbackTemplateResponse> {
-        let input = DeleteLiveCallbackTemplateRequest(templateId: templateId)
-        return self.client.execute(action: "DeleteLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLiveCallbackTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除回调模板
@@ -71,7 +70,6 @@ extension Live {
     /// 删除回调模板。
     @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
-        let input = DeleteLiveCallbackTemplateRequest(templateId: templateId)
-        return try await self.client.execute(action: "DeleteLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLiveCallbackTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

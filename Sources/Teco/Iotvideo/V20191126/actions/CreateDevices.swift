@@ -82,8 +82,7 @@ extension Iotvideo {
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
     public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevicesResponse> {
-        let input = CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`)
-        return self.client.execute(action: "CreateDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDevices(.init(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
@@ -92,7 +91,6 @@ extension Iotvideo {
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
     public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
-        let input = CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`)
-        return try await self.client.execute(action: "CreateDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDevices(.init(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

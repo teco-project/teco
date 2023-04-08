@@ -87,15 +87,13 @@ extension Iotvideo {
     /// 查询套餐消耗记录列表
     @inlinable
     public func describePackageConsumeTasks(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageConsumeTasksResponse> {
-        let input = DescribePackageConsumeTasksRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribePackageConsumeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePackageConsumeTasks(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐消耗记录列表
     @inlinable
     public func describePackageConsumeTasks(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageConsumeTasksResponse {
-        let input = DescribePackageConsumeTasksRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribePackageConsumeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePackageConsumeTasks(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐消耗记录列表

@@ -60,8 +60,7 @@ extension Yunjing {
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable @discardableResult
     public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
-        let input = DeleteBruteAttacksRequest(ids: ids)
-        return self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBruteAttacks(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除暴力破解记录
@@ -69,7 +68,6 @@ extension Yunjing {
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable @discardableResult
     public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
-        let input = DeleteBruteAttacksRequest(ids: ids)
-        return try await self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBruteAttacks(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

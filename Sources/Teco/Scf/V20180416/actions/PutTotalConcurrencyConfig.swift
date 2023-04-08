@@ -59,14 +59,12 @@ extension Scf {
     /// 修改账号并发限制配额
     @inlinable @discardableResult
     public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
-        let input = PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace)
-        return self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.putTotalConcurrencyConfig(.init(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号并发限制配额
     @inlinable @discardableResult
     public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
-        let input = PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace)
-        return try await self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.putTotalConcurrencyConfig(.init(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

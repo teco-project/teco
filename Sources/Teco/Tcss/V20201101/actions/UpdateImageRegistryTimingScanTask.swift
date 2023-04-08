@@ -84,14 +84,12 @@ extension Tcss {
     /// 镜像仓库更新定时任务
     @inlinable @discardableResult
     public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
-        let input = UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id)
-        return self.client.execute(action: "UpdateImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库更新定时任务
     @inlinable @discardableResult
     public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
-        let input = UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id)
-        return try await self.client.execute(action: "UpdateImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -88,14 +88,12 @@ extension Cpdp {
     /// 云支付-查询商户明细接口
     @inlinable
     public func viewMerchant(openId: String, openKey: String, outMerchantId: String? = nil, merchantNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ViewMerchantResponse> {
-        let input = ViewMerchantRequest(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile)
-        return self.client.execute(action: "ViewMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.viewMerchant(.init(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询商户明细接口
     @inlinable
     public func viewMerchant(openId: String, openKey: String, outMerchantId: String? = nil, merchantNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewMerchantResponse {
-        let input = ViewMerchantRequest(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile)
-        return try await self.client.execute(action: "ViewMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.viewMerchant(.init(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

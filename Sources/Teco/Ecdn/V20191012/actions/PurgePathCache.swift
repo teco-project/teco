@@ -75,8 +75,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgePathCacheResponse> {
-        let input = PurgePathCacheRequest(paths: paths, flushType: flushType)
-        return self.client.execute(action: "PurgePathCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.purgePathCache(.init(paths: paths, flushType: flushType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新目录
@@ -86,7 +85,6 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
-        let input = PurgePathCacheRequest(paths: paths, flushType: flushType)
-        return try await self.client.execute(action: "PurgePathCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.purgePathCache(.init(paths: paths, flushType: flushType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Emr {
     /// EMR同步TKE中POD状态
     @inlinable @discardableResult
     public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
-        let input = SyncPodStateRequest(message: message)
-        return self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.syncPodState(.init(message: message), region: region, logger: logger, on: eventLoop)
     }
 
     /// EMR同步POD状态
@@ -69,7 +68,6 @@ extension Emr {
     /// EMR同步TKE中POD状态
     @inlinable @discardableResult
     public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
-        let input = SyncPodStateRequest(message: message)
-        return try await self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.syncPodState(.init(message: message), region: region, logger: logger, on: eventLoop)
     }
 }

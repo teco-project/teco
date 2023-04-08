@@ -54,14 +54,12 @@ extension Tdmq {
     /// 清空cmq消息队列中的消息
     @inlinable @discardableResult
     public func clearCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqQueueResponse> {
-        let input = ClearCmqQueueRequest(queueName: queueName)
-        return self.client.execute(action: "ClearCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.clearCmqQueue(.init(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq消息队列中的消息
     @inlinable @discardableResult
     public func clearCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqQueueResponse {
-        let input = ClearCmqQueueRequest(queueName: queueName)
-        return try await self.client.execute(action: "ClearCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.clearCmqQueue(.init(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

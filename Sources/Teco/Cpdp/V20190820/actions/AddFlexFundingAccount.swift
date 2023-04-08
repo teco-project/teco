@@ -102,14 +102,12 @@ extension Cpdp {
     /// 灵云V2-绑定收款用户资金账号信息
     @inlinable
     public func addFlexFundingAccount(fundingAccountType: String, fundingAccountName: String, fundingAccountNo: String, phoneNo: String, payeeId: String, environment: String? = nil, bankBranchName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexFundingAccountResponse> {
-        let input = AddFlexFundingAccountRequest(fundingAccountType: fundingAccountType, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, phoneNo: phoneNo, payeeId: payeeId, environment: environment, bankBranchName: bankBranchName)
-        return self.client.execute(action: "AddFlexFundingAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addFlexFundingAccount(.init(fundingAccountType: fundingAccountType, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, phoneNo: phoneNo, payeeId: payeeId, environment: environment, bankBranchName: bankBranchName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-绑定收款用户资金账号信息
     @inlinable
     public func addFlexFundingAccount(fundingAccountType: String, fundingAccountName: String, fundingAccountNo: String, phoneNo: String, payeeId: String, environment: String? = nil, bankBranchName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexFundingAccountResponse {
-        let input = AddFlexFundingAccountRequest(fundingAccountType: fundingAccountType, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, phoneNo: phoneNo, payeeId: payeeId, environment: environment, bankBranchName: bankBranchName)
-        return try await self.client.execute(action: "AddFlexFundingAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addFlexFundingAccount(.init(fundingAccountType: fundingAccountType, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, phoneNo: phoneNo, payeeId: payeeId, environment: environment, bankBranchName: bankBranchName), region: region, logger: logger, on: eventLoop)
     }
 }

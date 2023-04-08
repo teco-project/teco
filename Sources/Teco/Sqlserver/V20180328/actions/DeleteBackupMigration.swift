@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable @discardableResult
     public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
-        let input = DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
-        return self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除备份导入任务
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable @discardableResult
     public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
-        let input = DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
-        return try await self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

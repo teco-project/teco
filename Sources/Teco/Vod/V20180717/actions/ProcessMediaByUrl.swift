@@ -109,8 +109,7 @@ extension Vod {
     /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
     @inlinable
     public func processMediaByUrl(inputInfo: MediaInputInfo? = nil, outputInfo: MediaOutputInfo? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByUrlResponse> {
-        let input = ProcessMediaByUrlRequest(inputInfo: inputInfo, outputInfo: outputInfo, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, subAppId: subAppId)
-        return self.client.execute(action: "ProcessMediaByUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.processMediaByUrl(.init(inputInfo: inputInfo, outputInfo: outputInfo, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 对指定 URL 的视频发起视频处理
@@ -118,7 +117,6 @@ extension Vod {
     /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
     @inlinable
     public func processMediaByUrl(inputInfo: MediaInputInfo? = nil, outputInfo: MediaOutputInfo? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByUrlResponse {
-        let input = ProcessMediaByUrlRequest(inputInfo: inputInfo, outputInfo: outputInfo, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, subAppId: subAppId)
-        return try await self.client.execute(action: "ProcessMediaByUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.processMediaByUrl(.init(inputInfo: inputInfo, outputInfo: outputInfo, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

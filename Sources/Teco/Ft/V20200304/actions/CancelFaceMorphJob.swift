@@ -60,8 +60,7 @@ extension Ft {
     /// 撤销人像渐变任务请求
     @inlinable @discardableResult
     public func cancelFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFaceMorphJobResponse> {
-        let input = CancelFaceMorphJobRequest(jobId: jobId)
-        return self.client.execute(action: "CancelFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.cancelFaceMorphJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销人像渐变任务
@@ -69,7 +68,6 @@ extension Ft {
     /// 撤销人像渐变任务请求
     @inlinable @discardableResult
     public func cancelFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
-        let input = CancelFaceMorphJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "CancelFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.cancelFaceMorphJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

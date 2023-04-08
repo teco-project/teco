@@ -92,15 +92,13 @@ extension Tse {
     /// 查询zookeeper服务接口列表
     @inlinable
     public func describeZookeeperServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZookeeperServerInterfacesResponse> {
-        let input = DescribeZookeeperServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeZookeeperServerInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeZookeeperServerInterfaces(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询zookeeper服务接口列表
     @inlinable
     public func describeZookeeperServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperServerInterfacesResponse {
-        let input = DescribeZookeeperServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeZookeeperServerInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeZookeeperServerInterfaces(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询zookeeper服务接口列表

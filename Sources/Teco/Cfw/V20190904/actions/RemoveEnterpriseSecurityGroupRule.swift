@@ -68,14 +68,12 @@ extension Cfw {
     /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
-        let input = RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType)
-        return self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeEnterpriseSecurityGroupRule(.init(ruleUuid: ruleUuid, removeType: removeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
-        let input = RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType)
-        return try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeEnterpriseSecurityGroupRule(.init(ruleUuid: ruleUuid, removeType: removeType), region: region, logger: logger, on: eventLoop)
     }
 }

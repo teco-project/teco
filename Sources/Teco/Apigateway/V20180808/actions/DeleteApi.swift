@@ -70,8 +70,7 @@ extension Apigateway {
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
     public func deleteApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiResponse> {
-        let input = DeleteApiRequest(serviceId: serviceId, apiId: apiId)
-        return self.client.execute(action: "DeleteApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteApi(.init(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除API
@@ -79,7 +78,6 @@ extension Apigateway {
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
     public func deleteApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiResponse {
-        let input = DeleteApiRequest(serviceId: serviceId, apiId: apiId)
-        return try await self.client.execute(action: "DeleteApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteApi(.init(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

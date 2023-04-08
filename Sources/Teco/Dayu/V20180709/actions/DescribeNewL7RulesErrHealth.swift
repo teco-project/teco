@@ -67,14 +67,12 @@ extension Dayu {
     /// 获取L7转发规则健康检查异常结果
     @inlinable
     public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesErrHealthResponse> {
-        let input = DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList)
-        return self.client.execute(action: "DescribeNewL7RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNewL7RulesErrHealth(.init(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取L7转发规则健康检查异常结果
     @inlinable
     public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
-        let input = DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList)
-        return try await self.client.execute(action: "DescribeNewL7RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNewL7RulesErrHealth(.init(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

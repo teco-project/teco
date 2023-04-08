@@ -107,14 +107,12 @@ extension Tbaas {
     /// 新增交易
     @inlinable
     public func invoke(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, asyncFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeResponse> {
-        let input = InvokeRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag)
-        return self.client.execute(action: "Invoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.invoke(.init(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增交易
     @inlinable
     public func invoke(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, asyncFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
-        let input = InvokeRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag)
-        return try await self.client.execute(action: "Invoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.invoke(.init(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag), region: region, logger: logger, on: eventLoop)
     }
 }

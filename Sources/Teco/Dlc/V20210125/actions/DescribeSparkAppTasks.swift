@@ -118,15 +118,13 @@ extension Dlc {
     /// 查询spark应用的运行任务实例列表
     @inlinable
     public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
-        let input = DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters)
-        return self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSparkAppTasks(.init(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
     public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
-        let input = DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters)
-        return try await self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSparkAppTasks(.init(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表

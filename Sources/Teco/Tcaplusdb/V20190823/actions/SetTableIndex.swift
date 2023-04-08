@@ -67,14 +67,12 @@ extension Tcaplusdb {
     /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(clusterId: String, selectedTables: [SelectedTableWithField], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableIndexResponse> {
-        let input = SetTableIndexRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return self.client.execute(action: "SetTableIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setTableIndex(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(clusterId: String, selectedTables: [SelectedTableWithField], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {
-        let input = SetTableIndexRequest(clusterId: clusterId, selectedTables: selectedTables)
-        return try await self.client.execute(action: "SetTableIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setTableIndex(.init(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

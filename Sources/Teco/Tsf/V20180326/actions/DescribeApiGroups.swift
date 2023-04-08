@@ -119,15 +119,13 @@ extension Tsf {
     /// 查询API 分组信息列表
     @inlinable
     public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupsResponse> {
-        let input = DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId)
-        return self.client.execute(action: "DescribeApiGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApiGroups(.init(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API 分组信息列表
     @inlinable
     public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
-        let input = DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId)
-        return try await self.client.execute(action: "DescribeApiGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApiGroups(.init(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API 分组信息列表

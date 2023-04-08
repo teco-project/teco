@@ -105,15 +105,13 @@ extension Tione {
     /// 列举API
     @inlinable
     public func describeAPIConfigs(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIConfigsResponse> {
-        let input = DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters)
-        return self.client.execute(action: "DescribeAPIConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAPIConfigs(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举API
     @inlinable
     public func describeAPIConfigs(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIConfigsResponse {
-        let input = DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters)
-        return try await self.client.execute(action: "DescribeAPIConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAPIConfigs(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举API

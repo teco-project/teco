@@ -110,8 +110,7 @@ extension Eiam {
     /// 根据机构节点ID读取机构节点信息
     @inlinable
     public func describeOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrgNodeResponse> {
-        let input = DescribeOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo)
-        return self.client.execute(action: "DescribeOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrgNode(.init(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 读取机构节点信息
@@ -119,7 +118,6 @@ extension Eiam {
     /// 根据机构节点ID读取机构节点信息
     @inlinable
     public func describeOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgNodeResponse {
-        let input = DescribeOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo)
-        return try await self.client.execute(action: "DescribeOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrgNode(.init(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo), region: region, logger: logger, on: eventLoop)
     }
 }

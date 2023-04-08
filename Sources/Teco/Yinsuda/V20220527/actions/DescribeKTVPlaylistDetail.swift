@@ -110,8 +110,7 @@ extension Yinsuda {
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
     public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
-        let input = DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
-        return self.client.execute(action: "DescribeKTVPlaylistDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情
@@ -119,8 +118,7 @@ extension Yinsuda {
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
     public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
-        let input = DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
-        return try await self.client.execute(action: "DescribeKTVPlaylistDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情

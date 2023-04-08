@@ -64,14 +64,12 @@ extension Tbaas {
     /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
-        let input = ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList)
-        return self.client.execute(action: "ApplyChainMakerBatchUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyChainMakerBatchUserCert(.init(clusterId: clusterId, signUserCsrList: signUserCsrList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
-        let input = ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList)
-        return try await self.client.execute(action: "ApplyChainMakerBatchUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyChainMakerBatchUserCert(.init(clusterId: clusterId, signUserCsrList: signUserCsrList), region: region, logger: logger, on: eventLoop)
     }
 }

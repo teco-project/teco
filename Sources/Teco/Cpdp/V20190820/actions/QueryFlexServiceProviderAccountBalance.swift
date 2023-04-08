@@ -76,14 +76,12 @@ extension Cpdp {
     /// 灵云V2-查询服务商账户余额
     @inlinable
     public func queryFlexServiceProviderAccountBalance(serviceProviderId: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexServiceProviderAccountBalanceResponse> {
-        let input = QueryFlexServiceProviderAccountBalanceRequest(serviceProviderId: serviceProviderId, environment: environment)
-        return self.client.execute(action: "QueryFlexServiceProviderAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryFlexServiceProviderAccountBalance(.init(serviceProviderId: serviceProviderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询服务商账户余额
     @inlinable
     public func queryFlexServiceProviderAccountBalance(serviceProviderId: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexServiceProviderAccountBalanceResponse {
-        let input = QueryFlexServiceProviderAccountBalanceRequest(serviceProviderId: serviceProviderId, environment: environment)
-        return try await self.client.execute(action: "QueryFlexServiceProviderAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryFlexServiceProviderAccountBalance(.init(serviceProviderId: serviceProviderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

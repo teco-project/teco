@@ -77,14 +77,12 @@ extension Ump {
     /// 以图搜图
     @inlinable
     public func searchImage(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
-        let input = SearchImageRequest(groupCode: groupCode, mallId: mallId, image: image, imageTime: imageTime)
-        return self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchImage(.init(groupCode: groupCode, mallId: mallId, image: image, imageTime: imageTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 以图搜图
     @inlinable
     public func searchImage(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
-        let input = SearchImageRequest(groupCode: groupCode, mallId: mallId, image: image, imageTime: imageTime)
-        return try await self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchImage(.init(groupCode: groupCode, mallId: mallId, image: image, imageTime: imageTime), region: region, logger: logger, on: eventLoop)
     }
 }

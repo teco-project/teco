@@ -74,8 +74,7 @@ extension Wedata {
     /// 数据质量概览页面规则运行情况接口
     @inlinable
     public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecStatResponse> {
-        let input = DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
-        return self.client.execute(action: "DescribeRuleExecStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleExecStat(.init(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据质量规则运行情况接口
@@ -83,7 +82,6 @@ extension Wedata {
     /// 数据质量概览页面规则运行情况接口
     @inlinable
     public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
-        let input = DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeRuleExecStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleExecStat(.init(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

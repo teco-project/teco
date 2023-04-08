@@ -92,15 +92,13 @@ extension Tcr {
     /// 查询长期访问凭证信息
     @inlinable
     public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTokenResponse> {
-        let input = DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceToken(.init(registryId: registryId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询长期访问凭证信息
     @inlinable
     public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
-        let input = DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceToken(.init(registryId: registryId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询长期访问凭证信息

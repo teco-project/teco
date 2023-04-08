@@ -64,8 +64,7 @@ extension Tcr {
     /// 用于判断个人版仓库是否存在
     @inlinable
     public func validateRepositoryExistPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateRepositoryExistPersonalResponse> {
-        let input = ValidateRepositoryExistPersonalRequest(repoName: repoName)
-        return self.client.execute(action: "ValidateRepositoryExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.validateRepositoryExistPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证个人版仓库是否存在
@@ -73,7 +72,6 @@ extension Tcr {
     /// 用于判断个人版仓库是否存在
     @inlinable
     public func validateRepositoryExistPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateRepositoryExistPersonalResponse {
-        let input = ValidateRepositoryExistPersonalRequest(repoName: repoName)
-        return try await self.client.execute(action: "ValidateRepositoryExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.validateRepositoryExistPersonal(.init(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

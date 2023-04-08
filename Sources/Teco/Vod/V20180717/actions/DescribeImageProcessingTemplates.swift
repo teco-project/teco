@@ -110,8 +110,7 @@ extension Vod {
     /// 获取图片处理模板列表，支持根据条件，分页查询。
     @inlinable
     public func describeImageProcessingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageProcessingTemplatesResponse> {
-        let input = DescribeImageProcessingTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeImageProcessingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageProcessingTemplates(.init(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片即时处理模板列表
@@ -119,8 +118,7 @@ extension Vod {
     /// 获取图片处理模板列表，支持根据条件，分页查询。
     @inlinable
     public func describeImageProcessingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageProcessingTemplatesResponse {
-        let input = DescribeImageProcessingTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeImageProcessingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageProcessingTemplates(.init(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片即时处理模板列表

@@ -74,14 +74,12 @@ extension Tcb {
     /// 创建或修改安全网关路由
     @inlinable @discardableResult
     public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishWxGatewayRouteResponse> {
-        let input = EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc)
-        return self.client.execute(action: "EstablishWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.establishWxGatewayRoute(.init(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建或修改安全网关路由
     @inlinable @discardableResult
     public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
-        let input = EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc)
-        return try await self.client.execute(action: "EstablishWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.establishWxGatewayRoute(.init(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), region: region, logger: logger, on: eventLoop)
     }
 }

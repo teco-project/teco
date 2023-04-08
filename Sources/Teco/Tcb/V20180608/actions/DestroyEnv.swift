@@ -64,14 +64,12 @@ extension Tcb {
     /// 销毁环境
     @inlinable @discardableResult
     public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvResponse> {
-        let input = DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck)
-        return self.client.execute(action: "DestroyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyEnv(.init(envId: envId, isForce: isForce, bypassCheck: bypassCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁环境
     @inlinable @discardableResult
     public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
-        let input = DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck)
-        return try await self.client.execute(action: "DestroyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyEnv(.init(envId: envId, isForce: isForce, bypassCheck: bypassCheck), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -70,8 +70,7 @@ extension Vpc {
     /// * 每个VPC只能申请一个IPv6网段
     @inlinable
     public func assignIpv6CidrBlock(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6CidrBlockResponse> {
-        let input = AssignIpv6CidrBlockRequest(vpcId: vpcId)
-        return self.client.execute(action: "AssignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.assignIpv6CidrBlock(.init(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6网段
@@ -81,7 +80,6 @@ extension Vpc {
     /// * 每个VPC只能申请一个IPv6网段
     @inlinable
     public func assignIpv6CidrBlock(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6CidrBlockResponse {
-        let input = AssignIpv6CidrBlockRequest(vpcId: vpcId)
-        return try await self.client.execute(action: "AssignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.assignIpv6CidrBlock(.init(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

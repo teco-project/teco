@@ -126,8 +126,7 @@ extension Cme {
     /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
     @inlinable
     public func describeTasks(platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        let input = DescribeTasksRequest(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`)
-        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTasks(.init(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务列表
@@ -135,8 +134,7 @@ extension Cme {
     /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
     @inlinable
     public func describeTasks(platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        let input = DescribeTasksRequest(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`)
-        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTasks(.init(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务列表

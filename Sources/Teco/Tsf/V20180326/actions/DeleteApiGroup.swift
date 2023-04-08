@@ -58,14 +58,12 @@ extension Tsf {
     /// 删除Api分组
     @inlinable
     public func deleteApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
-        let input = DeleteApiGroupRequest(groupId: groupId)
-        return self.client.execute(action: "DeleteApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteApiGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Api分组
     @inlinable
     public func deleteApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
-        let input = DeleteApiGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "DeleteApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteApiGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

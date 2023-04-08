@@ -80,8 +80,7 @@ extension Ocr {
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
     @inlinable
     public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FormulaOCRResponse> {
-        let input = FormulaOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "FormulaOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.formulaOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数学公式识别
@@ -89,7 +88,6 @@ extension Ocr {
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
     @inlinable
     public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
-        let input = FormulaOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "FormulaOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.formulaOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

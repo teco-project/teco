@@ -123,14 +123,12 @@ extension Tsf {
     /// 查询调用监控指标
     @inlinable
     public func describeInovcationIndicators(dimension: String, startTime: Date, endTime: Date, namespaceId: String? = nil, serviceId: String? = nil, callerServiceName: String? = nil, calleeServiceName: String? = nil, callerInterfaceName: String? = nil, calleeInterfaceName: String? = nil, applicationId: String? = nil, groupId: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInovcationIndicatorsResponse> {
-        let input = DescribeInovcationIndicatorsRequest(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId)
-        return self.client.execute(action: "DescribeInovcationIndicators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInovcationIndicators(.init(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询调用监控指标
     @inlinable
     public func describeInovcationIndicators(dimension: String, startTime: Date, endTime: Date, namespaceId: String? = nil, serviceId: String? = nil, callerServiceName: String? = nil, calleeServiceName: String? = nil, callerInterfaceName: String? = nil, calleeInterfaceName: String? = nil, applicationId: String? = nil, groupId: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInovcationIndicatorsResponse {
-        let input = DescribeInovcationIndicatorsRequest(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeInovcationIndicators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInovcationIndicators(.init(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

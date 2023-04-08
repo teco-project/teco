@@ -94,8 +94,7 @@ extension Cwp {
     /// 获取主机最近趋势情况
     @inlinable
     public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
-        let input = DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate)
-        return self.client.execute(action: "DescribeAssetRecentMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetRecentMachineInfo(.init(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机概况趋势
@@ -103,7 +102,6 @@ extension Cwp {
     /// 获取主机最近趋势情况
     @inlinable
     public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
-        let input = DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeAssetRecentMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetRecentMachineInfo(.init(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

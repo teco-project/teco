@@ -74,8 +74,7 @@ extension Dasb {
     /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
     @inlinable
     public func describeResources(apCode: String? = nil, vpcId: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesResponse> {
-        let input = DescribeResourcesRequest(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds)
-        return self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResources(.init(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询堡垒机服务信息
@@ -83,7 +82,6 @@ extension Dasb {
     /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
     @inlinable
     public func describeResources(apCode: String? = nil, vpcId: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        let input = DescribeResourcesRequest(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds)
-        return try await self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResources(.init(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 }

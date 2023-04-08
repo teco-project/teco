@@ -99,8 +99,7 @@ extension Iotvideo {
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
     public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateFirmwareResponse> {
-        let input = BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames)
-        return self.client.execute(action: "BatchUpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchUpdateFirmware(.init(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量更新固件
@@ -108,7 +107,6 @@ extension Iotvideo {
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
     public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
-        let input = BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames)
-        return try await self.client.execute(action: "BatchUpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchUpdateFirmware(.init(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -47,7 +47,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
-        self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("PutTimerScalingPolicy is no longer available.")
     }
 
     /// 创建或更新定时器
@@ -58,7 +58,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {
-        try await self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("PutTimerScalingPolicy is no longer available.")
     }
 
     /// 创建或更新定时器
@@ -69,8 +69,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
-        let input = PutTimerScalingPolicyRequest(timerScalingPolicy: timerScalingPolicy)
-        return self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("PutTimerScalingPolicy is no longer available.")
     }
 
     /// 创建或更新定时器
@@ -81,7 +80,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {
-        let input = PutTimerScalingPolicyRequest(timerScalingPolicy: timerScalingPolicy)
-        return try await self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("PutTimerScalingPolicy is no longer available.")
     }
 }

@@ -59,14 +59,12 @@ extension Dasb {
     /// 删除用户组成员
     @inlinable @discardableResult
     public func deleteUserGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupMembersResponse> {
-        let input = DeleteUserGroupMembersRequest(id: id, memberIdSet: memberIdSet)
-        return self.client.execute(action: "DeleteUserGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUserGroupMembers(.init(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组成员
     @inlinable @discardableResult
     public func deleteUserGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupMembersResponse {
-        let input = DeleteUserGroupMembersRequest(id: id, memberIdSet: memberIdSet)
-        return try await self.client.execute(action: "DeleteUserGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUserGroupMembers(.init(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

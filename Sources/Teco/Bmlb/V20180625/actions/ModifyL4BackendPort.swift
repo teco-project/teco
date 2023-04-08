@@ -89,8 +89,7 @@ extension Bmlb {
     /// 修改黑石负载均衡四层监听器后端实例端口。
     @inlinable
     public func modifyL4BackendPort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendPortResponse> {
-        let input = ModifyL4BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType)
-        return self.client.execute(action: "ModifyL4BackendPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyL4BackendPort(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡四层监听器后端实例端口
@@ -98,7 +97,6 @@ extension Bmlb {
     /// 修改黑石负载均衡四层监听器后端实例端口。
     @inlinable
     public func modifyL4BackendPort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendPortResponse {
-        let input = ModifyL4BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType)
-        return try await self.client.execute(action: "ModifyL4BackendPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyL4BackendPort(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

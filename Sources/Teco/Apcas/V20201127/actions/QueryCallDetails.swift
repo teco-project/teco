@@ -98,15 +98,13 @@ extension Apcas {
     /// 查询调用明细
     @inlinable
     public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
-        let input = QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize)
-        return self.client.execute(action: "QueryCallDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryCallDetails(.init(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询调用明细
     @inlinable
     public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
-        let input = QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize)
-        return try await self.client.execute(action: "QueryCallDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryCallDetails(.init(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询调用明细

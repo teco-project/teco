@@ -120,8 +120,7 @@ extension Apm {
     /// 服务概览数据拉取
     @inlinable
     public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceOverviewResponse> {
-        let input = DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime)
-        return self.client.execute(action: "DescribeServiceOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeServiceOverview(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务概览数据
@@ -129,8 +128,7 @@ extension Apm {
     /// 服务概览数据拉取
     @inlinable
     public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
-        let input = DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime)
-        return try await self.client.execute(action: "DescribeServiceOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeServiceOverview(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务概览数据

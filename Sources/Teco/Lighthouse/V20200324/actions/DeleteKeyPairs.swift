@@ -60,8 +60,7 @@ extension Lighthouse {
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
-        let input = DeleteKeyPairsRequest(keyIds: keyIds)
-        return self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteKeyPairs(.init(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除密钥对
@@ -69,7 +68,6 @@ extension Lighthouse {
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
-        let input = DeleteKeyPairsRequest(keyIds: keyIds)
-        return try await self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteKeyPairs(.init(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 }

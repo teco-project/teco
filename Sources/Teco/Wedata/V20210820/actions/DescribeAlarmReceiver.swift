@@ -123,15 +123,13 @@ extension Wedata {
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmReceiverResponse> {
-        let input = DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime)
-        return self.client.execute(action: "DescribeAlarmReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAlarmReceiver(.init(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
-        let input = DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime)
-        return try await self.client.execute(action: "DescribeAlarmReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAlarmReceiver(.init(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警接收人详情

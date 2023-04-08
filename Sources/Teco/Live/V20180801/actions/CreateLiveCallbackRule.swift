@@ -73,8 +73,7 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     @inlinable @discardableResult
     public func createLiveCallbackRule(domainName: String, appName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackRuleResponse> {
-        let input = CreateLiveCallbackRuleRequest(domainName: domainName, appName: appName, templateId: templateId)
-        return self.client.execute(action: "CreateLiveCallbackRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLiveCallbackRule(.init(domainName: domainName, appName: appName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建回调规则
@@ -83,7 +82,6 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     @inlinable @discardableResult
     public func createLiveCallbackRule(domainName: String, appName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackRuleResponse {
-        let input = CreateLiveCallbackRuleRequest(domainName: domainName, appName: appName, templateId: templateId)
-        return try await self.client.execute(action: "CreateLiveCallbackRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLiveCallbackRule(.init(domainName: domainName, appName: appName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

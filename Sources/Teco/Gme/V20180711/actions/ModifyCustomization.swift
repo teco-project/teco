@@ -78,8 +78,7 @@ extension Gme {
     /// 用户通过该接口可以更新语音消息转文本热句模型。
     @inlinable
     public func modifyCustomization(bizId: Int64, textUrl: String, modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
-        let input = ModifyCustomizationRequest(bizId: bizId, textUrl: textUrl, modelId: modelId)
-        return self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCustomization(.init(bizId: bizId, textUrl: textUrl, modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新语音消息转文本热句模型
@@ -87,7 +86,6 @@ extension Gme {
     /// 用户通过该接口可以更新语音消息转文本热句模型。
     @inlinable
     public func modifyCustomization(bizId: Int64, textUrl: String, modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
-        let input = ModifyCustomizationRequest(bizId: bizId, textUrl: textUrl, modelId: modelId)
-        return try await self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCustomization(.init(bizId: bizId, textUrl: textUrl, modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -54,14 +54,12 @@ extension Gaap {
     /// 删除域名的定制错误
     @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
-        let input = DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId)
-        return self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDomainErrorPageInfo(.init(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名的定制错误
     @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
-        let input = DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId)
-        return try await self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDomainErrorPageInfo(.init(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }
 }

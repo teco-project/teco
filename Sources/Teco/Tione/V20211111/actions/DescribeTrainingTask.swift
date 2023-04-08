@@ -58,14 +58,12 @@ extension Tione {
     /// 训练任务详情
     @inlinable
     public func describeTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
-        let input = DescribeTrainingTaskRequest(id: id)
-        return self.client.execute(action: "DescribeTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrainingTask(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 训练任务详情
     @inlinable
     public func describeTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
-        let input = DescribeTrainingTaskRequest(id: id)
-        return try await self.client.execute(action: "DescribeTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrainingTask(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

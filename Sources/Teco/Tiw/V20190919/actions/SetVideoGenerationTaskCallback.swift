@@ -59,14 +59,12 @@ extension Tiw {
     /// 设置录制视频生成回调地址
     @inlinable @discardableResult
     public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackResponse> {
-        let input = SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback)
-        return self.client.execute(action: "SetVideoGenerationTaskCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setVideoGenerationTaskCallback(.init(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置录制视频生成回调地址
     @inlinable @discardableResult
     public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
-        let input = SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback)
-        return try await self.client.execute(action: "SetVideoGenerationTaskCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setVideoGenerationTaskCallback(.init(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

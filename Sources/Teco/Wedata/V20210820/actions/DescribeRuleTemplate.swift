@@ -64,14 +64,12 @@ extension Wedata {
     /// 查询模板详情
     @inlinable
     public func describeRuleTemplate(projectId: String? = nil, templateId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplateResponse> {
-        let input = DescribeRuleTemplateRequest(projectId: projectId, templateId: templateId)
-        return self.client.execute(action: "DescribeRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleTemplate(.init(projectId: projectId, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板详情
     @inlinable
     public func describeRuleTemplate(projectId: String? = nil, templateId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplateResponse {
-        let input = DescribeRuleTemplateRequest(projectId: projectId, templateId: templateId)
-        return try await self.client.execute(action: "DescribeRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleTemplate(.init(projectId: projectId, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

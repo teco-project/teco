@@ -65,8 +65,7 @@ extension Postgres {
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
     public func deleteReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
-        let input = DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId)
-        return self.client.execute(action: "DeleteReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteReadOnlyGroup(.init(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除只读组
@@ -74,7 +73,6 @@ extension Postgres {
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
     public func deleteReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
-        let input = DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId)
-        return try await self.client.execute(action: "DeleteReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteReadOnlyGroup(.init(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

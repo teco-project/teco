@@ -60,8 +60,7 @@ extension Live {
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable @discardableResult
     public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
-        let input = StopScreenshotTaskRequest(taskId: taskId)
-        return self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopScreenshotTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止截图任务
@@ -69,7 +68,6 @@ extension Live {
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable @discardableResult
     public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
-        let input = StopScreenshotTaskRequest(taskId: taskId)
-        return try await self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopScreenshotTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

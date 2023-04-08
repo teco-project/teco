@@ -113,8 +113,7 @@ extension Cme {
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
     public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
-        let input = DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`)
-        return self.client.execute(action: "DescribeTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTeamMembers(.init(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取团队成员信息
@@ -122,8 +121,7 @@ extension Cme {
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
     public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
-        let input = DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`)
-        return try await self.client.execute(action: "DescribeTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTeamMembers(.init(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取团队成员信息

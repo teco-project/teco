@@ -99,15 +99,13 @@ extension Monitor {
     /// 获取2.0实例告警策略列表
     @inlinable
     public func describePrometheusAlertPolicy(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAlertPolicyResponse> {
-        let input = DescribePrometheusAlertPolicyRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusAlertPolicy(.init(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例告警策略列表
     @inlinable
     public func describePrometheusAlertPolicy(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertPolicyResponse {
-        let input = DescribePrometheusAlertPolicyRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribePrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusAlertPolicy(.init(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例告警策略列表

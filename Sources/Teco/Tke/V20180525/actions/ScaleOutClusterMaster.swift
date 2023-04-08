@@ -74,14 +74,12 @@ extension Tke {
     /// 扩容独立集群master节点
     @inlinable @discardableResult
     public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutClusterMasterResponse> {
-        let input = ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs)
-        return self.client.execute(action: "ScaleOutClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.scaleOutClusterMaster(.init(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容独立集群master节点
     @inlinable @discardableResult
     public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
-        let input = ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs)
-        return try await self.client.execute(action: "ScaleOutClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.scaleOutClusterMaster(.init(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), region: region, logger: logger, on: eventLoop)
     }
 }

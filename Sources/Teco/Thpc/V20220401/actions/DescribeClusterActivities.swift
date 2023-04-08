@@ -98,8 +98,7 @@ extension Thpc {
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
     public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterActivitiesResponse> {
-        let input = DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeClusterActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterActivities(.init(clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群活动历史记录
@@ -107,8 +106,7 @@ extension Thpc {
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
     public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
-        let input = DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeClusterActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterActivities(.init(clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群活动历史记录

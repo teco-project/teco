@@ -98,15 +98,13 @@ extension Tem {
     /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePagedLogConfigListResponse> {
-        let input = DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken)
-        return self.client.execute(action: "DescribePagedLogConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePagedLogConfigList(.init(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
-        let input = DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken)
-        return try await self.client.execute(action: "DescribePagedLogConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePagedLogConfigList(.init(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分页的日志收集配置列表

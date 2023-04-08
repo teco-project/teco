@@ -63,14 +63,12 @@ extension Tsf {
     /// 查询网关所有分组下Api列表
     @inlinable
     public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayAllGroupApisResponse> {
-        let input = DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord)
-        return self.client.execute(action: "DescribeGatewayAllGroupApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGatewayAllGroupApis(.init(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关所有分组下Api列表
     @inlinable
     public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
-        let input = DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord)
-        return try await self.client.execute(action: "DescribeGatewayAllGroupApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGatewayAllGroupApis(.init(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 }

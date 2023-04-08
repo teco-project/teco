@@ -103,15 +103,13 @@ extension Oceanus {
     /// 描述资源接口
     @inlinable
     public func describeResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesResponse> {
-        let input = DescribeResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResources(.init(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述资源接口
     @inlinable
     public func describeResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        let input = DescribeResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResources(.init(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述资源接口

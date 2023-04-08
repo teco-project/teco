@@ -69,8 +69,7 @@ extension Cynosdb {
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
     @inlinable
     public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadUrlResponse> {
-        let input = DescribeBackupDownloadUrlRequest(clusterId: clusterId, backupId: backupId)
-        return self.client.execute(action: "DescribeBackupDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupDownloadUrl(.init(clusterId: clusterId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份下载地址
@@ -78,7 +77,6 @@ extension Cynosdb {
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
     @inlinable
     public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
-        let input = DescribeBackupDownloadUrlRequest(clusterId: clusterId, backupId: backupId)
-        return try await self.client.execute(action: "DescribeBackupDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupDownloadUrl(.init(clusterId: clusterId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 }

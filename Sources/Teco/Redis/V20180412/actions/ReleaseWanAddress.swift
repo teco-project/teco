@@ -68,8 +68,7 @@ extension Redis {
     /// 关闭外网
     @inlinable
     public func releaseWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
-        let input = ReleaseWanAddressRequest(instanceId: instanceId)
-        return self.client.execute(action: "ReleaseWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.releaseWanAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭外网接口
@@ -77,7 +76,6 @@ extension Redis {
     /// 关闭外网
     @inlinable
     public func releaseWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
-        let input = ReleaseWanAddressRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "ReleaseWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.releaseWanAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -103,8 +103,7 @@ extension Cme {
     /// 获取平台中所有的已注册账号。
     @inlinable
     public func describeAccounts(platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        let input = DescribeAccountsRequest(platform: platform, phone: phone, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccounts(.init(platform: platform, phone: phone, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号信息
@@ -112,8 +111,7 @@ extension Cme {
     /// 获取平台中所有的已注册账号。
     @inlinable
     public func describeAccounts(platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        let input = DescribeAccountsRequest(platform: platform, phone: phone, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccounts(.init(platform: platform, phone: phone, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号信息

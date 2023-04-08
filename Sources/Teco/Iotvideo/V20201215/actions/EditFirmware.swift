@@ -75,8 +75,7 @@ extension Iotvideo {
     /// 本接口用于编辑固件信息
     @inlinable @discardableResult
     public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
-        let input = EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
-        return self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.editFirmware(.init(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑固件信息
@@ -84,7 +83,6 @@ extension Iotvideo {
     /// 本接口用于编辑固件信息
     @inlinable @discardableResult
     public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        let input = EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
-        return try await self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.editFirmware(.init(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -113,8 +113,7 @@ extension Emr {
     /// 续费询价。
     @inlinable
     public func inquiryPriceRenewInstance(timeSpan: UInt64, resourceIds: [String], placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, modifyPayMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstanceResponse> {
-        let input = InquiryPriceRenewInstanceRequest(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode)
-        return self.client.execute(action: "InquiryPriceRenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceRenewInstance(.init(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费询价
@@ -122,7 +121,6 @@ extension Emr {
     /// 续费询价。
     @inlinable
     public func inquiryPriceRenewInstance(timeSpan: UInt64, resourceIds: [String], placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, modifyPayMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
-        let input = InquiryPriceRenewInstanceRequest(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode)
-        return try await self.client.execute(action: "InquiryPriceRenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceRenewInstance(.init(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Tke {
     /// 修改集群伸缩组属性
     @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupAttributeResponse> {
-        let input = ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute)
-        return self.client.execute(action: "ModifyClusterAsGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterAsGroupAttribute(.init(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群伸缩组属性
     @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {
-        let input = ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute)
-        return try await self.client.execute(action: "ModifyClusterAsGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterAsGroupAttribute(.init(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), region: region, logger: logger, on: eventLoop)
     }
 }

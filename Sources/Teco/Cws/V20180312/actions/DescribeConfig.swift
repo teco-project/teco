@@ -85,8 +85,7 @@ extension Cws {
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
     @inlinable
     public func describeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        let input = DescribeConfigRequest()
-        return self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeConfig(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看用户配置列表
@@ -94,7 +93,6 @@ extension Cws {
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
     @inlinable
     public func describeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        let input = DescribeConfigRequest()
-        return try await self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeConfig(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

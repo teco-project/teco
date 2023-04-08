@@ -87,14 +87,12 @@ extension Tke {
     /// 获取边缘计算集群的认证信息
     @inlinable
     public func describeTKEEdgeClusterCredential(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterCredentialResponse> {
-        let input = DescribeTKEEdgeClusterCredentialRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeTKEEdgeClusterCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTKEEdgeClusterCredential(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘计算集群的认证信息
     @inlinable
     public func describeTKEEdgeClusterCredential(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterCredentialResponse {
-        let input = DescribeTKEEdgeClusterCredentialRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeTKEEdgeClusterCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTKEEdgeClusterCredential(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

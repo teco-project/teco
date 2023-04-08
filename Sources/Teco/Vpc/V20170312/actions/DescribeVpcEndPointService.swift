@@ -106,8 +106,7 @@ extension Vpc {
     /// 查询终端节点服务列表。
     @inlinable
     public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceResponse> {
-        let input = DescribeVpcEndPointServiceRequest(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds)
-        return self.client.execute(action: "DescribeVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务列表
@@ -115,8 +114,7 @@ extension Vpc {
     /// 查询终端节点服务列表。
     @inlinable
     public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceResponse {
-        let input = DescribeVpcEndPointServiceRequest(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds)
-        return try await self.client.execute(action: "DescribeVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务列表

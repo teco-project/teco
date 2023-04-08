@@ -56,8 +56,7 @@ extension Live {
     /// 获取直播延播列表。
     @inlinable
     public func describeLiveDelayInfoList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDelayInfoListResponse> {
-        let input = DescribeLiveDelayInfoListRequest()
-        return self.client.execute(action: "DescribeLiveDelayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveDelayInfoList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播延播列表
@@ -65,7 +64,6 @@ extension Live {
     /// 获取直播延播列表。
     @inlinable
     public func describeLiveDelayInfoList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
-        let input = DescribeLiveDelayInfoListRequest()
-        return try await self.client.execute(action: "DescribeLiveDelayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveDelayInfoList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

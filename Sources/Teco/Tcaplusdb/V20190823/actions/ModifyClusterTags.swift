@@ -69,14 +69,12 @@ extension Tcaplusdb {
     /// 修改集群标签
     @inlinable
     public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
-        let input = ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags)
-        return self.client.execute(action: "ModifyClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterTags(.init(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群标签
     @inlinable
     public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
-        let input = ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags)
-        return try await self.client.execute(action: "ModifyClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterTags(.init(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 }

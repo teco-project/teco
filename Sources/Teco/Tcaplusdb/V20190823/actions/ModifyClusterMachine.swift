@@ -73,14 +73,12 @@ extension Tcaplusdb {
     /// 修改独占集群机器
     @inlinable
     public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterMachineResponse> {
-        let input = ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType)
-        return self.client.execute(action: "ModifyClusterMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyClusterMachine(.init(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改独占集群机器
     @inlinable
     public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
-        let input = ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType)
-        return try await self.client.execute(action: "ModifyClusterMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyClusterMachine(.init(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

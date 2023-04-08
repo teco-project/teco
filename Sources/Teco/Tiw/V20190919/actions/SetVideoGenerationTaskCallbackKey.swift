@@ -65,8 +65,7 @@ extension Tiw {
     /// 设置视频生成回调鉴权密钥
     @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackKeyResponse> {
-        let input = SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey)
-        return self.client.execute(action: "SetVideoGenerationTaskCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setVideoGenerationTaskCallbackKey(.init(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置录制视频生成回调密钥
@@ -74,7 +73,6 @@ extension Tiw {
     /// 设置视频生成回调鉴权密钥
     @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
-        let input = SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey)
-        return try await self.client.execute(action: "SetVideoGenerationTaskCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setVideoGenerationTaskCallbackKey(.init(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }
 }

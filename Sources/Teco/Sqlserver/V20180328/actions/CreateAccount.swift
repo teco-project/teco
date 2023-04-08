@@ -69,8 +69,7 @@ extension Sqlserver {
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
     public func createAccount(instanceId: String, accounts: [AccountCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
-        let input = CreateAccountRequest(instanceId: instanceId, accounts: accounts)
-        return self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAccount(.init(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例账号
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
     public func createAccount(instanceId: String, accounts: [AccountCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        let input = CreateAccountRequest(instanceId: instanceId, accounts: accounts)
-        return try await self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAccount(.init(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

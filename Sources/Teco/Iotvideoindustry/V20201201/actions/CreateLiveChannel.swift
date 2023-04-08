@@ -69,14 +69,12 @@ extension Iotvideoindustry {
     /// 创建直播频道
     @inlinable
     public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveChannelResponse> {
-        let input = CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType)
-        return self.client.execute(action: "CreateLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLiveChannel(.init(liveChannelName: liveChannelName, liveChannelType: liveChannelType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建直播频道
     @inlinable
     public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
-        let input = CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType)
-        return try await self.client.execute(action: "CreateLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLiveChannel(.init(liveChannelName: liveChannelName, liveChannelType: liveChannelType), region: region, logger: logger, on: eventLoop)
     }
 }

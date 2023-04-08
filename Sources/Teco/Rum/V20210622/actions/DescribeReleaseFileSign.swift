@@ -80,8 +80,7 @@ extension Rum {
     /// 获取上传文件存储的临时密钥
     @inlinable
     public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
-        let input = DescribeReleaseFileSignRequest(timeout: timeout)
-        return self.client.execute(action: "DescribeReleaseFileSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReleaseFileSign(.init(timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取存储临时密钥
@@ -89,7 +88,6 @@ extension Rum {
     /// 获取上传文件存储的临时密钥
     @inlinable
     public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
-        let input = DescribeReleaseFileSignRequest(timeout: timeout)
-        return try await self.client.execute(action: "DescribeReleaseFileSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReleaseFileSign(.init(timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 }

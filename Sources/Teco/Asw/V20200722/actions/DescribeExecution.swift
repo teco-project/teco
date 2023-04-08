@@ -92,14 +92,12 @@ extension Asw {
     /// 查询执行详细信息
     @inlinable
     public func describeExecution(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
-        let input = DescribeExecutionRequest(executionResourceName: executionResourceName)
-        return self.client.execute(action: "DescribeExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExecution(.init(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行详细信息
     @inlinable
     public func describeExecution(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
-        let input = DescribeExecutionRequest(executionResourceName: executionResourceName)
-        return try await self.client.execute(action: "DescribeExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExecution(.init(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 }

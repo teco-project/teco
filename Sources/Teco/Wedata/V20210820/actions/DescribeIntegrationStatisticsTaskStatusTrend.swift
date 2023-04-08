@@ -74,14 +74,12 @@ extension Wedata {
     /// 数据集成大屏任务状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsTaskStatusTrend(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsTaskStatusTrendResponse> {
-        let input = DescribeIntegrationStatisticsTaskStatusTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId)
-        return self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIntegrationStatisticsTaskStatusTrend(.init(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据集成大屏任务状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsTaskStatusTrend(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusTrendResponse {
-        let input = DescribeIntegrationStatisticsTaskStatusTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId)
-        return try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIntegrationStatisticsTaskStatusTrend(.init(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -89,8 +89,7 @@ extension Dcdb {
     /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
     @inlinable
     public func modifyInstanceNetwork(instanceId: String, vpcId: String, subnetId: String, vip: String? = nil, vipv6: String? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNetworkResponse> {
-        let input = ModifyInstanceNetworkRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, vip: vip, vipv6: vipv6, vipReleaseDelay: vipReleaseDelay)
-        return self.client.execute(action: "ModifyInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyInstanceNetwork(.init(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, vip: vip, vipv6: vipv6, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例所属网络
@@ -98,7 +97,6 @@ extension Dcdb {
     /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
     @inlinable
     public func modifyInstanceNetwork(instanceId: String, vpcId: String, subnetId: String, vip: String? = nil, vipv6: String? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNetworkResponse {
-        let input = ModifyInstanceNetworkRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, vip: vip, vipv6: vipv6, vipReleaseDelay: vipReleaseDelay)
-        return try await self.client.execute(action: "ModifyInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyInstanceNetwork(.init(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, vip: vip, vipv6: vipv6, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 }

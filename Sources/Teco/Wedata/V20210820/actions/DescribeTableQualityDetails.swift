@@ -115,8 +115,7 @@ extension Wedata {
     /// 质量报告-查询表质量详情
     @inlinable
     public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableQualityDetailsResponse> {
-        let input = DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId)
-        return self.client.execute(action: "DescribeTableQualityDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表质量详情
@@ -124,8 +123,7 @@ extension Wedata {
     /// 质量报告-查询表质量详情
     @inlinable
     public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
-        let input = DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId)
-        return try await self.client.execute(action: "DescribeTableQualityDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表质量详情

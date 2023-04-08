@@ -84,8 +84,7 @@ extension Cwp {
     /// 查询服务区关联目录详情
     @inlinable
     public func describeServerRelatedDirInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServerRelatedDirInfoResponse> {
-        let input = DescribeServerRelatedDirInfoRequest(id: id)
-        return self.client.execute(action: "DescribeServerRelatedDirInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeServerRelatedDirInfo(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器关联目录详情
@@ -93,7 +92,6 @@ extension Cwp {
     /// 查询服务区关联目录详情
     @inlinable
     public func describeServerRelatedDirInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerRelatedDirInfoResponse {
-        let input = DescribeServerRelatedDirInfoRequest(id: id)
-        return try await self.client.execute(action: "DescribeServerRelatedDirInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeServerRelatedDirInfo(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

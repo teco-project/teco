@@ -69,8 +69,7 @@ extension Asr {
     /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
     @inlinable
     public func modifyCustomizationState(modelId: String, toState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
-        let input = ModifyCustomizationStateRequest(modelId: modelId, toState: toState)
-        return self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCustomizationState(.init(modelId: modelId, toState: toState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自学习模型状态
@@ -78,7 +77,6 @@ extension Asr {
     /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
     @inlinable
     public func modifyCustomizationState(modelId: String, toState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
-        let input = ModifyCustomizationStateRequest(modelId: modelId, toState: toState)
-        return try await self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCustomizationState(.init(modelId: modelId, toState: toState), region: region, logger: logger, on: eventLoop)
     }
 }

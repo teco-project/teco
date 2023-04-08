@@ -69,14 +69,12 @@ extension Iotexplorer {
     /// 批量绑定子设备
     @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
-        let input = BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames)
-        return self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子设备
     @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
-        let input = BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames)
-        return try await self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

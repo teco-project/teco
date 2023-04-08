@@ -74,14 +74,12 @@ extension Tke {
     /// 查看虚拟节点列表
     @inlinable
     public func describeClusterVirtualNode(clusterId: String, nodePoolId: String? = nil, nodeNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterVirtualNodeResponse> {
-        let input = DescribeClusterVirtualNodeRequest(clusterId: clusterId, nodePoolId: nodePoolId, nodeNames: nodeNames)
-        return self.client.execute(action: "DescribeClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterVirtualNode(.init(clusterId: clusterId, nodePoolId: nodePoolId, nodeNames: nodeNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看虚拟节点列表
     @inlinable
     public func describeClusterVirtualNode(clusterId: String, nodePoolId: String? = nil, nodeNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterVirtualNodeResponse {
-        let input = DescribeClusterVirtualNodeRequest(clusterId: clusterId, nodePoolId: nodePoolId, nodeNames: nodeNames)
-        return try await self.client.execute(action: "DescribeClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterVirtualNode(.init(clusterId: clusterId, nodePoolId: nodePoolId, nodeNames: nodeNames), region: region, logger: logger, on: eventLoop)
     }
 }

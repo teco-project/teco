@@ -91,8 +91,7 @@ extension Cbs {
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
-        let input = ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType)
-        return self.client.execute(action: "ModifyDiskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘属性
@@ -102,7 +101,6 @@ extension Cbs {
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
-        let input = ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType)
-        return try await self.client.execute(action: "ModifyDiskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
     }
 }

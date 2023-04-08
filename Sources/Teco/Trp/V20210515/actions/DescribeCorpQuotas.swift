@@ -99,15 +99,13 @@ extension Trp {
     /// 查询渠道商下属企业额度使用情况
     @inlinable
     public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCorpQuotasResponse> {
-        let input = DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword)
-        return self.client.execute(action: "DescribeCorpQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCorpQuotas(.init(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
     public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
-        let input = DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword)
-        return try await self.client.execute(action: "DescribeCorpQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCorpQuotas(.init(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道商下属企业额度使用情况

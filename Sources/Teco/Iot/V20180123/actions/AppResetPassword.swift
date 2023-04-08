@@ -70,8 +70,7 @@ extension Iot {
     /// 重置APP用户密码
     @inlinable @discardableResult
     public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppResetPasswordResponse> {
-        let input = AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword)
-        return self.client.execute(action: "AppResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.appResetPassword(.init(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置用户密码
@@ -79,7 +78,6 @@ extension Iot {
     /// 重置APP用户密码
     @inlinable @discardableResult
     public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
-        let input = AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword)
-        return try await self.client.execute(action: "AppResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.appResetPassword(.init(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Redis {
     /// 禁用读写分离
     @inlinable
     public func disableReplicaReadonly(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableReplicaReadonlyResponse> {
-        let input = DisableReplicaReadonlyRequest(instanceId: instanceId)
-        return self.client.execute(action: "DisableReplicaReadonly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableReplicaReadonly(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用读写分离
     @inlinable
     public func disableReplicaReadonly(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableReplicaReadonlyResponse {
-        let input = DisableReplicaReadonlyRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DisableReplicaReadonly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableReplicaReadonly(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

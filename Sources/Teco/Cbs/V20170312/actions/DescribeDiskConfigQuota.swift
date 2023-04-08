@@ -99,8 +99,7 @@ extension Cbs {
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
     public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigQuotaResponse> {
-        let input = DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu)
-        return self.client.execute(action: "DescribeDiskConfigQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDiskConfigQuota(.init(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘配额
@@ -108,7 +107,6 @@ extension Cbs {
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
     public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
-        let input = DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu)
-        return try await self.client.execute(action: "DescribeDiskConfigQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDiskConfigQuota(.init(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 }

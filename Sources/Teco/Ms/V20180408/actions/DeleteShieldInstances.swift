@@ -64,8 +64,7 @@ extension Ms {
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func deleteShieldInstances(itemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShieldInstancesResponse> {
-        let input = DeleteShieldInstancesRequest(itemIds: itemIds)
-        return self.client.execute(action: "DeleteShieldInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteShieldInstances(.init(itemIds: itemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app信息
@@ -73,7 +72,6 @@ extension Ms {
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func deleteShieldInstances(itemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
-        let input = DeleteShieldInstancesRequest(itemIds: itemIds)
-        return try await self.client.execute(action: "DeleteShieldInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteShieldInstances(.init(itemIds: itemIds), region: region, logger: logger, on: eventLoop)
     }
 }

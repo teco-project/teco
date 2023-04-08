@@ -79,8 +79,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
-        let input = DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName)
-        return self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteImages(.init(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除图片
@@ -91,7 +90,6 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        let input = DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName)
-        return try await self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteImages(.init(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)
     }
 }

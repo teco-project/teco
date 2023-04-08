@@ -70,8 +70,7 @@ extension Iotcloud {
     /// 启用或者禁用设备
     @inlinable @discardableResult
     public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
-        let input = UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState)
-        return self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDeviceAvailableState(.init(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换设备可用状态
@@ -79,7 +78,6 @@ extension Iotcloud {
     /// 启用或者禁用设备
     @inlinable @discardableResult
     public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
-        let input = UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState)
-        return try await self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDeviceAvailableState(.init(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }
 }

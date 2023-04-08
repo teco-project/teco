@@ -69,8 +69,7 @@ extension Iotcloud {
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
     public func createMultiDevice(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDeviceResponse> {
-        let input = CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames)
-        return self.client.execute(action: "CreateMultiDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMultiDevice(.init(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建多个设备
@@ -78,7 +77,6 @@ extension Iotcloud {
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
     public func createMultiDevice(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
-        let input = CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames)
-        return try await self.client.execute(action: "CreateMultiDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMultiDevice(.init(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

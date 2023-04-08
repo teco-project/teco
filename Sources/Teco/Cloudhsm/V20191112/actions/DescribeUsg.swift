@@ -99,8 +99,7 @@ extension Cloudhsm {
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
     public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgResponse> {
-        let input = DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord)
-        return self.client.execute(action: "DescribeUsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUsg(.init(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户安全组列表
@@ -108,8 +107,7 @@ extension Cloudhsm {
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
     public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
-        let input = DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord)
-        return try await self.client.execute(action: "DescribeUsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUsg(.init(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户安全组列表

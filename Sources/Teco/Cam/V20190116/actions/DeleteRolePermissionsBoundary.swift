@@ -59,14 +59,12 @@ extension Cam {
     /// 删除角色权限边界
     @inlinable @discardableResult
     public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolePermissionsBoundaryResponse> {
-        let input = DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName)
-        return self.client.execute(action: "DeleteRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRolePermissionsBoundary(.init(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除角色权限边界
     @inlinable @discardableResult
     public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolePermissionsBoundaryResponse {
-        let input = DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName)
-        return try await self.client.execute(action: "DeleteRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRolePermissionsBoundary(.init(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

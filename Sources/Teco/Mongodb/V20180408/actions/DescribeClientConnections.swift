@@ -65,8 +65,7 @@ extension Mongodb {
     /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
     @inlinable
     public func describeClientConnections(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientConnectionsResponse> {
-        let input = DescribeClientConnectionsRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeClientConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClientConnections(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例客户端连接信息
@@ -74,7 +73,6 @@ extension Mongodb {
     /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
     @inlinable
     public func describeClientConnections(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientConnectionsResponse {
-        let input = DescribeClientConnectionsRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeClientConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClientConnections(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

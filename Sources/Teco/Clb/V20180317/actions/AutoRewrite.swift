@@ -83,8 +83,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func autoRewrite(loadBalancerId: String, listenerId: String, domains: [String]? = nil, rewriteCodes: [Int64]? = nil, takeUrls: [Bool]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoRewriteResponse> {
-        let input = AutoRewriteRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls)
-        return self.client.execute(action: "AutoRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.autoRewrite(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 自动生成负载均衡转发规则的重定向关系
@@ -93,7 +92,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func autoRewrite(loadBalancerId: String, listenerId: String, domains: [String]? = nil, rewriteCodes: [Int64]? = nil, takeUrls: [Bool]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoRewriteResponse {
-        let input = AutoRewriteRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls)
-        return try await self.client.execute(action: "AutoRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.autoRewrite(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls), region: region, logger: logger, on: eventLoop)
     }
 }

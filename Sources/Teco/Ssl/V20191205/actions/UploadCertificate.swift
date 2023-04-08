@@ -89,8 +89,7 @@ extension Ssl {
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
     public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
-        let input = UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse)
-        return self.client.execute(action: "UploadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
@@ -98,7 +97,6 @@ extension Ssl {
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
     public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        let input = UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse)
-        return try await self.client.execute(action: "UploadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -76,8 +76,7 @@ extension Af {
     /// 的损失。
     @inlinable
     public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
-        let input = DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return self.client.execute(action: "DescribeAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAntiFraud(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 金融借贷反欺诈
@@ -87,7 +86,6 @@ extension Af {
     /// 的损失。
     @inlinable
     public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
-        let input = DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData)
-        return try await self.client.execute(action: "DescribeAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAntiFraud(.init(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 }

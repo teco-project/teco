@@ -76,8 +76,7 @@ extension Ame {
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
     public func describeKTVTopList(type: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTopListResponse> {
-        let input = DescribeKTVTopListRequest(type: type, period: period)
-        return self.client.execute(action: "DescribeKTVTopList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVTopList(.init(type: type, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌曲排行榜
@@ -85,7 +84,6 @@ extension Ame {
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
     public func describeKTVTopList(type: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
-        let input = DescribeKTVTopListRequest(type: type, period: period)
-        return try await self.client.execute(action: "DescribeKTVTopList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVTopList(.init(type: type, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

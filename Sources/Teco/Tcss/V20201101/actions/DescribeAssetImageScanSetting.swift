@@ -78,14 +78,12 @@ extension Tcss {
     /// 获取镜像扫描设置信息
     @inlinable
     public func describeAssetImageScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanSettingResponse> {
-        let input = DescribeAssetImageScanSettingRequest()
-        return self.client.execute(action: "DescribeAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetImageScanSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取镜像扫描设置信息
     @inlinable
     public func describeAssetImageScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
-        let input = DescribeAssetImageScanSettingRequest()
-        return try await self.client.execute(action: "DescribeAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetImageScanSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

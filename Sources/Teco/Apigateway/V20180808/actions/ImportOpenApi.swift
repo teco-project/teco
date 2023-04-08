@@ -79,8 +79,7 @@ extension Apigateway {
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
     public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportOpenApiResponse> {
-        let input = ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion)
-        return self.client.execute(action: "ImportOpenApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.importOpenApi(.init(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入OpenAPI
@@ -88,7 +87,6 @@ extension Apigateway {
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
     public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
-        let input = ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion)
-        return try await self.client.execute(action: "ImportOpenApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.importOpenApi(.init(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), region: region, logger: logger, on: eventLoop)
     }
 }

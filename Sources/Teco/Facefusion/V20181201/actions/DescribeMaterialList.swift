@@ -103,8 +103,7 @@ extension Facefusion {
     /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
     @inlinable
     public func describeMaterialList(activityId: Int64, materialId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialListResponse> {
-        let input = DescribeMaterialListRequest(activityId: activityId, materialId: materialId, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeMaterialList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMaterialList(.init(activityId: activityId, materialId: materialId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询素材列表
@@ -112,8 +111,7 @@ extension Facefusion {
     /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
     @inlinable
     public func describeMaterialList(activityId: Int64, materialId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialListResponse {
-        let input = DescribeMaterialListRequest(activityId: activityId, materialId: materialId, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeMaterialList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMaterialList(.init(activityId: activityId, materialId: materialId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询素材列表

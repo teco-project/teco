@@ -122,15 +122,13 @@ extension Antiddos {
     /// 获取CC四层黑白名单列表
     @inlinable
     public func describeCcBlackWhiteIpList(business: String, instanceId: String, offset: UInt64, limit: UInt64, ip: String? = nil, domain: String? = nil, protocol: String? = nil, filterIp: String? = nil, filterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcBlackWhiteIpListResponse> {
-        let input = DescribeCcBlackWhiteIpListRequest(business: business, instanceId: instanceId, offset: offset, limit: limit, ip: ip, domain: domain, protocol: `protocol`, filterIp: filterIp, filterType: filterType)
-        return self.client.execute(action: "DescribeCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCcBlackWhiteIpList(.init(business: business, instanceId: instanceId, offset: offset, limit: limit, ip: ip, domain: domain, protocol: `protocol`, filterIp: filterIp, filterType: filterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC四层黑白名单列表
     @inlinable
     public func describeCcBlackWhiteIpList(business: String, instanceId: String, offset: UInt64, limit: UInt64, ip: String? = nil, domain: String? = nil, protocol: String? = nil, filterIp: String? = nil, filterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcBlackWhiteIpListResponse {
-        let input = DescribeCcBlackWhiteIpListRequest(business: business, instanceId: instanceId, offset: offset, limit: limit, ip: ip, domain: domain, protocol: `protocol`, filterIp: filterIp, filterType: filterType)
-        return try await self.client.execute(action: "DescribeCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCcBlackWhiteIpList(.init(business: business, instanceId: instanceId, offset: offset, limit: limit, ip: ip, domain: domain, protocol: `protocol`, filterIp: filterIp, filterType: filterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC四层黑白名单列表

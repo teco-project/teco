@@ -59,14 +59,12 @@ extension Bmeip {
     /// 更新黑石EIP名称
     @inlinable @discardableResult
     public func modifyEipName(eipId: String, eipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
-        let input = ModifyEipNameRequest(eipId: eipId, eipName: eipName)
-        return self.client.execute(action: "ModifyEipName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEipName(.init(eipId: eipId, eipName: eipName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石EIP名称
     @inlinable @discardableResult
     public func modifyEipName(eipId: String, eipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
-        let input = ModifyEipNameRequest(eipId: eipId, eipName: eipName)
-        return try await self.client.execute(action: "ModifyEipName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEipName(.init(eipId: eipId, eipName: eipName), region: region, logger: logger, on: eventLoop)
     }
 }

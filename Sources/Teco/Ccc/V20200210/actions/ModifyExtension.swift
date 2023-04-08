@@ -74,14 +74,12 @@ extension Ccc {
     /// 修改话机账号(绑定技能组、绑定坐席账号)
     @inlinable @discardableResult
     public func modifyExtension(sdkAppId: UInt64, extensionId: String, extensionName: String? = nil, skillGroupIds: [Int64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtensionResponse> {
-        let input = ModifyExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation)
-        return self.client.execute(action: "ModifyExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改话机账号(绑定技能组、绑定坐席账号)
     @inlinable @discardableResult
     public func modifyExtension(sdkAppId: UInt64, extensionId: String, extensionName: String? = nil, skillGroupIds: [Int64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {
-        let input = ModifyExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation)
-        return try await self.client.execute(action: "ModifyExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }
 }

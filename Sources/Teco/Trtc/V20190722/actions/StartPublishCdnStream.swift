@@ -177,8 +177,7 @@ extension Trtc {
     /// 6、您可以在主播进房前，提前创建转推任务，结束转推任务时需要主动调用停止接口。如果您没有调用停止转推任务接口时，腾讯云后台会按照所有参与混流的用户没有任何数据上行的时间算起，直到超过启动转推任务时设置的超时时间（AgentParams.MaxIdleTime）为止，自动停止混流转推任务。
     @inlinable
     public func startPublishCdnStream(sdkAppId: UInt64, roomId: String, roomIdType: UInt64, agentParams: AgentParams, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishCdnStreamResponse> {
-        let input = StartPublishCdnStreamRequest(sdkAppId: sdkAppId, roomId: roomId, roomIdType: roomIdType, agentParams: agentParams, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams)
-        return self.client.execute(action: "StartPublishCdnStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startPublishCdnStream(.init(sdkAppId: sdkAppId, roomId: roomId, roomIdType: roomIdType, agentParams: agentParams, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动转推任务
@@ -207,7 +206,6 @@ extension Trtc {
     /// 6、您可以在主播进房前，提前创建转推任务，结束转推任务时需要主动调用停止接口。如果您没有调用停止转推任务接口时，腾讯云后台会按照所有参与混流的用户没有任何数据上行的时间算起，直到超过启动转推任务时设置的超时时间（AgentParams.MaxIdleTime）为止，自动停止混流转推任务。
     @inlinable
     public func startPublishCdnStream(sdkAppId: UInt64, roomId: String, roomIdType: UInt64, agentParams: AgentParams, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishCdnStreamResponse {
-        let input = StartPublishCdnStreamRequest(sdkAppId: sdkAppId, roomId: roomId, roomIdType: roomIdType, agentParams: agentParams, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams)
-        return try await self.client.execute(action: "StartPublishCdnStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startPublishCdnStream(.init(sdkAppId: sdkAppId, roomId: roomId, roomIdType: roomIdType, agentParams: agentParams, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), region: region, logger: logger, on: eventLoop)
     }
 }

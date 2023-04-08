@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
     @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclQuintupleEntriesResponse> {
-        let input = ModifyNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet)
-        return self.client.execute(action: "ModifyNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNetworkAclQuintupleEntries(.init(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增量更新网络ACL五元组规则接口
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
     @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclQuintupleEntriesResponse {
-        let input = ModifyNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet)
-        return try await self.client.execute(action: "ModifyNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNetworkAclQuintupleEntries(.init(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

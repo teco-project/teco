@@ -89,8 +89,7 @@ extension Tcb {
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
     public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
-        let input = CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion)
-        return self.client.execute(action: "CreateStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStandaloneGateway(.init(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建独立网关
@@ -98,7 +97,6 @@ extension Tcb {
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
     public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
-        let input = CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion)
-        return try await self.client.execute(action: "CreateStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStandaloneGateway(.init(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

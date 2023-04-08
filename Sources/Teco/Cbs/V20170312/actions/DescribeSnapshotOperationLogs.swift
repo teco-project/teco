@@ -84,8 +84,7 @@ extension Cbs {
     /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
     public func describeSnapshotOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
-        let input = DescribeSnapshotOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime)
-        return self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshotOperationLogs(.init(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照操作日志列表
@@ -93,7 +92,6 @@ extension Cbs {
     /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
     public func describeSnapshotOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        let input = DescribeSnapshotOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime)
-        return try await self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshotOperationLogs(.init(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
     }
 }

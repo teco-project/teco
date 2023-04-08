@@ -74,14 +74,12 @@ extension Tdmq {
     /// 创建RocketMQ命名空间
     @inlinable @discardableResult
     public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQNamespaceResponse> {
-        let input = CreateRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark)
-        return self.client.execute(action: "CreateRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ命名空间
     @inlinable @discardableResult
     public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQNamespaceResponse {
-        let input = CreateRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark)
-        return try await self.client.execute(action: "CreateRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

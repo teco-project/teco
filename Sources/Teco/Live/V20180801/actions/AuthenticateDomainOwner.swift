@@ -85,8 +85,7 @@ extension Live {
     /// 验证用户是否拥有特定直播域名。
     @inlinable
     public func authenticateDomainOwner(domainName: String, verifyType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthenticateDomainOwnerResponse> {
-        let input = AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType)
-        return self.client.execute(action: "AuthenticateDomainOwner", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.authenticateDomainOwner(.init(domainName: domainName, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证直播域名所有权
@@ -94,7 +93,6 @@ extension Live {
     /// 验证用户是否拥有特定直播域名。
     @inlinable
     public func authenticateDomainOwner(domainName: String, verifyType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
-        let input = AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType)
-        return try await self.client.execute(action: "AuthenticateDomainOwner", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.authenticateDomainOwner(.init(domainName: domainName, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 }

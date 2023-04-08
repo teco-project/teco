@@ -99,15 +99,13 @@ extension Organization {
     /// 获取组织成员访问身份列表
     @inlinable
     public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationIdentityResponse> {
-        let input = ListOrganizationIdentityRequest(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId)
-        return self.client.execute(action: "ListOrganizationIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员访问身份列表
     @inlinable
     public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
-        let input = ListOrganizationIdentityRequest(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId)
-        return try await self.client.execute(action: "ListOrganizationIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员访问身份列表

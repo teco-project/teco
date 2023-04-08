@@ -145,8 +145,7 @@ extension Cdn {
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
     public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopDataResponse> {
-        let input = DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product)
-        return self.client.execute(action: "DescribeTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTopData(.init(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// TOP 新版数据查询（beta版）
@@ -164,7 +163,6 @@ extension Cdn {
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
     public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
-        let input = DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product)
-        return try await self.client.execute(action: "DescribeTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTopData(.init(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

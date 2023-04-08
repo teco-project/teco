@@ -84,14 +84,12 @@ extension Iotvideo {
     /// 更新推送通道
     @inlinable @discardableResult
     public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
-        let input = ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic)
-        return self.client.execute(action: "ModifyPushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPushChannel(.init(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新推送通道
     @inlinable @discardableResult
     public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
-        let input = ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic)
-        return try await self.client.execute(action: "ModifyPushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPushChannel(.init(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 }

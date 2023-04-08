@@ -69,8 +69,7 @@ extension Tcaplusdb {
     /// 合并指定表格
     @inlinable
     public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergeTablesDataResponse> {
-        let input = MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare)
-        return self.client.execute(action: "MergeTablesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.mergeTablesData(.init(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合服
@@ -78,7 +77,6 @@ extension Tcaplusdb {
     /// 合并指定表格
     @inlinable
     public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
-        let input = MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare)
-        return try await self.client.execute(action: "MergeTablesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.mergeTablesData(.init(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), region: region, logger: logger, on: eventLoop)
     }
 }

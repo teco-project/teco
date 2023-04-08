@@ -65,8 +65,7 @@ extension Cii {
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
     public func uploadMedicalFile(fileURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadMedicalFileResponse> {
-        let input = UploadMedicalFileRequest(fileURL: fileURL)
-        return self.client.execute(action: "UploadMedicalFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadMedicalFile(.init(fileURL: fileURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传医疗影像文件
@@ -74,7 +73,6 @@ extension Cii {
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
     public func uploadMedicalFile(fileURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
-        let input = UploadMedicalFileRequest(fileURL: fileURL)
-        return try await self.client.execute(action: "UploadMedicalFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadMedicalFile(.init(fileURL: fileURL), region: region, logger: logger, on: eventLoop)
     }
 }

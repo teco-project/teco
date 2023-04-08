@@ -119,8 +119,7 @@ extension Ame {
     /// 根据过滤条件，返回匹配的歌手列表。
     @inlinable
     public func describeKTVSingers(singerIds: [String]? = nil, genders: [String]? = nil, areas: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingersResponse> {
-        let input = DescribeKTVSingersRequest(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeKTVSingers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeKTVSingers(.init(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌手
@@ -128,8 +127,7 @@ extension Ame {
     /// 根据过滤条件，返回匹配的歌手列表。
     @inlinable
     public func describeKTVSingers(singerIds: [String]? = nil, genders: [String]? = nil, areas: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingersResponse {
-        let input = DescribeKTVSingersRequest(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeKTVSingers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeKTVSingers(.init(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌手

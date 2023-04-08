@@ -98,8 +98,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LicensePlateOCRResponse> {
-        let input = LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "LicensePlateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.licensePlateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 车牌识别
@@ -109,7 +108,6 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
-        let input = LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "LicensePlateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.licensePlateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

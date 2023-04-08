@@ -99,8 +99,7 @@ extension Domain {
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
     public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogDetailsResponse> {
-        let input = DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeBatchOperationLogDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBatchOperationLogDetails(.init(logId: logId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志详情
@@ -108,8 +107,7 @@ extension Domain {
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
     public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogDetailsResponse {
-        let input = DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeBatchOperationLogDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBatchOperationLogDetails(.init(logId: logId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志详情

@@ -97,15 +97,13 @@ extension Cmq {
     /// 枚举死信队列源队列
     @inlinable
     public func describeDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeadLetterSourceQueuesResponse> {
-        let input = DescribeDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeadLetterSourceQueues(.init(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举死信队列源队列
     @inlinable
     public func describeDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeadLetterSourceQueuesResponse {
-        let input = DescribeDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeadLetterSourceQueues(.init(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举死信队列源队列

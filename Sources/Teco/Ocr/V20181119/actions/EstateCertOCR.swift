@@ -120,8 +120,7 @@ extension Ocr {
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
     @inlinable
     public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstateCertOCRResponse> {
-        let input = EstateCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "EstateCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.estateCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 不动产权证识别
@@ -129,7 +128,6 @@ extension Ocr {
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
     @inlinable
     public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
-        let input = EstateCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "EstateCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.estateCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

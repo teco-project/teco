@@ -101,8 +101,7 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeProxyStatistics(proxyId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, isp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyStatisticsResponse> {
-        let input = DescribeProxyStatisticsRequest(proxyId: proxyId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity, isp: isp)
-        return self.client.execute(action: "DescribeProxyStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProxyStatistics(.init(proxyId: proxyId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity, isp: isp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道统计数据
@@ -110,7 +109,6 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeProxyStatistics(proxyId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, isp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyStatisticsResponse {
-        let input = DescribeProxyStatisticsRequest(proxyId: proxyId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity, isp: isp)
-        return try await self.client.execute(action: "DescribeProxyStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProxyStatistics(.init(proxyId: proxyId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity, isp: isp), region: region, logger: logger, on: eventLoop)
     }
 }

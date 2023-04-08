@@ -92,14 +92,12 @@ extension Oceanus {
     /// 创建资源接口
     @inlinable
     public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        let input = CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId)
-        return self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createResource(.init(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建资源接口
     @inlinable
     public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        let input = CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createResource(.init(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

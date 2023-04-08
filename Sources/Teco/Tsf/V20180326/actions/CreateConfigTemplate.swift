@@ -78,14 +78,12 @@ extension Tsf {
     /// 创建参数模板
     @inlinable
     public func createConfigTemplate(configTemplateName: String, configTemplateType: String, configTemplateValue: String, configTemplateDesc: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigTemplateResponse> {
-        let input = CreateConfigTemplateRequest(configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc, programIdList: programIdList)
-        return self.client.execute(action: "CreateConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createConfigTemplate(.init(configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建参数模板
     @inlinable
     public func createConfigTemplate(configTemplateName: String, configTemplateType: String, configTemplateValue: String, configTemplateDesc: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigTemplateResponse {
-        let input = CreateConfigTemplateRequest(configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc, programIdList: programIdList)
-        return try await self.client.execute(action: "CreateConfigTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createConfigTemplate(.init(configTemplateName: configTemplateName, configTemplateType: configTemplateType, configTemplateValue: configTemplateValue, configTemplateDesc: configTemplateDesc, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

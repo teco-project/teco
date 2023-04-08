@@ -63,14 +63,12 @@ extension Iotvideo {
     /// 获取设备属性数据
     @inlinable
     public func describeDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataResponse> {
-        let input = DescribeDeviceDataRequest(productId: productId, deviceName: deviceName)
-        return self.client.execute(action: "DescribeDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceData(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备属性数据
     @inlinable
     public func describeDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {
-        let input = DescribeDeviceDataRequest(productId: productId, deviceName: deviceName)
-        return try await self.client.execute(action: "DescribeDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceData(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

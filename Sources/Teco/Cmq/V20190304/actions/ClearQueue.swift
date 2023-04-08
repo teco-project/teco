@@ -60,8 +60,7 @@ extension Cmq {
     /// 清除queue中的所有消息
     @inlinable @discardableResult
     public func clearQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearQueueResponse> {
-        let input = ClearQueueRequest(queueName: queueName)
-        return self.client.execute(action: "ClearQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.clearQueue(.init(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空消息队列中的消息
@@ -69,7 +68,6 @@ extension Cmq {
     /// 清除queue中的所有消息
     @inlinable @discardableResult
     public func clearQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearQueueResponse {
-        let input = ClearQueueRequest(queueName: queueName)
-        return try await self.client.execute(action: "ClearQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.clearQueue(.init(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

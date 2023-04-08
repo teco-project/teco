@@ -76,8 +76,7 @@ extension Thpc {
     /// 本接口(DescribeAutoScalingConfiguration)用于查询集群弹性伸缩配置信息。本接口仅适用于弹性伸缩类型为THPC_AS的集群。
     @inlinable
     public func describeAutoScalingConfiguration(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingConfigurationResponse> {
-        let input = DescribeAutoScalingConfigurationRequest(clusterId: clusterId)
-        return self.client.execute(action: "DescribeAutoScalingConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoScalingConfiguration(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性伸缩配置信息
@@ -85,7 +84,6 @@ extension Thpc {
     /// 本接口(DescribeAutoScalingConfiguration)用于查询集群弹性伸缩配置信息。本接口仅适用于弹性伸缩类型为THPC_AS的集群。
     @inlinable
     public func describeAutoScalingConfiguration(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingConfigurationResponse {
-        let input = DescribeAutoScalingConfigurationRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "DescribeAutoScalingConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoScalingConfiguration(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -94,14 +94,12 @@ extension Tdid {
     /// DID详情
     @inlinable
     public func getDidDetail(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDetailResponse> {
-        let input = GetDidDetailRequest(did: did)
-        return self.client.execute(action: "GetDidDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDidDetail(.init(did: did), region: region, logger: logger, on: eventLoop)
     }
 
     /// DID详情
     @inlinable
     public func getDidDetail(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
-        let input = GetDidDetailRequest(did: did)
-        return try await self.client.execute(action: "GetDidDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDidDetail(.init(did: did), region: region, logger: logger, on: eventLoop)
     }
 }

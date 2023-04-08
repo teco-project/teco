@@ -64,8 +64,7 @@ extension Live {
     /// 获取域名证书信息。
     @inlinable
     public func describeLiveDomainCert(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainCertResponse> {
-        let input = DescribeLiveDomainCertRequest(domainName: domainName)
-        return self.client.execute(action: "DescribeLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveDomainCert(.init(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名证书信息
@@ -73,7 +72,6 @@ extension Live {
     /// 获取域名证书信息。
     @inlinable
     public func describeLiveDomainCert(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
-        let input = DescribeLiveDomainCertRequest(domainName: domainName)
-        return try await self.client.execute(action: "DescribeLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveDomainCert(.init(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

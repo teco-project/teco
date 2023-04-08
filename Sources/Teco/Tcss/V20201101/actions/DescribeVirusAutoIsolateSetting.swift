@@ -54,14 +54,12 @@ extension Tcss {
     /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSettingResponse> {
-        let input = DescribeVirusAutoIsolateSettingRequest()
-        return self.client.execute(action: "DescribeVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusAutoIsolateSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
-        let input = DescribeVirusAutoIsolateSettingRequest()
-        return try await self.client.execute(action: "DescribeVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusAutoIsolateSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

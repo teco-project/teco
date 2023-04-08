@@ -50,14 +50,12 @@ extension Pts {
     /// 查询系统支持的指标
     @inlinable
     public func describeAvailableMetrics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableMetricsResponse> {
-        let input = DescribeAvailableMetricsRequest()
-        return self.client.execute(action: "DescribeAvailableMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableMetrics(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询系统支持的指标
     @inlinable
     public func describeAvailableMetrics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableMetricsResponse {
-        let input = DescribeAvailableMetricsRequest()
-        return try await self.client.execute(action: "DescribeAvailableMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableMetrics(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

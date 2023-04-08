@@ -64,14 +64,12 @@ extension Iecp {
     /// 删除指定pod
     @inlinable @discardableResult
     public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
-        let input = DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace)
-        return self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEdgeUnitPod(.init(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除指定pod
     @inlinable @discardableResult
     public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
-        let input = DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace)
-        return try await self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEdgeUnitPod(.init(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

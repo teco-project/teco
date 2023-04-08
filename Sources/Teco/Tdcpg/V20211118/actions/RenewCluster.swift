@@ -59,14 +59,12 @@ extension Tdcpg {
     /// 续费集群
     @inlinable @discardableResult
     public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
-        let input = RenewClusterRequest(clusterId: clusterId, period: period)
-        return self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewCluster(.init(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费集群
     @inlinable @discardableResult
     public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
-        let input = RenewClusterRequest(clusterId: clusterId, period: period)
-        return try await self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewCluster(.init(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

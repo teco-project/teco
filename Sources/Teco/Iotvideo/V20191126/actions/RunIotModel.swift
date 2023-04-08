@@ -65,8 +65,7 @@ extension Iotvideo {
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
     @inlinable @discardableResult
     public func runIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunIotModelResponse> {
-        let input = RunIotModelRequest(productId: productId, iotModel: iotModel)
-        return self.client.execute(action: "RunIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.runIotModel(.init(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 定义的物模型发布
@@ -74,7 +73,6 @@ extension Iotvideo {
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
     @inlinable @discardableResult
     public func runIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunIotModelResponse {
-        let input = RunIotModelRequest(productId: productId, iotModel: iotModel)
-        return try await self.client.execute(action: "RunIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.runIotModel(.init(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 }

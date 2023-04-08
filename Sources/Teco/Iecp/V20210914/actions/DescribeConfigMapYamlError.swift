@@ -69,14 +69,12 @@ extension Iecp {
     /// 校验ConfigMap的Yaml语法
     @inlinable
     public func describeConfigMapYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
-        let input = DescribeConfigMapYamlErrorRequest(yaml: yaml)
-        return self.client.execute(action: "DescribeConfigMapYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeConfigMapYamlError(.init(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验ConfigMap的Yaml语法
     @inlinable
     public func describeConfigMapYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
-        let input = DescribeConfigMapYamlErrorRequest(yaml: yaml)
-        return try await self.client.execute(action: "DescribeConfigMapYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeConfigMapYamlError(.init(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

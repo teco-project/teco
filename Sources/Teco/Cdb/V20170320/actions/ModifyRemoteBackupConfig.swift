@@ -80,8 +80,7 @@ extension Cdb {
     /// 本接口(ModifyRemoteBackupConfig)用于修改数据库异地备份配置信息。
     @inlinable @discardableResult
     public func modifyRemoteBackupConfig(instanceId: String, remoteBackupSave: String, remoteBinlogSave: String, remoteRegion: [String], expireDays: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRemoteBackupConfigResponse> {
-        let input = ModifyRemoteBackupConfigRequest(instanceId: instanceId, remoteBackupSave: remoteBackupSave, remoteBinlogSave: remoteBinlogSave, remoteRegion: remoteRegion, expireDays: expireDays)
-        return self.client.execute(action: "ModifyRemoteBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRemoteBackupConfig(.init(instanceId: instanceId, remoteBackupSave: remoteBackupSave, remoteBinlogSave: remoteBinlogSave, remoteRegion: remoteRegion, expireDays: expireDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库异地备份配置信息
@@ -89,7 +88,6 @@ extension Cdb {
     /// 本接口(ModifyRemoteBackupConfig)用于修改数据库异地备份配置信息。
     @inlinable @discardableResult
     public func modifyRemoteBackupConfig(instanceId: String, remoteBackupSave: String, remoteBinlogSave: String, remoteRegion: [String], expireDays: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRemoteBackupConfigResponse {
-        let input = ModifyRemoteBackupConfigRequest(instanceId: instanceId, remoteBackupSave: remoteBackupSave, remoteBinlogSave: remoteBinlogSave, remoteRegion: remoteRegion, expireDays: expireDays)
-        return try await self.client.execute(action: "ModifyRemoteBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRemoteBackupConfig(.init(instanceId: instanceId, remoteBackupSave: remoteBackupSave, remoteBinlogSave: remoteBinlogSave, remoteRegion: remoteRegion, expireDays: expireDays), region: region, logger: logger, on: eventLoop)
     }
 }

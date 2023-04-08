@@ -60,8 +60,7 @@ extension Tke {
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable @discardableResult
     public func uninstallEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallEdgeLogAgentResponse> {
-        let input = UninstallEdgeLogAgentRequest(clusterId: clusterId)
-        return self.client.execute(action: "UninstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uninstallEdgeLogAgent(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载边缘日志采集组件
@@ -69,7 +68,6 @@ extension Tke {
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable @discardableResult
     public func uninstallEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
-        let input = UninstallEdgeLogAgentRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "UninstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uninstallEdgeLogAgent(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

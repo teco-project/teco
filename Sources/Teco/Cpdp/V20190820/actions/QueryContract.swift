@@ -147,8 +147,7 @@ extension Cpdp {
     /// 通过此接口查询签约数据
     @inlinable
     public func queryContract(midasAppId: String, userId: String, channel: String, contractQueryMode: String, midasSignature: String, midasSecretId: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, migrateMode: String? = nil, contractMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractResponse> {
-        let input = QueryContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, contractQueryMode: contractQueryMode, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, midasEnvironment: midasEnvironment, userType: userType, migrateMode: migrateMode, contractMethod: contractMethod)
-        return self.client.execute(action: "QueryContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryContract(.init(midasAppId: midasAppId, userId: userId, channel: channel, contractQueryMode: contractQueryMode, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, midasEnvironment: midasEnvironment, userType: userType, migrateMode: migrateMode, contractMethod: contractMethod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询签约数据接口
@@ -156,7 +155,6 @@ extension Cpdp {
     /// 通过此接口查询签约数据
     @inlinable
     public func queryContract(midasAppId: String, userId: String, channel: String, contractQueryMode: String, midasSignature: String, midasSecretId: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, migrateMode: String? = nil, contractMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractResponse {
-        let input = QueryContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, contractQueryMode: contractQueryMode, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, midasEnvironment: midasEnvironment, userType: userType, migrateMode: migrateMode, contractMethod: contractMethod)
-        return try await self.client.execute(action: "QueryContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryContract(.init(midasAppId: midasAppId, userId: userId, channel: channel, contractQueryMode: contractQueryMode, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, midasEnvironment: midasEnvironment, userType: userType, migrateMode: migrateMode, contractMethod: contractMethod), region: region, logger: logger, on: eventLoop)
     }
 }

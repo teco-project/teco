@@ -60,8 +60,7 @@ extension Dlc {
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
     @inlinable @discardableResult
     public func createStoreLocation(storeLocation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStoreLocationResponse> {
-        let input = CreateStoreLocationRequest(storeLocation: storeLocation)
-        return self.client.execute(action: "CreateStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStoreLocation(.init(storeLocation: storeLocation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改结果存储位置
@@ -69,7 +68,6 @@ extension Dlc {
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
     @inlinable @discardableResult
     public func createStoreLocation(storeLocation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
-        let input = CreateStoreLocationRequest(storeLocation: storeLocation)
-        return try await self.client.execute(action: "CreateStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStoreLocation(.init(storeLocation: storeLocation), region: region, logger: logger, on: eventLoop)
     }
 }

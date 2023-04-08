@@ -116,8 +116,7 @@ extension Cynosdb {
     /// 本接口(DescribeAccounts)用于查询数据库管理账号。
     @inlinable
     public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        let input = DescribeAccountsRequest(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库管理账号
@@ -125,8 +124,7 @@ extension Cynosdb {
     /// 本接口(DescribeAccounts)用于查询数据库管理账号。
     @inlinable
     public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        let input = DescribeAccountsRequest(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库管理账号

@@ -117,8 +117,7 @@ extension Lighthouse {
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
     public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
-        let input = DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照列表
@@ -126,8 +125,7 @@ extension Lighthouse {
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
     public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        let input = DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照列表

@@ -64,14 +64,12 @@ extension Oceanus {
     /// 删除资源版本
     @inlinable @discardableResult
     public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
-        let input = DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteResourceConfigs(.init(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源版本
     @inlinable @discardableResult
     public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
-        let input = DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteResourceConfigs(.init(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

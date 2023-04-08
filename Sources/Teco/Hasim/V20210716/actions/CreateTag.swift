@@ -59,14 +59,12 @@ extension Hasim {
     /// 创建标签
     @inlinable @discardableResult
     public func createTag(name: String, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
-        let input = CreateTagRequest(name: name, comment: comment)
-        return self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createTag(.init(name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建标签
     @inlinable @discardableResult
     public func createTag(name: String, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
-        let input = CreateTagRequest(name: name, comment: comment)
-        return try await self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createTag(.init(name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

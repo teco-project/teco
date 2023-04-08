@@ -130,8 +130,7 @@ extension Vpc {
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
-        let input = CreateAndAttachNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType)
-        return self.client.execute(action: "CreateAndAttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡并绑定云服务器
@@ -146,7 +145,6 @@ extension Vpc {
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
-        let input = CreateAndAttachNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType)
-        return try await self.client.execute(action: "CreateAndAttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 }

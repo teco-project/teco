@@ -60,8 +60,7 @@ extension Cws {
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable @discardableResult
     public func deleteSites(siteIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
-        let input = DeleteSitesRequest(siteIds: siteIds)
-        return self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSites(.init(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除站点
@@ -69,7 +68,6 @@ extension Cws {
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable @discardableResult
     public func deleteSites(siteIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
-        let input = DeleteSitesRequest(siteIds: siteIds)
-        return try await self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSites(.init(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Pts {
     /// 删除告警通知接收组
     @inlinable @discardableResult
     public func deleteAlertChannel(projectId: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertChannelResponse> {
-        let input = DeleteAlertChannelRequest(projectId: projectId, noticeId: noticeId)
-        return self.client.execute(action: "DeleteAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAlertChannel(.init(projectId: projectId, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知接收组
     @inlinable @discardableResult
     public func deleteAlertChannel(projectId: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertChannelResponse {
-        let input = DeleteAlertChannelRequest(projectId: projectId, noticeId: noticeId)
-        return try await self.client.execute(action: "DeleteAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAlertChannel(.init(projectId: projectId, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
     }
 }

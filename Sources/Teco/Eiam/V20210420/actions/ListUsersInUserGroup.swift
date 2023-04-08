@@ -109,15 +109,13 @@ extension Eiam {
     /// 获取用户组中的用户列表
     @inlinable
     public func listUsersInUserGroup(userGroupId: String, searchCondition: UserSearchCriteria? = nil, sort: SortCondition? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInUserGroupResponse> {
-        let input = ListUsersInUserGroupRequest(userGroupId: userGroupId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return self.client.execute(action: "ListUsersInUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listUsersInUserGroup(.init(userGroupId: userGroupId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户组中的用户列表
     @inlinable
     public func listUsersInUserGroup(userGroupId: String, searchCondition: UserSearchCriteria? = nil, sort: SortCondition? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInUserGroupResponse {
-        let input = ListUsersInUserGroupRequest(userGroupId: userGroupId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListUsersInUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listUsersInUserGroup(.init(userGroupId: userGroupId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户组中的用户列表

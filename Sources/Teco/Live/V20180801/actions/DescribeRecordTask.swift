@@ -117,8 +117,7 @@ extension Live {
     /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
     @inlinable
     public func describeRecordTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordTaskResponse> {
-        let input = DescribeRecordTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
-        return self.client.execute(action: "DescribeRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordTask(.init(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录制任务列表（新）
@@ -129,8 +128,7 @@ extension Live {
     /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
     @inlinable
     public func describeRecordTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTaskResponse {
-        let input = DescribeRecordTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
-        return try await self.client.execute(action: "DescribeRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordTask(.init(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录制任务列表（新）

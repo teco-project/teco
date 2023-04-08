@@ -84,8 +84,7 @@ extension Dayu {
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
     @inlinable
     public func modifyDDoSAlarmThreshold(business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAlarmThresholdResponse> {
-        let input = ModifyDDoSAlarmThresholdRequest(business: business, rsId: rsId, alarmType: alarmType, alarmThreshold: alarmThreshold, ipList: ipList)
-        return self.client.execute(action: "ModifyDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSAlarmThreshold(.init(business: business, rsId: rsId, alarmType: alarmType, alarmThreshold: alarmThreshold, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS告警通知阈值
@@ -93,7 +92,6 @@ extension Dayu {
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
     @inlinable
     public func modifyDDoSAlarmThreshold(business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAlarmThresholdResponse {
-        let input = ModifyDDoSAlarmThresholdRequest(business: business, rsId: rsId, alarmType: alarmType, alarmThreshold: alarmThreshold, ipList: ipList)
-        return try await self.client.execute(action: "ModifyDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSAlarmThreshold(.init(business: business, rsId: rsId, alarmType: alarmType, alarmThreshold: alarmThreshold, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

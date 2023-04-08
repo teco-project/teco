@@ -85,8 +85,7 @@ extension Iotcloud {
     /// 本接口（UploadFirmware）用于上传设备固件信息
     @inlinable @discardableResult
     public func uploadFirmware(productId: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
-        let input = UploadFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
-        return self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadFirmware(.init(productId: productId, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传固件信息
@@ -94,7 +93,6 @@ extension Iotcloud {
     /// 本接口（UploadFirmware）用于上传设备固件信息
     @inlinable @discardableResult
     public func uploadFirmware(productId: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
-        let input = UploadFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
-        return try await self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadFirmware(.init(productId: productId, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 }

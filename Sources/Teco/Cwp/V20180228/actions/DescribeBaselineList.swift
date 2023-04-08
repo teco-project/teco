@@ -106,8 +106,7 @@ extension Cwp {
     /// 查询基线列表信息
     @inlinable
     public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineListResponse> {
-        let input = DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaselineList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线列表
@@ -115,8 +114,7 @@ extension Cwp {
     /// 查询基线列表信息
     @inlinable
     public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
-        let input = DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaselineList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线列表

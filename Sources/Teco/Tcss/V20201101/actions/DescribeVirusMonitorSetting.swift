@@ -65,14 +65,12 @@ extension Tcss {
     /// 运行时查询文件查杀实时监控设置
     @inlinable
     public func describeVirusMonitorSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusMonitorSettingResponse> {
-        let input = DescribeVirusMonitorSettingRequest()
-        return self.client.execute(action: "DescribeVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusMonitorSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀实时监控设置
     @inlinable
     public func describeVirusMonitorSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusMonitorSettingResponse {
-        let input = DescribeVirusMonitorSettingRequest()
-        return try await self.client.execute(action: "DescribeVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusMonitorSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

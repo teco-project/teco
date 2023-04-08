@@ -85,8 +85,7 @@ extension Trtc {
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
     public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalTrtcMeasureResponse> {
-        let input = DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
-        return self.client.execute(action: "DescribeExternalTrtcMeasure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExternalTrtcMeasure(.init(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询音视频用量计费时长（旧）
@@ -95,7 +94,6 @@ extension Trtc {
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
     public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
-        let input = DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
-        return try await self.client.execute(action: "DescribeExternalTrtcMeasure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExternalTrtcMeasure(.init(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

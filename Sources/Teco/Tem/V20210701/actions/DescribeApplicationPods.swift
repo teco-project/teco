@@ -111,15 +111,13 @@ extension Tem {
     /// 获取应用实例列表
     @inlinable
     public func describeApplicationPods(environmentId: String, applicationId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationPodsResponse> {
-        let input = DescribeApplicationPodsRequest(environmentId: environmentId, applicationId: applicationId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel)
-        return self.client.execute(action: "DescribeApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationPods(.init(environmentId: environmentId, applicationId: applicationId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用实例列表
     @inlinable
     public func describeApplicationPods(environmentId: String, applicationId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationPodsResponse {
-        let input = DescribeApplicationPodsRequest(environmentId: environmentId, applicationId: applicationId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "DescribeApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationPods(.init(environmentId: environmentId, applicationId: applicationId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用实例列表

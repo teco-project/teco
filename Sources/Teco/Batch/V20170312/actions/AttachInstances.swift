@@ -83,8 +83,7 @@ extension Batch {
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable @discardableResult
     public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        let input = AttachInstancesRequest(envId: envId, instances: instances)
-        return self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachInstances(.init(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加实例到计算环境
@@ -98,7 +97,6 @@ extension Batch {
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable @discardableResult
     public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        let input = AttachInstancesRequest(envId: envId, instances: instances)
-        return try await self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachInstances(.init(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

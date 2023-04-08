@@ -63,14 +63,12 @@ extension Essbasic {
     /// 根据用户自定义id查询文件id
     @inlinable
     public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileIdsByCustomIdsResponse> {
-        let input = DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds)
-        return self.client.execute(action: "DescribeFileIdsByCustomIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFileIdsByCustomIds(.init(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据用户自定义id查询文件id
     @inlinable
     public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
-        let input = DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds)
-        return try await self.client.execute(action: "DescribeFileIdsByCustomIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFileIdsByCustomIds(.init(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 }

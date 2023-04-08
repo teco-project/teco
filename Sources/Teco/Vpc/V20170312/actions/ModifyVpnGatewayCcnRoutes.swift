@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
     @inlinable @discardableResult
     public func modifyVpnGatewayCcnRoutes(vpnGatewayId: String, routes: [VpngwCcnRoutes], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayCcnRoutesResponse> {
-        let input = ModifyVpnGatewayCcnRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes)
-        return self.client.execute(action: "ModifyVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN网关云联网路由
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
     @inlinable @discardableResult
     public func modifyVpnGatewayCcnRoutes(vpnGatewayId: String, routes: [VpngwCcnRoutes], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayCcnRoutesResponse {
-        let input = ModifyVpnGatewayCcnRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes)
-        return try await self.client.execute(action: "ModifyVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

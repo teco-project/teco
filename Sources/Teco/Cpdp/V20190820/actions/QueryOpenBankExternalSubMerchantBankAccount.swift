@@ -97,14 +97,12 @@ extension Cpdp {
     /// 云企付-子商户银行卡列表查询
     @inlinable
     public func queryOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankExternalSubMerchantBankAccountResponse> {
-        let input = QueryOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment)
-        return self.client.execute(action: "QueryOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankExternalSubMerchantBankAccount(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡列表查询
     @inlinable
     public func queryOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubMerchantBankAccountResponse {
-        let input = QueryOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment)
-        return try await self.client.execute(action: "QueryOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankExternalSubMerchantBankAccount(.init(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

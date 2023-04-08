@@ -67,14 +67,12 @@ extension Redis {
     /// 获取集群版实例分片信息
     @inlinable
     public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
-        let input = DescribeInstanceShardsRequest(instanceId: instanceId, filterSlave: filterSlave)
-        return self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstanceShards(.init(instanceId: instanceId, filterSlave: filterSlave), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群版实例分片信息
     @inlinable
     public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
-        let input = DescribeInstanceShardsRequest(instanceId: instanceId, filterSlave: filterSlave)
-        return try await self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstanceShards(.init(instanceId: instanceId, filterSlave: filterSlave), region: region, logger: logger, on: eventLoop)
     }
 }

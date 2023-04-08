@@ -119,8 +119,7 @@ extension Cpdp {
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
     @inlinable @discardableResult
     public func refund(userId: String, refundId: String, midasAppId: String, totalRefundAmt: Int64, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, mchRefundAmt: Int64? = nil, transactionId: String? = nil, platformRefundAmt: Int64? = nil, subOrderRefundList: [RefundOutSubOrderRefundList]? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundResponse> {
-        let input = RefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, totalRefundAmt: totalRefundAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, mchRefundAmt: mchRefundAmt, transactionId: transactionId, platformRefundAmt: platformRefundAmt, subOrderRefundList: subOrderRefundList, midasEnvironment: midasEnvironment)
-        return self.client.execute(action: "Refund", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.refund(.init(userId: userId, refundId: refundId, midasAppId: midasAppId, totalRefundAmt: totalRefundAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, mchRefundAmt: mchRefundAmt, transactionId: transactionId, platformRefundAmt: platformRefundAmt, subOrderRefundList: subOrderRefundList, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-退款接口
@@ -128,7 +127,6 @@ extension Cpdp {
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
     @inlinable @discardableResult
     public func refund(userId: String, refundId: String, midasAppId: String, totalRefundAmt: Int64, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, mchRefundAmt: Int64? = nil, transactionId: String? = nil, platformRefundAmt: Int64? = nil, subOrderRefundList: [RefundOutSubOrderRefundList]? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundResponse {
-        let input = RefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, totalRefundAmt: totalRefundAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, mchRefundAmt: mchRefundAmt, transactionId: transactionId, platformRefundAmt: platformRefundAmt, subOrderRefundList: subOrderRefundList, midasEnvironment: midasEnvironment)
-        return try await self.client.execute(action: "Refund", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.refund(.init(userId: userId, refundId: refundId, midasAppId: midasAppId, totalRefundAmt: totalRefundAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, mchRefundAmt: mchRefundAmt, transactionId: transactionId, platformRefundAmt: platformRefundAmt, subOrderRefundList: subOrderRefundList, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

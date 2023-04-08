@@ -81,8 +81,7 @@ extension Cme {
     /// <li>分类下没有绑定素材。</li>
     @inlinable @discardableResult
     public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
-        let input = DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`)
-        return self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClass(.init(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除分类
@@ -92,7 +91,6 @@ extension Cme {
     /// <li>分类下没有绑定素材。</li>
     @inlinable @discardableResult
     public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
-        let input = DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`)
-        return try await self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClass(.init(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

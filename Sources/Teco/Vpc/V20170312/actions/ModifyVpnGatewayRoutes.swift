@@ -70,8 +70,7 @@ extension Vpc {
     /// 修改VPN路由是否启用
     @inlinable
     public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayRoutesResponse> {
-        let input = ModifyVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes)
-        return self.client.execute(action: "ModifyVpnGatewayRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpnGatewayRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN路由状态
@@ -79,7 +78,6 @@ extension Vpc {
     /// 修改VPN路由是否启用
     @inlinable
     public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayRoutesResponse {
-        let input = ModifyVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes)
-        return try await self.client.execute(action: "ModifyVpnGatewayRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpnGatewayRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

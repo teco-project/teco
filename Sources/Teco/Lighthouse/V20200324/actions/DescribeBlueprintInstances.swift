@@ -68,8 +68,7 @@ extension Lighthouse {
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
     public func describeBlueprintInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintInstancesResponse> {
-        let input = DescribeBlueprintInstancesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeBlueprintInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBlueprintInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像实例信息
@@ -77,7 +76,6 @@ extension Lighthouse {
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
     public func describeBlueprintInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
-        let input = DescribeBlueprintInstancesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeBlueprintInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBlueprintInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

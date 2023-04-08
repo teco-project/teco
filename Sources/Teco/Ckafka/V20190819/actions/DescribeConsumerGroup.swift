@@ -78,14 +78,12 @@ extension Ckafka {
     /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConsumerGroupResponse> {
-        let input = DescribeConsumerGroupRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeConsumerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeConsumerGroup(.init(instanceId: instanceId, groupName: groupName, topicName: topicName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerGroupResponse {
-        let input = DescribeConsumerGroupRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeConsumerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeConsumerGroup(.init(instanceId: instanceId, groupName: groupName, topicName: topicName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

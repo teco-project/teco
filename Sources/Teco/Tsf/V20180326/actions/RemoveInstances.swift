@@ -70,8 +70,7 @@ extension Tsf {
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
     public func removeInstances(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        let input = RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList)
-        return self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移除云主机
@@ -79,7 +78,6 @@ extension Tsf {
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
     public func removeInstances(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        let input = RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList)
-        return try await self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

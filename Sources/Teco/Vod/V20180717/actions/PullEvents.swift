@@ -85,8 +85,7 @@ extension Vod {
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
-        let input = PullEventsRequest(extInfo: extInfo, subAppId: subAppId)
-        return self.client.execute(action: "PullEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.pullEvents(.init(extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取事件通知
@@ -99,7 +98,6 @@ extension Vod {
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
-        let input = PullEventsRequest(extInfo: extInfo, subAppId: subAppId)
-        return try await self.client.execute(action: "PullEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.pullEvents(.init(extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

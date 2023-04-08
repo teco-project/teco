@@ -70,8 +70,7 @@ extension Ssl {
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
     public func downloadCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
-        let input = DownloadCertificateRequest(certificateId: certificateId)
-        return self.client.execute(action: "DownloadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadCertificate(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载证书
@@ -79,7 +78,6 @@ extension Ssl {
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
     public func downloadCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
-        let input = DownloadCertificateRequest(certificateId: certificateId)
-        return try await self.client.execute(action: "DownloadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadCertificate(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Ssa {
     /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDetailResponse> {
-        let input = DescribeAssetDetailRequest(params: params)
-        return self.client.execute(action: "DescribeAssetDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetDetail(.init(params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDetailResponse {
-        let input = DescribeAssetDetailRequest(params: params)
-        return try await self.client.execute(action: "DescribeAssetDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetDetail(.init(params: params), region: region, logger: logger, on: eventLoop)
     }
 }

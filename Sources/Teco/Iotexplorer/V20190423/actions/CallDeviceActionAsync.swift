@@ -83,8 +83,7 @@ extension Iotexplorer {
     /// 提供给用户异步调用设备行为的能力
     @inlinable
     public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionAsyncResponse> {
-        let input = CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
-        return self.client.execute(action: "CallDeviceActionAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.callDeviceActionAsync(.init(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 异步调用设备行为
@@ -92,7 +91,6 @@ extension Iotexplorer {
     /// 提供给用户异步调用设备行为的能力
     @inlinable
     public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionAsyncResponse {
-        let input = CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
-        return try await self.client.execute(action: "CallDeviceActionAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.callDeviceActionAsync(.init(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 }

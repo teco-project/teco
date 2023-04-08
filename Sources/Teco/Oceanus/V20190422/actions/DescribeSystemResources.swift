@@ -107,15 +107,13 @@ extension Oceanus {
     /// 描述系统资源接口
     @inlinable
     public func describeSystemResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSystemResourcesResponse> {
-        let input = DescribeSystemResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion)
-        return self.client.execute(action: "DescribeSystemResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSystemResources(.init(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述系统资源接口
     @inlinable
     public func describeSystemResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemResourcesResponse {
-        let input = DescribeSystemResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion)
-        return try await self.client.execute(action: "DescribeSystemResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSystemResources(.init(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述系统资源接口

@@ -84,14 +84,12 @@ extension Es {
     /// 更新ES集群词典
     @inlinable @discardableResult
     public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictionariesResponse> {
-        let input = UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart)
-        return self.client.execute(action: "UpdateDictionaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDictionaries(.init(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新ES集群词典
     @inlinable @discardableResult
     public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
-        let input = UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart)
-        return try await self.client.execute(action: "UpdateDictionaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDictionaries(.init(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

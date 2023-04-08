@@ -69,14 +69,12 @@ extension Dlc {
     /// DMS元数据删除表
     @inlinable @discardableResult
     public func dropDMSTable(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSTableResponse> {
-        let input = DropDMSTableRequest(dbName: dbName, name: name, deleteData: deleteData, envProps: envProps)
-        return self.client.execute(action: "DropDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.dropDMSTable(.init(dbName: dbName, name: name, deleteData: deleteData, envProps: envProps), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除表
     @inlinable @discardableResult
     public func dropDMSTable(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSTableResponse {
-        let input = DropDMSTableRequest(dbName: dbName, name: name, deleteData: deleteData, envProps: envProps)
-        return try await self.client.execute(action: "DropDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.dropDMSTable(.init(dbName: dbName, name: name, deleteData: deleteData, envProps: envProps), region: region, logger: logger, on: eventLoop)
     }
 }

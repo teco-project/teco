@@ -110,15 +110,13 @@ extension Teo {
     /// 获取应用代理列表
     @inlinable
     public func describeApplicationProxy(zoneId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyResponse> {
-        let input = DescribeApplicationProxyRequest(zoneId: zoneId, offset: offset, limit: limit, proxyId: proxyId)
-        return self.client.execute(action: "DescribeApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationProxy(.init(zoneId: zoneId, offset: offset, limit: limit, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用代理列表
     @inlinable
     public func describeApplicationProxy(zoneId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyResponse {
-        let input = DescribeApplicationProxyRequest(zoneId: zoneId, offset: offset, limit: limit, proxyId: proxyId)
-        return try await self.client.execute(action: "DescribeApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationProxy(.init(zoneId: zoneId, offset: offset, limit: limit, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用代理列表

@@ -68,14 +68,12 @@ extension Cwp {
     /// 获取主机账号详情
     @inlinable
     public func describeAssetUserInfo(quuid: String, uuid: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserInfoResponse> {
-        let input = DescribeAssetUserInfoRequest(quuid: quuid, uuid: uuid, name: name)
-        return self.client.execute(action: "DescribeAssetUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAssetUserInfo(.init(quuid: quuid, uuid: uuid, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机账号详情
     @inlinable
     public func describeAssetUserInfo(quuid: String, uuid: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {
-        let input = DescribeAssetUserInfoRequest(quuid: quuid, uuid: uuid, name: name)
-        return try await self.client.execute(action: "DescribeAssetUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAssetUserInfo(.init(quuid: quuid, uuid: uuid, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -86,8 +86,7 @@ extension Dts {
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrateJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable
     public func describeMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateCheckJobResponse> {
-        let input = DescribeMigrateCheckJobRequest(jobId: jobId)
-        return self.client.execute(action: "DescribeMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取迁移校验结果
@@ -97,7 +96,6 @@ extension Dts {
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrateJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable
     public func describeMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateCheckJobResponse {
-        let input = DescribeMigrateCheckJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "DescribeMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

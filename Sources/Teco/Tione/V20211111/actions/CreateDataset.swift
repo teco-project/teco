@@ -123,14 +123,12 @@ extension Tione {
     /// 创建数据集
     @inlinable
     public func createDataset(datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]? = nil, annotationStatus: String? = nil, annotationType: String? = nil, annotationFormat: String? = nil, schemaInfos: [SchemaInfo]? = nil, isSchemaExisted: Bool? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatasetResponse> {
-        let input = CreateDatasetRequest(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType)
-        return self.client.execute(action: "CreateDataset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDataset(.init(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据集
     @inlinable
     public func createDataset(datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]? = nil, annotationStatus: String? = nil, annotationType: String? = nil, annotationFormat: String? = nil, schemaInfos: [SchemaInfo]? = nil, isSchemaExisted: Bool? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatasetResponse {
-        let input = CreateDatasetRequest(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType)
-        return try await self.client.execute(action: "CreateDataset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDataset(.init(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 }

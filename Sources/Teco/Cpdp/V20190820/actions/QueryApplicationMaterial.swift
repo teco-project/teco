@@ -69,8 +69,7 @@ extension Cpdp {
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。
     @inlinable
     public func queryApplicationMaterial(declareId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryApplicationMaterialResponse> {
-        let input = QueryApplicationMaterialRequest(declareId: declareId, profile: profile)
-        return self.client.execute(action: "QueryApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryApplicationMaterial(.init(declareId: declareId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-成功申报材料查询
@@ -78,7 +77,6 @@ extension Cpdp {
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。
     @inlinable
     public func queryApplicationMaterial(declareId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApplicationMaterialResponse {
-        let input = QueryApplicationMaterialRequest(declareId: declareId, profile: profile)
-        return try await self.client.execute(action: "QueryApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryApplicationMaterial(.init(declareId: declareId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

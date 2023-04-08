@@ -105,8 +105,7 @@ extension Bri {
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
     public func describeBRI(requestData: BRIRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
-        let input = DescribeBRIRequest(requestData: requestData, resourceId: resourceId)
-        return self.client.execute(action: "DescribeBRI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBRI(.init(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取业务风险情报
@@ -126,7 +125,6 @@ extension Bri {
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
     public func describeBRI(requestData: BRIRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
-        let input = DescribeBRIRequest(requestData: requestData, resourceId: resourceId)
-        return try await self.client.execute(action: "DescribeBRI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBRI(.init(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

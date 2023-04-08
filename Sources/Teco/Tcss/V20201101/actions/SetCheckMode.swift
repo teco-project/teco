@@ -68,14 +68,12 @@ extension Tcss {
     /// 设置检测模式和自动检查
     @inlinable
     public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCheckModeResponse> {
-        let input = SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck)
-        return self.client.execute(action: "SetCheckMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setCheckMode(.init(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置检测模式和自动检查
     @inlinable
     public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
-        let input = SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck)
-        return try await self.client.execute(action: "SetCheckMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setCheckMode(.init(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Iecp {
     /// 修改单元应用基本信息
     @inlinable @discardableResult
     public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationBasicInfoResponse> {
-        let input = ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyEdgeUnitApplicationBasicInfo(.init(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改单元应用基本信息
     @inlinable @discardableResult
     public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
-        let input = ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId)
-        return try await self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyEdgeUnitApplicationBasicInfo(.init(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

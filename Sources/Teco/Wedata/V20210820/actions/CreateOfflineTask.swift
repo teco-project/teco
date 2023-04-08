@@ -103,14 +103,12 @@ extension Wedata {
     /// 创建离线任务
     @inlinable
     public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineTaskResponse> {
-        let input = CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode)
-        return self.client.execute(action: "CreateOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createOfflineTask(.init(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建离线任务
     @inlinable
     public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
-        let input = CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode)
-        return try await self.client.execute(action: "CreateOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createOfflineTask(.init(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 }

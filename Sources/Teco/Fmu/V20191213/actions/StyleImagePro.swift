@@ -96,8 +96,7 @@ extension Fmu {
     /// 上传一张照片，输出滤镜处理后的图片。
     @inlinable
     public func styleImagePro(filterType: Int64, image: String? = nil, url: String? = nil, filterDegree: Int64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StyleImageProResponse> {
-        let input = StyleImageProRequest(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType)
-        return self.client.execute(action: "StyleImagePro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.styleImagePro(.init(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片滤镜（高级版）
@@ -105,7 +104,6 @@ extension Fmu {
     /// 上传一张照片，输出滤镜处理后的图片。
     @inlinable
     public func styleImagePro(filterType: Int64, image: String? = nil, url: String? = nil, filterDegree: Int64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StyleImageProResponse {
-        let input = StyleImageProRequest(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType)
-        return try await self.client.execute(action: "StyleImagePro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.styleImagePro(.init(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

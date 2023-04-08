@@ -73,8 +73,7 @@ extension Mariadb {
     /// 本接口(ModifyDBParameters)用于修改数据库参数。
     @inlinable
     public func modifyDBParameters(instanceId: String, params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBParametersResponse> {
-        let input = ModifyDBParametersRequest(instanceId: instanceId, params: params)
-        return self.client.execute(action: "ModifyDBParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBParameters(.init(instanceId: instanceId, params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库参数
@@ -82,7 +81,6 @@ extension Mariadb {
     /// 本接口(ModifyDBParameters)用于修改数据库参数。
     @inlinable
     public func modifyDBParameters(instanceId: String, params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBParametersResponse {
-        let input = ModifyDBParametersRequest(instanceId: instanceId, params: params)
-        return try await self.client.execute(action: "ModifyDBParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBParameters(.init(instanceId: instanceId, params: params), region: region, logger: logger, on: eventLoop)
     }
 }

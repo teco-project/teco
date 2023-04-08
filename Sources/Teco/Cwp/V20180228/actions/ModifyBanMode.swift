@@ -59,14 +59,12 @@ extension Cwp {
     /// 修改爆破阻断模式
     @inlinable @discardableResult
     public func modifyBanMode(mode: String, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
-        let input = ModifyBanModeRequest(mode: mode, ttl: ttl)
-        return self.client.execute(action: "ModifyBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBanMode(.init(mode: mode, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改爆破阻断模式
     @inlinable @discardableResult
     public func modifyBanMode(mode: String, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
-        let input = ModifyBanModeRequest(mode: mode, ttl: ttl)
-        return try await self.client.execute(action: "ModifyBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBanMode(.init(mode: mode, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

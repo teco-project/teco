@@ -77,8 +77,7 @@ extension Tag {
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
     public func tagResources(resourceList: [String], tags: [Tag], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagResourcesResponse> {
-        let input = TagResourcesRequest(resourceList: resourceList, tags: tags)
-        return self.client.execute(action: "TagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.tagResources(.init(resourceList: resourceList, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为资源绑定标签
@@ -86,7 +85,6 @@ extension Tag {
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
     public func tagResources(resourceList: [String], tags: [Tag], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
-        let input = TagResourcesRequest(resourceList: resourceList, tags: tags)
-        return try await self.client.execute(action: "TagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.tagResources(.init(resourceList: resourceList, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Tsf {
     /// 删除路径重写
     @inlinable
     public func deletePathRewrites(pathRewriteIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePathRewritesResponse> {
-        let input = DeletePathRewritesRequest(pathRewriteIds: pathRewriteIds)
-        return self.client.execute(action: "DeletePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePathRewrites(.init(pathRewriteIds: pathRewriteIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除路径重写
     @inlinable
     public func deletePathRewrites(pathRewriteIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePathRewritesResponse {
-        let input = DeletePathRewritesRequest(pathRewriteIds: pathRewriteIds)
-        return try await self.client.execute(action: "DeletePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePathRewrites(.init(pathRewriteIds: pathRewriteIds), region: region, logger: logger, on: eventLoop)
     }
 }

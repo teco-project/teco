@@ -145,8 +145,7 @@ extension Cpdp {
     /// 商户提现
     @inlinable @discardableResult
     public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyWithdrawalResponse> {
-        let input = ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId)
-        return self.client.execute(action: "ApplyWithdrawal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyWithdrawal(.init(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现
@@ -154,7 +153,6 @@ extension Cpdp {
     /// 商户提现
     @inlinable @discardableResult
     public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
-        let input = ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId)
-        return try await self.client.execute(action: "ApplyWithdrawal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyWithdrawal(.init(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

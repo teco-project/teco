@@ -163,8 +163,7 @@ extension Tsf {
     /// 服务统计页面：接口和服务维度
     @inlinable
     public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticsResponse> {
-        let input = DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList)
-        return self.client.execute(action: "DescribeStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStatistics(.init(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务统计
@@ -172,8 +171,7 @@ extension Tsf {
     /// 服务统计页面：接口和服务维度
     @inlinable
     public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
-        let input = DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList)
-        return try await self.client.execute(action: "DescribeStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStatistics(.init(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务统计

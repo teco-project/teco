@@ -68,14 +68,12 @@ extension Bmvpc {
     /// 修改黑石对等连接
     @inlinable
     public func modifyVpcPeerConnection(vpcPeerConnectionId: String, bandwidth: UInt64? = nil, vpcPeerConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcPeerConnectionResponse> {
-        let input = ModifyVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId, bandwidth: bandwidth, vpcPeerConnectionName: vpcPeerConnectionName)
-        return self.client.execute(action: "ModifyVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVpcPeerConnection(.init(vpcPeerConnectionId: vpcPeerConnectionId, bandwidth: bandwidth, vpcPeerConnectionName: vpcPeerConnectionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石对等连接
     @inlinable
     public func modifyVpcPeerConnection(vpcPeerConnectionId: String, bandwidth: UInt64? = nil, vpcPeerConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeerConnectionResponse {
-        let input = ModifyVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId, bandwidth: bandwidth, vpcPeerConnectionName: vpcPeerConnectionName)
-        return try await self.client.execute(action: "ModifyVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVpcPeerConnection(.init(vpcPeerConnectionId: vpcPeerConnectionId, bandwidth: bandwidth, vpcPeerConnectionName: vpcPeerConnectionName), region: region, logger: logger, on: eventLoop)
     }
 }

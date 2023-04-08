@@ -68,8 +68,7 @@ extension Clb {
     /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
     @inlinable @discardableResult
     public func migrateClassicalLoadBalancers(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateClassicalLoadBalancersResponse> {
-        let input = MigrateClassicalLoadBalancersRequest(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster)
-        return self.client.execute(action: "MigrateClassicalLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.migrateClassicalLoadBalancers(.init(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster), region: region, logger: logger, on: eventLoop)
     }
 
     /// 传统型负载均衡迁移成(原应用型)负载均衡
@@ -78,7 +77,6 @@ extension Clb {
     /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
     @inlinable @discardableResult
     public func migrateClassicalLoadBalancers(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateClassicalLoadBalancersResponse {
-        let input = MigrateClassicalLoadBalancersRequest(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster)
-        return try await self.client.execute(action: "MigrateClassicalLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.migrateClassicalLoadBalancers(.init(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster), region: region, logger: logger, on: eventLoop)
     }
 }

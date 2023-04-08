@@ -119,8 +119,7 @@ extension Live {
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
     public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScreenshotTaskResponse> {
-        let input = CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`)
-        return self.client.execute(action: "CreateScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createScreenshotTask(.init(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建截图任务
@@ -134,7 +133,6 @@ extension Live {
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
     public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
-        let input = CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`)
-        return try await self.client.execute(action: "CreateScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createScreenshotTask(.init(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -148,8 +148,7 @@ extension Redis {
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
     public func describeCommonDBInstances(vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommonDBInstancesResponse> {
-        let input = DescribeCommonDBInstancesRequest(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeCommonDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCommonDBInstances(.init(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表信息
@@ -157,8 +156,7 @@ extension Redis {
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
     public func describeCommonDBInstances(vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommonDBInstancesResponse {
-        let input = DescribeCommonDBInstancesRequest(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeCommonDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCommonDBInstances(.init(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表信息

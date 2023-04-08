@@ -58,14 +58,12 @@ extension Iotvideo {
     /// 查询账户余额
     @inlinable
     public func describeBalance(accountType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceResponse> {
-        let input = DescribeBalanceRequest(accountType: accountType)
-        return self.client.execute(action: "DescribeBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBalance(.init(accountType: accountType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账户余额
     @inlinable
     public func describeBalance(accountType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceResponse {
-        let input = DescribeBalanceRequest(accountType: accountType)
-        return try await self.client.execute(action: "DescribeBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBalance(.init(accountType: accountType), region: region, logger: logger, on: eventLoop)
     }
 }

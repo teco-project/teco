@@ -88,14 +88,12 @@ extension Tsf {
     /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewInvocationResponse> {
-        let input = DescribeOverviewInvocationRequest(namespaceId: namespaceId, type: type, period: period, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "DescribeOverviewInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOverviewInvocation(.init(namespaceId: namespaceId, type: type, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {
-        let input = DescribeOverviewInvocationRequest(namespaceId: namespaceId, type: type, period: period, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "DescribeOverviewInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOverviewInvocation(.init(namespaceId: namespaceId, type: type, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

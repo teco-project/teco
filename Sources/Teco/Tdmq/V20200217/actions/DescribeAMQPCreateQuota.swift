@@ -72,8 +72,7 @@ extension Tdmq {
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
     public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
-        let input = DescribeAMQPCreateQuotaRequest()
-        return self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAMQPCreateQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户配额
@@ -81,7 +80,6 @@ extension Tdmq {
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
     public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
-        let input = DescribeAMQPCreateQuotaRequest()
-        return try await self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAMQPCreateQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

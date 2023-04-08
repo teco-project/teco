@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
     public func openInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenInterCommunicationResponse> {
-        let input = OpenInterCommunicationRequest(instanceIdSet: instanceIdSet)
-        return self.client.execute(action: "OpenInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.openInterCommunication(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 打开实例的互通
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
     public func openInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
-        let input = OpenInterCommunicationRequest(instanceIdSet: instanceIdSet)
-        return try await self.client.execute(action: "OpenInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.openInterCommunication(.init(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

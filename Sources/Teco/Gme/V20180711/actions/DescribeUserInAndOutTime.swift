@@ -82,14 +82,12 @@ extension Gme {
     /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserInAndOutTimeResponse> {
-        let input = DescribeUserInAndOutTimeRequest(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr)
-        return self.client.execute(action: "DescribeUserInAndOutTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUserInAndOutTime(.init(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
-        let input = DescribeUserInAndOutTimeRequest(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr)
-        return try await self.client.execute(action: "DescribeUserInAndOutTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUserInAndOutTime(.init(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Tcaplusdb {
     /// 查询独占集群可以申请的剩余机器
     @inlinable
     public func describeMachine(ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineResponse> {
-        let input = DescribeMachineRequest(ipv6Enable: ipv6Enable)
-        return self.client.execute(action: "DescribeMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMachine(.init(ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独占集群剩余机器
@@ -73,7 +72,6 @@ extension Tcaplusdb {
     /// 查询独占集群可以申请的剩余机器
     @inlinable
     public func describeMachine(ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
-        let input = DescribeMachineRequest(ipv6Enable: ipv6Enable)
-        return try await self.client.execute(action: "DescribeMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMachine(.init(ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
     }
 }

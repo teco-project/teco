@@ -54,14 +54,12 @@ extension Cwp {
     /// 设置阻断开关状态
     @inlinable @discardableResult
     public func modifyBanStatus(status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanStatusResponse> {
-        let input = ModifyBanStatusRequest(status: status)
-        return self.client.execute(action: "ModifyBanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBanStatus(.init(status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置阻断开关状态
     @inlinable @discardableResult
     public func modifyBanStatus(status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanStatusResponse {
-        let input = ModifyBanStatusRequest(status: status)
-        return try await self.client.execute(action: "ModifyBanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBanStatus(.init(status: status), region: region, logger: logger, on: eventLoop)
     }
 }

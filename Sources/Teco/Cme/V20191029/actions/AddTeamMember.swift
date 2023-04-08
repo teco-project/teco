@@ -75,8 +75,7 @@ extension Cme {
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable @discardableResult
     public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
-        let input = AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`)
-        return self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addTeamMember(.init(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加团队成员
@@ -84,7 +83,6 @@ extension Cme {
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable @discardableResult
     public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
-        let input = AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`)
-        return try await self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addTeamMember(.init(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

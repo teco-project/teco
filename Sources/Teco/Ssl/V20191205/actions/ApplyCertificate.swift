@@ -129,8 +129,7 @@ extension Ssl {
     /// 本接口（ApplyCertificate）用于免费证书申请。
     @inlinable
     public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, deleteDnsAutoRecord: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCertificateResponse> {
-        let input = ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord)
-        return self.client.execute(action: "ApplyCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyCertificate(.init(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 免费证书申请
@@ -138,7 +137,6 @@ extension Ssl {
     /// 本接口（ApplyCertificate）用于免费证书申请。
     @inlinable
     public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, deleteDnsAutoRecord: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
-        let input = ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord)
-        return try await self.client.execute(action: "ApplyCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyCertificate(.init(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord), region: region, logger: logger, on: eventLoop)
     }
 }

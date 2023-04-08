@@ -147,8 +147,7 @@ extension Cme {
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
     public func searchMaterial(platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMaterialResponse> {
-        let input = SearchMaterialRequest(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`)
-        return self.client.execute(action: "SearchMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.searchMaterial(.init(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体
@@ -156,8 +155,7 @@ extension Cme {
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
     public func searchMaterial(platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMaterialResponse {
-        let input = SearchMaterialRequest(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`)
-        return try await self.client.execute(action: "SearchMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.searchMaterial(.init(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体

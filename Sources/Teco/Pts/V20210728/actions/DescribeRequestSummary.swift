@@ -69,14 +69,12 @@ extension Pts {
     /// 查询请求汇总信息
     @inlinable
     public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestSummaryResponse> {
-        let input = DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId)
-        return self.client.execute(action: "DescribeRequestSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRequestSummary(.init(jobId: jobId, scenarioId: scenarioId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询请求汇总信息
     @inlinable
     public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
-        let input = DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRequestSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRequestSummary(.init(jobId: jobId, scenarioId: scenarioId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Mongodb {
     /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAccountUserPrivilegeResponse> {
-        let input = SetAccountUserPrivilegeRequest(instanceId: instanceId, userName: userName, authRole: authRole)
-        return self.client.execute(action: "SetAccountUserPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setAccountUserPrivilege(.init(instanceId: instanceId, userName: userName, authRole: authRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置账户权限
@@ -83,7 +82,6 @@ extension Mongodb {
     /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
-        let input = SetAccountUserPrivilegeRequest(instanceId: instanceId, userName: userName, authRole: authRole)
-        return try await self.client.execute(action: "SetAccountUserPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setAccountUserPrivilege(.init(instanceId: instanceId, userName: userName, authRole: authRole), region: region, logger: logger, on: eventLoop)
     }
 }

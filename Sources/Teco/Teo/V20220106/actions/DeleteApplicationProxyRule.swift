@@ -68,14 +68,12 @@ extension Teo {
     /// 删除应用代理规则
     @inlinable
     public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
-        let input = DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId)
-        return self.client.execute(action: "DeleteApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理规则
     @inlinable
     public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
-        let input = DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId)
-        return try await self.client.execute(action: "DeleteApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -75,8 +75,7 @@ extension Cam {
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
     public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
-        let input = CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault)
-        return self.client.execute(action: "CreatePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPolicyVersion(.init(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增策略版本接口
@@ -84,7 +83,6 @@ extension Cam {
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
     public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
-        let input = CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault)
-        return try await self.client.execute(action: "CreatePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPolicyVersion(.init(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), region: region, logger: logger, on: eventLoop)
     }
 }

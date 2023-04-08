@@ -66,8 +66,7 @@ extension Mps {
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
-        let input = DeleteAIAnalysisTemplateRequest(definition: definition)
-        return self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAIAnalysisTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除内容分析模板
@@ -77,7 +76,6 @@ extension Mps {
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
-        let input = DeleteAIAnalysisTemplateRequest(definition: definition)
-        return try await self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAIAnalysisTemplate(.init(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 }

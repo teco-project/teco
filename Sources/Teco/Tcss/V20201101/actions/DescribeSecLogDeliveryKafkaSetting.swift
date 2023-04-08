@@ -76,14 +76,12 @@ extension Tcss {
     /// 查询安全日志投递kafka配置
     @inlinable
     public func describeSecLogDeliveryKafkaSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaSettingResponse> {
-        let input = DescribeSecLogDeliveryKafkaSettingRequest()
-        return self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecLogDeliveryKafkaSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志投递kafka配置
     @inlinable
     public func describeSecLogDeliveryKafkaSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaSettingResponse {
-        let input = DescribeSecLogDeliveryKafkaSettingRequest()
-        return try await self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecLogDeliveryKafkaSetting(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

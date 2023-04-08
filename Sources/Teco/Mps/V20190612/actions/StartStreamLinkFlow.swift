@@ -60,8 +60,7 @@ extension Mps {
     /// 启动媒体传输流。
     @inlinable @discardableResult
     public func startStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartStreamLinkFlowResponse> {
-        let input = StartStreamLinkFlowRequest(flowId: flowId)
-        return self.client.execute(action: "StartStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startStreamLinkFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启媒体传输流
@@ -69,7 +68,6 @@ extension Mps {
     /// 启动媒体传输流。
     @inlinable @discardableResult
     public func startStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartStreamLinkFlowResponse {
-        let input = StartStreamLinkFlowRequest(flowId: flowId)
-        return try await self.client.execute(action: "StartStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startStreamLinkFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

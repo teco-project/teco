@@ -69,14 +69,12 @@ extension Ic {
     /// 发送短信息接口
     @inlinable
     public func sendSms(sdkappid: Int64, iccid: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        let input = SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content)
-        return self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendSms(.init(sdkappid: sdkappid, iccid: iccid, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送短信息接口
     @inlinable
     public func sendSms(sdkappid: Int64, iccid: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        let input = SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content)
-        return try await self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendSms(.init(sdkappid: sdkappid, iccid: iccid, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

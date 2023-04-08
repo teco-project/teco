@@ -80,8 +80,7 @@ extension Batch {
     /// 用于修改计算环境属性
     @inlinable @discardableResult
     public func modifyComputeEnv(envId: String, desiredComputeNodeCount: Int64? = nil, envName: String? = nil, envDescription: String? = nil, envData: ComputeEnvData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyComputeEnvResponse> {
-        let input = ModifyComputeEnvRequest(envId: envId, desiredComputeNodeCount: desiredComputeNodeCount, envName: envName, envDescription: envDescription, envData: envData)
-        return self.client.execute(action: "ModifyComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyComputeEnv(.init(envId: envId, desiredComputeNodeCount: desiredComputeNodeCount, envName: envName, envDescription: envDescription, envData: envData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改计算环境
@@ -89,7 +88,6 @@ extension Batch {
     /// 用于修改计算环境属性
     @inlinable @discardableResult
     public func modifyComputeEnv(envId: String, desiredComputeNodeCount: Int64? = nil, envName: String? = nil, envDescription: String? = nil, envData: ComputeEnvData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyComputeEnvResponse {
-        let input = ModifyComputeEnvRequest(envId: envId, desiredComputeNodeCount: desiredComputeNodeCount, envName: envName, envDescription: envDescription, envData: envData)
-        return try await self.client.execute(action: "ModifyComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyComputeEnv(.init(envId: envId, desiredComputeNodeCount: desiredComputeNodeCount, envName: envName, envDescription: envDescription, envData: envData), region: region, logger: logger, on: eventLoop)
     }
 }

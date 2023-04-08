@@ -89,8 +89,7 @@ extension Ecm {
     /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
     @inlinable
     public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        let input = CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags)
-        return self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子网
@@ -98,7 +97,6 @@ extension Ecm {
     /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
     @inlinable
     public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        let input = CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags)
-        return try await self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

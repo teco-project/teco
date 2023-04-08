@@ -101,8 +101,7 @@ extension Cpdp {
     /// 云鉴-消费订单发起的接口
     @inlinable
     public func createOrder(channelCode: String, merchantAppId: String, amount: String, traceNo: String, notifyUrl: String, returnUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderResponse> {
-        let input = CreateOrderRequest(channelCode: channelCode, merchantAppId: merchantAppId, amount: amount, traceNo: traceNo, notifyUrl: notifyUrl, returnUrl: returnUrl)
-        return self.client.execute(action: "CreateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createOrder(.init(channelCode: channelCode, merchantAppId: merchantAppId, amount: amount, traceNo: traceNo, notifyUrl: notifyUrl, returnUrl: returnUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单发起接口
@@ -110,7 +109,6 @@ extension Cpdp {
     /// 云鉴-消费订单发起的接口
     @inlinable
     public func createOrder(channelCode: String, merchantAppId: String, amount: String, traceNo: String, notifyUrl: String, returnUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderResponse {
-        let input = CreateOrderRequest(channelCode: channelCode, merchantAppId: merchantAppId, amount: amount, traceNo: traceNo, notifyUrl: notifyUrl, returnUrl: returnUrl)
-        return try await self.client.execute(action: "CreateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createOrder(.init(channelCode: channelCode, merchantAppId: merchantAppId, amount: amount, traceNo: traceNo, notifyUrl: notifyUrl, returnUrl: returnUrl), region: region, logger: logger, on: eventLoop)
     }
 }

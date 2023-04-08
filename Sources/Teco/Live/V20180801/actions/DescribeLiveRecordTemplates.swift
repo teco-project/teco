@@ -66,8 +66,7 @@ extension Live {
     /// 获取录制模板列表。
     @inlinable
     public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
-        let input = DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive)
-        return self.client.execute(action: "DescribeLiveRecordTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveRecordTemplates(.init(isDelayLive: isDelayLive), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取录制模板列表
@@ -75,7 +74,6 @@ extension Live {
     /// 获取录制模板列表。
     @inlinable
     public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
-        let input = DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive)
-        return try await self.client.execute(action: "DescribeLiveRecordTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveRecordTemplates(.init(isDelayLive: isDelayLive), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -57,8 +57,7 @@ extension Advisor {
     /// 用于查询评估项的信息
     @inlinable
     public func describeStrategies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
-        let input = DescribeStrategiesRequest()
-        return self.client.execute(action: "DescribeStrategies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStrategies(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询评估项信息
@@ -66,7 +65,6 @@ extension Advisor {
     /// 用于查询评估项的信息
     @inlinable
     public func describeStrategies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
-        let input = DescribeStrategiesRequest()
-        return try await self.client.execute(action: "DescribeStrategies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStrategies(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

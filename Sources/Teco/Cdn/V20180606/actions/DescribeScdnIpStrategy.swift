@@ -110,8 +110,7 @@ extension Cdn {
     /// 查询在SCDN IP安全策略
     @inlinable
     public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnIpStrategyResponse> {
-        let input = DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence)
-        return self.client.execute(action: "DescribeScdnIpStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScdnIpStrategy(.init(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN安全防护IP白名单
@@ -119,8 +118,7 @@ extension Cdn {
     /// 查询在SCDN IP安全策略
     @inlinable
     public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
-        let input = DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence)
-        return try await self.client.execute(action: "DescribeScdnIpStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScdnIpStrategy(.init(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN安全防护IP白名单

@@ -89,8 +89,7 @@ extension Cpdp {
     /// 商户查询已开通的支付方式列表
     @inlinable
     public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantPayWayListResponse> {
-        let input = QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile)
-        return self.client.execute(action: "QueryMerchantPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryMerchantPayWayList(.init(openId: openId, openKey: openKey, payType: payType, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询商户支付方式列表
@@ -98,7 +97,6 @@ extension Cpdp {
     /// 商户查询已开通的支付方式列表
     @inlinable
     public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
-        let input = QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile)
-        return try await self.client.execute(action: "QueryMerchantPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryMerchantPayWayList(.init(openId: openId, openKey: openKey, payType: payType, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

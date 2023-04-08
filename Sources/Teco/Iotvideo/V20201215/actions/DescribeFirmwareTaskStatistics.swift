@@ -80,8 +80,7 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务统计信息
     @inlinable
     public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskStatisticsResponse> {
-        let input = DescribeFirmwareTaskStatisticsRequest(productID: productID, firmwareVersion: firmwareVersion)
-        return self.client.execute(action: "DescribeFirmwareTaskStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFirmwareTaskStatistics(.init(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务统计信息
@@ -89,7 +88,6 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务统计信息
     @inlinable
     public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
-        let input = DescribeFirmwareTaskStatisticsRequest(productID: productID, firmwareVersion: firmwareVersion)
-        return try await self.client.execute(action: "DescribeFirmwareTaskStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFirmwareTaskStatistics(.init(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 }

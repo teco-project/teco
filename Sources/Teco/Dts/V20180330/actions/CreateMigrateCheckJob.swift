@@ -72,8 +72,7 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
-        let input = CreateMigrateCheckJobRequest(jobId: jobId)
-        return self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建校验迁移任务
@@ -85,7 +84,6 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
-        let input = CreateMigrateCheckJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMigrateCheckJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

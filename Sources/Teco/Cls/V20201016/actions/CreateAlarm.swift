@@ -114,8 +114,7 @@ extension Cls {
     /// 本接口用于创建告警策略。
     @inlinable
     public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmResponse> {
-        let input = CreateAlarmRequest(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis)
-        return self.client.execute(action: "CreateAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警策略
@@ -123,7 +122,6 @@ extension Cls {
     /// 本接口用于创建告警策略。
     @inlinable
     public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmResponse {
-        let input = CreateAlarmRequest(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis)
-        return try await self.client.execute(action: "CreateAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 }

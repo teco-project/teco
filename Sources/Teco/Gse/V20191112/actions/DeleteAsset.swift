@@ -45,7 +45,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(_ input: DeleteAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssetResponse> {
-        self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAsset is no longer available.")
     }
 
     /// 删除生成包
@@ -54,7 +54,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(_ input: DeleteAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
-        try await self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAsset is no longer available.")
     }
 
     /// 删除生成包
@@ -63,8 +63,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssetResponse> {
-        let input = DeleteAssetRequest(assetId: assetId)
-        return self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAsset is no longer available.")
     }
 
     /// 删除生成包
@@ -73,7 +72,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
-        let input = DeleteAssetRequest(assetId: assetId)
-        return try await self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAsset is no longer available.")
     }
 }

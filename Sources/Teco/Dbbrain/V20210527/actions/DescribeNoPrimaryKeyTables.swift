@@ -125,8 +125,7 @@ extension Dbbrain {
     /// 查询实例无主键表。
     @inlinable
     public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
-        let input = DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product)
-        return self.client.execute(action: "DescribeNoPrimaryKeyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNoPrimaryKeyTables(.init(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例无主键表
@@ -134,8 +133,7 @@ extension Dbbrain {
     /// 查询实例无主键表。
     @inlinable
     public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
-        let input = DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product)
-        return try await self.client.execute(action: "DescribeNoPrimaryKeyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNoPrimaryKeyTables(.init(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例无主键表

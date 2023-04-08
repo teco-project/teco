@@ -96,8 +96,7 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     @inlinable
     public func describeDailyMostPlayedStat(date: String, domainName: String? = nil, metric: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyMostPlayedStatResponse> {
-        let input = DescribeDailyMostPlayedStatRequest(date: date, domainName: domainName, metric: metric, subAppId: subAppId)
-        return self.client.execute(action: "DescribeDailyMostPlayedStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDailyMostPlayedStat(.init(date: date, domainName: domainName, metric: metric, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询每日播放 Top100的媒体文件的播放统计数据
@@ -110,7 +109,6 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     @inlinable
     public func describeDailyMostPlayedStat(date: String, domainName: String? = nil, metric: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMostPlayedStatResponse {
-        let input = DescribeDailyMostPlayedStatRequest(date: date, domainName: domainName, metric: metric, subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeDailyMostPlayedStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDailyMostPlayedStat(.init(date: date, domainName: domainName, metric: metric, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

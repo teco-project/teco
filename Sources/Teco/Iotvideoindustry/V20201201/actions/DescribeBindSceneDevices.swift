@@ -100,8 +100,7 @@ extension Iotvideoindustry {
     /// 获取场景绑定设备列表
     @inlinable
     public func describeBindSceneDevices(sceneId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneDevicesResponse> {
-        let input = DescribeBindSceneDevicesRequest(sceneId: sceneId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeBindSceneDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBindSceneDevices(.init(sceneId: sceneId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定设备列表(旧)
@@ -109,8 +108,7 @@ extension Iotvideoindustry {
     /// 获取场景绑定设备列表
     @inlinable
     public func describeBindSceneDevices(sceneId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneDevicesResponse {
-        let input = DescribeBindSceneDevicesRequest(sceneId: sceneId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeBindSceneDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBindSceneDevices(.init(sceneId: sceneId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定设备列表(旧)

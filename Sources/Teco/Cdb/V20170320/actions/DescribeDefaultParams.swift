@@ -73,8 +73,7 @@ extension Cdb {
     /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
     @inlinable
     public func describeDefaultParams(engineVersion: String, templateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultParamsResponse> {
-        let input = DescribeDefaultParamsRequest(engineVersion: engineVersion, templateType: templateType)
-        return self.client.execute(action: "DescribeDefaultParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDefaultParams(.init(engineVersion: engineVersion, templateType: templateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询默认的可设置参数列表
@@ -82,7 +81,6 @@ extension Cdb {
     /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
     @inlinable
     public func describeDefaultParams(engineVersion: String, templateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
-        let input = DescribeDefaultParamsRequest(engineVersion: engineVersion, templateType: templateType)
-        return try await self.client.execute(action: "DescribeDefaultParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDefaultParams(.init(engineVersion: engineVersion, templateType: templateType), region: region, logger: logger, on: eventLoop)
     }
 }

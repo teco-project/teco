@@ -93,8 +93,7 @@ extension Mariadb {
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable @discardableResult
     public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
-        let input = CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly)
-        return self.client.execute(action: "CopyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copyAccountPrivileges(.init(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制账号权限
@@ -103,7 +102,6 @@ extension Mariadb {
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable @discardableResult
     public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
-        let input = CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly)
-        return try await self.client.execute(action: "CopyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copyAccountPrivileges(.init(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Tcss {
     /// 修改高危系统调用事件的状态信息
     @inlinable @discardableResult
     public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRiskSyscallStatusResponse> {
-        let input = ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
-        return self.client.execute(action: "ModifyRiskSyscallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRiskSyscallStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改高危系统调用事件状态
@@ -83,7 +82,6 @@ extension Tcss {
     /// 修改高危系统调用事件的状态信息
     @inlinable @discardableResult
     public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRiskSyscallStatusResponse {
-        let input = ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
-        return try await self.client.execute(action: "ModifyRiskSyscallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRiskSyscallStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

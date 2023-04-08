@@ -65,8 +65,7 @@ extension Emr {
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
     @inlinable @discardableResult
     public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstanceResponse> {
-        let input = TerminateInstanceRequest(instanceId: instanceId, resourceIds: resourceIds)
-        return self.client.execute(action: "TerminateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.terminateInstance(.init(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁EMR实例
@@ -74,7 +73,6 @@ extension Emr {
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
     @inlinable @discardableResult
     public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstanceResponse {
-        let input = TerminateInstanceRequest(instanceId: instanceId, resourceIds: resourceIds)
-        return try await self.client.execute(action: "TerminateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.terminateInstance(.init(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 }

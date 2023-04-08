@@ -66,14 +66,12 @@ extension Tcr {
     /// 查询镜像加速服务状态
     @inlinable
     public func describeImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAccelerateServiceResponse> {
-        let input = DescribeImageAccelerateServiceRequest(registryId: registryId)
-        return self.client.execute(action: "DescribeImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageAccelerateService(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像加速服务状态
     @inlinable
     public func describeImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
-        let input = DescribeImageAccelerateServiceRequest(registryId: registryId)
-        return try await self.client.execute(action: "DescribeImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageAccelerateService(.init(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

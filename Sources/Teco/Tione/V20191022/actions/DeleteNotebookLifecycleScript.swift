@@ -59,14 +59,12 @@ extension Tione {
     /// 删除Notebook生命周期脚本
     @inlinable @discardableResult
     public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookLifecycleScriptResponse> {
-        let input = DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible)
-        return self.client.execute(action: "DeleteNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteNotebookLifecycleScript(.init(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Notebook生命周期脚本
     @inlinable @discardableResult
     public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
-        let input = DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible)
-        return try await self.client.execute(action: "DeleteNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteNotebookLifecycleScript(.init(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), region: region, logger: logger, on: eventLoop)
     }
 }

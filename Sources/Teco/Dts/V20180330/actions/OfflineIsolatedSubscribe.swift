@@ -60,8 +60,7 @@ extension Dts {
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable @discardableResult
     public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
-        let input = OfflineIsolatedSubscribeRequest(subscribeId: subscribeId)
-        return self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.offlineIsolatedSubscribe(.init(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线已隔离的数据订阅实例
@@ -69,7 +68,6 @@ extension Dts {
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable @discardableResult
     public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
-        let input = OfflineIsolatedSubscribeRequest(subscribeId: subscribeId)
-        return try await self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.offlineIsolatedSubscribe(.init(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 }

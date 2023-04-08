@@ -76,14 +76,12 @@ extension Tcb {
     /// 开通微信云托管MySQL数据库服务
     @inlinable @discardableResult
     public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
-        let input = CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName)
-        return self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createWxCloudBaseRunServerDBCluster(.init(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通微信云托管MySQL数据库服务
     @inlinable @discardableResult
     public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
-        let input = CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName)
-        return try await self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createWxCloudBaseRunServerDBCluster(.init(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), region: region, logger: logger, on: eventLoop)
     }
 }

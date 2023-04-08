@@ -70,8 +70,7 @@ extension Iotvideoindustry {
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
     public func updateDevicePassWord(passWord: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePassWordResponse> {
-        let input = UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId)
-        return self.client.execute(action: "UpdateDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDevicePassWord(.init(passWord: passWord, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备密码
@@ -79,7 +78,6 @@ extension Iotvideoindustry {
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
     public func updateDevicePassWord(passWord: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
-        let input = UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId)
-        return try await self.client.execute(action: "UpdateDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDevicePassWord(.init(passWord: passWord, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

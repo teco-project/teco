@@ -68,14 +68,12 @@ extension Bmvpc {
     /// 物理机加入子网
     @inlinable
     public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInterfacesResponse> {
-        let input = CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId)
-        return self.client.execute(action: "CreateInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createInterfaces(.init(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 物理机加入子网
     @inlinable
     public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
-        let input = CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId)
-        return try await self.client.execute(action: "CreateInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createInterfaces(.init(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

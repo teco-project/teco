@@ -57,8 +57,7 @@ extension Teo {
     /// 查询当前账户可用套餐信息列表
     @inlinable
     public func describeAvailablePlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
-        let input = DescribeAvailablePlansRequest()
-        return self.client.execute(action: "DescribeAvailablePlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailablePlans(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询当前账户可购买套餐信息列表
@@ -66,7 +65,6 @@ extension Teo {
     /// 查询当前账户可用套餐信息列表
     @inlinable
     public func describeAvailablePlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
-        let input = DescribeAvailablePlansRequest()
-        return try await self.client.execute(action: "DescribeAvailablePlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailablePlans(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

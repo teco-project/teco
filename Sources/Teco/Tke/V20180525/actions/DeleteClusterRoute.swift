@@ -64,14 +64,12 @@ extension Tke {
     /// 删除集群路由
     @inlinable @discardableResult
     public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteResponse> {
-        let input = DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock)
-        return self.client.execute(action: "DeleteClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterRoute(.init(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由
     @inlinable @discardableResult
     public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteResponse {
-        let input = DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock)
-        return try await self.client.execute(action: "DeleteClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterRoute(.init(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), region: region, logger: logger, on: eventLoop)
     }
 }

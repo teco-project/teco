@@ -102,8 +102,7 @@ extension Domain {
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
     public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
-        let input = CreateDomainBatchRequest(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition)
-        return self.client.execute(action: "CreateDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量域名注册
@@ -111,7 +110,6 @@ extension Domain {
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
     public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        let input = CreateDomainBatchRequest(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition)
-        return try await self.client.execute(action: "CreateDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDomainBatch(.init(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
     }
 }

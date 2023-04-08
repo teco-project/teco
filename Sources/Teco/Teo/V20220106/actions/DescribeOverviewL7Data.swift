@@ -137,8 +137,7 @@ extension Teo {
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
     public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewL7DataResponse> {
-        let input = DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, domains: domains, protocol: `protocol`, area: area, filters: filters)
-        return self.client.execute(action: "DescribeOverviewL7Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOverviewL7Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, domains: domains, protocol: `protocol`, area: area, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询七层监控类时序流量数据
@@ -146,7 +145,6 @@ extension Teo {
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
     public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
-        let input = DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, domains: domains, protocol: `protocol`, area: area, filters: filters)
-        return try await self.client.execute(action: "DescribeOverviewL7Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOverviewL7Data(.init(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, domains: domains, protocol: `protocol`, area: area, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

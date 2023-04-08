@@ -93,8 +93,7 @@ extension Acp {
     /// 查询App隐私合规诊断任务状态
     @inlinable
     public func describeScanTaskStatus(source: Int64, platform: Int64, taskID: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
-        let input = DescribeScanTaskStatusRequest(source: source, platform: platform, taskID: taskID, taskType: taskType)
-        return self.client.execute(action: "DescribeScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScanTaskStatus(.init(source: source, platform: platform, taskID: taskID, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用合规隐私诊断任务状态
@@ -102,7 +101,6 @@ extension Acp {
     /// 查询App隐私合规诊断任务状态
     @inlinable
     public func describeScanTaskStatus(source: Int64, platform: Int64, taskID: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
-        let input = DescribeScanTaskStatusRequest(source: source, platform: platform, taskID: taskID, taskType: taskType)
-        return try await self.client.execute(action: "DescribeScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScanTaskStatus(.init(source: source, platform: platform, taskID: taskID, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

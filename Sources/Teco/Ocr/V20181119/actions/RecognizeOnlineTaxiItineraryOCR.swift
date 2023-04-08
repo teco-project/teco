@@ -86,8 +86,7 @@ extension Ocr {
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
-        let input = RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeOnlineTaxiItineraryOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网约车行程单识别
@@ -95,7 +94,6 @@ extension Ocr {
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
-        let input = RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return try await self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeOnlineTaxiItineraryOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

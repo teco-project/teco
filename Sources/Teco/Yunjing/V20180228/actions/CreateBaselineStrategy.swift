@@ -95,8 +95,7 @@ extension Yunjing {
     /// 根据策略信息创建基线策略
     @inlinable @discardableResult
     public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
-        let input = CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids)
-        return self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBaselineStrategy(.init(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建基线策略
@@ -104,7 +103,6 @@ extension Yunjing {
     /// 根据策略信息创建基线策略
     @inlinable @discardableResult
     public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
-        let input = CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids)
-        return try await self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBaselineStrategy(.init(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 }

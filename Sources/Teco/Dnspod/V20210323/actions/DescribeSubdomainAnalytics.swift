@@ -97,8 +97,7 @@ extension Dnspod {
     /// 统计子域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况。仅付费套餐域名可用。
     @inlinable
     public func describeSubdomainAnalytics(domain: String, startDate: String, endDate: String, subdomain: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubdomainAnalyticsResponse> {
-        let input = DescribeSubdomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId)
-        return self.client.execute(action: "DescribeSubdomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSubdomainAnalytics(.init(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 子域名解析量统计
@@ -106,7 +105,6 @@ extension Dnspod {
     /// 统计子域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况。仅付费套餐域名可用。
     @inlinable
     public func describeSubdomainAnalytics(domain: String, startDate: String, endDate: String, subdomain: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubdomainAnalyticsResponse {
-        let input = DescribeSubdomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId)
-        return try await self.client.execute(action: "DescribeSubdomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSubdomainAnalytics(.init(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

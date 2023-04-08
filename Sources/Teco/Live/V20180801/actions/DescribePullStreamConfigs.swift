@@ -65,8 +65,7 @@ extension Live {
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
     @inlinable
     public func describePullStreamConfigs(configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePullStreamConfigsResponse> {
-        let input = DescribePullStreamConfigsRequest(configId: configId)
-        return self.client.execute(action: "DescribePullStreamConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePullStreamConfigs(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
@@ -74,7 +73,6 @@ extension Live {
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
     @inlinable
     public func describePullStreamConfigs(configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePullStreamConfigsResponse {
-        let input = DescribePullStreamConfigsRequest(configId: configId)
-        return try await self.client.execute(action: "DescribePullStreamConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePullStreamConfigs(.init(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

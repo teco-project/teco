@@ -89,8 +89,7 @@ extension Cme {
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable @discardableResult
     public func moveClass(platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveClassResponse> {
-        let input = MoveClassRequest(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`)
-        return self.client.execute(action: "MoveClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.moveClass(.init(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动分类
@@ -101,7 +100,6 @@ extension Cme {
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable @discardableResult
     public func moveClass(platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveClassResponse {
-        let input = MoveClassRequest(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`)
-        return try await self.client.execute(action: "MoveClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.moveClass(.init(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

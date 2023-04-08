@@ -70,8 +70,7 @@ extension Gaap {
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
     @inlinable @discardableResult
     public func deleteRule(listenerId: String, ruleId: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
-        let input = DeleteRuleRequest(listenerId: listenerId, ruleId: ruleId, force: force)
-        return self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRule(.init(listenerId: listenerId, ruleId: ruleId, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除7层监听器转发规则
@@ -79,7 +78,6 @@ extension Gaap {
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
     @inlinable @discardableResult
     public func deleteRule(listenerId: String, ruleId: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        let input = DeleteRuleRequest(listenerId: listenerId, ruleId: ruleId, force: force)
-        return try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRule(.init(listenerId: listenerId, ruleId: ruleId, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

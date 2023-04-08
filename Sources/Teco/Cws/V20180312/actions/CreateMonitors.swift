@@ -91,8 +91,7 @@ extension Cws {
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable @discardableResult
     public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
-        let input = CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime)
-        return self.client.execute(action: "CreateMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createMonitors(.init(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增监测任务
@@ -100,7 +99,6 @@ extension Cws {
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable @discardableResult
     public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
-        let input = CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime)
-        return try await self.client.execute(action: "CreateMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createMonitors(.init(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), region: region, logger: logger, on: eventLoop)
     }
 }

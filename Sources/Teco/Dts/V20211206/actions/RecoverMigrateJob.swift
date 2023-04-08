@@ -60,8 +60,7 @@ extension Dts {
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable @discardableResult
     public func recoverMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverMigrateJobResponse> {
-        let input = RecoverMigrateJobRequest(jobId: jobId)
-        return self.client.execute(action: "RecoverMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recoverMigrateJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除隔离数据迁移任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable @discardableResult
     public func recoverMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
-        let input = RecoverMigrateJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "RecoverMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recoverMigrateJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

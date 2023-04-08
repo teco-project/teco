@@ -54,14 +54,12 @@ extension Monitor {
     /// 恢复 Grafana 实例
     @inlinable @discardableResult
     public func resumeGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeGrafanaInstanceResponse> {
-        let input = ResumeGrafanaInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "ResumeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resumeGrafanaInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复 Grafana 实例
     @inlinable @discardableResult
     public func resumeGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
-        let input = ResumeGrafanaInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "ResumeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resumeGrafanaInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

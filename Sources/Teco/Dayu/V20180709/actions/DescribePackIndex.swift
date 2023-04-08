@@ -70,8 +70,7 @@ extension Dayu {
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
     public func describePackIndex(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackIndexResponse> {
-        let input = DescribePackIndexRequest(business: business)
-        return self.client.execute(action: "DescribePackIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePackIndex(.init(business: business), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品总览
@@ -79,7 +78,6 @@ extension Dayu {
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
     public func describePackIndex(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
-        let input = DescribePackIndexRequest(business: business)
-        return try await self.client.execute(action: "DescribePackIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePackIndex(.init(business: business), region: region, logger: logger, on: eventLoop)
     }
 }

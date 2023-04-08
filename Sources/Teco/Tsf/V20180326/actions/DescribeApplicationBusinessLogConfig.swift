@@ -54,14 +54,12 @@ extension Tsf {
     /// 查询应用关联日志配置项信息
     @inlinable @discardableResult
     public func describeApplicationBusinessLogConfig(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationBusinessLogConfigResponse> {
-        let input = DescribeApplicationBusinessLogConfigRequest(applicationId: applicationId)
-        return self.client.execute(action: "DescribeApplicationBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApplicationBusinessLogConfig(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用关联日志配置项信息
     @inlinable @discardableResult
     public func describeApplicationBusinessLogConfig(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationBusinessLogConfigResponse {
-        let input = DescribeApplicationBusinessLogConfigRequest(applicationId: applicationId)
-        return try await self.client.execute(action: "DescribeApplicationBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApplicationBusinessLogConfig(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Domain {
     /// 此接口用于删除已验证的手机邮箱
     @inlinable @discardableResult
     public func deletePhoneEmail(code: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePhoneEmailResponse> {
-        let input = DeletePhoneEmailRequest(code: code, type: type)
-        return self.client.execute(action: "DeletePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePhoneEmail(.init(code: code, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除手机邮箱
@@ -74,7 +73,6 @@ extension Domain {
     /// 此接口用于删除已验证的手机邮箱
     @inlinable @discardableResult
     public func deletePhoneEmail(code: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePhoneEmailResponse {
-        let input = DeletePhoneEmailRequest(code: code, type: type)
-        return try await self.client.execute(action: "DeletePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePhoneEmail(.init(code: code, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

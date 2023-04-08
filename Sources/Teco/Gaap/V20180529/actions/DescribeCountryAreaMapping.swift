@@ -56,8 +56,7 @@ extension Gaap {
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
     public func describeCountryAreaMapping(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCountryAreaMappingResponse> {
-        let input = DescribeCountryAreaMappingRequest()
-        return self.client.execute(action: "DescribeCountryAreaMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCountryAreaMapping(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取国家地区编码映射表
@@ -65,7 +64,6 @@ extension Gaap {
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
     public func describeCountryAreaMapping(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
-        let input = DescribeCountryAreaMappingRequest()
-        return try await self.client.execute(action: "DescribeCountryAreaMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCountryAreaMapping(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

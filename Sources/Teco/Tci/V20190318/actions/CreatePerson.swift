@@ -115,14 +115,12 @@ extension Tci {
     /// 创建人员
     @inlinable
     public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        let input = CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls)
-        return self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPerson(.init(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
     @inlinable
     public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        let input = CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls)
-        return try await self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPerson(.init(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

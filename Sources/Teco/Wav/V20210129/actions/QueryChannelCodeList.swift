@@ -90,8 +90,7 @@ extension Wav {
     /// 根据游标拉取渠道活码列表信息
     @inlinable
     public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChannelCodeListResponse> {
-        let input = QueryChannelCodeListRequest(cursor: cursor, limit: limit)
-        return self.client.execute(action: "QueryChannelCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryChannelCodeList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道活码列表接口
@@ -99,8 +98,7 @@ extension Wav {
     /// 根据游标拉取渠道活码列表信息
     @inlinable
     public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
-        let input = QueryChannelCodeListRequest(cursor: cursor, limit: limit)
-        return try await self.client.execute(action: "QueryChannelCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryChannelCodeList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道活码列表接口

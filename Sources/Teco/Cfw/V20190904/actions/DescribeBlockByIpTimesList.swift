@@ -99,8 +99,7 @@ extension Cfw {
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
     public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockByIpTimesListResponse> {
-        let input = DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource)
-        return self.client.execute(action: "DescribeBlockByIpTimesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBlockByIpTimesList(.init(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警中心阻断IP折线图
@@ -108,7 +107,6 @@ extension Cfw {
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
     public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
-        let input = DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource)
-        return try await self.client.execute(action: "DescribeBlockByIpTimesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBlockByIpTimesList(.init(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), region: region, logger: logger, on: eventLoop)
     }
 }

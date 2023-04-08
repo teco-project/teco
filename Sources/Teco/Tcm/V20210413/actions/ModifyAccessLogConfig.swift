@@ -99,14 +99,12 @@ extension Tcm {
     /// 修改访问日志配置
     @inlinable @discardableResult
     public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
-        let input = ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address)
-        return self.client.execute(action: "ModifyAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccessLogConfig(.init(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志配置
     @inlinable @discardableResult
     public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
-        let input = ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address)
-        return try await self.client.execute(action: "ModifyAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccessLogConfig(.init(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), region: region, logger: logger, on: eventLoop)
     }
 }

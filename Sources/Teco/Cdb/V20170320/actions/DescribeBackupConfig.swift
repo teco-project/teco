@@ -136,8 +136,7 @@ extension Cdb {
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
     public func describeBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupConfigResponse> {
-        let input = DescribeBackupConfigRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBackupConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库备份配置信息
@@ -145,7 +144,6 @@ extension Cdb {
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
     public func describeBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
-        let input = DescribeBackupConfigRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBackupConfig(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

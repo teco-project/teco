@@ -81,8 +81,7 @@ extension Cdn {
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
     public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
-        let input = PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode)
-        return self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.purgeUrlsCache(.init(urls: urls, area: area, urlEncode: urlEncode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新 URL
@@ -91,7 +90,6 @@ extension Cdn {
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
     public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        let input = PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode)
-        return try await self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.purgeUrlsCache(.init(urls: urls, area: area, urlEncode: urlEncode), region: region, logger: logger, on: eventLoop)
     }
 }

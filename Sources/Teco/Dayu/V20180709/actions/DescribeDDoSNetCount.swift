@@ -127,14 +127,12 @@ extension Dayu {
     /// 获取高防IP专业版资源的DDoS攻击占比分析
     @inlinable
     public func describeDDoSNetCount(business: String, id: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetCountResponse> {
-        let input = DescribeDDoSNetCountRequest(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName)
-        return self.client.execute(action: "DescribeDDoSNetCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSNetCount(.init(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击占比分析
     @inlinable
     public func describeDDoSNetCount(business: String, id: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetCountResponse {
-        let input = DescribeDDoSNetCountRequest(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName)
-        return try await self.client.execute(action: "DescribeDDoSNetCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSNetCount(.init(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
     }
 }

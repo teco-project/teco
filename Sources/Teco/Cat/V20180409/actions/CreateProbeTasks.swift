@@ -110,14 +110,12 @@ extension Cat {
     /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
-        let input = CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum)
-        return self.client.execute(action: "CreateProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProbeTasks(.init(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
-        let input = CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum)
-        return try await self.client.execute(action: "CreateProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProbeTasks(.init(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), region: region, logger: logger, on: eventLoop)
     }
 }

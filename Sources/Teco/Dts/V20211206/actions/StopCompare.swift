@@ -59,14 +59,12 @@ extension Dts {
     /// 终止一致性校验任务
     @inlinable @discardableResult
     public func stopCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCompareResponse> {
-        let input = StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId)
-        return self.client.execute(action: "StopCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopCompare(.init(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止一致性校验任务
     @inlinable @discardableResult
     public func stopCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
-        let input = StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId)
-        return try await self.client.execute(action: "StopCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopCompare(.init(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

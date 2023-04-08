@@ -73,14 +73,12 @@ extension Dayu {
     /// 开启或关闭CC域名防护
     @inlinable
     public func modifyCCHostProtection(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCHostProtectionResponse> {
-        let input = ModifyCCHostProtectionRequest(business: business, id: id, ruleId: ruleId, method: method)
-        return self.client.execute(action: "ModifyCCHostProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCCHostProtection(.init(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭CC域名防护
     @inlinable
     public func modifyCCHostProtection(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCHostProtectionResponse {
-        let input = ModifyCCHostProtectionRequest(business: business, id: id, ruleId: ruleId, method: method)
-        return try await self.client.execute(action: "ModifyCCHostProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCCHostProtection(.init(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
     }
 }

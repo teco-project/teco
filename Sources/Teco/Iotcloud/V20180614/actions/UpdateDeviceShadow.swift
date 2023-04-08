@@ -84,8 +84,7 @@ extension Iotcloud {
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
     public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, prefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceShadowResponse> {
-        let input = UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion, prefix: prefix)
-        return self.client.execute(action: "UpdateDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateDeviceShadow(.init(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion, prefix: prefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备影子
@@ -93,7 +92,6 @@ extension Iotcloud {
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
     public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, prefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
-        let input = UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion, prefix: prefix)
-        return try await self.client.execute(action: "UpdateDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateDeviceShadow(.init(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion, prefix: prefix), region: region, logger: logger, on: eventLoop)
     }
 }

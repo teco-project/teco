@@ -90,7 +90,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
-        self.client.execute(action: "DescribeScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeScalingPolicies is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -99,7 +99,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
-        try await self.client.execute(action: "DescribeScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeScalingPolicies is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -108,8 +108,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
-        let input = DescribeScalingPoliciesRequest(fleetId: fleetId, statusFilter: statusFilter, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeScalingPolicies is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -118,7 +117,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
-        let input = DescribeScalingPoliciesRequest(fleetId: fleetId, statusFilter: statusFilter, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeScalingPolicies is no longer available.")
     }
 }

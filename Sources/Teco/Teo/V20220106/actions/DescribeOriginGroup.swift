@@ -98,15 +98,13 @@ extension Teo {
     /// 获取源站组信息列表
     @inlinable
     public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [OriginFilter]? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
-        let input = DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters, zoneId: zoneId)
-        return self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOriginGroup(.init(offset: offset, limit: limit, filters: filters, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组信息列表
     @inlinable
     public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [OriginFilter]? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
-        let input = DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters, zoneId: zoneId)
-        return try await self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOriginGroup(.init(offset: offset, limit: limit, filters: filters, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组信息列表

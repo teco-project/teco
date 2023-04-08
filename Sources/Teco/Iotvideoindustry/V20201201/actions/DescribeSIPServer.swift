@@ -56,8 +56,7 @@ extension Iotvideoindustry {
     /// 本接口用于获取SIP服务器相关配置，用户可以通过这些配置项，将设备通过GB28181协议注册到本服务。
     @inlinable
     public func describeSIPServer(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSIPServerResponse> {
-        let input = DescribeSIPServerRequest()
-        return self.client.execute(action: "DescribeSIPServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSIPServer(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SIP服务器配置
@@ -65,7 +64,6 @@ extension Iotvideoindustry {
     /// 本接口用于获取SIP服务器相关配置，用户可以通过这些配置项，将设备通过GB28181协议注册到本服务。
     @inlinable
     public func describeSIPServer(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSIPServerResponse {
-        let input = DescribeSIPServerRequest()
-        return try await self.client.execute(action: "DescribeSIPServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSIPServer(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -92,8 +92,7 @@ extension Cvm {
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
     public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        let input = CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification)
-        return self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createKeyPair(.init(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
@@ -106,7 +105,6 @@ extension Cvm {
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
     public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        let input = CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification)
-        return try await self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createKeyPair(.init(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

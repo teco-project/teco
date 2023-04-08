@@ -64,8 +64,7 @@ extension Dlc {
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
     public func deleteScript(scriptIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScriptResponse> {
-        let input = DeleteScriptRequest(scriptIds: scriptIds)
-        return self.client.execute(action: "DeleteScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteScript(.init(scriptIds: scriptIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除sql脚本
@@ -73,7 +72,6 @@ extension Dlc {
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
     public func deleteScript(scriptIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
-        let input = DeleteScriptRequest(scriptIds: scriptIds)
-        return try await self.client.execute(action: "DeleteScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteScript(.init(scriptIds: scriptIds), region: region, logger: logger, on: eventLoop)
     }
 }

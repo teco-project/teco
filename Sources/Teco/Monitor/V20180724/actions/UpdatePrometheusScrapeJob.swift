@@ -69,14 +69,12 @@ extension Monitor {
     /// 更新 Prometheus 抓取任务
     @inlinable @discardableResult
     public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusScrapeJobResponse> {
-        let input = UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config)
-        return self.client.execute(action: "UpdatePrometheusScrapeJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updatePrometheusScrapeJob(.init(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 Prometheus 抓取任务
     @inlinable @discardableResult
     public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
-        let input = UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config)
-        return try await self.client.execute(action: "UpdatePrometheusScrapeJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updatePrometheusScrapeJob(.init(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

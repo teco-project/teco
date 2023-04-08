@@ -88,8 +88,7 @@ extension Cwp {
     /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
     @inlinable
     public func describeWebPageServiceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageServiceInfoResponse> {
-        let input = DescribeWebPageServiceInfoRequest()
-        return self.client.execute(action: "DescribeWebPageServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWebPageServiceInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网站防篡改服务信息
@@ -97,7 +96,6 @@ extension Cwp {
     /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
     @inlinable
     public func describeWebPageServiceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageServiceInfoResponse {
-        let input = DescribeWebPageServiceInfoRequest()
-        return try await self.client.execute(action: "DescribeWebPageServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWebPageServiceInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

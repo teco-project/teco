@@ -108,15 +108,13 @@ extension Tcss {
     /// 查询本地镜像组件列表
     @inlinable
     public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageComponentListResponse> {
-        let input = DescribeImageComponentListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return self.client.execute(action: "DescribeImageComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageComponentList(.init(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像组件列表
     @inlinable
     public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageComponentListResponse {
-        let input = DescribeImageComponentListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
-        return try await self.client.execute(action: "DescribeImageComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageComponentList(.init(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像组件列表

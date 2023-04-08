@@ -70,8 +70,7 @@ extension Scf {
     /// 该接口根据传入参数删除函数。
     @inlinable @discardableResult
     public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
-        let input = DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
-        return self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteFunction(.init(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除函数
@@ -79,7 +78,6 @@ extension Scf {
     /// 该接口根据传入参数删除函数。
     @inlinable @discardableResult
     public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
-        let input = DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
-        return try await self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteFunction(.init(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

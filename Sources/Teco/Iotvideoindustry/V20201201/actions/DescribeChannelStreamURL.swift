@@ -77,8 +77,7 @@ extension Iotvideoindustry {
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
     public func describeChannelStreamURL(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelStreamURLResponse> {
-        let input = DescribeChannelStreamURLRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId)
-        return self.client.execute(action: "DescribeChannelStreamURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeChannelStreamURL(.init(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通道实时流地址（旧）
@@ -87,7 +86,6 @@ extension Iotvideoindustry {
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
     public func describeChannelStreamURL(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelStreamURLResponse {
-        let input = DescribeChannelStreamURLRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId)
-        return try await self.client.execute(action: "DescribeChannelStreamURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeChannelStreamURL(.init(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

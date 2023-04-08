@@ -124,8 +124,7 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
     public func submitOneByOneClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOneByOneClassTaskResponse> {
-        let input = SubmitOneByOneClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType)
-        return self.client.execute(action: "SubmitOneByOneClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.submitOneByOneClassTask(.init(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交在线1对1课堂任务
@@ -140,7 +139,6 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
     public func submitOneByOneClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOneByOneClassTaskResponse {
-        let input = SubmitOneByOneClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType)
-        return try await self.client.execute(action: "SubmitOneByOneClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.submitOneByOneClassTask(.init(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 }

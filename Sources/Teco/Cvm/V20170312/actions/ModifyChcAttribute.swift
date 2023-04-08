@@ -79,14 +79,12 @@ extension Cvm {
     /// 修改CHC物理服务器的属性
     @inlinable @discardableResult
     public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyChcAttributeResponse> {
-        let input = ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds)
-        return self.client.execute(action: "ModifyChcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyChcAttribute(.init(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CHC物理服务器的属性
     @inlinable @discardableResult
     public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
-        let input = ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds)
-        return try await self.client.execute(action: "ModifyChcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyChcAttribute(.init(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -150,14 +150,12 @@ extension Tds {
     /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudUltimateResponse> {
-        let input = DescribeFraudUltimateRequest(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId)
-        return self.client.execute(action: "DescribeFraudUltimate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeFraudUltimate(.init(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
-        let input = DescribeFraudUltimateRequest(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId)
-        return try await self.client.execute(action: "DescribeFraudUltimate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeFraudUltimate(.init(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId), region: region, logger: logger, on: eventLoop)
     }
 }

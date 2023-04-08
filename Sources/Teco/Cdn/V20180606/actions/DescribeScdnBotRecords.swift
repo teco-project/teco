@@ -208,15 +208,13 @@ extension Cdn {
     /// 查询BOT会话记录列表
     @inlinable
     public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
-        let input = DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains)
-        return self.client.execute(action: "DescribeScdnBotRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScdnBotRecords(.init(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询BOT会话记录列表
     @inlinable
     public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
-        let input = DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains)
-        return try await self.client.execute(action: "DescribeScdnBotRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScdnBotRecords(.init(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询BOT会话记录列表

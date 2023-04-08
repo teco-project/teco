@@ -95,8 +95,7 @@ extension Postgres {
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable @discardableResult
     public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupConfigResponse> {
-        let input = ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve)
-        return self.client.execute(action: "ModifyReadOnlyGroupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyReadOnlyGroupConfig(.init(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改只读组配置
@@ -104,7 +103,6 @@ extension Postgres {
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable @discardableResult
     public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
-        let input = ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve)
-        return try await self.client.execute(action: "ModifyReadOnlyGroupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyReadOnlyGroupConfig(.init(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), region: region, logger: logger, on: eventLoop)
     }
 }

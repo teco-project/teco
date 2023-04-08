@@ -69,8 +69,7 @@ extension Bmlb {
     /// 获取流量镜像接收机健康状态。
     @inlinable
     public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
-        let input = DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet)
-        return self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrafficMirrorReceiverHealthStatus(.init(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像接收机健康状态
@@ -78,7 +77,6 @@ extension Bmlb {
     /// 获取流量镜像接收机健康状态。
     @inlinable
     public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
-        let input = DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet)
-        return try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrafficMirrorReceiverHealthStatus(.init(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 }

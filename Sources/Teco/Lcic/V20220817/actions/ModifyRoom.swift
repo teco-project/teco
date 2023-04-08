@@ -132,14 +132,12 @@ extension Lcic {
     /// 修改房间
     @inlinable @discardableResult
     public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        let input = ModifyRoomRequest(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants)
-        return self.client.execute(action: "ModifyRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改房间
     @inlinable @discardableResult
     public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        let input = ModifyRoomRequest(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants)
-        return try await self.client.execute(action: "ModifyRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,14 +64,12 @@ extension Cloudstudio {
     /// 检查工作空间是否存在
     @inlinable @discardableResult
     public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
-        let input = DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId)
-        return self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWorkspaceNameExist(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查工作空间是否存在
     @inlinable @discardableResult
     public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
-        let input = DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId)
-        return try await self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWorkspaceNameExist(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }
 }

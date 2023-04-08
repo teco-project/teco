@@ -59,14 +59,12 @@ extension Tcb {
     /// 删除终端用户
     @inlinable @discardableResult
     public func deleteEndUser(envId: String, userList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEndUserResponse> {
-        let input = DeleteEndUserRequest(envId: envId, userList: userList)
-        return self.client.execute(action: "DeleteEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteEndUser(.init(envId: envId, userList: userList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
     @inlinable @discardableResult
     public func deleteEndUser(envId: String, userList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {
-        let input = DeleteEndUserRequest(envId: envId, userList: userList)
-        return try await self.client.execute(action: "DeleteEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteEndUser(.init(envId: envId, userList: userList), region: region, logger: logger, on: eventLoop)
     }
 }

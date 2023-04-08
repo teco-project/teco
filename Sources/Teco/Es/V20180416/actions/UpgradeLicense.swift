@@ -84,14 +84,12 @@ extension Es {
     /// 升级ES商业特性
     @inlinable
     public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLicenseResponse> {
-        let input = UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart)
-        return self.client.execute(action: "UpgradeLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeLicense(.init(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级ES商业特性
     @inlinable
     public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
-        let input = UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart)
-        return try await self.client.execute(action: "UpgradeLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeLicense(.init(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

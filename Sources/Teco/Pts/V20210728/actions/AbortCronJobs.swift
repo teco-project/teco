@@ -59,14 +59,12 @@ extension Pts {
     /// 停止定时任务
     @inlinable @discardableResult
     public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
-        let input = AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds)
-        return self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.abortCronJobs(.init(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止定时任务
     @inlinable @discardableResult
     public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
-        let input = AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds)
-        return try await self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.abortCronJobs(.init(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 }

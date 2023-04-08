@@ -68,14 +68,12 @@ extension Dayu {
     /// 添加L4转发规则
     @inlinable
     public func createL4Rules(business: String, id: String, rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL4RulesResponse> {
-        let input = CreateL4RulesRequest(business: business, id: id, rules: rules)
-        return self.client.execute(action: "CreateL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createL4Rules(.init(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加L4转发规则
     @inlinable
     public func createL4Rules(business: String, id: String, rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4RulesResponse {
-        let input = CreateL4RulesRequest(business: business, id: id, rules: rules)
-        return try await self.client.execute(action: "CreateL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createL4Rules(.init(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

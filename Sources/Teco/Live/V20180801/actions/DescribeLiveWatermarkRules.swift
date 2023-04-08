@@ -56,8 +56,7 @@ extension Live {
     /// 获取水印规则列表。
     @inlinable
     public func describeLiveWatermarkRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkRulesResponse> {
-        let input = DescribeLiveWatermarkRulesRequest()
-        return self.client.execute(action: "DescribeLiveWatermarkRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLiveWatermarkRules(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取水印规则列表
@@ -65,7 +64,6 @@ extension Live {
     /// 获取水印规则列表。
     @inlinable
     public func describeLiveWatermarkRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkRulesResponse {
-        let input = DescribeLiveWatermarkRulesRequest()
-        return try await self.client.execute(action: "DescribeLiveWatermarkRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLiveWatermarkRules(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

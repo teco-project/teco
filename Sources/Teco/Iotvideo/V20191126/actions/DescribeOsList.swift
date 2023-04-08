@@ -51,14 +51,12 @@ extension Iotvideo {
     /// 查看操作系统支持的芯片列表
     @inlinable
     public func describeOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsListResponse> {
-        let input = DescribeOsListRequest()
-        return self.client.execute(action: "DescribeOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOsList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看操作系统支持的芯片列表
     @inlinable
     public func describeOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsListResponse {
-        let input = DescribeOsListRequest()
-        return try await self.client.execute(action: "DescribeOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOsList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

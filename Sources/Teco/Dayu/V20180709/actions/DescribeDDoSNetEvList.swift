@@ -137,15 +137,13 @@ extension Dayu {
     /// 获取高防IP专业版资源的DDoS攻击事件列表
     @inlinable
     public func describeDDoSNetEvList(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetEvListResponse> {
-        let input = DescribeDDoSNetEvListRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeDDoSNetEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDoSNetEvList(.init(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击事件列表
     @inlinable
     public func describeDDoSNetEvList(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {
-        let input = DescribeDDoSNetEvListRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeDDoSNetEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDoSNetEvList(.init(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击事件列表

@@ -65,8 +65,7 @@ extension Cbs {
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
     @inlinable @discardableResult
     public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskBackupQuotaResponse> {
-        let input = ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota)
-        return self.client.execute(action: "ModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDiskBackupQuota(.init(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云硬盘备份点配额
@@ -74,7 +73,6 @@ extension Cbs {
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
     @inlinable @discardableResult
     public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
-        let input = ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota)
-        return try await self.client.execute(action: "ModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDiskBackupQuota(.init(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

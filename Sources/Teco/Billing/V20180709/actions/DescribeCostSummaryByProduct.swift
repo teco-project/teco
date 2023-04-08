@@ -112,15 +112,13 @@ extension Billing {
     /// 获取按产品汇总消耗详情
     @inlinable
     public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProductResponse> {
-        let input = DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum)
-        return self.client.execute(action: "DescribeCostSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCostSummaryByProduct(.init(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按产品汇总消耗详情
     @inlinable
     public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProductResponse {
-        let input = DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum)
-        return try await self.client.execute(action: "DescribeCostSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCostSummaryByProduct(.init(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按产品汇总消耗详情

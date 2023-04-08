@@ -64,14 +64,12 @@ extension Yunjing {
     /// 新增或编辑标签
     @inlinable @discardableResult
     public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
-        let input = EditTagsRequest(name: name, id: id, quuids: quuids)
-        return self.client.execute(action: "EditTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.editTags(.init(name: name, id: id, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑标签
     @inlinable @discardableResult
     public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
-        let input = EditTagsRequest(name: name, id: id, quuids: quuids)
-        return try await self.client.execute(action: "EditTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.editTags(.init(name: name, id: id, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 }

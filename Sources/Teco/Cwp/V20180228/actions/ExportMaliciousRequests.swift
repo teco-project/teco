@@ -68,8 +68,7 @@ extension Cwp {
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
     public func exportMaliciousRequests(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
-        let input = ExportMaliciousRequestsRequest(filters: filters)
-        return self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportMaliciousRequests(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出下载恶意请求文件
@@ -77,7 +76,6 @@ extension Cwp {
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
     public func exportMaliciousRequests(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
-        let input = ExportMaliciousRequestsRequest(filters: filters)
-        return try await self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportMaliciousRequests(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

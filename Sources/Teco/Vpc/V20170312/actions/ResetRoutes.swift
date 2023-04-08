@@ -73,8 +73,7 @@ extension Vpc {
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
-        let input = ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes)
-        return self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetRoutes(.init(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置路由表名称和路由策略
@@ -83,7 +82,6 @@ extension Vpc {
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
-        let input = ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes)
-        return try await self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetRoutes(.init(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

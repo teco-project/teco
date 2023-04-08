@@ -60,8 +60,7 @@ extension Chdfs {
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable @discardableResult
     public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
-        let input = ModifyAccessRulesRequest(accessRules: accessRules)
-        return self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAccessRules(.init(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改权限规则属性
@@ -69,7 +68,6 @@ extension Chdfs {
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable @discardableResult
     public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
-        let input = ModifyAccessRulesRequest(accessRules: accessRules)
-        return try await self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAccessRules(.init(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }
 }

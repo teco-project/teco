@@ -93,15 +93,13 @@ extension Cwp {
     /// 获取阻断白名单列表
     @inlinable
     public func describeBanWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanWhiteListResponse> {
-        let input = DescribeBanWhiteListRequest(offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeBanWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBanWhiteList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取阻断白名单列表
     @inlinable
     public func describeBanWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanWhiteListResponse {
-        let input = DescribeBanWhiteListRequest(offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeBanWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBanWhiteList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取阻断白名单列表

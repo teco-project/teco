@@ -70,8 +70,7 @@ extension Trtc {
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
     @inlinable @discardableResult
     public func removeUser(sdkAppId: UInt64, roomId: UInt64, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserResponse> {
-        let input = RemoveUserRequest(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds)
-        return self.client.execute(action: "RemoveUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.removeUser(.init(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移出用户
@@ -79,7 +78,6 @@ extension Trtc {
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
     @inlinable @discardableResult
     public func removeUser(sdkAppId: UInt64, roomId: UInt64, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserResponse {
-        let input = RemoveUserRequest(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds)
-        return try await self.client.execute(action: "RemoveUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.removeUser(.init(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 }

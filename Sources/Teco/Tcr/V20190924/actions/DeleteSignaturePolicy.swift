@@ -59,14 +59,12 @@ extension Tcr {
     /// 删除命名空间加签策略
     @inlinable @discardableResult
     public func deleteSignaturePolicy(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
-        let input = DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName)
-        return self.client.execute(action: "DeleteSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSignaturePolicy(.init(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间加签策略
     @inlinable @discardableResult
     public func deleteSignaturePolicy(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
-        let input = DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName)
-        return try await self.client.execute(action: "DeleteSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSignaturePolicy(.init(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }
 }

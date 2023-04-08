@@ -77,14 +77,12 @@ extension Tcr {
     /// 查询容器镜像Manifest信息
     @inlinable
     public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageManifestsResponse> {
-        let input = DescribeImageManifestsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion)
-        return self.client.execute(action: "DescribeImageManifests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImageManifests(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器镜像Manifest信息
     @inlinable
     public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
-        let input = DescribeImageManifestsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion)
-        return try await self.client.execute(action: "DescribeImageManifests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImageManifests(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

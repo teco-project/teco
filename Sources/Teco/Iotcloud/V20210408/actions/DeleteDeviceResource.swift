@@ -70,8 +70,7 @@ extension Iotcloud {
     /// 本接口（DeleteDeviceResource）用于删除设备资源
     @inlinable @discardableResult
     public func deleteDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResourceResponse> {
-        let input = DeleteDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName)
-        return self.client.execute(action: "DeleteDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDeviceResource(.init(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除设备资源
@@ -79,7 +78,6 @@ extension Iotcloud {
     /// 本接口（DeleteDeviceResource）用于删除设备资源
     @inlinable @discardableResult
     public func deleteDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResourceResponse {
-        let input = DeleteDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName)
-        return try await self.client.execute(action: "DeleteDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDeviceResource(.init(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

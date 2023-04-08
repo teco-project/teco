@@ -98,8 +98,7 @@ extension Lighthouse {
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     @inlinable
     public func describeDisksReturnable(diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksReturnableResponse> {
-        let input = DescribeDisksReturnableRequest(diskIds: diskIds, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeDisksReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDisksReturnable(.init(diskIds: diskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘是否可退还
@@ -107,8 +106,7 @@ extension Lighthouse {
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     @inlinable
     public func describeDisksReturnable(diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksReturnableResponse {
-        let input = DescribeDisksReturnableRequest(diskIds: diskIds, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeDisksReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDisksReturnable(.init(diskIds: diskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘是否可退还

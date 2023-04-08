@@ -60,8 +60,7 @@ extension Live {
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
     @inlinable @discardableResult
     public func stopRecordTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRecordTaskResponse> {
-        let input = StopRecordTaskRequest(taskId: taskId)
-        return self.client.execute(action: "StopRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopRecordTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止录制任务（新）
@@ -69,7 +68,6 @@ extension Live {
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
     @inlinable @discardableResult
     public func stopRecordTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRecordTaskResponse {
-        let input = StopRecordTaskRequest(taskId: taskId)
-        return try await self.client.execute(action: "StopRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopRecordTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

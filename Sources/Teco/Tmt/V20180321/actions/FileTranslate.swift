@@ -131,8 +131,7 @@ extension Tmt {
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。
     @inlinable
     public func fileTranslate(source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FileTranslateResponse> {
-        let input = FileTranslateRequest(source: source, target: target, documentType: documentType, sourceType: sourceType, url: url, basicDocumentType: basicDocumentType, callbackUrl: callbackUrl, data: data)
-        return self.client.execute(action: "FileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.fileTranslate(.init(source: source, target: target, documentType: documentType, sourceType: sourceType, url: url, basicDocumentType: basicDocumentType, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件翻译请求
@@ -140,7 +139,6 @@ extension Tmt {
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。
     @inlinable
     public func fileTranslate(source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FileTranslateResponse {
-        let input = FileTranslateRequest(source: source, target: target, documentType: documentType, sourceType: sourceType, url: url, basicDocumentType: basicDocumentType, callbackUrl: callbackUrl, data: data)
-        return try await self.client.execute(action: "FileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.fileTranslate(.init(source: source, target: target, documentType: documentType, sourceType: sourceType, url: url, basicDocumentType: basicDocumentType, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

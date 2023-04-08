@@ -78,8 +78,7 @@ extension Ssl {
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
     public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
-        let input = CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan)
-        return self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCertificate(.init(productId: productId, domainNum: domainNum, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建付费证书
@@ -87,7 +86,6 @@ extension Ssl {
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
     public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
-        let input = CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan)
-        return try await self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCertificate(.init(productId: productId, domainNum: domainNum, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 }

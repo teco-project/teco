@@ -116,8 +116,7 @@ extension Tiw {
     /// 查询推流任务状态与结果
     @inlinable
     public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
-        let input = DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return self.client.execute(action: "DescribeWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWhiteboardPush(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询白板推流任务
@@ -125,7 +124,6 @@ extension Tiw {
     /// 查询推流任务状态与结果
     @inlinable
     public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
-        let input = DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId)
-        return try await self.client.execute(action: "DescribeWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWhiteboardPush(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

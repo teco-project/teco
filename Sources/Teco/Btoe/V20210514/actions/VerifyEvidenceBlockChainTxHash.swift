@@ -74,8 +74,7 @@ extension Btoe {
     /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
     @inlinable
     public func verifyEvidenceBlockChainTxHash(evidenceTxHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceBlockChainTxHashResponse> {
-        let input = VerifyEvidenceBlockChainTxHashRequest(evidenceTxHash: evidenceTxHash)
-        return self.client.execute(action: "VerifyEvidenceBlockChainTxHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyEvidenceBlockChainTxHash(.init(evidenceTxHash: evidenceTxHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 区块链交易hash核验接口
@@ -83,7 +82,6 @@ extension Btoe {
     /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
     @inlinable
     public func verifyEvidenceBlockChainTxHash(evidenceTxHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceBlockChainTxHashResponse {
-        let input = VerifyEvidenceBlockChainTxHashRequest(evidenceTxHash: evidenceTxHash)
-        return try await self.client.execute(action: "VerifyEvidenceBlockChainTxHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyEvidenceBlockChainTxHash(.init(evidenceTxHash: evidenceTxHash), region: region, logger: logger, on: eventLoop)
     }
 }

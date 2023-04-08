@@ -65,8 +65,7 @@ extension Cam {
     /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
     @inlinable @discardableResult
     public func detachGroupPolicy(policyId: UInt64, detachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachGroupPolicyResponse> {
-        let input = DetachGroupPolicyRequest(policyId: policyId, detachGroupId: detachGroupId)
-        return self.client.execute(action: "DetachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detachGroupPolicy(.init(policyId: policyId, detachGroupId: detachGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除绑定到用户组的策略
@@ -74,7 +73,6 @@ extension Cam {
     /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
     @inlinable @discardableResult
     public func detachGroupPolicy(policyId: UInt64, detachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachGroupPolicyResponse {
-        let input = DetachGroupPolicyRequest(policyId: policyId, detachGroupId: detachGroupId)
-        return try await self.client.execute(action: "DetachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detachGroupPolicy(.init(policyId: policyId, detachGroupId: detachGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

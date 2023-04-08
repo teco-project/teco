@@ -90,14 +90,12 @@ extension Tdmq {
     /// 发送单条消息
     @inlinable
     public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessagesResponse> {
-        let input = SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages)
-        return self.client.execute(action: "SendMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendMessages(.init(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送单条消息
     @inlinable
     public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
-        let input = SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages)
-        return try await self.client.execute(action: "SendMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendMessages(.init(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), region: region, logger: logger, on: eventLoop)
     }
 }

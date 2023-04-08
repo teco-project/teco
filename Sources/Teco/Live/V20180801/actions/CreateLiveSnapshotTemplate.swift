@@ -131,8 +131,7 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
     public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
-        let input = CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName)
-        return self.client.execute(action: "CreateLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLiveSnapshotTemplate(.init(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建截图模板
@@ -141,7 +140,6 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
     public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
-        let input = CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName)
-        return try await self.client.execute(action: "CreateLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLiveSnapshotTemplate(.init(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }
 }

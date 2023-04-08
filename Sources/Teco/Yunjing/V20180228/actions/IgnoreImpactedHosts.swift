@@ -60,8 +60,7 @@ extension Yunjing {
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
     @inlinable @discardableResult
     public func ignoreImpactedHosts(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IgnoreImpactedHostsResponse> {
-        let input = IgnoreImpactedHostsRequest(ids: ids)
-        return self.client.execute(action: "IgnoreImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.ignoreImpactedHosts(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 忽略漏洞
@@ -69,7 +68,6 @@ extension Yunjing {
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
     @inlinable @discardableResult
     public func ignoreImpactedHosts(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
-        let input = IgnoreImpactedHostsRequest(ids: ids)
-        return try await self.client.execute(action: "IgnoreImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.ignoreImpactedHosts(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

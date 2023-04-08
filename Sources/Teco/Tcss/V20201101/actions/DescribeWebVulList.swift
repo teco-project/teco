@@ -116,15 +116,13 @@ extension Tcss {
     /// 查询web应用漏洞列表
     @inlinable
     public func describeWebVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebVulListResponse> {
-        let input = DescribeWebVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return self.client.execute(action: "DescribeWebVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWebVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询web应用漏洞列表
     @inlinable
     public func describeWebVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebVulListResponse {
-        let input = DescribeWebVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
-        return try await self.client.execute(action: "DescribeWebVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWebVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询web应用漏洞列表

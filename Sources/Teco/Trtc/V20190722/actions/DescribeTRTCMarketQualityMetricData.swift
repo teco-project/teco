@@ -115,8 +115,7 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
     public func describeTRTCMarketQualityMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketQualityMetricDataResponse> {
-        let input = DescribeTRTCMarketQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period)
-        return self.client.execute(action: "DescribeTRTCMarketQualityMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTRTCMarketQualityMetricData(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC数据大盘质量指标
@@ -132,7 +131,6 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
     public func describeTRTCMarketQualityMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketQualityMetricDataResponse {
-        let input = DescribeTRTCMarketQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period)
-        return try await self.client.execute(action: "DescribeTRTCMarketQualityMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTRTCMarketQualityMetricData(.init(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -116,8 +116,7 @@ extension Ivld {
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediasResponse> {
-        let input = DescribeMediasRequest(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy)
-        return self.client.execute(action: "DescribeMedias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMedias(.init(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述媒资文件
@@ -129,8 +128,7 @@ extension Ivld {
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {
-        let input = DescribeMediasRequest(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy)
-        return try await self.client.execute(action: "DescribeMedias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMedias(.init(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述媒资文件

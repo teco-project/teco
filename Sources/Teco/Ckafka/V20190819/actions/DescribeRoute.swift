@@ -58,14 +58,12 @@ extension Ckafka {
     /// 查看路由信息
     @inlinable
     public func describeRoute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteResponse> {
-        let input = DescribeRouteRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRoute(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看路由信息
     @inlinable
     public func describeRoute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
-        let input = DescribeRouteRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRoute(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

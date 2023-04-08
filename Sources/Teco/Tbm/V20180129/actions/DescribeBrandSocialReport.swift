@@ -87,8 +87,7 @@ extension Tbm {
     /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
     @inlinable
     public func describeBrandSocialReport(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialReportResponse> {
-        let input = DescribeBrandSocialReportRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return self.client.execute(action: "DescribeBrandSocialReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBrandSocialReport(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌社交渠道提及数
@@ -96,7 +95,6 @@ extension Tbm {
     /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
     @inlinable
     public func describeBrandSocialReport(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialReportResponse {
-        let input = DescribeBrandSocialReportRequest(brandId: brandId, startDate: startDate, endDate: endDate)
-        return try await self.client.execute(action: "DescribeBrandSocialReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBrandSocialReport(.init(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

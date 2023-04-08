@@ -64,8 +64,7 @@ extension Tcss {
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
     public func describeReverseShellWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
-        let input = DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId)
-        return self.client.execute(action: "DescribeReverseShellWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReverseShellWhiteListDetail(.init(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell白名单详细信息
@@ -73,7 +72,6 @@ extension Tcss {
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
     public func describeReverseShellWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
-        let input = DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId)
-        return try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReverseShellWhiteListDetail(.init(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 }

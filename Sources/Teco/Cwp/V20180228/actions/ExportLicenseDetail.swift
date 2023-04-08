@@ -85,8 +85,7 @@ extension Cwp {
     /// 导出授权列表对应的绑定信息
     @inlinable
     public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportLicenseDetailResponse> {
-        let input = ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth)
-        return self.client.execute(action: "ExportLicenseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportLicenseDetail(.init(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出授权详情
@@ -94,7 +93,6 @@ extension Cwp {
     /// 导出授权列表对应的绑定信息
     @inlinable
     public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
-        let input = ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth)
-        return try await self.client.execute(action: "ExportLicenseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportLicenseDetail(.init(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), region: region, logger: logger, on: eventLoop)
     }
 }

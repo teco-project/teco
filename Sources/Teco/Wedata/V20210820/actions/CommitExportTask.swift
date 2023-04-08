@@ -79,14 +79,12 @@ extension Wedata {
     /// 提交数据导出任务
     @inlinable
     public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitExportTaskResponse> {
-        let input = CommitExportTaskRequest(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName)
-        return self.client.execute(action: "CommitExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.commitExportTask(.init(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交数据导出任务
     @inlinable
     public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
-        let input = CommitExportTaskRequest(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName)
-        return try await self.client.execute(action: "CommitExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.commitExportTask(.init(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

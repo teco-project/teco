@@ -115,8 +115,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func pullSmsReplyStatusByPhoneNumber(sendDateTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppid: String, endDateTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsReplyStatusByPhoneNumberResponse> {
-        let input = PullSmsReplyStatusByPhoneNumberRequest(sendDateTime: sendDateTime, offset: offset, limit: limit, phoneNumber: phoneNumber, smsSdkAppid: smsSdkAppid, endDateTime: endDateTime)
-        return self.client.execute(action: "PullSmsReplyStatusByPhoneNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.pullSmsReplyStatusByPhoneNumber(.init(sendDateTime: sendDateTime, offset: offset, limit: limit, phoneNumber: phoneNumber, smsSdkAppid: smsSdkAppid, endDateTime: endDateTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取单个号码短信回复状态
@@ -127,8 +126,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func pullSmsReplyStatusByPhoneNumber(sendDateTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppid: String, endDateTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsReplyStatusByPhoneNumberResponse {
-        let input = PullSmsReplyStatusByPhoneNumberRequest(sendDateTime: sendDateTime, offset: offset, limit: limit, phoneNumber: phoneNumber, smsSdkAppid: smsSdkAppid, endDateTime: endDateTime)
-        return try await self.client.execute(action: "PullSmsReplyStatusByPhoneNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.pullSmsReplyStatusByPhoneNumber(.init(sendDateTime: sendDateTime, offset: offset, limit: limit, phoneNumber: phoneNumber, smsSdkAppid: smsSdkAppid, endDateTime: endDateTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取单个号码短信回复状态

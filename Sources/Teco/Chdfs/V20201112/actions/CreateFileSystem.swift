@@ -109,8 +109,7 @@ extension Chdfs {
     /// 创建文件系统（异步）。
     @inlinable
     public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSystemResponse> {
-        let input = CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags)
-        return self.client.execute(action: "CreateFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFileSystem(.init(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统
@@ -118,7 +117,6 @@ extension Chdfs {
     /// 创建文件系统（异步）。
     @inlinable
     public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
-        let input = CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags)
-        return try await self.client.execute(action: "CreateFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFileSystem(.init(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

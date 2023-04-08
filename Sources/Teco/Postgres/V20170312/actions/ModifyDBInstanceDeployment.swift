@@ -80,8 +80,7 @@ extension Postgres {
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
     @inlinable @discardableResult
     public func modifyDBInstanceDeployment(dbInstanceId: String, dbNodeSet: [DBNode], switchTag: Int64, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceDeploymentResponse> {
-        let input = ModifyDBInstanceDeploymentRequest(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime)
-        return self.client.execute(action: "ModifyDBInstanceDeployment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDBInstanceDeployment(.init(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例部署方式
@@ -89,7 +88,6 @@ extension Postgres {
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
     @inlinable @discardableResult
     public func modifyDBInstanceDeployment(dbInstanceId: String, dbNodeSet: [DBNode], switchTag: Int64, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceDeploymentResponse {
-        let input = ModifyDBInstanceDeploymentRequest(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime)
-        return try await self.client.execute(action: "ModifyDBInstanceDeployment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDBInstanceDeployment(.init(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 }

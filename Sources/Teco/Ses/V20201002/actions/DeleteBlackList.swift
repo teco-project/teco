@@ -60,8 +60,7 @@ extension Ses {
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
     @inlinable @discardableResult
     public func deleteBlackList(emailAddressList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlackListResponse> {
-        let input = DeleteBlackListRequest(emailAddressList: emailAddressList)
-        return self.client.execute(action: "DeleteBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteBlackList(.init(emailAddressList: emailAddressList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除收件人黑名单
@@ -69,7 +68,6 @@ extension Ses {
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
     @inlinable @discardableResult
     public func deleteBlackList(emailAddressList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
-        let input = DeleteBlackListRequest(emailAddressList: emailAddressList)
-        return try await self.client.execute(action: "DeleteBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteBlackList(.init(emailAddressList: emailAddressList), region: region, logger: logger, on: eventLoop)
     }
 }

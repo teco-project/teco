@@ -63,14 +63,12 @@ extension Dayu {
     /// 删除CC防护的访问频率控制规则
     @inlinable
     public func deleteCCFrequencyRules(business: String, ccFrequencyRuleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCFrequencyRulesResponse> {
-        let input = DeleteCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId)
-        return self.client.execute(action: "DeleteCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCCFrequencyRules(.init(business: business, ccFrequencyRuleId: ccFrequencyRuleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC防护的访问频率控制规则
     @inlinable
     public func deleteCCFrequencyRules(business: String, ccFrequencyRuleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCFrequencyRulesResponse {
-        let input = DeleteCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId)
-        return try await self.client.execute(action: "DeleteCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCCFrequencyRules(.init(business: business, ccFrequencyRuleId: ccFrequencyRuleId), region: region, logger: logger, on: eventLoop)
     }
 }

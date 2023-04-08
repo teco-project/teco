@@ -78,8 +78,7 @@ extension Dcdb {
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable @discardableResult
     public func resetAccountPassword(instanceId: String, userName: String, host: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
-        let input = ResetAccountPasswordRequest(instanceId: instanceId, userName: userName, host: host, password: password)
-        return self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetAccountPassword(.init(instanceId: instanceId, userName: userName, host: host, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置账号密码
@@ -88,7 +87,6 @@ extension Dcdb {
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable @discardableResult
     public func resetAccountPassword(instanceId: String, userName: String, host: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        let input = ResetAccountPasswordRequest(instanceId: instanceId, userName: userName, host: host, password: password)
-        return try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetAccountPassword(.init(instanceId: instanceId, userName: userName, host: host, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

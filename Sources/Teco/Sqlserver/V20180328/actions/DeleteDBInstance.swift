@@ -60,8 +60,7 @@ extension Sqlserver {
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable @discardableResult
     public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
-        let input = DeleteDBInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 立即下线实例
@@ -69,7 +68,6 @@ extension Sqlserver {
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable @discardableResult
     public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
-        let input = DeleteDBInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,14 +74,12 @@ extension Bma {
     /// 修改下线材料
     @inlinable @discardableResult
     public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
-        let input = ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName)
-        return self.client.execute(action: "ModifyBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBPOfflineAttachment(.init(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改下线材料
     @inlinable @discardableResult
     public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
-        let input = ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName)
-        return try await self.client.execute(action: "ModifyBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBPOfflineAttachment(.init(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), region: region, logger: logger, on: eventLoop)
     }
 }

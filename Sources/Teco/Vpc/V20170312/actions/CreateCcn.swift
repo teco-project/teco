@@ -95,8 +95,7 @@ extension Vpc {
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
     public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcnResponse> {
-        let input = CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags)
-        return self.client.execute(action: "CreateCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCcn(.init(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建CCN
@@ -106,7 +105,6 @@ extension Vpc {
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
     public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
-        let input = CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags)
-        return try await self.client.execute(action: "CreateCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCcn(.init(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

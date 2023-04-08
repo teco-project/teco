@@ -75,8 +75,7 @@ extension Iot {
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable @discardableResult
     public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IssueDeviceControlResponse> {
-        let input = IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata)
-        return self.client.execute(action: "IssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.issueDeviceControl(.init(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下发设备控制指令
@@ -84,7 +83,6 @@ extension Iot {
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable @discardableResult
     public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
-        let input = IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata)
-        return try await self.client.execute(action: "IssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.issueDeviceControl(.init(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 }

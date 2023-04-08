@@ -95,14 +95,12 @@ extension Wedata {
     /// 实时任务运行指标概览
     @inlinable
     public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
-        let input = DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId)
-        return self.client.execute(action: "DescribeRealTimeTaskMetricOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时任务运行指标概览
     @inlinable
     public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
-        let input = DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

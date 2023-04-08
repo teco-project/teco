@@ -77,8 +77,7 @@ extension Ccc {
     /// 创建 SDK 登录 Token。
     @inlinable
     public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
-        let input = CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId)
-        return self.client.execute(action: "CreateSDKLoginToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 SDK 登录 Token
@@ -86,7 +85,6 @@ extension Ccc {
     /// 创建 SDK 登录 Token。
     @inlinable
     public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
-        let input = CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId)
-        return try await self.client.execute(action: "CreateSDKLoginToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
     }
 }

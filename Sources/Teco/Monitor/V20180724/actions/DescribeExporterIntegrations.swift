@@ -81,14 +81,12 @@ extension Monitor {
     /// 查询 exporter 集成列表
     @inlinable
     public func describeExporterIntegrations(instanceId: String, kubeType: Int64? = nil, clusterId: String? = nil, kind: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExporterIntegrationsResponse> {
-        let input = DescribeExporterIntegrationsRequest(instanceId: instanceId, kubeType: kubeType, clusterId: clusterId, kind: kind, name: name)
-        return self.client.execute(action: "DescribeExporterIntegrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeExporterIntegrations(.init(instanceId: instanceId, kubeType: kubeType, clusterId: clusterId, kind: kind, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 exporter 集成列表
     @inlinable
     public func describeExporterIntegrations(instanceId: String, kubeType: Int64? = nil, clusterId: String? = nil, kind: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExporterIntegrationsResponse {
-        let input = DescribeExporterIntegrationsRequest(instanceId: instanceId, kubeType: kubeType, clusterId: clusterId, kind: kind, name: name)
-        return try await self.client.execute(action: "DescribeExporterIntegrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeExporterIntegrations(.init(instanceId: instanceId, kubeType: kubeType, clusterId: clusterId, kind: kind, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

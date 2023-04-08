@@ -101,8 +101,7 @@ extension Vpc {
     /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
     public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcInstancesResponse> {
-        let input = DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeVpcInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpcInstances(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC下的云主机实例列表
@@ -110,8 +109,7 @@ extension Vpc {
     /// 本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
     public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
-        let input = DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeVpcInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpcInstances(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC下的云主机实例列表

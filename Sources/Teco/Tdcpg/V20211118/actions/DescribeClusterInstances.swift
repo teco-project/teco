@@ -116,15 +116,13 @@ extension Tdcpg {
     /// 查询实例
     @inlinable
     public func describeClusterInstances(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType)
-        return self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterInstances(.init(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例
     @inlinable
     public func describeClusterInstances(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        let input = DescribeClusterInstancesRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType)
-        return try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterInstances(.init(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例

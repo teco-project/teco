@@ -58,14 +58,12 @@ extension Gaap {
     /// 查询域名解析列表
     @inlinable
     public func describeGlobalDomainDns(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainDnsResponse> {
-        let input = DescribeGlobalDomainDnsRequest(domainId: domainId)
-        return self.client.execute(action: "DescribeGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGlobalDomainDns(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名解析列表
     @inlinable
     public func describeGlobalDomainDns(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
-        let input = DescribeGlobalDomainDnsRequest(domainId: domainId)
-        return try await self.client.execute(action: "DescribeGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGlobalDomainDns(.init(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

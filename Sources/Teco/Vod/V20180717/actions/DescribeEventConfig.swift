@@ -88,8 +88,7 @@ extension Vod {
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
     public func describeEventConfig(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventConfigResponse> {
-        let input = DescribeEventConfigRequest(subAppId: subAppId)
-        return self.client.execute(action: "DescribeEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEventConfig(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件通知配置
@@ -101,7 +100,6 @@ extension Vod {
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
     public func describeEventConfig(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
-        let input = DescribeEventConfigRequest(subAppId: subAppId)
-        return try await self.client.execute(action: "DescribeEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEventConfig(.init(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

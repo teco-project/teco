@@ -101,8 +101,7 @@ extension Essbasic {
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable @discardableResult
     public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
-        let input = RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId)
-        return self.client.execute(action: "RejectFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rejectFlow(.init(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拒签流程
@@ -110,7 +109,6 @@ extension Essbasic {
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable @discardableResult
     public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
-        let input = RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId)
-        return try await self.client.execute(action: "RejectFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rejectFlow(.init(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

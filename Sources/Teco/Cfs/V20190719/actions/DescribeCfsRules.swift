@@ -64,8 +64,7 @@ extension Cfs {
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
     public func describeCfsRules(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsRulesResponse> {
-        let input = DescribeCfsRulesRequest(pGroupId: pGroupId)
-        return self.client.execute(action: "DescribeCfsRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCfsRules(.init(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询权限组规则
@@ -73,7 +72,6 @@ extension Cfs {
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
     public func describeCfsRules(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
-        let input = DescribeCfsRulesRequest(pGroupId: pGroupId)
-        return try await self.client.execute(action: "DescribeCfsRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCfsRules(.init(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

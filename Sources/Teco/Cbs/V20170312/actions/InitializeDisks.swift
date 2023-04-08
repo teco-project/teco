@@ -72,8 +72,7 @@ extension Cbs {
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable @discardableResult
     public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
-        let input = InitializeDisksRequest(diskIds: diskIds)
-        return self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.initializeDisks(.init(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新初始化云硬盘
@@ -85,7 +84,6 @@ extension Cbs {
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable @discardableResult
     public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
-        let input = InitializeDisksRequest(diskIds: diskIds)
-        return try await self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.initializeDisks(.init(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,14 +74,12 @@ extension Ccc {
     /// 创建技能组
     @inlinable
     public func createCCCSkillGroup(sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCCSkillGroupResponse> {
-        let input = CreateCCCSkillGroupRequest(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency)
-        return self.client.execute(action: "CreateCCCSkillGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCCCSkillGroup(.init(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建技能组
     @inlinable
     public func createCCCSkillGroup(sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCCSkillGroupResponse {
-        let input = CreateCCCSkillGroupRequest(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency)
-        return try await self.client.execute(action: "CreateCCCSkillGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCCCSkillGroup(.init(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency), region: region, logger: logger, on: eventLoop)
     }
 }

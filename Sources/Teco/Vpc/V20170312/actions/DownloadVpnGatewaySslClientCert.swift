@@ -76,14 +76,12 @@ extension Vpc {
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
     public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
-        let input = DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal)
-        return self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
     public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
-        let input = DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal)
-        return try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,14 +79,12 @@ extension Ssa {
     /// 获取测绘列表
     @inlinable
     public func describeMappingResults(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMappingResultsResponse> {
-        let input = DescribeMappingResultsRequest(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize)
-        return self.client.execute(action: "DescribeMappingResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMappingResults(.init(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取测绘列表
     @inlinable
     public func describeMappingResults(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMappingResultsResponse {
-        let input = DescribeMappingResultsRequest(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize)
-        return try await self.client.execute(action: "DescribeMappingResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMappingResults(.init(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

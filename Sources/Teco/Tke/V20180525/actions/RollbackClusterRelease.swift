@@ -85,8 +85,7 @@ extension Tke {
     /// 在应用市场中集群回滚应用至某个历史版本
     @inlinable
     public func rollbackClusterRelease(clusterId: String, name: String, namespace: String, revision: Int64, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackClusterReleaseResponse> {
-        let input = RollbackClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, revision: revision, clusterType: clusterType)
-        return self.client.execute(action: "RollbackClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rollbackClusterRelease(.init(clusterId: clusterId, name: name, namespace: namespace, revision: revision, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群回滚应用版本
@@ -94,7 +93,6 @@ extension Tke {
     /// 在应用市场中集群回滚应用至某个历史版本
     @inlinable
     public func rollbackClusterRelease(clusterId: String, name: String, namespace: String, revision: Int64, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackClusterReleaseResponse {
-        let input = RollbackClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, revision: revision, clusterType: clusterType)
-        return try await self.client.execute(action: "RollbackClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rollbackClusterRelease(.init(clusterId: clusterId, name: name, namespace: namespace, revision: revision, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

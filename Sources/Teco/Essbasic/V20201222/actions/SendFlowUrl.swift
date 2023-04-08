@@ -145,8 +145,7 @@ extension Essbasic {
     /// 发送流程并获取签署URL
     @inlinable
     public func sendFlowUrl(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendFlowUrlResponse> {
-        let input = SendFlowUrlRequest(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl)
-        return self.client.execute(action: "SendFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendFlowUrl(.init(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送流程并生成签署URL
@@ -154,7 +153,6 @@ extension Essbasic {
     /// 发送流程并获取签署URL
     @inlinable
     public func sendFlowUrl(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowUrlResponse {
-        let input = SendFlowUrlRequest(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl)
-        return try await self.client.execute(action: "SendFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendFlowUrl(.init(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

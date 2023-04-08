@@ -69,8 +69,7 @@ extension Dataintegration {
     /// 使用SDK将数据上报到DIP
     @inlinable
     public func sendMessage(dataHubId: String, message: [BatchContent], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
-        let input = SendMessageRequest(dataHubId: dataHubId, message: message)
-        return self.client.execute(action: "SendMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendMessage(.init(dataHubId: dataHubId, message: message), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据上报
@@ -78,7 +77,6 @@ extension Dataintegration {
     /// 使用SDK将数据上报到DIP
     @inlinable
     public func sendMessage(dataHubId: String, message: [BatchContent], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
-        let input = SendMessageRequest(dataHubId: dataHubId, message: message)
-        return try await self.client.execute(action: "SendMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendMessage(.init(dataHubId: dataHubId, message: message), region: region, logger: logger, on: eventLoop)
     }
 }

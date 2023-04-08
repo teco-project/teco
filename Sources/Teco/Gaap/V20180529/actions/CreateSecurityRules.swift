@@ -63,14 +63,12 @@ extension Gaap {
     /// 添加安全策略规则
     @inlinable
     public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityRulesResponse> {
-        let input = CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList)
-        return self.client.execute(action: "CreateSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSecurityRules(.init(policyId: policyId, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加安全策略规则
     @inlinable
     public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
-        let input = CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList)
-        return try await self.client.execute(action: "CreateSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSecurityRules(.init(policyId: policyId, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
     }
 }

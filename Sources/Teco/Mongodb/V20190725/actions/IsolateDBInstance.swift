@@ -64,8 +64,7 @@ extension Mongodb {
     /// 本接口(IsolateDBInstance)用于隔离MongoDB云数据库按量计费实例。隔离后实例保留在回收站中，不能再写入数据。隔离一定时间后，实例会彻底删除，回收站保存时间请参考按量计费的服务条款。在隔离中的按量计费实例无法恢复，请谨慎操作。
     @inlinable
     public func isolateDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstanceResponse> {
-        let input = IsolateDBInstanceRequest(instanceId: instanceId)
-        return self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.isolateDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离云数据库实例
@@ -73,7 +72,6 @@ extension Mongodb {
     /// 本接口(IsolateDBInstance)用于隔离MongoDB云数据库按量计费实例。隔离后实例保留在回收站中，不能再写入数据。隔离一定时间后，实例会彻底删除，回收站保存时间请参考按量计费的服务条款。在隔离中的按量计费实例无法恢复，请谨慎操作。
     @inlinable
     public func isolateDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstanceResponse {
-        let input = IsolateDBInstanceRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.isolateDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

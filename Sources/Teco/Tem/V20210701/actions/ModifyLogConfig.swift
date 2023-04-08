@@ -73,14 +73,12 @@ extension Tem {
     /// 编辑日志收集配置
     @inlinable
     public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogConfigResponse> {
-        let input = ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId)
-        return self.client.execute(action: "ModifyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLogConfig(.init(environmentId: environmentId, name: name, data: data, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑日志收集配置
     @inlinable
     public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
-        let input = ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId)
-        return try await self.client.execute(action: "ModifyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLogConfig(.init(environmentId: environmentId, name: name, data: data, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

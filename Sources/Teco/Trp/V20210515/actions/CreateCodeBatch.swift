@@ -98,14 +98,12 @@ extension Trp {
     /// 新增批次
     @inlinable
     public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
-        let input = CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode)
-        return self.client.execute(action: "CreateCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增批次
     @inlinable
     public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
-        let input = CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode)
-        return try await self.client.execute(action: "CreateCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 }

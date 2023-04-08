@@ -115,8 +115,7 @@ extension Tbp {
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
     public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextProcessResponse> {
-        let input = TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes)
-        return self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textProcess(.init(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本处理
@@ -124,7 +123,6 @@ extension Tbp {
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
     public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
-        let input = TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes)
-        return try await self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textProcess(.init(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), region: region, logger: logger, on: eventLoop)
     }
 }

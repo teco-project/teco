@@ -70,8 +70,7 @@ extension Domain {
     /// 此接口用于创建有效的手机、邮箱
     @inlinable @discardableResult
     public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
-        let input = CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode)
-        return self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPhoneEmail(.init(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证手机邮箱
@@ -79,7 +78,6 @@ extension Domain {
     /// 此接口用于创建有效的手机、邮箱
     @inlinable @discardableResult
     public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
-        let input = CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode)
-        return try await self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPhoneEmail(.init(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }
 }

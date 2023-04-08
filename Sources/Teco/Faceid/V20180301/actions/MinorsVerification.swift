@@ -112,8 +112,7 @@ extension Faceid {
     /// 通过传入手机号或姓名和身份证号，结合权威数据源和腾讯健康守护可信模型，判断该信息是否真实且年满18周岁。腾讯健康守护可信模型覆盖了上十亿手机库源，覆盖率高、准确率高，如果不在库中的手机号，还可以通过姓名+身份证进行兜底验证。
     @inlinable
     public func minorsVerification(type: String, mobile: String? = nil, idCard: String? = nil, name: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MinorsVerificationResponse> {
-        let input = MinorsVerificationRequest(type: type, mobile: mobile, idCard: idCard, name: name, encryption: encryption)
-        return self.client.execute(action: "MinorsVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.minorsVerification(.init(type: type, mobile: mobile, idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号实名查询
@@ -121,7 +120,6 @@ extension Faceid {
     /// 通过传入手机号或姓名和身份证号，结合权威数据源和腾讯健康守护可信模型，判断该信息是否真实且年满18周岁。腾讯健康守护可信模型覆盖了上十亿手机库源，覆盖率高、准确率高，如果不在库中的手机号，还可以通过姓名+身份证进行兜底验证。
     @inlinable
     public func minorsVerification(type: String, mobile: String? = nil, idCard: String? = nil, name: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MinorsVerificationResponse {
-        let input = MinorsVerificationRequest(type: type, mobile: mobile, idCard: idCard, name: name, encryption: encryption)
-        return try await self.client.execute(action: "MinorsVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.minorsVerification(.init(type: type, mobile: mobile, idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

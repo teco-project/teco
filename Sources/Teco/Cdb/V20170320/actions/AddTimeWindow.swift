@@ -100,8 +100,7 @@ extension Cdb {
     /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
     @inlinable @discardableResult
     public func addTimeWindow(instanceId: String, monday: [String]? = nil, tuesday: [String]? = nil, wednesday: [String]? = nil, thursday: [String]? = nil, friday: [String]? = nil, saturday: [String]? = nil, sunday: [String]? = nil, maxDelayTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTimeWindowResponse> {
-        let input = AddTimeWindowRequest(instanceId: instanceId, monday: monday, tuesday: tuesday, wednesday: wednesday, thursday: thursday, friday: friday, saturday: saturday, sunday: sunday, maxDelayTime: maxDelayTime)
-        return self.client.execute(action: "AddTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addTimeWindow(.init(instanceId: instanceId, monday: monday, tuesday: tuesday, wednesday: wednesday, thursday: thursday, friday: friday, saturday: saturday, sunday: sunday, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加维护时间窗口
@@ -109,7 +108,6 @@ extension Cdb {
     /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
     @inlinable @discardableResult
     public func addTimeWindow(instanceId: String, monday: [String]? = nil, tuesday: [String]? = nil, wednesday: [String]? = nil, thursday: [String]? = nil, friday: [String]? = nil, saturday: [String]? = nil, sunday: [String]? = nil, maxDelayTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTimeWindowResponse {
-        let input = AddTimeWindowRequest(instanceId: instanceId, monday: monday, tuesday: tuesday, wednesday: wednesday, thursday: thursday, friday: friday, saturday: saturday, sunday: sunday, maxDelayTime: maxDelayTime)
-        return try await self.client.execute(action: "AddTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addTimeWindow(.init(instanceId: instanceId, monday: monday, tuesday: tuesday, wednesday: wednesday, thursday: thursday, friday: friday, saturday: saturday, sunday: sunday, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -84,14 +84,12 @@ extension Tdmq {
     /// 创建AMQP Exchange
     @inlinable @discardableResult
     public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
-        let input = CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType)
-        return self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAMQPExchange(.init(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP Exchange
     @inlinable @discardableResult
     public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
-        let input = CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType)
-        return try await self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAMQPExchange(.init(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
     }
 }

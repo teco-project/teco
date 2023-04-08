@@ -125,8 +125,7 @@ extension Pts {
     /// 返回告警历史项的列表
     @inlinable
     public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
-        let input = DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames)
-        return self.client.execute(action: "DescribeAlertRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAlertRecords(.init(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史
@@ -134,8 +133,7 @@ extension Pts {
     /// 返回告警历史项的列表
     @inlinable
     public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
-        let input = DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames)
-        return try await self.client.execute(action: "DescribeAlertRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAlertRecords(.init(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史

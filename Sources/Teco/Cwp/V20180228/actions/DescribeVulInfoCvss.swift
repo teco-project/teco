@@ -145,8 +145,7 @@ extension Cwp {
     /// 漏洞详情，带CVSS版本
     @inlinable
     public func describeVulInfoCvss(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoCvssResponse> {
-        let input = DescribeVulInfoCvssRequest(vulId: vulId)
-        return self.client.execute(action: "DescribeVulInfoCvss", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVulInfoCvss(.init(vulId: vulId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞详情
@@ -154,7 +153,6 @@ extension Cwp {
     /// 漏洞详情，带CVSS版本
     @inlinable
     public func describeVulInfoCvss(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
-        let input = DescribeVulInfoCvssRequest(vulId: vulId)
-        return try await self.client.execute(action: "DescribeVulInfoCvss", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVulInfoCvss(.init(vulId: vulId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -78,8 +78,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
-        let input = ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain)
-        return self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDomain(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改七层转发规则的域名
@@ -88,7 +87,6 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        let input = ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain)
-        return try await self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDomain(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), region: region, logger: logger, on: eventLoop)
     }
 }

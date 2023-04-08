@@ -63,14 +63,12 @@ extension Dayu {
     /// 获取地域的资源实例数
     @inlinable
     public func describleRegionCount(business: String, lineList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleRegionCountResponse> {
-        let input = DescribleRegionCountRequest(business: business, lineList: lineList)
-        return self.client.execute(action: "DescribleRegionCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describleRegionCount(.init(business: business, lineList: lineList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取地域的资源实例数
     @inlinable
     public func describleRegionCount(business: String, lineList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleRegionCountResponse {
-        let input = DescribleRegionCountRequest(business: business, lineList: lineList)
-        return try await self.client.execute(action: "DescribleRegionCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describleRegionCount(.init(business: business, lineList: lineList), region: region, logger: logger, on: eventLoop)
     }
 }

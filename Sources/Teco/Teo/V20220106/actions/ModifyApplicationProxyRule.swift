@@ -115,14 +115,12 @@ extension Teo {
     /// 修改应用代理规则
     @inlinable
     public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyRuleResponse> {
-        let input = ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist)
-        return self.client.execute(action: "ModifyApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理规则
     @inlinable
     public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
-        let input = ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist)
-        return try await self.client.execute(action: "ModifyApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist), region: region, logger: logger, on: eventLoop)
     }
 }

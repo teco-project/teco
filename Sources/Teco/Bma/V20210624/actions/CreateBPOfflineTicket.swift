@@ -54,14 +54,12 @@ extension Bma {
     /// 添加下线工单
     @inlinable @discardableResult
     public func createBPOfflineTicket(fakeURLId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineTicketResponse> {
-        let input = CreateBPOfflineTicketRequest(fakeURLId: fakeURLId)
-        return self.client.execute(action: "CreateBPOfflineTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBPOfflineTicket(.init(fakeURLId: fakeURLId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加下线工单
     @inlinable @discardableResult
     public func createBPOfflineTicket(fakeURLId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
-        let input = CreateBPOfflineTicketRequest(fakeURLId: fakeURLId)
-        return try await self.client.execute(action: "CreateBPOfflineTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBPOfflineTicket(.init(fakeURLId: fakeURLId), region: region, logger: logger, on: eventLoop)
     }
 }

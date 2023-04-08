@@ -70,8 +70,7 @@ extension Iotvideo {
     /// 本接口（DescribeIotModel）用于获取物模型定义详情。
     @inlinable
     public func describeIotModel(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelResponse> {
-        let input = DescribeIotModelRequest(productId: productId, revision: revision)
-        return self.client.execute(action: "DescribeIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIotModel(.init(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型定义
@@ -79,7 +78,6 @@ extension Iotvideo {
     /// 本接口（DescribeIotModel）用于获取物模型定义详情。
     @inlinable
     public func describeIotModel(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelResponse {
-        let input = DescribeIotModelRequest(productId: productId, revision: revision)
-        return try await self.client.execute(action: "DescribeIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIotModel(.init(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
     }
 }

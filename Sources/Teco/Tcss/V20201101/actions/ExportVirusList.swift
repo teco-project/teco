@@ -87,14 +87,12 @@ extension Tcss {
     /// 运行时文件查杀事件列表导出
     @inlinable
     public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVirusListResponse> {
-        let input = ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField)
-        return self.client.execute(action: "ExportVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.exportVirusList(.init(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀事件列表导出
     @inlinable
     public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
-        let input = ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField)
-        return try await self.client.execute(action: "ExportVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.exportVirusList(.init(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

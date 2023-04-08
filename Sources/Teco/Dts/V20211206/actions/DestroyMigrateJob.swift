@@ -60,8 +60,7 @@ extension Dts {
     /// 下线数据迁移任务。计费任务必须先调用隔离(IsolateMigrateJob)接口，且只有是**已隔离**状态下，才能调用此接口销毁任务。对于不计费任务，调用隔离(IsolateMigrateJob)接口删除任务操作。
     @inlinable @discardableResult
     public func destroyMigrateJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyMigrateJobResponse> {
-        let input = DestroyMigrateJobRequest(jobId: jobId)
-        return self.client.execute(action: "DestroyMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.destroyMigrateJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线数据迁移任务
@@ -69,7 +68,6 @@ extension Dts {
     /// 下线数据迁移任务。计费任务必须先调用隔离(IsolateMigrateJob)接口，且只有是**已隔离**状态下，才能调用此接口销毁任务。对于不计费任务，调用隔离(IsolateMigrateJob)接口删除任务操作。
     @inlinable @discardableResult
     public func destroyMigrateJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyMigrateJobResponse {
-        let input = DestroyMigrateJobRequest(jobId: jobId)
-        return try await self.client.execute(action: "DestroyMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.destroyMigrateJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

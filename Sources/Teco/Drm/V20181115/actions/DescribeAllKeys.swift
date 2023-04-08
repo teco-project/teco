@@ -93,8 +93,7 @@ extension Drm {
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
     public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
-        let input = DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType)
-        return self.client.execute(action: "DescribeAllKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAllKeys(.init(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有加密密钥列表
@@ -102,7 +101,6 @@ extension Drm {
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
     public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
-        let input = DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType)
-        return try await self.client.execute(action: "DescribeAllKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAllKeys(.init(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 }

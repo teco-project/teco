@@ -90,14 +90,12 @@ extension Ecm {
     /// 获取概览页统计的基本数据
     @inlinable
     public func describeBaseOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseOverviewResponse> {
-        let input = DescribeBaseOverviewRequest()
-        return self.client.execute(action: "DescribeBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBaseOverview(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取概览页统计的基本数据
     @inlinable
     public func describeBaseOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
-        let input = DescribeBaseOverviewRequest()
-        return try await self.client.execute(action: "DescribeBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBaseOverview(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

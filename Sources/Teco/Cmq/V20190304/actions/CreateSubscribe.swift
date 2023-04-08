@@ -93,14 +93,12 @@ extension Cmq {
     /// 创建订阅接口
     @inlinable
     public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
-        let input = CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat)
-        return self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSubscribe(.init(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅接口
     @inlinable
     public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        let input = CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat)
-        return try await self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSubscribe(.init(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
     }
 }

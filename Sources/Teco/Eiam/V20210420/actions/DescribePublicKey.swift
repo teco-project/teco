@@ -75,8 +75,7 @@ extension Eiam {
     /// 获取JWT公钥信息。
     @inlinable
     public func describePublicKey(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicKeyResponse> {
-        let input = DescribePublicKeyRequest(applicationId: applicationId)
-        return self.client.execute(action: "DescribePublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePublicKey(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取JWT公钥信息
@@ -84,7 +83,6 @@ extension Eiam {
     /// 获取JWT公钥信息。
     @inlinable
     public func describePublicKey(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
-        let input = DescribePublicKeyRequest(applicationId: applicationId)
-        return try await self.client.execute(action: "DescribePublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePublicKey(.init(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

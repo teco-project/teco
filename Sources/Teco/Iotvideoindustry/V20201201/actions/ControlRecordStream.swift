@@ -83,8 +83,7 @@ extension Iotvideoindustry {
     /// 请使用ControlChannelLocalRecord接口
     @inlinable @discardableResult
     public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
-        let input = ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId)
-        return self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.controlRecordStream(.init(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流（旧）
@@ -93,7 +92,6 @@ extension Iotvideoindustry {
     /// 请使用ControlChannelLocalRecord接口
     @inlinable @discardableResult
     public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
-        let input = ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId)
-        return try await self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.controlRecordStream(.init(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

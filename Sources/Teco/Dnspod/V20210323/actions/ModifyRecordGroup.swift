@@ -73,14 +73,12 @@ extension Dnspod {
     /// 修改记录分组
     @inlinable
     public func modifyRecordGroup(domain: String, groupName: String, groupId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordGroupResponse> {
-        let input = ModifyRecordGroupRequest(domain: domain, groupName: groupName, groupId: groupId, domainId: domainId)
-        return self.client.execute(action: "ModifyRecordGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordGroup(.init(domain: domain, groupName: groupName, groupId: groupId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改记录分组
     @inlinable
     public func modifyRecordGroup(domain: String, groupName: String, groupId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordGroupResponse {
-        let input = ModifyRecordGroupRequest(domain: domain, groupName: groupName, groupId: groupId, domainId: domainId)
-        return try await self.client.execute(action: "ModifyRecordGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordGroup(.init(domain: domain, groupName: groupName, groupId: groupId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

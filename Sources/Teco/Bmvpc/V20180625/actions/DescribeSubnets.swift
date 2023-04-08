@@ -118,8 +118,7 @@ extension Bmvpc {
     /// 本接口（DescribeSubnets）用于查询黑石子网列表。
     @inlinable
     public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
-        let input = DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSubnets(.init(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表
@@ -127,8 +126,7 @@ extension Bmvpc {
     /// 本接口（DescribeSubnets）用于查询黑石子网列表。
     @inlinable
     public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        let input = DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSubnets(.init(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表

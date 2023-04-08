@@ -84,14 +84,12 @@ extension Tcb {
     /// 查询云应用服务版本容器列表
     @inlinable @discardableResult
     public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunPodListResponse> {
-        let input = DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName)
-        return self.client.execute(action: "DescribeCloudBaseRunPodList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseRunPodList(.init(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云应用服务版本容器列表
     @inlinable @discardableResult
     public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
-        let input = DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName)
-        return try await self.client.execute(action: "DescribeCloudBaseRunPodList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseRunPodList(.init(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 }

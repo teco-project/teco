@@ -89,8 +89,7 @@ extension Ft {
     /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。
     @inlinable
     public func swapGenderPic(genderInfos: [GenderInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwapGenderPicResponse> {
-        let input = SwapGenderPicRequest(genderInfos: genderInfos, image: image, url: url, rspImgType: rspImgType)
-        return self.client.execute(action: "SwapGenderPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.swapGenderPic(.init(genderInfos: genderInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸性别转换
@@ -98,7 +97,6 @@ extension Ft {
     /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。
     @inlinable
     public func swapGenderPic(genderInfos: [GenderInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwapGenderPicResponse {
-        let input = SwapGenderPicRequest(genderInfos: genderInfos, image: image, url: url, rspImgType: rspImgType)
-        return try await self.client.execute(action: "SwapGenderPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.swapGenderPic(.init(genderInfos: genderInfos, image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

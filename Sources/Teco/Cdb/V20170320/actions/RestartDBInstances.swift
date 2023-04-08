@@ -76,8 +76,7 @@ extension Cdb {
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
     public func restartDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
-        let input = RestartDBInstancesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartDBInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -89,7 +88,6 @@ extension Cdb {
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
     public func restartDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        let input = RestartDBInstancesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartDBInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

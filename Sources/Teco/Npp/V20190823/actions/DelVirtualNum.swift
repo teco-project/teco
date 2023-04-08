@@ -83,14 +83,12 @@ extension Npp {
     /// 直拨解绑中间号
     @inlinable
     public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelVirtualNumResponse> {
-        let input = DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId)
-        return self.client.execute(action: "DelVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.delVirtualNum(.init(bizAppId: bizAppId, bindId: bindId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直拨解绑中间号
     @inlinable
     public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
-        let input = DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId)
-        return try await self.client.execute(action: "DelVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.delVirtualNum(.init(bizAppId: bizAppId, bindId: bindId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -63,14 +63,12 @@ extension Ciam {
     /// 重置用户密码
     @inlinable
     public func resetPassword(userId: String, userStoreId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetPasswordResponse> {
-        let input = ResetPasswordRequest(userId: userId, userStoreId: userStoreId)
-        return self.client.execute(action: "ResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetPassword(.init(userId: userId, userStoreId: userStoreId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置用户密码
     @inlinable
     public func resetPassword(userId: String, userStoreId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
-        let input = ResetPasswordRequest(userId: userId, userStoreId: userStoreId)
-        return try await self.client.execute(action: "ResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetPassword(.init(userId: userId, userStoreId: userStoreId), region: region, logger: logger, on: eventLoop)
     }
 }

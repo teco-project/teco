@@ -96,8 +96,7 @@ extension Teo {
     /// 修改 DNSSEC 状态
     @inlinable
     public func modifyDnssec(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDnssecResponse> {
-        let input = ModifyDnssecRequest(id: id, status: status)
-        return self.client.execute(action: "ModifyDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDnssec(.init(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 DNSSEC
@@ -105,7 +104,6 @@ extension Teo {
     /// 修改 DNSSEC 状态
     @inlinable
     public func modifyDnssec(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
-        let input = ModifyDnssecRequest(id: id, status: status)
-        return try await self.client.execute(action: "ModifyDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDnssec(.init(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

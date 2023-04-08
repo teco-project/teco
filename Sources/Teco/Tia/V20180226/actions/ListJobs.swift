@@ -89,8 +89,7 @@ extension Tia {
     /// 列举训练任务
     @inlinable
     public func listJobs(cluster: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
-        let input = ListJobsRequest(cluster: cluster, limit: limit, offset: offset)
-        return self.client.execute(action: "ListJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listJobs(.init(cluster: cluster, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举Job
@@ -98,8 +97,7 @@ extension Tia {
     /// 列举训练任务
     @inlinable
     public func listJobs(cluster: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
-        let input = ListJobsRequest(cluster: cluster, limit: limit, offset: offset)
-        return try await self.client.execute(action: "ListJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listJobs(.init(cluster: cluster, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举Job

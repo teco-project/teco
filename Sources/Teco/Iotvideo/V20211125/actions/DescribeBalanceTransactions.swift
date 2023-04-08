@@ -97,15 +97,13 @@ extension Iotvideo {
     /// 拉取账户流水
     @inlinable
     public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceTransactionsResponse> {
-        let input = DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation)
-        return self.client.execute(action: "DescribeBalanceTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBalanceTransactions(.init(accountType: accountType, offset: offset, limit: limit, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取账户流水
     @inlinable
     public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
-        let input = DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation)
-        return try await self.client.execute(action: "DescribeBalanceTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBalanceTransactions(.init(accountType: accountType, offset: offset, limit: limit, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取账户流水

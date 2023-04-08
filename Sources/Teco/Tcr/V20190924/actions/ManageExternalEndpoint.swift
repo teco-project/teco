@@ -63,14 +63,12 @@ extension Tcr {
     /// 管理实例公网访问
     @inlinable
     public func manageExternalEndpoint(registryId: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
-        let input = ManageExternalEndpointRequest(registryId: registryId, operation: operation)
-        return self.client.execute(action: "ManageExternalEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.manageExternalEndpoint(.init(registryId: registryId, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 管理实例公网访问
     @inlinable
     public func manageExternalEndpoint(registryId: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
-        let input = ManageExternalEndpointRequest(registryId: registryId, operation: operation)
-        return try await self.client.execute(action: "ManageExternalEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.manageExternalEndpoint(.init(registryId: registryId, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 }

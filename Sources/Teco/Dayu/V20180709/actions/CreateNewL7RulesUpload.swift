@@ -73,14 +73,12 @@ extension Dayu {
     /// 批量上传7层转发规则
     @inlinable
     public func createNewL7RulesUpload(business: String, idList: [String], vipList: [String], rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL7RulesUploadResponse> {
-        let input = CreateNewL7RulesUploadRequest(business: business, idList: idList, vipList: vipList, rules: rules)
-        return self.client.execute(action: "CreateNewL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNewL7RulesUpload(.init(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量上传7层转发规则
     @inlinable
     public func createNewL7RulesUpload(business: String, idList: [String], vipList: [String], rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesUploadResponse {
-        let input = CreateNewL7RulesUploadRequest(business: business, idList: idList, vipList: vipList, rules: rules)
-        return try await self.client.execute(action: "CreateNewL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNewL7RulesUpload(.init(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

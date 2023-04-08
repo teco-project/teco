@@ -111,8 +111,7 @@ extension Vm {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        let input = CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority)
-        return self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createVideoModerationTask(.init(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -127,7 +126,6 @@ extension Vm {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        let input = CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority)
-        return try await self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createVideoModerationTask(.init(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

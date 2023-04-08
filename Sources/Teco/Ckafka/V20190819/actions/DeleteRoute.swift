@@ -73,14 +73,12 @@ extension Ckafka {
     /// 删除路由
     @inlinable
     public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteResponse> {
-        let input = DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime)
-        return self.client.execute(action: "DeleteRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRoute(.init(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除路由
     @inlinable
     public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
-        let input = DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime)
-        return try await self.client.execute(action: "DeleteRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRoute(.init(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), region: region, logger: logger, on: eventLoop)
     }
 }

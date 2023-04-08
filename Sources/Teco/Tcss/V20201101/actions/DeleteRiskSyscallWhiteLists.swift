@@ -54,14 +54,12 @@ extension Tcss {
     /// 删除运行时高危系统调用白名单
     @inlinable @discardableResult
     public func deleteRiskSyscallWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallWhiteListsResponse> {
-        let input = DeleteRiskSyscallWhiteListsRequest(whiteListIdSet: whiteListIdSet)
-        return self.client.execute(action: "DeleteRiskSyscallWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRiskSyscallWhiteLists(.init(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用白名单
     @inlinable @discardableResult
     public func deleteRiskSyscallWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallWhiteListsResponse {
-        let input = DeleteRiskSyscallWhiteListsRequest(whiteListIdSet: whiteListIdSet)
-        return try await self.client.execute(action: "DeleteRiskSyscallWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRiskSyscallWhiteLists(.init(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Iotexplorer {
     /// 删除  LoRa 网关的接口
     @inlinable @discardableResult
     public func deleteLoRaGateway(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoRaGatewayResponse> {
-        let input = DeleteLoRaGatewayRequest(gatewayId: gatewayId)
-        return self.client.execute(action: "DeleteLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLoRaGateway(.init(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 LoRa 网关
@@ -69,7 +68,6 @@ extension Iotexplorer {
     /// 删除  LoRa 网关的接口
     @inlinable @discardableResult
     public func deleteLoRaGateway(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoRaGatewayResponse {
-        let input = DeleteLoRaGatewayRequest(gatewayId: gatewayId)
-        return try await self.client.execute(action: "DeleteLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLoRaGateway(.init(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

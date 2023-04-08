@@ -109,8 +109,7 @@ extension Dcdb {
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
     public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
-        let input = DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName)
-        return self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccountPrivileges(.init(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账号权限
@@ -119,7 +118,6 @@ extension Dcdb {
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
     public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        let input = DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName)
-        return try await self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccountPrivileges(.init(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 }

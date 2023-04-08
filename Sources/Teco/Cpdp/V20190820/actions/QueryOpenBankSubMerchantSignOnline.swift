@@ -88,8 +88,7 @@ extension Cpdp {
     /// 子商户在线签约查询
     @inlinable
     public func queryOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantSignOnlineResponse> {
-        let input = QueryOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId)
-        return self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankSubMerchantSignOnline(.init(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户在线签约查询
@@ -97,7 +96,6 @@ extension Cpdp {
     /// 子商户在线签约查询
     @inlinable
     public func queryOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantSignOnlineResponse {
-        let input = QueryOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId)
-        return try await self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankSubMerchantSignOnline(.init(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 }

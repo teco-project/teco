@@ -84,8 +84,7 @@ extension Cme {
     /// 查询资源被授权的情况。
     @inlinable
     public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceAuthorizationResponse> {
-        let input = DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`)
-        return self.client.execute(action: "DescribeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceAuthorization(.init(platform: platform, owner: owner, resource: resource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源授权列表
@@ -93,7 +92,6 @@ extension Cme {
     /// 查询资源被授权的情况。
     @inlinable
     public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
-        let input = DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`)
-        return try await self.client.execute(action: "DescribeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceAuthorization(.init(platform: platform, owner: owner, resource: resource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -73,14 +73,12 @@ extension Iotvideoindustry {
     /// 查询设备统计monitor信息
     @inlinable
     public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
-        let input = DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec)
-        return self.client.execute(action: "DescribeDeviceMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDeviceMonitorData(.init(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备统计monitor信息
     @inlinable
     public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
-        let input = DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec)
-        return try await self.client.execute(action: "DescribeDeviceMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDeviceMonitorData(.init(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), region: region, logger: logger, on: eventLoop)
     }
 }

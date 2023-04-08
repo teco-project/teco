@@ -73,14 +73,12 @@ extension Cdc {
     /// 创建专用集群
     @inlinable
     public func createDedicatedCluster(siteId: String, name: String, zone: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterResponse> {
-        let input = CreateDedicatedClusterRequest(siteId: siteId, name: name, zone: zone, description: description)
-        return self.client.execute(action: "CreateDedicatedCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDedicatedCluster(.init(siteId: siteId, name: name, zone: zone, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专用集群
     @inlinable
     public func createDedicatedCluster(siteId: String, name: String, zone: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterResponse {
-        let input = CreateDedicatedClusterRequest(siteId: siteId, name: name, zone: zone, description: description)
-        return try await self.client.execute(action: "CreateDedicatedCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDedicatedCluster(.init(siteId: siteId, name: name, zone: zone, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

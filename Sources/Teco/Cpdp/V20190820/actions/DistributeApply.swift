@@ -103,14 +103,12 @@ extension Cpdp {
     /// 云支付-分账请求接口
     @inlinable
     public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeApplyResponse> {
-        let input = DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile)
-        return self.client.execute(action: "DistributeApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.distributeApply(.init(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账请求接口
     @inlinable
     public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
-        let input = DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile)
-        return try await self.client.execute(action: "DistributeApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.distributeApply(.init(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

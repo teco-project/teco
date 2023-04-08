@@ -59,14 +59,12 @@ extension Antiddos {
     /// 配置DDoS连接抑制选项
     @inlinable @discardableResult
     public func createDDoSConnectLimit(instanceId: String, connectLimitConfig: ConnectLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSConnectLimitResponse> {
-        let input = CreateDDoSConnectLimitRequest(instanceId: instanceId, connectLimitConfig: connectLimitConfig)
-        return self.client.execute(action: "CreateDDoSConnectLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDDoSConnectLimit(.init(instanceId: instanceId, connectLimitConfig: connectLimitConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置DDoS连接抑制选项
     @inlinable @discardableResult
     public func createDDoSConnectLimit(instanceId: String, connectLimitConfig: ConnectLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSConnectLimitResponse {
-        let input = CreateDDoSConnectLimitRequest(instanceId: instanceId, connectLimitConfig: connectLimitConfig)
-        return try await self.client.execute(action: "CreateDDoSConnectLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDDoSConnectLimit(.init(instanceId: instanceId, connectLimitConfig: connectLimitConfig), region: region, logger: logger, on: eventLoop)
     }
 }

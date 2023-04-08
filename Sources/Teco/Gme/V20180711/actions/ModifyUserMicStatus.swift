@@ -84,8 +84,7 @@ extension Gme {
     /// **接口使用前提**：目前 ModifyUserMicStatus 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func modifyUserMicStatus(bizId: Int64, roomId: String, users: [UserMicStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserMicStatusResponse> {
-        let input = ModifyUserMicStatusRequest(bizId: bizId, roomId: roomId, users: users)
-        return self.client.execute(action: "ModifyUserMicStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUserMicStatus(.init(bizId: bizId, roomId: roomId, users: users), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户麦克风状态
@@ -95,7 +94,6 @@ extension Gme {
     /// **接口使用前提**：目前 ModifyUserMicStatus 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func modifyUserMicStatus(bizId: Int64, roomId: String, users: [UserMicStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserMicStatusResponse {
-        let input = ModifyUserMicStatusRequest(bizId: bizId, roomId: roomId, users: users)
-        return try await self.client.execute(action: "ModifyUserMicStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUserMicStatus(.init(bizId: bizId, roomId: roomId, users: users), region: region, logger: logger, on: eventLoop)
     }
 }

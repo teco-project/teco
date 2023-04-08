@@ -75,8 +75,7 @@ extension Cdn {
     /// 动态打包任务提交接口
     @inlinable @discardableResult
     public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
-        let input = CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo)
-        return self.client.execute(action: "CreateEdgePackTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEdgePackTask(.init(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 动态打包任务提交
@@ -84,7 +83,6 @@ extension Cdn {
     /// 动态打包任务提交接口
     @inlinable @discardableResult
     public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
-        let input = CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo)
-        return try await self.client.execute(action: "CreateEdgePackTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEdgePackTask(.init(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -72,8 +72,7 @@ extension Cii {
     /// 依据任务ID获取结构化结果接口。
     @inlinable
     public func describeStructureTaskResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureTaskResultResponse> {
-        let input = DescribeStructureTaskResultRequest(mainTaskId: mainTaskId)
-        return self.client.execute(action: "DescribeStructureTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeStructureTaskResult(.init(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取结构化结果接口
@@ -81,7 +80,6 @@ extension Cii {
     /// 依据任务ID获取结构化结果接口。
     @inlinable
     public func describeStructureTaskResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
-        let input = DescribeStructureTaskResultRequest(mainTaskId: mainTaskId)
-        return try await self.client.execute(action: "DescribeStructureTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeStructureTaskResult(.init(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

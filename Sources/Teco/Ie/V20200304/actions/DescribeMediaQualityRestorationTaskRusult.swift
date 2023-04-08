@@ -64,8 +64,7 @@ extension Ie {
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
     public func describeMediaQualityRestorationTaskRusult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaQualityRestorationTaskRusultResponse> {
-        let input = DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeMediaQualityRestorationTaskRusult(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取画质重生任务结果
@@ -73,7 +72,6 @@ extension Ie {
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
     public func describeMediaQualityRestorationTaskRusult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
-        let input = DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeMediaQualityRestorationTaskRusult(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

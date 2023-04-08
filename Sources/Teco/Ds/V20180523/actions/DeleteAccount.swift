@@ -78,8 +78,7 @@ extension Ds {
     /// 删除企业电子合同平台的最终用户。调用该接口后，腾讯云将删除该用户账号。删除账号后，已经签名的合同不受影响。
     @inlinable
     public func deleteAccount(module: String, operation: String, accountList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountResponse> {
-        let input = DeleteAccountRequest(module: module, operation: operation, accountList: accountList)
-        return self.client.execute(action: "DeleteAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAccount(.init(module: module, operation: operation, accountList: accountList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除帐号
@@ -87,7 +86,6 @@ extension Ds {
     /// 删除企业电子合同平台的最终用户。调用该接口后，腾讯云将删除该用户账号。删除账号后，已经签名的合同不受影响。
     @inlinable
     public func deleteAccount(module: String, operation: String, accountList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
-        let input = DeleteAccountRequest(module: module, operation: operation, accountList: accountList)
-        return try await self.client.execute(action: "DeleteAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAccount(.init(module: module, operation: operation, accountList: accountList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -100,8 +100,7 @@ extension Wav {
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
     public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
-        let input = QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit)
-        return self.client.execute(action: "QueryExternalContactDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryExternalContactDetail(.init(externalUserId: externalUserId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人详情接口
@@ -109,8 +108,7 @@ extension Wav {
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
     public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
-        let input = QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit)
-        return try await self.client.execute(action: "QueryExternalContactDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryExternalContactDetail(.init(externalUserId: externalUserId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人详情接口

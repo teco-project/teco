@@ -68,8 +68,7 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable @discardableResult
     public func deleteReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReviewTemplateResponse> {
-        let input = DeleteReviewTemplateRequest(definition: definition, subAppId: subAppId)
-        return self.client.execute(action: "DeleteReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteReviewTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除审核模板
@@ -78,7 +77,6 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable @discardableResult
     public func deleteReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReviewTemplateResponse {
-        let input = DeleteReviewTemplateRequest(definition: definition, subAppId: subAppId)
-        return try await self.client.execute(action: "DeleteReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteReviewTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

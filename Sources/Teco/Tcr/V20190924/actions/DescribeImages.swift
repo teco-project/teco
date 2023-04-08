@@ -123,8 +123,7 @@ extension Tcr {
     /// 查询镜像版本列表或指定容器镜像信息
     @inlinable
     public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
-        let input = DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch)
-        return self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeImages(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器镜像信息
@@ -132,8 +131,7 @@ extension Tcr {
     /// 查询镜像版本列表或指定容器镜像信息
     @inlinable
     public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        let input = DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch)
-        return try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeImages(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器镜像信息

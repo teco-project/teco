@@ -108,8 +108,7 @@ extension Partners {
     /// 代理商查询名下业务员列表信息
     @inlinable
     public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSalesmansResponse> {
-        let input = DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeSalesmans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSalesmans(.init(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商业务员查询接口
@@ -117,8 +116,7 @@ extension Partners {
     /// 代理商查询名下业务员列表信息
     @inlinable
     public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
-        let input = DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeSalesmans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSalesmans(.init(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商业务员查询接口

@@ -55,7 +55,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
-        self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatchingProgress is no longer available.")
     }
 
     /// 查询匹配进度
@@ -64,7 +64,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        try await self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatchingProgress is no longer available.")
     }
 
     /// 查询匹配进度
@@ -73,8 +73,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
-        let input = DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds)
-        return self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeMatchingProgress is no longer available.")
     }
 
     /// 查询匹配进度
@@ -83,7 +82,6 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        let input = DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds)
-        return try await self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeMatchingProgress is no longer available.")
     }
 }

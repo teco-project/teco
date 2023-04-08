@@ -131,8 +131,7 @@ extension Ecm {
     /// 获取实例的相关信息。
     @inlinable
     public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        let input = DescribeInstancesRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
-        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInstances(.init(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例相关信息
@@ -140,8 +139,7 @@ extension Ecm {
     /// 获取实例的相关信息。
     @inlinable
     public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        let input = DescribeInstancesRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection)
-        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInstances(.init(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例相关信息

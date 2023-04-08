@@ -78,14 +78,12 @@ extension Teo {
     /// 域名DDoS高可用开关
     @inlinable
     public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
-        let input = ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType)
-        return self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDDoSPolicyHost(.init(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名DDoS高可用开关
     @inlinable
     public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
-        let input = ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType)
-        return try await self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDDoSPolicyHost(.init(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }
 }

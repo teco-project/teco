@@ -59,14 +59,12 @@ extension Tcr {
     /// 删除长期访问凭证
     @inlinable @discardableResult
     public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
-        let input = DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId)
-        return self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteInstanceToken(.init(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除长期访问凭证
     @inlinable @discardableResult
     public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
-        let input = DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId)
-        return try await self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteInstanceToken(.init(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }
 }

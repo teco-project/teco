@@ -109,8 +109,7 @@ extension Cpdp {
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
     @inlinable
     public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyPayerInfoResponse> {
-        let input = ApplyPayerInfoRequest(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile)
-        return self.client.execute(action: "ApplyPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.applyPayerInfo(.init(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-付款人申请
@@ -118,7 +117,6 @@ extension Cpdp {
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
     @inlinable
     public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
-        let input = ApplyPayerInfoRequest(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile)
-        return try await self.client.execute(action: "ApplyPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.applyPayerInfo(.init(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

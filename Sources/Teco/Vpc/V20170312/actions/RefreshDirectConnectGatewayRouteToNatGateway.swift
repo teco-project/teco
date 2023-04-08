@@ -74,8 +74,7 @@ extension Vpc {
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
     public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDirectConnectGatewayRouteToNatGatewayResponse> {
-        let input = RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun)
-        return self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.refreshDirectConnectGatewayRouteToNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新专线直连NAT路由
@@ -83,7 +82,6 @@ extension Vpc {
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
     public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
-        let input = RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun)
-        return try await self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.refreshDirectConnectGatewayRouteToNatGateway(.init(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

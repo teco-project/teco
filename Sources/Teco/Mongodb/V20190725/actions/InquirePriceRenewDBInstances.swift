@@ -69,8 +69,7 @@ extension Mongodb {
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
     public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDBInstancesResponse> {
-        let input = InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid)
-        return self.client.execute(action: "InquirePriceRenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquirePriceRenewDBInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -78,7 +77,6 @@ extension Mongodb {
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
     public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
-        let input = InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid)
-        return try await self.client.execute(action: "InquirePriceRenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquirePriceRenewDBInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

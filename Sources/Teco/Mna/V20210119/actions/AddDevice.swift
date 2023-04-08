@@ -88,8 +88,7 @@ extension Mna {
     /// 新建设备记录
     @inlinable
     public func addDevice(deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
-        let input = AddDeviceRequest(deviceName: deviceName, remark: remark, dataKey: dataKey, encrypted: encrypted)
-        return self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addDevice(.init(deviceName: deviceName, remark: remark, dataKey: dataKey, encrypted: encrypted), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建设备
@@ -97,7 +96,6 @@ extension Mna {
     /// 新建设备记录
     @inlinable
     public func addDevice(deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
-        let input = AddDeviceRequest(deviceName: deviceName, remark: remark, dataKey: dataKey, encrypted: encrypted)
-        return try await self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addDevice(.init(deviceName: deviceName, remark: remark, dataKey: dataKey, encrypted: encrypted), region: region, logger: logger, on: eventLoop)
     }
 }

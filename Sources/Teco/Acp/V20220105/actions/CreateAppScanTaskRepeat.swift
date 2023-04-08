@@ -123,8 +123,7 @@ extension Acp {
     /// App应用合规隐私诊断重试任务
     @inlinable
     public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskRepeatResponse> {
-        let input = CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5)
-        return self.client.execute(action: "CreateAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAppScanTaskRepeat(.init(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用合规隐私诊断重试任务
@@ -132,7 +131,6 @@ extension Acp {
     /// App应用合规隐私诊断重试任务
     @inlinable
     public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
-        let input = CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5)
-        return try await self.client.execute(action: "CreateAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAppScanTaskRepeat(.init(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 }

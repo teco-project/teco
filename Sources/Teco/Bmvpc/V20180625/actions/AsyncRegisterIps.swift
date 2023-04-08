@@ -74,8 +74,7 @@ extension Bmvpc {
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
     public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsyncRegisterIpsResponse> {
-        let input = AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips)
-        return self.client.execute(action: "AsyncRegisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.asyncRegisterIps(.init(vpcId: vpcId, subnetId: subnetId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量注册虚拟IP
@@ -83,7 +82,6 @@ extension Bmvpc {
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
     public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
-        let input = AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips)
-        return try await self.client.execute(action: "AsyncRegisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.asyncRegisterIps(.init(vpcId: vpcId, subnetId: subnetId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 }

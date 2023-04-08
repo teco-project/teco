@@ -64,8 +64,7 @@ extension Ecm {
     /// 用于创建一个 OpenSSH RSA 密钥对，可以用于登录 Linux 实例。
     @inlinable
     public func createKeyPair(keyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        let input = CreateKeyPairRequest(keyName: keyName)
-        return self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createKeyPair(.init(keyName: keyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
@@ -73,7 +72,6 @@ extension Ecm {
     /// 用于创建一个 OpenSSH RSA 密钥对，可以用于登录 Linux 实例。
     @inlinable
     public func createKeyPair(keyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        let input = CreateKeyPairRequest(keyName: keyName)
-        return try await self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createKeyPair(.init(keyName: keyName), region: region, logger: logger, on: eventLoop)
     }
 }

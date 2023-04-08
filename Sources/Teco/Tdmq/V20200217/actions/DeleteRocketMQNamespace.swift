@@ -59,14 +59,12 @@ extension Tdmq {
     /// 删除RocketMQ命名空间
     @inlinable @discardableResult
     public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQNamespaceResponse> {
-        let input = DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId)
-        return self.client.execute(action: "DeleteRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ命名空间
     @inlinable @discardableResult
     public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQNamespaceResponse {
-        let input = DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId)
-        return try await self.client.execute(action: "DeleteRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 }

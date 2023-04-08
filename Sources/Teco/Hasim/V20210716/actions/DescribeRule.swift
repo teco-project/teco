@@ -58,14 +58,12 @@ extension Hasim {
     /// 查询自动化规则
     @inlinable
     public func describeRule(ruleID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
-        let input = DescribeRuleRequest(ruleID: ruleID)
-        return self.client.execute(action: "DescribeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRule(.init(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自动化规则
     @inlinable
     public func describeRule(ruleID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
-        let input = DescribeRuleRequest(ruleID: ruleID)
-        return try await self.client.execute(action: "DescribeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRule(.init(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
     }
 }

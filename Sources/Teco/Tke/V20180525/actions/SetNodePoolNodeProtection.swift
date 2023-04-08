@@ -85,8 +85,7 @@ extension Tke {
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
     public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
-        let input = SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn)
-        return self.client.execute(action: "SetNodePoolNodeProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.setNodePoolNodeProtection(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 节点池节点设置移出保护
@@ -94,7 +93,6 @@ extension Tke {
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
     public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
-        let input = SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn)
-        return try await self.client.execute(action: "SetNodePoolNodeProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.setNodePoolNodeProtection(.init(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 }

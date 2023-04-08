@@ -108,8 +108,7 @@ extension Apigateway {
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
     public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSubDomainResponse> {
-        let input = BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps)
-        return self.client.execute(action: "BindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindSubDomain(.init(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务绑定自定义域名
@@ -118,7 +117,6 @@ extension Apigateway {
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
     public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
-        let input = BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps)
-        return try await self.client.execute(action: "BindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindSubDomain(.init(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -79,8 +79,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignPrivateIpAddressesResponse> {
-        let input = UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId)
-        return self.client.execute(action: "UnassignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unassignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡退还内网 IP
@@ -91,7 +90,6 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
-        let input = UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId)
-        return try await self.client.execute(action: "UnassignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unassignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

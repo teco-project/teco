@@ -69,8 +69,7 @@ extension Mrs {
     /// 文本分类
     @inlinable
     public func textToClass(text: String, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToClassResponse> {
-        let input = TextToClassRequest(text: text, userType: userType)
-        return self.client.execute(action: "TextToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textToClass(.init(text: text, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本分类接口
@@ -78,7 +77,6 @@ extension Mrs {
     /// 文本分类
     @inlinable
     public func textToClass(text: String, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
-        let input = TextToClassRequest(text: text, userType: userType)
-        return try await self.client.execute(action: "TextToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textToClass(.init(text: text, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

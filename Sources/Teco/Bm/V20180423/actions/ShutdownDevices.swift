@@ -58,14 +58,12 @@ extension Bm {
     /// 关闭服务器
     @inlinable
     public func shutdownDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShutdownDevicesResponse> {
-        let input = ShutdownDevicesRequest(instanceIds: instanceIds)
-        return self.client.execute(action: "ShutdownDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.shutdownDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭服务器
     @inlinable
     public func shutdownDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShutdownDevicesResponse {
-        let input = ShutdownDevicesRequest(instanceIds: instanceIds)
-        return try await self.client.execute(action: "ShutdownDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.shutdownDevices(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

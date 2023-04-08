@@ -118,15 +118,13 @@ extension Tsf {
     /// 查询配置汇总列表
     @inlinable
     public func describeConfigSummary(applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigSummaryResponse> {
-        let input = DescribeConfigSummaryRequest(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList)
-        return self.client.execute(action: "DescribeConfigSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeConfigSummary(.init(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置汇总列表
     @inlinable
     public func describeConfigSummary(applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigSummaryResponse {
-        let input = DescribeConfigSummaryRequest(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList)
-        return try await self.client.execute(action: "DescribeConfigSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeConfigSummary(.init(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置汇总列表

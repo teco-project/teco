@@ -89,8 +89,7 @@ extension Vod {
     /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
     @inlinable
     public func executeFunction(functionName: String, functionArg: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteFunctionResponse> {
-        let input = ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
-        return self.client.execute(action: "ExecuteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.executeFunction(.init(functionName: functionName, functionArg: functionArg, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行定制 API
@@ -98,7 +97,6 @@ extension Vod {
     /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
     @inlinable
     public func executeFunction(functionName: String, functionArg: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
-        let input = ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
-        return try await self.client.execute(action: "ExecuteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.executeFunction(.init(functionName: functionName, functionArg: functionArg, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

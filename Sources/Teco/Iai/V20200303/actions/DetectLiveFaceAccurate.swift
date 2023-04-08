@@ -100,8 +100,7 @@ extension Iai {
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
     public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceAccurateResponse> {
-        let input = DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion)
-        return self.client.execute(action: "DetectLiveFaceAccurate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.detectLiveFaceAccurate(.init(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测（高精度版）
@@ -113,7 +112,6 @@ extension Iai {
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
     public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
-        let input = DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion)
-        return try await self.client.execute(action: "DetectLiveFaceAccurate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.detectLiveFaceAccurate(.init(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

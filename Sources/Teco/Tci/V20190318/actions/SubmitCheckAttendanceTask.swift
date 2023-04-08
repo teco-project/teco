@@ -149,8 +149,7 @@ extension Tci {
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
     public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskResponse> {
-        let input = SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold)
-        return self.client.execute(action: "SubmitCheckAttendanceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.submitCheckAttendanceTask(.init(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交人员考勤任务
@@ -171,7 +170,6 @@ extension Tci {
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
     public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
-        let input = SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold)
-        return try await self.client.execute(action: "SubmitCheckAttendanceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.submitCheckAttendanceTask(.init(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 }

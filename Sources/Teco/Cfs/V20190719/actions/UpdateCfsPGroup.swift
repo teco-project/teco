@@ -82,8 +82,7 @@ extension Cfs {
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
     public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsPGroupResponse> {
-        let input = UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo)
-        return self.client.execute(action: "UpdateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateCfsPGroup(.init(pGroupId: pGroupId, name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组信息
@@ -91,7 +90,6 @@ extension Cfs {
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
     public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
-        let input = UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo)
-        return try await self.client.execute(action: "UpdateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateCfsPGroup(.init(pGroupId: pGroupId, name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 }

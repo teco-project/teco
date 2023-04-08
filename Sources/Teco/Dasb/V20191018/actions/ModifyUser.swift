@@ -110,14 +110,12 @@ extension Dasb {
     /// 修改用户信息
     @inlinable @discardableResult
     public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
-        let input = ModifyUserRequest(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId)
-        return self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyUser(.init(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户信息
     @inlinable @discardableResult
     public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        let input = ModifyUserRequest(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId)
-        return try await self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyUser(.init(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

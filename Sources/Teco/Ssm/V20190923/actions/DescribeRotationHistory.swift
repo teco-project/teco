@@ -71,8 +71,7 @@ extension Ssm {
     /// 本接口仅适用于云产品凭据。
     @inlinable
     public func describeRotationHistory(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
-        let input = DescribeRotationHistoryRequest(secretName: secretName)
-        return self.client.execute(action: "DescribeRotationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRotationHistory(.init(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询凭据轮转历史版本
@@ -81,7 +80,6 @@ extension Ssm {
     /// 本接口仅适用于云产品凭据。
     @inlinable
     public func describeRotationHistory(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
-        let input = DescribeRotationHistoryRequest(secretName: secretName)
-        return try await self.client.execute(action: "DescribeRotationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRotationHistory(.init(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 }

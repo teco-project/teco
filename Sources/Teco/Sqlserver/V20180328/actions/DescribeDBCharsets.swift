@@ -64,8 +64,7 @@ extension Sqlserver {
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
     public func describeDBCharsets(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
-        let input = DescribeDBCharsetsRequest(instanceId: instanceId)
-        return self.client.execute(action: "DescribeDBCharsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBCharsets(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库字符集
@@ -73,7 +72,6 @@ extension Sqlserver {
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
     public func describeDBCharsets(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
-        let input = DescribeDBCharsetsRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "DescribeDBCharsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBCharsets(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

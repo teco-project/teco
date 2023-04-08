@@ -64,8 +64,7 @@ extension Ie {
     /// 获取编辑理解任务结果。
     @inlinable
     public func describeEditingTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
-        let input = DescribeEditingTaskResultRequest(taskId: taskId)
-        return self.client.execute(action: "DescribeEditingTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEditingTaskResult(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑理解任务结果
@@ -73,7 +72,6 @@ extension Ie {
     /// 获取编辑理解任务结果。
     @inlinable
     public func describeEditingTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
-        let input = DescribeEditingTaskResultRequest(taskId: taskId)
-        return try await self.client.execute(action: "DescribeEditingTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEditingTaskResult(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

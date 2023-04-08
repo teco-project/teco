@@ -79,8 +79,7 @@ extension Tcbr {
     /// 创建云托管服务接口
     @inlinable
     public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
-        let input = CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig)
-        return self.client.execute(action: "CreateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCloudRunServer(.init(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云托管服务
@@ -88,7 +87,6 @@ extension Tcbr {
     /// 创建云托管服务接口
     @inlinable
     public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
-        let input = CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig)
-        return try await self.client.execute(action: "CreateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCloudRunServer(.init(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 }

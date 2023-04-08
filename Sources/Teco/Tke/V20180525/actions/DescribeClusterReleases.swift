@@ -125,8 +125,7 @@ extension Tke {
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
     public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
-        let input = DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName)
-        return self.client.execute(action: "DescribeClusterReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表
@@ -134,8 +133,7 @@ extension Tke {
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
     public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
-        let input = DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName)
-        return try await self.client.execute(action: "DescribeClusterReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表

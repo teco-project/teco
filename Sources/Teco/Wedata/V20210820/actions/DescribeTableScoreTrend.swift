@@ -74,14 +74,12 @@ extension Wedata {
     /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
-        let input = DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId)
-        return self.client.execute(action: "DescribeTableScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
-        let input = DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId)
-        return try await self.client.execute(action: "DescribeTableScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 }

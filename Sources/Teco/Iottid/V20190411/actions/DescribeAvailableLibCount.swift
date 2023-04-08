@@ -64,8 +64,7 @@ extension Iottid {
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
     public func describeAvailableLibCount(orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableLibCountResponse> {
-        let input = DescribeAvailableLibCountRequest(orderId: orderId)
-        return self.client.execute(action: "DescribeAvailableLibCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableLibCount(.init(orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可空发的白盒密钥数量
@@ -73,7 +72,6 @@ extension Iottid {
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
     public func describeAvailableLibCount(orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
-        let input = DescribeAvailableLibCountRequest(orderId: orderId)
-        return try await self.client.execute(action: "DescribeAvailableLibCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableLibCount(.init(orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

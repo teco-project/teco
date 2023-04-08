@@ -64,14 +64,12 @@ extension Iecp {
     /// 批量绑定设备到单元
     @inlinable @discardableResult
     public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
-        let input = CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames)
-        return self.client.execute(action: "CreateEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEdgeUnitDevices(.init(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定设备到单元
     @inlinable @discardableResult
     public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
-        let input = CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames)
-        return try await self.client.execute(action: "CreateEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEdgeUnitDevices(.init(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

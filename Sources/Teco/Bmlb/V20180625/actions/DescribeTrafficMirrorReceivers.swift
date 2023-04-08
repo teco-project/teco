@@ -123,8 +123,7 @@ extension Bmlb {
     /// 获取指定流量镜像实例的接收机信息。
     @inlinable
     public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiversResponse> {
-        let input = DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp)
-        return self.client.execute(action: "DescribeTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrafficMirrorReceivers(.init(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定流量镜像实例的接收机信息
@@ -132,8 +131,7 @@ extension Bmlb {
     /// 获取指定流量镜像实例的接收机信息。
     @inlinable
     public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
-        let input = DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp)
-        return try await self.client.execute(action: "DescribeTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrafficMirrorReceivers(.init(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定流量镜像实例的接收机信息

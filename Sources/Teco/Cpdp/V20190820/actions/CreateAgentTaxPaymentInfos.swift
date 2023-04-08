@@ -88,14 +88,12 @@ extension Cpdp {
     /// 直播平台-代理商完税信息录入
     @inlinable
     public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
-        let input = CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile)
-        return self.client.execute(action: "CreateAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAgentTaxPaymentInfos(.init(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-代理商完税信息录入
     @inlinable
     public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
-        let input = CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile)
-        return try await self.client.execute(action: "CreateAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAgentTaxPaymentInfos(.init(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

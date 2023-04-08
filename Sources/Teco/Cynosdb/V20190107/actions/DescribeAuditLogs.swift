@@ -127,8 +127,7 @@ extension Cynosdb {
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
     public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogsResponse> {
-        let input = DescribeAuditLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeAuditLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库审计日志
@@ -136,8 +135,7 @@ extension Cynosdb {
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
     public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogsResponse {
-        let input = DescribeAuditLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeAuditLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库审计日志

@@ -64,14 +64,12 @@ extension Iotvideo {
     /// 转移云存服务
     @inlinable @discardableResult
     public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
-        let input = TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName)
-        return self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.transferCloudStorage(.init(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 转移云存服务
     @inlinable @discardableResult
     public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
-        let input = TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName)
-        return try await self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.transferCloudStorage(.init(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }
 }

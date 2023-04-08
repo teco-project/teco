@@ -107,15 +107,13 @@ extension Redis {
     /// 查询Tendis慢查询
     @inlinable
     public func describeTendisSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTendisSlowLogResponse> {
-        let input = DescribeTendisSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeTendisSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTendisSlowLog(.init(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Tendis慢查询
     @inlinable
     public func describeTendisSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTendisSlowLogResponse {
-        let input = DescribeTendisSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeTendisSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTendisSlowLog(.init(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Tendis慢查询

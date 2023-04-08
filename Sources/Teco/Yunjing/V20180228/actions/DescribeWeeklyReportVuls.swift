@@ -103,8 +103,7 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
     @inlinable
     public func describeWeeklyReportVuls(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportVulsResponse> {
-        let input = DescribeWeeklyReportVulsRequest(beginDate: beginDate, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeWeeklyReportVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWeeklyReportVuls(.init(beginDate: beginDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版周报漏洞数据
@@ -112,8 +111,7 @@ extension Yunjing {
     /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
     @inlinable
     public func describeWeeklyReportVuls(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportVulsResponse {
-        let input = DescribeWeeklyReportVulsRequest(beginDate: beginDate, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeWeeklyReportVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWeeklyReportVuls(.init(beginDate: beginDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版周报漏洞数据

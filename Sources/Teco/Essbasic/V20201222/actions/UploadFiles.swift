@@ -107,8 +107,7 @@ extension Essbasic {
     /// 此接口（UploadFiles）用于文件上传。
     @inlinable
     public func uploadFiles(caller: Caller, businessType: String, fileInfos: [UploadFile]? = nil, fileUrls: [String]? = nil, coverRect: Bool? = nil, fileType: String? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        let input = UploadFilesRequest(caller: caller, businessType: businessType, fileInfos: fileInfos, fileUrls: fileUrls, coverRect: coverRect, fileType: fileType, customIds: customIds)
-        return self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.uploadFiles(.init(caller: caller, businessType: businessType, fileInfos: fileInfos, fileUrls: fileUrls, coverRect: coverRect, fileType: fileType, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件上传
@@ -116,7 +115,6 @@ extension Essbasic {
     /// 此接口（UploadFiles）用于文件上传。
     @inlinable
     public func uploadFiles(caller: Caller, businessType: String, fileInfos: [UploadFile]? = nil, fileUrls: [String]? = nil, coverRect: Bool? = nil, fileType: String? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        let input = UploadFilesRequest(caller: caller, businessType: businessType, fileInfos: fileInfos, fileUrls: fileUrls, coverRect: coverRect, fileType: fileType, customIds: customIds)
-        return try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.uploadFiles(.init(caller: caller, businessType: businessType, fileInfos: fileInfos, fileUrls: fileUrls, coverRect: coverRect, fileType: fileType, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 }

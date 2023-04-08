@@ -73,8 +73,7 @@ extension Goosefs {
     /// 获取数据流通任务实时状态，用作客户端控制
     @inlinable
     public func describeDataRepositoryTaskStatus(taskId: String, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataRepositoryTaskStatusResponse> {
-        let input = DescribeDataRepositoryTaskStatusRequest(taskId: taskId, fileSystemId: fileSystemId)
-        return self.client.execute(action: "DescribeDataRepositoryTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDataRepositoryTaskStatus(.init(taskId: taskId, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据流通任务实时状态
@@ -82,7 +81,6 @@ extension Goosefs {
     /// 获取数据流通任务实时状态，用作客户端控制
     @inlinable
     public func describeDataRepositoryTaskStatus(taskId: String, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataRepositoryTaskStatusResponse {
-        let input = DescribeDataRepositoryTaskStatusRequest(taskId: taskId, fileSystemId: fileSystemId)
-        return try await self.client.execute(action: "DescribeDataRepositoryTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDataRepositoryTaskStatus(.init(taskId: taskId, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

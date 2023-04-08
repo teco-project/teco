@@ -98,15 +98,13 @@ extension Tke {
     /// 查询弹性集群列表
     @inlinable
     public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
-        let input = DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeEKSClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEKSClusters(.init(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性集群列表
     @inlinable
     public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
-        let input = DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeEKSClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEKSClusters(.init(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性集群列表

@@ -58,14 +58,12 @@ extension Tcss {
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
     public func describeAbnormalProcessLevelSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessLevelSummaryResponse> {
-        let input = DescribeAbnormalProcessLevelSummaryRequest()
-        return self.client.execute(action: "DescribeAbnormalProcessLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAbnormalProcessLevelSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
     public func describeAbnormalProcessLevelSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
-        let input = DescribeAbnormalProcessLevelSummaryRequest()
-        return try await self.client.execute(action: "DescribeAbnormalProcessLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAbnormalProcessLevelSummary(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

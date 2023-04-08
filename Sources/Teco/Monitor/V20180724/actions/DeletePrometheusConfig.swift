@@ -85,8 +85,7 @@ extension Monitor {
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable @discardableResult
     public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusConfigResponse> {
-        let input = DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
-        return self.client.execute(action: "DeletePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deletePrometheusConfig(.init(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Prometheus配置
@@ -94,7 +93,6 @@ extension Monitor {
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable @discardableResult
     public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
-        let input = DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
-        return try await self.client.execute(action: "DeletePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deletePrometheusConfig(.init(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 }

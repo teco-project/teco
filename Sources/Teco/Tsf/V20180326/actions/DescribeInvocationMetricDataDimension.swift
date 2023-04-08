@@ -108,15 +108,13 @@ extension Tsf {
     /// 查询维度
     @inlinable
     public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataDimensionResponse> {
-        let input = DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues)
-        return self.client.execute(action: "DescribeInvocationMetricDataDimension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInvocationMetricDataDimension(.init(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维度
     @inlinable
     public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
-        let input = DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues)
-        return try await self.client.execute(action: "DescribeInvocationMetricDataDimension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInvocationMetricDataDimension(.init(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维度

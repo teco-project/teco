@@ -65,8 +65,7 @@ extension Ecm {
     /// 批量修改监听器绑定的后端机器的转发权重。
     @inlinable @discardableResult
     public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [TargetsWeightRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
-        let input = BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList)
-        return self.client.execute(action: "BatchModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.batchModifyTargetWeight(.init(loadBalancerId: loadBalancerId, modifyList: modifyList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改监听器绑定的后端机器的转发权重
@@ -74,7 +73,6 @@ extension Ecm {
     /// 批量修改监听器绑定的后端机器的转发权重。
     @inlinable @discardableResult
     public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [TargetsWeightRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
-        let input = BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList)
-        return try await self.client.execute(action: "BatchModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.batchModifyTargetWeight(.init(loadBalancerId: loadBalancerId, modifyList: modifyList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -77,8 +77,7 @@ extension Nlp {
     /// 根据用户输入的命题关键词自动生成一副春联，包括上联、下联和横批。（如需开通请联系商务）
     @inlinable
     public func generateCouplet(text: String, targetType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateCoupletResponse> {
-        let input = GenerateCoupletRequest(text: text, targetType: targetType)
-        return self.client.execute(action: "GenerateCouplet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.generateCouplet(.init(text: text, targetType: targetType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能春联
@@ -86,7 +85,6 @@ extension Nlp {
     /// 根据用户输入的命题关键词自动生成一副春联，包括上联、下联和横批。（如需开通请联系商务）
     @inlinable
     public func generateCouplet(text: String, targetType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateCoupletResponse {
-        let input = GenerateCoupletRequest(text: text, targetType: targetType)
-        return try await self.client.execute(action: "GenerateCouplet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.generateCouplet(.init(text: text, targetType: targetType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Iotvideo {
     /// 本接口（DescribeBindDev）用于查询终端用户绑定的设备列表。
     @inlinable
     public func describeBindDev(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindDevResponse> {
-        let input = DescribeBindDevRequest(accessId: accessId)
-        return self.client.execute(action: "DescribeBindDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBindDev(.init(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端用户绑定的设备列表
@@ -74,7 +73,6 @@ extension Iotvideo {
     /// 本接口（DescribeBindDev）用于查询终端用户绑定的设备列表。
     @inlinable
     public func describeBindDev(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindDevResponse {
-        let input = DescribeBindDevRequest(accessId: accessId)
-        return try await self.client.execute(action: "DescribeBindDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBindDev(.init(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 }

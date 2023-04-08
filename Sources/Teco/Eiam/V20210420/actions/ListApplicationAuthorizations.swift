@@ -110,8 +110,7 @@ extension Eiam {
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
     public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationAuthorizationsResponse> {
-        let input = ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return self.client.execute(action: "ListApplicationAuthorizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listApplicationAuthorizations(.init(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用授权关系列表信息
@@ -119,8 +118,7 @@ extension Eiam {
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
     public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
-        let input = ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit)
-        return try await self.client.execute(action: "ListApplicationAuthorizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listApplicationAuthorizations(.init(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用授权关系列表信息

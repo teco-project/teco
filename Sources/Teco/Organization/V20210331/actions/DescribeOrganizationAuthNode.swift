@@ -89,15 +89,13 @@ extension Organization {
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
     public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
-        let input = DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganizationAuthNode(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
     public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
-        let input = DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganizationAuthNode(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可创建组织成员的认证主体关系列表

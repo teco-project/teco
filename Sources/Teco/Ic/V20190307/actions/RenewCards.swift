@@ -90,8 +90,7 @@ extension Ic {
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
     public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewCardsResponse> {
-        let input = RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum)
-        return self.client.execute(action: "RenewCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewCards(.init(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卡片续费
@@ -104,7 +103,6 @@ extension Ic {
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
     public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
-        let input = RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum)
-        return try await self.client.execute(action: "RenewCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewCards(.init(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), region: region, logger: logger, on: eventLoop)
     }
 }

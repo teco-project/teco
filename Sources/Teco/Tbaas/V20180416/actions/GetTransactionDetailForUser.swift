@@ -136,14 +136,12 @@ extension Tbaas {
     /// 获取交易详情
     @inlinable
     public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransactionDetailForUserResponse> {
-        let input = GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId)
-        return self.client.execute(action: "GetTransactionDetailForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getTransactionDetailForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取交易详情
     @inlinable
     public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
-        let input = GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId)
-        return try await self.client.execute(action: "GetTransactionDetailForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getTransactionDetailForUser(.init(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), region: region, logger: logger, on: eventLoop)
     }
 }

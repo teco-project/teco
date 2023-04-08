@@ -78,8 +78,7 @@ extension Tcaplusdb {
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
     public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTablesResponse> {
-        let input = ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables)
-        return self.client.execute(action: "ModifyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTables(.init(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改表结构
@@ -87,7 +86,6 @@ extension Tcaplusdb {
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
     public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
-        let input = ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables)
-        return try await self.client.execute(action: "ModifyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTables(.init(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

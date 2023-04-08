@@ -89,8 +89,7 @@ extension Bmlb {
     /// 解绑黑石物理服务器或者托管服务器到七层转发路径功能。
     @inlinable
     public func unbindL7Backends(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, backendSet: [UnbindL7Backend], bindType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindL7BackendsResponse> {
-        let input = UnbindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType)
-        return self.client.execute(action: "UnbindL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindL7Backends(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑黑石物理服务器或者托管服务器到七层转发路径
@@ -98,7 +97,6 @@ extension Bmlb {
     /// 解绑黑石物理服务器或者托管服务器到七层转发路径功能。
     @inlinable
     public func unbindL7Backends(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, backendSet: [UnbindL7Backend], bindType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL7BackendsResponse {
-        let input = UnbindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType)
-        return try await self.client.execute(action: "UnbindL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindL7Backends(.init(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

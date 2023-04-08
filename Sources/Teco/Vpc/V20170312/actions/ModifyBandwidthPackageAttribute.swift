@@ -71,8 +71,7 @@ extension Vpc {
     /// 接口用于修改带宽包属性，包括带宽包名字等
     @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBandwidthPackageAttributeResponse> {
-        let input = ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType)
-        return self.client.execute(action: "ModifyBandwidthPackageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyBandwidthPackageAttribute(.init(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改带宽包属性
@@ -80,7 +79,6 @@ extension Vpc {
     /// 接口用于修改带宽包属性，包括带宽包名字等
     @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
-        let input = ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType)
-        return try await self.client.execute(action: "ModifyBandwidthPackageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyBandwidthPackageAttribute(.init(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 }

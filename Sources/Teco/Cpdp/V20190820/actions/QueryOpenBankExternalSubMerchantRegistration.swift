@@ -87,14 +87,12 @@ extension Cpdp {
     /// 云企付-子商户进件结果查询
     @inlinable
     public func queryOpenBankExternalSubMerchantRegistration(channelMerchantId: String, channelRegistrationNo: String? = nil, outRegistrationNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankExternalSubMerchantRegistrationResponse> {
-        let input = QueryOpenBankExternalSubMerchantRegistrationRequest(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment)
-        return self.client.execute(action: "QueryOpenBankExternalSubMerchantRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankExternalSubMerchantRegistration(.init(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户进件结果查询
     @inlinable
     public func queryOpenBankExternalSubMerchantRegistration(channelMerchantId: String, channelRegistrationNo: String? = nil, outRegistrationNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubMerchantRegistrationResponse {
-        let input = QueryOpenBankExternalSubMerchantRegistrationRequest(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment)
-        return try await self.client.execute(action: "QueryOpenBankExternalSubMerchantRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankExternalSubMerchantRegistration(.init(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

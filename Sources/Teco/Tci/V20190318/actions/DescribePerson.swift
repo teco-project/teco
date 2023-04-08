@@ -112,14 +112,12 @@ extension Tci {
     /// 获取人员详情
     @inlinable
     public func describePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        let input = DescribePersonRequest(libraryId: libraryId, personId: personId)
-        return self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePerson(.init(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员详情
     @inlinable
     public func describePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        let input = DescribePersonRequest(libraryId: libraryId, personId: personId)
-        return try await self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePerson(.init(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

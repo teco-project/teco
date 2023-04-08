@@ -69,8 +69,7 @@ extension Bmlb {
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
     public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersResponse> {
-        let input = DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
-        return self.client.execute(action: "DescribeL7Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeL7Listeners(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层监听器列表信息
@@ -78,7 +77,6 @@ extension Bmlb {
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
     public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
-        let input = DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
-        return try await self.client.execute(action: "DescribeL7Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeL7Listeners(.init(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 }

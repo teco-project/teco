@@ -76,14 +76,12 @@ extension Privatedns {
     /// 修改解析记录状态
     @inlinable
     public func modifyRecordsStatus(zoneId: String, recordIds: [Int64], status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordsStatusResponse> {
-        let input = ModifyRecordsStatusRequest(zoneId: zoneId, recordIds: recordIds, status: status)
-        return self.client.execute(action: "ModifyRecordsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRecordsStatus(.init(zoneId: zoneId, recordIds: recordIds, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改解析记录状态
     @inlinable
     public func modifyRecordsStatus(zoneId: String, recordIds: [Int64], status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordsStatusResponse {
-        let input = ModifyRecordsStatusRequest(zoneId: zoneId, recordIds: recordIds, status: status)
-        return try await self.client.execute(action: "ModifyRecordsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRecordsStatus(.init(zoneId: zoneId, recordIds: recordIds, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

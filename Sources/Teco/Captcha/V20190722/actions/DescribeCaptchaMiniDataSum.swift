@@ -109,14 +109,12 @@ extension Captcha {
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
     public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataSumResponse> {
-        let input = DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end)
-        return self.client.execute(action: "DescribeCaptchaMiniDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCaptchaMiniDataSum(.init(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
     public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {
-        let input = DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end)
-        return try await self.client.execute(action: "DescribeCaptchaMiniDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCaptchaMiniDataSum(.init(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 }

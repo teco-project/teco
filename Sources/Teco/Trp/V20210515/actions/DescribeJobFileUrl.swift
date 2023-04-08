@@ -64,14 +64,12 @@ extension Trp {
     /// 获取异步任务的输出地址
     @inlinable
     public func describeJobFileUrl(jobId: UInt64, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobFileUrlResponse> {
-        let input = DescribeJobFileUrlRequest(jobId: jobId, corpId: corpId)
-        return self.client.execute(action: "DescribeJobFileUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeJobFileUrl(.init(jobId: jobId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取异步任务的输出地址
     @inlinable
     public func describeJobFileUrl(jobId: UInt64, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFileUrlResponse {
-        let input = DescribeJobFileUrlRequest(jobId: jobId, corpId: corpId)
-        return try await self.client.execute(action: "DescribeJobFileUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeJobFileUrl(.init(jobId: jobId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

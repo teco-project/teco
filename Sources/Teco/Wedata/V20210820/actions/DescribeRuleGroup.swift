@@ -79,14 +79,12 @@ extension Wedata {
     /// 查询规则组详情接口
     @inlinable
     public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupResponse> {
-        let input = DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId)
-        return self.client.execute(action: "DescribeRuleGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRuleGroup(.init(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则组详情接口
     @inlinable
     public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
-        let input = DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId)
-        return try await self.client.execute(action: "DescribeRuleGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRuleGroup(.init(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), region: region, logger: logger, on: eventLoop)
     }
 }

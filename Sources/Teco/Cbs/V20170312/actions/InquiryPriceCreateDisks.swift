@@ -105,8 +105,7 @@ extension Cbs {
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDisksResponse> {
-        let input = InquiryPriceCreateDisksRequest(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota)
-        return self.client.execute(action: "InquiryPriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquiryPriceCreateDisks(.init(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云硬盘询价
@@ -116,7 +115,6 @@ extension Cbs {
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
-        let input = InquiryPriceCreateDisksRequest(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota)
-        return try await self.client.execute(action: "InquiryPriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquiryPriceCreateDisks(.init(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

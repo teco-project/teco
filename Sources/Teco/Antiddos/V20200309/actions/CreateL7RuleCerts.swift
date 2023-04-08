@@ -69,8 +69,7 @@ extension Antiddos {
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
     public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertsResponse> {
-        let input = CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules)
-        return self.client.execute(action: "CreateL7RuleCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createL7RuleCerts(.init(certId: certId, l7Rules: l7Rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量配置L7转发规则的证书
@@ -78,7 +77,6 @@ extension Antiddos {
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
     public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
-        let input = CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules)
-        return try await self.client.execute(action: "CreateL7RuleCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createL7RuleCerts(.init(certId: certId, l7Rules: l7Rules), region: region, logger: logger, on: eventLoop)
     }
 }

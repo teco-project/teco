@@ -58,14 +58,12 @@ extension Apigateway {
     /// 构建 API 文档
     @inlinable
     public func buildAPIDoc(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
-        let input = BuildAPIDocRequest(apiDocId: apiDocId)
-        return self.client.execute(action: "BuildAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.buildAPIDoc(.init(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 构建 API 文档
     @inlinable
     public func buildAPIDoc(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
-        let input = BuildAPIDocRequest(apiDocId: apiDocId)
-        return try await self.client.execute(action: "BuildAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.buildAPIDoc(.init(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 }

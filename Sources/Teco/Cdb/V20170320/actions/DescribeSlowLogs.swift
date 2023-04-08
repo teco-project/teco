@@ -98,8 +98,7 @@ extension Cdb {
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
     public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
-        let input = DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSlowLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询慢查询日志
@@ -107,8 +106,7 @@ extension Cdb {
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
     public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
-        let input = DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSlowLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询慢查询日志

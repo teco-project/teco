@@ -87,8 +87,7 @@ extension Essbasic {
     /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(agent: Agent, serviceType: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtendedServiceResponse> {
-        let input = ModifyExtendedServiceRequest(agent: agent, serviceType: serviceType, operate: operate)
-        return self.client.execute(action: "ModifyExtendedService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyExtendedService(.init(agent: agent, serviceType: serviceType, operate: operate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改企业扩展服务
@@ -96,7 +95,6 @@ extension Essbasic {
     /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(agent: Agent, serviceType: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtendedServiceResponse {
-        let input = ModifyExtendedServiceRequest(agent: agent, serviceType: serviceType, operate: operate)
-        return try await self.client.execute(action: "ModifyExtendedService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyExtendedService(.init(agent: agent, serviceType: serviceType, operate: operate), region: region, logger: logger, on: eventLoop)
     }
 }

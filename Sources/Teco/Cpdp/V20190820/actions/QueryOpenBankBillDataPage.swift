@@ -114,14 +114,12 @@ extension Cpdp {
     /// 云企付-分页查询对账单数据
     @inlinable
     public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBillDataPageResponse> {
-        let input = QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment)
-        return self.client.execute(action: "QueryOpenBankBillDataPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryOpenBankBillDataPage(.init(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-分页查询对账单数据
     @inlinable
     public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
-        let input = QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment)
-        return try await self.client.execute(action: "QueryOpenBankBillDataPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryOpenBankBillDataPage(.init(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

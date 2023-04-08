@@ -64,8 +64,7 @@ extension As {
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
     @inlinable
     public func describeAutoScalingGroupLastActivities(autoScalingGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupLastActivitiesResponse> {
-        let input = DescribeAutoScalingGroupLastActivitiesRequest(autoScalingGroupIds: autoScalingGroupIds)
-        return self.client.execute(action: "DescribeAutoScalingGroupLastActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAutoScalingGroupLastActivities(.init(autoScalingGroupIds: autoScalingGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组最新一次伸缩活动
@@ -73,7 +72,6 @@ extension As {
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
     @inlinable
     public func describeAutoScalingGroupLastActivities(autoScalingGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupLastActivitiesResponse {
-        let input = DescribeAutoScalingGroupLastActivitiesRequest(autoScalingGroupIds: autoScalingGroupIds)
-        return try await self.client.execute(action: "DescribeAutoScalingGroupLastActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAutoScalingGroupLastActivities(.init(autoScalingGroupIds: autoScalingGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

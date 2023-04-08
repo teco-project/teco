@@ -58,14 +58,12 @@ extension Tcss {
     /// 获取用户当前灰度配置
     @inlinable
     public func describeABTestConfig(projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeABTestConfigResponse> {
-        let input = DescribeABTestConfigRequest(projectName: projectName)
-        return self.client.execute(action: "DescribeABTestConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeABTestConfig(.init(projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户当前灰度配置
     @inlinable
     public func describeABTestConfig(projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
-        let input = DescribeABTestConfigRequest(projectName: projectName)
-        return try await self.client.execute(action: "DescribeABTestConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeABTestConfig(.init(projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 }

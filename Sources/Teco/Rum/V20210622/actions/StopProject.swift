@@ -60,8 +60,7 @@ extension Rum {
     /// 停止项目使用与上报数据
     @inlinable @discardableResult
     public func stopProject(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopProjectResponse> {
-        let input = StopProjectRequest(projectId: projectId)
-        return self.client.execute(action: "StopProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止应用上报
@@ -69,7 +68,6 @@ extension Rum {
     /// 停止项目使用与上报数据
     @inlinable @discardableResult
     public func stopProject(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopProjectResponse {
-        let input = StopProjectRequest(projectId: projectId)
-        return try await self.client.execute(action: "StopProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopProject(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

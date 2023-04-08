@@ -100,7 +100,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
-        self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeTimerScalingPolicies is no longer available.")
     }
 
     /// 查询定时器列表
@@ -109,7 +109,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
-        try await self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeTimerScalingPolicies is no longer available.")
     }
 
     /// 查询定时器列表
@@ -118,8 +118,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
-        let input = DescribeTimerScalingPoliciesRequest(fleetId: fleetId, timerName: timerName, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeTimerScalingPolicies is no longer available.")
     }
 
     /// 查询定时器列表
@@ -128,7 +127,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
-        let input = DescribeTimerScalingPoliciesRequest(fleetId: fleetId, timerName: timerName, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeTimerScalingPolicies is no longer available.")
     }
 }

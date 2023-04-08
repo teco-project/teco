@@ -60,8 +60,7 @@ extension Mps {
     /// 停止媒体传输流。
     @inlinable @discardableResult
     public func stopStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopStreamLinkFlowResponse> {
-        let input = StopStreamLinkFlowRequest(flowId: flowId)
-        return self.client.execute(action: "StopStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopStreamLinkFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止媒体传输流
@@ -69,7 +68,6 @@ extension Mps {
     /// 停止媒体传输流。
     @inlinable @discardableResult
     public func stopStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
-        let input = StopStreamLinkFlowRequest(flowId: flowId)
-        return try await self.client.execute(action: "StopStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopStreamLinkFlow(.init(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -243,8 +243,7 @@ extension Ocr {
     /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
     @inlinable
     public func verifyBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyBizLicenseResponse> {
-        let input = VerifyBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address)
-        return self.client.execute(action: "VerifyBizLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyBizLicense(.init(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address), region: region, logger: logger, on: eventLoop)
     }
 
     /// 营业执照识别及核验（详细版）
@@ -256,7 +255,6 @@ extension Ocr {
     /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
     @inlinable
     public func verifyBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBizLicenseResponse {
-        let input = VerifyBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address)
-        return try await self.client.execute(action: "VerifyBizLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyBizLicense(.init(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address), region: region, logger: logger, on: eventLoop)
     }
 }

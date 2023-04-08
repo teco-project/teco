@@ -65,8 +65,7 @@ extension Apigateway {
     /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
     @inlinable
     public func deleteApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiKeyResponse> {
-        let input = DeleteApiKeyRequest(accessKeyId: accessKeyId)
-        return self.client.execute(action: "DeleteApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteApiKey(.init(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除密钥
@@ -74,7 +73,6 @@ extension Apigateway {
     /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
     @inlinable
     public func deleteApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiKeyResponse {
-        let input = DeleteApiKeyRequest(accessKeyId: accessKeyId)
-        return try await self.client.execute(action: "DeleteApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteApiKey(.init(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 }

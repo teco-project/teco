@@ -91,8 +91,7 @@ extension Apigateway {
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
     public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvironmentResponse> {
-        let input = BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds)
-        return self.client.execute(action: "BindEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindEnvironment(.init(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定使用计划到服务或API
@@ -102,7 +101,6 @@ extension Apigateway {
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
     public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
-        let input = BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds)
-        return try await self.client.execute(action: "BindEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindEnvironment(.init(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

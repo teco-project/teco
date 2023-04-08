@@ -68,14 +68,12 @@ extension Redis {
     /// 添加复制组成员
     @inlinable
     public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddReplicationInstanceResponse> {
-        let input = AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole)
-        return self.client.execute(action: "AddReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addReplicationInstance(.init(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加复制组成员
     @inlinable
     public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
-        let input = AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole)
-        return try await self.client.execute(action: "AddReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addReplicationInstance(.init(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -107,15 +107,13 @@ extension Oceanus {
     /// 查询集群
     @inlinable
     public func describeClusters(clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderType: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
-        let input = DescribeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, orderType: orderType, filters: filters, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClusters(.init(clusterIds: clusterIds, offset: offset, limit: limit, orderType: orderType, filters: filters, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群
     @inlinable
     public func describeClusters(clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderType: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        let input = DescribeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, orderType: orderType, filters: filters, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClusters(.init(clusterIds: clusterIds, offset: offset, limit: limit, orderType: orderType, filters: filters, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群

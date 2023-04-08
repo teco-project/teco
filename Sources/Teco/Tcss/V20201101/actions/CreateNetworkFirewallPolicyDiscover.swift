@@ -62,14 +62,12 @@ extension Tcss {
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
     public func createNetworkFirewallPolicyDiscover(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
-        let input = CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId)
-        return self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetworkFirewallPolicyDiscover(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
     public func createNetworkFirewallPolicyDiscover(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
-        let input = CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetworkFirewallPolicyDiscover(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -100,8 +100,7 @@ extension Ocr {
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
     @inlinable
     public func recognizeMedicalInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnVertex: Bool? = nil, returnCoord: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMedicalInvoiceOCRResponse> {
-        let input = RecognizeMedicalInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return self.client.execute(action: "RecognizeMedicalInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.recognizeMedicalInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 医疗票据识别
@@ -109,7 +108,6 @@ extension Ocr {
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
     @inlinable
     public func recognizeMedicalInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnVertex: Bool? = nil, returnCoord: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMedicalInvoiceOCRResponse {
-        let input = RecognizeMedicalInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
-        return try await self.client.execute(action: "RecognizeMedicalInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.recognizeMedicalInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

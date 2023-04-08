@@ -287,8 +287,7 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IDCardOCRResponse> {
-        let input = IDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config)
-        return self.client.execute(action: "IDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份证识别
@@ -343,7 +342,6 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {
-        let input = IDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config)
-        return try await self.client.execute(action: "IDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -82,14 +82,12 @@ extension Gme {
     /// 获取用户自定义送检信息
     @inlinable
     public func describeRealtimeScanConfig(bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
-        let input = DescribeRealtimeScanConfigRequest(bizId: bizId)
-        return self.client.execute(action: "DescribeRealtimeScanConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRealtimeScanConfig(.init(bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户自定义送检信息
     @inlinable
     public func describeRealtimeScanConfig(bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
-        let input = DescribeRealtimeScanConfigRequest(bizId: bizId)
-        return try await self.client.execute(action: "DescribeRealtimeScanConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRealtimeScanConfig(.init(bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

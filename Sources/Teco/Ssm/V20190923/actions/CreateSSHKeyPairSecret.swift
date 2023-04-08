@@ -109,8 +109,7 @@ extension Ssm {
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
     public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSHKeyPairSecretResponse> {
-        let input = CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName)
-        return self.client.execute(action: "CreateSSHKeyPairSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createSSHKeyPairSecret(.init(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建SSH密钥对凭据
@@ -118,7 +117,6 @@ extension Ssm {
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
     public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
-        let input = CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName)
-        return try await self.client.execute(action: "CreateSSHKeyPairSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createSSHKeyPairSecret(.init(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), region: region, logger: logger, on: eventLoop)
     }
 }

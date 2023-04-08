@@ -65,8 +65,7 @@ extension Monitor {
     /// Grafana可视化服务 删除授权用户
     @inlinable @discardableResult
     public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
-        let input = DeleteSSOAccountRequest(instanceId: instanceId, userId: userId)
-        return self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteSSOAccount(.init(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除授权用户
@@ -74,7 +73,6 @@ extension Monitor {
     /// Grafana可视化服务 删除授权用户
     @inlinable @discardableResult
     public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
-        let input = DeleteSSOAccountRequest(instanceId: instanceId, userId: userId)
-        return try await self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteSSOAccount(.init(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

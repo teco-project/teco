@@ -65,8 +65,7 @@ extension Ses {
     /// 在验证了发信域名之后，您需要一个发信地址来发送邮件。例如发信域名是mail.qcloud.com，那么发信地址可以为 service@mail.qcloud.com。如果您想要收件人在收件箱列表中显示您的别名，例如"腾讯云邮件通知"。那么发信地址为： 别名 空格 尖括号 邮箱地址。请注意中间需要有空格
     @inlinable @discardableResult
     public func createEmailAddress(emailAddress: String, emailSenderName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmailAddressResponse> {
-        let input = CreateEmailAddressRequest(emailAddress: emailAddress, emailSenderName: emailSenderName)
-        return self.client.execute(action: "CreateEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createEmailAddress(.init(emailAddress: emailAddress, emailSenderName: emailSenderName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建发信地址
@@ -74,7 +73,6 @@ extension Ses {
     /// 在验证了发信域名之后，您需要一个发信地址来发送邮件。例如发信域名是mail.qcloud.com，那么发信地址可以为 service@mail.qcloud.com。如果您想要收件人在收件箱列表中显示您的别名，例如"腾讯云邮件通知"。那么发信地址为： 别名 空格 尖括号 邮箱地址。请注意中间需要有空格
     @inlinable @discardableResult
     public func createEmailAddress(emailAddress: String, emailSenderName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmailAddressResponse {
-        let input = CreateEmailAddressRequest(emailAddress: emailAddress, emailSenderName: emailSenderName)
-        return try await self.client.execute(action: "CreateEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createEmailAddress(.init(emailAddress: emailAddress, emailSenderName: emailSenderName), region: region, logger: logger, on: eventLoop)
     }
 }

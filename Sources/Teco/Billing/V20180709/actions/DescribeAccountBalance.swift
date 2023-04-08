@@ -104,8 +104,7 @@ extension Billing {
     /// 获取云账户余额信息。
     @inlinable
     public func describeAccountBalance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountBalanceResponse> {
-        let input = DescribeAccountBalanceRequest()
-        return self.client.execute(action: "DescribeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccountBalance(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账户余额
@@ -113,7 +112,6 @@ extension Billing {
     /// 获取云账户余额信息。
     @inlinable
     public func describeAccountBalance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
-        let input = DescribeAccountBalanceRequest()
-        return try await self.client.execute(action: "DescribeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccountBalance(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

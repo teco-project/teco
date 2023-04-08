@@ -103,8 +103,7 @@ extension Rum {
     /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        let input = CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc)
-        return self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createProject(.init(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 RUM 应用
@@ -112,7 +111,6 @@ extension Rum {
     /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        let input = CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc)
-        return try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createProject(.init(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 }

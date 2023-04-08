@@ -96,8 +96,7 @@ extension Cvm {
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
     public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
-        let input = SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired)
-        return self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.syncImages(.init(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步镜像
@@ -109,7 +108,6 @@ extension Cvm {
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
     public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
-        let input = SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired)
-        return try await self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.syncImages(.init(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)
     }
 }

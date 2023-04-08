@@ -70,14 +70,12 @@ extension Organization {
     /// 获取企业组织信息
     @inlinable
     public func getOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
-        let input = GetOrganizationRequest()
-        return self.client.execute(action: "GetOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getOrganization(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织信息
     @inlinable
     public func getOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
-        let input = GetOrganizationRequest()
-        return try await self.client.execute(action: "GetOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getOrganization(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

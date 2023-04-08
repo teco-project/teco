@@ -69,8 +69,7 @@ extension Cbs {
     /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
     @inlinable
     public func inquirePriceModifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceModifyDiskBackupQuotaResponse> {
-        let input = InquirePriceModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota)
-        return self.client.execute(action: "InquirePriceModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inquirePriceModifyDiskBackupQuota(.init(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘备份点配额询价
@@ -78,7 +77,6 @@ extension Cbs {
     /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
     @inlinable
     public func inquirePriceModifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskBackupQuotaResponse {
-        let input = InquirePriceModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota)
-        return try await self.client.execute(action: "InquirePriceModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inquirePriceModifyDiskBackupQuota(.init(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

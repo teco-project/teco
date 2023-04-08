@@ -74,14 +74,12 @@ extension Dnspod {
     /// 获取等级允许的线路
     @inlinable
     public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordLineListResponse> {
-        let input = DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId)
-        return self.client.execute(action: "DescribeRecordLineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordLineList(.init(domain: domain, domainGrade: domainGrade, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取等级允许的线路
     @inlinable
     public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
-        let input = DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId)
-        return try await self.client.execute(action: "DescribeRecordLineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordLineList(.init(domain: domain, domainGrade: domainGrade, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Cdb {
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
     public func stopRollback(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRollbackResponse> {
-        let input = StopRollbackRequest(instanceId: instanceId)
-        return self.client.execute(action: "StopRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopRollback(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销回档任务
@@ -73,7 +72,6 @@ extension Cdb {
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
     public func stopRollback(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRollbackResponse {
-        let input = StopRollbackRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "StopRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopRollback(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

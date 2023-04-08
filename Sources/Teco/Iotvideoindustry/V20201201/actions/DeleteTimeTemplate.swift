@@ -65,8 +65,7 @@ extension Iotvideoindustry {
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
     @inlinable
     public func deleteTimeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeTemplateResponse> {
-        let input = DeleteTimeTemplateRequest(templateId: templateId)
-        return self.client.execute(action: "DeleteTimeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTimeTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除时间模板
@@ -74,7 +73,6 @@ extension Iotvideoindustry {
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
     @inlinable
     public func deleteTimeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeTemplateResponse {
-        let input = DeleteTimeTemplateRequest(templateId: templateId)
-        return try await self.client.execute(action: "DeleteTimeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTimeTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

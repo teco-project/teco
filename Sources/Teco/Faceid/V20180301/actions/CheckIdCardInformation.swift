@@ -157,8 +157,7 @@ extension Faceid {
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
     public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardInformationResponse> {
-        let input = CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt)
-        return self.client.execute(action: "CheckIdCardInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkIdCardInformation(.init(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份证人像照片验真
@@ -166,7 +165,6 @@ extension Faceid {
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
     public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
-        let input = CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt)
-        return try await self.client.execute(action: "CheckIdCardInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkIdCardInformation(.init(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), region: region, logger: logger, on: eventLoop)
     }
 }

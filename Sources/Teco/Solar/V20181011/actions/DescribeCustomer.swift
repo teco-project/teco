@@ -199,14 +199,12 @@ extension Solar {
     /// 客户档案查询客户详情
     @inlinable
     public func describeCustomer(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerResponse> {
-        let input = DescribeCustomerRequest(userId: userId)
-        return self.client.execute(action: "DescribeCustomer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCustomer(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 客户档案查询客户详情
     @inlinable
     public func describeCustomer(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
-        let input = DescribeCustomerRequest(userId: userId)
-        return try await self.client.execute(action: "DescribeCustomer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCustomer(.init(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

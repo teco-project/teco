@@ -60,8 +60,7 @@ extension Asw {
     /// 终止某个状态机
     @inlinable @discardableResult
     public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
-        let input = StopExecutionRequest(executionQrn: executionQrn)
-        return self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.stopExecution(.init(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止状态机
@@ -69,7 +68,6 @@ extension Asw {
     /// 终止某个状态机
     @inlinable @discardableResult
     public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
-        let input = StopExecutionRequest(executionQrn: executionQrn)
-        return try await self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.stopExecution(.init(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }
 }

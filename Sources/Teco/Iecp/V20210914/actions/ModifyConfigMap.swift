@@ -69,14 +69,12 @@ extension Iecp {
     /// 修改ConfigMap
     @inlinable @discardableResult
     public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigMapResponse> {
-        let input = ModifyConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace)
-        return self.client.execute(action: "ModifyConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyConfigMap(.init(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改ConfigMap
     @inlinable @discardableResult
     public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
-        let input = ModifyConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace)
-        return try await self.client.execute(action: "ModifyConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyConfigMap(.init(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 }

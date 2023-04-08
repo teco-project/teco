@@ -65,8 +65,7 @@ extension Cam {
     /// 列出指定CAM用户的访问密钥
     @inlinable
     public func listAccessKeys(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccessKeysResponse> {
-        let input = ListAccessKeysRequest(targetUin: targetUin)
-        return self.client.execute(action: "ListAccessKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAccessKeys(.init(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出访问密钥
@@ -74,7 +73,6 @@ extension Cam {
     /// 列出指定CAM用户的访问密钥
     @inlinable
     public func listAccessKeys(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
-        let input = ListAccessKeysRequest(targetUin: targetUin)
-        return try await self.client.execute(action: "ListAccessKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAccessKeys(.init(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -64,8 +64,7 @@ extension Bmvpc {
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
     public func deleteVpnConnection(vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
-        let input = DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId)
-        return self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteVpnConnection(.init(vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除VPN通道
@@ -73,7 +72,6 @@ extension Bmvpc {
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
     public func deleteVpnConnection(vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
-        let input = DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId)
-        return try await self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteVpnConnection(.init(vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

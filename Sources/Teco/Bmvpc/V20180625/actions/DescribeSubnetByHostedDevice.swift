@@ -103,8 +103,7 @@ extension Bmvpc {
     /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
     @inlinable
     public func describeSubnetByHostedDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetByHostedDeviceResponse> {
-        let input = DescribeSubnetByHostedDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSubnetByHostedDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSubnetByHostedDevice(.init(instanceId: instanceId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询托管机器加入的子网列表
@@ -112,8 +111,7 @@ extension Bmvpc {
     /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
     @inlinable
     public func describeSubnetByHostedDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetByHostedDeviceResponse {
-        let input = DescribeSubnetByHostedDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSubnetByHostedDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSubnetByHostedDevice(.init(instanceId: instanceId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询托管机器加入的子网列表

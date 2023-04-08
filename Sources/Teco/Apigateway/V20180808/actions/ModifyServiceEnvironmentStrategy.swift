@@ -75,8 +75,7 @@ extension Apigateway {
     /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
     @inlinable
     public func modifyServiceEnvironmentStrategy(serviceId: String, strategy: Int64, environmentNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceEnvironmentStrategyResponse> {
-        let input = ModifyServiceEnvironmentStrategyRequest(serviceId: serviceId, strategy: strategy, environmentNames: environmentNames)
-        return self.client.execute(action: "ModifyServiceEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyServiceEnvironmentStrategy(.init(serviceId: serviceId, strategy: strategy, environmentNames: environmentNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务限流策略
@@ -84,7 +83,6 @@ extension Apigateway {
     /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
     @inlinable
     public func modifyServiceEnvironmentStrategy(serviceId: String, strategy: Int64, environmentNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceEnvironmentStrategyResponse {
-        let input = ModifyServiceEnvironmentStrategyRequest(serviceId: serviceId, strategy: strategy, environmentNames: environmentNames)
-        return try await self.client.execute(action: "ModifyServiceEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyServiceEnvironmentStrategy(.init(serviceId: serviceId, strategy: strategy, environmentNames: environmentNames), region: region, logger: logger, on: eventLoop)
     }
 }

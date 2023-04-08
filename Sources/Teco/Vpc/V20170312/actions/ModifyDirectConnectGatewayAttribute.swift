@@ -75,8 +75,7 @@ extension Vpc {
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable @discardableResult
     public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectGatewayAttributeResponse> {
-        let input = ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType)
-        return self.client.execute(action: "ModifyDirectConnectGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDirectConnectGatewayAttribute(.init(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改专线网关属性
@@ -84,7 +83,6 @@ extension Vpc {
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable @discardableResult
     public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
-        let input = ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType)
-        return try await self.client.execute(action: "ModifyDirectConnectGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDirectConnectGatewayAttribute(.init(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), region: region, logger: logger, on: eventLoop)
     }
 }

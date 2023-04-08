@@ -64,14 +64,12 @@ extension Pts {
     /// 创建告警通知接收组
     @inlinable @discardableResult
     public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertChannelResponse> {
-        let input = CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId)
-        return self.client.execute(action: "CreateAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAlertChannel(.init(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警通知接收组
     @inlinable @discardableResult
     public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
-        let input = CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId)
-        return try await self.client.execute(action: "CreateAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAlertChannel(.init(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Cvm {
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable @discardableResult
     public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
-        let input = DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId)
-        return self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteLaunchTemplate(.init(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例启动模板
@@ -69,7 +68,6 @@ extension Cvm {
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable @discardableResult
     public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
-        let input = DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId)
-        return try await self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteLaunchTemplate(.init(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

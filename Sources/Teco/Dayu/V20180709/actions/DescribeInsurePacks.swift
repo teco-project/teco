@@ -58,14 +58,12 @@ extension Dayu {
     /// 获取保险包套餐列表
     @inlinable
     public func describeInsurePacks(idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInsurePacksResponse> {
-        let input = DescribeInsurePacksRequest(idList: idList)
-        return self.client.execute(action: "DescribeInsurePacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInsurePacks(.init(idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取保险包套餐列表
     @inlinable
     public func describeInsurePacks(idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
-        let input = DescribeInsurePacksRequest(idList: idList)
-        return try await self.client.execute(action: "DescribeInsurePacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInsurePacks(.init(idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

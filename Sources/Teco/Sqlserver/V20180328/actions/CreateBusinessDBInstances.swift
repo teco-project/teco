@@ -134,8 +134,7 @@ extension Sqlserver {
     /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
     @inlinable
     public func createBusinessDBInstances(zone: String, memory: Int64, storage: Int64, cpu: Int64, machineType: String, projectId: Int64? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, dbVersion: String? = nil, securityGroupList: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessDBInstancesResponse> {
-        let input = CreateBusinessDBInstancesRequest(zone: zone, memory: memory, storage: storage, cpu: cpu, machineType: machineType, projectId: projectId, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, dbVersion: dbVersion, securityGroupList: securityGroupList, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags)
-        return self.client.execute(action: "CreateBusinessDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBusinessDBInstances(.init(zone: zone, memory: memory, storage: storage, cpu: cpu, machineType: machineType, projectId: projectId, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, dbVersion: dbVersion, securityGroupList: securityGroupList, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建商业智能服务实例
@@ -143,7 +142,6 @@ extension Sqlserver {
     /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
     @inlinable
     public func createBusinessDBInstances(zone: String, memory: Int64, storage: Int64, cpu: Int64, machineType: String, projectId: Int64? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, dbVersion: String? = nil, securityGroupList: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessDBInstancesResponse {
-        let input = CreateBusinessDBInstancesRequest(zone: zone, memory: memory, storage: storage, cpu: cpu, machineType: machineType, projectId: projectId, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, dbVersion: dbVersion, securityGroupList: securityGroupList, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags)
-        return try await self.client.execute(action: "CreateBusinessDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBusinessDBInstances(.init(zone: zone, memory: memory, storage: storage, cpu: cpu, machineType: machineType, projectId: projectId, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, dbVersion: dbVersion, securityGroupList: securityGroupList, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 }

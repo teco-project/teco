@@ -147,8 +147,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainStatisticsResponse> {
-        let input = DescribeEcdnDomainStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area)
-        return self.client.execute(action: "DescribeEcdnDomainStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEcdnDomainStatistics(.init(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名统计指标查询
@@ -158,8 +157,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
-        let input = DescribeEcdnDomainStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area)
-        return try await self.client.execute(action: "DescribeEcdnDomainStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEcdnDomainStatistics(.init(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名统计指标查询

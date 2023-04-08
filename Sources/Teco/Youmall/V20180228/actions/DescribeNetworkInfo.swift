@@ -74,8 +74,7 @@ extension Youmall {
     /// 返回当前门店最新网络状态数据
     @inlinable
     public func describeNetworkInfo(time: Int64, companyId: String, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInfoResponse> {
-        let input = DescribeNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId)
-        return self.client.execute(action: "DescribeNetworkInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNetworkInfo(.init(time: time, companyId: companyId, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备最新网络状态
@@ -83,7 +82,6 @@ extension Youmall {
     /// 返回当前门店最新网络状态数据
     @inlinable
     public func describeNetworkInfo(time: Int64, companyId: String, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInfoResponse {
-        let input = DescribeNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId)
-        return try await self.client.execute(action: "DescribeNetworkInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNetworkInfo(.init(time: time, companyId: companyId, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 }

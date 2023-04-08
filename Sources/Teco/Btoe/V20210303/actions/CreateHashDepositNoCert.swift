@@ -81,7 +81,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
-        self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateHashDepositNoCert is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -90,7 +90,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
-        try await self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateHashDepositNoCert is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -99,8 +99,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
-        let input = CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo)
-        return self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateHashDepositNoCert is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -109,7 +108,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
-        let input = CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo)
-        return try await self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateHashDepositNoCert is no longer available.")
     }
 }

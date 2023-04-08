@@ -76,14 +76,12 @@ extension Tcss {
     /// 运行时更新木马文件事件状态
     @inlinable @discardableResult
     public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
-        let input = ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate)
-        return self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVirusFileStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新木马文件事件状态
     @inlinable @discardableResult
     public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
-        let input = ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate)
-        return try await self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVirusFileStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }
 }

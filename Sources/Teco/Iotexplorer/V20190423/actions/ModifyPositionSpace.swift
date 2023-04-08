@@ -79,14 +79,12 @@ extension Iotexplorer {
     /// 更新位置空间
     @inlinable @discardableResult
     public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionSpaceResponse> {
-        let input = ModifyPositionSpaceRequest(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon)
-        return self.client.execute(action: "ModifyPositionSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPositionSpace(.init(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新位置空间
     @inlinable @discardableResult
     public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
-        let input = ModifyPositionSpaceRequest(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon)
-        return try await self.client.execute(action: "ModifyPositionSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPositionSpace(.init(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), region: region, logger: logger, on: eventLoop)
     }
 }

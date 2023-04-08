@@ -69,8 +69,7 @@ extension Sqlserver {
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
     @inlinable
     public func modifyDatabaseMdf(dbNames: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseMdfResponse> {
-        let input = ModifyDatabaseMdfRequest(dbNames: dbNames, instanceId: instanceId)
-        return self.client.execute(action: "ModifyDatabaseMdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyDatabaseMdf(.init(dbNames: dbNames, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 收缩数据库mdf
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
     @inlinable
     public func modifyDatabaseMdf(dbNames: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
-        let input = ModifyDatabaseMdfRequest(dbNames: dbNames, instanceId: instanceId)
-        return try await self.client.execute(action: "ModifyDatabaseMdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyDatabaseMdf(.init(dbNames: dbNames, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

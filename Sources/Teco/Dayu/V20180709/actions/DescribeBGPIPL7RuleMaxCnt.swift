@@ -63,14 +63,12 @@ extension Dayu {
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
     public func describeBGPIPL7RuleMaxCnt(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBGPIPL7RuleMaxCntResponse> {
-        let input = DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id)
-        return self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeBGPIPL7RuleMaxCnt(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
     public func describeBGPIPL7RuleMaxCnt(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
-        let input = DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id)
-        return try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeBGPIPL7RuleMaxCnt(.init(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

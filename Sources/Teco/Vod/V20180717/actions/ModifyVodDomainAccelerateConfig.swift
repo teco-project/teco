@@ -84,8 +84,7 @@ extension Vod {
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable @discardableResult
     public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainAccelerateConfigResponse> {
-        let input = ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId)
-        return self.client.execute(action: "ModifyVodDomainAccelerateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVodDomainAccelerateConfig(.init(domain: domain, area: area, status: status, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或者关闭点播域名加速地域
@@ -94,7 +93,6 @@ extension Vod {
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable @discardableResult
     public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainAccelerateConfigResponse {
-        let input = ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId)
-        return try await self.client.execute(action: "ModifyVodDomainAccelerateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVodDomainAccelerateConfig(.init(domain: domain, area: area, status: status, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

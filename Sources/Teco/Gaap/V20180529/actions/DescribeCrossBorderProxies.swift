@@ -52,8 +52,7 @@ extension Gaap {
     /// 本接口（DescribeCrossBorderProxies）用于查询跨境通道实例列表。
     @inlinable @discardableResult
     public func describeCrossBorderProxies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossBorderProxiesResponse> {
-        let input = DescribeCrossBorderProxiesRequest()
-        return self.client.execute(action: "DescribeCrossBorderProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCrossBorderProxies(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询跨境通道实例列表
@@ -61,7 +60,6 @@ extension Gaap {
     /// 本接口（DescribeCrossBorderProxies）用于查询跨境通道实例列表。
     @inlinable @discardableResult
     public func describeCrossBorderProxies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderProxiesResponse {
-        let input = DescribeCrossBorderProxiesRequest()
-        return try await self.client.execute(action: "DescribeCrossBorderProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCrossBorderProxies(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

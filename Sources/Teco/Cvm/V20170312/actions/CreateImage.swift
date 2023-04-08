@@ -109,8 +109,7 @@ extension Cvm {
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
     public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
-        let input = CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification)
-        return self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createImage(.init(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
@@ -118,7 +117,6 @@ extension Cvm {
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
     public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        let input = CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification)
-        return try await self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createImage(.init(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

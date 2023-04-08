@@ -65,8 +65,7 @@ extension Thpc {
     /// 本接口 (DeleteClusterStorageOption) 用于删除集群存储选项信息。
     @inlinable @discardableResult
     public func deleteClusterStorageOption(clusterId: String, localPath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterStorageOptionResponse> {
-        let input = DeleteClusterStorageOptionRequest(clusterId: clusterId, localPath: localPath)
-        return self.client.execute(action: "DeleteClusterStorageOption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteClusterStorageOption(.init(clusterId: clusterId, localPath: localPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群存储选项
@@ -74,7 +73,6 @@ extension Thpc {
     /// 本接口 (DeleteClusterStorageOption) 用于删除集群存储选项信息。
     @inlinable @discardableResult
     public func deleteClusterStorageOption(clusterId: String, localPath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterStorageOptionResponse {
-        let input = DeleteClusterStorageOptionRequest(clusterId: clusterId, localPath: localPath)
-        return try await self.client.execute(action: "DeleteClusterStorageOption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteClusterStorageOption(.init(clusterId: clusterId, localPath: localPath), region: region, logger: logger, on: eventLoop)
     }
 }

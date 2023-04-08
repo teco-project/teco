@@ -59,14 +59,12 @@ extension Monitor {
     /// 更新 Grafana 白名单
     @inlinable @discardableResult
     public func updateGrafanaWhiteList(instanceId: String, whitelist: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaWhiteListResponse> {
-        let input = UpdateGrafanaWhiteListRequest(instanceId: instanceId, whitelist: whitelist)
-        return self.client.execute(action: "UpdateGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.updateGrafanaWhiteList(.init(instanceId: instanceId, whitelist: whitelist), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 白名单
     @inlinable @discardableResult
     public func updateGrafanaWhiteList(instanceId: String, whitelist: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaWhiteListResponse {
-        let input = UpdateGrafanaWhiteListRequest(instanceId: instanceId, whitelist: whitelist)
-        return try await self.client.execute(action: "UpdateGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.updateGrafanaWhiteList(.init(instanceId: instanceId, whitelist: whitelist), region: region, logger: logger, on: eventLoop)
     }
 }

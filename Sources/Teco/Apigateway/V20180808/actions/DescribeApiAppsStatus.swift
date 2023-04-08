@@ -95,8 +95,7 @@ extension Apigateway {
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
     public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppsStatusResponse> {
-        let input = DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeApiAppsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeApiAppsStatus(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用列表
@@ -104,8 +103,7 @@ extension Apigateway {
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
     public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppsStatusResponse {
-        let input = DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeApiAppsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeApiAppsStatus(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用列表

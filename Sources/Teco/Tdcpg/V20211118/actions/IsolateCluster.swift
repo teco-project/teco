@@ -60,8 +60,7 @@ extension Tdcpg {
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
     @inlinable @discardableResult
     public func isolateCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
-        let input = IsolateClusterRequest(clusterId: clusterId)
-        return self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.isolateCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离集群
@@ -69,7 +68,6 @@ extension Tdcpg {
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
     @inlinable @discardableResult
     public func isolateCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
-        let input = IsolateClusterRequest(clusterId: clusterId)
-        return try await self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.isolateCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

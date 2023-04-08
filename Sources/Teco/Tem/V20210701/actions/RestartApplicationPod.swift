@@ -89,14 +89,12 @@ extension Tem {
     /// 重启应用实例
     @inlinable
     public func restartApplicationPod(environmentId: String, applicationId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartApplicationPodResponse> {
-        let input = RestartApplicationPodRequest(environmentId: environmentId, applicationId: applicationId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel)
-        return self.client.execute(action: "RestartApplicationPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartApplicationPod(.init(environmentId: environmentId, applicationId: applicationId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启应用实例
     @inlinable
     public func restartApplicationPod(environmentId: String, applicationId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationPodResponse {
-        let input = RestartApplicationPodRequest(environmentId: environmentId, applicationId: applicationId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel)
-        return try await self.client.execute(action: "RestartApplicationPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartApplicationPod(.init(environmentId: environmentId, applicationId: applicationId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

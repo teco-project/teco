@@ -58,14 +58,12 @@ extension Kms {
     /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
-        let input = ListAlgorithmsRequest()
-        return self.client.execute(action: "ListAlgorithms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAlgorithms(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
-        let input = ListAlgorithmsRequest()
-        return try await self.client.execute(action: "ListAlgorithms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAlgorithms(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

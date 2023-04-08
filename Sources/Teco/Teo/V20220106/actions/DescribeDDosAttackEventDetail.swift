@@ -75,14 +75,12 @@ extension Teo {
     /// 查询DDos攻击事件详情
     @inlinable
     public func describeDDosAttackEventDetail(eventId: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackEventDetailResponse> {
-        let input = DescribeDDosAttackEventDetailRequest(eventId: eventId, area: area)
-        return self.client.execute(action: "DescribeDDosAttackEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDDosAttackEventDetail(.init(eventId: eventId, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDos攻击事件详情
     @inlinable
     public func describeDDosAttackEventDetail(eventId: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackEventDetailResponse {
-        let input = DescribeDDosAttackEventDetailRequest(eventId: eventId, area: area)
-        return try await self.client.execute(action: "DescribeDDosAttackEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDDosAttackEventDetail(.init(eventId: eventId, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,14 +74,12 @@ extension Iotvideo {
     /// 发起AI推理请求
     @inlinable @discardableResult
     public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIDetectionResponse> {
-        let input = CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "CreateAIDetection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAIDetection(.init(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起AI推理请求
     @inlinable @discardableResult
     public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
-        let input = CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "CreateAIDetection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAIDetection(.init(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

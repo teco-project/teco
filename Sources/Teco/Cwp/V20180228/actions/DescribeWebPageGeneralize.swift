@@ -80,8 +80,7 @@ extension Cwp {
     /// 查询网站防篡改概览信息
     @inlinable
     public func describeWebPageGeneralize(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageGeneralizeResponse> {
-        let input = DescribeWebPageGeneralizeRequest()
-        return self.client.execute(action: "DescribeWebPageGeneralize", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWebPageGeneralize(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网页防篡改概览信息
@@ -89,7 +88,6 @@ extension Cwp {
     /// 查询网站防篡改概览信息
     @inlinable
     public func describeWebPageGeneralize(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
-        let input = DescribeWebPageGeneralizeRequest()
-        return try await self.client.execute(action: "DescribeWebPageGeneralize", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWebPageGeneralize(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

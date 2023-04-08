@@ -75,8 +75,7 @@ extension Ocr {
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
     @inlinable
     public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QrcodeOCRResponse> {
-        let input = QrcodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return self.client.execute(action: "QrcodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.qrcodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 二维码和条形码识别
@@ -84,7 +83,6 @@ extension Ocr {
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
     @inlinable
     public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
-        let input = QrcodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
-        return try await self.client.execute(action: "QrcodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.qrcodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

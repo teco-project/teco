@@ -78,8 +78,7 @@ extension Asw {
     /// 为指定的状态机启动一次执行
     @inlinable
     public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartExecutionResponse> {
-        let input = StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name)
-        return self.client.execute(action: "StartExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startExecution(.init(stateMachineResourceName: stateMachineResourceName, input: input, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动执行
@@ -87,7 +86,6 @@ extension Asw {
     /// 为指定的状态机启动一次执行
     @inlinable
     public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
-        let input = StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name)
-        return try await self.client.execute(action: "StartExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startExecution(.init(stateMachineResourceName: stateMachineResourceName, input: input, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

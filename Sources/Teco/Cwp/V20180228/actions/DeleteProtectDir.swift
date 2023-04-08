@@ -54,14 +54,12 @@ extension Cwp {
     /// 删除防护网站
     @inlinable @discardableResult
     public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
-        let input = DeleteProtectDirRequest(ids: ids)
-        return self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteProtectDir(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除防护网站
     @inlinable @discardableResult
     public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
-        let input = DeleteProtectDirRequest(ids: ids)
-        return try await self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteProtectDir(.init(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -149,7 +149,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(_ input: CopyFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFleetResponse> {
-        self.client.execute(action: "CopyFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CopyFleet is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -158,7 +158,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(_ input: CopyFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
-        try await self.client.execute(action: "CopyFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CopyFleet is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -167,8 +167,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFleetResponse> {
-        let input = CopyFleetRequest(fleetId: fleetId, copyNumber: copyNumber, assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, selectedScalingType: selectedScalingType, selectedCcnType: selectedCcnType, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, selectedTimerType: selectedTimerType, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut)
-        return self.client.execute(action: "CopyFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CopyFleet is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -177,7 +176,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
-        let input = CopyFleetRequest(fleetId: fleetId, copyNumber: copyNumber, assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, selectedScalingType: selectedScalingType, selectedCcnType: selectedCcnType, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, selectedTimerType: selectedTimerType, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut)
-        return try await self.client.execute(action: "CopyFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CopyFleet is no longer available.")
     }
 }

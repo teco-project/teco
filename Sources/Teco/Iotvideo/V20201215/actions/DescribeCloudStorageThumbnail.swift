@@ -68,14 +68,12 @@ extension Iotvideo {
     /// 拉取云存事件缩略图
     @inlinable
     public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageThumbnailResponse> {
-        let input = DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail)
-        return self.client.execute(action: "DescribeCloudStorageThumbnail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudStorageThumbnail(.init(productId: productId, deviceName: deviceName, thumbnail: thumbnail), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件缩略图
     @inlinable
     public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
-        let input = DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail)
-        return try await self.client.execute(action: "DescribeCloudStorageThumbnail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudStorageThumbnail(.init(productId: productId, deviceName: deviceName, thumbnail: thumbnail), region: region, logger: logger, on: eventLoop)
     }
 }

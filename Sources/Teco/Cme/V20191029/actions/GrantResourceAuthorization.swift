@@ -89,8 +89,7 @@ extension Cme {
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable @discardableResult
     public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantResourceAuthorizationResponse> {
-        let input = GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`)
-        return self.client.execute(action: "GrantResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.grantResourceAuthorization(.init(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起媒资授权
@@ -98,7 +97,6 @@ extension Cme {
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable @discardableResult
     public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
-        let input = GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`)
-        return try await self.client.execute(action: "GrantResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.grantResourceAuthorization(.init(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

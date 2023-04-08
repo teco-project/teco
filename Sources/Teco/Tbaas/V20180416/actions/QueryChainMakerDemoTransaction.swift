@@ -69,14 +69,12 @@ extension Tbaas {
     /// 通过交易ID查询长安链体验网络交易
     @inlinable
     public func queryChainMakerDemoTransaction(clusterId: String, chainId: String, txID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerDemoTransactionResponse> {
-        let input = QueryChainMakerDemoTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID)
-        return self.client.execute(action: "QueryChainMakerDemoTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryChainMakerDemoTransaction(.init(clusterId: clusterId, chainId: chainId, txID: txID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过交易ID查询长安链体验网络交易
     @inlinable
     public func queryChainMakerDemoTransaction(clusterId: String, chainId: String, txID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoTransactionResponse {
-        let input = QueryChainMakerDemoTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID)
-        return try await self.client.execute(action: "QueryChainMakerDemoTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryChainMakerDemoTransaction(.init(clusterId: clusterId, chainId: chainId, txID: txID), region: region, logger: logger, on: eventLoop)
     }
 }

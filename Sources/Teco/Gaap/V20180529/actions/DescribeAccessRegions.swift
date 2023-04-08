@@ -60,8 +60,7 @@ extension Gaap {
     /// 本接口（DescribeAccessRegions）用于查询加速区域，即客户端接入区域。
     @inlinable
     public func describeAccessRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessRegionsResponse> {
-        let input = DescribeAccessRegionsRequest()
-        return self.client.execute(action: "DescribeAccessRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccessRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询加速区域
@@ -69,7 +68,6 @@ extension Gaap {
     /// 本接口（DescribeAccessRegions）用于查询加速区域，即客户端接入区域。
     @inlinable
     public func describeAccessRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRegionsResponse {
-        let input = DescribeAccessRegionsRequest()
-        return try await self.client.execute(action: "DescribeAccessRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccessRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

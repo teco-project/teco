@@ -128,14 +128,12 @@ extension Cpdp {
     /// 务工卡-核身预下单带授权
     @inlinable
     public func createPayRollPreOrderWithAuth(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollPreOrderWithAuthResponse> {
-        let input = CreatePayRollPreOrderWithAuthRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
-        return self.client.execute(action: "CreatePayRollPreOrderWithAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPayRollPreOrderWithAuth(.init(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-核身预下单带授权
     @inlinable
     public func createPayRollPreOrderWithAuth(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderWithAuthResponse {
-        let input = CreatePayRollPreOrderWithAuthRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
-        return try await self.client.execute(action: "CreatePayRollPreOrderWithAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPayRollPreOrderWithAuth(.init(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
     }
 }

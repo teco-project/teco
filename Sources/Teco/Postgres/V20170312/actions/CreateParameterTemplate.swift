@@ -79,8 +79,7 @@ extension Postgres {
     /// 本接口 (CreateParameterTemplate) 用于创建参数模板。
     @inlinable
     public func createParameterTemplate(templateName: String, dbMajorVersion: String, dbEngine: String, templateDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateParameterTemplateResponse> {
-        let input = CreateParameterTemplateRequest(templateName: templateName, dbMajorVersion: dbMajorVersion, dbEngine: dbEngine, templateDescription: templateDescription)
-        return self.client.execute(action: "CreateParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createParameterTemplate(.init(templateName: templateName, dbMajorVersion: dbMajorVersion, dbEngine: dbEngine, templateDescription: templateDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建参数模板
@@ -88,7 +87,6 @@ extension Postgres {
     /// 本接口 (CreateParameterTemplate) 用于创建参数模板。
     @inlinable
     public func createParameterTemplate(templateName: String, dbMajorVersion: String, dbEngine: String, templateDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParameterTemplateResponse {
-        let input = CreateParameterTemplateRequest(templateName: templateName, dbMajorVersion: dbMajorVersion, dbEngine: dbEngine, templateDescription: templateDescription)
-        return try await self.client.execute(action: "CreateParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createParameterTemplate(.init(templateName: templateName, dbMajorVersion: dbMajorVersion, dbEngine: dbEngine, templateDescription: templateDescription), region: region, logger: logger, on: eventLoop)
     }
 }

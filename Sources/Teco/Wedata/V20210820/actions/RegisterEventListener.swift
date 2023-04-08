@@ -88,8 +88,7 @@ extension Wedata {
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
-        let input = RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties)
-        return self.client.execute(action: "RegisterEventListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.registerEventListener(.init(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册事件监听器【Beta版本】
@@ -98,7 +97,6 @@ extension Wedata {
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
-        let input = RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties)
-        return try await self.client.execute(action: "RegisterEventListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.registerEventListener(.init(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), region: region, logger: logger, on: eventLoop)
     }
 }

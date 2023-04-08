@@ -69,14 +69,12 @@ extension Tcaplusdb {
     /// 获取表格组关联的标签列表
     @inlinable
     public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableGroupTagsResponse> {
-        let input = DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds)
-        return self.client.execute(action: "DescribeTableGroupTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTableGroupTags(.init(clusterId: clusterId, tableGroupIds: tableGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取表格组关联的标签列表
     @inlinable
     public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
-        let input = DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds)
-        return try await self.client.execute(action: "DescribeTableGroupTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTableGroupTags(.init(clusterId: clusterId, tableGroupIds: tableGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

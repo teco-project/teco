@@ -75,8 +75,7 @@ extension Tcr {
     /// 用于企业版批量删除Repository Tag
     @inlinable @discardableResult
     public func deleteRepositoryTags(registryId: String, namespaceName: String, repositoryName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryTagsResponse> {
-        let input = DeleteRepositoryTagsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, tags: tags)
-        return self.client.execute(action: "DeleteRepositoryTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteRepositoryTags(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除Repository Tag
@@ -84,7 +83,6 @@ extension Tcr {
     /// 用于企业版批量删除Repository Tag
     @inlinable @discardableResult
     public func deleteRepositoryTags(registryId: String, namespaceName: String, repositoryName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryTagsResponse {
-        let input = DeleteRepositoryTagsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, tags: tags)
-        return try await self.client.execute(action: "DeleteRepositoryTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteRepositoryTags(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

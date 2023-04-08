@@ -113,8 +113,7 @@ extension Ecm {
     /// 用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
     public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHaVipsResponse> {
-        let input = DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
-        return self.client.execute(action: "DescribeHaVips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeHaVips(.init(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HAVIP列表
@@ -122,8 +121,7 @@ extension Ecm {
     /// 用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
     public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
-        let input = DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
-        return try await self.client.execute(action: "DescribeHaVips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeHaVips(.init(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HAVIP列表

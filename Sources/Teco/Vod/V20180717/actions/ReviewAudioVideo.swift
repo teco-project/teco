@@ -109,8 +109,7 @@ extension Vod {
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
-        let input = ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
-        return self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reviewAudioVideo(.init(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音视频审核
@@ -120,7 +119,6 @@ extension Vod {
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        let input = ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
-        return try await self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reviewAudioVideo(.init(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

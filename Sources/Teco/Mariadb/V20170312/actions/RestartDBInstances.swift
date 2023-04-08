@@ -69,8 +69,7 @@ extension Mariadb {
     /// 本接口（RestartDBInstances）用于重启数据库实例
     @inlinable
     public func restartDBInstances(instanceIds: [String], restartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
-        let input = RestartDBInstancesRequest(instanceIds: instanceIds, restartTime: restartTime)
-        return self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartDBInstances(.init(instanceIds: instanceIds, restartTime: restartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -78,7 +77,6 @@ extension Mariadb {
     /// 本接口（RestartDBInstances）用于重启数据库实例
     @inlinable
     public func restartDBInstances(instanceIds: [String], restartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        let input = RestartDBInstancesRequest(instanceIds: instanceIds, restartTime: restartTime)
-        return try await self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartDBInstances(.init(instanceIds: instanceIds, restartTime: restartTime), region: region, logger: logger, on: eventLoop)
     }
 }

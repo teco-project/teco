@@ -59,14 +59,12 @@ extension Iot {
     /// 删除Topic
     @inlinable @discardableResult
     public func deleteTopic(topicId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
-        let input = DeleteTopicRequest(topicId: topicId, productId: productId)
-        return self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteTopic(.init(topicId: topicId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Topic
     @inlinable @discardableResult
     public func deleteTopic(topicId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
-        let input = DeleteTopicRequest(topicId: topicId, productId: productId)
-        return try await self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteTopic(.init(topicId: topicId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

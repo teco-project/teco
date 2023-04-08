@@ -100,8 +100,7 @@ extension Iotvideo {
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
     public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOnlineMsgResponse> {
-        let input = SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent)
-        return self.client.execute(action: "SendOnlineMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendOnlineMsg(.init(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 向设备发送在线消息
@@ -112,7 +111,6 @@ extension Iotvideo {
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
     public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
-        let input = SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent)
-        return try await self.client.execute(action: "SendOnlineMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendOnlineMsg(.init(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), region: region, logger: logger, on: eventLoop)
     }
 }

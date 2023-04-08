@@ -59,14 +59,12 @@ extension Teo {
     /// 删除应用代理
     @inlinable @discardableResult
     public func deleteApplicationProxy(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyResponse> {
-        let input = DeleteApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId)
-        return self.client.execute(action: "DeleteApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理
     @inlinable @discardableResult
     public func deleteApplicationProxy(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyResponse {
-        let input = DeleteApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId)
-        return try await self.client.execute(action: "DeleteApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 }

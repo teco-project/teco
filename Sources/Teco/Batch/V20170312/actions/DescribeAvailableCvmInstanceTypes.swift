@@ -66,8 +66,7 @@ extension Batch {
     /// 查看可用的CVM机型配置信息
     @inlinable
     public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableCvmInstanceTypesResponse> {
-        let input = DescribeAvailableCvmInstanceTypesRequest(filters: filters)
-        return self.client.execute(action: "DescribeAvailableCvmInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAvailableCvmInstanceTypes(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取批量计算可用的CVM机型配置信息
@@ -75,7 +74,6 @@ extension Batch {
     /// 查看可用的CVM机型配置信息
     @inlinable
     public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
-        let input = DescribeAvailableCvmInstanceTypesRequest(filters: filters)
-        return try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAvailableCvmInstanceTypes(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

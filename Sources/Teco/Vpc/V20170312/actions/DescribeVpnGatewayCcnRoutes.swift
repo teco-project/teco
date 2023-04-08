@@ -98,8 +98,7 @@ extension Vpc {
     /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
     @inlinable
     public func describeVpnGatewayCcnRoutes(vpnGatewayId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewayCcnRoutesResponse> {
-        let input = DescribeVpnGatewayCcnRoutesRequest(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN网关云联网路由
@@ -107,8 +106,7 @@ extension Vpc {
     /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
     @inlinable
     public func describeVpnGatewayCcnRoutes(vpnGatewayId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayCcnRoutesResponse {
-        let input = DescribeVpnGatewayCcnRoutesRequest(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN网关云联网路由

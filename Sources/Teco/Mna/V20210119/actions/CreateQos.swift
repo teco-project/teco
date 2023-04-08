@@ -125,8 +125,7 @@ extension Mna {
     /// 移动网络发起Qos加速过程
     @inlinable
     public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQosResponse> {
-        let input = CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern)
-        return self.client.execute(action: "CreateQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createQos(.init(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起Qos加速过程
@@ -134,7 +133,6 @@ extension Mna {
     /// 移动网络发起Qos加速过程
     @inlinable
     public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
-        let input = CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern)
-        return try await self.client.execute(action: "CreateQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createQos(.init(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), region: region, logger: logger, on: eventLoop)
     }
 }

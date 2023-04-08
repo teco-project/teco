@@ -67,14 +67,12 @@ extension Tcaplusdb {
     /// 修改表备注信息
     @inlinable
     public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
-        let input = ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos)
-        return self.client.execute(action: "ModifyTableMemos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTableMemos(.init(clusterId: clusterId, tableMemos: tableMemos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改表备注信息
     @inlinable
     public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
-        let input = ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos)
-        return try await self.client.execute(action: "ModifyTableMemos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTableMemos(.init(clusterId: clusterId, tableMemos: tableMemos), region: region, logger: logger, on: eventLoop)
     }
 }

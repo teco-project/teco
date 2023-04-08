@@ -104,8 +104,7 @@ extension As {
     /// 此接口用于修改生命周期挂钩。
     @inlinable @discardableResult
     public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifecycleHookResponse> {
-        let input = ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand)
-        return self.client.execute(action: "ModifyLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyLifecycleHook(.init(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改生命周期挂钩
@@ -113,7 +112,6 @@ extension As {
     /// 此接口用于修改生命周期挂钩。
     @inlinable @discardableResult
     public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
-        let input = ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand)
-        return try await self.client.execute(action: "ModifyLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyLifecycleHook(.init(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 }

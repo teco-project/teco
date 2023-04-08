@@ -93,14 +93,12 @@ extension Iotvideoindustry {
     /// 场景详情
     @inlinable
     public func describeScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSceneResponse> {
-        let input = DescribeSceneRequest(intId: intId)
-        return self.client.execute(action: "DescribeScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeScene(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 场景详情
     @inlinable
     public func describeScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSceneResponse {
-        let input = DescribeSceneRequest(intId: intId)
-        return try await self.client.execute(action: "DescribeScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeScene(.init(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 }

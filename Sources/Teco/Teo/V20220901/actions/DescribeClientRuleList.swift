@@ -128,8 +128,7 @@ extension Teo {
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
     public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientRuleListResponse> {
-        let input = DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area)
-        return self.client.execute(action: "DescribeClientRuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeClientRuleList(.init(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询封禁客户端信息列表
@@ -137,8 +136,7 @@ extension Teo {
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
     public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
-        let input = DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area)
-        return try await self.client.execute(action: "DescribeClientRuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeClientRuleList(.init(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询封禁客户端信息列表

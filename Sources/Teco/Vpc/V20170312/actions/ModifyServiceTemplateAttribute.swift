@@ -75,8 +75,7 @@ extension Vpc {
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable @discardableResult
     public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateAttributeResponse> {
-        let input = ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra)
-        return self.client.execute(action: "ModifyServiceTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyServiceTemplateAttribute(.init(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改协议端口模板
@@ -84,7 +83,6 @@ extension Vpc {
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable @discardableResult
     public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
-        let input = ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra)
-        return try await self.client.execute(action: "ModifyServiceTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyServiceTemplateAttribute(.init(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
     }
 }

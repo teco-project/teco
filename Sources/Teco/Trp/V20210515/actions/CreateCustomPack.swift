@@ -103,14 +103,12 @@ extension Trp {
     /// 生成自定义码包
     @inlinable
     public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
-        let input = CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType)
-        return self.client.execute(action: "CreateCustomPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成自定义码包
     @inlinable
     public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
-        let input = CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType)
-        return try await self.client.execute(action: "CreateCustomPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
     }
 }

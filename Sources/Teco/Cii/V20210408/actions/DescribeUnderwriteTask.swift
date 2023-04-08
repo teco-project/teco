@@ -91,8 +91,7 @@ extension Cii {
     /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
     @inlinable
     public func describeUnderwriteTask(underwriteTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnderwriteTaskResponse> {
-        let input = DescribeUnderwriteTaskRequest(underwriteTaskId: underwriteTaskId)
-        return self.client.execute(action: "DescribeUnderwriteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeUnderwriteTask(.init(underwriteTaskId: underwriteTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询核保任务数据
@@ -100,7 +99,6 @@ extension Cii {
     /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
     @inlinable
     public func describeUnderwriteTask(underwriteTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnderwriteTaskResponse {
-        let input = DescribeUnderwriteTaskRequest(underwriteTaskId: underwriteTaskId)
-        return try await self.client.execute(action: "DescribeUnderwriteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeUnderwriteTask(.init(underwriteTaskId: underwriteTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

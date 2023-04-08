@@ -77,8 +77,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func describeSmsTemplateList(templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        let input = DescribeSmsTemplateListRequest(templateIdSet: templateIdSet, international: international)
-        return self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSmsTemplateList(.init(templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短信模板状态查询
@@ -88,7 +87,6 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func describeSmsTemplateList(templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        let input = DescribeSmsTemplateListRequest(templateIdSet: templateIdSet, international: international)
-        return try await self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSmsTemplateList(.init(templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 }

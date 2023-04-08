@@ -63,14 +63,12 @@ extension Rum {
     /// 获取应用对应sourcemap文件列表
     @inlinable
     public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFilesResponse> {
-        let input = DescribeReleaseFilesRequest(projectID: projectID, fileVersion: fileVersion)
-        return self.client.execute(action: "DescribeReleaseFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeReleaseFiles(.init(projectID: projectID, fileVersion: fileVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用对应sourcemap文件列表
     @inlinable
     public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
-        let input = DescribeReleaseFilesRequest(projectID: projectID, fileVersion: fileVersion)
-        return try await self.client.execute(action: "DescribeReleaseFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeReleaseFiles(.init(projectID: projectID, fileVersion: fileVersion), region: region, logger: logger, on: eventLoop)
     }
 }

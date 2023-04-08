@@ -91,8 +91,7 @@ extension As {
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
     @inlinable @discardableResult
     public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScalingPolicyResponse> {
-        let input = ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds)
-        return self.client.execute(action: "ModifyScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警触发策略
@@ -100,7 +99,6 @@ extension As {
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
     @inlinable @discardableResult
     public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
-        let input = ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds)
-        return try await self.client.execute(action: "ModifyScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

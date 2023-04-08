@@ -92,8 +92,7 @@ extension Wedata {
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
-        let input = MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent)
-        return self.client.execute(action: "MakeUpTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.makeUpTasksNew(.init(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量补录任务【Beta版本】
@@ -102,7 +101,6 @@ extension Wedata {
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
-        let input = MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent)
-        return try await self.client.execute(action: "MakeUpTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.makeUpTasksNew(.init(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), region: region, logger: logger, on: eventLoop)
     }
 }

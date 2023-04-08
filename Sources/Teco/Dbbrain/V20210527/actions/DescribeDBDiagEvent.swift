@@ -124,8 +124,7 @@ extension Dbbrain {
     /// 获取实例异常诊断事件的详情信息。
     @inlinable
     public func describeDBDiagEvent(instanceId: String, eventId: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagEventResponse> {
-        let input = DescribeDBDiagEventRequest(instanceId: instanceId, eventId: eventId, product: product)
-        return self.client.execute(action: "DescribeDBDiagEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDBDiagEvent(.init(instanceId: instanceId, eventId: eventId, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断事件详情
@@ -133,7 +132,6 @@ extension Dbbrain {
     /// 获取实例异常诊断事件的详情信息。
     @inlinable
     public func describeDBDiagEvent(instanceId: String, eventId: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagEventResponse {
-        let input = DescribeDBDiagEventRequest(instanceId: instanceId, eventId: eventId, product: product)
-        return try await self.client.execute(action: "DescribeDBDiagEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDBDiagEvent(.init(instanceId: instanceId, eventId: eventId, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

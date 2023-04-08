@@ -77,14 +77,12 @@ extension Wedata {
     /// 获取离线任务实例
     @inlinable
     public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOfflineInstanceListResponse> {
-        let input = GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition)
-        return self.client.execute(action: "GetOfflineInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getOfflineInstanceList(.init(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取离线任务实例
     @inlinable
     public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
-        let input = GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition)
-        return try await self.client.execute(action: "GetOfflineInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getOfflineInstanceList(.init(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), region: region, logger: logger, on: eventLoop)
     }
 }

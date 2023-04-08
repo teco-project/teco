@@ -69,8 +69,7 @@ extension Solar {
     /// 素材查询服务号模板的列表（样例）
     @inlinable
     public func describeResourceTemplateHeaders(wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTemplateHeadersResponse> {
-        let input = DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId)
-        return self.client.execute(action: "DescribeResourceTemplateHeaders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeResourceTemplateHeaders(.init(wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 素材查询服务号模板标题的列表
@@ -78,7 +77,6 @@ extension Solar {
     /// 素材查询服务号模板的列表（样例）
     @inlinable
     public func describeResourceTemplateHeaders(wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
-        let input = DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId)
-        return try await self.client.execute(action: "DescribeResourceTemplateHeaders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeResourceTemplateHeaders(.init(wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -110,8 +110,7 @@ extension Gaap {
     /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
     @inlinable @discardableResult
     public func modifyTCPListenerAttribute(listenerId: String, groupId: String? = nil, proxyId: String? = nil, listenerName: String? = nil, scheduler: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthCheck: UInt64? = nil, failoverSwitch: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTCPListenerAttributeResponse> {
-        let input = ModifyTCPListenerAttributeRequest(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthCheck: healthCheck, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold)
-        return self.client.execute(action: "ModifyTCPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTCPListenerAttribute(.init(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthCheck: healthCheck, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改TCP监听器配置
@@ -119,7 +118,6 @@ extension Gaap {
     /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
     @inlinable @discardableResult
     public func modifyTCPListenerAttribute(listenerId: String, groupId: String? = nil, proxyId: String? = nil, listenerName: String? = nil, scheduler: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthCheck: UInt64? = nil, failoverSwitch: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTCPListenerAttributeResponse {
-        let input = ModifyTCPListenerAttributeRequest(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthCheck: healthCheck, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold)
-        return try await self.client.execute(action: "ModifyTCPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTCPListenerAttribute(.init(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthCheck: healthCheck, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

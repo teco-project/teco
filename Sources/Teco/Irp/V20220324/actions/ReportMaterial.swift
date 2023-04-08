@@ -59,14 +59,12 @@ extension Irp {
     /// 上报物料
     @inlinable @discardableResult
     public func reportMaterial(bid: String, docItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportMaterialResponse> {
-        let input = ReportMaterialRequest(bid: bid, docItemList: docItemList)
-        return self.client.execute(action: "ReportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.reportMaterial(.init(bid: bid, docItemList: docItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报物料
     @inlinable @discardableResult
     public func reportMaterial(bid: String, docItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
-        let input = ReportMaterialRequest(bid: bid, docItemList: docItemList)
-        return try await self.client.execute(action: "ReportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.reportMaterial(.init(bid: bid, docItemList: docItemList), region: region, logger: logger, on: eventLoop)
     }
 }

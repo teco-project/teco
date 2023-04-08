@@ -64,8 +64,7 @@ extension Cws {
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
     public func describeSiteQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
-        let input = DescribeSiteQuotaRequest()
-        return self.client.execute(action: "DescribeSiteQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSiteQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看站点购买配额
@@ -73,7 +72,6 @@ extension Cws {
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
     public func describeSiteQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
-        let input = DescribeSiteQuotaRequest()
-        return try await self.client.execute(action: "DescribeSiteQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSiteQuota(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

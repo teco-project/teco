@@ -81,8 +81,7 @@ extension Cdn {
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
     @inlinable
     public func enableCaches(urls: [String], date: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCachesResponse> {
-        let input = EnableCachesRequest(urls: urls, date: date)
-        return self.client.execute(action: "EnableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.enableCaches(.init(urls: urls, date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解禁 URL
@@ -90,7 +89,6 @@ extension Cdn {
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
     @inlinable
     public func enableCaches(urls: [String], date: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCachesResponse {
-        let input = EnableCachesRequest(urls: urls, date: date)
-        return try await self.client.execute(action: "EnableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.enableCaches(.init(urls: urls, date: date), region: region, logger: logger, on: eventLoop)
     }
 }

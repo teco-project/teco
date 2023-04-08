@@ -69,14 +69,12 @@ extension Iotvideo {
     /// 继承云存用户
     @inlinable @discardableResult
     public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
-        let input = InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId)
-        return self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.inheritCloudStorageUser(.init(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 继承云存用户
     @inlinable @discardableResult
     public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
-        let input = InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId)
-        return try await self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.inheritCloudStorageUser(.init(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }
 }

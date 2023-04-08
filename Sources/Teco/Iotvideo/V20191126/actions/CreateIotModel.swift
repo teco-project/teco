@@ -68,8 +68,7 @@ extension Iotvideo {
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable @discardableResult
     public func createIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
-        let input = CreateIotModelRequest(productId: productId, iotModel: iotModel)
-        return self.client.execute(action: "CreateIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createIotModel(.init(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 定义的物模型提交
@@ -78,7 +77,6 @@ extension Iotvideo {
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable @discardableResult
     public func createIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
-        let input = CreateIotModelRequest(productId: productId, iotModel: iotModel)
-        return try await self.client.execute(action: "CreateIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createIotModel(.init(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 }

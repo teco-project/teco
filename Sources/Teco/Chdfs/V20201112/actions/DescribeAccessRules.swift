@@ -64,8 +64,7 @@ extension Chdfs {
     /// 通过权限组ID查看权限规则列表。
     @inlinable
     public func describeAccessRules(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessRulesResponse> {
-        let input = DescribeAccessRulesRequest(accessGroupId: accessGroupId)
-        return self.client.execute(action: "DescribeAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAccessRules(.init(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看权限规则列表
@@ -73,7 +72,6 @@ extension Chdfs {
     /// 通过权限组ID查看权限规则列表。
     @inlinable
     public func describeAccessRules(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRulesResponse {
-        let input = DescribeAccessRulesRequest(accessGroupId: accessGroupId)
-        return try await self.client.execute(action: "DescribeAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAccessRules(.init(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

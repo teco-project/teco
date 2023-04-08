@@ -70,8 +70,7 @@ extension Mariadb {
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
     @inlinable @discardableResult
     public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        let input = AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds)
-        return self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateSecurityGroups(.init(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
@@ -79,7 +78,6 @@ extension Mariadb {
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
     @inlinable @discardableResult
     public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        let input = AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateSecurityGroups(.init(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

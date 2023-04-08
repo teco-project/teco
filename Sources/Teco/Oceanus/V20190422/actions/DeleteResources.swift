@@ -59,14 +59,12 @@ extension Oceanus {
     /// 删除资源接口
     @inlinable @discardableResult
     public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourcesResponse> {
-        let input = DeleteResourcesRequest(resourceIds: resourceIds, workSpaceId: workSpaceId)
-        return self.client.execute(action: "DeleteResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteResources(.init(resourceIds: resourceIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源接口
     @inlinable @discardableResult
     public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
-        let input = DeleteResourcesRequest(resourceIds: resourceIds, workSpaceId: workSpaceId)
-        return try await self.client.execute(action: "DeleteResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteResources(.init(resourceIds: resourceIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

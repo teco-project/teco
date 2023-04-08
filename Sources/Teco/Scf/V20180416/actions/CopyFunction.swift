@@ -118,8 +118,7 @@ extension Scf {
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable @discardableResult
     public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFunctionResponse> {
-        let input = CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration)
-        return self.client.execute(action: "CopyFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copyFunction(.init(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制函数
@@ -133,7 +132,6 @@ extension Scf {
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable @discardableResult
     public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
-        let input = CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration)
-        return try await self.client.execute(action: "CopyFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copyFunction(.init(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), region: region, logger: logger, on: eventLoop)
     }
 }

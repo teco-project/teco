@@ -101,15 +101,13 @@ extension Tione {
     /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
-        let input = DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder)
-        return self.client.execute(action: "DescribeNotebookLifecycleScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeNotebookLifecycleScripts(.init(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
-        let input = DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder)
-        return try await self.client.execute(action: "DescribeNotebookLifecycleScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeNotebookLifecycleScripts(.init(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本列表

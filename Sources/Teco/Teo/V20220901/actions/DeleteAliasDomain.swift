@@ -65,8 +65,7 @@ extension Teo {
     /// 删除别称域名。
     @inlinable @discardableResult
     public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
-        let input = DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames)
-        return self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteAliasDomain(.init(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除别称域名
@@ -74,7 +73,6 @@ extension Teo {
     /// 删除别称域名。
     @inlinable @discardableResult
     public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
-        let input = DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames)
-        return try await self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteAliasDomain(.init(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
 }

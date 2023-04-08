@@ -65,8 +65,7 @@ extension Cam {
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable @discardableResult
     public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachGroupPolicyResponse> {
-        let input = AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId)
-        return self.client.execute(action: "AttachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.attachGroupPolicy(.init(policyId: policyId, attachGroupId: attachGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户组
@@ -74,7 +73,6 @@ extension Cam {
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable @discardableResult
     public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
-        let input = AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId)
-        return try await self.client.execute(action: "AttachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.attachGroupPolicy(.init(policyId: policyId, attachGroupId: attachGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

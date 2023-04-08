@@ -96,8 +96,7 @@ extension Cms {
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
     public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSampleResponse> {
-        let input = CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label)
-        return self.client.execute(action: "CreateFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createFileSample(.init(contents: contents, evilType: evilType, fileType: fileType, label: label), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增图片样本库
@@ -107,7 +106,6 @@ extension Cms {
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
     public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
-        let input = CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label)
-        return try await self.client.execute(action: "CreateFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createFileSample(.init(contents: contents, evilType: evilType, fileType: fileType, label: label), region: region, logger: logger, on: eventLoop)
     }
 }

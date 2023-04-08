@@ -74,8 +74,7 @@ extension Tsf {
     /// 重新执行在某个节点上执行任务。
     @inlinable
     public func redoTaskExecute(batchId: String, executeId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskExecuteResponse> {
-        let input = RedoTaskExecuteRequest(batchId: batchId, executeId: executeId, taskId: taskId)
-        return self.client.execute(action: "RedoTaskExecute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.redoTaskExecute(.init(batchId: batchId, executeId: executeId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务的一次执行
@@ -83,7 +82,6 @@ extension Tsf {
     /// 重新执行在某个节点上执行任务。
     @inlinable
     public func redoTaskExecute(batchId: String, executeId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskExecuteResponse {
-        let input = RedoTaskExecuteRequest(batchId: batchId, executeId: executeId, taskId: taskId)
-        return try await self.client.execute(action: "RedoTaskExecute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.redoTaskExecute(.init(batchId: batchId, executeId: executeId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -58,14 +58,12 @@ extension Tcss {
     /// 查询k8sapi异常事件趋势
     @inlinable
     public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalTendencyResponse> {
-        let input = DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod)
-        return self.client.execute(action: "DescribeK8sApiAbnormalTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeK8sApiAbnormalTendency(.init(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常事件趋势
     @inlinable
     public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
-        let input = DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod)
-        return try await self.client.execute(action: "DescribeK8sApiAbnormalTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeK8sApiAbnormalTendency(.init(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

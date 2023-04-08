@@ -51,14 +51,12 @@ extension Cloudaudit {
     /// 查询跟踪集概要
     @inlinable
     public func listAudits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuditsResponse> {
-        let input = ListAuditsRequest()
-        return self.client.execute(action: "ListAudits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listAudits(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询跟踪集概要
     @inlinable
     public func listAudits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
-        let input = ListAuditsRequest()
-        return try await self.client.execute(action: "ListAudits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listAudits(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

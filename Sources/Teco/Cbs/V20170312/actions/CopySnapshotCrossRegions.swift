@@ -83,8 +83,7 @@ extension Cbs {
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
     public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopySnapshotCrossRegionsResponse> {
-        let input = CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName)
-        return self.client.execute(action: "CopySnapshotCrossRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.copySnapshotCrossRegions(.init(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 快照跨地域复制
@@ -95,7 +94,6 @@ extension Cbs {
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
     public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
-        let input = CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName)
-        return try await self.client.execute(action: "CopySnapshotCrossRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.copySnapshotCrossRegions(.init(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 }

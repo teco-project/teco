@@ -147,8 +147,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
-        let input = CreateImageRequest(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect)
-        return self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createImage(.init(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建图片
@@ -159,7 +158,6 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        let input = CreateImageRequest(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect)
-        return try await self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createImage(.init(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -107,15 +107,13 @@ extension Organization {
     /// 获取企业组织成员列表
     @inlinable
     public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
-        let input = DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product)
-        return self.client.execute(action: "DescribeOrganizationMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeOrganizationMembers(.init(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员列表
     @inlinable
     public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
-        let input = DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product)
-        return try await self.client.execute(action: "DescribeOrganizationMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeOrganizationMembers(.init(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员列表

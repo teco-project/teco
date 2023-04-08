@@ -80,8 +80,7 @@ extension Dbbrain {
     /// 更改实例限流任务状态，目前仅用于终止限流。
     @inlinable @discardableResult
     public func modifySqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], status: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySqlFiltersResponse> {
-        let input = ModifySqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product)
-        return self.client.execute(action: "ModifySqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改实例限流任务状态
@@ -89,7 +88,6 @@ extension Dbbrain {
     /// 更改实例限流任务状态，目前仅用于终止限流。
     @inlinable @discardableResult
     public func modifySqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], status: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySqlFiltersResponse {
-        let input = ModifySqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product)
-        return try await self.client.execute(action: "ModifySqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

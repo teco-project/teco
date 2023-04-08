@@ -79,8 +79,7 @@ extension Bmvpc {
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
     public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipsToNatGatewayResponse> {
-        let input = BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum)
-        return self.client.execute(action: "BindEipsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.bindEipsToNatGateway(.init(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定EIP
@@ -88,7 +87,6 @@ extension Bmvpc {
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
     public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
-        let input = BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum)
-        return try await self.client.execute(action: "BindEipsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.bindEipsToNatGateway(.init(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), region: region, logger: logger, on: eventLoop)
     }
 }

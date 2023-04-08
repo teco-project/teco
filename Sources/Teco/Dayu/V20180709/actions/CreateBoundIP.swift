@@ -84,8 +84,7 @@ extension Dayu {
     /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
     @inlinable
     public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBoundIPResponse> {
-        let input = CreateBoundIPRequest(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy)
-        return self.client.execute(action: "CreateBoundIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定IP到高防包实例
@@ -93,7 +92,6 @@ extension Dayu {
     /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
     @inlinable
     public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
-        let input = CreateBoundIPRequest(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy)
-        return try await self.client.execute(action: "CreateBoundIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

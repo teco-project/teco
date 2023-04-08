@@ -82,8 +82,7 @@ extension Tsf {
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
     public func describeDownloadInfo(applicationId: String, pkgId: String, repositoryId: String? = nil, repositoryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadInfoResponse> {
-        let input = DescribeDownloadInfoRequest(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType)
-        return self.client.execute(action: "DescribeDownloadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDownloadInfo(.init(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取下载程序包信息
@@ -92,7 +91,6 @@ extension Tsf {
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
     public func describeDownloadInfo(applicationId: String, pkgId: String, repositoryId: String? = nil, repositoryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfoResponse {
-        let input = DescribeDownloadInfoRequest(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType)
-        return try await self.client.execute(action: "DescribeDownloadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDownloadInfo(.init(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType), region: region, logger: logger, on: eventLoop)
     }
 }

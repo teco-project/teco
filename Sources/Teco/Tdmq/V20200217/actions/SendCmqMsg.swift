@@ -72,14 +72,12 @@ extension Tdmq {
     /// 发送cmq消息
     @inlinable
     public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCmqMsgResponse> {
-        let input = SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds)
-        return self.client.execute(action: "SendCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.sendCmqMsg(.init(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq消息
     @inlinable
     public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
-        let input = SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds)
-        return try await self.client.execute(action: "SendCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.sendCmqMsg(.init(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), region: region, logger: logger, on: eventLoop)
     }
 }

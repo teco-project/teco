@@ -123,8 +123,7 @@ extension Partners {
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
     public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
-        let input = DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName)
-        return self.client.execute(action: "DescribeAgentClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAgentClients(.init(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待审核客户列表
@@ -132,8 +131,7 @@ extension Partners {
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
     public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
-        let input = DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName)
-        return try await self.client.execute(action: "DescribeAgentClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAgentClients(.init(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待审核客户列表

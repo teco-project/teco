@@ -92,15 +92,13 @@ extension Tag {
     /// 获取项目列表
     @inlinable
     public func describeProjects(allList: UInt64, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        let input = DescribeProjectsRequest(allList: allList, limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeProjects(.init(allList: allList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
     @inlinable
     public func describeProjects(allList: UInt64, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        let input = DescribeProjectsRequest(allList: allList, limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeProjects(.init(allList: allList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表

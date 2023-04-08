@@ -59,14 +59,12 @@ extension Iotvideoindustry {
     /// 修改消息转发配置
     @inlinable @discardableResult
     public func modifyMessageForward(intId: Int64, messageType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMessageForwardResponse> {
-        let input = ModifyMessageForwardRequest(intId: intId, messageType: messageType)
-        return self.client.execute(action: "ModifyMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMessageForward(.init(intId: intId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改消息转发配置
     @inlinable @discardableResult
     public func modifyMessageForward(intId: Int64, messageType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMessageForwardResponse {
-        let input = ModifyMessageForwardRequest(intId: intId, messageType: messageType)
-        return try await self.client.execute(action: "ModifyMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMessageForward(.init(intId: intId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 }

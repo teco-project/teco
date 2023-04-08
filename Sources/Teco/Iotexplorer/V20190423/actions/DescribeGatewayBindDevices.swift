@@ -106,15 +106,13 @@ extension Iotexplorer {
     /// 获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
-        let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGatewayBindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
-        let input = DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGatewayBindDevices(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表

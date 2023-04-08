@@ -59,14 +59,12 @@ extension Tke {
     /// 驱逐虚拟节点
     @inlinable @discardableResult
     public func drainClusterVirtualNode(clusterId: String, nodeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DrainClusterVirtualNodeResponse> {
-        let input = DrainClusterVirtualNodeRequest(clusterId: clusterId, nodeName: nodeName)
-        return self.client.execute(action: "DrainClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.drainClusterVirtualNode(.init(clusterId: clusterId, nodeName: nodeName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 驱逐虚拟节点
     @inlinable @discardableResult
     public func drainClusterVirtualNode(clusterId: String, nodeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DrainClusterVirtualNodeResponse {
-        let input = DrainClusterVirtualNodeRequest(clusterId: clusterId, nodeName: nodeName)
-        return try await self.client.execute(action: "DrainClusterVirtualNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.drainClusterVirtualNode(.init(clusterId: clusterId, nodeName: nodeName), region: region, logger: logger, on: eventLoop)
     }
 }

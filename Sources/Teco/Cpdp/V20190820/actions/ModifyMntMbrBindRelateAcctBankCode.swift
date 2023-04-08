@@ -112,8 +112,7 @@ extension Cpdp {
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
     public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMntMbrBindRelateAcctBankCodeResponse> {
-        let input = ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile)
-        return self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyMntMbrBindRelateAcctBankCode(.init(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-维护会员绑定提现账户联行号
@@ -121,7 +120,6 @@ extension Cpdp {
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
     public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
-        let input = ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile)
-        return try await self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyMntMbrBindRelateAcctBankCode(.init(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

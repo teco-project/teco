@@ -45,7 +45,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
-        self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteFleet is no longer available.")
     }
 
     /// 删除服务器舰队
@@ -54,7 +54,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {
-        try await self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteFleet is no longer available.")
     }
 
     /// 删除服务器舰队
@@ -63,8 +63,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
-        let input = DeleteFleetRequest(fleetId: fleetId)
-        return self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteFleet is no longer available.")
     }
 
     /// 删除服务器舰队
@@ -73,7 +72,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {
-        let input = DeleteFleetRequest(fleetId: fleetId)
-        return try await self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteFleet is no longer available.")
     }
 }

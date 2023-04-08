@@ -67,14 +67,12 @@ extension Tci {
     /// 创建人员库
     @inlinable
     public func createLibrary(libraryName: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
-        let input = CreateLibraryRequest(libraryName: libraryName, libraryId: libraryId)
-        return self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createLibrary(.init(libraryName: libraryName, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人员库
     @inlinable
     public func createLibrary(libraryName: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        let input = CreateLibraryRequest(libraryName: libraryName, libraryId: libraryId)
-        return try await self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createLibrary(.init(libraryName: libraryName, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 }

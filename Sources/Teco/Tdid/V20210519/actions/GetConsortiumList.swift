@@ -50,14 +50,12 @@ extension Tdid {
     /// 获取联盟列表
     @inlinable
     public func getConsortiumList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumListResponse> {
-        let input = GetConsortiumListRequest()
-        return self.client.execute(action: "GetConsortiumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getConsortiumList(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联盟列表
     @inlinable
     public func getConsortiumList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumListResponse {
-        let input = GetConsortiumListRequest()
-        return try await self.client.execute(action: "GetConsortiumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getConsortiumList(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

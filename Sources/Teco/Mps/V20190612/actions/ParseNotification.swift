@@ -93,8 +93,7 @@ extension Mps {
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
     public func parseNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNotificationResponse> {
-        let input = ParseNotificationRequest(content: content)
-        return self.client.execute(action: "ParseNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.parseNotification(.init(content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解析事件通知
@@ -103,7 +102,6 @@ extension Mps {
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
     public func parseNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
-        let input = ParseNotificationRequest(content: content)
-        return try await self.client.execute(action: "ParseNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.parseNotification(.init(content: content), region: region, logger: logger, on: eventLoop)
     }
 }

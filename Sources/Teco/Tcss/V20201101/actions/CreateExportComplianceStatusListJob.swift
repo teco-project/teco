@@ -74,14 +74,12 @@ extension Tcss {
     /// 创建一个导出安全合规信息的任务
     @inlinable
     public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportComplianceStatusListJobResponse> {
-        let input = CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList)
-        return self.client.execute(action: "CreateExportComplianceStatusListJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createExportComplianceStatusListJob(.init(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建一个导出安全合规信息的任务
     @inlinable
     public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
-        let input = CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList)
-        return try await self.client.execute(action: "CreateExportComplianceStatusListJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createExportComplianceStatusListJob(.init(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

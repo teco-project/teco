@@ -79,14 +79,12 @@ extension Cloudstudio {
     /// 修改模板默认代码仓库
     @inlinable
     public func modifyCustomizeTemplateVersionControl(cloudStudioSessionTeam: String, templateId: Int64, url: String? = nil, ref: String? = nil, refType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplateVersionControlResponse> {
-        let input = ModifyCustomizeTemplateVersionControlRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType)
-        return self.client.execute(action: "ModifyCustomizeTemplateVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyCustomizeTemplateVersionControl(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模板默认代码仓库
     @inlinable
     public func modifyCustomizeTemplateVersionControl(cloudStudioSessionTeam: String, templateId: Int64, url: String? = nil, ref: String? = nil, refType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplateVersionControlResponse {
-        let input = ModifyCustomizeTemplateVersionControlRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType)
-        return try await self.client.execute(action: "ModifyCustomizeTemplateVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyCustomizeTemplateVersionControl(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType), region: region, logger: logger, on: eventLoop)
     }
 }

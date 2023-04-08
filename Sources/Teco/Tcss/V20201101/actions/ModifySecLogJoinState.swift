@@ -62,14 +62,12 @@ extension Tcss {
     /// 修改安全日志接入状态
     @inlinable @discardableResult
     public func modifySecLogJoinState(logType: String, state: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
-        let input = ModifySecLogJoinStateRequest(logType: logType, state: state)
-        return self.client.execute(action: "ModifySecLogJoinState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySecLogJoinState(.init(logType: logType, state: state), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入状态
     @inlinable @discardableResult
     public func modifySecLogJoinState(logType: String, state: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
-        let input = ModifySecLogJoinStateRequest(logType: logType, state: state)
-        return try await self.client.execute(action: "ModifySecLogJoinState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySecLogJoinState(.init(logType: logType, state: state), region: region, logger: logger, on: eventLoop)
     }
 }

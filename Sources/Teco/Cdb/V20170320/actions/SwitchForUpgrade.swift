@@ -60,8 +60,7 @@ extension Cdb {
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable @discardableResult
     public func switchForUpgrade(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchForUpgradeResponse> {
-        let input = SwitchForUpgradeRequest(instanceId: instanceId)
-        return self.client.execute(action: "SwitchForUpgrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.switchForUpgrade(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换访问新实例
@@ -69,7 +68,6 @@ extension Cdb {
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable @discardableResult
     public func switchForUpgrade(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
-        let input = SwitchForUpgradeRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "SwitchForUpgrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.switchForUpgrade(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

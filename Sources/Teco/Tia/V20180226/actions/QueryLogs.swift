@@ -97,8 +97,7 @@ extension Tia {
     /// 查询 TI-A 训练任务的日志
     @inlinable
     public func queryLogs(jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLogsResponse> {
-        let input = QueryLogsRequest(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context)
-        return self.client.execute(action: "QueryLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryLogs(.init(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志
@@ -106,7 +105,6 @@ extension Tia {
     /// 查询 TI-A 训练任务的日志
     @inlinable
     public func queryLogs(jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLogsResponse {
-        let input = QueryLogsRequest(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context)
-        return try await self.client.execute(action: "QueryLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryLogs(.init(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 }

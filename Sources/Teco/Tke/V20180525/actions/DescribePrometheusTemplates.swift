@@ -102,8 +102,7 @@ extension Tke {
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
     public func describePrometheusTemplates(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTemplatesResponse> {
-        let input = DescribePrometheusTemplatesRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribePrometheusTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describePrometheusTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模板列表
@@ -111,8 +110,7 @@ extension Tke {
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
     public func describePrometheusTemplates(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplatesResponse {
-        let input = DescribePrometheusTemplatesRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribePrometheusTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describePrometheusTemplates(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模板列表

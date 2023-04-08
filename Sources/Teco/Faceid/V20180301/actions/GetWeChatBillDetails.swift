@@ -102,8 +102,7 @@ extension Faceid {
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
     public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
-        let input = GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId)
-        return self.client.execute(action: "GetWeChatBillDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getWeChatBillDetails(.init(date: date, cursor: cursor, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细（微信渠道）
@@ -111,8 +110,7 @@ extension Faceid {
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
     public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
-        let input = GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId)
-        return try await self.client.execute(action: "GetWeChatBillDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getWeChatBillDetails(.init(date: date, cursor: cursor, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细（微信渠道）

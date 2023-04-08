@@ -128,8 +128,7 @@ extension Cls {
     /// 本接口用于获取日志集信息列表。
     @inlinable
     public func describeLogsets(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsetsResponse> {
-        let input = DescribeLogsetsRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeLogsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLogsets(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志集列表
@@ -137,8 +136,7 @@ extension Cls {
     /// 本接口用于获取日志集信息列表。
     @inlinable
     public func describeLogsets(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsetsResponse {
-        let input = DescribeLogsetsRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeLogsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLogsets(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志集列表

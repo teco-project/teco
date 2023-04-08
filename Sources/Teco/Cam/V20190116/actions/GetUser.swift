@@ -87,14 +87,12 @@ extension Cam {
     /// 查询子用户
     @inlinable
     public func getUser(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResponse> {
-        let input = GetUserRequest(name: name)
-        return self.client.execute(action: "GetUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getUser(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询子用户
     @inlinable
     public func getUser(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResponse {
-        let input = GetUserRequest(name: name)
-        return try await self.client.execute(action: "GetUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getUser(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -78,8 +78,7 @@ extension Nlp {
     /// 根据用户输入的命题关键词自动生成一首七言律诗或五言律诗。（如需开通请联系商务）
     @inlinable
     public func generatePoetry(text: String, poetryType: Int64? = nil, genre: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneratePoetryResponse> {
-        let input = GeneratePoetryRequest(text: text, poetryType: poetryType, genre: genre)
-        return self.client.execute(action: "GeneratePoetry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.generatePoetry(.init(text: text, poetryType: poetryType, genre: genre), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能写诗
@@ -87,7 +86,6 @@ extension Nlp {
     /// 根据用户输入的命题关键词自动生成一首七言律诗或五言律诗。（如需开通请联系商务）
     @inlinable
     public func generatePoetry(text: String, poetryType: Int64? = nil, genre: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneratePoetryResponse {
-        let input = GeneratePoetryRequest(text: text, poetryType: poetryType, genre: genre)
-        return try await self.client.execute(action: "GeneratePoetry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.generatePoetry(.init(text: text, poetryType: poetryType, genre: genre), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -60,8 +60,7 @@ extension Iotvideo {
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable @discardableResult
     public func disableDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceResponse> {
-        let input = DisableDeviceRequest(tids: tids)
-        return self.client.execute(action: "DisableDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.disableDevice(.init(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用设备
@@ -69,7 +68,6 @@ extension Iotvideo {
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable @discardableResult
     public func disableDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceResponse {
-        let input = DisableDeviceRequest(tids: tids)
-        return try await self.client.execute(action: "DisableDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.disableDevice(.init(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 }

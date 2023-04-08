@@ -114,15 +114,13 @@ extension Iecp {
     /// 获取Secrets列表
     @inlinable
     public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretsResponse> {
-        let input = DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType)
-        return self.client.execute(action: "DescribeSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSecrets(.init(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Secrets列表
     @inlinable
     public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
-        let input = DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType)
-        return try await self.client.execute(action: "DescribeSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSecrets(.init(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Secrets列表

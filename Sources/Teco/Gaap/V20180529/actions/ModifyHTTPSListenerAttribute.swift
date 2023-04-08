@@ -90,8 +90,7 @@ extension Gaap {
     /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
     @inlinable @discardableResult
     public func modifyHTTPSListenerAttribute(listenerId: String, proxyId: String? = nil, listenerName: String? = nil, forwardProtocol: String? = nil, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHTTPSListenerAttributeResponse> {
-        let input = ModifyHTTPSListenerAttributeRequest(listenerId: listenerId, proxyId: proxyId, listenerName: listenerName, forwardProtocol: forwardProtocol, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds)
-        return self.client.execute(action: "ModifyHTTPSListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyHTTPSListenerAttribute(.init(listenerId: listenerId, proxyId: proxyId, listenerName: listenerName, forwardProtocol: forwardProtocol, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改HTTPS监听器配置
@@ -99,7 +98,6 @@ extension Gaap {
     /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
     @inlinable @discardableResult
     public func modifyHTTPSListenerAttribute(listenerId: String, proxyId: String? = nil, listenerName: String? = nil, forwardProtocol: String? = nil, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPSListenerAttributeResponse {
-        let input = ModifyHTTPSListenerAttributeRequest(listenerId: listenerId, proxyId: proxyId, listenerName: listenerName, forwardProtocol: forwardProtocol, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds)
-        return try await self.client.execute(action: "ModifyHTTPSListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyHTTPSListenerAttribute(.init(listenerId: listenerId, proxyId: proxyId, listenerName: listenerName, forwardProtocol: forwardProtocol, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -54,14 +54,12 @@ extension Yunjing {
     /// 删除服务器关联的标签
     @inlinable @discardableResult
     public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
-        let input = DeleteMachineTagRequest(rid: rid)
-        return self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteMachineTag(.init(rid: rid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务器关联的标签
     @inlinable @discardableResult
     public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
-        let input = DeleteMachineTagRequest(rid: rid)
-        return try await self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteMachineTag(.init(rid: rid), region: region, logger: logger, on: eventLoop)
     }
 }

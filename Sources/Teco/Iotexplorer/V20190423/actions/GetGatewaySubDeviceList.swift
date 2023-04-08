@@ -79,14 +79,12 @@ extension Iotexplorer {
     /// 获取指定网关设备的子设备列表
     @inlinable
     public func getGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGatewaySubDeviceListResponse> {
-        let input = GetGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit)
-        return self.client.execute(action: "GetGatewaySubDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getGatewaySubDeviceList(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定网关设备的子设备列表
     @inlinable
     public func getGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGatewaySubDeviceListResponse {
-        let input = GetGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit)
-        return try await self.client.execute(action: "GetGatewaySubDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getGatewaySubDeviceList(.init(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

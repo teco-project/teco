@@ -80,8 +80,7 @@ extension Es {
     /// 用于重启集群节点
     @inlinable @discardableResult
     public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartNodesResponse> {
-        let input = RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline)
-        return self.client.execute(action: "RestartNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.restartNodes(.init(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启集群节点
@@ -89,7 +88,6 @@ extension Es {
     /// 用于重启集群节点
     @inlinable @discardableResult
     public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
-        let input = RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline)
-        return try await self.client.execute(action: "RestartNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.restartNodes(.init(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), region: region, logger: logger, on: eventLoop)
     }
 }

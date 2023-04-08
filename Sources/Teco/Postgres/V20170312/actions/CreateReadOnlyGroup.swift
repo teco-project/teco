@@ -119,8 +119,7 @@ extension Postgres {
     /// 本接口（CreateReadOnlyGroup）用于创建只读组
     @inlinable
     public func createReadOnlyGroup(masterDBInstanceId: String, name: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLag: UInt64? = nil, maxReplayLatency: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupResponse> {
-        let input = CreateReadOnlyGroupRequest(masterDBInstanceId: masterDBInstanceId, name: name, projectId: projectId, vpcId: vpcId, subnetId: subnetId, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLag: maxReplayLag, maxReplayLatency: maxReplayLatency, minDelayEliminateReserve: minDelayEliminateReserve, securityGroupIds: securityGroupIds)
-        return self.client.execute(action: "CreateReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createReadOnlyGroup(.init(masterDBInstanceId: masterDBInstanceId, name: name, projectId: projectId, vpcId: vpcId, subnetId: subnetId, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLag: maxReplayLag, maxReplayLatency: maxReplayLatency, minDelayEliminateReserve: minDelayEliminateReserve, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建只读组
@@ -128,7 +127,6 @@ extension Postgres {
     /// 本接口（CreateReadOnlyGroup）用于创建只读组
     @inlinable
     public func createReadOnlyGroup(masterDBInstanceId: String, name: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLag: UInt64? = nil, maxReplayLatency: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupResponse {
-        let input = CreateReadOnlyGroupRequest(masterDBInstanceId: masterDBInstanceId, name: name, projectId: projectId, vpcId: vpcId, subnetId: subnetId, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLag: maxReplayLag, maxReplayLatency: maxReplayLatency, minDelayEliminateReserve: minDelayEliminateReserve, securityGroupIds: securityGroupIds)
-        return try await self.client.execute(action: "CreateReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createReadOnlyGroup(.init(masterDBInstanceId: masterDBInstanceId, name: name, projectId: projectId, vpcId: vpcId, subnetId: subnetId, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLag: maxReplayLag, maxReplayLatency: maxReplayLatency, minDelayEliminateReserve: minDelayEliminateReserve, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Vpc {
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
     @inlinable @discardableResult
     public func renewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewVpnGatewayResponse> {
-        let input = RenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid)
-        return self.client.execute(action: "RenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.renewVpnGateway(.init(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费VPN网关
@@ -74,7 +73,6 @@ extension Vpc {
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
     @inlinable @discardableResult
     public func renewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewVpnGatewayResponse {
-        let input = RenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid)
-        return try await self.client.execute(action: "RenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.renewVpnGateway(.init(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

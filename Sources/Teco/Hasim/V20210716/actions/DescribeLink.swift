@@ -63,14 +63,12 @@ extension Hasim {
     /// 查询云兔连接详细信息
     @inlinable
     public func describeLink(linkID: Int64, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLinkResponse> {
-        let input = DescribeLinkRequest(linkID: linkID, uinAccount: uinAccount)
-        return self.client.execute(action: "DescribeLink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeLink(.init(linkID: linkID, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云兔连接详细信息
     @inlinable
     public func describeLink(linkID: Int64, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLinkResponse {
-        let input = DescribeLinkRequest(linkID: linkID, uinAccount: uinAccount)
-        return try await self.client.execute(action: "DescribeLink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeLink(.init(linkID: linkID, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,7 +59,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayer(_ input: DescribePlayerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayerResponse> {
-        self.client.execute(action: "DescribePlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribePlayer is no longer available.")
     }
 
     /// 查询玩家信息
@@ -68,7 +68,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayer(_ input: DescribePlayerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
-        try await self.client.execute(action: "DescribePlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribePlayer is no longer available.")
     }
 
     /// 查询玩家信息
@@ -77,8 +77,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayer(gameId: String, openId: String? = nil, playerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayerResponse> {
-        let input = DescribePlayerRequest(gameId: gameId, openId: openId, playerId: playerId)
-        return self.client.execute(action: "DescribePlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribePlayer is no longer available.")
     }
 
     /// 查询玩家信息
@@ -87,7 +86,6 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayer(gameId: String, openId: String? = nil, playerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
-        let input = DescribePlayerRequest(gameId: gameId, openId: openId, playerId: playerId)
-        return try await self.client.execute(action: "DescribePlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribePlayer is no longer available.")
     }
 }

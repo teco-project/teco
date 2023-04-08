@@ -50,14 +50,12 @@ extension Tcss {
     /// 获取告警策略列表
     @inlinable
     public func describeWarningRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningRulesResponse> {
-        let input = DescribeWarningRulesRequest()
-        return self.client.execute(action: "DescribeWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeWarningRules(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警策略列表
     @inlinable
     public func describeWarningRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
-        let input = DescribeWarningRulesRequest()
-        return try await self.client.execute(action: "DescribeWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeWarningRules(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

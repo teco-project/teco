@@ -64,14 +64,12 @@ extension Bm {
     /// 解除标签与预授权规则的绑定
     @inlinable @discardableResult
     public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
-        let input = UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue)
-        return self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.unbindPsaTag(.init(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除标签与预授权规则的绑定
     @inlinable @discardableResult
     public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
-        let input = UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue)
-        return try await self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.unbindPsaTag(.init(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 }

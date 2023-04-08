@@ -74,8 +74,7 @@ extension Tcss {
     /// 修改反弹shell事件的状态信息
     @inlinable @discardableResult
     public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
-        let input = ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
-        return self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyReverseShellStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改反弹shell事件状态
@@ -83,7 +82,6 @@ extension Tcss {
     /// 修改反弹shell事件的状态信息
     @inlinable @discardableResult
     public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
-        let input = ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
-        return try await self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyReverseShellStatus(.init(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Vpc {
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable @discardableResult
     public func addBandwidthPackageResources(resourceIds: [String], bandwidthPackageId: String? = nil, networkType: String? = nil, resourceType: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddBandwidthPackageResourcesResponse> {
-        let input = AddBandwidthPackageResourcesRequest(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`)
-        return self.client.execute(action: "AddBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.addBandwidthPackageResources(.init(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加带宽包资源
@@ -89,7 +88,6 @@ extension Vpc {
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable @discardableResult
     public func addBandwidthPackageResources(resourceIds: [String], bandwidthPackageId: String? = nil, networkType: String? = nil, resourceType: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddBandwidthPackageResourcesResponse {
-        let input = AddBandwidthPackageResourcesRequest(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`)
-        return try await self.client.execute(action: "AddBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.addBandwidthPackageResources(.init(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

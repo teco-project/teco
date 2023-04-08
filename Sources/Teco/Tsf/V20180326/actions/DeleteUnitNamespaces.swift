@@ -64,14 +64,12 @@ extension Tsf {
     /// 删除单元化命名空间
     @inlinable
     public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
-        let input = DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList)
-        return self.client.execute(action: "DeleteUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteUnitNamespaces(.init(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化命名空间
     @inlinable
     public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
-        let input = DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList)
-        return try await self.client.execute(action: "DeleteUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteUnitNamespaces(.init(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), region: region, logger: logger, on: eventLoop)
     }
 }

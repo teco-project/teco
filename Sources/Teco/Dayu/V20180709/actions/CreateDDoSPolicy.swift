@@ -88,14 +88,12 @@ extension Dayu {
     /// 添加DDoS高级策略
     @inlinable
     public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyResponse> {
-        let input = CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint)
-        return self.client.execute(action: "CreateDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createDDoSPolicy(.init(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS高级策略
     @inlinable
     public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyResponse {
-        let input = CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint)
-        return try await self.client.execute(action: "CreateDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createDDoSPolicy(.init(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 }

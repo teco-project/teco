@@ -105,8 +105,7 @@ extension Vpc {
     /// 该接口用于查询IPV6地址信息
     @inlinable
     public func describeIp6Addresses(ip6AddressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6AddressesResponse> {
-        let input = DescribeIp6AddressesRequest(ip6AddressIds: ip6AddressIds, filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeIp6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIp6Addresses(.init(ip6AddressIds: ip6AddressIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6地址信息
@@ -114,8 +113,7 @@ extension Vpc {
     /// 该接口用于查询IPV6地址信息
     @inlinable
     public func describeIp6Addresses(ip6AddressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6AddressesResponse {
-        let input = DescribeIp6AddressesRequest(ip6AddressIds: ip6AddressIds, filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeIp6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIp6Addresses(.init(ip6AddressIds: ip6AddressIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6地址信息

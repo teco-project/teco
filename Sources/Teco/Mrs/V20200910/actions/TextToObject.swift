@@ -80,8 +80,7 @@ extension Mrs {
     /// 文本转结构化对象
     @inlinable
     public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
-        let input = TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType)
-        return self.client.execute(action: "TextToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.textToObject(.init(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本结构化接口
@@ -89,7 +88,6 @@ extension Mrs {
     /// 文本转结构化对象
     @inlinable
     public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
-        let input = TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType)
-        return try await self.client.execute(action: "TextToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.textToObject(.init(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -74,8 +74,7 @@ extension Ecm {
     /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     @inlinable
     public func createRouteTable(vpcId: String, routeTableName: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
-        let input = CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, ecmRegion: ecmRegion)
-        return self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createRouteTable(.init(vpcId: vpcId, routeTableName: routeTableName, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建路由表
@@ -83,7 +82,6 @@ extension Ecm {
     /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     @inlinable
     public func createRouteTable(vpcId: String, routeTableName: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
-        let input = CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, ecmRegion: ecmRegion)
-        return try await self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createRouteTable(.init(vpcId: vpcId, routeTableName: routeTableName, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

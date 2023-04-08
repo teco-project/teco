@@ -83,15 +83,13 @@ extension Ckafka {
     /// 查询用户列表
     @inlinable
     public func describeAppInfo(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppInfoResponse> {
-        let input = DescribeAppInfoRequest(offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeAppInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAppInfo(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
     @inlinable
     public func describeAppInfo(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppInfoResponse {
-        let input = DescribeAppInfoRequest(offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeAppInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAppInfo(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表

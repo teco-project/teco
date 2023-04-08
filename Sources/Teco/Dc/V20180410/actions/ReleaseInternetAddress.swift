@@ -60,8 +60,7 @@ extension Dc {
     /// 释放已申请的互联网地址
     @inlinable @discardableResult
     public func releaseInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseInternetAddressResponse> {
-        let input = ReleaseInternetAddressRequest(instanceId: instanceId)
-        return self.client.execute(action: "ReleaseInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.releaseInternetAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放互联网地址
@@ -69,7 +68,6 @@ extension Dc {
     /// 释放已申请的互联网地址
     @inlinable @discardableResult
     public func releaseInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
-        let input = ReleaseInternetAddressRequest(instanceId: instanceId)
-        return try await self.client.execute(action: "ReleaseInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.releaseInternetAddress(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

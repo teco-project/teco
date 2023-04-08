@@ -96,8 +96,7 @@ extension Cii {
     /// 本接口(CreateStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
     @inlinable
     public func createStructureTask(serviceType: String, taskInfos: [CreateStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
-        let input = CreateStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl)
-        return self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createStructureTask(.init(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建结构化任务
@@ -105,7 +104,6 @@ extension Cii {
     /// 本接口(CreateStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
     @inlinable
     public func createStructureTask(serviceType: String, taskInfos: [CreateStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
-        let input = CreateStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl)
-        return try await self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createStructureTask(.init(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

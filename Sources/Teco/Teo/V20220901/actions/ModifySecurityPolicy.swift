@@ -75,8 +75,7 @@ extension Teo {
     /// 修改Web&Bot安全配置。
     @inlinable @discardableResult
     public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
-        let input = ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId)
-        return self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySecurityPolicy(.init(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Web&Bot安全配置
@@ -84,7 +83,6 @@ extension Teo {
     /// 修改Web&Bot安全配置。
     @inlinable @discardableResult
     public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        let input = ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId)
-        return try await self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySecurityPolicy(.init(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

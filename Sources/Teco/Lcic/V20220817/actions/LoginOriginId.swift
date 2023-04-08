@@ -73,8 +73,7 @@ extension Lcic {
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
     public func loginOriginId(sdkAppId: UInt64, originId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginOriginIdResponse> {
-        let input = LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId)
-        return self.client.execute(action: "LoginOriginId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.loginOriginId(.init(sdkAppId: sdkAppId, originId: originId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 源账号登录
@@ -82,7 +81,6 @@ extension Lcic {
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
     public func loginOriginId(sdkAppId: UInt64, originId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
-        let input = LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId)
-        return try await self.client.execute(action: "LoginOriginId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.loginOriginId(.init(sdkAppId: sdkAppId, originId: originId), region: region, logger: logger, on: eventLoop)
     }
 }

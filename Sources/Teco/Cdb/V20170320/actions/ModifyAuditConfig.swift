@@ -89,8 +89,7 @@ extension Cdb {
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable @discardableResult
     public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
-        let input = ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay)
-        return self.client.execute(action: "ModifyAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAuditConfig(.init(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改审计服务配置
@@ -98,7 +97,6 @@ extension Cdb {
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable @discardableResult
     public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
-        let input = ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay)
-        return try await self.client.execute(action: "ModifyAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAuditConfig(.init(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
     }
 }

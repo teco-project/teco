@@ -88,8 +88,7 @@ extension Vpc {
     /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
     @inlinable
     public func modifyAddressesBandwidth(addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressesBandwidthResponse> {
-        let input = ModifyAddressesBandwidthRequest(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "ModifyAddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyAddressesBandwidth(.init(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整弹性公网IP带宽
@@ -97,7 +96,6 @@ extension Vpc {
     /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
     @inlinable
     public func modifyAddressesBandwidth(addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
-        let input = ModifyAddressesBandwidthRequest(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "ModifyAddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyAddressesBandwidth(.init(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Bm {
     /// 重置服务器密码
     @inlinable
     public func resetDevicePassword(instanceIds: [String], password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDevicePasswordResponse> {
-        let input = ResetDevicePasswordRequest(instanceIds: instanceIds, password: password)
-        return self.client.execute(action: "ResetDevicePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.resetDevicePassword(.init(instanceIds: instanceIds, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置密码
@@ -78,7 +77,6 @@ extension Bm {
     /// 重置服务器密码
     @inlinable
     public func resetDevicePassword(instanceIds: [String], password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
-        let input = ResetDevicePasswordRequest(instanceIds: instanceIds, password: password)
-        return try await self.client.execute(action: "ResetDevicePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.resetDevicePassword(.init(instanceIds: instanceIds, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

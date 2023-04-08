@@ -128,8 +128,7 @@ extension Live {
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
     public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePullStreamConfigResponse> {
-        let input = CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime)
-        return self.client.execute(action: "CreatePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createPullStreamConfig(.init(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
@@ -142,7 +141,6 @@ extension Live {
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
     public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
-        let input = CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime)
-        return try await self.client.execute(action: "CreatePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createPullStreamConfig(.init(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

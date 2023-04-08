@@ -66,8 +66,7 @@ extension Vpc {
     /// * 删除云联网是不可逆的操作，请谨慎处理。
     @inlinable @discardableResult
     public func deleteCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcnResponse> {
-        let input = DeleteCcnRequest(ccnId: ccnId)
-        return self.client.execute(action: "DeleteCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CCN
@@ -77,7 +76,6 @@ extension Vpc {
     /// * 删除云联网是不可逆的操作，请谨慎处理。
     @inlinable @discardableResult
     public func deleteCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcnResponse {
-        let input = DeleteCcnRequest(ccnId: ccnId)
-        return try await self.client.execute(action: "DeleteCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteCcn(.init(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

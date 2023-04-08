@@ -99,15 +99,13 @@ extension Wedata {
     /// 分页查询质量规则
     @inlinable
     public func describeRulesByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByPageResponse> {
-        let input = DescribeRulesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return self.client.execute(action: "DescribeRulesByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRulesByPage(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量规则
     @inlinable
     public func describeRulesByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByPageResponse {
-        let input = DescribeRulesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
-        return try await self.client.execute(action: "DescribeRulesByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRulesByPage(.init(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量规则

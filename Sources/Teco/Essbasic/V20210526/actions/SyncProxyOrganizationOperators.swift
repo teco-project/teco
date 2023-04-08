@@ -90,8 +90,7 @@ extension Essbasic {
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
     public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
-        let input = SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`)
-        return self.client.execute(action: "SyncProxyOrganizationOperators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步企业经办人列表
@@ -100,7 +99,6 @@ extension Essbasic {
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
     public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
-        let input = SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`)
-        return try await self.client.execute(action: "SyncProxyOrganizationOperators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

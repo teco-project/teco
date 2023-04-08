@@ -69,8 +69,7 @@ extension Bmlb {
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
     public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesBindInfoResponse> {
-        let input = DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return self.client.execute(action: "DescribeDevicesBindInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDevicesBindInfo(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
@@ -78,7 +77,6 @@ extension Bmlb {
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
     public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
-        let input = DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds)
-        return try await self.client.execute(action: "DescribeDevicesBindInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDevicesBindInfo(.init(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

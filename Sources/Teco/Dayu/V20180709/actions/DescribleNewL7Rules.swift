@@ -96,14 +96,12 @@ extension Dayu {
     /// 获取7层规则
     @inlinable
     public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
-        let input = DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip)
-        return self.client.execute(action: "DescribleNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describleNewL7Rules(.init(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取7层规则
     @inlinable
     public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
-        let input = DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip)
-        return try await self.client.execute(action: "DescribleNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describleNewL7Rules(.init(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

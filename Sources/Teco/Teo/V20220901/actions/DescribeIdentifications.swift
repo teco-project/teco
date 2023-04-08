@@ -99,8 +99,7 @@ extension Teo {
     /// 查询站点的验证信息。
     @inlinable
     public func describeIdentifications(filters: [Filter], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdentificationsResponse> {
-        let input = DescribeIdentificationsRequest(filters: filters, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeIdentifications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeIdentifications(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点的验证信息
@@ -108,8 +107,7 @@ extension Teo {
     /// 查询站点的验证信息。
     @inlinable
     public func describeIdentifications(filters: [Filter], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationsResponse {
-        let input = DescribeIdentificationsRequest(filters: filters, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeIdentifications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeIdentifications(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点的验证信息

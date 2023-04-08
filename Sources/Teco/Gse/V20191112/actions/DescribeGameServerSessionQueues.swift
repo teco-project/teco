@@ -89,7 +89,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionQueuesResponse> {
-        self.client.execute(action: "DescribeGameServerSessionQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeGameServerSessionQueues is no longer available.")
     }
 
     /// 查询游戏服务器会话队列
@@ -98,7 +98,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
-        try await self.client.execute(action: "DescribeGameServerSessionQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeGameServerSessionQueues is no longer available.")
     }
 
     /// 查询游戏服务器会话队列
@@ -107,8 +107,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionQueues(names: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionQueuesResponse> {
-        let input = DescribeGameServerSessionQueuesRequest(names: names, limit: limit, offset: offset, filters: filters)
-        return self.client.execute(action: "DescribeGameServerSessionQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeGameServerSessionQueues is no longer available.")
     }
 
     /// 查询游戏服务器会话队列
@@ -117,7 +116,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionQueues(names: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
-        let input = DescribeGameServerSessionQueuesRequest(names: names, limit: limit, offset: offset, filters: filters)
-        return try await self.client.execute(action: "DescribeGameServerSessionQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeGameServerSessionQueues is no longer available.")
     }
 }

@@ -67,8 +67,7 @@ extension Teo {
     /// 用于开启，关闭站点。
     @inlinable @discardableResult
     public func modifyZoneStatus(zoneId: String, paused: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
-        let input = ModifyZoneStatusRequest(zoneId: zoneId, paused: paused)
-        return self.client.execute(action: "ModifyZoneStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyZoneStatus(.init(zoneId: zoneId, paused: paused), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换站点状态
@@ -76,7 +75,6 @@ extension Teo {
     /// 用于开启，关闭站点。
     @inlinable @discardableResult
     public func modifyZoneStatus(zoneId: String, paused: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
-        let input = ModifyZoneStatusRequest(zoneId: zoneId, paused: paused)
-        return try await self.client.execute(action: "ModifyZoneStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyZoneStatus(.init(zoneId: zoneId, paused: paused), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,8 +69,7 @@ extension Iot {
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
     public func getDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceDataResponse> {
-        let input = GetDeviceDataRequest(productId: productId, deviceName: deviceName)
-        return self.client.execute(action: "GetDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getDeviceData(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备数据
@@ -78,7 +77,6 @@ extension Iot {
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
     public func getDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
-        let input = GetDeviceDataRequest(productId: productId, deviceName: deviceName)
-        return try await self.client.execute(action: "GetDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getDeviceData(.init(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,8 +80,7 @@ extension Postgres {
     /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
     @inlinable @discardableResult
     public func modifyParameterTemplate(templateId: String, templateName: String? = nil, templateDescription: String? = nil, modifyParamEntrySet: [ParamEntry]? = nil, deleteParamSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParameterTemplateResponse> {
-        let input = ModifyParameterTemplateRequest(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet)
-        return self.client.execute(action: "ModifyParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyParameterTemplate(.init(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改参数模板信息
@@ -89,7 +88,6 @@ extension Postgres {
     /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
     @inlinable @discardableResult
     public func modifyParameterTemplate(templateId: String, templateName: String? = nil, templateDescription: String? = nil, modifyParamEntrySet: [ParamEntry]? = nil, deleteParamSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParameterTemplateResponse {
-        let input = ModifyParameterTemplateRequest(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet)
-        return try await self.client.execute(action: "ModifyParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyParameterTemplate(.init(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet), region: region, logger: logger, on: eventLoop)
     }
 }

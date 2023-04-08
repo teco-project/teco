@@ -80,8 +80,7 @@ extension Wedata {
     /// Runner 规则检测结果上报
     @inlinable
     public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupExecResultResponse> {
-        let input = CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults)
-        return self.client.execute(action: "CommitRuleGroupExecResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.commitRuleGroupExecResult(.init(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则检测结果上报
@@ -89,7 +88,6 @@ extension Wedata {
     /// Runner 规则检测结果上报
     @inlinable
     public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
-        let input = CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults)
-        return try await self.client.execute(action: "CommitRuleGroupExecResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.commitRuleGroupExecResult(.init(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), region: region, logger: logger, on: eventLoop)
     }
 }

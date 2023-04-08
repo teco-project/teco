@@ -89,8 +89,7 @@ extension Teo {
     /// 用于查询 DNSSEC 相关信息
     @inlinable
     public func describeDnssec(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
-        let input = DescribeDnssecRequest(id: id)
-        return self.client.execute(action: "DescribeDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDnssec(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNSSEC 信息
@@ -98,7 +97,6 @@ extension Teo {
     /// 用于查询 DNSSEC 相关信息
     @inlinable
     public func describeDnssec(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
-        let input = DescribeDnssecRequest(id: id)
-        return try await self.client.execute(action: "DescribeDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDnssec(.init(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

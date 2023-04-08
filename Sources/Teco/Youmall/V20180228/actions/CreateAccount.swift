@@ -74,14 +74,12 @@ extension Youmall {
     /// 创建集团门店管理员账号
     @inlinable @discardableResult
     public func createAccount(companyId: String, name: String, password: String, shopCode: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
-        let input = CreateAccountRequest(companyId: companyId, name: name, password: password, shopCode: shopCode, remark: remark)
-        return self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createAccount(.init(companyId: companyId, name: name, password: password, shopCode: shopCode, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集团门店管理员账号
     @inlinable @discardableResult
     public func createAccount(companyId: String, name: String, password: String, shopCode: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        let input = CreateAccountRequest(companyId: companyId, name: name, password: password, shopCode: shopCode, remark: remark)
-        return try await self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createAccount(.init(companyId: companyId, name: name, password: password, shopCode: shopCode, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

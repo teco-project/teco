@@ -58,14 +58,12 @@ extension Vpc {
     /// 删除SSL-VPN-CLIENT
     @inlinable
     public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
-        let input = DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId)
-        return self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除SSL-VPN-CLIENT
     @inlinable
     public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
-        let input = DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId)
-        return try await self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
     }
 }

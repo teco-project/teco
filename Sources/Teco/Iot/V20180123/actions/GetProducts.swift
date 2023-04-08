@@ -93,8 +93,7 @@ extension Iot {
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
     public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductsResponse> {
-        let input = GetProductsRequest(offset: offset, length: length)
-        return self.client.execute(action: "GetProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getProducts(.init(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
@@ -102,8 +101,7 @@ extension Iot {
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
     public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
-        let input = GetProductsRequest(offset: offset, length: length)
-        return try await self.client.execute(action: "GetProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getProducts(.init(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表

@@ -56,8 +56,7 @@ extension Cds {
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
     public func describeDbauditUsedRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditUsedRegionsResponse> {
-        let input = DescribeDbauditUsedRegionsRequest()
-        return self.client.execute(action: "DescribeDbauditUsedRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDbauditUsedRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖地域列表
@@ -65,7 +64,6 @@ extension Cds {
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
     public func describeDbauditUsedRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
-        let input = DescribeDbauditUsedRegionsRequest()
-        return try await self.client.execute(action: "DescribeDbauditUsedRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDbauditUsedRegions(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

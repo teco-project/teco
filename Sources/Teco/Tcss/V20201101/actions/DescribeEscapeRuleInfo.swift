@@ -56,8 +56,7 @@ extension Tcss {
     /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
     @inlinable
     public func describeEscapeRuleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeRuleInfoResponse> {
-        let input = DescribeEscapeRuleInfoRequest()
-        return self.client.execute(action: "DescribeEscapeRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEscapeRuleInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸扫描规则信息
@@ -65,7 +64,6 @@ extension Tcss {
     /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
     @inlinable
     public func describeEscapeRuleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeRuleInfoResponse {
-        let input = DescribeEscapeRuleInfoRequest()
-        return try await self.client.execute(action: "DescribeEscapeRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEscapeRuleInfo(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

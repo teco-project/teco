@@ -104,8 +104,7 @@ extension Iotvideoindustry {
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
     public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStreamResponse> {
-        let input = DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId)
-        return self.client.execute(action: "DescribeRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeRecordStream(.init(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道本地回放流地址（旧）
@@ -118,7 +117,6 @@ extension Iotvideoindustry {
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
     public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
-        let input = DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId)
-        return try await self.client.execute(action: "DescribeRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeRecordStream(.init(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

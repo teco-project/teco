@@ -54,14 +54,12 @@ extension Tcss {
     /// 容器网络集群下发刷新任务
     @inlinable
     public func createNetworkFirewallClusterRefresh(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
-        let input = CreateNetworkFirewallClusterRefreshRequest()
-        return self.client.execute(action: "CreateNetworkFirewallClusterRefresh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createNetworkFirewallClusterRefresh(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群下发刷新任务
     @inlinable
     public func createNetworkFirewallClusterRefresh(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
-        let input = CreateNetworkFirewallClusterRefreshRequest()
-        return try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createNetworkFirewallClusterRefresh(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

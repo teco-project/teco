@@ -134,14 +134,12 @@ extension Tbaas {
     /// 获取区块链网络概要
     @inlinable
     public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterSummaryResponse> {
-        let input = GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName)
-        return self.client.execute(action: "GetClusterSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.getClusterSummary(.init(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区块链网络概要
     @inlinable
     public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
-        let input = GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName)
-        return try await self.client.execute(action: "GetClusterSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.getClusterSummary(.init(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 }

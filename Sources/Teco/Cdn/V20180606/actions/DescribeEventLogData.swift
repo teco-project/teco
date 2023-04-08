@@ -106,8 +106,7 @@ extension Cdn {
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
     public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventLogDataResponse> {
-        let input = DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source)
-        return self.client.execute(action: "DescribeEventLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEventLogData(.init(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件日志统计曲线
@@ -115,7 +114,6 @@ extension Cdn {
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
     public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
-        let input = DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source)
-        return try await self.client.execute(action: "DescribeEventLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEventLogData(.init(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), region: region, logger: logger, on: eventLoop)
     }
 }

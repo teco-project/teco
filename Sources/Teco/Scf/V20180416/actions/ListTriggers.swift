@@ -113,15 +113,13 @@ extension Scf {
     /// 获取函数触发器列表
     @inlinable
     public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTriggersResponse> {
-        let input = ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters)
-        return self.client.execute(action: "ListTriggers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listTriggers(.init(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数触发器列表
     @inlinable
     public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
-        let input = ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters)
-        return try await self.client.execute(action: "ListTriggers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listTriggers(.init(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数触发器列表

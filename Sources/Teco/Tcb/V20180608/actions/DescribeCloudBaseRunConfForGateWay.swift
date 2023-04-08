@@ -75,8 +75,7 @@ extension Tcb {
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
     public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunConfForGateWayResponse> {
-        let input = DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID)
-        return self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseRunConfForGateWay(.init(envID: envID, vpcID: vpcID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 独立网关云托管服务配置
@@ -84,7 +83,6 @@ extension Tcb {
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
     public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunConfForGateWayResponse {
-        let input = DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID)
-        return try await self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseRunConfForGateWay(.init(envID: envID, vpcID: vpcID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -76,8 +76,7 @@ extension Yunjing {
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
     public func describeAlarmAttribute(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmAttributeResponse> {
-        let input = DescribeAlarmAttributeRequest()
-        return self.client.execute(action: "DescribeAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAlarmAttribute(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警设置
@@ -85,7 +84,6 @@ extension Yunjing {
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
     public func describeAlarmAttribute(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
-        let input = DescribeAlarmAttributeRequest()
-        return try await self.client.execute(action: "DescribeAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAlarmAttribute(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -59,14 +59,12 @@ extension Tcss {
     /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
-        let input = CheckRepeatAssetImageRegistryRequest(name: name)
-        return self.client.execute(action: "CheckRepeatAssetImageRegistry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.checkRepeatAssetImageRegistry(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
-        let input = CheckRepeatAssetImageRegistryRequest(name: name)
-        return try await self.client.execute(action: "CheckRepeatAssetImageRegistry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.checkRepeatAssetImageRegistry(.init(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

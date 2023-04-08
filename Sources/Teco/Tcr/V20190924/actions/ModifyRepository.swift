@@ -80,8 +80,7 @@ extension Tcr {
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable @discardableResult
     public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
-        let input = ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description)
-        return self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyRepository(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像仓库信息
@@ -89,7 +88,6 @@ extension Tcr {
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable @discardableResult
     public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
-        let input = ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description)
-        return try await self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyRepository(.init(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -103,15 +103,13 @@ extension Iotexplorer {
     /// 获取位置空间中围栏告警事件列表
     @inlinable
     public func describeSpaceFenceEventList(spaceId: String, startTime: Int64, endTime: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpaceFenceEventListResponse> {
-        let input = DescribeSpaceFenceEventListRequest(spaceId: spaceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return self.client.execute(action: "DescribeSpaceFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSpaceFenceEventList(.init(spaceId: spaceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取位置空间中围栏告警事件列表
     @inlinable
     public func describeSpaceFenceEventList(spaceId: String, startTime: Int64, endTime: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpaceFenceEventListResponse {
-        let input = DescribeSpaceFenceEventListRequest(spaceId: spaceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
-        return try await self.client.execute(action: "DescribeSpaceFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSpaceFenceEventList(.init(spaceId: spaceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取位置空间中围栏告警事件列表

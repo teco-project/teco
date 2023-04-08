@@ -93,15 +93,13 @@ extension Tsf {
     /// 查询某个API分组已绑定的网关部署组信息列表
     @inlinable
     public func describeGroupBindedGateways(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupBindedGatewaysResponse> {
-        let input = DescribeGroupBindedGatewaysRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord)
-        return self.client.execute(action: "DescribeGroupBindedGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeGroupBindedGateways(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个API分组已绑定的网关部署组信息列表
     @inlinable
     public func describeGroupBindedGateways(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupBindedGatewaysResponse {
-        let input = DescribeGroupBindedGatewaysRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord)
-        return try await self.client.execute(action: "DescribeGroupBindedGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeGroupBindedGateways(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个API分组已绑定的网关部署组信息列表

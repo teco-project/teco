@@ -68,14 +68,12 @@ extension Tsf {
     /// 绑定解绑tcr仓库
     @inlinable
     public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateApplicationTcrBindingResponse> {
-        let input = OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo)
-        return self.client.execute(action: "OperateApplicationTcrBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.operateApplicationTcrBinding(.init(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定解绑tcr仓库
     @inlinable
     public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
-        let input = OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo)
-        return try await self.client.execute(action: "OperateApplicationTcrBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.operateApplicationTcrBinding(.init(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 }

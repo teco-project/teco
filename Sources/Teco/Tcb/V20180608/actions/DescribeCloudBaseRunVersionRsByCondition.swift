@@ -52,8 +52,7 @@ extension Tcb {
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable @discardableResult
     public func describeCloudBaseRunVersionRsByCondition(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
-        let input = DescribeCloudBaseRunVersionRsByConditionRequest()
-        return self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCloudBaseRunVersionRsByCondition(.init(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管详情
@@ -61,7 +60,6 @@ extension Tcb {
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable @discardableResult
     public func describeCloudBaseRunVersionRsByCondition(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
-        let input = DescribeCloudBaseRunVersionRsByConditionRequest()
-        return try await self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCloudBaseRunVersionRsByCondition(.init(), region: region, logger: logger, on: eventLoop)
     }
 }

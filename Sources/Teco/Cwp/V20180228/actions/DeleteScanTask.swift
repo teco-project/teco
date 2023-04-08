@@ -70,8 +70,7 @@ extension Cwp {
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable @discardableResult
     public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
-        let input = DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList)
-        return self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteScanTask(.init(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止扫描任务
@@ -79,7 +78,6 @@ extension Cwp {
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable @discardableResult
     public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
-        let input = DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList)
-        return try await self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteScanTask(.init(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }
 }

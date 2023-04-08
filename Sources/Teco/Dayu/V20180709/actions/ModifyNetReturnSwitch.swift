@@ -75,8 +75,7 @@ extension Dayu {
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
     @inlinable @discardableResult
     public func modifyNetReturnSwitch(business: String, id: String, status: UInt64, hour: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetReturnSwitchResponse> {
-        let input = ModifyNetReturnSwitchRequest(business: business, id: id, status: status, hour: hour)
-        return self.client.execute(action: "ModifyNetReturnSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyNetReturnSwitch(.init(business: business, id: id, status: status, hour: hour), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动切回
@@ -84,7 +83,6 @@ extension Dayu {
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
     @inlinable @discardableResult
     public func modifyNetReturnSwitch(business: String, id: String, status: UInt64, hour: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetReturnSwitchResponse {
-        let input = ModifyNetReturnSwitchRequest(business: business, id: id, status: status, hour: hour)
-        return try await self.client.execute(action: "ModifyNetReturnSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyNetReturnSwitch(.init(business: business, id: id, status: status, hour: hour), region: region, logger: logger, on: eventLoop)
     }
 }

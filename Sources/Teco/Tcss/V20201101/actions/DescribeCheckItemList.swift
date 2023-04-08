@@ -98,8 +98,7 @@ extension Tcss {
     /// 查询所有检查项接口，返回总数和检查项列表
     @inlinable
     public func describeCheckItemList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckItemListResponse> {
-        let input = DescribeCheckItemListRequest(offset: offset, limit: limit, filters: filters)
-        return self.client.execute(action: "DescribeCheckItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeCheckItemList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有检查项接口
@@ -107,8 +106,7 @@ extension Tcss {
     /// 查询所有检查项接口，返回总数和检查项列表
     @inlinable
     public func describeCheckItemList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckItemListResponse {
-        let input = DescribeCheckItemListRequest(offset: offset, limit: limit, filters: filters)
-        return try await self.client.execute(action: "DescribeCheckItemList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeCheckItemList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有检查项接口

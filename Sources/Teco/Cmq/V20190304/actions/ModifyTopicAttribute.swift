@@ -69,14 +69,12 @@ extension Cmq {
     /// 修改主题属性
     @inlinable @discardableResult
     public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicAttributeResponse> {
-        let input = ModifyTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace)
-        return self.client.execute(action: "ModifyTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyTopicAttribute(.init(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改主题属性
     @inlinable @discardableResult
     public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributeResponse {
-        let input = ModifyTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace)
-        return try await self.client.execute(action: "ModifyTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyTopicAttribute(.init(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 }

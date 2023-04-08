@@ -105,14 +105,12 @@ extension Tci {
     /// 修改人员信息
     @inlinable
     public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonResponse> {
-        let input = ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber)
-        return self.client.execute(action: "ModifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPerson(.init(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人员信息
     @inlinable
     public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
-        let input = ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber)
-        return try await self.client.execute(action: "ModifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPerson(.init(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), region: region, logger: logger, on: eventLoop)
     }
 }

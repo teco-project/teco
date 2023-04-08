@@ -69,8 +69,7 @@ extension Cvm {
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
-        let input = DeleteKeyPairsRequest(keyIds: keyIds)
-        return self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.deleteKeyPairs(.init(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除密钥对
@@ -81,7 +80,6 @@ extension Cvm {
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
-        let input = DeleteKeyPairsRequest(keyIds: keyIds)
-        return try await self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.deleteKeyPairs(.init(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 }

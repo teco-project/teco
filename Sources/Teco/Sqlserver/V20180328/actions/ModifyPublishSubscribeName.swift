@@ -65,8 +65,7 @@ extension Sqlserver {
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable @discardableResult
     public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublishSubscribeNameResponse> {
-        let input = ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName)
-        return self.client.execute(action: "ModifyPublishSubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyPublishSubscribeName(.init(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改发布订阅的名称
@@ -74,7 +73,6 @@ extension Sqlserver {
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable @discardableResult
     public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
-        let input = ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName)
-        return try await self.client.execute(action: "ModifyPublishSubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyPublishSubscribeName(.init(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), region: region, logger: logger, on: eventLoop)
     }
 }

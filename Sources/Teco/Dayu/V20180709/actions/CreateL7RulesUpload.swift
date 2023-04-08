@@ -74,8 +74,7 @@ extension Dayu {
     /// 批量上传7层转发规则
     @inlinable
     public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RulesUploadResponse> {
-        let input = CreateL7RulesUploadRequest(business: business, id: id, rules: rules)
-        return self.client.execute(action: "CreateL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createL7RulesUpload(.init(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量上传L7转发规则
@@ -83,7 +82,6 @@ extension Dayu {
     /// 批量上传7层转发规则
     @inlinable
     public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesUploadResponse {
-        let input = CreateL7RulesUploadRequest(business: business, id: id, rules: rules)
-        return try await self.client.execute(action: "CreateL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createL7RulesUpload(.init(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

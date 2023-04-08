@@ -98,8 +98,7 @@ extension Ape {
     /// 分页查询授权人列表
     @inlinable
     public func describeAuthUsers(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthUsersResponse> {
-        let input = DescribeAuthUsersRequest(limit: limit, offset: offset)
-        return self.client.execute(action: "DescribeAuthUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeAuthUsers(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询授权人列表
@@ -107,8 +106,7 @@ extension Ape {
     /// 分页查询授权人列表
     @inlinable
     public func describeAuthUsers(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthUsersResponse {
-        let input = DescribeAuthUsersRequest(limit: limit, offset: offset)
-        return try await self.client.execute(action: "DescribeAuthUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeAuthUsers(.init(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询授权人列表

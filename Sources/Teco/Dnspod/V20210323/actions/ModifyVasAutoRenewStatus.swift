@@ -59,14 +59,12 @@ extension Dnspod {
     /// 增值服务自动续费设置
     @inlinable @discardableResult
     public func modifyVasAutoRenewStatus(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVasAutoRenewStatusResponse> {
-        let input = ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status)
-        return self.client.execute(action: "ModifyVasAutoRenewStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyVasAutoRenewStatus(.init(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增值服务自动续费设置
     @inlinable @discardableResult
     public func modifyVasAutoRenewStatus(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
-        let input = ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status)
-        return try await self.client.execute(action: "ModifyVasAutoRenewStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyVasAutoRenewStatus(.init(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

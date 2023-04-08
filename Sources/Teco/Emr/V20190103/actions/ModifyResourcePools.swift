@@ -70,14 +70,12 @@ extension Emr {
     /// 刷新YARN的动态资源池
     @inlinable
     public func modifyResourcePools(instanceId: String, key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcePoolsResponse> {
-        let input = ModifyResourcePoolsRequest(instanceId: instanceId, key: key)
-        return self.client.execute(action: "ModifyResourcePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifyResourcePools(.init(instanceId: instanceId, key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新YARN的动态资源池
     @inlinable
     public func modifyResourcePools(instanceId: String, key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
-        let input = ModifyResourcePoolsRequest(instanceId: instanceId, key: key)
-        return try await self.client.execute(action: "ModifyResourcePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifyResourcePools(.init(instanceId: instanceId, key: key), region: region, logger: logger, on: eventLoop)
     }
 }

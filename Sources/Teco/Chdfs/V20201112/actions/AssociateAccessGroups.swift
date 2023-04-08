@@ -65,8 +65,7 @@ extension Chdfs {
     /// 给挂载点绑定多个权限组。
     @inlinable @discardableResult
     public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
-        let input = AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds)
-        return self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.associateAccessGroups(.init(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定权限组列表
@@ -74,7 +73,6 @@ extension Chdfs {
     /// 给挂载点绑定多个权限组。
     @inlinable @discardableResult
     public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
-        let input = AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds)
-        return try await self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.associateAccessGroups(.init(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

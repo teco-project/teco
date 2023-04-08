@@ -87,8 +87,7 @@ extension Tcaplusdb {
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
     public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyIdlFilesResponse> {
-        let input = VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles)
-        return self.client.execute(action: "VerifyIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.verifyIdlFiles(.init(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验创建表格文件
@@ -96,7 +95,6 @@ extension Tcaplusdb {
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
     public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
-        let input = VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles)
-        return try await self.client.execute(action: "VerifyIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.verifyIdlFiles(.init(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 }

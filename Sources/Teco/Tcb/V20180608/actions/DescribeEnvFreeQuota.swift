@@ -65,14 +65,12 @@ extension Tcb {
     /// 查询后付费免费配额信息
     @inlinable
     public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
-        let input = DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes)
-        return self.client.execute(action: "DescribeEnvFreeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeEnvFreeQuota(.init(envId: envId, resourceTypes: resourceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费免费配额信息
     @inlinable
     public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
-        let input = DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes)
-        return try await self.client.execute(action: "DescribeEnvFreeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeEnvFreeQuota(.init(envId: envId, resourceTypes: resourceTypes), region: region, logger: logger, on: eventLoop)
     }
 }

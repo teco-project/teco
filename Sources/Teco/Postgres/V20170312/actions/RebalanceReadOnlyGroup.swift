@@ -60,8 +60,7 @@ extension Postgres {
     /// 本接口(RebalanceReadOnlyGroup)用于重新均衡 RO 组内实例的负载。注意，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库，谨慎操作。
     @inlinable @discardableResult
     public func rebalanceReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebalanceReadOnlyGroupResponse> {
-        let input = RebalanceReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId)
-        return self.client.execute(action: "RebalanceReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.rebalanceReadOnlyGroup(.init(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 均衡只读组内实例的负载
@@ -69,7 +68,6 @@ extension Postgres {
     /// 本接口(RebalanceReadOnlyGroup)用于重新均衡 RO 组内实例的负载。注意，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库，谨慎操作。
     @inlinable @discardableResult
     public func rebalanceReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebalanceReadOnlyGroupResponse {
-        let input = RebalanceReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId)
-        return try await self.client.execute(action: "RebalanceReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.rebalanceReadOnlyGroup(.init(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

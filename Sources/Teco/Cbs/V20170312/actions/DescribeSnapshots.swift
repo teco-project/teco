@@ -124,8 +124,7 @@ extension Cbs {
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
     @inlinable
     public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
-        let input = DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
-        return self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
@@ -136,8 +135,7 @@ extension Cbs {
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
     @inlinable
     public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        let input = DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
-        return try await self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表

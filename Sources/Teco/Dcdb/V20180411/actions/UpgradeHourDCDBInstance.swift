@@ -112,8 +112,7 @@ extension Dcdb {
     /// 本接口（UpgradeHourDCDBInstance）用于升级后付费分布式数据库实例。
     @inlinable @discardableResult
     public func upgradeHourDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, switchStartTime: Date? = nil, switchEndTime: Date? = nil, switchAutoRetry: Int64? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeHourDCDBInstanceResponse> {
-        let input = UpgradeHourDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, switchStartTime: switchStartTime, switchEndTime: switchEndTime, switchAutoRetry: switchAutoRetry, zones: zones)
-        return self.client.execute(action: "UpgradeHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.upgradeHourDCDBInstance(.init(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, switchStartTime: switchStartTime, switchEndTime: switchEndTime, switchAutoRetry: switchAutoRetry, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级DCDB后付费实例
@@ -121,7 +120,6 @@ extension Dcdb {
     /// 本接口（UpgradeHourDCDBInstance）用于升级后付费分布式数据库实例。
     @inlinable @discardableResult
     public func upgradeHourDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, switchStartTime: Date? = nil, switchEndTime: Date? = nil, switchAutoRetry: Int64? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeHourDCDBInstanceResponse {
-        let input = UpgradeHourDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, switchStartTime: switchStartTime, switchEndTime: switchEndTime, switchAutoRetry: switchAutoRetry, zones: zones)
-        return try await self.client.execute(action: "UpgradeHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.upgradeHourDCDBInstance(.init(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, switchStartTime: switchStartTime, switchEndTime: switchEndTime, switchAutoRetry: switchAutoRetry, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 }

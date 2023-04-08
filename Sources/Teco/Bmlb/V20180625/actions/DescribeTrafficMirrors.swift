@@ -123,8 +123,7 @@ extension Bmlb {
     /// 获取流量镜像实例的列表信息。
     @inlinable
     public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
-        let input = DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
-        return self.client.execute(action: "DescribeTrafficMirrors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeTrafficMirrors(.init(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像实例的列表信息
@@ -132,8 +131,7 @@ extension Bmlb {
     /// 获取流量镜像实例的列表信息。
     @inlinable
     public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
-        let input = DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey)
-        return try await self.client.execute(action: "DescribeTrafficMirrors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeTrafficMirrors(.init(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像实例的列表信息

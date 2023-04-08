@@ -98,14 +98,12 @@ extension Tsf {
     /// 查询调用指标数据变化曲线
     @inlinable
     public func describeInvocationMetricDataCurve(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataCurveResponse> {
-        let input = DescribeInvocationMetricDataCurveRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type)
-        return self.client.execute(action: "DescribeInvocationMetricDataCurve", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeInvocationMetricDataCurve(.init(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询调用指标数据变化曲线
     @inlinable
     public func describeInvocationMetricDataCurve(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {
-        let input = DescribeInvocationMetricDataCurveRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type)
-        return try await self.client.execute(action: "DescribeInvocationMetricDataCurve", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeInvocationMetricDataCurve(.init(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -65,8 +65,7 @@ extension Tsf {
     /// 启动分组
     @inlinable
     public func startGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGroupResponse> {
-        let input = StartGroupRequest(groupId: groupId)
-        return self.client.execute(action: "StartGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.startGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动虚拟机部署组
@@ -74,7 +73,6 @@ extension Tsf {
     /// 启动分组
     @inlinable
     public func startGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGroupResponse {
-        let input = StartGroupRequest(groupId: groupId)
-        return try await self.client.execute(action: "StartGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.startGroup(.init(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

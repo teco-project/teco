@@ -70,8 +70,7 @@ extension Partners {
     /// 代理商支付订单接口，支持自付/代付
     @inlinable @discardableResult
     public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
-        let input = AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames)
-        return self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.agentPayDeals(.init(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 支付订单（合作伙伴使用）
@@ -79,7 +78,6 @@ extension Partners {
     /// 代理商支付订单接口，支持自付/代付
     @inlinable @discardableResult
     public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
-        let input = AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames)
-        return try await self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.agentPayDeals(.init(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

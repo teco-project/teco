@@ -109,14 +109,12 @@ extension Iotexplorer {
     /// 获取设备的历史事件
     @inlinable
     public func listEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: Int64? = nil, endTime: UInt64? = nil, context: String? = nil, size: Int64? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventHistoryResponse> {
-        let input = ListEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId)
-        return self.client.execute(action: "ListEventHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.listEventHistory(.init(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备的历史事件
     @inlinable
     public func listEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: Int64? = nil, endTime: UInt64? = nil, context: String? = nil, size: Int64? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventHistoryResponse {
-        let input = ListEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId)
-        return try await self.client.execute(action: "ListEventHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.listEventHistory(.init(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

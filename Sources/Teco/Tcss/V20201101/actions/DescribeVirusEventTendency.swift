@@ -58,14 +58,12 @@ extension Tcss {
     /// 查询木马事件趋势
     @inlinable
     public func describeVirusEventTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
-        let input = DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod)
-        return self.client.execute(action: "DescribeVirusEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeVirusEventTendency(.init(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马事件趋势
     @inlinable
     public func describeVirusEventTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
-        let input = DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod)
-        return try await self.client.execute(action: "DescribeVirusEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeVirusEventTendency(.init(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

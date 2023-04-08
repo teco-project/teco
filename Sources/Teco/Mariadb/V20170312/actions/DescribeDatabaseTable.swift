@@ -86,8 +86,7 @@ extension Mariadb {
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
     public func describeDatabaseTable(instanceId: String, dbName: String, table: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseTableResponse> {
-        let input = DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table)
-        return self.client.execute(action: "DescribeDatabaseTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.describeDatabaseTable(.init(instanceId: instanceId, dbName: dbName, table: table), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库表信息
@@ -95,7 +94,6 @@ extension Mariadb {
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
     public func describeDatabaseTable(instanceId: String, dbName: String, table: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
-        let input = DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table)
-        return try await self.client.execute(action: "DescribeDatabaseTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.describeDatabaseTable(.init(instanceId: instanceId, dbName: dbName, table: table), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -95,8 +95,7 @@ extension Wav {
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
     @inlinable
     public func queryVehicleInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryVehicleInfoListResponse> {
-        let input = QueryVehicleInfoListRequest(cursor: cursor, limit: limit)
-        return self.client.execute(action: "QueryVehicleInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.queryVehicleInfoList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询车系车型信息列表接口
@@ -104,8 +103,7 @@ extension Wav {
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
     @inlinable
     public func queryVehicleInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryVehicleInfoListResponse {
-        let input = QueryVehicleInfoListRequest(cursor: cursor, limit: limit)
-        return try await self.client.execute(action: "QueryVehicleInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.queryVehicleInfoList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询车系车型信息列表接口

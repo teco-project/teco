@@ -104,14 +104,12 @@ extension Organization {
     /// 创建组织成员
     @inlinable
     public func createOrganizationMember(name: String, policyType: String, permissionIds: [UInt64], nodeId: Int64, accountName: String, remark: String? = nil, recordId: Int64? = nil, payUin: String? = nil, identityRoleID: [UInt64]? = nil, authRelationId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationMemberResponse> {
-        let input = CreateOrganizationMemberRequest(name: name, policyType: policyType, permissionIds: permissionIds, nodeId: nodeId, accountName: accountName, remark: remark, recordId: recordId, payUin: payUin, identityRoleID: identityRoleID, authRelationId: authRelationId)
-        return self.client.execute(action: "CreateOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.createOrganizationMember(.init(name: name, policyType: policyType, permissionIds: permissionIds, nodeId: nodeId, accountName: accountName, remark: remark, recordId: recordId, payUin: payUin, identityRoleID: identityRoleID, authRelationId: authRelationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建组织成员
     @inlinable
     public func createOrganizationMember(name: String, policyType: String, permissionIds: [UInt64], nodeId: Int64, accountName: String, remark: String? = nil, recordId: Int64? = nil, payUin: String? = nil, identityRoleID: [UInt64]? = nil, authRelationId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberResponse {
-        let input = CreateOrganizationMemberRequest(name: name, policyType: policyType, permissionIds: permissionIds, nodeId: nodeId, accountName: accountName, remark: remark, recordId: recordId, payUin: payUin, identityRoleID: identityRoleID, authRelationId: authRelationId)
-        return try await self.client.execute(action: "CreateOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.createOrganizationMember(.init(name: name, policyType: policyType, permissionIds: permissionIds, nodeId: nodeId, accountName: accountName, remark: remark, recordId: recordId, payUin: payUin, identityRoleID: identityRoleID, authRelationId: authRelationId), region: region, logger: logger, on: eventLoop)
     }
 }

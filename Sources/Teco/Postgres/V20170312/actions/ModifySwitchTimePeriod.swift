@@ -65,8 +65,7 @@ extension Postgres {
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable @discardableResult
     public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
-        let input = ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag)
-        return self.client.execute(action: "ModifySwitchTimePeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.modifySwitchTimePeriod(.init(dbInstanceId: dbInstanceId, switchTag: switchTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改变更配置切换时间
@@ -74,7 +73,6 @@ extension Postgres {
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable @discardableResult
     public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
-        let input = ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag)
-        return try await self.client.execute(action: "ModifySwitchTimePeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.modifySwitchTimePeriod(.init(dbInstanceId: dbInstanceId, switchTag: switchTag), region: region, logger: logger, on: eventLoop)
     }
 }
