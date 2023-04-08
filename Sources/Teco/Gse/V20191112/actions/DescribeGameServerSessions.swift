@@ -124,4 +124,33 @@ extension Gse {
     public func describeGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionsResponse {
         fatalError("DescribeGameServerSessions is no longer available.")
     }
+
+    /// 查询游戏服务器会话列表
+    ///
+    /// 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeGameServerSessionsPaginated(_ input: DescribeGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [GameServerSession])> {
+        fatalError("DescribeGameServerSessions is no longer available.")
+    }
+
+    /// 查询游戏服务器会话列表
+    ///
+    /// 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeGameServerSessionsPaginated(_ input: DescribeGameServerSessionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeGameServerSessionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeGameServerSessions is no longer available.")
+    }
+
+    /// 查询游戏服务器会话列表
+    ///
+    /// 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `GameServerSession` and `DescribeGameServerSessionsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeGameServerSessionsPaginator(_ input: DescribeGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGameServerSessionsRequest> {
+        fatalError("DescribeGameServerSessions is no longer available.")
+    }
 }

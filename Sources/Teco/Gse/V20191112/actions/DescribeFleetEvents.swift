@@ -135,4 +135,33 @@ extension Gse {
     public func describeFleetEvents(fleetId: String, limit: UInt64? = nil, offset: UInt64? = nil, eventCode: String? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetEventsResponse {
         fatalError("DescribeFleetEvents is no longer available.")
     }
+
+    /// 查询服务器舰队的事件列表
+    ///
+    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeFleetEventsPaginated(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Event])> {
+        fatalError("DescribeFleetEvents is no longer available.")
+    }
+
+    /// 查询服务器舰队的事件列表
+    ///
+    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeFleetEventsPaginated(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFleetEventsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeFleetEvents is no longer available.")
+    }
+
+    /// 查询服务器舰队的事件列表
+    ///
+    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Event` and `DescribeFleetEventsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeFleetEventsPaginator(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetEventsRequest> {
+        fatalError("DescribeFleetEvents is no longer available.")
+    }
 }

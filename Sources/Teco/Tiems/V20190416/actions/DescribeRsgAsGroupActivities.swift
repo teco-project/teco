@@ -130,4 +130,27 @@ extension Tiems {
     public func describeRsgAsGroupActivities(id: String, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupActivitiesResponse {
         fatalError("DescribeRsgAsGroupActivities is no longer available.")
     }
+
+    /// 查询伸缩组活动
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeRsgAsGroupActivitiesPaginated(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RsgAsGroupActivity])> {
+        fatalError("DescribeRsgAsGroupActivities is no longer available.")
+    }
+
+    /// 查询伸缩组活动
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable @discardableResult
+    public func describeRsgAsGroupActivitiesPaginated(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRsgAsGroupActivitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeRsgAsGroupActivities is no longer available.")
+    }
+
+    /// 查询伸缩组活动
+    ///
+    /// - Returns: `AsyncSequence`s of `RsgAsGroupActivity` and `DescribeRsgAsGroupActivitiesResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @inlinable
+    public func describeRsgAsGroupActivitiesPaginator(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRsgAsGroupActivitiesRequest> {
+        fatalError("DescribeRsgAsGroupActivities is no longer available.")
+    }
 }

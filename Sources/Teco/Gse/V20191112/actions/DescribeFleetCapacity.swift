@@ -114,4 +114,33 @@ extension Gse {
     public func describeFleetCapacity(fleetIds: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetCapacityResponse {
         fatalError("DescribeFleetCapacity is no longer available.")
     }
+
+    /// 查询游戏服务器舰队容量配置
+    ///
+    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeFleetCapacityPaginated(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FleetCapacity])> {
+        fatalError("DescribeFleetCapacity is no longer available.")
+    }
+
+    /// 查询游戏服务器舰队容量配置
+    ///
+    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable @discardableResult
+    public func describeFleetCapacityPaginated(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFleetCapacityResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        fatalError("DescribeFleetCapacity is no longer available.")
+    }
+
+    /// 查询游戏服务器舰队容量配置
+    ///
+    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
+    ///
+    /// - Returns: `AsyncSequence`s of `FleetCapacity` and `DescribeFleetCapacityResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @inlinable
+    public func describeFleetCapacityPaginator(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetCapacityRequest> {
+        fatalError("DescribeFleetCapacity is no longer available.")
+    }
 }
